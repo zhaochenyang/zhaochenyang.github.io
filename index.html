@@ -262,6 +262,259 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/userful/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/userful/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-14T10:32:38+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.w3cschool.cn/lme/t13p1sri.html" target="_blank" rel="noopener">Markdown 教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/BM25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/14/BM25/" itemprop="url">BM25 算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-14T10:11:59+08:00">
+                2018-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>BM25 is a bag-of-words retrieval function that ranks a set of documents based on the query terms appearing in each document, regardless of the inter-relationship between the query terms within a document (e.g., their relative proximity). It is not a single function, but actually a whole family of scoring functions, with slightly different components and parameters.</p>
+<p>BM25算法，通常用来作搜索相关性评分。一句话概况其主要思想：对Query进行语素解析，生成语素qi；然后，对于每个搜索结果D，计算每个语素qi与D的相关性得分，最后，将qi相对于D的相关性得分进行加权求和，从而得到Query与D的相关性得分。<br>BM25算法的一般性公式如下：<br><img src="http://luokr.com/upload/2013/12/31/468a/46e5dffc4447fe0555adbd243d0ed98a.gif" alt="BM25 公式"></p>
+<p>BM25算法的相关性得分公式可总结为：</p>
+<p><img src="http://luokr.com/upload/2013/12/31/3196/31e78a56c620e2ca1d2e6a8a956c3296.gif" alt="BM25"></p>
+<p>参数b的作用是调整文档长度对相关性影响的大小。b越大，文档长度的对相关性得分的影响越大，反之越小。而文档的相对长度越长，K值将越大，则相关性得分会越小。这可以理解为，当文档较长时，包含qi的机会越大，因此，同等fi的情况下，长文档与qi的相关性应该比短文档与qi的相关性弱。<br>从BM25的公式可以看到，通过使用不同的语素分析方法、语素权重判定方法，以及语素与文档的相关性判定方法，我们可以衍生出不同的搜索相关性得分计算方法，这就为我们设计算法提供了较大的灵活性。</p>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><p>Okapi BM25 是到目前为止被认为最先进的排名算法之一( ElasticSearch ）。Okapi BM25 在 TF-IDF 的基础上增加了两个可调参数，k1 和 b，, 分别代表 “词语频率饱和度（term frequency saturation）” 和 “字段长度规约”。这是什么鬼？</p>
+<p>为了能直观的理解“词语频率饱和度”，请想象两篇差不多长度的讨论棒球的文章。另外，我们假设所有文档(除去这两篇)并没有多少与棒球相关的内容，因此 “棒球” 这个词将具有很高的 IDF – 它极稀少而且很重要。 这两篇文章都是讨论棒球的，而且都花了大量的篇幅讨论它，但是其中一篇比另一篇更多的使用了“棒球”这个词。那么在这种情况，是否一篇文章真的要比另一篇文章相差很多的分数呢？既然两个两个文档都是大篇幅讨论棒球的，那么“棒球”这个词出现 40 次还是 80 次都是一样的。事实上，30 次就该封顶啦！<br><img src="https://wwwmelastic.co/guide/en/elasticsearch/guide/current/images/elas_1706.png" alt="term frequency saturation"><br>这就是 “词语频率饱和度。原生的 TF-IDF 算法没有饱和的概念，所以出现 80 次“棒球”的文档要比出现 40 次的得分高一倍。有些时候，这时我们所希望的，但有些时候我们并不希望这样。</p>
+<p>此外，Okapi BM25 还有个 k1 参数，它用于调节饱和度变化的速率。k1 参数的值一般介于 1.2 到  2.0 之间。数值越低则饱和的过程越快速。（意味着两个上面两个文档有相同的分数，因为他们都包含大量的“棒球”这个词语）</p>
+<p>字段长度归约（Field-length normalization）将文档的长度归约化到全部文档的平均长度上。这对于单字段集合（single-field collections）（例如 ours）很有用，可以将不同长度的文档统一到相同的比较条件上。对于双字段集合（例如 “title” 和 “body”）更加有意义，它同样可以将 title 和 body 字段统一到相同的比较条件上。字段长度归约用 b 来表示，它的值在 0 和 1 之间，1 意味着全部归约化，0 则不进行归约化。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://luokr.com/p/7" target="_blank" rel="noopener">BM25算法浅析</a></li>
+<li><a href="https://blog.csdn.net/heiyeshuwu/article/details/55669316" target="_blank" rel="noopener">Okapi BM25</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/pluggable-similarites.html#bm25-saturation" target="_blank" rel="noopener">ES plugin</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/heap_sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1244,7 +1497,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1257,7 +1510,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
