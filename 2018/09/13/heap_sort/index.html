@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="shell,linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="总结一下常用的linux命令，以备不时之需。 Userful Commandtar创建新的压缩文件  $ tar cvf archive_name.tar dirname/  解压现有文件  $ tar xvf archive_name.tar  更多实例信息 The Ultimate Tar Command Tutorial with 10 Practical Examples grep匹配查询">
-<meta name="keywords" content="shell,linux">
+<meta name="description" content="堆排序特点：完全二叉树 以大根堆为例 所有父节点大于子节点，所有左孩子大于右孩子。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 常用命令">
-<meta property="og:url" content="http://yoursite.com/2018/01/26/linux常用命令/index.html">
+<meta property="og:title" content="记忆小溪">
+<meta property="og:url" content="http://yoursite.com/2018/09/13/heap_sort/index.html">
 <meta property="og:site_name" content="记忆小溪">
-<meta property="og:description" content="总结一下常用的linux命令，以备不时之需。 Userful Commandtar创建新的压缩文件  $ tar cvf archive_name.tar dirname/  解压现有文件  $ tar xvf archive_name.tar  更多实例信息 The Ultimate Tar Command Tutorial with 10 Practical Examples grep匹配查询">
+<meta property="og:description" content="堆排序特点：完全二叉树 以大根堆为例 所有父节点大于子节点，所有左孩子大于右孩子。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-29T03:33:12.000Z">
+<meta property="og:updated_time" content="2018-09-13T12:57:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 常用命令">
-<meta name="twitter:description" content="总结一下常用的linux命令，以备不时之需。 Userful Commandtar创建新的压缩文件  $ tar cvf archive_name.tar dirname/  解压现有文件  $ tar xvf archive_name.tar  更多实例信息 The Ultimate Tar Command Tutorial with 10 Practical Examples grep匹配查询">
+<meta name="twitter:title" content="记忆小溪">
+<meta name="twitter:description" content="堆排序特点：完全二叉树 以大根堆为例 所有父节点大于子节点，所有左孩子大于右孩子。">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/26/linux常用命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/13/heap_sort/"/>
 
 
 
 
 
-  <title>Linux 常用命令 | 记忆小溪</title>
+  <title> | 记忆小溪</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/linux常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/heap_sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhaochenyang">
@@ -280,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 常用命令</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T22:16:23+08:00">
-                2018-01-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-13T20:57:39+08:00">
+                2018-09-13
               </time>
             
 
@@ -330,48 +329,9 @@
       
 
       
-        <p>总结一下常用的linux命令，以备不时之需。</p>
-<h2 id="Userful-Command"><a href="#Userful-Command" class="headerlink" title="Userful Command"></a>Userful Command</h2><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>创建新的压缩文件</p>
-<blockquote>
-<p>$ tar cvf archive_name.tar dirname/</p>
-</blockquote>
-<p>解压现有文件</p>
-<blockquote>
-<p>$ tar xvf archive_name.tar</p>
-</blockquote>
-<p>更多实例信息 <a href="https://www.thegeekstuff.com/2010/04/unix-tar-command-examples/" target="_blank" rel="noopener">The Ultimate Tar Command Tutorial with 10 Practical Examples</a></p>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>匹配查询一个词语,大小写不敏感用-i</p>
-<blockquote>
-<p>$ grep -i “the” demo_file</p>
-</blockquote>
-<p>查询返回匹配行及后面3行</p>
-<blockquote>
-<p>$ grep -A 3 -i “example” demo_text</p>
-</blockquote>
-<p>递归查询文件夹文件</p>
-<blockquote>
-<p>$ grep -r “ramesh” *</p>
-</blockquote>
-<p>正则表达式</p>
-<blockquote>
-<p>$ grep “lines.*empty” demo_file<br>Two lines above this line is empty.</p>
-</blockquote>
-<p>不展示所有pattern</p>
-<blockquote>
-<p>$ cat test-file.txt<br>a<br>b<br>c<br>d<br>$ grep -v -e “a” -e “b” -e “c” test-file.txt<br>d</p>
-</blockquote>
-<p>Count lines matched</p>
-<blockquote>
-<p>$ grep -c “go” demo_text<br>6<br>$ grep “go” demo_text |wc -l</p>
-</blockquote>
-<p>更多实例: <a href="https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/" target="_blank" rel="noopener">Get a Grip on the Grep! – 15 Practical Grep Command Examples</a></p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>查找文件名 -i 大小写不敏感</p>
-<blockquote>
-<p>$ find -iname “MyCProgram.c”</p>
-</blockquote>
-<h3 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h3><ul>
-<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/?utm_source=feedburner" target="_blank" rel="noopener">https://www.thegeekstuff.com/2010/11/50-linux-commands/?utm_source=feedburner</a></li>
-</ul>
+        <h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>特点：完全二叉树</p>
+<p>以大根堆为例</p>
+<p>所有父节点大于子节点，所有左孩子大于右孩子。</p>
 
       
     </div>
@@ -387,14 +347,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/shell/" rel="tag"># shell</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-        </div>
-      
 
       
       
@@ -404,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/26/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/09/13/recommendations_book_marks/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -413,10 +365,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/11/seq_seq/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -539,7 +487,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Userful-Command"><span class="nav-number">1.</span> <span class="nav-text">Userful Command</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tar"><span class="nav-number">1.1.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">1.2.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Referrence"><span class="nav-number">1.4.</span> <span class="nav-text">Referrence</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">1.</span> <span class="nav-text">堆排序</span></a></li></ol></div>
             
 
           </div>
