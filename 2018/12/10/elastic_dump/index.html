@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出mapelasticdump \    –input=http://10.0.12.100:9200/mytestindex \">
+<meta name="description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出map1234elasticdump \      --input=http://10.0.12.100:9200/mytestin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticdump">
 <meta property="og:url" content="http://yoursite.com/2018/12/10/elastic_dump/index.html">
 <meta property="og:site_name" content="记忆小溪">
-<meta property="og:description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出mapelasticdump \    –input=http://10.0.12.100:9200/mytestindex \">
+<meta property="og:description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出map1234elasticdump \      --input=http://10.0.12.100:9200/mytestin">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-10T05:45:01.000Z">
+<meta property="og:updated_time" content="2018-12-10T05:48:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticdump">
-<meta name="twitter:description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出mapelasticdump \    –input=http://10.0.12.100:9200/mytestindex \">
+<meta name="twitter:description" content="开源工具地址： https://github.com/taskrabbit/elasticsearch-dump 查看所有index线上 curl ‘10.0.12.100:6335/_cat/indices?v’ 同步mytestindex从线上环境到测试环境 导出map1234elasticdump \      --input=http://10.0.12.100:9200/mytestin">
 
 
 
@@ -332,8 +332,11 @@
         <p>开源工具地址： <a href="https://github.com/taskrabbit/elasticsearch-dump" target="_blank" rel="noopener">https://github.com/taskrabbit/elasticsearch-dump</a></p>
 <p>查看所有index<br>线上 curl ‘10.0.12.100:6335/_cat/indices?v’</p>
 <p>同步mytestindex从线上环境到测试环境</p>
-<p>导出map<br>elasticdump \<br>    –input=<a href="http://10.0.12.100:9200/mytestindex" target="_blank" rel="noopener">http://10.0.12.100:9200/mytestindex</a> \<br>    –output=./mytestindex.map \<br>    –type=mapping<br>导出数据<br>elasticdump \<br>    –input=<a href="http://10.0.12.100:9200/mytestindex" target="_blank" rel="noopener">http://10.0.12.100:9200/mytestindex</a> \<br>    –output=./mytestindex.json<br>导入map<br>elasticdump –input=./mytestindex.map –output=<a href="http://10.1.1.246:9200/mytestindex" target="_blank" rel="noopener">http://10.1.1.246:9200/mytestindex</a> –type=mapping</p>
-<p>导入数据<br>elasticdump \<br>    –input=./mytestindex.json \<br>    –output=<a href="http://10.1.1.246:9200/mytestindex" target="_blank" rel="noopener">http://10.1.1.246:9200/mytestindex</a> –limit 1000</p>
+<p>导出map<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">elasticdump \</span><br><span class="line">      --input=http://10.0.12.100:9200/mytestindex \</span><br><span class="line">      --output=./mytestindex.map \</span><br><span class="line">      --type=mapping</span><br></pre></td></tr></table></figure></p>
+<p>导出数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">elasticdump \</span><br><span class="line">    --input=http://10.0.12.100:9200/mytestindex \</span><br><span class="line">    --output=./mytestindex.json</span><br></pre></td></tr></table></figure></p>
+<pre><code>导入map
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elasticdump –input=./mytestindex.map –output=http://10.1.1.246:9200/mytestindex –type=mapping</span><br></pre></td></tr></table></figure>
+<p>导入数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">elasticdump \</span><br><span class="line">    –input=./mytestindex.json \</span><br><span class="line">    –output=http://10.1.1.246:9200/mytestindex –limit 1000</span><br></pre></td></tr></table></figure></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a href="http://whatua.com/2018/02/28/elasticsearch-dump-%E7%BA%BF%E4%B8%8A%E4%B8%8B%E7%BA%BF%E7%8E%AF%E5%A2%83%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E5%B7%A5%E5%85%B7/" target="_blank" rel="noopener">es-同步工具</a></li>
 </ol>
