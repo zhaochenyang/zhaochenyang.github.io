@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations摘要许多推荐系统在一个非常大的库中召回(retrieve)和评分(score)物料(item)。通常处理数据稀疏和指数item分布的方法是从它的内容特征中学习item 表示。与基于矩阵分解的许多content-aware 系统不同，我们考虑了用双">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记忆小溪">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations/index.html">
+<meta property="og:site_name" content="记忆小溪">
+<meta property="og:description" content="Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations摘要许多推荐系统在一个非常大的库中召回(retrieve)和评分(score)物料(item)。通常处理数据稀疏和指数item分布的方法是从它的内容特征中学习item 表示。与基于矩阵分解的许多content-aware 系统不同，我们考虑了用双">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103102421196.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103102551198.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103103026925.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103103405676.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103104303010.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103104424614.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103184119289.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103193512470.png">
+<meta property="og:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103200255037.png">
+<meta property="og:updated_time" content="2019-11-07T01:15:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记忆小溪">
+<meta name="twitter:description" content="Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations摘要许多推荐系统在一个非常大的库中召回(retrieve)和评分(score)物料(item)。通常处理数据稀疏和指数item分布的方法是从它的内容特征中学习item 表示。与基于矩阵分解的许多content-aware 系统不同，我们考虑了用双">
+<meta name="twitter:image" content="http://yoursite.com/Users/chenyangzhao/Library/Application%20Support/typora-user-images/image-20191103102421196.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/26/Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations/"/>
+
+
+
+
+
+  <title> | 记忆小溪</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">记忆小溪</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总结与感悟</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/26/Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-26T18:47:01+08:00">
+                2019-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Sampling-Bias-Corrected-Neural-Modeling-for-Large-Corpus-Item-Recommendations"><a href="#Sampling-Bias-Corrected-Neural-Modeling-for-Large-Corpus-Item-Recommendations" class="headerlink" title="Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations"></a>Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations</h3><h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><p>许多推荐系统在一个非常大的库中召回(retrieve)和评分(score)物料(item)。通常处理数据稀疏和指数item分布的方法是从它的内容特征中学习item 表示。与基于矩阵分解的许多content-aware 系统不同，我们考虑了用双塔神经网络模型框架，其中一个塔（item 塔）编码不同的item内容特征。一个通用的方法是训练这样一个双塔来优化loss函数，批量负样本，这些item从随机最小batch中采样而来。然而in-batch loss受限于采样bias，潜在影响模型表现，特别是在扭曲严重的分布中。本文我们给出了一个原创算法预估流式数据中的item频率。通过理论分析和模拟，我们展示了提出的算法无需固定的item vocabulary而奏效，并且有能力产生无偏的估计且能够适应item分布变化。我们然后应用采样偏置更正（sampling-bias-corrected ）建模方法来建立一个大规模神经召回系统，来给YouTube推荐使用。系统部署用于从一个千万级video库中召回个性化建议。我们通过两个真实存在的数据集的离线实验证明采样偏置更正的有效性。我们也进行了线上AB测试，来展示神经召回系统导致的YouTube推荐质量提升。</p>
+<h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h4><p>推荐系统帮助用户发现感兴趣的内容，通过许多internet服务，包含视频推荐，aap建议，和在线广告命中。在多种情况下，这些系统关联十亿级用户和大规模内容的item通常是百万到十亿，在严格的时延要求下。一个通常的是现实将推荐当做是retieval和ranking问题。然后设计一个两阶段系统。这是一个可扩展的Retrieval模型先从一个大的库中retrieve一个小规模的相关item，然后一个充分发挥的ranking模型对retrieved到的item进行rerank，根据一个或多个目标例如点击或者用户评分。在这些工作中，我们关注于建立一个实际世界中学到的召回系统能够扩展到百万级别item的个性化推荐系统。</p>
+<p>给定一个三元组{user， context，item}，一个通用的解法是建立一个可扩展的retieval模型</p>
+<ol>
+<li><p>学习查询和item的表征，分别对应{user,context}和{item}</p>
+</li>
+<li><p>用一个简单评分函数，如点击，在query和item表示，来获得query的合适的推荐。</p>
+</li>
+</ol>
+<p>context通常表示动态变量，例如时间天，user使用的device。表示学习问题有两个典型挑战：</p>
+<ol>
+<li>item的库可能极大，对于许多工业级的应用来讲</li>
+<li>从用户反馈收集到的用户数据对于大多数item通常非常稀疏，因此导致模型预测对于长尾内容有个非常大的variance。</li>
+</ol>
+<p>面对充分报道的冷启动问题，真实世界系统需要使用数据分布变化来是新鲜内容更好的曝光出来。</p>
+<p>受到Netflix prize启发，基于矩阵分解建模已经被广泛接纳，学习query和item的隐向量，用户建立retieval 系统。在MF框架下，推荐研究的主题处理上述挑战从一个大的库中。这些通用思想是利用query和item的content features。content features能够被简单定义为各种描述item的features，不仅限于item id。例如一个video的content feature能是visual和audio feature，从视频关键帧中抽出来的。基于MF的模型经常能够捕捉二阶交叉特征，因此这有有限的能量表达一个各种形式的特征集合。</p>
+<p>近年来，在CV和NLP领域深度学习的成功激发，有大量的工作是应用DNN做推荐。深度表示很适合编码复杂的用书状态和item内容特征，表示成低维度嵌入空间。本论文中，我们探索了双塔DNN在建立retieval模型中。</p>
+<p>结果，双塔模型架构能够建模标签有结构或者内容features。MLP模型通常用许多负采样样本，从一个固定item vocabulary中。相反，用deep item tower，典型的无效的，采样和训练在许多负样本，由于item content feature和共享的网络参数来计算所有item embedding。</p>
+<p>我们考虑batch softmax optimization，item的概率是由所有的随机batch中item的全量计算的，作为一个训练双塔DNN的通用方法。然而正如我们实验展示的，batch softmax受限于采样偏置并且能够显著限制模型效果，如果没有修正。重要性采样和相关偏置减少在MLP模型中被研究过了。由这些工作启发，我们提出了更正采样偏置，在batch softmax中使用估计item频率。与MLP模型不同，那些模型的输出item vocabulary是固定的，我们目标是流式数据情况，随着时间vocabulary和分布变化。我们提出了一个原创的算法，统计与估计item 频率通过gradient descent。另外，我们应用偏置更正建模，建立一个YouTube个性化推荐系统。我们也介绍了序列训练策略，设计包含流式数据，和系统serving与索引。</p>
+<p>主要贡献：</p>
+<ul>
+<li>流式频率预估</li>
+<li>建模框架</li>
+<li>YouTube推荐</li>
+<li>离线和线上实验</li>
+</ul>
+<h4 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2 相关工作"></a>2 相关工作</h4><p>本章，我们给了相关工作的的一个概览，重点是和我们贡献的联系。</p>
+<h5 id="2-1-Content-Aware-and-Neural-Recommenders"><a href="#2-1-Content-Aware-and-Neural-Recommenders" class="headerlink" title="2.1 Content-Aware and Neural Recommenders"></a>2.1 Content-Aware and Neural Recommenders</h5><p>利用user和item的content features对于提高泛化性和减轻冷启动问题十分关键。有一些列研究聚焦在将content features加入到经典的MF框架中。例如泛化MF模型，SVDFeature FM能够应用，加入item content features。这些模型能够抓住双线性，如特征间二阶交叉特征。最近这些年DNN被证明在提升推荐准确率方面更有效。由于高度非线性的有事，DNN提供了一个较大的容量能够抓住复杂特征交叉，比传统的范姐方法。</p>
+<p>与NCF不同两方面：</p>
+<ol>
+<li>我们提升了双塔网络来建模user-item交互，因此能够在一个近似线性时间完成一个大库item的推断。学习NCF使用point-wise loss，例如squared or log loss。这里我们介绍了一个multi-class soft-max loss并且显示模拟item 频率。</li>
+</ol>
+<h5 id="2-2-极限分类"><a href="#2-2-极限分类" class="headerlink" title="2.2 极限分类"></a>2.2 极限分类</h5><p>softmax是一个最常用的函数，在设计一个百万标签大的输出空间的预测时。许多研究已经聚焦在训练softmax分类模型，对于一个大量的类别，从语言任务到推荐。当类别极限大时，一个广泛使用的技术来加速悬链的方法是在一个类别的子集中进行采样。Bengio展示了一个好的采样分布应该是和模型的输出分布相适应的。为了避免计算采样分布的的复杂化，许多实际的模型使用了一个简单的分布例如unigram或均匀采样作为替代。最近Blanc等设计了一个有效和适应性的基于kernel的采样方法。不管采样softmax的各种变种的成功，这里对于label有content feautres的并不适用。适应性的采样任然是一个待解决问题。各种工作证明基于树的边界结构，例如级联softmax是很有用的，对于建立大规模分类模型，在降低推断时间方面是很显著的。这些方法通常需要一个与定义的树结构，基于某些特定的类别属性，结果他们并不合适，对于合并很多种输入features。</p>
+<h5 id="2-3-Two-tower-Models"><a href="#2-3-Two-tower-Models" class="headerlink" title="2.3 Two-tower Models"></a>2.3 Two-tower Models</h5><p>建立两个塔的神经网络在不同的语言任务中最近已经成为流行的方法了，包含语义相似建模，问答建议和基于文本的信息召回。我们的工作贡献，对于这一些列的研究，特别地证明了双塔模型在建立了大规模推荐系统的有效性。对于许多上文提到的许多语言任务，他是值得注意的，我们聚焦了一个大规模的库，对于YouTube这样的应用是常见的，通过线上实验，我们找到了显示的模拟item频率的关键是提升retieval准确率在设置中，在现在的公国中还么有被有效解决。</p>
+<h4 id="3-模型框架"><a href="#3-模型框架" class="headerlink" title="3 模型框架"></a>3 模型框架</h4><p>我们考虑了一个推荐问题的设定，我们有一些列的query和item的集合，queries和item是用x和y分别表示，这里 x y都是一个很多feaure的合集，例如sparse ID和dense feature，并且可能在一个非常高维的空间。目标是，在一个item子集中retrieval item。在个性化场景，我们假定user和context是在x中完全捕捉到信息中。我们开始用一个有限的query和item来解释直觉。我们的模型框剪没有在那样的交涉下工作。</p>
+<p>我们目的是建立一个模型，使用两个参数化的embedding函数能够映射模型参数和特征</p>
+<p>T := {(xi, i,ri)}Ti=1,</p>
+<p>ri能够扩展成捕捉各种维度的用户和一个候选集的交互行为。例如，新闻土建中，ri能够使用户在某个特定文章上所花的时间。给定一个query x，一个对于M个item选择y个item的概率分布的通常的选择事基于softmax函数，如下</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103102421196.png" alt="image-20191103102421196"></p>
+<p>对于更深入的考虑ri，我们考虑如下的加权log-likelihood作为loss 函数</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103102551198.png" alt="image-20191103102551198"></p>
+<p>当M非常大的时候，对于包含所有的候选样本计算partition函数是不太可行的，例如，这里的分母部分。一个通常的想法是，使用一个item的自己建立分部函数。我们关注处理流式数据。结果，不想训练MLP模型里负反馈是从一个固定的语料库中选择一样，我们考虑使用batch内的item作为所有batch内的query的负反馈。精确的将，给定一个mini-batch B，{(xi, i,ri)}B i=1,对于B中多有的i，这里的batch softmax是<img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103103026925.png" alt="image-20191103103026925"></p>
+<p>batch内的item通常从一个我们目标应用的幂次分布中采样而来。结果公式3中引入了一个非常大的bias，相对于full softmax，流行的item由于他在batch内出现的几率教改而被过度惩罚了。受到logQ修正的启发，采样sample softmax模型，我们改正了每个logits s用一下的等式</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103103405676.png" alt="image-20191103103405676"></p>
+<p>这里pj代表item j的采样概率在一个random batch中。我们保留pj的估计到下一个部分。</p>
+<p>加上修真过之后我们有</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103104303010.png" alt="image-20191103104303010"></p>
+<p>然后将上述概率带入公式二。</p>
+<p>这里是batch loss function。使用SGD with lr r进行模型参数更新。</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103104424614.png" alt="image-20191103104424614"></p>
+<p>这里LBuxuyao一个固定的query或候选集。相关的，公式5能够被应用到流式训练数据，他们的数据是随着时间变化的。看算法1是我们提出算法的全部描述。</p>
+<p>NNS:一旦embedding 函数u v学号后，推断包含两步</p>
+<ol>
+<li><p>计算query embedding u(x,theta)</p>
+</li>
+<li><p>进行近邻查找，在一个item embedding集合上，这些embedding从函数v中预训练出来。</p>
+<p>更多，我们的建模框架提供了选项选择任意数据集在inference的时候。</p>
+<p>使用高效相似度查找系统，建立在hash技术基础上，不会与全部item计算点积给出top item。对于近似最大内积查找系统问题。具体的，紧凑的高维embedding表示通过量化和端到端学习的粗糙的和点积量化。</p>
+</li>
+</ol>
+<p>Normalization and Temperature. 经验性的，我们发现增加embedding 归一化，除以二范式u(x, ) u(x, )/ku(x, )k2, ( , )  ( , )/k ( , )k2 ，提高了模型可训练性，并且导致了更好的查找质量。另外，temperature t加到每个logit来sharpen predictions，即</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103184119289.png" alt="image-20191103184119289"></p>
+<p>实际中t是一个超参数，调整到最大化例如recall 或precision之类的retrieval metics</p>
+<p>g</p>
+<h4 id="4-流式频率预估"><a href="#4-流式频率预估" class="headerlink" title="4 流式频率预估"></a>4 流式频率预估</h4><p>本部分，我们详述流式频率预估。假设有一个随机batch流，这里每个batch包含一个item集合。这个问题是估计每个itemy在每个batch中的点击概率。一个关键的设计标准是有一个高度分布式估计来支撑分布式训练，当有多个训练任务，workers。在每台机器上或者分布式徐脸上，有个唯一全局step，这表示全局唯一step，这个global step代表训练器消费的数据batch的数量。在分布式设置中，global step通常在多个worker之间同步在通过多个ps方式。我们利用global step并且转化一个item的频次估计到 theta，这表示item在连个连续两次点击的平均step 数量。例如一个item每50 步采样一次，然后我们得到p=0.02。global step的使用给我们两个优势：</p>
+<ol>
+<li>多个worker饮食的同步频率估计，通过读取和次改全局step</li>
+<li>估计theta能够实现，一个简单的平均更新，适应分布变化</li>
+</ol>
+<p>使用固定item vocabulary 不能现实，我们使用hash array来几率流式id的采样信息。引入的hash 坑呢会引起潜在的hash 碰撞。我们重新看下issue，并提出了一个改进的算法。正如算法2所示，我们用两个arrayA和B，大小为H。鸡舍h是hash函数，能够将任何item映射到一个H空间的interger，这个映射可以基于ID或者其他简(要特征值。然后给一个item y，A[h(y)]记录最新的部署，当y被采样，B[h(y)]包含了对y的theta估计，饿哦们使用A更新B。一旦itemy在第t步更新了，我们更新arrayB：</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103193512470.png" alt="image-20191103193512470"></p>
+<p>当B更新了，我们将t赋给A[h(y)].</p>
+<p>对于每个item，假设step值在两个连续点击用随机变量delta表示，均值E(delta)。这里我们的目标是估计theta从一个流式采样中。当一个item出现在某个stept中，t   A[ v(y )]是一个新的delta样本。相关的上述更新能够使用SGD使用固定learning  rate alpha 来学习这个随机值的均值。公式化的，在无冲突情况下，下一个结果显示了bias和variance，这个线上估计。</p>
+<p>假设 delte1 2 … t是一些列独立荣分布的随机变量采样。让delta等于其均值，假设线上估计这里i属于t 并且alpha属于（0,1）</p>
+<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103200255037.png" alt="image-20191103200255037"></p>
+<p>z</p>
+<p>z</p>
+<p>k</p>
+<h4 id="5-YouTube神经召回系统"><a href="#5-YouTube神经召回系统" class="headerlink" title="5 YouTube神经召回系统"></a>5 YouTube神经召回系统</h4><h5 id="5-1-模型概览"><a href="#5-1-模型概览" class="headerlink" title="5.1 模型概览"></a>5.1 模型概览</h5><h5 id="5-2-序列训练"><a href="#5-2-序列训练" class="headerlink" title="5.2 序列训练"></a>5.2 序列训练</h5><h5 id="5-3-索引和模型serving"><a href="#5-3-索引和模型serving" class="headerlink" title="5.3 索引和模型serving"></a>5.3 索引和模型serving</h5><h4 id="6-实验"><a href="#6-实验" class="headerlink" title="6 实验"></a>6 实验</h4><h5 id="6-1-频率预估模拟"><a href="#6-1-频率预估模拟" class="headerlink" title="6.1 频率预估模拟"></a>6.1 频率预估模拟</h5><h5 id="6-2-Wikipedia-page-Retrieval"><a href="#6-2-Wikipedia-page-Retrieval" class="headerlink" title="6.2 Wikipedia page Retrieval"></a>6.2 Wikipedia page Retrieval</h5><h5 id="6-3-YouTube实验"><a href="#6-3-YouTube实验" class="headerlink" title="6.3 YouTube实验"></a>6.3 YouTube实验</h5><h4 id="7-总结"><a href="#7-总结" class="headerlink" title="7 总结"></a>7 总结</h4><h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>REFERENCES </p>
+<ol>
+<li>[1]  Martín Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, Craig Citro, Greg S. Corrado, Andy Davis, Jefrey Dean, Matthieu Devin, San- jay Ghemawat, Ian Goodfellow, Andrew Harp, Geofrey Irving, Michael Isard, Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh Levenberg, Dandelion Mané, Rajat Monga, Sherry Moore, Derek Murray, Chris Olah, Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal Talwar, Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Viégas, Oriol Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and Xiaoqiang Zheng. 2015. TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems. <a href="https://www.tensorfow.org/" target="_blank" rel="noopener">https://www.tensorfow.org/</a> Software available from tensorfow.org. </li>
+<li>[2]  Alexandr Andoni and Piotr Indyk. 2008. Near-optimal Hashing Algorithms for Approximate Nearest Neighbor in High Dimensions. Commun. ACM 51, 1 (Jan. 2008), 117–122. <a href="https://doi.org/10.1145/1327452.1327494" target="_blank" rel="noopener">https://doi.org/10.1145/1327452.1327494</a> </li>
+<li>[3]  Immanuel Bayer, Xiangnan He, Bhargav Kanagal, and Stefen Rendle. 2017. A Generic Coordinate Descent Framework for Learning from Implicit Feedback. In Proceedings of the 26th International Conference on World Wide Web (WWW ’17). 1341–1350. </li>
+<li>[4]  Yoshua Bengio and Jean-Sébastien Sénécal. 2003. Quick Training of Probabilistic Neural Nets by Importance Sampling. In Proceedings of the conference on Artifcial Intelligence and Statistics (AISTATS). </li>
+<li>[5]  Y. Bengio and J. S. Senecal. 2008. Adaptive Importance Sampling to Accelerate Training of a Neural Probabilistic Language Model. Trans. Neur. Netw. 19, 4 (April 2008), 713–722. <a href="https://doi.org/10.1109/TNN.2007.912312" target="_blank" rel="noopener">https://doi.org/10.1109/TNN.2007.912312</a> </li>
+<li>[6]  AlexBeutel,PaulCovington,SagarJain,CanXu,JiaLi,VinceGatto,andEdH. Chi. 2018. Latent Cross: Making Use of Context in Recurrent Recommender Systems. In Proceedings of the Eleventh ACM International Conference on Web Search and Data Mining (WSDM ’18). ACM, New York, NY, USA, 46–54. https: //doi.org/10.1145/3159652.3159727 </li>
+<li>[7]  Guy Blanc and Stefen Rendle. 2018. Adaptive Sampled Softmax with Kernel Based Sampling. In Proceedings of the 35th International Conference on Machine Learning, ICML 2018, Stockholmsmässan, Stockholm, Sweden, July 10-15, 2018. 589–598. <a href="http://proceedings.mlr.press/v80/blanc18a.html" target="_blank" rel="noopener">http://proceedings.mlr.press/v80/blanc18a.html</a> </li>
+<li>[8]  TianqiChen,WeinanZhang,QiuxiaLu,KailongChen,ZhaoZheng,andYong Yu. 2012. SVDFeature: A Toolkit for Feature-based Collaborative Filtering. J. Mach. Learn. Res. 13, 1 (Dec. 2012), 3619–3622. <a href="http://dl.acm.org/citation.cfm?" target="_blank" rel="noopener">http://dl.acm.org/citation.cfm?</a> id=2503308.2503357 </li>
+<li>[9]  Heng-TzeCheng,LeventKoc,JeremiahHarmsen,TalShaked,TusharChandra, Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil, Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, and Hemal Shah. 2016. Wide Deep Learning for Recommender Systems. arXiv:1606.07792 (2016). <a href="http://arxiv.org/abs/1606.07792" target="_blank" rel="noopener">http://arxiv.org/abs/1606.07792</a> </li>
+<li>[10]  Edith Cohen and David D. Lewis. 1997. Approximating Matrix Multiplication for Pattern Recognition Tasks. In Proceedings of the Eighth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA ’97). Society for Industrial and Applied Mathematics, Philadelphia, PA, USA, 682–691. <a href="http://dl.acm.org/citation.cfm?" target="_blank" rel="noopener">http://dl.acm.org/citation.cfm?</a> id=314161.314415 </li>
+<li>[11]  Graham Cormode and S. Muthukrishnan. 2005. An Improved Data Stream Summary: The Count-min Sketch and Its Applications. J. Algorithms 55, 1 (April 2005), 58–75. <a href="https://doi.org/10.1016/j.jalgor.2003.12.001" target="_blank" rel="noopener">https://doi.org/10.1016/j.jalgor.2003.12.001</a> </li>
+<li>[12]  Paul Covington, Jay Adams, and Emre Sargin. 2016. Deep Neural Networks for YouTube Recommendations. In Proceedings of the 10th ACM Conference on Recommender Systems. New York, NY, USA. </li>
+<li>[13]  JefreyDean,GregS.Corrado,RajatMonga,KaiChen,MatthieuDevin,QuocV. Le, Mark Z. Mao, Marc’Aurelio Ranzato, Andrew Senior, Paul Tucker, Ke Yang, and Andrew Y. Ng. 2012. Large Scale Distributed Deep Networks. In NIPS. </li>
+<li>[14]  Tim Donkers, Benedikt Loepp, and Jürgen Ziegler. 2017. Sequential User-based Recurrent Neural Network Recommendations. In Proceedings of the Eleventh ACM Conference on Recommender Systems (RecSys ’17). ACM, New York, NY, USA, 152–160. <a href="https://doi.org/10.1145/3109859.3109877" target="_blank" rel="noopener">https://doi.org/10.1145/3109859.3109877</a> </li>
+<li>[15]  John Duchi, Elad Hazan, and Yoram Singer. 2011. Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. J. Mach. Learn. Res. 12 (July 2011), 2121–2159. <a href="http://dl.acm.org/citation.cfm?id=1953048.2021068" target="_blank" rel="noopener">http://dl.acm.org/citation.cfm?id=1953048.2021068</a> </li>
+<li>[16]  Wikimedia Foundation. [n.d.]. Wikimedia Downloads. <a href="https://dumps.wikimedia" target="_blank" rel="noopener">https://dumps.wikimedia</a>. org/ </li>
+<li>[17]  Daniel Gillick, Alessandro Presta, and Gaurav Singh Tomar. 2018. End-to-End Retrieval in Continuous Space. CoRR abs/1811.08008 (2018). arXiv:1811.08008 <a href="http://arxiv.org/abs/1811.08008" target="_blank" rel="noopener">http://arxiv.org/abs/1811.08008</a> </li>
+<li>[18]  Carlos A. Gomez-Uribe and Neil Hunt. 2015. The Netfix Recommender System: Algorithms, Business Value, and Innovation. ACM Trans. Manage. Inf. Syst. 6, 4, Article 13 (Dec. 2015), 19 pages. <a href="https://doi.org/10.1145/2843948" target="_blank" rel="noopener">https://doi.org/10.1145/2843948</a> </li>
+<li>[19]  Ian Goodfellow, Yoshua Bengio, and Aaron Courville. 2016. Deep Learning. MIT Press. <a href="http://www.deeplearningbook.org" target="_blank" rel="noopener">http://www.deeplearningbook.org</a>. </li>
+<li>[20]  RuiqiGuo,SanjivKumar,KrzysztofChoromanski,andDavidSimcha.2016.Quan- tization based Fast Inner Product Search. In Proceedings of the 19th International Conference on Artifcial Intelligence and Statistics (Proceedings of Machine Learning Research), Arthur Gretton and Christian C. Robert (Eds.), Vol. 51. PMLR, Cadiz, </li>
+</ol>
+<p>Spain, 482–490. <a href="http://proceedings.mlr.press/v51/guo16a.html" target="_blank" rel="noopener">http://proceedings.mlr.press/v51/guo16a.html</a> </p>
+<ol>
+<li><p>[21]  Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu, and Tat-Seng Chua. 2017. Neural Collaborative Filtering. In Proceedings of the 26th International Conference on World Wide Web (WWW ’17). International World Wide Web Conferences Steering Committee, Republic and Canton of Geneva, Switzerland, </p>
+<p>173–182. <a href="https://doi.org/10.1145/3038912.3052569" target="_blank" rel="noopener">https://doi.org/10.1145/3038912.3052569</a> </p>
+</li>
+<li><p>[22]  Balázs Hidasi, Alexandros Karatzoglou, Linas Baltrunas, and Domonkos Tikk. </p>
+<p>\2016. Session-based Recommendations with Recurrent Neural Networks. In The </p>
+<p>International Conference on Learning Representations (ICLR 2016). </p>
+</li>
+<li><p>[23]  Y. Hu, Y. Koren, and C. Volinsky. 2008. Collaborative Filtering for Implicit Feedback Datasets. In 2008 Eighth IEEE International Conference on Data Mining. </p>
+<p>263–272. <a href="https://doi.org/10.1109/ICDM.2008.22" target="_blank" rel="noopener">https://doi.org/10.1109/ICDM.2008.22</a> </p>
+</li>
+<li><p>[24]  AnjuliKannan,KarolKurach,SujithRavi,TobiasKaufman,BalintMiklos,Greg </p>
+<p>Corrado, Andrew Tomkins, Laszlo Lukacs, Marina Ganea, Peter Young, and Vivek Ramavajjala. 2016. Smart Reply: Automated Response Suggestion for Email. In Proceedings of the ACM SIGKDD Conference on Knowledge Discovery and Data Mining(KDD)(2016). <a href="https://arxiv.org/pdf/1606.04870v1.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1606.04870v1.pdf</a> </p>
+</li>
+<li><p>[25]  Noam Koenigstein, Parikshit Ram, and Yuval Shavitt. 2012. Efcient Retrieval of Recommendations in a Matrix Factorization Framework. In Proceedings of the 21st ACM International Conference on Information and Knowledge Management (CIKM ’12).ACM,NewYork,NY,USA,535–544. <a href="https://doi.org/10.1145/2396761.2396831" target="_blank" rel="noopener">https://doi.org/10.1145/2396761.2396831</a> </p>
+</li>
+<li><p>[26]  WalidKrichene,NicolasMayoraz,StefenRendle,LiZhang,XinyangYi,Lichan Hong, Ed Chi, and John Anderson. 2019. Efcient Training on Very Large Corpora via Gramian Estimation. In 7th International Conference on Learning Representations. </p>
+</li>
+<li><p>[27]  Jiaqi Ma, Zhe Zhao, Jilin Chen, Ang Li, Lichan Hong, and Ed H. Chi. 2019. SNR: Sub-Network Routing for Flexible Parameter Sharing in Multi-task Learning. In AAAI2019. <a href="http://www.jiaqima.com/papers/SNR.pdf" target="_blank" rel="noopener">http://www.jiaqima.com/papers/SNR.pdf</a> </p>
+</li>
+<li><p>[28]  JiaqiMa,ZheZhao,XinyangYi,JilinChen,LichanHong,andEdH.Chi.2018. Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture- of-Experts. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &#38; Data Mining (KDD ’18). ACM, New York, NY, USA, 1930–1939. <a href="https://doi.org/10.1145/3219819.3220007" target="_blank" rel="noopener">https://doi.org/10.1145/3219819.3220007</a> </p>
+</li>
+<li><p>[29]  TomasMikolov,IlyaSutskever,KaiChen,GregCorrado,andJefreyDean.2013. Distributed Representations of Words and Phrases and Their Compositionality. In Proceedings of the 26th International Conference on Neural Information Processing Systems - Volume 2 (NIPS’13). Curran Associates Inc., USA, 3111–3119. http: //dl.acm.org/citation.cfm?id=2999792.2999959 </p>
+</li>
+<li><p>[30]  Frederic Morin and Yoshua Bengio. 2005. Hierarchical probabilistic neural net- work language model. In AISTATS’05. 246–252. </p>
+</li>
+<li><p>[31]  Paul Neculoiu, Maarten Versteegh, and Mihai Rotaru. 2016. Learning Text Simi- larity with Siamese Recurrent Networks. In Rep4NLP@ACL. </p>
+</li>
+<li><p>[32]  The Netfix Prize. 2012. The Netfix Prize. <a href="http://www.netfixprize.com/" target="_blank" rel="noopener">http://www.netfixprize.com/</a>. </p>
+</li>
+<li><p>[33]  S. Rendle. 2010. Factorization Machines. In 2010 IEEE International Conference on </p>
+<p>Data Mining. 995–1000. <a href="https://doi.org/10.1109/ICDM.2010.127" target="_blank" rel="noopener">https://doi.org/10.1109/ICDM.2010.127</a> </p>
+</li>
+<li><p>[34]  Maksims Volkovs, Guangwei Yu, and Tomi Poutanen. 2017. DropoutNet: Ad- dressing Cold Start in Recommender Systems. In Advances in Neural Infor- mation Processing Systems 30, I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, and R. Garnett (Eds.). Curran Associates, Inc., 4957– </p>
+</li>
+</ol>
+<p>\4966. <a href="http://papers.nips.cc/paper/7081-" target="_blank" rel="noopener">http://papers.nips.cc/paper/7081-</a> dropoutnet- addressing- cold- start- in- </p>
+<p>recommender- systems.pdf </p>
+<ol>
+<li><p>[35]  RuoxiWang,BinFu,GangFu,andMingliangWang.2017.Deep&amp;CrossNetwork </p>
+<p>for Ad Click Predictions. In Proceedings of the ADKDD’17 (ADKDD’17). ACM, </p>
+<p>NewYork,NY,USA,Article12,7pages. <a href="https://doi.org/10.1145/3124749.3124754" target="_blank" rel="noopener">https://doi.org/10.1145/3124749.3124754</a> </p>
+</li>
+<li><p>[36]  Xiang Wu, Ruiqi Guo, Ananda Theertha Suresh, Sanjiv Kumar, Daniel N Holtmann-Rice, David Simcha, and Felix X Yu. 2017. Multiscale Quantization for Fast Similarity Search. In Advances in Neural Information Processing Systems 30, I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, andR.Garnett(Eds.).CurranAssociates,Inc.,5749–5757. <a href="http://papers.nips.cc/" target="_blank" rel="noopener">http://papers.nips.cc/</a> </p>
+<p>paper/7157- multiscale- quantization- for- fast- similarity- search.pdf </p>
+</li>
+<li><p>[37]  YinfeiYang,SteveYuan,DanielCer,Sheng-YiKong,NoahConstant,PetrPilar, Heming Ge, Yun-hsuan Sung, Brian Strope, and Ray Kurzweil. 2018. Learning Semantic Textual Similarity from Conversations. In Proceedings of The Third Workshop on Representation Learning for NLP. Association for Computational Linguistics,Melbourne,Australia,164–174. <a href="https://www.aclweb.org/anthology/" target="_blank" rel="noopener">https://www.aclweb.org/anthology/</a> </p>
+<p>W18- 3022 </p>
+</li>
+<li><p>[38]  Han Zhu, Xiang Li, Pengye Zhang, Guozheng Li, Jie He, Han Li, and Kun Gai. </p>
+<p>\2018. Learning Tree-based Deep Model for Recommender Systems. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &#38; </p>
+</li>
+</ol>
+<p>277 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/19/Untitled/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhaochenyang</p>
+              <p class="site-description motion-element" itemprop="description">remember & think</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-Bias-Corrected-Neural-Modeling-for-Large-Corpus-Item-Recommendations"><span class="nav-number">1.</span> <span class="nav-text">Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简介"><span class="nav-number">1.2.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-相关工作"><span class="nav-number">1.3.</span> <span class="nav-text">2 相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-Content-Aware-and-Neural-Recommenders"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 Content-Aware and Neural Recommenders</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-极限分类"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 极限分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-Two-tower-Models"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 Two-tower Models</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-模型框架"><span class="nav-number">1.4.</span> <span class="nav-text">3 模型框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-流式频率预估"><span class="nav-number">1.5.</span> <span class="nav-text">4 流式频率预估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-YouTube神经召回系统"><span class="nav-number">1.6.</span> <span class="nav-text">5 YouTube神经召回系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-模型概览"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 模型概览</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-序列训练"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 序列训练</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-索引和模型serving"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 索引和模型serving</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-实验"><span class="nav-number">1.7.</span> <span class="nav-text">6 实验</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-频率预估模拟"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1 频率预估模拟</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-Wikipedia-page-Retrieval"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2 Wikipedia page Retrieval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-YouTube实验"><span class="nav-number">1.7.3.</span> <span class="nav-text">6.3 YouTube实验</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-总结"><span class="nav-number">1.8.</span> <span class="nav-text">7 总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献"><span class="nav-number">1.9.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhaochenyang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

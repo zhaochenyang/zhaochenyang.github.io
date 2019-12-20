@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基于关系及知识图谱的item embedding方案设计背景将视频Embedding化，即将视频转化为一个多维向量，是目前推荐领域对视频进行推荐的必要手段。通过点积或余弦距离能够快速找到类似视频。 本方案拟采用基于视频内容的方式，在确定空间给定任意一个视频确定向量，以达到能够冷启动的目的。另外，本方案不仅从语义层面上考虑embedding方法，而且在视频本身属性、类别等多维度进行向量调整，已达到视">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记忆小溪">
+<meta property="og:url" content="http://yoursite.com/2019/04/14/基于关系及知识的embedding设计/index.html">
+<meta property="og:site_name" content="记忆小溪">
+<meta property="og:description" content="基于关系及知识图谱的item embedding方案设计背景将视频Embedding化，即将视频转化为一个多维向量，是目前推荐领域对视频进行推荐的必要手段。通过点积或余弦距离能够快速找到类似视频。 本方案拟采用基于视频内容的方式，在确定空间给定任意一个视频确定向量，以达到能够冷启动的目的。另外，本方案不仅从语义层面上考虑embedding方法，而且在视频本身属性、类别等多维度进行向量调整，已达到视">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1g2ckr6kaacj30ro0qwwg4.jpg =400x300">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckppw53bj30h809xwfn.jpg =500x250">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckidt4raj311i0qs0wf.jpg =500x400">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g2cktqz0dej30vq0u043w.jpg =500x400">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckujdrz9j30zu0k4jst.jpg =300x200">
+<meta property="og:updated_time" content="2019-04-24T02:35:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记忆小溪">
+<meta name="twitter:description" content="基于关系及知识图谱的item embedding方案设计背景将视频Embedding化，即将视频转化为一个多维向量，是目前推荐领域对视频进行推荐的必要手段。通过点积或余弦距离能够快速找到类似视频。 本方案拟采用基于视频内容的方式，在确定空间给定任意一个视频确定向量，以达到能够冷启动的目的。另外，本方案不仅从语义层面上考虑embedding方法，而且在视频本身属性、类别等多维度进行向量调整，已达到视">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1g2ckr6kaacj30ro0qwwg4.jpg =400x300">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/14/基于关系及知识的embedding设计/"/>
+
+
+
+
+
+  <title> | 记忆小溪</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">记忆小溪</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总结与感悟</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/基于关系及知识的embedding设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T18:59:46+08:00">
+                2019-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基于关系及知识图谱的item-embedding方案设计"><a href="#基于关系及知识图谱的item-embedding方案设计" class="headerlink" title="基于关系及知识图谱的item embedding方案设计"></a>基于关系及知识图谱的item embedding方案设计</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>将视频Embedding化，即将视频转化为一个多维向量，是目前推荐领域对视频进行推荐的必要手段。通过点积或余弦距离能够快速找到类似视频。</p>
+<p>本方案拟采用基于视频内容的方式，在确定空间给定任意一个视频确定向量，以达到能够冷启动的目的。另外，本方案不仅从语义层面上考虑embedding方法，而且在视频本身属性、类别等多维度进行向量调整，已达到视频不仅语义相近而且实体、类别、属性相关。</p>
+<p>本方案拟采用预训练+有监督训练的方式，完成基于视频内容的embedding工作。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="总体目标"><a href="#总体目标" class="headerlink" title="总体目标"></a>总体目标</h3><p>本文对视频embedding主要考虑两个方面：</p>
+<ol>
+<li>语义相近：视频文本层面保证语义相似性</li>
+<li>实体相关：同一类别、属性、实体视频embedding相关</li>
+</ol>
+<h3 id="Embedding方式分析"><a href="#Embedding方式分析" class="headerlink" title="Embedding方式分析"></a>Embedding方式分析</h3><p>目前Embedding有基于用户交互行为和基于内容两大方向。</p>
+<ol>
+<li><p>基于用户交互行为</p>
+<p> 基于用户行为的推荐系统大多通过对user与item的交互行为，通过矩阵分解或类word2vec等方式将交互行为分解成user向量及item向量。像FM，item2vec，YoutubeNet，DeepWalk等，都是通过拟合用户行为完成item embedding。</p>
+</li>
+<li><p>基于自然语言内容</p>
+<p> 基于自然语言的嵌入方法，从最简单的词袋方法，到无监督的Skip-thoughts向量，Quick-thoughts向量，到有监督的InferSent，和多任务学习微软提出的GPSR和Google提出的USE。</p>
+<p> 另外，在词嵌入领域也从最早的基于分布假说的word2vec，到基于上下文词向量ELMo，再到后来更加有效的预训练模型Bert，进一步提升了自然语言处理领域多个任务效果，成为任务的预处理必备步骤。</p>
+</li>
+<li><p>基于图像或视频内容<br> 基于封面图像或多张视频内部图片进行图像理解，生成Tag或embedding。</p>
+</li>
+</ol>
+<h2 id="总体设计思路"><a href="#总体设计思路" class="headerlink" title="总体设计思路"></a>总体设计思路</h2><h3 id="概要设计"><a href="#概要设计" class="headerlink" title="概要设计"></a>概要设计</h3><p>方案主要思路为通过Bert等模型预处理得到文本向量，然后进行有监督推断。简而言之，Bert+InferSent。具体来说，通过预训练Bert模型，得到视频的语义embedding，通过对语义embedding进行特征抽取，通过双塔结构完成一对样本的正负样本预测或采用Triplet loss优化模型。</p>
+<h3 id="模型设计总图"><a href="#模型设计总图" class="headerlink" title="模型设计总图"></a>模型设计总图</h3><p>以下<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g2ckr6kaacj30ro0qwwg4.jpg =400x300" alt=""><br><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckppw53bj30h809xwfn.jpg =500x250" alt=""></p>
+<h2 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h2><h3 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h3><p>基本数据信息：</p>
+<p>hive表：    ods_up_content_source, ods_up_content_cms_day</p>
+<p>nlp topic: simba_features_raw</p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>数据准备：</p>
+<ol>
+<li>相关字段：title， content， label， keywords， category， author name， author id，classes， sub classes</li>
+<li>文本字段：title， content</li>
+<li>label字段：category，author id，sub classes，（keywords，人名，节目名等人造名）</li>
+<li>正负样本准备：同一类目内的视频互为正样本，不同类目互为负样本，控制不同类目的采样数量，比例。</li>
+<li>文本相似样本可沿用原新浪新闻title-&gt;summary。</li>
+</ol>
+<h3 id="模型及目标设计"><a href="#模型及目标设计" class="headerlink" title="模型及目标设计"></a>模型及目标设计</h3><p>模型设计</p>
+<ol>
+<li>使用预训练bert词向量的作为基本词向量，对词向量做average，max-pooling等方式得到句向量（Bag of Words）</li>
+<li>使用预训练bert词向量的作为基本词向量，对词向量做average，max-pooling等方式得到句向量，然后使用dnn 1-2 层全连接层，得到句向量（DNN）</li>
+<li>使用预训练bert词向量的作为基本词向量，对词向量做average，max-pooling等方式得到句向量，然后使用inferSent 模型中bi-LSTM max-pooling方式得到句向量（InferSent）</li>
+</ol>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckidt4raj311i0qs0wf.jpg =500x400" alt=""><br><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g2cktqz0dej30vq0u043w.jpg =500x400" alt=""><br><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g2ckujdrz9j30zu0k4jst.jpg =300x200" alt="triplet loss"></p>
+<p>得到句向量后可以通过如下方式优化模型</p>
+<ol>
+<li>通过inferSent的方式，对句向量进行点积，差值绝对值等，通过DNN层，进入softmax层进行分类。（softmax）</li>
+<li>通过三元组（Item, Item+, Item-），Loss(Item, Item+)&lt;Loss(Item, Item-)完成模型优化。（Triplet loss）</li>
+</ol>
+<h2 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h2><p>通过Bert预训练模型得到embedding后，输入encoder部分，得到embedding。</p>
+<h2 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h2><h3 id="离线评价"><a href="#离线评价" class="headerlink" title="离线评价"></a>离线评价</h3><p>离线通过分类准确率的方式进行评价。或通过rank@k的方式进行评价。</p>
+<h3 id="在线使用与评价"><a href="#在线使用与评价" class="headerlink" title="在线使用与评价"></a>在线使用与评价</h3><p>Item Embedding 使用方式主要有以下几种：</p>
+<ol>
+<li>通过Item 查找Item 的方式，即在相关推荐，类似视频等产品位，直接以item 查找最近item的方式使用，以线上有效视频点击，平均观看时长等指标衡量。</li>
+<li>作为DNN的输入，通过改善模型效果的方式。具体指标以模型指标为准。</li>
+</ol>
+<h2 id="具体工作"><a href="#具体工作" class="headerlink" title="具体工作"></a>具体工作</h2><ol>
+<li>数据准备：从hive表中抽取数据，完成数据清洗</li>
+<li>Bert词向量抽取：给定文本信息，利用bert预训练模型，产生最后4层embedding词向量</li>
+<li>模型搭建：利用tensorflow由简单到复杂，搭建embedding模型</li>
+<li>模型实验：根据评价指标，对不同模型进行评价，选择最优模型。</li>
+<li>模型预测：搭建整体模型实时预测流程，文本-&gt;bert embedding-&gt;final embedding。</li>
+<li>数据入赤霄索引库：根据输入特征信息，完成embedding预测，在按照赤霄入库流程完成embedding入库。</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://medium.com/huggingface/universal-word-sentence-embeddings-ce48ddc8fc3a" target="_blank" rel="noopener">The Current Best of Universal Word Embeddings and Sentence Embeddings</a></li>
+<li><a href="https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf" target="_blank" rel="noopener">Matrix Factorization Techniques for Recommender Systems</a></li>
+<li><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">Bert Code</a></li>
+<li><a href="https://arxiv.org/abs/1403.6652" target="_blank" rel="noopener">DeepWalk: Online Learning of Social Representations</a></li>
+<li><a href="https://arxiv.org/abs/1603.04259" target="_blank" rel="noopener">Item2Vec: Neural Item Embedding for Collaborative Filtering</a></li>
+<li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a>7. </li>
+<li><a href="https://arxiv.org/abs/1803.11175" target="_blank" rel="noopener">Google’s Universal Sentence Encoder</a></li>
+<li><a href="https://arxiv.org/abs/1804.00079" target="_blank" rel="noopener">General Purpose Sentence Representation</a></li>
+<li><a href="https://arxiv.org/abs/1705.02364" target="_blank" rel="noopener">InferSent</a></li>
+<li><a href="https://openreview.net/forum?id=rJvJXZb0W" target="_blank" rel="noopener">Quick-thoughts vectors</a></li>
+<li><a href="https://arxiv.org/abs/1506.06726" target="_blank" rel="noopener">Skip-thoughts vectors</a></li>
+<li><a href="https://allennlp.org/elmo" target="_blank" rel="noopener">ELMo</a></li>
+<li><a href="https://mc.ai/how-deep-does-your-sentence-embedding-model-need-to-be/" target="_blank" rel="noopener">How deep does your Sentence Embedding model need to be ?</a></li>
+<li><a href="http://jalammar.github.io/illustrated-bert/" target="_blank" rel="noopener">The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning)</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/08/embedding-based_news_recommendation_for_millions_of_users/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/19/Untitled/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhaochenyang</p>
+              <p class="site-description motion-element" itemprop="description">remember & think</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于关系及知识图谱的item-embedding方案设计"><span class="nav-number">1.</span> <span class="nav-text">基于关系及知识图谱的item embedding方案设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.2.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总体目标"><span class="nav-number">1.2.1.</span> <span class="nav-text">总体目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedding方式分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">Embedding方式分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体设计思路"><span class="nav-number">1.3.</span> <span class="nav-text">总体设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要设计"><span class="nav-number">1.3.1.</span> <span class="nav-text">概要设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型设计总图"><span class="nav-number">1.3.2.</span> <span class="nav-text">模型设计总图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细设计"><span class="nav-number">1.4.</span> <span class="nav-text">详细设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源"><span class="nav-number">1.4.1.</span> <span class="nav-text">数据源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据处理"><span class="nav-number">1.4.2.</span> <span class="nav-text">数据处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型及目标设计"><span class="nav-number">1.4.3.</span> <span class="nav-text">模型及目标设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型预测"><span class="nav-number">1.5.</span> <span class="nav-text">模型预测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价方法"><span class="nav-number">1.6.</span> <span class="nav-text">评价方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离线评价"><span class="nav-number">1.6.1.</span> <span class="nav-text">离线评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线使用与评价"><span class="nav-number">1.6.2.</span> <span class="nav-text">在线使用与评价</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体工作"><span class="nav-number">1.7.</span> <span class="nav-text">具体工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.8.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhaochenyang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

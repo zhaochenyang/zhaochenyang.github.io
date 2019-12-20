@@ -262,6 +262,574 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/recommendations_system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/recommendations_system/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T18:08:22+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>title:推荐系统架构</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="推荐系统架构"><a href="#推荐系统架构" class="headerlink" title="推荐系统架构"></a>推荐系统架构</h2><h3 id="整体业务架构"><a href="#整体业务架构" class="headerlink" title="整体业务架构"></a>整体业务架构</h3><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h2 id="推荐引擎"><a href="#推荐引擎" class="headerlink" title="推荐引擎"></a>推荐引擎</h2><h2 id="特征服务"><a href="#特征服务" class="headerlink" title="特征服务"></a>特征服务</h2><h2 id="数据-1"><a href="#数据-1" class="headerlink" title="数据"></a>数据</h2><h2 id="推荐引擎-1"><a href="#推荐引擎-1" class="headerlink" title="推荐引擎"></a>推荐引擎</h2><h2 id="特征服务-1"><a href="#特征服务-1" class="headerlink" title="特征服务"></a>特征服务</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/recommendations_cold_start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/recommendations_cold_start/" itemprop="url">推荐系统冷启动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T10:55:01+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="推荐系统冷启动"><a href="#推荐系统冷启动" class="headerlink" title="推荐系统冷启动"></a>推荐系统冷启动</h2><h3 id="什么是冷启动"><a href="#什么是冷启动" class="headerlink" title="什么是冷启动"></a>什么是冷启动</h3><p>冷启动研究的是在没有大量用户和产品数据的情况下，如何给相应的用户做出能够让用户能接受的推荐内容。冷启动主要分为三类：用户冷启动、物品冷启动和系统冷启动。</p>
+<h3 id="冷启动推荐策略"><a href="#冷启动推荐策略" class="headerlink" title="冷启动推荐策略"></a>冷启动推荐策略</h3><p>基于用户行为的推荐，会有基于物品的协同过滤（Item-CF)与基于用户的协同过滤(User-CF)两种。</p>
+<p>而协同过滤往往都是要建立在大量的用户行为数据的基础上，在产品发布之初，没有那么大量的数据。所以这个时候就要依靠基于内容的推荐或者热度算法。发布初期用热度算法实现冷启动，积累了一定量级以后，才能逐渐开展个性化推荐算法。</p>
+<ul>
+<li><p>基于内容的推荐<br>这比较适合有两层含义</p>
+<ol>
+<li>根据上下文内容，找到对应的相似或和合适item。比如新闻页面推荐商品等。</li>
+<li>基于用户属性或基于商品属性进行推荐。仅考虑对象本身，将对象按照标签，形成集合，消费集合中的一个则推荐集合中的里一个。<br>与系统过滤比较像，区别：<br>协同过滤是</li>
+<li>推荐用户喜欢同样item(近邻item，聚类)的其他用户喜欢的潜在item。[基于物品的协同过滤]</li>
+<li>或者推荐类似用户(近邻用户，聚类)喜欢的item集合[基于用户的协同过滤]<br>推荐流程如下：</li>
+<li>获取用户喜欢的item。</li>
+<li>分析提取相同属性特征用户（类似聚类），提供这些用户的喜欢商品。</li>
+<li>或者分析用户喜欢的item的特征，推荐与这些item类似的商品（类似商品聚类）。</li>
+</ol>
+</li>
+<li><p>基于热度的推荐<br>用户存在着从众的心理，而且大部分人的特征是趋于相似的。<br>“热度算法“即将热点的内容优先推荐给用户。热点不会永远是热点，而是具有时效性的。</p>
+</li>
+<li><p>利用用户基础信息<br>用户基础信息是指用户不在产品中有任何交互，我们就能够获得的信息。<br>主要分如下几类:</p>
+<ol>
+<li>一是用户注册信息，比如性别、年龄、电话、职业等等一些可以引导用户填写的客观信息</li>
+<li>二是让用户做出喜好或分类选择的主观信息，比如在一些音乐、视频和阅读类看重推荐功能的产品上，用户在注册时需要填写一些必要的信息和选择关注/喜欢的类型。</li>
+<li>三是可以关联外部平台获取的信息，这一类信息是在社会化登陆兴起之后可以提供给推荐的 </li>
+</ol>
+<p>推荐流程基本如下：</p>
+<ol>
+<li>获取用户的注册信息</li>
+<li>根据用户的注册信息对用户分类</li>
+<li>给用户推荐他所属分类中用户喜欢的物品<br>举例：<br><img src="https://upload-images.jianshu.io/upload_images/1668945-c75d167aeb4753d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/634/format/webp" alt="推荐流程" title="推荐方法"></li>
+</ol>
+</li>
+<li><p>考虑item质量<br>猜想，用户更倾向于选择质量较高的物品。评价之外，销量、浏览、收藏等等也一定程度上反映除了物品的质量，可以作为辅助参数作为选择热门物品的标准。</p>
+</li>
+<li><p>利用用户的手机等兴趣偏好进行冷启动（android能拿到这些信息？隐私呀！）<br>Android手机开放的比较高，所以在安装自己的app时，就可以顺路了解下手机上还安装了什么其他的app。比如一个用户安装了美丽说、蘑菇街、辣妈帮、大姨妈等应用，就可以判定这是女性了，更进一步还可以判定是备孕还是少女。<br>目前读取用户安装的应用这部分功能除了app应用商店之外，一些新闻类、视频类的应用也在做，对于解决冷启动问题有很好的帮助。</p>
+</li>
+<li><p>项亮在《推荐系统实践》中的一些方法，可以参考：</p>
+<ol>
+<li>提供热门内容，类似刚才所介绍的热度算法，将热门的内容优先推给用户。</li>
+<li>利用用户注册信息，可以利用人口统计学的一些特征，如性别、国籍、学历、居住地来预测用户的偏好，当然在极度强调用户体验的今天，注册过程的过于繁琐也会影响到用户的转化率，所以另外一种方式更加简单且有效，即利用用户社交网络账号授权登陆，导入社交网站上的好友信息或者一些行为数据。</li>
+<li>在用户登录时收集对物品的反馈，了解用户兴趣，推送相似的物品。</li>
+<li>在一开始引入专家知识，建立知识库、物品相关度表；或者通过自然语言处理来进行文本的数据挖掘。</li>
+<li>通过用户在时间和地点的上下文来进行实时的预测。</li>
+</ol>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="http://www.woshipm.com/pd/788256.html" target="_blank" rel="noopener">认识个性化推荐系统：从推荐算法到产品冷启动</a></li>
+<li><a href="h/ttp://www.woshipm.com/pd/253663.html">产品视角下推荐/排序系统的冷启动问题（一）</a></li>
+<li>项亮的&lt;&lt;推荐系统实践&gt;&gt;</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/11/seq_seq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/11/seq_seq/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-11T12:53:11+08:00">
+                2018-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="序列模型"><a href="#序列模型" class="headerlink" title="序列模型"></a>序列模型</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/linux常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaochenyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="记忆小溪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/26/linux常用命令/" itemprop="url">Linux 常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T22:16:23+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>总结一下常用的linux命令，以备不时之需。</p>
+<h2 id="Userful-Command"><a href="#Userful-Command" class="headerlink" title="Userful Command"></a>Userful Command</h2><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>创建新的压缩文件</p>
+<blockquote>
+<p>$ tar cvf archive_name.tar dirname/</p>
+</blockquote>
+<p>解压现有文件</p>
+<blockquote>
+<p>$ tar xvf archive_name.tar</p>
+</blockquote>
+<p>更多实例信息 <a href="https://www.thegeekstuff.com/2010/04/unix-tar-command-examples/" target="_blank" rel="noopener">The Ultimate Tar Command Tutorial with 10 Practical Examples</a></p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>匹配查询一个词语,大小写不敏感用-i</p>
+<blockquote>
+<p>$ grep -i “the” demo_file</p>
+</blockquote>
+<p>查询返回匹配行及后面3行</p>
+<blockquote>
+<p>$ grep -A 3 -i “example” demo_text</p>
+</blockquote>
+<p>递归查询文件夹文件</p>
+<blockquote>
+<p>$ grep -r “ramesh” *</p>
+</blockquote>
+<p>正则表达式</p>
+<blockquote>
+<p>$ grep “lines.*empty” demo_file<br>Two lines above this line is empty.</p>
+</blockquote>
+<p>不展示所有pattern</p>
+<blockquote>
+<p>$ cat test-file.txt<br>a<br>b<br>c<br>d<br>$ grep -v -e “a” -e “b” -e “c” test-file.txt<br>d</p>
+</blockquote>
+<p>Count lines matched</p>
+<blockquote>
+<p>$ grep -c “go” demo_text<br>6<br>$ grep “go” demo_text |wc -l</p>
+</blockquote>
+<p>更多实例: <a href="https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/" target="_blank" rel="noopener">Get a Grip on the Grep! – 15 Practical Grep Command Examples</a></p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>查找文件名 -i 大小写不敏感</p>
+<blockquote>
+<p>$ find -iname “MyCProgram.c”</p>
+</blockquote>
+<h3 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h3><ul>
+<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/?utm_source=feedburner" target="_blank" rel="noopener">https://www.thegeekstuff.com/2010/11/50-linux-commands/?utm_source=feedburner</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -427,7 +995,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -477,7 +1045,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
