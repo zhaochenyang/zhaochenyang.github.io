@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：The Shift from Models to Compound AI Systems（CS329Z Lecture 1 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 1 必读</div>
+  <h1>The Shift from Models to Compound AI Systems</h1>
+  <div class="sub">从模型到复合 AI 系统的转变</div>
+  <div class="meta">Zaharia, Khattab, Chen, Davis, Miller, Potts, Zou, Carbin, Frankle, Rao, Ghodsi（Databricks / Stanford / CMU / MBZUAI 等）· BAIR Blog · 2024-02-18</div>
+  <div class="btn-row">
+    <a class="btn" href="https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/">阅读原文（BAIR Blog）</a>
+    <a class="btn ghost" href="../../lecture01/">第一讲教程</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">系统组成与实例</a>
+  <a href="#challenges">三大挑战</a>
+  <a href="#impact">影响与后续</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>2024 年最先进的 AI 成果越来越多地来自<strong>复合 AI 系统（Compound AI Systems）</strong>——由多个相互协作的组件（多次模型调用、检索器、工具、验证器、编排逻辑）构成的系统，而不是单一的大模型；作者（Databricks 创始团队与 Stanford/CMU 学者）认为这将是「2024 年 AI 领域最重要的趋势之一」。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>生成式 AI 让开发者可以通过自然语言提示（prompting）解锁广泛能力，但业界很快发现：<strong>单纯把模型做大、提示写好，已不足以支撑严肃应用</strong>。文章开篇即指出，最先进的 AI 成果「不再是单一模型（not just monolithic models）」，而是多组件组合的产物。这篇博文要回答三个问题：</p>
+<ul>
+  <li>为什么领先的团队都在转向复合 AI 系统？</li>
+  <li>复合系统的设计空间里有哪些「部件」和组合方式？</li>
+  <li>开发这类系统面临哪些新挑战（设计、优化、运维），已有哪些工具与范式？</li>
+</ul>
+<p>它与 CS329Z 第一讲的关联非常直接：第一讲第三章「复合 AI 系统：RAG、工具使用与 MCP」正是以此为理论基础。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：什么是复合 AI 系统</h3>
+<p>复合 AI 系统通过<strong>多个相互作用的组件（multiple interacting components）</strong>完成任务，组件可以包括：多次模型调用（不同模型或同一模型多次）、检索器（retriever）、外部工具、验证器（validator）、以及用传统代码或 LLM 本身驱动的编排逻辑。</p>
+
+<h3>观点 2：为什么用复合系统——四个理由</h3>
+<ol>
+  <li><span class="term">有些任务用系统设计改进更快、更划算</span>：单纯扩大训练规模收益递减，而系统层面的迭代（改检索、改提示策略、加验证）周期短、成本低。文中例证：Gemini 在 MMLU 上用 CoT@32 复合推理策略达到 <strong>90.04%</strong>，显著高于 GPT-4 的 86.4% 和 Gemini 自己 5-shot 的 83.7%。</li>
+  <li><span class="term">突破静态知识的限制</span>：模型的知识来自训练时的静态数据；系统可以接入检索、搜索和外部数据源，还能做权限控制（如企业内不同角色看到不同数据）。</li>
+  <li><span class="term">可控性与可信度</span>：系统可以过滤输出、附带引用（citations）、自动核验事实，把「不可控的黑盒模型」包进可审计的工程结构里。</li>
+  <li><span class="term">成本 / 延迟 / 质量的差异化需求</span>：不同应用目标差异巨大——GitHub Copilot 的行内补全需要小模型 + 搜索启发式来压低延迟成本；而法律意见这类高价值任务，用户愿意支付数美元而不是几美分，系统可以为此动用更大的「推理预算」。</li>
+</ol>
+<blockquote>
+  <span class="en">"They are increasingly turning to compound AI systems as a natural way to control and enhance the capabilities of LLMs."</span>
+  <span class="zh">（开发者）正越来越多地转向复合 AI 系统，将其作为控制和增强 LLM 能力的自然途径。</span>
+</blockquote>
+
+<h3>观点 3：最有代表性的证据</h3>
+<ul>
+  <li><span class="term">AlphaCode 2</span>（DeepMind）：编程竞赛中生成<strong>多达约 100 万个候选解</strong>，再过滤、评分、挑选提交——达到人类竞赛选手 85 分位水平。这是「大规模生成 + 筛选」型复合系统的典型。</li>
+  <li><span class="term">AlphaGeometry</span>（DeepMind）：LLM 与<strong>符号数学引擎</strong>协作求解奥数几何题，表现介于银牌与金牌选手之间——LLM + 工具型复合系统。</li>
+  <li><span class="term">Medprompt / 微软医疗链式提示</span>：GPT-4 + 近邻检索（kNN）+ 模型自生成思维链示例 + 多答案采样集成，在医学考试上超过 GPT-4 裸用 9%，胜过 Med-PaLM 等专用医疗模型。</li>
+  <li><span class="term">Databricks 企业观察</span>：企业 LLM 应用中 <strong>60% 使用某种 RAG，30% 使用多步链</strong>（原文口径：Databricks AI Gateway 与 Inference Tables 的统计）——复合化已是产业现状而非未来设想。</li>
+  <li><span class="term">ChatGPT Plus</span>：消费级产品同样是复合系统——网页浏览、代码解释器、DALL·E 都是围绕核心 LLM 的组件。</li>
+</ul>
+
+<figure>
+  <img src="https://bair.berkeley.edu/static/blog/compound-ai-systems/compound-ai-systems.png" alt="越来越多新 AI 成果来自复合系统" loading="lazy">
+  <figcaption>图 1：越来越多的新 AI 成果来自复合系统（Increasingly many new AI results are from compound systems）（来源：原文）</figcaption>
+</figure>
+
+<h2 id="method">系统组成与设计空间</h2>
+<p>原文把复合系统的「设计空间」拆成几个正交维度：</p>
+<table>
+  <tr><th>维度</th><th>可选内容</th></tr>
+  <tr><td>组件（components）</td><td>模型（大小、微调与否）、检索器、代码执行器、浏览器、图像生成器、符号引擎、验证器/过滤器</td></tr>
+  <tr><td>模型用法</td><td>单次调用、多次采样 + 集成（self-consistency）、思维链（CoT）、多模型级联（cascade）</td></tr>
+  <tr><td>检索策略</td><td>查询扩展、重排序（reranking）、向量数据库；代表系统 RAG、ORQA、Baleen、Bing</td></tr>
+  <tr><td>编排方式</td><td>传统代码写死控制流 vs. LLM 代理（agent）自主决定下一步</td></tr>
+  <tr><td>可控输出</td><td>受约束/结构化输出：Guardrails、Outlines、LMQL、SGLang</td></tr>
+</table>
+<p>开发框架与工具生态（原文列举）：<span class="term">LangChain、LlamaIndex</span>（组件库/框架）、<span class="term">AutoGPT、BabyAGI</span>（代理框架）、<span class="term">DSPy</span>（声明式优化，把提示当作可训练「程序」）、<span class="term">FrugalGPT、OpenRouter、Martian</span>（模型路由/级联以平衡成本与质量）、<span class="term">LangSmith、Phoenix (Arize)</span>（追踪与可观测性）。</p>
+
+<h2 id="challenges">三大关键挑战</h2>
+<h3>1. 设计空间（Design Space）</h3>
+<p>组件选择与资源分配的组合爆炸：用哪个模型？采样多少次？检索多少文档、如何重排？哪些步骤交给代理自主决策？自动化的设计空间搜索是开放问题。</p>
+<h3>2. 优化（Optimization）</h3>
+<p>与 PyTorch 时代的端到端可微优化不同，复合系统中许多部件<strong>不可微分</strong>（检索、工具调用、代码），难以端到端训练。可行路径：自动提示/few-shot 示例调优、DSPy 式的「自然语言签名 + 模块参数」自动优化、FrugalGPT 式的成本-质量路由学习。</p>
+<h3>3. 运维（Operation）</h3>
+<p>生产系统需要追踪（tracing）每次调用、把质量指标与数据管道关联、细粒度评估（如 MT-Bench、FAVA、ARES 等自动评估器）、以及安全过滤。运维复杂度远高于「部署一个模型」。</p>
+
+<h2>实验/证据与结论</h2>
+<p>本文是立场性博文（position piece），没有自己的实验，其论证方式是<strong>案例汇总</strong>：AlphaCode 2、AlphaGeometry、Medprompt、Gemini+CoT@32、ChatGPT Plus、Copilot、企业 RAG 采用率等，共同支撑「最先进的结果 = 复合系统」这一判断。结论部分的关键句：</p>
+<blockquote>
+  <span class="en">"Figuring out the best practices for developing compound AI systems is still an open question... but compound AI systems will remain the best way to maximize the quality and reliability of AI applications, and may be one of the most important trends in AI in 2024."</span>
+  <span class="zh">开发复合 AI 系统的最佳实践仍是开放问题……但复合 AI 系统仍将是最大化 AI 应用质量与可靠性的最佳途径，并可能是 2024 年 AI 最重要的趋势之一。</span>
+</blockquote>
+
+<h2 id="impact">影响与后续</h2>
+<ul>
+  <li><strong>领域地位</strong>：本文由 Databricks 联合创始人 Matei Zaharia（Spark 作者）与 Omar Khattab（ColBERT/DSPy 作者，也是 CS329Z 第三讲扩展阅读 ColBERT 的一作）等 11 位产学界作者联署，是「Compound AI Systems」这一术语的定名之作，被后续大量智能体课程与工程博客引用。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第一讲把 RAG、工具使用、MCP 放在「复合 AI 系统」章节下讲授，其概念框架直接来自本文；第二讲的 test-time scaling（推理时扩展）也可视为本文「用系统设计换性能」论点的延续。</li>
+  <li><strong>后续发展</strong>：文中预言的方向在其后两年成为主流——推理时计算扩展（如 o1 类模型）、智能体框架标准化（MCP）、LLM 路由与评估基础设施的商业化。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Compound AI System</td><td>复合 AI 系统</td><td>多组件协作完成任务的 AI 系统</td></tr>
+  <tr><td>Monolithic model</td><td>单一（巨型）模型</td><td>与复合系统相对的路线</td></tr>
+  <tr><td>Retrieval-Augmented Generation (RAG)</td><td>检索增强生成</td><td>先检索再生成，第三讲主题</td></tr>
+  <tr><td>Chain-of-Thought (CoT)</td><td>思维链</td><td>让模型分步推理再作答</td></tr>
+  <tr><td>Self-consistency</td><td>自洽（多答案采样集成）</td><td>采样多个推理路径后投票/集成</td></tr>
+  <tr><td>Model cascade / routing</td><td>模型级联 / 路由</td><td>按难度把请求分给不同成本的模型</td></tr>
+  <tr><td>Constrained decoding / guided output</td><td>约束解码 / 受控输出</td><td>保证输出符合格式（Guardrails、Outlines、LMQL、SGLang）</td></tr>
+  <tr><td>Orchestration</td><td>编排</td><td>决定组件调用顺序与控制流</td></tr>
+  <tr><td>Tracing / observability</td><td>追踪 / 可观测性</td><td>记录每次调用以调试与监控</td></tr>
+  <tr><td>Test-time scaling</td><td>推理时扩展</td><td>推理阶段投入更多计算换质量（第二讲主题）</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/">The Shift from Models to Compound AI Systems — BAIR Blog (2024)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a> · <a href="../../lecture01/">第一讲教程</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+</footer>
+
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+</body>
+</html>

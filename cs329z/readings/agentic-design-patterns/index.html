@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Agentic Design Patterns Part 1（CS329Z Lecture 1 扩展阅读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 1 扩展阅读</div>
+  <h1>Agentic Design Patterns Part 1</h1>
+  <div class="sub">四种能提升 GPT-4 / GPT-3.5 表现的 AI 智能体策略（Four AI agent strategies that improve GPT-4 and GPT-3.5 performance）</div>
+  <div class="meta">Andrew Ng（吴恩达）· The Batch（DeepLearning.AI 通讯）· 2024-03-20 · 约 2 分钟短文</div>
+  <div class="btn-row">
+    <a class="btn" href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/">阅读原文（The Batch）</a>
+    <a class="btn ghost" href="../../lecture01/">第一讲教程</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#data">关键数据</a>
+  <a href="#patterns">四种设计模式</a>
+  <a href="#impact">影响与后续</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>吴恩达认为「<strong>智能体式工作流（agentic workflow）将在今年驱动巨大的 AI 进步，甚至可能超过下一代基础模型</strong>」——同一个 GPT-3.5，零样本写代码只有 48.1% 正确率，放进「反思 + 工具 + 规划 + 多智能体协作」的智能体循环后可达 <strong>95.1%</strong>，超过 GPT-4 零样本的 67.0%。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>2024 年初，业界主流使用 LLM 的方式是<span class="term">零样本（zero-shot）</span>：一次性提示、一次性输出、不许回头修改。吴恩达用一个生动的类比指出这种方式的荒谬：</p>
+<blockquote>
+  <span class="en">"Today, we mostly use LLMs in zero-shot mode... This is the equivalent of asking someone to compose an essay from start to finish, typing straight through with no backspacing allowed."</span>
+  <span class="zh">今天我们大多以零样本方式使用 LLM……这相当于要求一个人从头到尾写一篇文章，一路打到底、不许退格。</span>
+</blockquote>
+<p>没有人是这样写作的。人类写文章要<strong>列提纲 → 查资料 → 写初稿 → 自我审阅 → 修改润色</strong>，是一个迭代流程。文章主张：让 LLM 也走这样的迭代式智能体流程，效果远好于一次成型（"With AI, such an iterative workflow yields much better results than writing in a single pass."）。文中还提到当时引爆话题的 AI 软件工程师 <span class="term">Devin</span>——其能力很大程度上正来自智能体式的规划、反思与工具使用，而非某个神秘的新模型。</p>
+
+<h2 id="data">关键数据：智能体循环的威力</h2>
+<p>吴恩达团队在 <span class="term">HumanEval</span> 代码生成基准上的实验（原文配图）：</p>
+<table>
+  <tr><th>设置</th><th>HumanEval 正确率</th></tr>
+  <tr><td>GPT-3.5（零样本）</td><td>48.1%</td></tr>
+  <tr><td>GPT-4（零样本）</td><td>67.0%</td></tr>
+  <tr><td><strong>GPT-3.5 + 智能体循环（反思/工具/规划/多智能体）</strong></td><td><strong>95.1%</strong></td></tr>
+</table>
+<figure>
+  <img src="https://charonhub.deeplearning.ai/content/images/2024/03/The-Batch-ads-and-exclusive-banners---2024-03-20T192329.626-1.png" alt="HumanEval 上零样本 GPT-3.5/GPT-4 与智能体式 GPT-3.5 的对比图" loading="lazy">
+  <figcaption>图 1：HumanEval 基准对比——零样本 GPT-3.5（48.1%）、零样本 GPT-4（67.0%）、智能体循环中的 GPT-3.5（最高 95.1%）（来源：原文）</figcaption>
+</figure>
+<p>核心信息：<strong>弱的模型 + 好的智能体架构，可以胜过强的模型 + 裸用</strong>。这正是「系统设计换性能」的又一例证（与必读文章《复合 AI 系统》的观点互为呼应）。</p>
+
+<h2 id="patterns">四种智能体设计模式</h2>
+<p>文章将构建智能体的常见方法归纳为四类（Part 1 只给概览，后续 Part 2–5 每篇展开一种）：</p>
+
+<h3>1. 反思（Reflection）</h3>
+<blockquote>
+  <span class="en">"The LLM examines its own work to come up with ways to improve it."</span>
+  <span class="zh">LLM 检查自己的输出，找出改进之道。</span>
+</blockquote>
+<p><strong>机制</strong>：生成初稿后，让模型（或另一个模型）扮演审阅者，挑出「论据不足的论点、多余的信息」，再据此修订。<strong>例子</strong>：写作流程中的 "Read over the first draft to spot unjustified arguments..." → "Revise the draft taking into account any weaknesses spotted."（审阅初稿找弱点 → 按弱点修订）。在代码场景即「生成 → 单元测试/自查 → 修复」循环。</p>
+
+<h3>2. 工具使用（Tool Use）</h3>
+<blockquote>
+  <span class="en">"...tools such as web search, code execution, or any other function."</span>
+  <span class="zh">……诸如网页搜索、代码执行或其他任何函数之类的工具。</span>
+</blockquote>
+<p><strong>机制</strong>：赋予模型调用外部能力的接口——搜索引擎、代码解释器、API、数据库等——把「知识」和「行动」外包给可靠的外部系统。<strong>例子</strong>：写作流程中的 "Decide what, if any, web searches are needed to gather more information."（判断需要哪些网页搜索来补充信息）。这一模式直接对应 CS329Z 第一讲「工具」一节和第二讲「结构化 I/O 与工具调用」。</p>
+
+<h3>3. 规划（Planning）</h3>
+<blockquote>
+  <span class="en">"The LLM comes up with, and executes, a multistep plan to achieve a goal."</span>
+  <span class="zh">LLM 制定并执行达成目标的多步骤计划。</span>
+</blockquote>
+<p><strong>机制</strong>：先让模型把目标拆解成有序步骤（如「列提纲 → 查资料 → 写初稿 → 审阅 → 修订」），再逐步执行，必要时根据执行结果重规划。<strong>例子</strong>：文中给出的写作步骤 "Plan an outline."（规划提纲）即第一步。对应第一讲「规划与推理」组件及 AutoGPT/BabyAGI 一类的任务分解框架。</p>
+
+<h3>4. 多智能体协作（Multi-agent Collaboration）</h3>
+<blockquote>
+  <span class="en">"More than one AI agent work together, splitting up tasks and discussing and debating ideas."</span>
+  <span class="zh">多个 AI 智能体协同工作：分工、讨论并辩论想法。</span>
+</blockquote>
+<p><strong>机制</strong>：让多个各有角色设定的智能体（如「产品经理 + 程序员 + 测试员」）分工协作、互相批评辩论，通过多视角博弈提高产出质量。原文此节只给了一般性描述（更多案例在系列后续与吴恩达的演讲中，如 ChatDev 式的软件开发多智能体流水线）。对应 CS329Z 课程表后半段的「Multi-Agent Systems」两讲。</p>
+
+<div class="note"><strong>把四种模式串起来看：</strong>原文用「写文章」的完整流程演示了四者的组合——规划（列提纲）→ 工具使用（搜索查证）→ 反思（审阅修订），若再引入分角色的多个智能体（作者/编辑/事实核查员），即构成一个小型多智能体系统。这正是「智能体 = LLM 核心 + 规划 + 工具 + 反思回路」架构观的通俗版。</div>
+
+<h2>结论</h2>
+<blockquote>
+  <span class="en">"I think AI agent workflows will drive massive AI progress this year — perhaps even more than the next generation of foundation models. ... I urge everyone who works in AI to pay attention to it."</span>
+  <span class="zh">我认为智能体工作流将在今年驱动巨大的 AI 进步——甚至可能超过下一代基础模型（带来的进步）。……我敦促每一位 AI 从业者关注它。</span>
+</blockquote>
+<p>与其坐等更强的基础模型，不如<strong>用智能体架构把现有模型的能力「榨干」</strong>：迭代式工作流（规划、查证、起草、审阅、修改）带来的收益，已经被 HumanEval 上 48.1% → 95.1% 的数字证明。</p>
+
+<h2 id="impact">影响与后续</h2>
+<ul>
+  <li><strong>领域地位</strong>：这篇 2 分钟的短文是「Agentic Design Patterns（智能体设计模式）」这一提法最广为流传的出处，四种模式（反思/工具/规划/多智能体）此后成为智能体工程的标准分类法，被无数课程、框架文档和综述引用；48.1%→95.1% 这组数字也成为 2024 年「智能体之年」叙事中被引用最多的实验数据之一。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第一讲「智能体架构」（LLM 核心、规划与推理、记忆、工具）与本篇四模式几乎一一对应；课程的「Agent Design Patterns & Scaffolds」（第 6 讲）与「Multi-Agent Systems」（第 7、8 讲）正是对本篇 Part 2–5 内容的学术化展开。</li>
+  <li><strong>后续系列</strong>：原文末尾列出 Part 2–5，分别深入 Reflection、Tool Use、Planning、Multi-agent Collaboration 四种模式。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Agentic workflow</td><td>智能体（式）工作流</td><td>让 LLM 迭代地规划、行动、反思的流程</td></tr>
+  <tr><td>Zero-shot mode</td><td>零样本模式</td><td>一次性提示、一次输出、不迭代</td></tr>
+  <tr><td>Reflection</td><td>反思</td><td>模型检查并改进自己的输出</td></tr>
+  <tr><td>Tool use</td><td>工具使用</td><td>调用搜索、代码执行等外部函数</td></tr>
+  <tr><td>Planning</td><td>规划</td><td>生成并执行多步骤计划</td></tr>
+  <tr><td>Multi-agent collaboration</td><td>多智能体协作</td><td>多个智能体分工、讨论、辩论</td></tr>
+  <tr><td>HumanEval</td><td>HumanEval 基准</td><td>OpenAI 的代码生成评测集（164 道编程题）</td></tr>
+  <tr><td>Agent loop</td><td>智能体循环</td><td>感知→决策→行动→观察的迭代回路</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/">Agentic Design Patterns Part 1 — The Batch, DeepLearning.AI (2024)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a> · <a href="../../lecture01/">第一讲教程</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+</footer>
+
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+</body>
+</html>
