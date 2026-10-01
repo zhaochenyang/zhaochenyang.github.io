@@ -1,0 +1,112 @@
+/* custom-site.css — 现代简约皮肤（覆盖 Hexo Next 主题外观，不改 DOM） */
+:root{
+  --accent:#2f6f6a;          /* 墨绿强调色 */
+  --accent-soft:#e8f2f0;
+  --ink:#24292e;
+  --muted:#6a737d;
+  --line:#e6e3dd;
+  --paper:#faf9f6;
+  --card:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper)!important;
+  color:var(--ink)!important;
+  font-family:"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-size:16px;
+}
+a{color:var(--accent)!important;}
+a:hover{color:#1d4e4a!important;}
+
+/* ---------- 页眉 ---------- */
+.header{background:#fff!important;border-bottom:1px solid var(--line);box-shadow:none!important;}
+.site-meta{padding:32px 0 22px!important;}
+.brand{background:transparent!important;padding:0!important;}
+.site-title{font-size:26px!important;font-weight:700!important;letter-spacing:1px;}
+.site-title a{color:var(--ink)!important;}
+.site-title a:hover{color:var(--accent)!important;}
+.site-subtitle{color:var(--muted)!important;font-size:13px!important;}
+.logo-line-before,.logo-line-after{display:none!important;}
+
+/* ---------- 菜单 ---------- */
+.menu{margin-top:14px!important;border-top:none!important;}
+.menu .menu-item a{
+  color:var(--muted)!important;font-size:14px!important;
+  padding:6px 14px!important;border-radius:999px;transition:all .2s;
+}
+.menu .menu-item a:hover{color:var(--accent)!important;background:var(--accent-soft)!important;}
+.menu-item-active a{color:var(--accent)!important;background:var(--accent-soft)!important;}
+.menu .menu-item-icon{color:var(--accent)!important;}
+
+/* ---------- 文章卡片 ---------- */
+.post{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:34px 38px!important;margin:0 0 28px!important;
+  box-shadow:0 1px 4px rgba(31,35,40,.05);
+}
+.posts-expand .post{border:none;box-shadow:none;background:transparent;}
+.post-title{font-size:24px!important;font-weight:700!important;margin:6px 0 14px!important;}
+.post-title a{color:var(--ink)!important;border-bottom:none!important;}
+.post-title a:hover{color:var(--accent)!important;}
+.post-meta{color:var(--muted)!important;font-size:12.5px!important;}
+.post-meta-item-text{color:var(--muted)!important;}
+.post-eof{display:none!important;}
+.post-button .btn{
+  background:var(--accent)!important;color:#fff!important;border:none!important;
+  border-radius:999px!important;padding:7px 22px!important;font-size:13.5px!important;
+}
+.post-button .btn:hover{background:#1d4e4a!important;color:#fff!important;}
+
+/* ---------- 正文排版 ---------- */
+.post-body{font-size:16.5px!important;line-height:1.95!important;color:var(--ink)!important;}
+.post-body p{margin:0 0 1.1em!important;}
+.post-body h1,.post-body h2,.post-body h3,.post-body h4{
+  color:var(--ink)!important;font-weight:700!important;margin:1.6em 0 .7em!important;line-height:1.4!important;
+}
+.post-body h2{border-left:4px solid var(--accent);padding-left:10px;}
+.post-body h2 .headerlink,.post-body h3 .headerlink{color:var(--line)!important;}
+.post-body blockquote{
+  border-left:4px solid var(--accent)!important;background:var(--accent-soft)!important;
+  color:#3d4a48!important;border-radius:0 8px 8px 0;padding:12px 18px!important;margin:1.2em 0!important;
+}
+.post-body blockquote p{margin:0!important;}
+.post-body img{border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.08);max-width:100%;}
+.post-body code{
+  background:#f0eeea!important;color:#b3413a!important;border-radius:5px;
+  padding:2px 6px!important;font-size:.88em!important;
+}
+.post-body pre{border-radius:10px!important;border:none!important;background:#24292e!important;}
+.post-body pre code{background:transparent!important;color:#e6edf3!important;padding:0!important;}
+.post-body table{border-collapse:collapse!important;width:100%;font-size:.95em;}
+.post-body table th{background:var(--accent-soft)!important;color:var(--ink)!important;}
+.post-body table th,.post-body table td{border:1px solid var(--line)!important;padding:8px 12px!important;}
+.post-body ul li,.post-body ol li{margin:.35em 0!important;}
+
+/* ---------- 标签/归档 ---------- */
+.tag-cloud a,.post-tags a{
+  display:inline-block;background:var(--accent-soft)!important;color:var(--accent)!important;
+  border-radius:999px;padding:3px 12px!important;margin:3px 4px 3px 0;font-size:13px!important;border:none!important;
+}
+.posts-collapse .post-title a{color:var(--ink)!important;}
+.posts-collapse .post-title a:hover{color:var(--accent)!important;}
+.posts-collapse .post-meta{color:var(--muted)!important;}
+
+/* ---------- 侧栏与页脚 ---------- */
+.sidebar{background:#fff!important;}
+.site-author-name{color:var(--ink)!important;}
+.site-description{color:var(--muted)!important;}
+.footer{color:var(--muted)!important;font-size:12.5px!important;}
+.footer a{color:var(--accent)!important;}
+
+/* ---------- 分页 ---------- */
+.pagination .page-number,.pagination a{
+  border:1px solid var(--line)!important;border-radius:8px!important;color:var(--ink)!important;
+}
+.pagination .page-number.current{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important;}
+.pagination a:hover{background:var(--accent-soft)!important;color:var(--accent)!important;}
+
+/* ---------- 移动端 ---------- */
+@media (max-width:767px){
+  .post{padding:22px 18px!important;border-radius:10px;}
+  .post-body{font-size:15.5px!important;}
+}

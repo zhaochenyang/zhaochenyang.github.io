@@ -135,7 +135,7 @@
 
 
 
-  <title> | 记忆小溪</title>
+  <title>Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations | 记忆小溪</title>
   
 
 
@@ -145,6 +145,10 @@
 
 
 
+<link rel="stylesheet" href="/css/custom-site.css">
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -289,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations</h1>
         
 
         <div class="post-meta">
@@ -377,18 +381,18 @@
 <p>我们目的是建立一个模型，使用两个参数化的embedding函数能够映射模型参数和特征</p>
 <p>T := {(xi, i,ri)}Ti=1,</p>
 <p>ri能够扩展成捕捉各种维度的用户和一个候选集的交互行为。例如，新闻土建中，ri能够使用户在某个特定文章上所花的时间。给定一个query x，一个对于M个item选择y个item的概率分布的通常的选择事基于softmax函数，如下</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103102421196.png" alt="image-20191103102421196"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103102421196.png" alt="image-20191103102421196"></p>
 <p>对于更深入的考虑ri，我们考虑如下的加权log-likelihood作为loss 函数</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103102551198.png" alt="image-20191103102551198"></p>
-<p>当M非常大的时候，对于包含所有的候选样本计算partition函数是不太可行的，例如，这里的分母部分。一个通常的想法是，使用一个item的自己建立分部函数。我们关注处理流式数据。结果，不想训练MLP模型里负反馈是从一个固定的语料库中选择一样，我们考虑使用batch内的item作为所有batch内的query的负反馈。精确的将，给定一个mini-batch B，{(xi, i,ri)}B i=1,对于B中多有的i，这里的batch softmax是<img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103103026925.png" alt="image-20191103103026925"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103102551198.png" alt="image-20191103102551198"></p>
+<p>当M非常大的时候，对于包含所有的候选样本计算partition函数是不太可行的，例如，这里的分母部分。一个通常的想法是，使用一个item的自己建立分部函数。我们关注处理流式数据。结果，不想训练MLP模型里负反馈是从一个固定的语料库中选择一样，我们考虑使用batch内的item作为所有batch内的query的负反馈。精确的将，给定一个mini-batch B，{(xi, i,ri)}B i=1,对于B中多有的i，这里的batch softmax是<img src="/images/posts/sampling-bias/image-20191103103026925.png" alt="image-20191103103026925"></p>
 <p>batch内的item通常从一个我们目标应用的幂次分布中采样而来。结果公式3中引入了一个非常大的bias，相对于full softmax，流行的item由于他在batch内出现的几率教改而被过度惩罚了。受到logQ修正的启发，采样sample softmax模型，我们改正了每个logits s用一下的等式</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103103405676.png" alt="image-20191103103405676"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103103405676.png" alt="image-20191103103405676"></p>
 <p>这里pj代表item j的采样概率在一个random batch中。我们保留pj的估计到下一个部分。</p>
 <p>加上修真过之后我们有</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103104303010.png" alt="image-20191103104303010"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103104303010.png" alt="image-20191103104303010"></p>
 <p>然后将上述概率带入公式二。</p>
 <p>这里是batch loss function。使用SGD with lr r进行模型参数更新。</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103104424614.png" alt="image-20191103104424614"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103104424614.png" alt="image-20191103104424614"></p>
 <p>这里LBuxuyao一个固定的query或候选集。相关的，公式5能够被应用到流式训练数据，他们的数据是随着时间变化的。看算法1是我们提出算法的全部描述。</p>
 <p>NNS:一旦embedding 函数u v学号后，推断包含两步</p>
 <ol>
@@ -400,7 +404,7 @@
 </li>
 </ol>
 <p>Normalization and Temperature. 经验性的，我们发现增加embedding 归一化，除以二范式u(x, ) u(x, )/ku(x, )k2, ( , )  ( , )/k ( , )k2 ，提高了模型可训练性，并且导致了更好的查找质量。另外，temperature t加到每个logit来sharpen predictions，即</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103184119289.png" alt="image-20191103184119289"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103184119289.png" alt="image-20191103184119289"></p>
 <p>实际中t是一个超参数，调整到最大化例如recall 或precision之类的retrieval metics</p>
 <p>g</p>
 <h4 id="4-流式频率预估"><a href="#4-流式频率预估" class="headerlink" title="4 流式频率预估"></a>4 流式频率预估</h4><p>本部分，我们详述流式频率预估。假设有一个随机batch流，这里每个batch包含一个item集合。这个问题是估计每个itemy在每个batch中的点击概率。一个关键的设计标准是有一个高度分布式估计来支撑分布式训练，当有多个训练任务，workers。在每台机器上或者分布式徐脸上，有个唯一全局step，这表示全局唯一step，这个global step代表训练器消费的数据batch的数量。在分布式设置中，global step通常在多个worker之间同步在通过多个ps方式。我们利用global step并且转化一个item的频次估计到 theta，这表示item在连个连续两次点击的平均step 数量。例如一个item每50 步采样一次，然后我们得到p=0.02。global step的使用给我们两个优势：</p>
@@ -409,11 +413,11 @@
 <li>估计theta能够实现，一个简单的平均更新，适应分布变化</li>
 </ol>
 <p>使用固定item vocabulary 不能现实，我们使用hash array来几率流式id的采样信息。引入的hash 坑呢会引起潜在的hash 碰撞。我们重新看下issue，并提出了一个改进的算法。正如算法2所示，我们用两个arrayA和B，大小为H。鸡舍h是hash函数，能够将任何item映射到一个H空间的interger，这个映射可以基于ID或者其他简(要特征值。然后给一个item y，A[h(y)]记录最新的部署，当y被采样，B[h(y)]包含了对y的theta估计，饿哦们使用A更新B。一旦itemy在第t步更新了，我们更新arrayB：</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103193512470.png" alt="image-20191103193512470"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103193512470.png" alt="image-20191103193512470"></p>
 <p>当B更新了，我们将t赋给A[h(y)].</p>
 <p>对于每个item，假设step值在两个连续点击用随机变量delta表示，均值E(delta)。这里我们的目标是估计theta从一个流式采样中。当一个item出现在某个stept中，t   A[ v(y )]是一个新的delta样本。相关的上述更新能够使用SGD使用固定learning  rate alpha 来学习这个随机值的均值。公式化的，在无冲突情况下，下一个结果显示了bias和variance，这个线上估计。</p>
 <p>假设 delte1 2 … t是一些列独立荣分布的随机变量采样。让delta等于其均值，假设线上估计这里i属于t 并且alpha属于（0,1）</p>
-<p><img src="/Users/chenyangzhao/Library/Application Support/typora-user-images/image-20191103200255037.png" alt="image-20191103200255037"></p>
+<p><img src="/images/posts/sampling-bias/image-20191103200255037.png" alt="image-20191103200255037"></p>
 <p>z</p>
 <p>z</p>
 <p>k</p>
@@ -517,20 +521,7 @@
 
       
         <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/19/Untitled/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
+          
       
 
       
@@ -604,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -855,5 +846,16 @@
 
   
 
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
 </body>
 </html>
