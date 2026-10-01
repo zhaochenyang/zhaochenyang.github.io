@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第三讲：检索增强生成（RAG + Agents）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第三讲：检索增强生成</h1>
+  <div class="sub">Building Blocks — Retrieval-Augmented Generation (RAG + Agents)</div>
+  <div class="meta">讲师：Diyi Yang　|　中文讲解教程（忠于原讲义，共 63 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 课程公告与课程项目</a>
+  <a href="#ch1">一 为什么需要 RAG</a>
+  <a href="#ch2">二 RAG 流水线深入剖析</a>
+  <a href="#ch3">三 索引构建：分块与上下文检索</a>
+  <a href="#ch4">四 检索：BM25、DPR、ColBERT</a>
+  <a href="#ch5">五 智能体化 RAG：Self-RAG、Search-R1</a>
+  <a href="#ch6">六 失效模式</a>
+  <a href="#summary">本讲总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第三讲
+<strong>《Building Blocks — Retrieval-Augmented Generation (RAG + Agents)》</strong>的中文讲解。
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。全讲按讲义开头的 Lecture Overview 分为七个部分：
+课程项目（5 分钟）、为什么需要 RAG（5 分钟）、RAG 流水线（10 分钟）、索引构建：分块与上下文检索（15 分钟）、
+检索：BM25、DPR、ColBERT（20 分钟）、智能体化 RAG：Self-RAG、Search-R1（10 分钟）、失效模式（15 分钟）。
+学习目标（Learning Objective）：<strong>理解 RAG 流水线如何构建、在何处可能失效、索引什么内容、以及如何检索。</strong></p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、课程公告与课程项目</h2>
+<p class="chapter-sub">Announcements &amp; Project（Slide 1–9）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：RAG + Agents</h3>
+  <figure><img src="slides/slide-01.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — RAG + Agents（讲师 Diyi Yang）</figcaption></figure>
+  <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第三讲主题
+  <span class="term">RAG + Agents（检索增强生成与智能体）</span>，由 Diyi Yang 授课。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
+  <figure><img src="slides/slide-02.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>选课、算力、Office hours、作业与项目提案</figcaption></figure>
+  <ul>
+    <li><span class="term">候补与旁听（Waitlist and Audit）</span>：开放候补名单与旁听；</li>
+    <li><span class="term">算力（Compute）</span>：详见 Canvas / 邮件通知；</li>
+    <li><span class="term">Office hours</span>：混合形式（hybrid）——一半 Zoom、一半线下；</li>
+    <li><span class="term">Homework 1</span> 将于 <strong>10 月 5 日</strong>发布；</li>
+    <li><span class="term">项目提案（Project proposal）</span> 截止 <strong>10 月 9 日</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-03.png" alt="Slide 3 本讲结构" loading="lazy"><figcaption>本讲七个部分及时间分配</figcaption></figure>
+  <p>本讲共七个部分：</p>
+  <ul>
+    <li>课程项目（Project，5 分钟）</li>
+    <li>为什么需要 RAG（Why RAG，5 分钟）</li>
+    <li>RAG 流水线（The RAG pipeline，10 分钟）</li>
+    <li>索引构建：分块、上下文检索（Indexing: chunking, contextual retrieval，15 分钟）</li>
+    <li>检索：BM25、DPR、ColBERT（Retrieval，20 分钟）</li>
+    <li>智能体化 RAG：Self-RAG、Search-R1（Agentic RAG，10 分钟）</li>
+    <li>失效模式（Failure modes，15 分钟）</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>Pick A Topic that You're Excited About（选一个你兴奋的主题）</h3>
+  <figure><img src="slides/slide-04.png" alt="Slide 4 选题思考" loading="lazy"><figcaption>选题的五个自问</figcaption></figure>
+  <p>课程项目选题时，建议从以下五个问题入手：</p>
+  <ul>
+    <li>你的智能体（agent）完成什么任务？（What task does your agent do?）</li>
+    <li>驱动它的研究问题是什么？（What research question drives it?）</li>
+    <li>它需要什么数据或 API？（What data or APIs does it need?）</li>
+    <li>你会使用哪些框架？（Which frameworks will you use?）</li>
+    <li>你将如何评测它？（How will you evaluate it?）</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>项目目标、聚焦点与严格评测</h3>
+  <figure><img src="slides/slide-05.png" alt="Slide 5 项目要求" loading="lazy"><figcaption>目标 / 聚焦点 / 严格评测（Rigorous evaluation）</figcaption></figure>
+  <ul>
+    <li><span class="term">目标（Goal）</span>：设计、构建并评测一个你自己的智能体系统（design, build, and evaluate an agentic system of your own）；</li>
+    <li><span class="term">聚焦点（Focus）</span>：构建智能体（检索、工具使用、记忆、多智能体系统、优化）、智能体所需的数据，或评测与使智能体安全；</li>
+    <li><span class="term">严格评测（Rigorous evaluation）</span>（重点强调）：
+      <ul>
+        <li>"碰巧成功一次的 demo"（A demo that works once）不会得高分；</li>
+        <li><strong>尽早定义（Define early）</strong>：任务、数据来源、什么算成功；</li>
+        <li><strong>度量（Measure）</strong>：代码评分器（code graders）、LLM-as-judge、人工评分，或混合方式；</li>
+        <li><strong>报告（Report）</strong>：覆盖大量任务、基线对比，以及智能体在何处、为何失败。</li>
+      </ul>
+    </li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>Example Topics for CS329Z Course Projects（课程项目示例主题）</h3>
+  <figure><img src="slides/slide-06.png" alt="Slide 6 示例主题" loading="lazy"><figcaption>研究主题（Research topics）与创意示例（Example ideas）</figcaption></figure>
+  <p><strong>研究主题（Research topics）</strong>：</p>
+  <ul>
+    <li>在成本、延迟与安全性上评测智能体（Evaluating agents on cost, latency, and safety）</li>
+    <li>适应新工具、API 或 UI（Adapting to new tools, APIs, or UIs）</li>
+    <li>对提示注入（prompt injection）与工具错误的鲁棒性</li>
+    <li>智能体为何误用工具（Why agents misuse tools）</li>
+    <li>从少量数据学习工具使用（Learning tool use from little data）</li>
+    <li>解释智能体行为（Interpreting agent behaviors）</li>
+    <li>长尾与长程边缘案例（Long-tail and long-horizon edge cases）</li>
+    <li>人-智能体 / 智能体-智能体协作（Human-agent / agent-agent teaming）</li>
+    <li>多智能体系统、记忆、规划、监督、奖励黑客（reward hacking）</li>
+  </ul>
+  <p><strong>创意示例（Example ideas）</strong>：把截止日期写进日历的教学大纲阅读器（Syllabus reader）；下季度课程排课优化器；
+  研究论文发现与摘要智能体；校园活动聚合与推荐器；专攻某一代码库 / 框架 / 语言的编程智能体；
+  以及对现有智能体做严格评测以暴露其失效模式。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>Project Team and Key Considerations（项目团队与关键考量）</h3>
+  <figure><img src="slides/slide-07.png" alt="Slide 7 组队建议" loading="lazy"><figcaption>组队规模与分工建议</figcaption></figure>
+  <ul>
+    <li>建议 <strong>1–3 人</strong>组队；</li>
+    <li>团队成员间清晰分工（Clearly divide the work）；</li>
+    <li>有任何需要请主动联系课程团队（Reach out to us）；</li>
+    <li>欢迎与同学交流或使用 Ed Discussion；</li>
+    <li>考虑数据、智能体框架、算力与评测的可用性（Consider the availability of data, agentic frameworks, computation, and evaluation）；</li>
+    <li>示例项目创意（Example project ideas）将于本周稍后发布。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>Recommendations for Successful Projects（项目成功建议）</h3>
+  <figure><img src="slides/slide-08.png" alt="Slide 8 成功建议" loading="lazy"><figcaption>六条项目成功建议</figcaption></figure>
+  <ul>
+    <li>尽早开始、每周推进，而不是最后突击（Start early and work on it every week）；</li>
+    <li><strong>先拿到数据（Get your data first!）</strong>；</li>
+    <li>提出清晰、定义良好的研究问题（有创意的更佳）；</li>
+    <li><strong>结果应当能教会我们一些东西（Results should teach us something）</strong>——重点强调；</li>
+    <li>把结果呈现与可视化做好（Present and visualize results well）；</li>
+    <li>多来 office hours 与我们交流。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>Lecture Overview + Learning Objective（本讲结构与学习目标）</h3>
+  <figure><img src="slides/slide-09.png" alt="Slide 9 学习目标" loading="lazy"><figcaption>七个部分 + 学习目标</figcaption></figure>
+  <p>再次列出本讲七个部分（项目 5 分钟、Why RAG 5 分钟、RAG 流水线 10 分钟、索引构建 15 分钟、检索 20 分钟、
+  智能体化 RAG 10 分钟、失效模式 15 分钟），并明确<span class="term">学习目标（Learning Objective）</span>：
+  <strong>学习 RAG 流水线如何构建、它在何处会失效（where it breaks）、应该索引什么（what to index）以及如何去检索（how to search it）。</strong></p>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、为什么需要 RAG（Why RAG）</h2>
+<p class="chapter-sub">Why Retrieval / Why RAG（Slide 10–15）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>Why Retrieval?（为什么需要检索？）</h3>
+  <figure><img src="slides/slide-10.png" alt="Slide 10 为什么需要检索" loading="lazy"><figcaption>LLMs Alone vs. LLMs + Retrieval 的对比示例</figcaption></figure>
+  <p>以一个具体问题引入："本周哪个 office hour 最不挤？"（Which office hour this week is least crowded?）</p>
+  <ul>
+    <li><span class="term">仅靠 LLM（LLMs Alone）</span>：只能凭常识猜测——"试试周三下午的场次，周中时段通常最安静。"（这种回答没有依据，可能是臆测。）</li>
+    <li><span class="term">LLM + 检索（LLMs + Retrieval）</span>：先检索到真实数据——"排队记录，近 3 周：周二下午 4 点平均等待 14 人；周四上午 9 点 3 人。"
+    于是给出有据可依的回答："周四上午 9 点——前面大约 3 个学生。"</li>
+  </ul>
+  <p>检索让回答从"听起来合理的猜测"变成"有真实数据支撑的结论"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>Using Retrieval to Overcome LMs' Shortcomings（用检索弥补语言模型的短板）</h3>
+  <figure><img src="slides/slide-11.png" alt="Slide 11 检索的价值" loading="lazy"><figcaption>Retriever–Reader 示意：问题 → 检索 → 文档 → 阅读理解 → 带引用的答案</figcaption></figure>
+  <ul>
+    <li>与其要求语言模型（LM）记住一切，不如在需要时（just-in-time）为它提供相关且有用的内容？</li>
+    <li>检索（Retrieval）是识别这类相关信息的常用机制，具有两大优点：
+      <ul>
+        <li><span class="term">动态（Dynamic）</span>：向检索系统中更新 / 添加文档非常容易；</li>
+        <li><span class="term">可解释（Interpretable）</span>：LM 可以生成指向所检索文档的指针（pointers），支持人工核验其生成内容（citations，引用）。</li>
+      </ul>
+    </li>
+  </ul>
+  <p>图示的 Retriever–Reader 流程：问题"What protects the digestive system against infection?"经 Retriever 从文本集合
+  （Text Collection）中检索出相关段落（来自 Wikipedia – Immune system 的内容），再由 Reader 给出带引用 [1] 的答案
+  "gastric acid and proteases [1]"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>Retrieval Often Used in Open-Domain QA（检索常用于开放域问答）</h3>
+  <figure><img src="slides/slide-12.png" alt="Slide 12 DrQA" loading="lazy"><figcaption>DrQA：Wikipedia 检索 + 文档阅读器</figcaption></figure>
+  <p>开放域问答（Open-Domain QA）的经典范式（DrQA）：对问题"How many of Warsaw's inhabitants spoke Polish in 1933?"，
+  <span class="term">Document Retriever（文档检索器）</span>从 Wikipedia 中检索出相关文档，
+  再由 <span class="term">Document Reader（文档阅读器）</span>从文档中读取出答案 <strong>833,500</strong>。</p>
+  <p>引用：<span class="en">Chen et al., 2017. Reading Wikipedia to Answer Open-domain Questions</span>；
+  代码：<a href="https://github.com/facebookresearch/DrQA">https://github.com/facebookresearch/DrQA</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>Retriever–Reader Framework（检索器–阅读器框架）</h3>
+  <figure><img src="slides/slide-13.png" alt="Slide 13 Retriever-Reader 形式化" loading="lazy"><figcaption>输入、输出与 Retriever / Reader 的定义</figcaption></figure>
+  <ul>
+    <li><span class="term">输入（Input）</span>：大规模文档集合 <em>D = D₁, D₂, …, D_N</em> 与问题 Q；</li>
+    <li><span class="term">输出（Output）</span>：答案字符串 A；</li>
+    <li><span class="term">Retriever（检索器）</span>：<em>f(D, Q) → P₁, …, P_K</em>，K 预先定义（例如 100）；即标准 TF-IDF 信息检索稀疏模型（一个固定模块）；</li>
+    <li><span class="term">Reader（阅读器）</span>：<em>g(Q, {P₁, …, P_K}) → A</em>——一个阅读理解问题（A reading comprehension problem!）；
+    是神经阅读理解模型，可以在 SQuAD 等远程监督（distantly-supervised）QA 数据集上训练，也可以是零样本 LLM（如 ChatGPT）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>Retrieval Augmented Generation (RAG)（检索增强生成）</h3>
+  <figure><img src="slides/slide-14.png" alt="Slide 14 RAG 架构图" loading="lazy"><figcaption>RAG 端到端架构：Query Encoder → MIPS → Document Index → Generator（Lewis et al., 2021）</figcaption></figure>
+  <p>RAG 的端到端架构（<span class="en">Lewis et al., 2021</span>，另见 REALM、DPR 等工作）：</p>
+  <ul>
+    <li><span class="term">Retriever p_η（非参数，Non-Parametric）</span>：查询编码器（Query Encoder）q 把查询 x 编码为 q(x)，
+    经 <span class="term">MIPS（最大内积搜索）</span>在文档索引（Document Index，向量 d(z)）中检索相关文档；</li>
+    <li><span class="term">Generator p_θ（参数化，Parametric）</span>：对检索结果做边缘化（Marginalize）后生成答案；</li>
+    <li>整个系统可对 q 与 p_θ 做<span class="term">端到端反向传播（End-to-End Backprop）</span>联合训练；</li>
+    <li>支持的三类任务（x → y）：问答（Question Answering）、事实核验（Fact Verification）、Jeopardy 风格问题生成（Jeopardy Question Generation）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>Lecture Overview（章节过渡）</h3>
+  <figure><img src="slides/slide-15.png" alt="Slide 15 章节过渡" loading="lazy"><figcaption>"Why RAG" 部分完成，进入后续部分</figcaption></figure>
+  <p>过渡页：Lecture Overview 中 "Why RAG（5 分钟）" 已置灰，表示该部分讲完，接下来进入 RAG 流水线及其深入剖析。</p>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、RAG 流水线深入剖析（Deep Dive into RAG）</h2>
+<p class="chapter-sub">The RAG pipeline（Slide 16–21）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>Deep Dive into RAG（RAG 深入剖析：概率分解与两种变体）</h3>
+  <figure><img src="slides/slide-16.png" alt="Slide 16 RAG 概率分解" loading="lazy"><figcaption>retriever p(z|x)、generator p(y|x,z) 与边缘化公式</figcaption></figure>
+  <ul>
+    <li><span class="term">检索器（retriever）</span> <em>p(z|x)</em>：为查询 x 返回 top-K 段落；</li>
+    <li><span class="term">生成器（generator）</span> <em>p(y|x, z)</em>：在给定查询 x 与检索段落 z 的条件下，逐 token 写出答案；</li>
+    <li>边缘化公式：<em>p(y|x) ≈ Σ<sub>z∈top−K</sub> p(z|x)·p(y|x, z)</em>——按检索器对各段落的评分概率对每个段落给出的答案加权；</li>
+    <li><span class="term">RAG-Sequence</span>：选定一个段落，用它生成整个答案；</li>
+    <li><span class="term">RAG-Token</span>：在答案的每个 token 处重新选择段落。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>Deep Dive into RAG（联合训练目标）</h3>
+  <figure><img src="slides/slide-17.png" alt="Slide 17 联合训练" loading="lazy"><figcaption>最小化负边际对数似然</figcaption></figure>
+  <p>延续上一页的定义，RAG 将检索器与生成器<span class="term">联合训练（Jointly train）</span>，目标是最小化负边际对数似然：
+  <em>Σ<sub>j</sub> −log p(y<sub>j</sub> | x<sub>j</sub>)</em>。这正是"端到端反向传播"（Slide 14）在训练目标上的体现。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>Retriever: DPR（检索器：密集段落检索）</h3>
+  <figure><img src="slides/slide-18.png" alt="Slide 18 DPR" loading="lazy"><figcaption>DPR 的双塔内积打分与 MIPS 求解</figcaption></figure>
+  <ul>
+    <li>检索器 <em>p(z|x)</em> 为查询 x 返回 top-K 段落；</li>
+    <li>DPR（Dense Passage Retrieval）的打分函数：<em>p(z|x) ∝ exp(<strong>d</strong>(z)ᵀ <strong>q</strong>(x))</em>，
+    其中文档向量 <em><strong>d</strong>(z) = BERT<sub>d</sub>(z)</em>、查询向量 <em><strong>q</strong>(x) = BERT<sub>q</sub>(x)</em>
+    （双塔 BERT 分别编码文档与查询）；</li>
+    <li><em>top-k(p(·|x))</em>：取得分最高的 k 个段落，使用<span class="term">最大内积搜索（Maximum Inner Product Search, MIPS）</span>求解。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>Generator: BART（生成器：BART）</h3>
+  <figure><img src="slides/slide-19.png" alt="Slide 19 BART 生成器" loading="lazy"><figcaption>BART 编码器-解码器生成器</figcaption></figure>
+  <ul>
+    <li>生成器 <em>p(y|x, z)</em> 在给定查询 x 与检索段落 z 的条件下逐 token 写出答案；</li>
+    <li>生成器可以用任何<span class="term">编码器-解码器（encoder-decoder）</span>结构建模；</li>
+    <li>在 BART 中生成时，将 x 与 z 拼接（concatenated）后输入。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>RAG Performance on Open-Domain QA（RAG 在开放域问答上的表现）</h3>
+  <figure><img src="slides/slide-20.png" alt="Slide 20 RAG 性能表" loading="lazy"><figcaption>左：四个开放域 QA 基准的 Exact Match 对比；右：Jeopardy 问题生成的人工评估</figcaption></figure>
+  <p><strong>左表</strong>：在 Natural Questions（NQ）、TriviaQA（TQA）、WebQuestions（WQ）、CuratedTrec（CT）上以 Exact Match 评分（加粗为各行/列最佳）：</p>
+  <table>
+    <tr><th>设置</th><th>模型</th><th>NQ</th><th>TQA</th><th>WQ</th><th>CT</th></tr>
+    <tr><td rowspan="2">Closed Book（闭卷）</td><td>T5-11B [52]</td><td>34.5</td><td>- / 50.1</td><td>37.4</td><td>-</td></tr>
+    <tr><td>T5-11B+SSM [52]</td><td>36.6</td><td>- / 60.5</td><td>44.7</td><td>-</td></tr>
+    <tr><td rowspan="2">Open Book（开卷）</td><td>REALM [20]</td><td>40.4</td><td>- / -</td><td>40.7</td><td>46.8</td></tr>
+    <tr><td>DPR [26]</td><td>41.5</td><td>57.9 / -</td><td>41.1</td><td>50.6</td></tr>
+    <tr><td rowspan="2">（RAG）</td><td>RAG-Token</td><td>44.1</td><td>55.2 / 66.1</td><td><strong>45.5</strong></td><td>50.0</td></tr>
+    <tr><td>RAG-Seq.</td><td><strong>44.5</strong></td><td>56.8 / <strong>68.0</strong></td><td>45.2</td><td><strong>52.2</strong></td></tr>
+  </table>
+  <p><strong>右表</strong>：Jeopardy 问题生成任务的人工评估（Factuality 事实性 / Specificity 具体性）：BART 更好 7.1% / 16.8%；
+  <strong>RAG 更好 42.7% / 37.4%</strong>（均最高）；两者都好 11.7% / 11.8%；两者都差 17.7% / 6.9%；无多数意见 20.8% / 20.1%。
+  结论：RAG 生成的问题在事实性与具体性上明显优于纯 BART。</p>
+</article>
+
+</section>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>Different Variants of RAG（RAG 的不同变体）</h3>
+  <figure><img src="slides/slide-21.png" alt="Slide 21 RAG 变体" loading="lazy"><figcaption>Naive RAG / Advanced RAG / Modular RAG 三种范式（Gao et al., 2024）</figcaption></figure>
+  <p>RAG 的三种演进范式（<span class="en">Gao et al., 2024</span>）：</p>
+  <ul>
+    <li><span class="term">Naive RAG（朴素 RAG）</span>：User/Query 与 Documents（经 Indexing 索引）→ Retrieval 检索 → 拼成 Prompt 送入<span class="term">冻结的 LLM（Frozen LLM）</span>→ Output；</li>
+    <li><span class="term">Advanced RAG（进阶 RAG）</span>：在朴素流程前后增加模块——
+      <span class="term">Pre-Retrieval（检索前）</span>：查询路由（Query Routing）、查询改写（Query Rewriting）、查询扩展（Query Expansion）；
+      <span class="term">Post-Retrieval（检索后）</span>：重排（Rerank）、摘要（Summary）、融合（Fusion）；</li>
+    <li><span class="term">Modular RAG（模块化 RAG）</span>：把 RAG 拆为可组合模块（Routing、Search、Predict、Retrieve、Rewrite、Rerank、Read、Demonstrate、Fusion、Memory），
+      再组合成不同<span class="term">模式（Patterns）</span>：Naive RAG（Retrieve→Read）、Advanced RAG（Rewrite→Retrieve→Rerank→Read）、
+      DSP（Demonstrate→Search→Predict，Khattab et al. 2022）、ITER-RETGEN（Retrieve→Read→Retrieve→Read 迭代，Shao et al. 2023）。</li>
+  </ul>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">三、索引构建：分块与上下文检索（Indexing）</h2>
+<p class="chapter-sub">Indexing: chunking, contextual retrieval（Slide 22–39）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>Lecture Overview（章节过渡）</h3>
+  <figure><img src="slides/slide-22.png" alt="Slide 22 章节过渡" loading="lazy"><figcaption>"The RAG pipeline" 完成，进入 Indexing</figcaption></figure>
+  <p>过渡页：Lecture Overview 中 "Why RAG" 与 "The RAG pipeline" 均已置灰，接下来进入
+  <span class="term">索引构建（Indexing：chunking、contextual retrieval，15 分钟）</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>What Makes A Good Retriever? Embeddings（什么造就好的检索器？嵌入）</h3>
+  <figure><img src="slides/slide-23.png" alt="Slide 23 嵌入类型" loading="lazy"><figcaption>五类嵌入及其覆盖粒度</figcaption></figure>
+  <table>
+    <tr><th>类型（Type）</th><th>示例（Examples）</th><th>一个向量覆盖（One vector covers）</th></tr>
+    <tr><td>静态词向量（Static word）</td><td>word2vec, GloVe</td><td>一个词类型（a word type）</td></tr>
+    <tr><td>上下文嵌入（Contextual）</td><td>BERT, RoBERTa</td><td>上下文中的一个 token（a token in context）</td></tr>
+    <tr><td>段落嵌入（Passage）</td><td>Sentence-BERT, DPR, E5</td><td>一个块（a chunk）</td></tr>
+    <tr><td>多模态（Multimodal）</td><td>CLIP</td><td>文本或图像，共享空间（text or image, shared space）</td></tr>
+    <tr><td>图嵌入（Graph）</td><td>node2vec, GNN encoders</td><td>一个节点或关系（a node or relation）</td></tr>
+  </table>
+  <p>检索需要两样东西：每个块一个<span class="term">固定维度的向量（fixed-dimension vector per chunk）</span>，
+  以及一个<span class="term">相似度度量（similarity metric）</span>（余弦 cosine 或内积 inner product）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>Chunking: Basic Unit in Retrieval（分块：检索的基本单位）</h3>
+  <figure><img src="slides/slide-24.png" alt="Slide 24 分块基础" loading="lazy"><figcaption>大文档 → 章节 → 块（Chunk 1–4）</figcaption></figure>
+  <ul>
+    <li><span class="term">固定大小分块（Fixed-size chunking）</span>：按大小切分（例如 100–500 tokens）
+      <ul>
+        <li><em>太小（Too small）</em>：向量没有上下文；</li>
+        <li><em>太大（Too large）</em>：一个向量平均掉了许多主题。</li>
+      </ul>
+    </li>
+    <li><span class="term">重叠（Overlap）</span>：10–20%，保证分块边界处不丢句子；</li>
+    <li><span class="term">语义分块（Semantic chunking）</span>：按逻辑边界切分（如句子、章节）；</li>
+    <li><span class="term">上下文增强的分块（Context-enriched chunking）</span>：为每个块附带额外元数据或摘要；</li>
+    <li><span class="term">AI 驱动的动态分块（AI-driven dynamic chunking）</span>：用 LLM 检测自然断点。</li>
+  </ul>
+  <p>参考：<a href="https://community.databricks.com/t5/technical-blog/the-ultimate-guide-to-chunking-strategies-for-rag-applications/ba-p/113089">Databricks — The ultimate guide to chunking strategies for RAG applications</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>Chunking: Same Text, Three Splits（同一段文本的三种切法）</h3>
+  <figure><img src="slides/slide-25.png" alt="Slide 25 三种分块" loading="lazy"><figcaption>固定大小 / 固定大小+重叠 / 按标题结构</figcaption></figure>
+  <p>同一段评分规则文本（"Grading. The project milestone is due Week 6, Thursday 11:59pm. Late days may not be applied to the milestone. The final report is due Week 10."），三种切分方式对比：</p>
+  <ul>
+    <li><span class="term">固定大小分块（50 tokens）</span>：在"Thursday"与"11:59pm"之间硬切断，一个块以 "…due Week 6, Thursday" 结束、下一个以 "11:59pm. Late days…" 开头——截止时间信息被拦腰拆开；</li>
+    <li><span class="term">固定大小 + 重叠（+ overlap）</span>："…due Week 6, Thursday 11:59pm." 与 "… due Week 6, Thursday 11:59pm. Late days may not be applied …"——靠重叠保住边界信息，但冗余且仍可能切断语义；</li>
+    <li><span class="term">按结构切分（split on headings）</span>：得到 "Grading – Milestone: Week 6, Thu 11:59pm. Late days: not allowed on the milestone. Final report: Week 10."——信息完整、语义自洽。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>Why Contextual Retrieval（为什么需要上下文检索）</h3>
+  <figure><img src="slides/slide-26.png" alt="Slide 26 上下文检索动机" loading="lazy"><figcaption>Chunk vs. Contextualized Chunk</figcaption></figure>
+  <p>查询（Query）："ACME Corp 在 2023 年 Q2 的收入增长是多少？"（What was the revenue growth for ACME Corp in Q2 2023?）</p>
+  <ul>
+    <li><span class="term">普通块（Chunk）</span>："The company's revenue grew by 3% over the previous quarter."——脱离上下文后，这个块不含公司名与季度，检索难以命中；</li>
+    <li><span class="term">上下文化块（Contextualized Chunk）</span>：在原句前补上上下文（高亮部分）——"From ACME Corp's Q2 2023 SEC filing; Q1 2023 revenue was $314M." + 原句。
+    块因此自带"我是谁、来自哪里"的信息，可被正确检索。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>Contextual Retrieval（上下文检索：流程）</h3>
+  <figure><img src="slides/slide-27.png" alt="Slide 27 上下文检索流程" loading="lazy"><figcaption>预处理：为每个块生成上下文并拼接，再建向量库与 TF-IDF 索引</figcaption></figure>
+  <p>Anthropic 提出的 Contextual Retrieval 流程（<a href="https://www.anthropic.com/engineering/contextual-retrieval">anthropic.com/engineering/contextual-retrieval</a>）：</p>
+  <ul>
+    <li><span class="term">预处理（PREPROCESSING，新增环节）</span>：语料库（Corpus）先切成 Chunk 1…Chunk X；对每个块运行提示词（Run prompt），让模型结合原文档为该块"定位上下文"
+    （situate it within the document）；每个提示下 Claude 回复 50–100 tokens 的上下文，拼接到对应块前（Context 1 + Chunk 1 …）；</li>
+    <li>上下文化后的块同时进入两条索引通道：<span class="term">Embedding model → Vector database</span>（向量检索）与 <span class="term">TF-IDF → TF-IDF index</span>（词法检索）；</li>
+    <li><span class="term">混合检索（Hybrid retrieval）</span>：嵌入捕捉语义，TF-IDF/BM25 捕捉精确词项，结果合并（results are merged）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>Contextual Retrieval（上下文检索：提示词）</h3>
+  <figure><img src="slides/slide-28.png" alt="Slide 28 上下文生成提示词" loading="lazy"><figcaption>为块生成上下文的提示词模板</figcaption></figure>
+  <p>用于"上下文生成"的提示词模板：</p>
+  <pre>{{WHOLE_DOCUMENT}}
+Here is the chunk we want to situate within the whole document
+{{CHUNK_CONTENT}}
+Please give a short succinct context to situate this chunk within the overall document
+for the purposes of improving search retrieval of the chunk.
+Answer only with the succinct context and nothing else.</pre>
+  <p>即：把整篇文档与目标块一起给模型，要求只输出简短上下文（50–100 tokens），用于提升该块的检索效果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Contextual Embeddings Reduced Retrieval Failure Rate（上下文嵌入降低检索失败率）</h3>
+  <figure><img src="slides/slide-29.png" alt="Slide 29 失败率对比柱状图" loading="lazy"><figcaption>Failed Retrievals @20 平均百分比：标准检索 vs. 上下文检索</figcaption></figure>
+  <p>柱状图（纵轴：Failed Retrievals @20 平均百分比，越低越好）：</p>
+  <table>
+    <tr><th></th><th>仅 Embedding</th><th>Embedding + BM25</th></tr>
+    <tr><th>标准检索（Standard Retrieval）</th><td>5.7%</td><td>5.0%</td></tr>
+    <tr><th>上下文检索（Contextual Retrieval）</th><td>3.7%</td><td><strong>2.9%</strong></td></tr>
+  </table>
+  <p>结论：上下文嵌入把检索失败率从 5.7% 降到 3.7%；再叠加上下文 BM25（混合检索）进一步降到 <strong>2.9%</strong>（相对标准嵌入检索约减半）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>Late Chunking（延迟分块）</h3>
+  <figure><img src="slides/slide-30.png" alt="Slide 30 Late Chunking" loading="lazy"><figcaption>Naive chunking（i.i.d. 嵌入）vs. Late chunking（条件嵌入）</figcaption></figure>
+  <ul>
+    <li><span class="term">Late chunking（延迟分块）</span>：先用<span class="term">长上下文编码器</span>对整篇文档编码，再在每个块的跨度内对 token 向量做平均池化（mean-pool）得到块嵌入；</li>
+    <li>对比 <span class="term">Contextual Retrieval</span>：不需要 LLM 调用，每个块也不增加额外 token；上下文信息直接承载在向量本身（conditional embeddings）中；</li>
+    <li>右图对比：Naive chunking 对每个块独立编码（i.i.d. embeddings），而 Late chunking 让块嵌入互相"看见"全文（conditional embeddings）。</li>
+  </ul>
+  <p>引用：<span class="en">Günther et al., 2024</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>Retrieval Results with Long Late Chunking for Different Chunk Sizes（不同块大小下的检索结果）</h3>
+  <figure><img src="slides/slide-31.png" alt="Slide 31 Late Chunking 实验" loading="lazy"><figcaption>上：SciFact/NFCorpus/FiQA/TRECCOVID 表格；下：WikiMultiHopQA/SummScreenFD/QMSum 柱状图</figcaption></figure>
+  <p>上表（两种边界策略，加粗为更优值）：固定边界（每块 256 tokens）下 Late 在全部四个数据集优于 Naive（AVG 54.0 vs. 52.2）；
+  句子边界（每块 5 句）下同样全面占优（AVG 54.3 vs. 52.4）。例如 TRECCOVID 上 Late：77.2（J3）/75.0（Nom）对比 Naive 的 73.0/72.9。</p>
+  <p>下方三张柱状图（nDCG@10 %，横轴块大小 8–512）：在 WikiMultiHopQA、SummScreenFD、QMSum 上，Late（绿）在各块大小下总体不低于、多数显著高于 Naive（蓝），
+  尤其在长文档数据集（SummScreenFD、QMSum）的小块设置下优势最大。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>Hierarchical/Tree-Structured Indexing: RAPTOR（层次/树结构索引）</h3>
+  <figure><img src="slides/slide-32.png" alt="Slide 32 RAPTOR 结构" loading="lazy"><figcaption>RAPTOR 树、单层构建过程与节点内容（Sarthi et al., 2025）</figcaption></figure>
+  <ul>
+    <li>对答案分散在整篇文档中的问题，单一块的表示帮不上忙；</li>
+    <li><span class="term">自底向上建树（Build a tree, bottom up）</span>：嵌入各块 → 聚类 → 用 LLM 摘要每个聚类 → 嵌入摘要 → 重复（形成 Leaf layer → … → Root layer 的树）；</li>
+    <li><span class="term">跨层检索（Retrieve across levels）</span>：细节问题命中叶子，主题性问题命中上层节点；</li>
+    <li>单层构建：1. Clustering（聚类文本块）→ 2. Summarization by LLM（LLM 摘要生成上层节点）；</li>
+    <li>节点内容（Contents of a node）：索引号、子节点列表、子节点摘要文本、文本嵌入向量。</li>
+  </ul>
+  <p>引用：<span class="en">Sarthi et al., 2025</span>（RAPTOR）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>RAPTOR：与 DPR 的检索对比（Cinderella 示例）</h3>
+  <figure><img src="slides/slide-33.png" alt="Slide 33 RAPTOR vs DPR" loading="lazy"><figcaption>高亮框 = RAPTOR 的选择；箭头 = DPR 选中的叶子</figcaption></figure>
+  <p>以《灰姑娘》（Cinderella）的两个问题为例：Q1 "central theme of the story?（故事的中心主题？）"与
+  Q2 "how did she find a happy ending?（她如何获得幸福结局？）"。树中：底层叶子 0–15，中层节点 16–22，顶层节点 23–26。
+  RAPTOR 会选中相关的高层节点（如 Q2 选中 16、17、19、25），而 DPR 只能选中若干叶子（箭头所示）。
+  <strong>RAPTOR 选中的上下文通常已经直接或通过摘要包含了 DPR 选中的内容</strong>——层次索引在主题性问题上更高效。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>GraphRAG: query-focused over LLM-built graph（基于 LLM 构建图的查询聚焦检索）</h3>
+  <figure><img src="slides/slide-34.png" alt="Slide 34 GraphRAG 流水线" loading="lazy"><figcaption>索引期与查询期两条流水线 + 检测到的图社区（Edge et al., 2024）</figcaption></figure>
+  <p>GraphRAG（<span class="en">Edge et al., 2024</span>）流水线分两个阶段：</p>
+  <ul>
+    <li><span class="term">索引期（Indexing Time）</span>：Source Documents →（文本抽取与分块）→ Text Chunks →（领域定制的摘要）→ Entities &amp; Relationships →（领域定制的摘要）→ Knowledge Graph →（社区检测 community detection）→ Graph Communities；</li>
+    <li><span class="term">查询期（Query Time）</span>：Graph Communities →（领域定制摘要）→ Community Summaries →（查询聚焦摘要）→ Community Answers →（查询聚焦摘要）→ <strong>Global Answer</strong>；</li>
+    <li>右图：LLM 从语料构建的知识图上检测出的<span class="term">图社区（Graph communities detected）</span>（不同颜色为不同社区）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>GraphRAG: More Variants（GraphRAG 的更多变体）</h3>
+  <figure><img src="slides/slide-35.png" alt="Slide 35 RAG 谱系" loading="lazy"><figcaption>从 RAG（文本与图像数据）到 GraphRAG（图结构数据）的统一流水线（Han et al., 2025）</figcaption></figure>
+  <p>统一的 RAG→GraphRAG 谱系（<span class="en">Han et al., 2025</span>）：中间是通用流水线 Query Processor → Retriever → Data Source → Organizer → Generator。
+  左侧 <span class="term">RAG</span> 面向文本与图像数据（MNIST、CIFAR-10、Vision-Image、Wikipedia、Language Word Cloud、Language-Text 等，
+  "不同图像共享同一潜在视觉、不同句子共享共同 token"）；右侧 <span class="term">GraphRAG</span> 面向图结构数据：
+  节点/边可表示实体、论文、产品、客户；Graph 可表示文本-图像三元知识、蛋白质等；Cellular Complex 可表示苯环、数学俱乐部、蛋白质相互作用；
+  并涉及 Homophily/Heterophily、Proximity Similar vs. Role Similar 等图性质。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>Vector Search（向量搜索）</h3>
+  <figure><img src="slides/slide-36.png" alt="Slide 36 向量搜索" loading="lazy"><figcaption>精确搜索与近似最近邻（ANN）三类方法</figcaption></figure>
+  <ul>
+    <li><span class="term">任务</span>：给定查询向量，从 N 个块向量中返回 top-k；</li>
+    <li><span class="term">精确搜索（Exact search）</span>：暴力扫描，每次查询 O(N·d)；</li>
+    <li><span class="term">近似最近邻（Approximate nearest neighbor, ANN）</span>：用少量召回率换取大幅速度提升：
+      <ul>
+        <li><span class="term">倒排文件索引（Inverted File Index, IVF）</span>：对索引聚类，只探测最近的质心；</li>
+        <li><span class="term">乘积量化（Product Quantization, PQ）</span>：把每个向量压缩成短码；</li>
+        <li><span class="term">HNSW</span>：多层邻近图，从粗层贪心下降。</li>
+      </ul>
+    </li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>HNSW（分层可导航小世界）</h3>
+  <figure><img src="slides/slide-37.png" alt="Slide 37 HNSW 结构" loading="lazy"><figcaption>Layer 2 → Layer 1 → Layer 0，特征半径递减</figcaption></figure>
+  <ul>
+    <li><span class="term">层（Layers）</span>：所有向量都在底层（Layer=0），上层是越来越稀疏的抽样（特征半径 decreasing characteristic radius 递减）；</li>
+    <li><span class="term">搜索（Search）</span>：从顶层出发，贪心跳向查询方向，卡住时下降一层（drop a layer when stuck）；</li>
+    <li><span class="term">快（Fast）</span>：约 log N 跳，召回率高。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>HNSW：图如何构建（backup）</h3>
+  <figure><img src="slides/slide-38.png" alt="Slide 38 HNSW 构建" loading="lazy"><figcaption>插入元素与跨簇启发式链接</figcaption></figure>
+  <ul>
+    <li><span class="term">逐个插入（Insert）</span>向量；</li>
+    <li><span class="term">随机选定其最高层（Pick its top layer at random）</span>：多数节点停留在 layer 0，少数到达顶层；</li>
+    <li><span class="term">在每一层建立链接（Link it at each layer）</span>：连接 M 个最近邻，并额外加一条启发式跨簇链接（heuristic link across to another cluster），
+    使贪心游走不会被困在局部（图中：Inserted element 经 "Extra link selected by the heuristic" 连到 Cluster 2 的 e₂）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>Lecture Overview（章节过渡）</h3>
+  <figure><img src="slides/slide-39.png" alt="Slide 39 章节过渡" loading="lazy"><figcaption>"Indexing" 完成，进入 Retrieval</figcaption></figure>
+  <p>过渡页：Lecture Overview 中 "Why RAG"、"The RAG pipeline"、"Indexing: chunking, contextual retrieval" 均已置灰，
+  接下来进入 <span class="term">检索（Retrieval：BM25、DPR、ColBERT，20 分钟）</span>。</p>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">四、检索：BM25、DPR、ColBERT（Retrieval）</h2>
+<p class="chapter-sub">Retrieval: BM25, DPR, ColBERT（Slide 40–54）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>Different Types of Retrievers（不同类型的检索器）</h3>
+  <figure><img src="slides/slide-40.png" alt="Slide 40 检索器类型" loading="lazy"><figcaption>词重叠 / 向量检索 / 神经检索</figcaption></figure>
+  <p>核心问题：<strong>我们应当如何为检索系统检索相关段落？</strong>（How should we retrieve relevant passages for our retrieval system?）三类方法：</p>
+  <ul>
+    <li><span class="term">词重叠（Word-overlap）</span>：BM25；</li>
+    <li><span class="term">向量检索（Vector retrieval）</span>：DPR、Sentence vectors；</li>
+    <li><span class="term">其他神经系统（Other, neural systems）</span>：ColBERT。</li>
+  </ul>
+</article>
+
+</section>
+
+<article class="slide">
+  <h3><span class="no">Slide 41</span>BM25: the most widely used (even today)（至今仍最常用的词法检索）</h3>
+  <figure><img src="slides/slide-41.png" alt="Slide 41 BM25 公式" loading="lazy"><figcaption>BM25 打分公式与 IDF 定义（各因子带注释）</figcaption></figure>
+  <p>BM25 打分公式（各因子含义如图中注释）：</p>
+  <ul>
+    <li><em>score(D, Q) = Σ<sub>i=1..n</sub> IDF(qᵢ) · f(qᵢ,D)·(k₁+1) / [ f(qᵢ,D) + k₁·(1 − b + b·|D|/avgdl) ]</em>；</li>
+    <li><span class="term">IDF(qᵢ)</span>：词项 qᵢ 有多稀有（How rare qᵢ is）；</li>
+    <li><span class="term">f(qᵢ, D)</span>：qᵢ 在文档 D 中出现的频率（How often qᵢ occurs in D）；</li>
+    <li><span class="term">|D|/avgdl</span>：文档长度相对平均文档长度的归一化（Doc length vs. the average）；</li>
+    <li>IDF 定义：<em>IDF(qᵢ) = ln( (N − n(qᵢ) + 0.5) / (n(qᵢ) + 0.5) )</em>，其中 <em>N</em> 为集合中的文档数（Docs in the collection），
+    <em>n(qᵢ)</em> 为包含 qᵢ 的文档数（Docs that contain qᵢ）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>IDF Comparison and Term Frequency Saturation（IDF 对比与词频饱和）</h3>
+  <figure><img src="slides/slide-42.png" alt="Slide 42 IDF 与词频曲线" loading="lazy"><figcaption>左：BM25 vs Standard IDF（N=10,000）；右：BM25 词频饱和曲线（k₁=0.5/1.2/2.0/5.0）</figcaption></figure>
+  <ul>
+    <li><strong>左图（IDF Comparison: BM25 vs Standard, N = 10,000）</strong>：横轴为文档频率（占集合百分比），纵轴为 IDF 分数。
+    当词项出现在超过约 50% 的文档中（50% threshold 虚线右侧的 Negative IDF region，红色阴影区），BM25 的 IDF 变为负值——
+    过于常见的词会拉低得分；而标准 IDF（绿色虚线）则始终非负、缓慢趋近 0。</li>
+    <li><strong>右图（BM25 Term Frequency Saturation）</strong>：横轴为词频（0–20），纵轴为 TF 分量得分（0–6）。
+    不同 k₁（0.5/1.2/2.0/5.0）下，TF 得分随词频增长而<span class="term">饱和</span>（对数式增长、趋于平台）：
+    k₁ 越小饱和越快、上限越低；k₁=5.0 时增长更陡、上限更高。说明词频的作用存在边际递减。</li>
+  </ul>
+  <p>图来源：<a href="https://mbrenndoerfer.com/writing/bm25-search-algorithm-elasticsearch-implementation">mbrenndoerfer.com — BM25 search algorithm &amp; Elasticsearch implementation</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>DPR: dense passage retrieval（密集段落检索：流程）</h3>
+  <figure><img src="slides/slide-43.png" alt="Slide 43 DPR 流程" loading="lazy"><figcaption>离线建索引 + 在线查询（Karpukhin et al., 2020）</figcaption></figure>
+  <p>DPR（<span class="en">Karpukhin et al., 2020</span>）分两个阶段：</p>
+  <ul>
+    <li><span class="term">离线（OFFLINE）</span>：Passages（段落）经 <span class="term">Passage encoder E<sub>P</sub>(p)</span> 编码为段落向量（Passage vectors），存入 <span class="term">Vector index（向量索引）</span>；</li>
+    <li><span class="term">在线（ONLINE）</span>：Query q 经 <span class="term">Query encoder E<sub>Q</sub>(q)</span> 编码为查询向量（Query vector），
+    与段落向量做<span class="term">点积（Dot product）E<sub>Q</sub>(q)ᵀ E<sub>P</sub>(p)</span>，返回 <span class="term">Top-k passages</span>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>DPR: dense passage retrieval（对比训练损失）</h3>
+  <figure><img src="slides/slide-44.png" alt="Slide 44 DPR 训练" loading="lazy"><figcaption>双塔编码器 + 对比训练损失（Karpukhin et al., 2020）</figcaption></figure>
+  <ul>
+    <li>问题编码器 E<sub>Q</sub>(·;θ<sub>Q</sub>) 与段落编码器 E<sub>P</sub>(·;θ<sub>P</sub>) 分别产出向量 <em>h<sub>qᵢ</sub> = E<sub>Q</sub>(qᵢ) ∈ ℝ<sup>d</sup></em> 与 <em>h<sub>p</sub> = E<sub>P</sub>(p) ∈ ℝ<sup>d</sup></em>；</li>
+    <li><span class="term">内积相似度（Inner-product similarity）</span>：<em>s(qᵢ, p) = E<sub>Q</sub>(qᵢ)ᵀ E<sub>P</sub>(p)</em>；</li>
+    <li><span class="term">对比训练损失（Contrastive training loss）</span>：<em>L<sub>i</sub> = −log [ exp(s(qᵢ, p⁺)) / ( exp(s(qᵢ, p⁺)) + Σ<sub>j=1..n</sub> exp(s(qᵢ, p<sub>i,j</sub>⁻)) ) ]</em>——
+    最大化正例段落 pᵢ 的得分、压低 n 个负例段落的得分；</li>
+    <li>损失通过 ∇<sub>θQ</sub>Lᵢ 与 ∇<sub>θP</sub>Lᵢ 反向传播，<span class="term">同时更新两个编码器（Update encoder）</span>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Scoring a Retriever: Hit@k, Failed@k, nDCG@k（检索器评分指标一）</h3>
+  <figure><img src="slides/slide-45.png" alt="Slide 45 评分指标" loading="lazy"><figcaption>Hit@k、Failed@k、nDCG@k 定义</figcaption></figure>
+  <ul>
+    <li><span class="term">Hit@k</span> = (1/|Q|) Σ<sub>q∈Q</sub> 𝟙[R<sub>q</sub> ∩ Top<sub>k</sub>(q) ≠ ∅]：top-k 中只要命中任一相关段落即记 1（1 if any relevant passage is in the top k, else 0）；
+    在 top-k 内的具体位置不重要（Position in the top k does not matter）；</li>
+    <li><span class="term">Failed@k</span> = (1/|Q|) Σ<sub>q∈Q</sub> 𝟙[R<sub>q</sub> ∩ Top<sub>k</sub>(q) = ∅] = 1 − Hit@k：top-k 中没有任何相关段落的查询占比；</li>
+    <li><span class="term">nDCG@k</span> = (1/|Q|) Σ<sub>q∈Q</sub> DCG<sub>q</sub>@k / IDCG<sub>q</sub>@k，用理想排序的 DCG 归一化（Normalized by the ideal ranking's DCG）；
+    其中 DCG<sub>q</sub>@k = Σ<sub>i=1..k</sub> rel<sub>q,i</sub> / log₂(i+1)，按排名位置折扣（Discounted by rank position），rel<sub>q,i</sub> 为第 i 位段落的相关性。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>Scoring a Retriever: MRR@k, Recall@k（检索器评分指标二）</h3>
+  <figure><img src="slides/slide-46.png" alt="Slide 46 MRR 与 Recall" loading="lazy"><figcaption>MRR@k 与 Recall@k 定义</figcaption></figure>
+  <ul>
+    <li><span class="term">MRR@k</span> = (1/|Q|) Σ<sub>q∈Q</sub> 1/rank<sub>q</sub>：对所有查询取平均（Average over all queries），rank<sub>q</sub> 是第一个相关段落的排名（Rank of the first relevant passage）；
+    若 top-k 中没有相关段落则计 0（Counts as 0 if not in the top k）；</li>
+    <li><span class="term">Recall@k</span> = (1/|Q|) Σ<sub>q∈Q</sub> |R<sub>q</sub> ∩ Top<sub>k</sub>(q)| / |R<sub>q</sub>|：top-k 中找到的相关段落数（Relevant passages found in the top k）
+    占该查询全部相关段落数（All relevant passages for the query）的比例。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>DPR beats BM25 on 4 of 5 datasets（DPR 在 5 个数据集中的 4 个胜过 BM25）</h3>
+  <figure><img src="slides/slide-47.png" alt="Slide 47 DPR vs BM25" loading="lazy"><figcaption>Top-20 与 Top-100 检索准确率（Karpukhin et al., 2020）</figcaption></figure>
+  <p><span class="term">训练方式</span>：对比损失 + 批内负例（in-batch negatives）+ BM25 硬负例（hard negatives）。加粗为各列最佳：</p>
+  <table>
+    <tr><th>训练</th><th>检索器</th><th colspan="5">Top-20（NQ / TriviaQA / WQ / TREC / SQuAD）</th><th colspan="5">Top-100（NQ / TriviaQA / WQ / TREC / SQuAD）</th></tr>
+    <tr><td>None</td><td>BM25</td><td>59.1</td><td>66.9</td><td>55.0</td><td>70.9</td><td>68.8</td><td>73.7</td><td>76.7</td><td>71.1</td><td>84.1</td><td>80.0</td></tr>
+    <tr><td rowspan="2">Single</td><td>DPR</td><td>78.4</td><td>79.4</td><td>73.2</td><td>79.8</td><td>63.2</td><td>85.4</td><td><strong>85.0</strong></td><td>81.4</td><td>89.1</td><td>77.2</td></tr>
+    <tr><td>BM25 + DPR</td><td>76.6</td><td>79.8</td><td>71.0</td><td>85.2</td><td><strong>71.5</strong></td><td>83.8</td><td>84.5</td><td>80.5</td><td>92.7</td><td><strong>81.3</strong></td></tr>
+    <tr><td rowspan="2">Multi</td><td>DPR</td><td><strong>79.4</strong></td><td>78.8</td><td><strong>75.0</strong></td><td><strong>89.1</strong></td><td>51.6</td><td><strong>86.0</strong></td><td>84.7</td><td><strong>82.9</strong></td><td>93.9</td><td>67.6</td></tr>
+    <tr><td>BM25 + DPR</td><td>78.0</td><td><strong>79.9</strong></td><td>74.7</td><td>88.5</td><td>66.2</td><td>83.9</td><td>84.4</td><td>82.3</td><td><strong>94.1</strong></td><td>78.6</td></tr>
+  </table>
+  <p>注：Top-20 与 Top-100 为测试集上的检索准确率；Single / Multi 表示 DPR 用单个数据集或合并数据集训练。
+  DPR 在 NQ、TriviaQA、WQ、TREC 上胜出，仅 SQuAD 上 BM25 更强。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>1,000 QA pairs are enough to beat BM25（1,000 条 QA 对就足以超过 BM25）</h3>
+  <figure><img src="slides/slide-48.png" alt="Slide 48 数据效率" loading="lazy"><figcaption>左：不同训练规模的 Top-k 准确率曲线；右：端到端对比表</figcaption></figure>
+  <ul>
+    <li><strong>左图</strong>（横轴 k = 检索段落数 1–100，纵轴 Top-k accuracy %）：训练数据从 1k、10k、20k、40k 到全量 59k，
+    曲线依次上移；即便只用 <strong>1k 训练对</strong>，DPR 的曲线也已整体高于 BM25（蓝线垫底）；</li>
+    <li><strong>右表</strong>：无需额外预训练（No extra pretraining），DPR 端到端也胜过 ORQA 与 REALM。
+    各模型在 NQ / TriviaQA / WQ / TREC 上的表现（加粗为各列最佳），例如 BM25+BERT 26.5/47.1/17.7/21.3、ORQA 33.3/45.0/36.4/30.1、
+    REALM<sub>wiki</sub> 39.2/-/40.2/46.8、REALM<sub>News</sub> 40.4/-/40.7/42.9；而 Multi 训练的 BM25+DPR 达到 38.8/57.9/41.1/<strong>50.6</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>Hybrid Search and Reciprocal Rank Fusion（混合搜索与倒数排名融合）</h3>
+  <figure><img src="slides/slide-49.png" alt="Slide 49 混合搜索与 RRF" loading="lazy"><figcaption>BM25 与密集检索互补，RRF 融合排名</figcaption></figure>
+  <ul>
+    <li>两类方法的失效方式不同：<span class="term">BM25 会漏掉同义改写（misses paraphrase）</span>，
+    <span class="term">密集检索会漏掉罕见字面词（misses rare literals）</span>（如错误码 error codes、产品 ID product IDs）；</li>
+    <li><span class="term">混合搜索（Hybrid search）</span>：两个检索器都跑，然后融合两份排名列表；</li>
+    <li><span class="term">倒数排名融合（Reciprocal rank fusion, RRF）</span>：融合<span class="term">排名位置</span>而非原始分数（merge positions instead of raw scores）——
+    无需逐语料调参，且适用于任意数量的检索器；</li>
+    <li>公式：<em>RRF(d) = Σ<sub>r∈R</sub> 1 / (k + rank<sub>r</sub>(d))</em>，通常取 <strong>k = 60</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>Cross-Encoders and Reranking（交叉编码器与重排）</h3>
+  <figure><img src="slides/slide-50.png" alt="Slide 50 Bi-encoder vs Cross-encoder" loading="lazy"><figcaption>(a) Bi-encoder 与 (b) Cross-encoder 结构对比（Humeau et al., 2020）</figcaption></figure>
+  <ul>
+    <li><span class="term">双塔编码器（Bi-encoder，用于检索 retrieval）</span>：查询与段落分别独立编码（query and passage encoded separately）——
+    各自经 Context Encoder / Candidate Encoder → 聚合器（Aggregator）→ 嵌入向量，最后点积求 Score；</li>
+    <li><span class="term">交叉编码器（Cross-encoder，用于重排 reranking）</span>：查询与段落<span class="term">一起</span>过模型，二者之间做完整注意力（full attention across both）——
+    单一 Encoder 同时编码 In<sub>x</sub> 与 In<sub>y</sub> → Aggregator → 候选嵌入 → 降维（Dim Reduction）→ Score。</li>
+  </ul>
+  <p>引用：<span class="en">Humeau et al., 2020</span>（Poly-encoders 所在工作，图示为 bi-encoder 与 cross-encoder 的结构对比）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>Late Interaction: Score Tokens, Not Documents（延迟交互：对 token 打分而非文档）</h3>
+  <figure><img src="slides/slide-51.png" alt="Slide 51 四种交互范式" loading="lazy"><figcaption>(a) 表示相似度 (b) 查询-文档交互 (c) 全交互 (d) 延迟交互（ColBERT，红框）</figcaption></figure>
+  <ul>
+    <li><span class="term">Late interaction（延迟交互）</span>：每个 token 保留一个向量，查询与段落独立编码，<span class="term">仅在打分时才发生交互</span>；
+    打分方式为 <span class="term">MaxSim</span>：<em>S<sub>q,d</sub> = Σ<sub>i∈q</sub> max<sub>j</sub> q<sub>i</sub>·d<sub>j</sub></em>（对每个查询 token，取它与所有文档 token 的最大相似度，再求和）；</li>
+    <li>四种范式的定位：
+      <ul>
+        <li>(a) Representation-based Similarity（如 DSSM、SNRM）：整句向量比较；</li>
+        <li>(b) Query-Document Interaction（如 DRMM、KNRM、Conv-KNRM）：交互矩阵 + CNN/Match Kernels/MLP；</li>
+        <li>(c) All-to-all Interaction（如 BERT）：查询与文档 token 全部交叉注意力，计算量大；</li>
+        <li>(d) Late Interaction（即提出的 <span class="term">ColBERT</span>，红框高亮）：独立编码 + MaxSim，兼顾效果与效率。</li>
+      </ul>
+    </li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 52</span>General Architecture of ColBERT（ColBERT 的总体架构）</h3>
+  <figure><img src="slides/slide-52.png" alt="Slide 52 ColBERT 架构" loading="lazy"><figcaption>Query Encoder f_Q 与 Document Encoder f_D + MaxSim 求和（Khattab &amp; Zaharia, SIGIR 2020）</figcaption></figure>
+  <ul>
+    <li>查询经 <span class="term">Query Encoder f<sub>Q</sub></span> 得到一组查询 token 向量（绿色）；</li>
+    <li>文档经 <span class="term">Document Encoder f<sub>D</sub></span> 得到一组文档 token 向量（蓝色），可<span class="term">离线索引（Offline Indexing）</span>预计算并存储；</li>
+    <li>每个查询 token 向量与所有文档 token 向量做 MaxSim，所有 MaxSim 结果求和（Σ）得到最终 score。</li>
+  </ul>
+  <p>引用：Khattab, Omar, and Matei Zaharia. "Colbert: Efficient and effective passage search via contextualized late interaction over bert." SIGIR 2020.</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>ColBERT vs. Other Approaches（ColBERT 与其他方法对比）</h3>
+  <figure><img src="slides/slide-53.png" alt="Slide 53 ColBERT 性能表" loading="lazy"><figcaption>上表：端到端对比；下表：重排场景对比</figcaption></figure>
+  <p><strong>上表</strong>（MS MARCO 检索；Dev / Local Eval 为 MRR@10，另有 Latency(ms) 与 Recall@50/200/1000）：</p>
+  <table>
+    <tr><th>方法</th><th>MRR@10 (Dev)</th><th>MRR@10 (Local Eval)</th><th>Latency (ms)</th><th>Recall@50</th><th>Recall@200</th><th>Recall@1000</th></tr>
+    <tr><td>BM25 (official)</td><td>16.7</td><td>-</td><td>-</td><td>-</td><td>-</td><td>81.4</td></tr>
+    <tr><td>BM25 (Anserini)</td><td>18.7</td><td>19.5</td><td>62</td><td>59.2</td><td>73.8</td><td>85.7</td></tr>
+    <tr><td>doc2query</td><td>21.5</td><td>22.8</td><td>85</td><td>64.4</td><td>77.9</td><td>89.1</td></tr>
+    <tr><td>DeepCT</td><td>24.3</td><td>-</td><td>62 (est.)</td><td>69 [2]</td><td>82 [2]</td><td>91 [2]</td></tr>
+    <tr><td>docTTTTTquery</td><td>27.7</td><td>28.4</td><td>87</td><td>75.6</td><td>86.9</td><td>94.7</td></tr>
+    <tr><td>ColBERT<sub>L2</sub> (re-rank)</td><td>34.8</td><td>36.4</td><td>-</td><td>75.3</td><td>80.5</td><td>81.4</td></tr>
+    <tr><td>ColBERT<sub>L2</sub> (end-to-end)</td><td><strong>36.0</strong></td><td><strong>36.7</strong></td><td>458</td><td><strong>82.9</strong></td><td><strong>92.3</strong></td><td><strong>96.8</strong></td></tr>
+  </table>
+  <p><strong>下表</strong>（重排场景：MRR@10 Dev/Eval、Re-ranking Latency(ms)、FLOPs/query）：</p>
+  <table>
+    <tr><th>方法</th><th>MRR@10 (Dev)</th><th>MRR@10 (Eval)</th><th>Re-ranking Latency (ms)</th><th>FLOPs/query</th></tr>
+    <tr><td>BM25 (official)</td><td>16.7</td><td>16.5</td><td>-</td><td>-</td></tr>
+    <tr><td>KNRM</td><td>19.8</td><td>19.8</td><td>3</td><td>592M (0.085×)</td></tr>
+    <tr><td>Duet</td><td>24.3</td><td>24.5</td><td>22</td><td>159B (23×)</td></tr>
+    <tr><td>fastText+ConvKNRM</td><td>29.0</td><td>27.7</td><td>28</td><td>78B (11×)</td></tr>
+    <tr><td>BERT<sub>base</sub> [25]</td><td>34.7</td><td>-</td><td>10,700</td><td>97T (13,900×)</td></tr>
+    <tr><td>BERT<sub>base</sub> (our training)</td><td>36.0</td><td>-</td><td>10,700</td><td>97T (13,900×)</td></tr>
+    <tr><td>BERT<sub>large</sub> [25]</td><td>36.5</td><td>35.9</td><td>32,900</td><td>340T (48,600×)</td></tr>
+    <tr><td>ColBERT (over BERT<sub>base</sub>)</td><td>34.9</td><td>34.9</td><td>61</td><td>7B (1×)</td></tr>
+  </table>
+  <p>结论：ColBERT 以约 1× 的 FLOPs 和 61ms 的重排延迟，取得接近 BERT<sub>large</sub>（48,600× FLOPs、32,900ms）的效果——效率数量级地优于交叉编码器。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>Fast vs Slow Retrievers（快慢检索器对照）</h3>
+  <figure><img src="slides/slide-54.png" alt="Slide 54 检索器对照表" loading="lazy"><figcaption>四类检索器的离线预计算、延迟、擅长与短板</figcaption></figure>
+  <table>
+    <tr><th>检索器（Retriever）</th><th>离线预计算（Precomputed offline）</th><th>查询延迟（Query latency）</th><th>擅长（Wins on）</th><th>短板（Breaks on）</th></tr>
+    <tr><td>BM25 (sparse)</td><td>倒排索引（Inverted index）</td><td>62 ms <strong>fast</strong></td><td>精确词项：ID、名称、错误码</td><td>同义改写、同义词</td></tr>
+    <tr><td>DPR (bi-encoder)</td><td>每段一个向量</td><td>数十 ms <strong>fast</strong></td><td>语料规模的语义匹配</td><td>罕见字面词；需要有标注对</td></tr>
+    <tr><td>ColBERT (late interaction)</td><td>每 token 一个向量</td><td>458 ms 端到端 <strong>middle</strong></td><td>规模化下的 token 级证据</td><td>索引体积：按 token 而非文档计</td></tr>
+    <tr><td>Cross-encoder (BERT-base)</td><td>无（Nothing）</td><td>每 1k 段落 10,700 ms <strong>slow</strong></td><td>候选短名单上的精度</td><td>无法扫描整个语料</td></tr>
+  </table>
+  <p>注：延迟数据来自 Khattab &amp; Zaharia (2020)（MS MARCO）与 Karpukhin et al. (2020)（DPR），硬件不同。</p>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">五、智能体化 RAG：Self-RAG、Search-R1（Agentic RAG）</h2>
+<p class="chapter-sub">Agentic RAG: Self-RAG, Search-R1（Slide 55–60）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>Lecture Overview（章节过渡）</h3>
+  <figure><img src="slides/slide-55.png" alt="Slide 55 章节过渡" loading="lazy"><figcaption>"Retrieval" 完成，进入 Agentic RAG</figcaption></figure>
+  <p>过渡页：Lecture Overview 中 "Retrieval: BM25, DPR, ColBERT" 也已置灰，接下来进入
+  <span class="term">智能体化 RAG（Agentic RAG：Self-RAG、Search-R1，10 分钟）</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>Agentic RAG: Retrieval inside the Loop（智能体化 RAG：把检索放进循环）</h3>
+  <figure><img src="slides/slide-56.png" alt="Slide 56 Agentic RAG" loading="lazy"><figcaption>机器人：提问 → 检索查阅 → 评估结果</figcaption></figure>
+  <ul>
+    <li>到目前为止的所有方法都能很好地回答"一个"问题，但它们都不决定：<strong>是否</strong>检索（whether to retrieve）、
+    <strong>问什么</strong>（what to ask）、<strong>何时停止</strong>（when to stop）；</li>
+    <li><strong>检索应当是智能体采取的一个动作（Retrieval should be an action the agent takes）</strong>；</li>
+    <li><span class="term">三个决策（Three decisions）</span>：(1) 检索还是直接回答（retrieve or answer directly）；
+    (2) 发出什么查询（what query to issue）；(3) 结果是否足够好（whether the result is good enough）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>Self-RAG: Self-reflective RAG（自反思 RAG）</h3>
+  <figure><img src="slides/slide-57.png" alt="Slide 57 Self-RAG" loading="lazy"><figcaption>Step 1 按需检索 → Step 2 并行生成 → Step 3 批评并择优（Asai et al., 2024）</figcaption></figure>
+  <p><span class="term">SELF-RAG</span> 学习检索、批评并生成文本段落，以提升整体生成质量、事实性与可验证性（Asai et al., 2024）。
+  以问题 "How did US states get their names?" 为例的三步流程：</p>
+  <ul>
+    <li><span class="term">Step 1: Retrieve on demand（按需检索）</span>：模型先输出 "US states got their names from a variety of sources." 并决定 Retrieve，
+    检索到候选段落 ①②③；</li>
+    <li><span class="term">Step 2: Generate segment in parallel（并行生成片段）</span>：用 Prompt + 各候选段落分别生成，并打上反思标签——
+    ① Relevant（相关）+ Supported（受支持）："11 of 50 state names come from persons."；
+    ② Irrelevant（不相关，红字删除线）："Texas is named after a Native American tribe."；
+    ③ Relevant + Partially（部分支持）："California's name has its origins in a 16th-century novel Las Sergas de Esplandián."；</li>
+    <li><span class="term">Step 3: Critique outputs and select best segment（批评输出并选出最佳片段）</span>：按质量排序 ① &gt; ③ &gt; ②，
+    选出最佳片段拼入输出（"US states got their names from a variety of sources. 11 of 50 states names are come from persons. ① 26 states are named after Native Americans, including Utah. ④"），
+    之后可继续 Retrieve → Repeat… 迭代。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>CRAG: a critic grades the retrieval（CRAG：由批评器为检索结果打分）</h3>
+  <figure><img src="slides/slide-58.png" alt="Slide 58 CRAG" loading="lazy"><figcaption>Retrieval Evaluator 三级判定 → 知识修正 / 知识搜索 → 生成（Yan et al., 2024）</figcaption></figure>
+  <p>CRAG（<span class="en">Yan et al., 2024</span>）：用 <span class="term">Retrieval Evaluator（检索评估器）</span>评估检索文档与输入的相关性，
+  并据此估计置信度、触发不同的知识检索动作（To evaluate the relevance of the retrieved docs to the input, and estimate a confidence
+  based on which different knowledge retrieval actions can be triggered）。以 "Who was the screenwriter for Death of a Batman?" 为例：</p>
+  <ul>
+    <li>检索得到文档 d₁、d₂ 后，评估器给出三级判定：<span class="term">Correct（正确）/ Ambiguous（模糊）/ Incorrect（错误）</span>；</li>
+    <li><span class="term">Correct</span> → <span class="term">Knowledge Refinement（知识精炼）</span>：对 d₁、d₂ 做分解（Decompose）→ 过滤（Filter）→ 重组（Recompose）得到精炼知识 k<sub>in</sub>；</li>
+    <li><span class="term">Incorrect / Ambiguous</span> → <span class="term">Knowledge Searching（知识搜索）</span>：把 x 改写为查询 q'（如 "Death of a Batman; screenwriter; Wikipedia"），
+    经 Web Search 得到候选 k₁…k_n，选择（Select）出 k<sub>ex</sub>；</li>
+    <li>生成阶段（Generation）按判定组合上下文：Correct 用 x + k<sub>in</sub>；Ambiguous 用 x + k<sub>in</sub> + k<sub>ex</sub>；Incorrect 用 x + k<sub>ex</sub>，送入 Generator。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>Search-R1: learn the search policy with RL（用强化学习学习搜索策略：示例）</h3>
+  <figure><img src="slides/slide-59.png" alt="Slide 59 Search-R1 示例" loading="lazy"><figcaption>多轮 &lt;think&gt;/&lt;search&gt;/&lt;information&gt;/&lt;answer&gt; 交互轨迹（Jin et al., 2025）</figcaption></figure>
+  <p>Search-R1（<span class="en">Jin et al., 2025</span>）示例。问题："Who is older, Jed Hoyer or John William Henry II?"（Ground Truth: John William Henry II）。
+  模型以 <code>&lt;think&gt;</code> 推理、<code>&lt;search&gt;</code> 发起搜索、<code>&lt;information&gt;</code> 接收检索结果、最终 <code>&lt;answer&gt;</code> 输出答案，循环多轮：</p>
+  <ul>
+    <li>第 1 轮：搜索 "Jed Hoyer or John William Henry II"，得到 Doc 1（Jed Hoyer 的履历信息）；</li>
+    <li>第 2 轮：思考 "Jed Hoyer 是人，现在需要找他的年龄并与 John William Henry II 比较"，搜索 "John William Henry II"，
+    得到其 1949 年 9 月 13 日生于 Quincy, Illinois 等信息；</li>
+    <li>第 3 轮：已知 Henry 生于 1949-09-13，再搜索 "Jed Hoyer birth year"，得到其履历文档；</li>
+    <li>第 4 轮：思考得出 Jed Hoyer 生于 1973 年 12 月 7 日，比较两人出生年份后输出 <code>&lt;answer&gt; John William Henry II &lt;/answer&gt;</code>。</li>
+  </ul>
+  <p>要点：<strong>Search-R1 用多轮搜索交互优化 LLM 的推理轨迹</strong>（Search-R1 optimizes LLM reasoning trajectories with multi-turn search interactions）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>Search-R1: learn the search policy with RL（训练架构与提示词）</h3>
+  <figure><img src="slides/slide-60.png" alt="Slide 60 Search-R1 架构" loading="lazy"><figcaption>PPO w. Search Engine 与 GRPO w. Search Engine + 提示词模板（Jin et al., 2025）</figcaption></figure>
+  <ul>
+    <li><strong>上：PPO w. Search Engine</strong>：Rollout Module（Policy LLM + Search Engine）采样轨迹 o，
+    经 Value LLM 得 v、Reward Model 与 Reference LLM 得 r，送入 GAE 计算优势 A 更新策略；</li>
+    <li><strong>下：GRPO w. Search Engine</strong>：对同一问题 q 采样一组轨迹 o₁…o<sub>G</sub>，
+    Reward Model 与 Reference LLM（带 KL 约束）给出 r₁…r<sub>G</sub>，Group Computation 得到 A₁…A<sub>G</sub>（组内相对优势）更新 Policy LLM；</li>
+    <li>图例：黄色 = 训练中的模型（Trained Models），绿色 = 冻结模型（Frozen Model），蓝色 = 搜索引擎（Search Engine）；</li>
+    <li><strong>底部提示词模板</strong>：要求模型每次获得新信息都先在 <code>&lt;think&gt;</code>…<code>&lt;/think&gt;</code> 中推理；
+    若发现缺少知识，可用 <code>&lt;search&gt;</code> query <code>&lt;/search&gt;</code> 调用搜索引擎，结果以 <code>&lt;information&gt;</code>…<code>&lt;/information&gt;</code> 返回；
+    搜索次数不限；若不再需要外部知识，直接在 <code>&lt;answer&gt;</code>…<code>&lt;/answer&gt;</code> 中给出答案。</li>
+  </ul>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch6">
+<h2 class="chapter-title">六、失效模式（Failure Modes）</h2>
+<p class="chapter-sub">Failure modes（Slide 61–63）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>Search-R1: learn the search policy with RL（实验结果与训练曲线）</h3>
+  <figure><img src="slides/slide-61.png" alt="Slide 61 Search-R1 结果" loading="lazy"><figcaption>左：General QA / Multi-Hop QA 六基准对比；右：训练步数 vs. 响应长度、有效搜索数与训练奖励（Jin et al., 2025）</figcaption></figure>
+  <p><strong>左表</strong>（基座 Qwen2.5-7b-Base/Instruct；加粗为各列最佳）：</p>
+  <table>
+    <tr><th>方法</th><th>NQ†</th><th>TriviaQA★</th><th>PopQA★</th><th>HotpotQA†</th><th>2wiki★</th><th>Musique★</th></tr>
+    <tr><td>Direct Inference</td><td>0.134</td><td>0.408</td><td>0.140</td><td>0.183</td><td>0.250</td><td>0.031</td></tr>
+    <tr><td>CoT</td><td>0.048</td><td>0.185</td><td>0.054</td><td>0.092</td><td>0.111</td><td>0.022</td></tr>
+    <tr><td>IRCoT</td><td>0.224</td><td>0.478</td><td>0.301</td><td>0.133</td><td>0.149</td><td>0.072</td></tr>
+    <tr><td>Search-o1</td><td>0.151</td><td>0.443</td><td>0.131</td><td>0.187</td><td>0.176</td><td>0.058</td></tr>
+    <tr><td>RAG</td><td>0.349</td><td>0.585</td><td>0.392</td><td>0.299</td><td>0.235</td><td>0.058</td></tr>
+    <tr><td>SFT</td><td>0.318</td><td>0.354</td><td>0.121</td><td>0.217</td><td>0.259</td><td>0.066</td></tr>
+    <tr><td>R1-base</td><td>0.297</td><td>0.539</td><td>0.202</td><td>0.242</td><td>0.273</td><td>0.083</td></tr>
+    <tr><td>R1-instruct</td><td>0.270</td><td>0.537</td><td>0.199</td><td>0.237</td><td>0.292</td><td>0.072</td></tr>
+    <tr><td>Rejection Sampling</td><td>0.360</td><td>0.592</td><td>0.380</td><td>0.331</td><td>0.296</td><td>0.123</td></tr>
+    <tr><td><strong>Search-R1-base</strong></td><td><strong>0.480</strong></td><td><strong>0.638</strong></td><td><strong>0.457</strong></td><td><strong>0.433</strong></td><td>0.382</td><td><strong>0.196</strong></td></tr>
+    <tr><td><strong>Search-R1-instruct</strong></td><td>0.393</td><td>0.610</td><td>0.397</td><td>0.370</td><td><strong>0.414</strong></td><td>0.146</td></tr>
+  </table>
+  <p>Search-R1-base 在六个基准中的五个上取得最佳（NQ 0.480、TriviaQA 0.638、PopQA 0.457、HotpotQA 0.433、Musique 0.196），
+  显著优于 RAG、SFT、R1 与 Rejection Sampling 等基线。</p>
+  <p><strong>右侧两图</strong>（横轴训练步数 Step 0–200+）：</p>
+  <ul>
+    <li>上图：训练奖励（Train Reward，红）随训练稳步上升（约 0.1→0.45）；响应长度（Response Length，蓝）先降后升、最终稳定在约 1050–1100；</li>
+    <li>下图：有效搜索次数（# Valid Search，蓝）随训练从约 1.4 增长到约 1.9，与训练奖励同步上升——
+    模型在 RL 训练中学会了"做更多次有效搜索"。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>Lecture Overview（章节过渡）</h3>
+  <figure><img src="slides/slide-62.png" alt="Slide 62 章节过渡" loading="lazy"><figcaption>"Agentic RAG" 完成，进入 Failure modes</figcaption></figure>
+  <p>过渡页：Lecture Overview 中 "Agentic RAG: Self-RAG, Search-R1" 也已置灰，最后进入
+  <span class="term">失效模式（Failure modes，15 分钟）</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 63</span>Issues with RAG（RAG 的三类问题）</h3>
+  <figure><img src="slides/slide-63.png" alt="Slide 63 RAG 失效模式" loading="lazy"><figcaption>检索侧 / 阅读器侧 / 循环侧三类失效模式</figcaption></figure>
+  <p>RAG 的失效模式按发生位置分为三类（每类三条）：</p>
+  <table>
+    <tr><th>检索侧（Retrieval-side）</th><th>阅读器侧（Reader-side）</th><th>循环侧（Loop-side）</th></tr>
+    <tr>
+      <td>
+        <strong>召回上限（Recall ceiling）</strong>：缺失的证据会限制智能体上限（Missing evidence limits agent）<br>
+        <strong>过期索引（Stale index）</strong>：嵌入未更新（Embeddings not update）<br>
+        <strong>权限泄漏（Permission leak）</strong>：用到了无权访问的内容（Use content not allowed to access）
+      </td>
+      <td>
+        <strong>迷失在中间（Lost in the middle）</strong>：位置偏置（Position bias）<br>
+        <strong>干扰（Distraction）</strong>：相似但不相关的内容（Similar but irrelevant content）<br>
+        <strong>证据冲突（Evidence conflict）</strong>：来源或知识互相矛盾（Sources or knowledge conflicts）
+      </td>
+      <td>
+        <strong>误差累积（Compounding error）</strong>：早期错误影响后续决策（Early mistakes affect later decision）<br>
+        <strong>没有停止规则（No stopping rule）</strong>：缺少明确的结束条件（Lack clear conditions for finishing）<br>
+        <strong>提示注入（Prompt injection）</strong>：检索到的文本会操纵智能体（Retrieved text steers the agent）
+      </td>
+    </tr>
+  </table>
+  <p class="note">这三类失效模式正是本课程"学习目标"中"理解 RAG 在何处会失效（where it breaks）"的直接答案，
+  也是后续讲次（工具使用、记忆、评测、安全）将持续回应的主题。</p>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="summary">
+<h2 class="chapter-title">本讲总结（Lecture Summary）</h2>
+<p class="chapter-sub">对应原讲义的完整脉络（Slide 1–63）</p>
+<p>本讲以"如何构建 RAG 流水线、它在何处失效、索引什么、如何检索"为主线：</p>
+<ul>
+  <li><strong>为什么需要检索</strong>：LLM 参数化知识会过时、会臆测；检索提供动态更新与可解释引用（DrQA 的 Retriever–Reader 范式；Lewis et al. 2021 的 RAG 端到端框架）。</li>
+  <li><strong>RAG 流水线</strong>：retriever p(z|x) + generator p(y|x,z)，边缘化求和；RAG-Sequence / RAG-Token 两种变体；DPR 检索器 + BART 生成器；在开放域 QA 上优于闭卷模型。</li>
+  <li><strong>索引构建</strong>：嵌入类型决定覆盖粒度；分块策略（固定/重叠/语义/上下文增强/AI 动态）；上下文检索（Anthropic）把失败率从 5.7% 降到 2.9%；Late Chunking 免 LLM 调用；RAPTOR 树、GraphRAG 应对分散证据；向量搜索用 IVF/PQ/HNSW 加速。</li>
+  <li><strong>检索方法</strong>：BM25（词重叠，至今仍最常用）与 DPR（密集向量）互补，RRF 倒数排名融合；评分指标 Hit/Failed/nDCG/MRR/Recall@k；ColBERT 以延迟交互（MaxSim）取得接近交叉编码器的效果而效率高数千倍。</li>
+  <li><strong>智能体化 RAG</strong>：把检索变成智能体的动作——Self-RAG 按需检索+反思标签+择优，CRAG 由批评器三级判定触发知识精炼/搜索，Search-R1 用 RL 学习多轮搜索策略并显著超越 RAG/SFT/R1 基线。</li>
+  <li><strong>失效模式</strong>：检索侧（召回上限、过期索引、权限泄漏）、阅读器侧（迷失在中间、干扰、证据冲突）、循环侧（误差累积、无停止规则、提示注入）。</li>
+</ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接（References）</h2>
+<p class="chapter-sub">原讲义中出现的论文与资源</p>
+<ul>
+  <li>Chen et al., 2017. Reading Wikipedia to Answer Open-domain Questions（DrQA）— <a href="https://github.com/facebookresearch/DrQA">https://github.com/facebookresearch/DrQA</a></li>
+  <li>Lewis et al., 2021（原讲义标注）. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks — <a href="https://arxiv.org/abs/2005.11401">arXiv:2005.11401</a></li>
+  <li>Gao et al., 2024. Retrieval-Augmented Generation for Large Language Models: A Survey（Naive / Advanced / Modular RAG）— <a href="https://arxiv.org/abs/2312.10997">arXiv:2312.10997</a></li>
+  <li>Databricks. The ultimate guide to chunking strategies for RAG applications — <a href="https://community.databricks.com/t5/technical-blog/the-ultimate-guide-to-chunking-strategies-for-rag-applications/ba-p/113089">community.databricks.com</a></li>
+  <li>Anthropic. Contextual Retrieval — <a href="https://www.anthropic.com/engineering/contextual-retrieval">anthropic.com/engineering/contextual-retrieval</a></li>
+  <li>Günther et al., 2024. Late Chunking — <a href="https://arxiv.org/abs/2409.04701">arXiv:2409.04701</a></li>
+  <li>Sarthi et al., 2025（原讲义标注）. RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval — <a href="https://arxiv.org/abs/2401.18059">arXiv:2401.18059</a></li>
+  <li>Edge et al., 2024. GraphRAG: From Local to Global — <a href="https://arxiv.org/abs/2404.16130">arXiv:2404.16130</a></li>
+  <li>Han et al., 2025. GraphRAG survey（RAG 与 GraphRAG 谱系）— <a href="https://arxiv.org/abs/2407.01873">arXiv:2407.01873</a></li>
+  <li>Karpukhin et al., 2020. Dense Passage Retrieval for Open-Domain Question Answering — <a href="https://arxiv.org/abs/2004.04906">arXiv:2004.04906</a></li>
+  <li>Brenndoerfer. BM25 search algorithm &amp; Elasticsearch implementation — <a href="https://mbrenndoerfer.com/writing/bm25-search-algorithm-elasticsearch-implementation">mbrenndoerfer.com</a></li>
+  <li>Humeau et al., 2020. Poly-encoders（Bi-encoder / Cross-encoder）— <a href="https://arxiv.org/abs/1905.01969">arXiv:1905.01969</a></li>
+  <li>Khattab &amp; Zaharia, SIGIR 2020. ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT — <a href="https://arxiv.org/abs/2004.12832">arXiv:2004.12832</a></li>
+  <li>Asai et al., 2024. Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection — <a href="https://arxiv.org/abs/2310.11511">arXiv:2310.11511</a></li>
+  <li>Yan et al., 2024. Corrective Retrieval Augmented Generation (CRAG) — <a href="https://arxiv.org/abs/2401.15884">arXiv:2401.15884</a></li>
+  <li>Jin et al., 2025. Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning — <a href="https://arxiv.org/abs/2503.09516">arXiv:2503.09516</a></li>
+</ul>
+<p class="note">注：讲义中部分引用仅标注年份（如 Lewis et al., 2021、Sarthi et al., 2025、Han et al., 2025），
+上表中 arXiv 编号为对应论文的标准版本链接，供延伸阅读。</p>
+</section>
+
+</main>
+
+<footer>
+  <p>课程源头：<a href="https://cs329z.stanford.edu/">CS329Z: Engineering AI Agents（cs329z.stanford.edu）</a></p>
+  <p>专栏首页：<a href="../">CS329Z 中文教程专栏</a>　|　上一讲：<a href="../lecture01/">第一讲：智能体系统导论</a>　|　下一讲：<a href="../lecture02/">第二讲：LLMs for Builders</a></p>
+  <p>原始讲义 PDF：<a href="lecture03.pdf">lecture03.pdf</a></p>
+  <p>本教程为第三方学习笔记，内容版权归 Stanford CS329Z 课程所有；教程依据公开发布的讲义整理，忠于原讲义逐页呈现。</p>
+</footer>
+
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+</body>
+</html>
