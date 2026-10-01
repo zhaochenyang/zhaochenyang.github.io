@@ -13,13 +13,21 @@
   header h1{margin:0 0 8px;font-size:30px;}
   header p{margin:4px 0;font-size:15px;opacity:.95;}
   header a{color:#fff;}
-  main{max-width:860px;margin:0 auto;padding:36px 20px 80px;}
+  .layout{max-width:1150px;margin:0 auto;padding:36px 20px 60px;display:flex;gap:34px;align-items:flex-start;}
+  nav.toc{width:230px;flex-shrink:0;position:sticky;top:20px;font-size:14px;}
+  nav.toc .toc-title{font-weight:700;font-size:15px;color:var(--cardinal);margin:0 0 10px;letter-spacing:1px;}
+  nav.toc ul{list-style:none;margin:0 0 14px;padding:0;}
+  nav.toc li{margin:0;}
+  nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 10px;border-left:3px solid transparent;border-radius:0 6px 6px 0;}
+  nav.toc a:hover{color:var(--cardinal);background:var(--bg-soft);border-left-color:var(--cardinal);}
+  nav.toc .sub a{padding-left:24px;font-size:13px;color:var(--muted);}
+  main{flex:1;min-width:0;}
   .intro{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:20px 24px;}
   .links{margin-top:14px;font-size:14.5px;}
   .links a{color:var(--cardinal);}
-  h2{font-size:21px;border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 6px;}
+  h2{font-size:21px;border-left:6px solid var(--cardinal);padding-left:12px;margin:38px 0 6px;}
   .sub{color:var(--muted);font-size:14px;margin:0 0 18px 18px;}
-  article.card{border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:18px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);}
+  article.card{border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:18px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:16px;}
   article.card h3{margin:0 0 8px;font-size:18px;}
   article.card h3 a{color:var(--ink);text-decoration:none;}
   article.card h3 a:hover{color:var(--cardinal);}
@@ -28,12 +36,23 @@
   .meta-row a{color:var(--cardinal);}
   .badge{display:inline-block;background:var(--cardinal);color:#fff;font-size:12px;border-radius:5px;padding:1px 8px;margin-right:8px;vertical-align:2px;}
   ul.chapters{padding-left:20px;font-size:14px;color:var(--muted);margin:8px 0 0;}
-  footer{max-width:860px;margin:0 auto;padding:22px 20px 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  .readings{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px;}
+  .readings .r-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .readings ul{list-style:none;margin:0;padding:0;font-size:13.5px;}
+  .readings li{margin:5px 0;}
+  .r-badge{display:inline-block;font-size:11px;border-radius:4px;padding:0 6px;margin-right:6px;vertical-align:1px;}
+  .r-must{background:var(--cardinal);color:#fff;}
+  .r-ext{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .readings a{color:var(--cardinal);text-decoration:none;}
+  .readings a:hover{text-decoration:underline;}
+  .readings .orig{color:var(--muted);font-size:12.5px;}
+  footer{max-width:1150px;margin:0 auto;padding:22px 20px 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;width:auto;margin-bottom:24px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;}
+    nav.toc a{border-left:none;padding:4px 8px;}
+  }
 </style>
-<link rel="stylesheet" href="/css/custom-site.css">
-<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 </head>
 <body>
 
@@ -44,10 +63,28 @@
   <p>课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a>　|　讲师：Diyi Yang · Michael Ryan · John Yang</p>
 </header>
 
+<div class="layout">
+
+<nav class="toc" id="toc">
+  <p class="toc-title">📑 目录</p>
+  <ul>
+    <li><a href="#intro">专栏简介</a></li>
+    <li><a href="#lecture01">Lecture 01 · 智能体系统导论</a></li>
+    <li class="sub"><a href="#readings-01">└ 阅读材料精讲</a></li>
+    <li><a href="#lecture02">Lecture 02 · LLMs for Builders</a></li>
+    <li class="sub"><a href="#readings-02">└ 阅读材料精讲</a></li>
+    <li><a href="#lecture03">Lecture 03 · RAG</a></li>
+    <li class="sub"><a href="#readings-03">└ 阅读材料精讲</a></li>
+    <li><a href="https://cs329z.stanford.edu/">课程官网 ↗</a></li>
+    <li><a href="../">← 返回博客首页</a></li>
+  </ul>
+</nav>
+
 <main>
-  <div class="intro">
+  <div class="intro" id="intro">
     <p>本专栏将 CS329Z 每一讲的原始讲义（PDF）转换为<strong>中文讲解教程</strong>：每讲逐页呈现原幻灯片图片，
-    并配中文讲解，忠于原讲义，不缺、不漏、不错。教程为自包含 HTML，可离线阅读。</p>
+    并配中文讲解，忠于原讲义，不缺、不漏、不错。教程为自包含 HTML，可离线阅读。
+    每讲附<strong>阅读材料精讲</strong>：课程必读与扩展阅读的中文导读（讲解 + 重点翻译 + 观点/方法/图表/结论提取），页内附原文链接。</p>
     <div class="links">
       <strong>相关链接</strong>：
       <a href="https://cs329z.stanford.edu/">课程官网</a>　·
@@ -57,9 +94,9 @@
   </div>
 
   <h2>教程列表</h2>
-  <p class="sub">按课程讲次排列，后续讲义将持续更新</p>
+  <p class="sub">按课程讲次排列，后续讲义将持续更新；阅读材料精讲附于各讲之后</p>
 
-  <article class="card">
+  <article class="card" id="lecture01">
     <h3><span class="badge">Lecture 01</span><a href="lecture01/">Intro to Agentic Systems — 智能体系统导论</a></h3>
     <p>课程安排；智能体的历史（1973 ACTOR → RL 时代 → LLM 时代 → ReAct/ChatGPT/GPT-4/BabyAGI/AutoGPT）；
     智能体架构（LLM 核心、规划与推理、记忆、工具、环境）；复合 AI 系统（RAG、工具使用、MCP）；
@@ -76,9 +113,17 @@
       <li>三 复合 AI 系统：RAG、工具使用与 MCP（Slide 54–59）</li>
       <li>四 关键挑战：训练、评测与安全（Slide 60–70）</li>
     </ul>
+    <div class="readings" id="readings-01">
+      <p class="r-title">📖 Lecture 01 阅读材料精讲</p>
+      <ul>
+        <li><span class="r-badge r-must">必读</span><a href="readings/compound-ai-systems/">The Shift from Models to Compound AI Systems</a> <span class="orig">（Zaharia et al., BAIR 2024 · <a href="https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/">原文</a>）</span></li>
+        <li><span class="r-badge r-ext">扩展</span><a href="readings/agentic-design-patterns/">Agentic Design Patterns Part 1</a> <span class="orig">（Andrew Ng, The Batch 2024 · <a href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/">原文</a>）</span></li>
+        <li><span class="r-badge r-ext">扩展</span><a href="readings/execution-grounded-ai-research/">Towards Execution-Grounded Automated AI Research</a> <span class="orig">（Si et al., arXiv 2026 · <a href="https://arxiv.org/abs/2601.14525">原文</a>）</span></li>
+      </ul>
+    </div>
   </article>
 
-  <article class="card">
+  <article class="card" id="lecture02">
     <h3><span class="badge">Lecture 02</span><a href="lecture02/">LLMs for Builders — 面向智能体构建者的语言模型</a></h3>
     <p>语言模型基础与 LLM Stack；架构（tokenization、transformer 注意力，含 linear/hybrid attention 与上下文长度）；
     训练（预训练到后训练流水线：SFT、RLHF）；推理（性能优化与 test-time scaling）；
@@ -97,9 +142,16 @@
       <li>五 面向智能体的 LLM（Slide 149–173）</li>
       <li>总结与参考链接（Slide 174–176）</li>
     </ul>
+    <div class="readings" id="readings-02">
+      <p class="r-title">📖 Lecture 02 阅读材料精讲</p>
+      <ul>
+        <li><span class="r-badge r-must">必读</span><a href="readings/building-effective-agents/">Building Effective Agents</a> <span class="orig">（Schluntz &amp; Zhang, Anthropic 2024 · <a href="https://www.anthropic.com/engineering/building-effective-agents">原文</a>）</span></li>
+        <li><span class="r-badge r-ext">扩展</span><a href="readings/context-engineering/">Effective Context Engineering for AI Agents</a> <span class="orig">（Anthropic 2025 · <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">原文</a>）</span></li>
+      </ul>
+    </div>
   </article>
 
-  <article class="card">
+  <article class="card" id="lecture03">
     <h3><span class="badge">Lecture 03</span><a href="lecture03/">Building Blocks: Retrieval-Augmented Generation (RAG)</a></h3>
     <p>RAG 动机（grounding 与幻觉）；RAG 流水线（RAG-Sequence/Token、Naive/Advanced/Modular RAG）；
     索引构建（嵌入、四种分块策略、上下文检索、Late Chunking、RAPTOR、GraphRAG、HNSW）；
@@ -119,37 +171,17 @@
       <li>五 智能体化 RAG（Slide 55–60）</li>
       <li>六 失效模式与总结（Slide 61–63）</li>
     </ul>
-  </article>
-
-  <h2>阅读材料精讲</h2>
-  <p class="sub">各讲必读与扩展阅读的中文导读：讲解 + 重点翻译 + 观点/方法/图表/结论提取，页内附原文链接</p>
-
-  <article class="card">
-    <h3>Lecture 01 阅读材料</h3>
-    <ul class="chapters" style="font-size:14.5px;">
-      <li>【必读】<a href="readings/compound-ai-systems/">The Shift from Models to Compound AI Systems</a>（Zaharia et al., BAIR 2024）· <a href="https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/">原文</a></li>
-      <li>【扩展】<a href="readings/agentic-design-patterns/">Agentic Design Patterns Part 1</a>（Andrew Ng, The Batch 2024）· <a href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/">原文</a></li>
-      <li>【扩展】<a href="readings/execution-grounded-ai-research/">Towards Execution-Grounded Automated AI Research</a>（Si et al., arXiv 2026）· <a href="https://arxiv.org/abs/2601.14525">原文</a></li>
-    </ul>
-  </article>
-
-  <article class="card">
-    <h3>Lecture 02 阅读材料</h3>
-    <ul class="chapters" style="font-size:14.5px;">
-      <li>【必读】<a href="readings/building-effective-agents/">Building Effective Agents</a>（Schluntz &amp; Zhang, Anthropic 2024）· <a href="https://www.anthropic.com/engineering/building-effective-agents">原文</a></li>
-      <li>【扩展】<a href="readings/context-engineering/">Effective Context Engineering for AI Agents</a>（Anthropic 2025）· <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">原文</a></li>
-    </ul>
-  </article>
-
-  <article class="card">
-    <h3>Lecture 03 阅读材料</h3>
-    <ul class="chapters" style="font-size:14.5px;">
-      <li>【必读】<a href="readings/rag-lewis2020/">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a>（Lewis et al., NeurIPS 2020）· <a href="https://arxiv.org/abs/2005.11401">原文</a></li>
-      <li>【扩展】<a href="readings/colbert/">ColBERT: Efficient and Effective Passage Search via Late Interaction over BERT</a>（Khattab &amp; Zaharia, SIGIR 2020）· <a href="https://arxiv.org/abs/2004.12832">原文</a></li>
-    </ul>
+    <div class="readings" id="readings-03">
+      <p class="r-title">📖 Lecture 03 阅读材料精讲</p>
+      <ul>
+        <li><span class="r-badge r-must">必读</span><a href="readings/rag-lewis2020/">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a> <span class="orig">（Lewis et al., NeurIPS 2020 · <a href="https://arxiv.org/abs/2005.11401">原文</a>）</span></li>
+        <li><span class="r-badge r-ext">扩展</span><a href="readings/colbert/">ColBERT: Efficient and Effective Passage Search via Late Interaction over BERT</a> <span class="orig">（Khattab &amp; Zaharia, SIGIR 2020 · <a href="https://arxiv.org/abs/2004.12832">原文</a>）</span></li>
+      </ul>
+    </div>
   </article>
 
 </main>
+</div>
 
 <footer>
   本专栏为第三方学习笔记，内容版权归 Stanford CS329Z 课程所有；教程依据公开发布的讲义整理。
@@ -158,8 +190,12 @@
 <span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
 <span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
 </div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
 </footer>
-
 
 <!-- Giscus 评论 -->
 <script src="https://giscus.app/client.js"
