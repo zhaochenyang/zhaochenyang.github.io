@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第二讲：面向构建者的 LLM（LLMs for Builders）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第二讲：面向构建者的 LLM</h1>
+  <div class="sub">LLMs for Builders</div>
+  <div class="meta">讲师：Diyi Yang · Michael Ryan · John Yang　|　中文讲解教程（忠于原讲义，共 176 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a>　|
+  上一讲：<a href="../lecture01/" style="color:#fff;">第一讲 智能体系统导论</a>　|
+  下一讲：<a href="../lecture03/" style="color:#fff;">第三讲 RAG</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 引言：LLM Stack</a>
+  <a href="#ch1">一 什么是语言模型</a>
+  <a href="#ch2">二 语言模型架构</a>
+  <a href="#ch3">三 训练</a>
+  <a href="#ch4">四 推理</a>
+  <a href="#ch5">五 面向智能体的 LLM</a>
+  <a href="#summary">本讲总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第二讲
+<strong>《LLMs for Builders》</strong>的中文讲解。课程日程表对这一讲的描述为：
+"Language model internals for agent builders: decoding strategies, transformer attention
+(including linear and hybrid) and context length, the pretraining-to-post-training pipeline,
+inference and test-time scaling, structured I/O and constrained decoding, and context engineering."
+（面向智能体构建者的语言模型内部机制：解码策略、Transformer 注意力（含线性与混合注意力）与上下文长度、
+从预训练到后训练的流水线、推理与测试时扩展、结构化 I/O 与约束解码、以及上下文工程。）
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。
+全讲共五个部分，对应讲义开头的 Lecture Overview：什么是语言模型（What is a Language Model?）、
+语言模型架构（Language Model Architecture）、训练（Training）、推理（Inference）、面向智能体的 LLM（LLMs for Agents）。</p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、引言：LLM Stack 与本讲定位</h2>
+<p class="chapter-sub">The LLM Stack &amp; Learning Objectives（Slide 1–5）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：LLMs for Builders</h3>
+  <figure><img src="slides/slide-001.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — LLMs for Builders</figcaption></figure>
+  <p>本讲标题为 <span class="term">LLMs for Builders（面向构建者的 LLM）</span>，
+  由三位讲师 Diyi Yang、Michael Ryan、John Yang 共同授课。本讲面向"构建者"——
+  即使用与编排 LLM 来构建智能体应用的人，讲解 LLM 内部机制中与应用构建直接相关的设计决策。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>The LLM Stack（LLM 技术栈）</h3>
+  <figure><img src="slides/slide-002.png" alt="Slide 2 LLM 技术栈金字塔" loading="lazy"><figcaption>LLM 技术栈三层金字塔：LLM Engineering / LLM Adaptation / LLM Applications</figcaption></figure>
+  <p>这张"LLM Stack"金字塔图是本讲的纲领，把 LLM 相关技术自下而上分为三层，并用三种颜色的线圈出三门 Stanford 课程的覆盖范围：</p>
+  <ul>
+    <li><span class="term">LLM Engineering（LLM 工程，底层）</span>：分布式计算（Distributed Compute）、架构（Architectures）、GPU 内核（GPU Kernels）、
+      扩展定律（Scaling Laws）、后训练（Post-training）、预训练（Pretraining）、强化学习（RL）、分词器（Tokenizer）。</li>
+    <li><span class="term">LLM Adaptation（LLM 适配，中层）</span>：微调（Finetuning）、蒸馏（Distillation）、上下文学习（In-Context Learning）、
+      LoRA、从反馈中学习（Learning from Feedback, RLHF/DPO）。</li>
+    <li><span class="term">LLM Applications（LLM 应用，顶层）</span>：智能体（Agents）、聊天机器人（Chatbots）、RAG。</li>
+  </ul>
+  <p>课程对应关系：<span class="term">CS336</span>（蓝色圈）覆盖底层工程（扩展定律、后训练、预训练、RL、分词器、上下文学习）；
+  <span class="term">CS224N</span>（绿色圈）覆盖中层的模型适配与训练方法（微调、蒸馏、LoRA、RLHF/DPO、预训练、后训练等）；
+  <span class="term">CS329Z</span>（粉色圈）覆盖最顶层的应用层（智能体），并向下列出本课程主题：
+  Agent Frameworks、Multi Agent、Agent Memory、Proactive Agents、Agent Evals、Agent Design 等。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>本讲的定位</h3>
+  <figure><img src="slides/slide-003.png" alt="Slide 3 本讲定位" loading="lazy"><figcaption>"We are going to operate at the highest level of the LLM stack, but it is still important to understand a bit about how they work…"</figcaption></figure>
+  <p>讲义用一整页强调本讲定位：<strong>"我们将在 LLM 技术栈的最高层（应用层）工作，但理解它们如何运作仍然很重要"</strong>。
+  也就是说，构建者不需要亲自做预训练或写 GPU kernel，但要构建可靠的智能体应用，
+  就必须理解底层的设计决策及其带来的限制。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>Learning Objectives（学习目标）</h3>
+  <figure><img src="slides/slide-004.png" alt="Slide 4 学习目标" loading="lazy"><figcaption>两条学习目标</figcaption></figure>
+  <p>本讲的学习目标有两条：</p>
+  <ul>
+    <li><strong>理解并解释（Understand and explain）</strong>：现代大语言模型（LLM）训练与推理中的核心设计决策；</li>
+    <li><strong>综合（Synthesize）</strong>：这些设计决策如何导致种种限制，从而影响应用利用 LLM 的方式。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-005.png" alt="Slide 5 本讲结构" loading="lazy"><figcaption>本讲五个部分</figcaption></figure>
+  <p>本讲共五个部分：</p>
+  <ul>
+    <li>什么是语言模型（What is a Language Model?）</li>
+    <li>语言模型架构（Language Model Architecture）</li>
+    <li>训练（Training）</li>
+    <li>推理（Inference）</li>
+    <li>面向智能体的 LLM（LLMs for Agents）</li>
+  </ul>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、什么是语言模型</h2>
+<p class="chapter-sub">What is a Language Model?（Slide 6 起）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>章节页：What is a Language Model?</h3>
+  <figure><img src="slides/slide-006.png" alt="Slide 6 章节页" loading="lazy"><figcaption>章节过渡页，底部进度条标示当前位于第一部分</figcaption></figure>
+  <p>进入第一部分。页面底部的进度条显示本讲的五个部分
+  （Language Models? / Architecture / Training / Inference / LLMs for Agents），
+  当前红色高亮的是第一部分 Language Models?。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>语言模型的概率定义</h3>
+  <figure><img src="slides/slide-007.png" alt="Slide 7 概率定义公式" loading="lazy"><figcaption>P(x_{1:T}) = Π_{t=1}^{T} P(x_t | x_{&lt;t})，各部分带彩色标注</figcaption></figure>
+  <p>语言模型的核心公式为 <span class="mono">P(x<sub>1:T</sub>) = Π<sub>t=1</sub><sup>T</sup> P(x<sub>t</sub> | x<sub>&lt;t</sub>)</span>，
+  幻灯片中各部分标注的含义为：</p>
+  <ul>
+    <li>左侧（蓝色下划线）：<span class="term">一个 token 序列的概率（Probability of a sequence of tokens）</span>；</li>
+    <li>中间连乘号（红色圈出）：<span class="term">从第一个到最后一个 token 的连乘（Product from the first to last token）</span>；</li>
+    <li>右侧（绿色下划线）：<span class="term">当前 token 在给定前面所有 token 条件下的概率（the probability of the current token given the previous tokens）</span>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>公式的逐 token 计算示例</h3>
+  <figure><img src="slides/slide-008.png" alt="Slide 8 概率连乘示例" loading="lazy"><figcaption>以 "The class was about agents ." 为例逐步计算条件概率，最终乘积约 1.2e-17</figcaption></figure>
+  <p>以句子 "The class was about agents ." 为例，逐个 token 计算条件概率并累乘：</p>
+  <ul>
+    <li>P(The) = 0.0377 → 累乘 0.0377</li>
+    <li>P(class | The) = 0.0001 → 累乘 0.0001</li>
+    <li>P(was | The, class) = 0.0344 → 累乘 0.0344</li>
+    <li>……</li>
+    <li>P(. | The, class, was, about, agents) ≈ 0.0252</li>
+  </ul>
+  <p>所有条件概率相乘后，整句概率约为 <span class="mono">1.2e-17</span>——一个极小的数。
+  因此幻灯片注明：<strong>实践中为了数值稳定性（numerical stability），通常取概率的对数再求和（sum of the log of the probabilities），
+  而不是直接连乘。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>这就是语言模型</h3>
+  <figure><img src="slides/slide-009.png" alt="Slide 9 这就是语言模型" loading="lazy"><figcaption>红圈圈出 P(x_{1:T})："This is a Language Model"</figcaption></figure>
+  <p>再次给出同一公式，并用红圈圈出左侧的 <span class="mono">P(x<sub>1:T</sub>)</span>，
+  明确指出：<strong>"这就是语言模型"（This is a Language Model）</strong>——
+  语言模型本质上就是给 token 序列赋予概率的模型。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>小节页：Generative vs. Discriminative Models</h3>
+  <figure><img src="slides/slide-010.png" alt="Slide 10 生成式 vs 判别式" loading="lazy"><figcaption>生成式模型与判别式模型</figcaption></figure>
+  <p>进入小节：生成式模型（Generative）与判别式模型（Discriminative）的区别。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>判别式 vs 生成式</h3>
+  <figure><img src="slides/slide-011.png" alt="Slide 11 判别式与生成式对比图" loading="lazy"><figcaption>左：判别式（学习决策边界）；右：生成式（学习数据分布）。图源：Akanksha Malhotra | medium.com</figcaption></figure>
+  <p>对比图说明两类模型的本质差异：</p>
+  <ul>
+    <li><span class="term">判别式模型（Discriminative）</span>：<strong>学习区分类别（Learn to Distinguish Classes）</strong>——
+      学习类别之间的决策边界（图中虚线）。例子：逻辑回归（Logistic Regression）、支持向量机（SVM）。</li>
+    <li><span class="term">生成式模型（Generative）</span>：<strong>学习数据的分布（Learn Distribution of Data）</strong>——
+      为每一类建模其数据分布（图中两个色块）。例子：朴素贝叶斯（Naive Bayes）、扩散模型（Diffusion models）。</li>
+  </ul>
+  <p>图片来源标注：Akanksha Malhotra | medium.com。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>Knowledge Check（知识自测）</h3>
+  <figure><img src="slides/slide-012.png" alt="Slide 12 知识自测" loading="lazy"><figcaption>问题：建模 P(x_{1:T}) 的语言模型是生成式还是判别式？</figcaption></figure>
+  <p>知识自测题：像下面这样建模 token 序列概率的语言模型，是<strong>生成式</strong>还是<strong>判别式</strong>的？
+  幻灯片提醒：这不是陷阱题，但这里的符号记法可能容易让人混淆。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>答案：LM 是生成式模型</h3>
+  <figure><img src="slides/slide-013.png" alt="Slide 13 语言模型是生成式" loading="lazy"><figcaption>P(x_{1:T}) = P(x_1, x_2, x_3, …, x_T)；LMs are generative, which means we can sample from them.</figcaption></figure>
+  <p>答案揭晓：<span class="mono">P(x<sub>1:T</sub>) = P(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, …, x<sub>T</sub>)</span>——
+  语言模型建模的是整个序列的联合分布，即<strong>数据的分布</strong>，因此 LM 是<span class="term">生成式（generative）</span>的。
+  关键推论：<strong>因为是生成式模型，所以我们可以从中采样（we can sample from them）。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>小节页：Language Model Sampling（语言模型采样）</h3>
+  <figure><img src="slides/slide-014.png" alt="Slide 14 采样章节页" loading="lazy"><figcaption>Language Model Sampling</figcaption></figure>
+  <p>进入"语言模型采样"小节：既然可以从分布中采样，那么生成文本的过程就是不断采样的过程。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>采样过程示意：候选 token 树</h3>
+  <figure><img src="slides/slide-015.png" alt="Slide 15 候选 token 树" loading="lazy"><figcaption>前缀 "The class was about" 之后的候选下一个 token：to / as / the / a / two / how / getting / three / time / "</figcaption></figure>
+  <p>给定前缀 "The class was about"，语言模型会为词表中的每个候选下一个 token 计算概率。
+  本例展示的候选 token 有：to、as、the、a、two、how、getting、three、time、"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>各候选 token 的条件概率</h3>
+  <figure><img src="slides/slide-016.png" alt="Slide 16 候选 token 概率列表" loading="lazy"><figcaption>P(token | The, class, was, about) 的具体数值</figcaption></figure>
+  <p>各候选 token 在前缀 "The, class, was, about" 下的条件概率：</p>
+  <table>
+    <tr><th>候选 token</th><th>P(token | The, class, was, about)</th></tr>
+    <tr><td>to</td><td>0.3171</td></tr>
+    <tr><td>as</td><td>0.0491</td></tr>
+    <tr><td>the</td><td>0.036</td></tr>
+    <tr><td>a</td><td>0.033</td></tr>
+    <tr><td>two</td><td>0.0147</td></tr>
+    <tr><td>how</td><td>0.0124</td></tr>
+    <tr><td>getting</td><td>0.0101</td></tr>
+    <tr><td>three</td><td>0.01</td></tr>
+    <tr><td>time</td><td>0.0091</td></tr>
+    <tr><td>"</td><td>0.0081</td></tr>
+  </table>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>概率分布可视化（条形图）</h3>
+  <figure><img src="slides/slide-017.png" alt="Slide 17 概率条形图" loading="lazy"><figcaption>概率条形图，"to" 以 0.3171 占绝对优势（橙色框高亮）</figcaption></figure>
+  <p>把上页的概率画成条形图，可以看到分布高度偏斜：<strong>"to" 以 0.3171 远超其他候选</strong>
+  （橙色框高亮），其余候选的概率依次迅速衰减（as 0.0491、the 0.036、a 0.033……）。
+  这正是语言模型输出的典型形态：少数候选占据大部分概率质量。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>不必总是选最可能的 token：解码策略</h3>
+  <figure><img src="slides/slide-018.png" alt="Slide 18 解码策略" loading="lazy"><figcaption>前缀推进到 "about to" 后的候选分布；右侧列出解码策略：Greedy / Nucleus (top p) / Top k / …</figcaption></figure>
+  <p>前缀推进为 "…about to" 后，候选 token 及其概率为：be 0.1501、begin 0.0855、go 0.0627、start 0.0496、
+  get 0.0390、become 0.0342、enter 0.0313、take 0.0220、end 0.0192、graduate 0.0180。
+  注意本例选中的是 begin（0.0855，橙色框高亮）而非概率最高的 be——幻灯片借此指出：
+  <strong>"我们不必总是选择最可能的下一个 token。存在不同的采样（解码）策略（sampling / decoding strategies）"</strong>：</p>
+  <ul>
+    <li>贪心（Greedy）</li>
+    <li>核采样（Nucleus, top p）</li>
+    <li>Top k</li>
+    <li>……</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>采样得到的完整序列</h3>
+  <figure><img src="slides/slide-019.png" alt="Slide 19 完整序列" loading="lazy"><figcaption>The → class → was → about → to → begin → .</figcaption></figure>
+  <p>经过逐步采样，最终生成的完整序列为：<strong>"The class was about to begin ."</strong>。
+  这演示了自回归生成的过程：每一步在前缀上采样一个 token，把它拼进前缀，再采样下一个，
+  直到生成结束符（句号）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>温度（Temperature）</h3>
+  <figure><img src="slides/slide-020.png" alt="Slide 20 温度参数" loading="lazy"><figcaption>"I am tired, I will take a __" 在 T=0.1/0.5/1.0/2.0 下的下一个 token 分布（nap/break/rest/bath/shower）。图源：towardsdatascience.com</figcaption></figure>
+  <p>温度（Temperature）是最重要的解码参数之一。以 "I am tired, I will take a __" 为例，
+  四个温度下的下一个 token 分布（nap / break / rest / bath / shower）：</p>
+  <ul>
+    <li><strong>T = 0.1</strong>：分布极尖锐，nap 接近 100%，几乎总是选 nap（近似贪心）；</li>
+    <li><strong>T = 0.5</strong>：nap 约 75%，break 约 18%，其余很小；</li>
+    <li><strong>T = 1.0</strong>：原始分布（nap 约 50%）；</li>
+    <li><strong>T = 2.0</strong>：分布被"拉平"，各候选概率趋近（nap 约 34%，其余 13%–24%）。</li>
+  </ul>
+  <p>右侧红字说明机制：<strong>把所有概率（实际是 logits）除以温度 T，再重新归一化（renormalize）使其和为 1。</strong>
+  T 越小分布越尖锐（越确定、越贪心），T 越大分布越平坦（越随机、越多样）。
+  图片来源：<a href="https://towardsdatascience.com/decoding-the-temperature-parameter-in-llms/">https://towardsdatascience.com/decoding-the-temperature-parameter-in-llms/</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>束搜索（Beam Search）</h3>
+  <figure><img src="slides/slide-021.png" alt="Slide 21 束搜索示意" loading="lazy"><figcaption>束搜索树：start → arrived/the → the green witch / witch who …（保留 top-k 候选继续扩展）。图源：medium.com/@chawthirisan</figcaption></figure>
+  <p>束搜索（Beam Search）示意图：从 start 出发，每一步不是只保留一个最优分支（贪心），也不是全部展开，
+  而是<strong>只保留得分最高的 k 个候选序列（beam）继续扩展</strong>。图中绿色深浅表示被保留/优选的分支，
+  例如 "the → green → witch" 与 "…witch → who" 等路径被继续追踪。
+  图片来源：<a href="https://medium.com/@chawthirisan/beam-search-navigating-possibilities-with-controlled-exploration-dde901e9baa7">Beam Search: Navigating Possibilities with Controlled Exploration</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>Considerations for Sampling（采样的考量）</h3>
+  <figure><img src="slides/slide-022.png" alt="Slide 22 采样考量" loading="lazy"><figcaption>采样策略的取舍要点</figcaption></figure>
+  <p>采样策略选择的四条要点：</p>
+  <ul>
+    <li>每种采样策略都有不同的权衡（Each Sampling Strategy has different tradeoffs）；</li>
+    <li>温度（Temperature）与 Top-p/Top-k 有助于多样性（diversity）；</li>
+    <li>所用策略可能取决于任务（The strategy you use may depend on your task）：
+      <ul>
+        <li>数学/代码（Math/Code）更可预测，适合<strong>更低的温度</strong>；</li>
+        <li>创意写作（Creative Writing）可能受益于<strong>更高的多样性</strong>；</li>
+      </ul></li>
+    <li>策略也取决于你的预算——<strong>束搜索具有更高的时间与内存复杂度</strong>（beam search has higher time and memory complexity）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>Further Reading（进一步阅读）</h3>
+  <figure><img src="slides/slide-023.png" alt="Slide 23 进一步阅读" loading="lazy"><figcaption>三条延伸阅读链接</figcaption></figure>
+  <p>本页给出三条延伸阅读：</p>
+  <ul>
+    <li><strong>Decoding Strategies in Large Language Models</strong>：<a href="https://huggingface.co/blog/mlabonne/decoding-strategies">https://huggingface.co/blog/mlabonne/decoding-strategies</a></li>
+    <li><strong>Tokenizers（分词器）</strong>：<a href="https://huggingface.co/learn/llm-course/en/chapter2/4">https://huggingface.co/learn/llm-course/en/chapter2/4</a></li>
+    <li><strong>Generative Models（生成式模型）</strong>：<a href="https://deepgenerativemodels.github.io/notes/introduction/">https://deepgenerativemodels.github.io/notes/introduction/</a></li>
+  </ul>
+</article>
+
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、语言模型架构</h2>
+<p class="chapter-sub">Language Model Architecture（Slide 24 起）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>章节页：Language Model Architecture</h3>
+  <figure><img src="slides/slide-024.png" alt="Slide 24 章节页" loading="lazy"><figcaption>章节过渡页，进度条高亮第二部分 Architecture</figcaption></figure>
+  <p>进入第二部分：语言模型架构。底部进度条高亮 "Architecture"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>A brief history of Language Model Architectures（语言模型架构简史）</h3>
+  <figure><img src="slides/slide-025.png" alt="Slide 25 架构简史" loading="lazy"><figcaption>四条时间线：N-gram / 首个神经语言模型 / RNN 语言模型 / LSTM</figcaption></figure>
+  <p>语言模型架构的发展简史：</p>
+  <ul>
+    <li><span class="term">N-gram 模型</span>：2010 年代之前（Pre 2010s）的主流；</li>
+    <li><span class="term">首个神经语言模型（First Neural Language Model）</span>：2003 年；</li>
+    <li><span class="term">循环神经网络语言模型（Recurrent Neural Network Language Models）</span>：2010 年；</li>
+    <li><span class="term">长短期记忆网络（Long Short Term Memory, LSTM）</span>：1997 年发明，2014 年开始在语言模型中流行。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>小节页：Transformers</h3>
+  <figure><img src="slides/slide-026.png" alt="Slide 26 Transformers 小节页" loading="lazy"><figcaption>小节过渡页：Transformers。图源：DeltaNet Explained (Part II) | Songlin Yang</figcaption></figure>
+  <p>进入 Transformers 小节。本页图片来源标注：
+  <a href="https://songlin.me/blog/">DeltaNet Explained (Part II) | Songlin Yang</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>Transformers: Attention Is All You Need (2017)</h3>
+  <figure><img src="slides/slide-027.png" alt="Slide 27 原始 Transformer 架构图" loading="lazy"><figcaption>原论文架构图：Encoder 被红色遮盖，Decoder 部分完整展示。图源：Attention Is All You Need</figcaption></figure>
+  <p>本页引用 2017 年里程碑论文 <span class="term">"Attention Is All You Need"</span>，
+  作者：Ashish Vaswani、Noam Shazeer、Niki Parmar、Jakob Uszkoreit、Llion Jones、Aidan N. Gomez、Lukasz Kaiser、Illia Polosukhin。
+  图中左侧的 <span class="term">Encoder（编码器）</span>被红色块遮盖——本讲关注的是右侧完整展示的
+  <span class="term">Decoder（解码器）</span>，其自下而上的结构为：</p>
+  <ul>
+    <li>输入 Outputs（shifted right，右移一位的输出）→ Output Embedding（输出嵌入）→ 与 Positional Encoding（位置编码）相加；</li>
+    <li>Masked Multi-Head Attention（带掩码的多头注意力）→ Add &amp; Norm；</li>
+    <li>Multi-Head Attention（多头注意力，原用于关注 Encoder）→ Add &amp; Norm；</li>
+    <li>Feed Forward（前馈网络）→ Add &amp; Norm；</li>
+    <li>以上模块重复 N× 层，最后经 Linear → Softmax → Output Probabilities（输出概率）。</li>
+  </ul>
+  <p>图片来源标注：Attention Is All You Need（原论文图）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>Decoder-only Transformer（仅解码器架构）：输入 token</h3>
+  <figure><img src="slides/slide-028.png" alt="Slide 28 输入 token" loading="lazy"><figcaption>输入 token 序列：The / class / was / about</figcaption></figure>
+  <p>现代 LLM 普遍采用 <span class="term">Decoder-only（仅解码器）</span>架构。
+  讲义用 "The class was about" 四个 token 作为例子，逐步搭建一个 decoder-only Transformer 的前向计算。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Decoder-only Transformer：词嵌入（Embedding）</h3>
+  <figure><img src="slides/slide-029.png" alt="Slide 29 词嵌入" loading="lazy"><figcaption>每个 token 被映射为一个向量（Embedding）</figcaption></figure>
+  <p>第一步：<strong>嵌入（Embedding）</strong>——每个 token 被映射为一个稠密向量
+  （图中每个 token 上方的彩色圆点行）。例如 "The" 对应红色向量，"class" 灰色、"was" 绿色、"about" 橙色。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>Decoder-only Transformer：位置编码（Positional Embedding）</h3>
+  <figure><img src="slides/slide-030.png" alt="Slide 30 位置编码相加" loading="lazy"><figcaption>位置嵌入向量与词嵌入相加</figcaption></figure>
+  <p>第二步：<strong>位置编码（Positional Embedding）</strong>——Transformer 本身不含顺序信息，
+  因此把一个表示位置的向量与词嵌入<strong>相加</strong>（图中每个 token 上方的黑色向量 + 彩色向量），
+  使模型能够区分 token 的先后顺序。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>Decoder-only Transformer：汇总到注意力输入矩阵</h3>
+  <figure><img src="slides/slide-031.png" alt="Slide 31 注意力输入矩阵" loading="lazy"><figcaption>四个 token 的（词嵌入+位置嵌入）向量被汇总为中央矩阵</figcaption></figure>
+  <p>第三步：四个 token 经过"嵌入+位置编码"后的向量被<strong>汇总到中央矩阵</strong>
+  （图中四行彩色圆点组成的矩阵，每行对应一个 token）。这就是注意力层的输入。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>Important! Pay Close Attention Here!（重要提示）</h3>
+  <figure><img src="slides/slide-032.png" alt="Slide 32 重要提示" loading="lazy"><figcaption>"If you get lost here much of the rest of the lecture will be very confusing!"</figcaption></figure>
+  <p>讲义在这里专门插入一整页提醒：<strong>"重要！请注意这里的 Attention（双关：注意力机制）！
+  如果你在这里跟丢了，本讲后面的大部分内容都会非常令人困惑。"</strong>
+  接下来将逐步拆解注意力层的内部计算。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>Attention Layer（注意力层）：输入</h3>
+  <figure><img src="slides/slide-033.png" alt="Slide 33 注意力层输入" loading="lazy"><figcaption>注意力层标题页，复用上一张的输入矩阵图</figcaption></figure>
+  <p>正式进入注意力层（Attention Layer）的拆解。输入仍是四个 token 的表示矩阵。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>Attention Layer：Layer Norm</h3>
+  <figure><img src="slides/slide-034.png" alt="Slide 34 Layer Norm" loading="lazy"><figcaption>对输入矩阵做 Layer Norm(·) 归一化</figcaption></figure>
+  <p>注意力计算前先对输入矩阵做<strong>层归一化（Layer Norm）</strong>（图中 "Layer Norm( … )" 包裹中央矩阵）。
+  注：现代 LLM 多采用 Pre-Norm 结构，即先归一化再进入注意力子层。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>Attention Layer：矩阵乘法得到 Q、K、V</h3>
+  <figure><img src="slides/slide-035.png" alt="Slide 35 QKV 投影" loading="lazy"><figcaption>Matrix Multiply to obtain Q, K, V activations：W_Q→Q（黄）、W_K→K^T（红）、W_V→V（蓝）</figcaption></figure>
+  <p>用三个可学习的权重矩阵对归一化后的表示做<strong>矩阵乘法（Matrix Multiply）</strong>，
+  得到注意力机制的三组激活：</p>
+  <ul>
+    <li><span class="term">W<sub>Q</sub></span>（黄色）→ <span class="term">Q</span>（Query，查询）；</li>
+    <li><span class="term">W<sub>K</sub></span>（红色）→ <span class="term">K<sup>T</sup></span>（Key 的转置，键）；</li>
+    <li><span class="term">W<sub>V</sub></span>（蓝色）→ <span class="term">V</span>（Value，值）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>Attention Layer：计算 QK<sup>T</sup></h3>
+  <figure><img src="slides/slide-036.png" alt="Slide 36 QK^T 相乘" loading="lazy"><figcaption>Attention(Q,K,V) = softmax(QK^T / √d_k) V；图中先计算 Q × K^T</figcaption></figure>
+  <p>左侧淡入完整的注意力公式：<span class="mono">Attention(Q, K, V) = softmax(QK<sup>T</sup> / √d<sub>k</sub>) V</span>。
+  本步执行公式的第一部分：<strong>Q 与 K<sup>T</sup> 相乘</strong>（图中 ⊗ 符号），
+  得到一个 token×token 的相关性矩阵——衡量每个 token 对其他 token 的"关注度"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>Attention Layer：因果注意力掩码（Causal Attention Mask）</h3>
+  <figure><img src="slides/slide-037.png" alt="Slide 37 因果掩码" loading="lazy"><figcaption>对 QK^T 应用因果注意力掩码：上三角（未来位置）被遮蔽为黑色</figcaption></figure>
+  <p>Decoder-only 架构必须遵守自回归约束：预测第 t 个 token 时不能看到第 t 之后的 token。
+  因此对相关性矩阵应用<strong>因果注意力掩码（Causal Attention Mask）</strong>——
+  图中矩阵的右上三角（未来位置）被涂黑遮蔽，只保留下三角（含对角线，即当前位置及之前）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>Attention Layer：缩放 ÷ √d<sub>k</sub></h3>
+  <figure><img src="slides/slide-038.png" alt="Slide 38 缩放" loading="lazy"><figcaption>掩码后的矩阵除以 √d_k 缩放</figcaption></figure>
+  <p>对掩码后的相关性矩阵<strong>除以 √d<sub>k</sub></strong>（d<sub>k</sub> 为键向量维度）。
+  缩放的目的：当 d<sub>k</sub> 较大时，Q·K<sup>T</sup> 的点积数值会偏大，
+  使 softmax 进入梯度极小的饱和区，除以 √d<sub>k</sub> 可稳定训练。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>Attention Layer：Softmax 得到注意力权重</h3>
+  <figure><img src="slides/slide-039.png" alt="Slide 39 softmax" loading="lazy"><figcaption>Softmax(掩码矩阵 ÷ √d_k) = 注意力权重矩阵（下三角概率分布）</figcaption></figure>
+  <p>对缩放后的矩阵逐行做 <strong>Softmax</strong>，得到<strong>注意力权重矩阵</strong>——
+  每一行是该 token 对所有（不超过自身位置的）token 的注意力权重，行内和为 1。
+  图中结果呈下三角形态（因果掩码所致）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>Attention Layer：加权求和 V 得到输出</h3>
+  <figure><img src="slides/slide-040.png" alt="Slide 40 注意力输出" loading="lazy"><figcaption>注意力权重矩阵 × V → 注意力输出（棕色矩阵）</figcaption></figure>
+  <p>最后一步：<strong>注意力权重矩阵与 V 相乘</strong>（图中第二个 ⊗），
+  得到注意力层的输出矩阵（棕色圆点矩阵）——每个 token 的输出是其可见 token 的 Value 向量的加权和，
+  权重由注意力分布给出。至此完成公式 <span class="mono">softmax(QK<sup>T</sup>/√d<sub>k</sub>)V</span> 的全套计算。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 41</span>Attention Layer：输出投影 W<sub>O</sub></h3>
+  <figure><img src="slides/slide-041.png" alt="Slide 41 输出投影" loading="lazy"><figcaption>Matrix Multiply to project back to model dimensions：注意力输出 × W_O（粉色）</figcaption></figure>
+  <p>注意力计算完成后，输出矩阵再乘以一个可学习的<strong>输出投影矩阵 W<sub>O</sub></strong>（粉色），
+  把结果<strong>投影回模型的维度</strong>（project back to model dimensions），得到注意力层的最终输出（粉色矩阵）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>Attention Layer：残差连接（Residual Connection）</h3>
+  <figure><img src="slides/slide-042.png" alt="Slide 42 残差连接" loading="lazy"><figcaption>残差连接：输入绕开注意力计算与输出相加（+）</figcaption></figure>
+  <p>图中红色文字标出<strong>残差连接（Residual Connection）</strong>：注意力层的原始输入
+  （Layer Norm 之前的表示）被一条旁路直接送到输出端，与 W<sub>O</sub> 投影后的结果<strong>相加（⊕）</strong>。
+  残差连接让梯度可以直接回传、缓解深层网络退化，是现代 Transformer 的标配。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>Attention Layer → Multi-Head Attention Layer</h3>
+  <figure><img src="slides/slide-043.png" alt="Slide 43 多头注意力过渡" loading="lazy"><figcaption>标题由 Attention Layer 升级为 Multi-Head Attention Layer</figcaption></figure>
+  <p>过渡页：讲义将上面讲完的单头注意力层（Attention Layer）进一步推广为
+  <span class="term">Multi-Head Attention Layer（多头注意力层）</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>Multi-Head Attention：1. 多组权重矩阵</h3>
+  <figure><img src="slides/slide-044.png" alt="Slide 44 多头注意力第一步" loading="lazy"><figcaption>1. Multiple Weight Matrices</figcaption></figure>
+  <p>多头注意力的第一步（红色标注）：<strong>Multiple Weight Matrices（多组权重矩阵）</strong>。
+  本图仍先沿用单头的 Q/K/V 结构作为对照。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Multi-Head Attention：W<sub>Q</sub>/W<sub>K</sub>/W<sub>V</sub> 复制成多份</h3>
+  <figure><img src="slides/slide-045.png" alt="Slide 45 多组权重矩阵" loading="lazy"><figcaption>W_Q/W_K/W_V 及 Q/K/V 均变为多层叠放的矩阵（多个注意力头）</figcaption></figure>
+  <p>图中 W<sub>Q</sub>、W<sub>K</sub>、W<sub>V</sub> 各自变为<strong>叠放的多组矩阵</strong>——
+  即把注意力计算复制成多个并行、独立的<strong>注意力头（head）</strong>，
+  每个头有自己的一组 W<sub>Q</sub>/W<sub>K</sub>/W<sub>V</sub>，各自独立地计算 Q、K<sup>T</sup>、V 与注意力输出。
+  不同的头可以学习关注不同类型的关系。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>Multi-Head Attention：2. 拼接各头输出</h3>
+  <figure><img src="slides/slide-046.png" alt="Slide 46 拼接输出" loading="lazy"><figcaption>2. Concatenate Attention Outputs：各头输出拼接成更宽的矩阵</figcaption></figure>
+  <p>第二步（红色标注）：<strong>Concatenate Attention Outputs（拼接注意力输出）</strong>——
+  各个注意力头的输出矩阵（棕色）沿宽度方向<strong>拼接</strong>成一个更宽的矩阵。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>Multi-Head Attention：3. 更大的投影矩阵</h3>
+  <figure><img src="slides/slide-047.png" alt="Slide 47 更大的投影矩阵" loading="lazy"><figcaption>3. Bigger Projection Matrix：W_O 变宽，把拼接结果投影回模型维度</figcaption></figure>
+  <p>第三步（红色标注）：<strong>Bigger Projection Matrix（更大的投影矩阵）</strong>——
+  由于拼接后的矩阵更宽，输出投影 W<sub>O</sub>（粉色）也相应变大，
+  把拼接结果<strong>投影回模型原本的维度</strong>，并保留残差连接（⊕）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>Multi-Head Attention：完整结构图</h3>
+  <figure><img src="slides/slide-048.png" alt="Slide 48 多头注意力完整图" loading="lazy"><figcaption>多头注意力层完整结构：多头 Q/K/V → 各头注意力 → 拼接 → W_O → 残差相加</figcaption></figure>
+  <p>多头注意力层的完整结构汇总：归一化输入 → 多组 W<sub>Q</sub>/W<sub>K</sub>/W<sub>V</sub>
+  → 各头分别计算 softmax(QK<sup>T</sup>/√d<sub>k</sub>)V → 拼接 → 大 W<sub>O</sub> 投影回模型维度
+  → 残差相加。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>Decoder-only Transformer：注意力层抽象为整体</h3>
+  <figure><img src="slides/slide-049.png" alt="Slide 49 注意力抽象" loading="lazy"><figcaption>整个多头注意力层被抽象为粉色大块</figcaption></figure>
+  <p>讲义把上面拆解完的多头注意力层<strong>整体抽象为一个粉色块</strong>，
+  接下来在 decoder-only Transformer 的完整结构中继续往上堆叠组件。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>Decoder-only Transformer：Multi-head, Causal Self-Attention Layer</h3>
+  <figure><img src="slides/slide-050.png" alt="Slide 50 因果自注意力层" loading="lazy"><figcaption>Multi-head, Causal Self-Attention Layer（粉色块）及其输出矩阵</figcaption></figure>
+  <p>粉色块被命名为 <span class="term">Multi-head, Causal Self-Attention Layer（多头因果自注意力层）</span>：
+  多头（multi-head）+ 因果掩码（causal）+ 自注意力（self-attention，Q/K/V 来自同一序列）。
+  其输出为粉色矩阵。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>Decoder-only Transformer：注意力输出的 Layer Norm</h3>
+  <figure><img src="slides/slide-051.png" alt="Slide 51 注意力输出归一化" loading="lazy"><figcaption>注意力输出再做一次 Layer Norm</figcaption></figure>
+  <p>注意力层的输出（粉色矩阵）在进入下一个子层之前，再经过一次
+  <strong>Layer Norm</strong> 归一化。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 52</span>Decoder-only Transformer：注意力子层的残差连接</h3>
+  <figure><img src="slides/slide-052.png" alt="Slide 52 注意力残差" loading="lazy"><figcaption>残差旁路（⊕）把 Layer Norm 前的输入加到注意力输出上</figcaption></figure>
+  <p>注意力子层同样配有<strong>残差连接</strong>：左侧旁路（⊕）把进入注意力层之前的表示
+  直接加到 Layer Norm 后的注意力输出上。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>Decoder-only Transformer：前馈网络（Feed Forward）</h3>
+  <figure><img src="slides/slide-053.png" alt="Slide 53 前馈网络" loading="lazy"><figcaption>注意力子层之上是蓝色的 Feed Forward 前馈块，输出蓝色矩阵</figcaption></figure>
+  <p>注意力子层之后是 <span class="term">Feed Forward（前馈网络）</span>（蓝色块）：
+  对每个 token 的表示独立地做非线性变换（逐位置的两层全连接 + 激活），
+  输出蓝色矩阵。Transformer 块 = 注意力子层 + 前馈子层。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>Decoder-only Transformer：前馈子层的残差连接</h3>
+  <figure><img src="slides/slide-054.png" alt="Slide 54 前馈残差" loading="lazy"><figcaption>前馈子层同样配有残差连接（⊕，右侧旁路）</figcaption></figure>
+  <p>前馈子层也配有<strong>残差连接</strong>（右侧 ⊕）：把 Layer Norm 后的注意力输出
+  直接加到前馈网络的输出上。至此，一个完整的 Transformer 子层堆叠（注意力 + 前馈，各带残差）搭建完毕。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>Decoder-only Transformer：整体抽象为 Transformer Block</h3>
+  <figure><img src="slides/slide-055.png" alt="Slide 55 Transformer Block 抽象" loading="lazy"><figcaption>整个子层堆叠被抽象为红色大块</figcaption></figure>
+  <p>讲义把"注意力子层 + 前馈子层"的整体<strong>抽象为红色块</strong>，准备进行堆叠。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>Decoder-only Transformer：Transformer Block × N</h3>
+  <figure><img src="slides/slide-056.png" alt="Slide 56 N 层堆叠" loading="lazy"><figcaption>红色块标注 x N：Transformer Block 重复堆叠 N 层</figcaption></figure>
+  <p>红色块被命名为 <span class="term">Transformer Block</span>，并标注 <strong>x N</strong>：
+  相同的块重复堆叠 N 层（现代 LLM 的 N 可达数十甚至上百层）。输出为红色矩阵。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>Decoder-only Transformer：Layer Norm + LM Head</h3>
+  <figure><img src="slides/slide-057.png" alt="Slide 57 LM Head" loading="lazy"><figcaption>最后一层 Transformer Block 之后：Layer Norm → LM Head（深红色块）</figcaption></figure>
+  <p>N 层 Transformer Block 之后，先做一次 <strong>Layer Norm</strong>，
+  再进入 <span class="term">LM Head（语言模型头）</span>（深红色块）——
+  一个把隐状态映射到词表空间的线性投影层。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>Decoder-only Transformer：LM Head 输出 logits</h3>
+  <figure><img src="slides/slide-058.png" alt="Slide 58 LM Head 输出" loading="lazy"><figcaption>LM Head 输出深红色矩阵（词表维度的 logits）</figcaption></figure>
+  <p>LM Head 的输出是一个<strong>深红色矩阵</strong>：每个 token 位置对应一行，
+  行内是词表中每个 token 的原始得分（logits）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>Decoder-only Transformer：Softmax</h3>
+  <figure><img src="slides/slide-059.png" alt="Slide 59 LM Head softmax" loading="lazy"><figcaption>对 LM Head 输出做 Softmax</figcaption></figure>
+  <p>对 logits 做 <strong>Softmax</strong>，把原始得分转换为词表上的概率分布。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>Decoder-only Transformer：每个位置一个概率分布</h3>
+  <figure><img src="slides/slide-060.png" alt="Slide 60 每位置 softmax 分布" loading="lazy"><figcaption>矩阵按行拆分为四个 Softmax( · ) 条，即每个位置的下一个 token 概率分布</figcaption></figure>
+  <p>最终输出按行展开：每个 token 位置各自得到一个
+  <strong>Softmax( … ) 概率条</strong>——这就是语言模型在"该位置下一个词是什么"上的预测分布，
+  与课程开头给出的自回归定义 P(x₁:ₜ) = Π P(xₜ | x&lt;ₜ) 首尾呼应。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>Attention vs Recurrence（注意力 vs 循环）</h3>
+  <figure><img src="slides/slide-061.png" alt="Slide 61 复杂度对比表" loading="lazy"><figcaption>Table 1：各层类型的每层复杂度、顺序操作数与最大路径长度（图源：Attention Is All You Need）</figcaption></figure>
+  <p>本页引用 <em>Attention Is All You Need</em> 原论文的 Table 1，对比不同层类型
+  （n 为序列长度，d 为表示维度，k 为卷积核大小，r 为受限自注意力的邻域大小）：</p>
+  <table>
+    <tr><th>Layer Type（层类型）</th><th>Complexity per Layer（每层复杂度）</th><th>Sequential Operations（顺序操作数）</th><th>Maximum Path Length（最大路径长度）</th></tr>
+    <tr><td>Self-Attention（自注意力）</td><td>O(n²·d)</td><td>O(1)</td><td>O(1)</td></tr>
+    <tr><td>Recurrent（循环）</td><td>O(n·d²)</td><td>O(n)</td><td>O(n)</td></tr>
+    <tr><td>Convolutional（卷积）</td><td>O(k·n·d²)</td><td>O(1)</td><td>O(log<sub>k</sub>(n))</td></tr>
+    <tr><td>Self-Attention (restricted)（受限自注意力）</td><td>O(r·n·d)</td><td>O(1)</td><td>O(n/r)</td></tr>
+  </table>
+  <p>讲义用红字强调两点（红框圈出"每层复杂度"与"顺序操作数"两列）：</p>
+  <ul>
+    <li><strong>O(1) 顺序操作数对在 GPU 上并行训练意义重大</strong>（O(1) Sequential Operations is a huge deal for parallel training on GPUs）——自注意力可以一次性并行计算整个序列，而 RNN 必须逐步递推；</li>
+    <li><strong>O(n²) 的序列长度复杂度意味着长上下文变得昂贵</strong>（O(n²) Sequence length means long context becomes expensive）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>Transformers were better and cheaper（Transformer 更好且更便宜）</h3>
+  <figure><img src="slides/slide-062.png" alt="Slide 62 质量与成本对比表" loading="lazy"><figcaption>各机器翻译模型在 EN-DE / EN-FR 上的 BLEU 与训练成本（FLOPs），红框圈出 Transformer 两行（图源：Attention Is All You Need）</figcaption></figure>
+  <p>同样出自原论文的结果表，对比当时各机器翻译模型的 BLEU 分数与训练成本（FLOPs）。
+  讲义用红框圈出最后两行：</p>
+  <ul>
+    <li><strong>Transformer (base model)</strong>：EN-DE 27.3、EN-FR 38.1，训练成本仅 <strong>3.3·10¹⁸ FLOPs</strong>（全表最低）；</li>
+    <li><strong>Transformer (big)</strong>：EN-DE <strong>28.4</strong>、EN-FR <strong>41.8</strong>（两项 BLEU 均为全表最高），训练成本 2.3·10¹⁹ FLOPs，仍低于表中多数模型。</li>
+  </ul>
+  <p>对照其他模型（ByteNet 23.75；GNMT + RL 24.6/39.92；ConvS2S 25.16/40.46；MoE 26.03/40.56；
+  ConvS2S Ensemble 26.36/41.29 等），Transformer 以<strong>更低的训练成本取得了最高的翻译质量</strong>，
+  这正是它取代 RNN/卷积架构的原因。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 63</span>小节页：Linear Attention（线性注意力）</h3>
+  <figure><img src="slides/slide-063.png" alt="Slide 63 Linear Attention 小节页" loading="lazy"><figcaption>小节过渡页：Linear Attention。图源：DeltaNet Explained (Part III) | Songlin Yang</figcaption></figure>
+  <p>进入 Linear Attention 小节。本页图片来源标注：
+  <a href="https://songlin.me/blog/">DeltaNet Explained (Part III) | Songlin Yang</a>。
+  标准注意力的 O(n²) 代价催生了各类线性注意力改进，本小节用动画推导其核心思想。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 64</span>Attention Layer → Linear Attention（过渡）</h3>
+  <figure><img src="slides/slide-064.png" alt="Slide 64 线性注意力过渡" loading="lazy"><figcaption>标题由 Attention Layer 过渡为 Linear Attention</figcaption></figure>
+  <p>过渡页：从前面讲完的注意力层（Attention Layer）出发，引出 Linear Attention。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 65</span>Linear Attention：沿用原注意力结构</h3>
+  <figure><img src="slides/slide-065.png" alt="Slide 65 线性注意力起点" loading="lazy"><figcaption>Linear Attention 起点：完整的 Q/K/V + softmax 注意力图（单 token "The" 示例）</figcaption></figure>
+  <p>本页展示线性注意力的起点：仍是最初的注意力结构（含 Softmax 与 ÷√d<sub>k</sub>），
+  接下来将对其进行改造。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 66</span>Linear Attention："Drop Softmax"（去掉 Softmax）</h3>
+  <figure><img src="slides/slide-066.png" alt="Slide 66 去掉 Softmax" loading="lazy"><figcaption>红色标注 "Drop Softmax"：去掉 softmax 与缩放，QK^T 直接连到 ×V</figcaption></figure>
+  <p>线性注意力的关键改造（红色标注 <em>"Drop Softmax"</em>）：<strong>去掉 Softmax 与 ÷√d<sub>k</sub> 缩放</strong>，
+  让 QK<sup>T</sup> 的结果直接进入与 V 的乘法。此时整个注意力计算只剩矩阵乘法与加法——全部是线性运算。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 67</span>Linear Attention：结合律改写——先算 K×V</h3>
+  <figure><img src="slides/slide-067.png" alt="Slide 67 结合律改写" loading="lazy"><figcaption>"Everything here is now linear! We can change the associativity. Let's Multiply K and V instead."（红框圈出 QK^T 与 ×V 部分）</figcaption></figure>
+  <p>去掉 softmax 后（红色标注）：</p>
+  <ul>
+    <li>"Everything here is now linear!"（这里的一切都变成线性的了！）</li>
+    <li>"We can change the associativity."（我们可以改变结合顺序。）</li>
+    <li>"Let's Multiply K and V instead."（改为先计算 K 与 V 的乘积。）</li>
+  </ul>
+  <p>原本注意力是 <span class="mono">(QK<sup>T</sup>)V</span>（先算 n×n 的 QK<sup>T</sup>，代价 O(n²)）；
+  由于全是线性运算，可以利用结合律改写为 <span class="mono">Q(K<sup>T</sup>V)</span>——
+  先算 K<sup>T</sup>V（与序列长度无关的固定大小矩阵），再让 Q 与它相乘，从而把复杂度从 O(n²) 降到 O(n)。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 68</span>Linear Attention：简化图（保留 Q/K/V 投影）</h3>
+  <figure><img src="slides/slide-068.png" alt="Slide 68 线性注意力简化图" loading="lazy"><figcaption>去掉 softmax 后的简化结构：输入 → Layer Norm → W_Q/W_K/W_V → Q/K^T/V</figcaption></figure>
+  <p>讲义把结构简化：只保留输入、Layer Norm 与 W<sub>Q</sub>/W<sub>K</sub>/W<sub>V</sub>
+  三个投影得到 Q、K<sup>T</sup>、V 的过程，为接下来按新的结合顺序重新连线做准备。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 69</span>Linear Attention：先算 K<sup>T</sup>V 得到状态 S₁</h3>
+  <figure><img src="slides/slide-069.png" alt="Slide 69 状态 S1" loading="lazy"><figcaption>K^T × V → S₁（品红色状态矩阵）；红框圈出当前处理的 token "The"</figcaption></figure>
+  <p>按新结合顺序，<strong>先计算 K<sup>T</sup> × V</strong>，得到一个品红色的状态矩阵，
+  记为 <span class="term">S₁</span>（下标 1 用红框标出）——它汇总了第 1 个 token 的键值信息。
+  红框圈出当前正在处理的 token "The"。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 70</span>Linear Attention：Q × S₁ 得到输出</h3>
+  <figure><img src="slides/slide-070.png" alt="Slide 70 Q×S1 输出" loading="lazy"><figcaption>Q × S₁ → 棕色输出（左上）</figcaption></figure>
+  <p>再用当前 token 的 <strong>Q 与状态 S₁ 相乘</strong>，得到该位置的注意力输出（左上棕色圆点）。
+  注意此时没有出现 n×n 的矩阵——每一步的代价都是 O(d²) 级别的常数。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 71</span>Linear Attention：完整结构（W<sub>O</sub> + 残差）</h3>
+  <figure><img src="slides/slide-071.png" alt="Slide 71 线性注意力完整结构" loading="lazy"><figcaption>Q×S₁ → W_O 投影回模型维度 → 残差相加（⊕）</figcaption></figure>
+  <p>线性注意力的完整结构：输出经 W<sub>O</sub>（粉色）投影回模型维度，
+  再与原始输入做残差相加（右侧 ⊕）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 72</span>Linear Attention Update Rule（状态更新规则）</h3>
+  <figure><img src="slides/slide-072.png" alt="Slide 72 更新规则标题" loading="lazy"><figcaption>标题改为 Linear Attention Update Rule</figcaption></figure>
+  <p>讲义标题更新为 <span class="term">Linear Attention Update Rule（线性注意力更新规则）</span>，
+  接下来用多 token 的动画演示状态 S 如何随序列逐步更新。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 73</span>Linear Attention Update Rule：Clear Unimportant Memory</h3>
+  <figure><img src="slides/slide-073.png" alt="Slide 73 清除不重要记忆" loading="lazy"><figcaption>右侧红框标注 "Clear Unimportant Memory"</figcaption></figure>
+  <p>右侧红框标注 <strong>"Clear Unimportant Memory"（清除不重要的记忆）</strong>：
+  状态矩阵 S 可以被视为模型的"记忆"，更新规则允许在写入新信息的同时清除不再重要的旧信息
+  （这是 DeltaNet 类方法相对朴素线性注意力的关键改进）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 74</span>Linear Attention Update Rule：Save the state（保存状态）</h3>
+  <figure><img src="slides/slide-074.png" alt="Slide 74 保存状态" loading="lazy"><figcaption>右侧红色标注 "Save the state"：处理完第 1 个 token 后保存 S₁</figcaption></figure>
+  <p>右侧红色标注 <strong>"Save the state"（保存状态）</strong>：
+  处理完第 1 个 token 后，把状态 S₁ 保存下来供下一个 token 使用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 75</span>Linear Attention Update Rule：处理第 2 个 token "class"</h3>
+  <figure><img src="slides/slide-075.png" alt="Slide 75 第二个 token" loading="lazy"><figcaption>输入扩展到 The + class 两个 token，S₁ 仍被保留</figcaption></figure>
+  <p>动画推进：输入序列扩展到两个 token（"The" 与 "class"），
+  第 1 步保存的状态 S₁ 仍然在右上方等待被更新。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 76</span>Linear Attention Update Rule：第 2 个 token 的 Q/K/V</h3>
+  <figure><img src="slides/slide-076.png" alt="Slide 76 第二个 token 的 QKV" loading="lazy"><figcaption>第二个 token "class" 的 Q/K^T/V 已计算出来</figcaption></figure>
+  <p>第 2 个 token "class" 的 Q（黄）、K<sup>T</sup>（红）、V（蓝）已经计算出来，
+  准备按更新规则并入状态。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 77</span>Linear Attention Update Rule：S₂ = S₁ ⊕ (K₂<sup>T</sup>V₂)</h3>
+  <figure><img src="slides/slide-077.png" alt="Slide 77 状态累加" loading="lazy"><figcaption>新 K^T×V 与旧状态 S₁ 相加（⊕）得到 S₂</figcaption></figure>
+  <p>更新规则的核心：把第 2 个 token 的 <strong>K<sup>T</sup>×V 结果与旧状态 S₁ 相加（⊕）</strong>，
+  得到新状态 <span class="term">S₂</span>。状态以"累加"的方式逐 token 滚动更新，
+  大小始终固定，不随序列长度增长。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 78</span>Linear Attention Update Rule：Q₂ × S₂ 得到输出</h3>
+  <figure><img src="slides/slide-078.png" alt="Slide 78 第二 token 输出" loading="lazy"><figcaption>Q₂ × S₂ → 棕色输出（左上），并经 W_O 投影 + 残差</figcaption></figure>
+  <p>第 2 个 token 的 <strong>Q 与新状态 S₂ 相乘</strong>得到其输出（左上棕色圆点），
+  再经 W<sub>O</sub> 投影与残差连接输出。整个过程对每个 token 只做常数时间的工作。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 79</span>Linear Attention Update Rule：再次 Clear Unimportant Memory</h3>
+  <figure><img src="slides/slide-079.png" alt="Slide 79 再次清除记忆" loading="lazy"><figcaption>更新后保留 S₂，右侧红框 "Clear Unimportant Memory"</figcaption></figure>
+  <p>更新完成后保留新状态 S₂，右侧红框再次提示 <strong>"Clear Unimportant Memory"</strong>：
+  每次更新都可选择性地衰减/清除旧记忆，避免状态被无限累加的信息淹没。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 80</span>Linear Attention Update Rule：保存 S₂ 进入下一步</h3>
+  <figure><img src="slides/slide-080.png" alt="Slide 80 保存 S2" loading="lazy"><figcaption>S₂ 被保存（移到上方），右侧红框 "Clear Unimportant Memory"</figcaption></figure>
+  <p>动画收尾：S₂ 被保存并上移，准备在处理第 3 个 token 时继续滚动更新。
+  至此展示了线性注意力的完整范式：<strong>固定大小的状态 S 逐 token 更新（写入 K·V、清除旧记忆），
+  每个 token 用 Q 读取状态</strong>——推理时每步代价为常数，这也是现代状态空间/线性注意力模型
+  （如 DeltaNet 一类）相对标准注意力的效率优势来源。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 81</span>Linear Attention Update Rule（第 3 步：处理 "was"）</h3>
+<figure><img src="slides/slide-081.png" alt="Linear Attention Update Rule：处理第三个 token 后状态更新为 S3" loading="lazy">
+<figcaption>处理第三个 token "was" 后，状态由 S₂ 更新为 S₃。</figcaption></figure>
+<p>动画继续。前缀 "The class was" 的第三个 token "was" 进入模块：先做 Layer Norm，
+再经 W_Q/W_K/W_V 投影得到该 token 的 Q、K、V；新的键值外积 Kᵀ·V 与上一状态 S₂
+相加（图中 S₂ 与中间矩阵之间的 ⊕），得到更新后的状态 S₃；同时当前 token 的 Q 读取
+S₃（Q × S₃），再经 W_O 投影、加回残差通路。注意整个过程中被反复读写的是
+<strong>同一个固定大小的状态矩阵</strong>——序列变长并不会让它变大。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 82</span>Linear Attention Update Rule（第 4 步：处理 "about"）</h3>
+<figure><img src="slides/slide-082.png" alt="Linear Attention Update Rule：处理第四个 token 后状态更新为 S4" loading="lazy">
+<figcaption>处理第四个 token "about" 后，状态更新为 S₄，完整走完四 token 示例。</figcaption></figure>
+<p>最后一个 token "about" 以完全相同的方式处理：S₄ = S₃ ⊕ K₄ᵀ·V₄，并用 Q₄ 读取 S₄。
+至此四个 token "The class was about" 全部处理完毕。回看整段动画，每处理一个 token
+只做两件事——<strong>把当前 K·V 写进状态、用当前 Q 读一次状态</strong>，代价与已见序列
+长度无关。这正是线性注意力相对标准 O(n²) 注意力的核心效率优势，也是它"像 RNN 一样"
+逐步处理序列的原因。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 83</span>线性注意力显著更快、显存占用更低</h3>
+<figure><img src="slides/slide-083.png" alt="线性注意力与 softmax 注意力、Reformer 的前向/反向时间与显存对比" loading="lazy">
+<figcaption>前向/反向一次 pass 的计算需求对比：linear（ours）随序列长度线性增长，
+softmax 按平方增长最快溢出，Reformer（lsh-X）居中。Figure Credit: Transformers are RNNs:
+Fast Autoregressive Transformers with Linear Attention。</figcaption></figure>
+<p>两张双对数坐标图横轴均为序列长度（2⁹–2¹⁶），左图为耗时（毫秒）、右图为 GPU 显存（MB）。
+黑色 ×（linear, ours）始终最低且呈线性增长；红色三角（softmax）斜率最陡，按序列长度的
+<strong>平方</strong>增长，很快最先爆掉；蓝色虚线为 Reformer 的 lsh-1/4/8（局部敏感哈希分桶近似），
+介于两者之间。原论文 Figure 1 的结论：Linear 与 Reformer 在时间与显存上都随序列长度线性扩展，
+而 softmax 注意力两者都按平方扩展。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 84</span>然而……线性注意力在长上下文上更吃力</h3>
+<figure><img src="slides/slide-084.png" alt="NIAH 任务定义表与 Llama2/RWKV/Mamba 的长上下文精度对比" loading="lazy">
+<figcaption>左：NIAH（大海捞针）三种任务配置；右：不同架构随序列长度增长的准确率。
+Figure Credit: RULER: What's the Real Context Size of Your Long-Context Language Models?</figcaption></figure>
+<p>效率的代价是长上下文能力。左表给出 RULER 基准的三类"大海捞针"任务：
+<strong>Single NIAH（S-NIAH）</strong>——在文章干草堆中找唯一魔术数字（12345）；
+<strong>Multi-keys NIAH（MK-NIAH）</strong>——存在多个键（如 long-context 与 large-model 各对应
+不同数字），需按指定键取对值；<strong>Multi-values NIAH（MV-NIAH）</strong>——同一键对应多个值
+（12345 与 54321），需全部取出。任务难度逐级递增，干草堆大小随上下文长度增长。
+右图的架构对比显示：随序列长度从 1K 增至 8K，softmax 架构 Llama2-7b（紫）在 4K 前保持
+高准确率后才骤降；线性注意力/状态空间类架构 RWKV-v5-7b（蓝）与 Mamba-2.8b-slimpj（绿）
+则更早、更平滑地衰减——<strong>压缩状态难以精确保留长距离细节</strong>。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 85</span>关于上下文长度的一点说明</h3>
+<figure><img src="slides/slide-085.png" alt="A Note about Context Length：上下文长度由位置嵌入决定" loading="lazy">
+<figcaption>上下文长度限制来自位置嵌入的处理方式，而非注意力本身。</figcaption></figure>
+<p>这页澄清一个常见误解：无论是 Transformer 还是 Linear Attention，<strong>结构本身并没有
+强制一个严格的上下文长度上限</strong>——唯一的约束来自模型处理位置嵌入（positional embeddings）
+的方式。实践中模型需要"学会使用"位置嵌入，因此我们被限制在<strong>训练时所用的上下文
+长度</strong>之内。超出该长度的外推之所以失效，本质是位置编码未见过的区间，而非注意力
+机制算不下去。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 86</span>小结：把它们放在一起（Bringing it together）</h3>
+<figure><img src="slides/slide-086.png" alt="Bringing it together 章节页" loading="lazy">
+<figcaption>架构部分的收束页。Figure Credit: DeltaNet Explained (Part III) | Songlin Yang。</figcaption></figure>
+<p>章节过渡页。前面依次讲完了标准 softmax 注意力（O(n²)、KV Cache 线性增长、长上下文强）
+与线性注意力（O(n)、常数状态、长上下文弱），本页开始给出工程上的综合结论：实际系统
+如何选择与组合这些注意力变体。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 87</span>Full Softmax Attention vs Linear Attention</h3>
+<figure><img src="slides/slide-087.png" alt="全 softmax 注意力与线性注意力的对比表" loading="lazy">
+<figcaption>左右对照：全 softmax 注意力 vs 线性注意力。</figcaption></figure>
+<p>本页把两种范式并排对照：</p>
+<table>
+<thead><tr><th>维度</th><th>Full Softmax Attention</th><th>Linear Attention</th></tr></thead>
+<tbody>
+<tr><td>随上下文长度的复杂度</td><td>O(n²)</td><td>O(n)</td></tr>
+<tr><td>token 如何访问历史</td><td>所有 token 可回看所有先前 token —— 有利于长上下文</td><td>新 token 只与压缩后的状态表示交互 —— 长上下文更难</td></tr>
+<tr><td>内存占用</td><td>KV Cache（内存）按 O(n) 增长</td><td>状态表示使用常数额内存</td></tr>
+</tbody>
+</table>
+<p>一句话概括：<strong>softmax 注意力用随长度增长的内存换来精确的全历史访问，线性注意力
+用常数内存换取线性时间，但牺牲长距离精确回忆</strong>。两者各有所长，因此实践中往往混用。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 88</span>实践中人们混用全局注意力与线性注意力（结构示意）</h3>
+<figure><img src="slides/slide-088.png" alt="SWA+DeltaNet 与 Global Attention+DeltaNet 的层堆叠及注意力矩阵对比" loading="lazy">
+<figcaption>左：SWA（滑动窗口）与 DeltaNet 交替堆叠，注意力矩阵为对角窄带；
+右：多数层为 DeltaNet、穿插少量 Global Attention，全局层可见全部历史。
+Figure Credit: DeltaNet Explained (Part III) | Songlin Yang。</figcaption></figure>
+<p>两种典型的混合堆叠方案。左列把 <strong>SWA（Sliding Window Attention，滑动窗口注意力）</strong>
+与 DeltaNet 线性注意力层交替放置：每个 SWA 层只让 token 关注最近一个窗口，对应的注意力
+矩阵是沿对角线的一条窄带——局部信息交换充分、代价低。右列则以 DeltaNet 为主体、
+穿插少数 <strong>Global Attention</strong> 层（橙红色），这些全局层能看见完整下三角的全部历史，
+把被压缩状态丢失的长距离依赖补回来。右侧的注意力矩阵对比直观展示了"窄带 + 稀疏全局层"
+如何近似覆盖全注意力。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 89</span>实践中人们混用全局注意力与线性注意力（实验数据）</h3>
+<figure><img src="slides/slide-089.png" alt="DeltaNet 加入滑动注意力/全局注意力后的指标对比表" loading="lazy">
+<figcaption>在 DeltaNet 基础上加入 Sliding / Global 注意力的消融实验。
+Figure Credit: DeltaNet Explained (Part III) | Songlin Yang。</figcaption></figure>
+<p>对应上页结构的量化结果：</p>
+<table>
+<thead><tr><th>Model</th><th>Wiki. ppl ↓</th><th>Avg. Common-sense ↑</th><th>Avg. Retrieval ↑</th></tr></thead>
+<tbody>
+<tr><td>DeltaNet</td><td>28.24</td><td>42.1</td><td>22.7</td></tr>
+<tr><td>+ Sliding Attn</td><td>27.06</td><td>42.1</td><td>30.2</td></tr>
+<tr><td>+ Global Attn</td><td>27.51</td><td>42.1</td><td>32.7</td></tr>
+</tbody>
+</table>
+<p>纯 DeltaNet 的检索能力最弱（22.7）；加入滑动窗口注意力后困惑度最低（27.06）且检索
+升至 30.2；加入全局注意力后检索进一步提升到 <strong>32.7</strong>，困惑度 27.51 也明显优于纯线性。
+常识类任务三者持平（42.1）。结论：<strong>少量全局/局部 softmax 注意力层即可显著弥补线性
+注意力在检索型长距离任务上的短板</strong>，这正是现代混合架构的设计动机。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 90</span>实例：Kimi K3 的混合架构</h3>
+<figure><img src="slides/slide-090.png" alt="Kimi K3 架构图：KDA 线性注意力 + Gated MLA + Stable LatentMoE" loading="lazy">
+<figcaption>Kimi K3 的块级结构：线性注意力（KDA）、多头潜在注意力（Gated MLA）与
+前馈（Stable LatentMoE）的组合。Figure Credit: Kimi K3: Open Frontier Intelligence |
+arxiv 2607.24653。</figcaption></figure>
+<p>以 Kimi K3 为例展示工业级混合架构。右侧主图按块（Block）组织：<strong>线性注意力层
+KDA</strong>（绿框）与<strong>多头（潜在）注意力 Gated MLA</strong>（蓝框）负责序列建模，
+<strong>前馈 Stable LatentMoE</strong>（红框）穿插其间，大致每三个块重复一次该模式；
+底部输入经 MoonViT-V2 + MLP 得到 Embedding，且各块之间存在跨层连接。
+左上插图展开 MoE 前馈：共享专家（Shared Expert 1/2）+ 路由专家（Routed Expert 1…N）
+由 Router 选择后加权求和。左下插图展开 Kimi Delta Attention 内部：q/k 经 Linear→Conv→L2
+归一化，v 经 Linear→Conv，另有 α、β 门控，随后 Norm、相乘、Linear 输出。
+该模型同时具备线性注意力的效率与 MLA 全局注意力的长上下文能力。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 91</span>这一切对智能体为什么重要？</h3>
+<figure><img src="slides/slide-091.png" alt="Why does all of this matter for agents? 四点总结" loading="lazy">
+<figcaption>架构知识对 agent 工程的四点意义。</figcaption></figure>
+<p>架构一章的收束，回答"为什么 agent 工程师要懂这些"：</p>
+<ul>
+<li><strong>智能体要处理极长的上下文</strong>——工具调用、轨迹、检索结果会迅速堆长输入；</li>
+<li><strong>推理效率是构建 agentic 系统时的设计考量</strong>——多步循环调用下，单步成本被放大；</li>
+<li><strong>了解底层模型架构有助于为你的 agentic 应用选对模型</strong>——长上下文、检索、成本各有权衡；</li>
+<li><strong>围绕所用模型的强项与弱项设计 harness 与脚手架</strong>，会让你成为更好的 agent 工程师。</li>
+</ul>
+</article>
+
+</section>
+
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">三、LLM 训练</h2>
+
+<article class="slide">
+<h3><span class="no">Slide 92</span>章节页：LLM Training</h3>
+<figure><img src="slides/slide-092.png" alt="LLM Training 章节页，进度条高亮 Training" loading="lazy">
+<figcaption>本讲进度条：Language Models? → Architecture → <strong>Training</strong> → Inference → LLMs for Agents。</figcaption></figure>
+<p>进入第三部分"LLM 训练"。进度条显示本讲五个板块中当前位于 Training：先讲清楚
+"语言模型是什么"（第一部分）、"用什么架构"（第二部分），现在回答<strong>模型是如何
+从数据中学出来的</strong>——从定义损失函数开始。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 93</span>定义损失（Defining the Loss）</h3>
+<figure><img src="slides/slide-093.png" alt="Defining the Loss 小节页" loading="lazy">
+<figcaption>训练的第一步：把"学得好不好"量化为一个可优化的损失。</figcaption></figure>
+<p>小节过渡页。训练的本质是优化：要给模型一个数值信号，告诉它对真实数据的预测
+"有多错"，然后用梯度下降去减小它。本节用一个具体例子逐步导出语言模型的标准
+损失——交叉熵。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 94</span>训练数据（示例）</h3>
+<figure><img src="slides/slide-094.png" alt="训练数据示例文本框：The class was about how agents work…" loading="lazy">
+<figcaption>一条训练语料示例。</figcaption></figure>
+<p>给出一条训练文本："The class was about how agents work, and how to build AI systems
+that use tools, retrieve information, and carry out tasks across multiple steps…"。
+语言模型的训练目标就是：<strong>给定前缀，预测下一个 token</strong>。下面用这条文本的
+开头演示模型在某个位置上的预测与损失计算。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 95</span>给定前缀，候选下一 token 的分叉</h3>
+<figure><img src="slides/slide-095.png" alt="前缀 The class was about 之后分叉出候选下一 token" loading="lazy">
+<figcaption>前缀 "The class was about" 之后，词表中的候选下一 token。</figcaption></figure>
+<p>模型读完前缀 "The class was about" 后，需要对"下一个 token 是什么"给出分布。
+图中从 "about" 分叉出一组候选：to、as、the、a、two、how、getting、three、time、
+左引号等。每个候选都会得到一个概率，所有候选概率之和为 1。训练时我们已知真实
+答案，问题是如何度量模型分布与真实答案的差距。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 96</span>模型给出的概率分布</h3>
+<figure><img src="slides/slide-096.png" alt="about 之后各候选 token 的概率条形图" loading="lazy">
+<figcaption>模型对各候选的概率；右下提示真实续写为 "The class was about how agents work…"。</figcaption></figure>
+<p>假设当前（未充分训练的）模型给出的分布为：to <strong>0.3171</strong>、as 0.0491、the 0.036、
+a 0.033、two 0.0147、how <strong>0.0124</strong>、getting 0.0101、three 0.01、time 0.0091、
+左引号 0.0081。模型把最高概率押在 "to" 上，而右下角提示真实训练文本的续写是
+"…about <strong>how</strong> agents work…"——模型此刻并不看好正确答案。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 97</span>真实 token 是 "how"，但模型只给了 0.0124</h3>
+<figure><img src="slides/slide-097.png" alt="候选分布中高亮真实 token how（0.0124）" loading="lazy">
+<figcaption>红框标出训练数据中的真实下一 token：how，概率仅 0.0124。</figcaption></figure>
+<p>把真实答案 "how" 用红框标出：它只分到 0.0124 的概率，远低于模型押注的 "to"。
+这正是一个"模型预测错了"的位置——损失函数要做的就是<strong>惩罚模型给真实 token
+的概率过低</strong>，并在反向传播中把概率往真实 token 上推。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 98</span>聚焦：正确答案的概率</h3>
+<figure><img src="slides/slide-098.png" alt="放大视图：about → how，概率 0.0124" loading="lazy">
+<figcaption>放大视图：前缀 about 预测出 how 的概率为 0.0124。</figcaption></figure>
+<p>把视野收窄到关键量：p(how | "The class was about") = <strong>0.0124</strong>。
+损失函数只关心这一个数——真实 token 的预测概率。其余候选的概率是多少并不直接进入
+该位置的损失（它们通过归一化间接相关）。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 99</span>计算损失：Loss = −log(0.0124) = 1.907</h3>
+<figure><img src="slides/slide-099.png" alt="损失计算：Loss = -log(0.0124) = 1.907" loading="lazy">
+<figcaption>对真实 token 概率取负对数，得到该位置的损失 1.907。</figcaption></figure>
+<p>损失定义为真实 token 概率的<strong>负对数</strong>：Loss = −log(0.0124) = <strong>1.907</strong>。
+负对数把概率映射为惩罚：概率越接近 1 损失越接近 0，概率越小损失越大且增长无界
+（p→0 时 −log p→∞）。这个值就是梯度下降要最小化的目标——训练后模型应给 "how"
+更高的概率，损失随之下降。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 100</span>交叉熵损失（Cross Entropy Loss）</h3>
+<figure><img src="slides/slide-100.png" alt="交叉熵损失公式 L = -Σ y_i log(p_i) 及各部分注释" loading="lazy">
+<figcaption>交叉熵损失公式及其逐项注释。</figcaption></figure>
+<p>把上面的单步推广到整个词表，就是语言模型的标准目标——交叉熵损失：</p>
+<p style="text-align:center;font-size:1.1em;">L = − Σ<sub>i=1</sub><sup>V</sup> y<sub>i</sub> · log(p<sub>i</sub>)</p>
+<p>各项含义如幻灯片注释：<strong>Σ 遍历词表中每一个 token</strong>（i = 1…V）；
+<strong>y<sub>i</sub> 是 one-hot 标签</strong>——当第 i 个 token 是数据中的真实 token 时为 1，
+否则为 0；<strong>log(p<sub>i</sub>) 是模型给该 token 的对数概率</strong>。由于 y<sub>i</sub>
+除真实 token 外全为 0，求和实际只剩真实 token 一项，即 L = −log(p<sub>真实</sub>)——
+正是 Slide 99 算的 1.907。对整个序列的每个预测位置都如此计算并取平均，就是预训练
+最小化的总损失。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 101</span>小节页：Pretraining（预训练）</h3>
+<figure><img src="slides/slide-101.png" alt="Pretraining 小节页" loading="lazy">
+<figcaption>训练三阶段之一：预训练。</figcaption></figure>
+<p>训练部分按三个阶段展开：<strong>Pretraining（预训练）→ Midtraining（中期训练）→
+Posttraining（后训练）</strong>。本页进入第一阶段——用海量通用文本从头训练基座模型。
+预训练的两大工程问题是<strong>数据从哪来、怎么配比</strong>，接下来几页都围绕数据。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 102</span>Data：网页数据清洗流水线</h3>
+<figure><img src="slides/slide-102.png" alt="从 HTML 到最终训练数据的清洗流水线" loading="lazy">
+<figcaption>HTML → Text Extraction → Lang ID → Rule-Based Filters → Quality Filters →
+Deduplication → Final Training Data。</figcaption></figure>
+<p>典型的网络语料处理流水线。原始 <strong>HTML</strong> 网页先做<strong>文本抽取</strong>
+（Text Extraction，去掉标签/导航/广告），再用<strong>语言识别</strong>（Lang ID）筛出目标语言，
+然后过<strong>基于规则的过滤器</strong>（Rule-Based Filters，如长度、符号比例等启发式规则），
+接着用<strong>质量过滤器</strong>（Quality Filters，通常是分类器打分），最后<strong>去重</strong>
+（Deduplication，图中红叉表示剔除重复文档），得到最终训练数据。每一步都在"减量提质"。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 103</span>Data：DCLM 过滤漏斗（量化）</h3>
+<figure><img src="slides/slide-103.png" alt="DCLM-Pool 到 DCLM-Baseline 的 Sankey 过滤漏斗" loading="lazy">
+<figcaption>从 Common Crawl 原始池到 DCLM-Baseline 的逐级过滤比例。
+Image Credit: DataComp-LM: In Search of the Next Generation of Training Sets for Language Models.
+arXiv:2406.11794。</figcaption></figure>
+<p>以 DCLM 论文 Figure 4 展示过滤的实际规模（百分比按原始文档总数计）。起点是
+<strong>DCLM-Pool</strong>（用 resiliparse 从 Common Crawl 抽取）。三大阶段：
+<strong>启发式清洗</strong>（复现 RefinedWeb，§4.1 &amp; 4.2）后剩 <strong>19.9%</strong>——
+其中 English filter 砍掉 50.8%、Repetition filter 9.6%、Other filters（词长、省略号计数、
+停用词等）9.0%、Page length filter 7.9%、URL filter 0.8%、Word removal ratio filter 2.0%；
+<strong>去重</strong>（§4.3，Bloom filter dedup 再砍 6.2%）后剩 13.7%；
+<strong>基于模型的过滤</strong>（§4.4，FastText filter 砍 12.3%）后最终只剩
+<strong>1.4%</strong> 成为 DCLM-Baseline。可见高质量预训练语料是"百里挑一"淘出来的。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 104</span>Data：数学专用语料 Nemotron-CC-Math</h3>
+<figure><img src="slides/slide-104.png" alt="Nemotron-CC-Math 构建流水线与主题分布饼图" loading="lazy">
+<figcaption>从 Common Crawl 构建 133B token 数学预训练数据集的流程与学科分布。
+Image Credit: Nemotron-CC-Math: A 133 Billion-Token-Scale High Quality Math Pretraining Dataset.
+arXiv:2508.15096。</figcaption></figure>
+<p>面向特定领域（数学）的语料构建实例。流水线：从 Common Crawl（98 个快照）出发，
+用 MegaMath、FineMath、OWM、InfiMM-WebMath 等数学 URL 清单筛出 <strong>229.54M</strong>
+个数学网页；页面经 <strong>Lynx</strong> 渲染抽取文本（弃用 Resiliparse/Trafilatura），
+再用 <strong>LLM 精炼</strong>（Refining text）提升质量，最后<strong>去重与去污染</strong>
+（Deduplication &amp; Decontamination），得到 <strong>Nemotron-CC-Math：101.15M 文档、
+133.26B token</strong>。右侧主题分布：Mathematics 60.28%、Computer science 11.99%、
+Physics 11.22%、Statistics 7.50%、Economics 3.18%、Chemistry 1.71%、Other 4.12%——
+一个以数学为主、覆盖理工科的高质量专用语料。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 105</span>Data：DCLM 数据样例</h3>
+<figure><img src="slides/slide-105.png" alt="DCLM 数据样例：Fortran EOSHIFT 函数文档" loading="lazy">
+<figcaption>DCLM 中的一条真实样例：Fortran 的 EOSHIFT 内建函数文档。</figcaption></figure>
+<p>展示清洗后语料的实际样子：一段 Fortran 标准库文档（EOSHIFT——End-off shift 函数，
+含参数说明、Array Type / Boundary Value 定义等）。这类<strong>技术文档、手册、教程</strong>
+信息密度高、结构规整，是预训练语料中质量较高的部分，也是模型学会写代码与读文档的
+重要来源。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 106</span>Data：The Pile 的成分构成</h3>
+<figure><img src="slides/slide-106.png" alt="The Pile 按类别的组成矩形树图" loading="lazy">
+<figcaption>The Pile（800GB）按类别的组成：Academic / Internet / Prose / Dialogue / Misc。
+Image Credit: The Pile: An 800GB Dataset of Diverse Text for Language Modeling.
+arXiv: 2101.00027。</figcaption></figure>
+<p>另一种思路：不靠"海量网页 + 过滤"，而是<strong>主动拼配多源高质量语料</strong>。
+The Pile（800GB）按五大类组织——<strong>Academic</strong>（学术：PubMed Central、ArXiv、
+FreeLaw、USPTO、PMA、Phil、NIH）、<strong>Internet</strong>（网络：Pile-CC、OpenWebText2、
+StackExchange、Wikipedia）、<strong>Prose</strong>（散文/书籍：Bibliotik、PG-19、BC2）、
+<strong>Dialogue</strong>（对话：Subtitles、IRC、EP、HN、YT）、<strong>Misc</strong>
+（其他：Github、DM Math）。树图面积即各类占比：学术与网络语料占大头。
+这种" curated mix "让模型在代码、论文、对话等维度更均衡。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 107</span>Data Mixing：用代理模型搜索最优配比</h3>
+<figure><img src="slides/slide-107.png" alt="Olmix 三步法：Swarm、Regression、Optimization" loading="lazy">
+<figcaption>数据配比的三步搜索框架：代理训练 → 回归建模 → 优化求解。
+Image Credit: Olmix: A Framework for Data Mixing Throughout LM Development |
+arxiv 2602.12237。</figcaption></figure>
+<p>数据"怎么配"本身是可优化的问题。Olmix 框架三步走：<strong>① Swarm（群体采样）</strong>
+——采多组配比 p，每组用<strong>代理小模型</strong>（proxy）快速训练，得到性能
+y₁₁…y<sub>n1</sub>、y₁<sub>K</sub>…y<sub>nK</sub>；<strong>② Regression（回归）</strong>
+——用这些（配比, 性能）样本拟合预测模型 f̂(p) ≈ 真实性能 f(p)；<strong>③ Optimization
+（优化）</strong>——在配比空间 S 上求解 minimize f̂(p)，得到最优配比 p*。
+核心思想：<strong>用便宜的小模型实验替代昂贵的大模型实验来搜索数据配方</strong>，
+再迁移到大模型训练。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 108</span>小节页：Midtraining（中期训练）</h3>
+<figure><img src="slides/slide-108.png" alt="Midtraining 小节页" loading="lazy">
+<figcaption>训练三阶段之二：中期训练。</figcaption></figure>
+<p>进入第二阶段 Midtraining——介于通用预训练与后训练之间，通常用<strong>更聚焦目标领域
+的数据</strong>继续训练，为后续的指令微调/对齐打基础。接下来几页讲它的动机与做法。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 109</span>把数据配比向目标领域倾斜</h3>
+<figure><img src="slides/slide-109.png" alt="Pretraining 与 Cooldown 阶段各质量带的领域配比热力表" loading="lazy">
+<figcaption>预训练与 cooldown 阶段，不同领域 × 质量带的配比示意。
+Image Credit: Curating 25 Trillion Tokens for LLM Pretraining |
+https://openathena.ai。</figcaption></figure>
+<p>动机页：<strong>调整数据配比，使其更聚焦目标领域（数学、代码等）</strong>。表格把数据按
+<strong>领域</strong>（Application and Web Development、Arts/History/Culture、Business Software
+and Strategy、Christian Faith and Devotion、Clinical Treatment and Dentistry 等）×
+<strong>质量带</strong>（Q0–Q4）交叉分格，左右对比 <strong>PRETRAINING</strong> 阶段与
+<strong>COOLDOWN</strong>（训练末段）阶段的配比（色块深浅表示占比）。思路是在训练后期
+（cooldown）把配比向高质量、目标领域的格子倾斜。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 110</span>在"预训练"里多混入目标领域数据往往有帮助</h3>
+<figure><img src="slides/slide-110.png" alt="Specialized Pretraining Mix 示意与微调过程损失曲线对比" loading="lazy">
+<figcaption>左：通用数据 + 10–50× 领域数据重复的专用预训练配比；右：域内泛化更好、
+微调时遗忘更少。Image Credit: The Finetuner's Fallacy: When to Pretrain with Your Finetuning
+Data. arxiv 2603.16177。</figcaption></figure>
+<p>左图给出<strong>专用预训练配比（Specialized Pretraining Mix）</strong>：在通用数据
+（General Data）之上，<strong>把领域数据集重复混入 10–50 倍</strong>（每个蓝格 = 领域数据
+的 1 个 epoch）。右图实验（基座模型均为 200B 预训练 token）对比"含 33× 领域数据的
+专用预训练"（实线）与"通用预训练"（虚线）：蓝色为<strong>领域测试损失</strong>、
+橙色为<strong>通用损失</strong>，横轴为后续微调步数。专用预训练不仅<strong>域内泛化更好</strong>
+（蓝色实线最低点更低），而且<strong>微调时通用能力遗忘更少</strong>（橙色实线上升更缓）
+——即"与其事后微调塞领域数据，不如预训练阶段就混进去"。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 111</span>Midtraining 桥接预训练与后训练分布</h3>
+<figure><img src="slides/slide-111.png" alt="梯度对齐等高线图：标准微调 vs midtraining 的参数路径" loading="lazy">
+<figcaption>θ_pre → θ_target 的两条路径：标准微调（红虚线，穿越低对齐区）vs
+midtraining（白实线，经 θ_mid 走高对齐谷地）。Image Credit: Midtraining Bridges Pretraining
+and Posttraining Distributions. arxiv 2510.14865。</figcaption></figure>
+<p>用参数空间的等高线图直观解释 midtraining 的作用。颜色表示<strong>梯度对齐程度</strong>
+（蓝=高对齐、红=低对齐）。从预训练参数 θ<sub>pre</sub> 到目标参数 θ<sub>target</sub>：
+<strong>标准微调</strong>（Standard FT，红虚线）直穿中间的低对齐"山丘"，优化困难、
+易遗忘；而先做 <strong>midtraining</strong>（白实线）把参数移到 θ<sub>mid</sub>——
+一个处于高对齐谷地的中间点——再走向 θ<sub>target</sub>，路径全程落在对齐良好的区域。
+即 midtraining 在两种数据分布之间架了一座"桥"，让后训练走得更稳。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 112</span>小节页：Posttraining（后训练）</h3>
+<figure><img src="slides/slide-112.png" alt="Posttraining 小节页" loading="lazy">
+<figcaption>训练三阶段之三：后训练。</figcaption></figure>
+<p>进入第三阶段 Posttraining——把基座模型变成"会听指令、对齐人类偏好"的助手模型。
+主流手段依次为：指令微调（SFT）、基于人类偏好的强化学习（RLHF），以及更近期的
+可验证奖励强化学习（RLVR）与面向智能体的专门训练。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 113</span>Instruction Finetuning（指令微调）</h3>
+<figure><img src="slides/slide-113.png" alt="指令微调与思维链微调示例，及对未见任务的泛化" loading="lazy">
+<figcaption>指令微调、思维链微调的样例，以及多任务微调后对未见任务的推理泛化。
+Image Credit: Scaling Instruction-Finetuned Language Models. arxiv 2210.11416。</figcaption></figure>
+<p>指令微调的三种数据形态：① <strong>普通指令微调</strong>——"Please answer the following
+question. What is the boiling point of Nitrogen?" → "-320.4F"；② <strong>思维链微调
+（Chain-of-thought）</strong>——要求逐步推理，如苹果算术题先算 23−20=3 再算 3+6=9；
+③ <strong>多任务指令微调</strong>——用 1.8K 个任务的大规模指令集合训练。虚线之下的绿色
+示例展示<strong>推理阶段的泛化</strong>：对训练中没见过的任务（"Geoffrey Hinton 能和
+George Washington 对话吗？先给理由"），模型能输出合理推理并答 "no"（生于 1947 vs
+卒于 1799）。即多任务指令微调赋予模型<strong>对未见指令的零样本泛化</strong>。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 114</span>Learning from Human Preferences（RLHF 三步）</h3>
+<figure><img src="slides/slide-114.png" alt="InstructGPT 三阶段：SFT、奖励模型、PPO" loading="lazy">
+<figcaption>从人类偏好学习的三步流程。Image Credit: Training language models to follow
+instructions with human feedback. arxiv 2203.02155。</figcaption></figure>
+<p>经典 RLHF（InstructGPT）三步：<strong>Step 1 收集示范数据、训练监督策略（SFT）</strong>
+——从提示集采样提示（如"向 6 岁小孩解释登月"），标注员写出期望输出
+（"Some people went to the moon…"），用监督学习微调 GPT-3；<strong>Step 2 收集比较数据、
+训练奖励模型（RM）</strong>——对同一提示采样多个模型输出（A/B/C/D），标注员从好到差排序
+（D &gt; C &gt; A = B），用排序数据训练奖励模型；<strong>Step 3 用强化学习对奖励模型优化
+策略</strong>——采样新提示（"写个青蛙的故事"），策略（PPO）生成输出，奖励模型打分
+r<sub>k</sub>，用该奖励通过 PPO 更新策略，循环迭代。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 115</span>人类反馈的问题</h3>
+<figure><img src="slides/slide-115.png" alt="Problems with Human Feedback 四点" loading="lazy">
+<figcaption>人类反馈机制的四个问题。Slide inspiration: CS329X。</figcaption></figure>
+<p>RLHF 依赖人类标注，但人类反馈本身有缺陷：</p>
+<ul>
+<li><strong>人类标注员可能不可靠</strong>（unreliable）——质量参差、会犯错；</li>
+<li><strong>每个人偏好不同</strong>——标注者之间难以一致；</li>
+<li><strong>给模型优化带来坏激励</strong>——如谄媚（sycophancy）、故作权威
+（authoritativeness）：模型学会"讨好标注员"而非"答得对"；</li>
+<li><strong>数据本身的采集可能不合伦理</strong>（sourced unethically）。</li>
+</ul>
+<p>这些问题催生了下一节"可验证奖励"的方向。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 116</span>RLVR：可验证奖励的强化学习</h3>
+<figure><img src="slides/slide-116.png" alt="RLVR 要点与 GRPO 流程图" loading="lazy">
+<figcaption>让奖励可验证；右侧列出可验证奖励来源，下方为 GRPO 流程。
+Image Credit: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models
+| arxiv 2402.03300。</figcaption></figure>
+<p>针对人类反馈的问题，<strong>RLVR（Reinforcement Learning with Verifiable Rewards）</strong>
+的思路是<strong>让奖励可验证</strong>——用客观校验器代替人类主观打分。要点三条：
+让奖励可验证；<strong>对数学和代码特别好使</strong>；需要谨慎设计验证器（verifier）。
+右侧列出可验证奖励的常见形式：<strong>Unit Tests</strong>（单元测试）、<strong>Lean Proof</strong>
+（形式化证明）、<strong>Exact Match</strong>（精确匹配）、<strong>System state</strong>
+（系统状态检查）等。下方为 <strong>GRPO</strong> 流程：问题 q 输入策略模型（Policy Model，
+可训练），采样一组输出 o₁…o<sub>G</sub>，分别经参考模型（算 KL 约束）与奖励模型打分得
+r₁…r<sub>G</sub>，再做<strong>组内计算</strong>（Group Computation，用组内相对优劣估计优势）
+得到 A₁…A<sub>G</sub> 更新策略——无需单独的价值网络。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 117</span>面向智能体的专门训练（如 SWE-Smith）</h3>
+<figure><img src="slides/slide-117.png" alt="SWE-Smith 从真实仓库生成合成任务的流水线" loading="lazy">
+<figcaption>SWE-Smith：真实仓库 → 环境构建 → 任务生成策略 → 新任务实例。
+Image Credit: SWE-smith: Scaling Data for Software Engineering Agents | arxiv 2504.21798。</figcaption></figure>
+<p>智能体训练数据的规模化生成，以 SWE-Smith 为例，四步流水线：
+① <strong>真实仓库（Real Repositories）</strong>——源代码（src/、tests/、README.rst、
+setup.py）加通过的单元测试；② <strong>环境构建（Environment Creation）</strong>——
+SWE-agent 尝试安装仓库并跑通测试，再由"Developer"角色据其过程写出 Dockerfile；
+③ <strong>任务生成策略（Task Gen. Strategies）</strong>——四种手段造 bug：程序化修改
+（Procedural Modification）、LM 生成、组合多个 bug（Combine Bugs）、PR 镜像
+（PR Mirroring）；④ <strong>新任务实例（New Task Instances）</strong>——产出环境镜像 +
+合成任务（生成的 Issue、带统计的 Bugged Patch、已验证测试 ×2/✓9）。
+即用真实代码仓库<strong>自动批量制造"修 bug"训练任务</strong>。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 118</span>SWE-Smith 基准结果</h3>
+<figure><img src="slides/slide-118.png" alt="SWE-Smith 上各模型在不同 agent 系统的得分表" loading="lazy">
+<figcaption>闭源与开源权重模型在 SWE-Smith（Lite / Verified 两个子集）上的表现。
+Image Credit: SWE-smith: Scaling Data for Software Engineering Agents | arxiv 2504.21798。</figcaption></figure>
+<p>同一模型搭配不同 agent 系统（harness）得分差异显著——再次印证"模型 + 脚手架"要
+一起看。<strong>闭源权重模型</strong>：GPT-4o 配 Agentless 得 Lite 32.0 / Verified 38.8、
+配 OpenHands 22.0、配 SWE-agent 18.3/23.0；Claude 3.5 Sonnet 配 Agentless 40.7/50.8、
+OpenHands 41.7/53.0、AutoCodeRover 46.2、SWE-agent 23.0/33.6；Claude 3.7 Sonnet 配
+SWE-agent 达 <strong>48.0 / 58.2</strong>（该行加粗）；Llama3-SWE-RL-70B（11M 训练规模）
+配 Agentless 41.0。<strong>开源权重模型</strong>：SWE-agent-LM-32B（5k 训练）30.7/
+<strong>40.2</strong> 最突出，超过多数未专门训练的更大开源模型（SWE-gym-32B 15.3/20.6、
+SWE-agent-LM-7B 11.7/15.2）；Lingma-SWE-GPT-72B 28.8、Qwen3-235B-A22B 34.4、
+R2E-Gym-32B 34.4、SWE-fixer-72B 24.7/32.8。结论：<strong>面向 agent 的专门训练数据
+（即便规模不大）能显著提升软件工程任务表现</strong>。</p>
+</article>
+
+</section>
+
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">四、LLM 推理</h2>
+
+<article class="slide">
+<h3><span class="no">Slide 119</span>章节页：LLM Inference</h3>
+<figure><img src="slides/slide-119.png" alt="LLM Inference 章节页，进度条高亮 Inference" loading="lazy">
+<figcaption>本讲进度条：Language Models? → Architecture → Training →
+<strong>Inference</strong> → LLMs for Agents。</figcaption></figure>
+<p>进入第四部分"LLM 推理"。进度条高亮 Inference：模型训练好之后，<strong>实际服务用户时
+如何高效地生成 token</strong>。对智能体系统而言，推理成本与延迟直接决定多步循环的可行性，
+因此这一部分同样是 agent 工程师的必修课。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 120</span>小节页：Prefill and Decode</h3>
+<figure><img src="slides/slide-120.png" alt="Prefill and Decode 小节页" loading="lazy">
+<figcaption>推理的两个阶段：预填充与解码。</figcaption></figure>
+<p>推理小节从最基本的两阶段划分开始：<strong>Prefill（预填充）</strong>——一次性处理全部
+输入提示，计算并缓存各层的 Key/Value；<strong>Decode（解码）</strong>——逐 token 自回归生成，
+每步只算一个新 token 并追加进 KV Cache。两阶段的计算特征截然不同（前者并行、计算密集，
+后者串行、访存密集），后续将据此展开优化手段。</p>
+<article class="slide">
+<h3><span class="no">Slide 121</span>GPUs</h3>
+<figure><img src="slides/slide-121.png" alt="CPU 与 GPU 结构对比" loading="lazy">
+<figcaption>CPU（少量 ALU + 大 Control/Cache）与 GPU（海量小型计算单元）的结构对比。</figcaption></figure>
+<p>讨论推理性能前先看硬件。CPU 把大量面积留给<strong>控制单元（Control）与缓存（Cache）</strong>，
+只有少量 ALU，擅长复杂分支与串行逻辑；GPU 则几乎把整个芯片铺满<strong>成千上万个小计算单元</strong>，
+控制逻辑极简、缓存很小，专为大规模并行的矩阵/向量运算而生。LLM 的前向计算正是后者擅长的形状，
+因此推理几乎全部跑在 GPU 上——但这也意味着推理性能受 GPU 的<strong>算力上限</strong>与<strong>显存带宽</strong>双重约束，
+引出下一张 roofline 模型。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 122</span>Roofline Performance Model</h3>
+<figure><img src="slides/slide-122.png" alt="Roofline 性能模型" loading="lazy">
+<figcaption>Roofline 模型：纵轴为可达算力（Attainable FLOP/s），横轴为算术强度（FLOP:Byte）。</figcaption></figure>
+<p>Roofline 模型用两条"屋顶线"刻画任何核函数在给定硬件上的性能上限：一条水平线是
+<strong>峰值算力（Peak FLOP/s）</strong>，一条斜线是<strong>显存带宽（Bandwidth GB/s）</strong>。
+横轴<strong>算术强度</strong>（每搬运 1 字节数据能做多少次浮点运算）决定工作点落在哪条线下：
+强度低时受带宽限制（<strong>bandwidth-bound</strong>，性能沿斜线爬升），强度高时受算力限制
+（<strong>compute-bound</strong>，触及水平天花板）。这个模型是理解 LLM 推理两个阶段性能差异的钥匙。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 123</span>Prefill and Decode</h3>
+<figure><img src="slides/slide-123.png" alt="Prefill 与 Decode 流程示意" loading="lazy">
+<figcaption>提示词 "The quick brown fox" 经 prefill 一次性处理，输出 "jumps over" 逐 token decode；KV 向量被缓存复用。</figcaption></figure>
+<p>这张图给出两阶段的直观流程：<strong>prefill</strong> 阶段把整条提示（The quick brown fox）
+并行送过模型，为每个 token 生成 <strong>KV 向量</strong>并缓存（虚线框 cached）；
+<strong>decode</strong> 阶段每步只处理一个新 token（jumps → over），但它对历史上下文的注意力
+直接读取已缓存的 KV，无需重算。因此 prefill 是一次性的并行大计算，decode 是串行的、
+每步增量的小计算——两者的瓶颈完全不同，优化思路也因此分家。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 124</span>Prefill</h3>
+<figure><img src="slides/slide-124.png" alt="Prefill 阶段的注意力计算" loading="lazy">
+<figcaption>Prefill：四个 token（The/class/was/about）同时参与完整的自注意力计算。</figcaption></figure>
+<p>Prefill 阶段，提示中的全部 token（此处为 The/class/was/about）<strong>同时</strong>经过
+Layer Norm，再分别乘以 W_Q、W_K、W_V 得到完整的 Q、K、V 矩阵，计算
+Softmax(QK<sup>⊤</sup>/√d<sub>k</sub>)·V，最后经 W_O 投影并与残差相加。
+关键点：所有 token 的 Q/K/V 都是满矩阵，注意力是 <strong>n×n 的稠密矩阵乘</strong>，
+计算量随序列长度二次增长但高度并行——这是典型的 compute-bound 工作负载。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 125</span>Decode</h3>
+<figure><img src="slides/slide-125.png" alt="Decode 第一步" loading="lazy">
+<figcaption>Decode：每步只新增一个 token（The），Q 退化为单行向量。</figcaption></figure>
+<p>进入 decode 后，每步只有<strong>一个新 token</strong>（图中为 The）进入计算：
+它的 Q 只是一个<strong>行向量</strong>，而 K<sup>⊤</sup>、V 取自此前缓存的历史 KV。
+于是 QK<sup>⊤</sup> 变成"一行 × 矩阵"，Softmax 结果也只有一行——每步的计算量从 O(n²)
+降到 O(n)，但每一步都必须把整个模型权重和全部 KV Cache 从显存<strong>读一遍</strong>。
+搬运的数据量远大于计算量，这正是下一步要讨论的访存瓶颈。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 126</span>Decode：Clear Unimportant Memory</h3>
+<figure><img src="slides/slide-126.png" alt="Decode 中间态：清除不重要的中间内存" loading="lazy">
+<figcaption>Decode 标注"Clear Unimportant Memory"：每步之后清掉不再需要的临时激活。</figcaption></figure>
+<p>这一帧强调 decode 的内存纪律：每生成一步后，该步产生的<strong>临时激活
+（中间矩阵、Softmax 中间结果等）都不再需要，应立即清除</strong>，唯一需要跨步保留的只有
+KV Cache。若不清除，显存会随步数无谓膨胀。"只留 KV Cache"是 decode 阶段内存占用的核心结论。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 127</span>Decode（累积 2 个 token）</h3>
+<figure><img src="slides/slide-127.png" alt="Decode 累积两个 token" loading="lazy">
+<figcaption>Decode 继续：上下文累积到两个 token（The/class），KV Cache 增长一行。</figcaption></figure>
+<p>第二个 decode 步：新 token（class）的 Q 同样是单行向量，与已缓存的两行 K<sup>⊤</sup>/V
+做注意力。可见 decode 是<strong>逐 token 累积</strong>的过程——每生成一个 token，KV Cache 就追加一行，
+后续每一步要读取的 KV 也随之变长。这解释了为什么长序列生成既慢又吃显存。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 128</span>Decode：Clear Unimportant Memory（2）</h3>
+<figure><img src="slides/slide-128.png" alt="第二步后清除临时激活" loading="lazy">
+<figcaption>第二步结束后再次清除临时激活，仅保留 KV Cache。</figcaption></figure>
+<p>与 Slide 126 相同的纪律再次执行：本步的临时激活被清掉，KV Cache 保留两行。
+这个"算一步、清一步"的循环会贯穿整个 decode 过程——动画的后续各帧只是不断重复
+"新增一个 token → 注意力 → 清除临时量"这一模式。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 129</span>Decode（累积 3 个 token）</h3>
+<figure><img src="slides/slide-129.png" alt="Decode 累积三个 token" loading="lazy">
+<figcaption>上下文累积到三个 token（The/class/was）。</figcaption></figure>
+<p>第三个 token（was）加入：Q 仍为单行，K<sup>⊤</sup>、V 已是三行。
+注意 K<sup>⊤</sup> 矩阵随步数<strong>线性长高</strong>——decode 的每一步都在读取一个越来越大的 KV Cache，
+单步耗时与显存占用都随上下文长度线性增长。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 130</span>Decode：Clear Unimportant Memory（3）</h3>
+<figure><img src="slides/slide-130.png" alt="第三步后清除临时激活" loading="lazy">
+<figcaption>第三步后清除临时激活，KV Cache 保留三行。</figcaption></figure>
+<p>第三步收尾：临时量清除，KV Cache 稳定在三行。动画以此节奏推进到序列结束。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 131</span>Decode（累积 4 个 token）</h3>
+<figure><img src="slides/slide-131.png" alt="Decode 累积四个 token" loading="lazy">
+<figcaption>上下文累积到四个 token（The/class/was/about），序列生成完毕。</figcaption></figure>
+<p>最后一个 token（about）生成，KV Cache 达到四行，与 prefill 阶段一次性算出的 KV 完全一致
+——殊途同归：prefill 是一次并行算完，decode 是逐行追加，最终缓存内容相同。
+这也是"长提示 + 短输出"场景下 prefill 主导耗时、"短提示 + 长输出"场景下 decode 主导耗时的原因。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 132</span>Decode：Clear Unimportant Memory（4）</h3>
+<figure><img src="slides/slide-132.png" alt="最后一步清除临时激活" loading="lazy">
+<figcaption>最后一步后清除全部临时激活，只余 KV Cache。</figcaption></figure>
+<p>decode 动画的收尾帧：所有临时激活清空，画面上只剩 K<sup>⊤</sup>、V 两个矩阵——
+下一帧将正式给出它们的名字。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 133</span>KV Cache</h3>
+<figure><img src="slides/slide-133.png" alt="KV Cache 概念" loading="lazy">
+<figcaption>清除一切临时量后，跨步保留的 K<sup>⊤</sup> 与 V 就是 KV Cache。</figcaption></figure>
+<p>动画收敛到核心概念：<strong>KV Cache</strong>。decode 全程唯一需要持久保存的中间状态，
+就是每个历史 token 的 Key 与 Value（按层、按头存储）。它有两个工程后果：
+其一，<strong>显存占用随序列长度线性增长</strong>，长上下文/大 batch 下 KV Cache 常常比模型权重本身更占显存；
+其二，<strong>每一步都要完整读取 KV Cache 与全部权重</strong>，使 decode 成为访存密集型操作。
+围绕它的优化（量化、分页管理 PagedAttention、压缩/驱逐等）是推理系统的核心课题。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 134</span>Roofline 再看两阶段：Decode vs Prefill</h3>
+<figure><img src="slides/slide-134.png" alt="Roofline 模型标注 Decode 与 Prefill 的位置" loading="lazy">
+<figcaption>同一张 roofline 图上：Decode 落在 bandwidth-bound 区，Prefill 落在 compute-bound 区。</figcaption></figure>
+<p>把两个阶段标回 roofline 图，结论一目了然：<strong>Decode 的算术强度极低</strong>
+（每步搬运全部权重 + KV Cache，却只做 O(n) 计算），落在<strong>带宽受限</strong>的斜线区，
+提速靠的是提高显存带宽、降低搬运量（量化、投机解码、batching）；
+<strong>Prefill 的算术强度高</strong>（n×n 稠密矩阵乘），落在<strong>算力受限</strong>的水平区，
+提速靠的是吃满 GPU 峰值算力（并行、算子融合）。两种瓶颈对应两套完全不同的优化 playbook。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 135</span>Metrics</h3>
+<figure><img src="slides/slide-135.png" alt="推理时延指标：TTFT 与 TPOT" loading="lazy">
+<figcaption>时间轴上的两个核心指标：prefill 对应 time to first token，decode 对应 time per output token。</figcaption></figure>
+<p>从用户体验出发，推理性能用两个时延指标刻画：<strong>Time to First Token（TTFT）</strong>——
+从发出请求到看到第一个输出 token 的时间，由 prefill 阶段主导，决定"响应快不快"；
+<strong>Time Per Output Token（TPOT）</strong>——decode 阶段相邻 token 的间隔，决定"生成流不流畅"。
+两者分别对应 compute-bound 与 bandwidth-bound，优化时必须分开度量、分开治理，
+这也是后面讨论并发调度（continuous batching）与投机解码的出发点。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 136</span>Speculative Decoding</h3>
+<figure><img src="slides/slide-136.png" alt="投机解码：草稿模型与目标模型" loading="lazy">
+<figcaption>左侧小 Draft Model 逐 token 起草 "once upon a time there"；右侧大 Target Model 并行校验，前三通过、最后一个被拒。</figcaption></figure>
+<p><strong>投机解码</strong>是加速 decode 的代表性算法，针对的正是"decode 每步都要读一遍大模型权重"
+的带宽瓶颈。做法：用一个<strong>小而快的草稿模型（Draft Model）</strong>自回归地连猜 K 个 token
+（左图：Once→upon→a→time→there 逐步起草），再把这些草稿<strong>一次性并行</strong>交给
+<strong>目标模型（Target Model）</strong>校验（右图：一次前向即可对全部 K 个位置给出分布）。
+与目标模型一致的 token 被接受（✓），第一个不一致处被拒绝（✗）并从修正后的分布重新采样。
+可以证明该拒绝采样过程<strong>不改变目标模型的输出分布</strong>——加速但不损质量；
+当草稿命中率高时，一次目标模型前向能"兑换"多个 token，等效提升 decode 吞吐。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 137</span>Speculative Decoding：经验数据</h3>
+<figure><img src="slides/slide-137.png" alt="投机解码随草稿长度 K 的三组曲线" loading="lazy">
+<figcaption>采样总时长、接受率、单循环耗时随草稿 token 数 K 的变化（HumanEval 代码 vs XSum 摘要）。</figcaption></figure>
+<p>三张曲线给出投机解码的工程权衡，横轴均为草稿 token 数 K：
+<strong>① 平均采样时间</strong>先随 K 下降（并行校验摊薄了大模型前向成本）后回升（K 过大时草稿多为无效计算），
+存在最优 K；<strong>② 接受率</strong>随 K 单调下降——猜得越长越难全中，且代码（HumanEval）的接受率
+系统性高于摘要（XSum），印证红字结论"<strong>有些领域的文本比别的领域更可预测</strong>"；
+<strong>③ 单次循环耗时</strong>随 K 近似线性上升（目标模型一次要校验更长的草稿）。
+实践中的 K 需在这三者间折中，且最好按领域自适应调整。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 138</span>小节页：Inference Time Scaling（Test Time Scaling）</h3>
+<figure><img src="slides/slide-138.png" alt="Inference Time Scaling 小节页" loading="lazy">
+<figcaption>推理时扩展：用更多的推理期计算换取更高的答案质量。</figcaption></figure>
+<p>推理优化的另一条主线：<strong>不在训练期、而在推理期投入更多计算</strong>来提升质量，
+即 Inference Time Scaling（又称 Test Time Scaling）。与前面"让推理更快"的优化方向相反，
+这里是<strong>主动花更多算力换正确率</strong>——典型手段是让模型"多想一会儿"：
+展开中间推理步骤、自我质疑与校验、多次采样择优。接下来两页展示这条路线的代表技术。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 139</span>Chain of Thought</h3>
+<figure><img src="slides/slide-139.png" alt="标准提示与思维链提示对比" loading="lazy">
+<figcaption>左：标准提示直接给答案 27（错）；右：思维链提示示范中间推理，模型输出完整步骤得到 9（对）。</figcaption></figure>
+<p><strong>思维链（Chain-of-Thought, CoT）</strong>是最早也最直接的推理时扩展：
+标准提示（左）只给"问题→答案"样例，模型直接蹦出 27，错了；
+CoT 提示（右）在样例中<strong>显式写出中间推理步骤</strong>（"Roger 原有 5 个球，2 罐×3=6，5+6=11"），
+模型便学会在输出答案前先铺开推理链（"原有 23 个苹果，用了 20 个剩 3，又买 6 个得 9"），答案随之正确。
+本质是把原本一步完成的计算<strong>摊到多个 token 上逐步执行</strong>，用更多推理期计算换取可靠性。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 140</span>Reasoning LLM</h3>
+<figure><img src="slides/slide-140.png" alt="传统 LLM 与推理 LLM 的回答对比" loading="lazy">
+<figcaption>同一道"涨价 25% 再打七五折"题：传统 LLM 直线计算；推理 LLM 会自我质疑、反思并复核。</figcaption></figure>
+<p>CoT 的进一步内化就是<strong>推理型 LLM（Reasoning LLM）</strong>：推理过程不再依赖提示词示范，
+而是经训练内建为模型行为。同一道题（外套 $80，涨价 25% 后再打 25% 折扣，求最终价）：
+<strong>传统 LLM</strong>（左）按部就班算出 $100→$75；<strong>推理 LLM</strong>（右）则展现出
+"直觉—质疑—修正—复核"的完整链条：先直觉认为涨跌抵消仍为 $80，随即自我打断
+（"Wait… 折扣是作用于涨价后的价格"），重新算得 $75，最后主动验算
+（"Let me check that. $80+$20−$25=$75. Okay."）。这种<strong>自我反思与验证</strong>
+正是推理时扩展的核心机制，也是后续 agent 系统中"规划—执行—检查"循环的模型侧基础。</p>
+<article class="slide">
+<h3><span class="no">Slide 141</span>Reasoning LLM："Aha" moments（自我纠错）</h3>
+<figure><img src="slides/slide-141.png" alt="推理模型的 Aha 时刻与自我纠错" loading="lazy">
+<figcaption>think 块内模型先犯错（ticket=18），随即 "Wait, that can't be right" 自我打断并重算得 12。</figcaption></figure>
+<p>另一道应用题（票+爆米花共 $18，票比爆米花贵 $6，求票价）完整展示了推理模型的<strong>"Aha" 时刻</strong>：
+模型在 &lt;think&gt; 块内先列方程 p+6=18 解出 p=12、ticket=18——随即意识到错误
+（<strong>"Wait, that can't be right. I only used the ticket price, not the total of ticket + popcorn."</strong>），
+重新列出正确方程 p+(p+6)=18，解得 p=6、票价 $12，最后以 &lt;answer&gt;\boxed{12}&lt;/answer&gt; 收尾。
+红字点明核心能力：<strong>模型学会了自我纠正（self-correct）</strong>——这种"发现矛盾→回溯→重算"
+的行为是推理时扩展能提升正确率的关键机制，也再次印证上一讲的 RLVR：
+可验证的奖励信号能训练出此类反思行为。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 142</span>推理努力（Effort）与成本—分数权衡</h3>
+<figure><img src="slides/slide-142.png" alt="Agents' Last Exam：各模型分数—成本曲线与 effort 滑块" loading="lazy">
+<figcaption>"Agents' Last Exam" 基准上各前沿模型的 Score vs Cost per task；GPT-6 Astra 可按 Low/Medium/Max 三档 effort 调节。</figcaption></figure>
+<p>这张来自 OpenAI 的图把推理时扩展落到<strong>产品形态</strong>：横轴每任务成本（对数轴，$0.02–$20）、
+纵轴 agent 基准分数。各模型家族（GPT-6 Astra/Sol/Luna、GPT-5.6 Sol/Luna、Claude Opus 5、
+Claude Fable 5 w/ Opus 4.8 fallback）各占一段成本—分数曲线；放大看 <strong>GPT-6 Astra</strong>，
+同一模型通过 <strong>Low / Medium / Max</strong> 三档推理努力（右下角的 effort 滑块 UI，当前 High）
+在曲线上滑动——<strong>花得越多（token 越多、思考越久），分数越高</strong>。
+推理努力由此成为用户可直接调节的"质量—成本"旋钮。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 143</span>Setting the Reasoning Level（GPT-OSS）</h3>
+<figure><img src="slides/slide-143.png" alt="GPT-OSS 用系统提示设置推理级别" loading="lazy">
+<figcaption>GPT-OSS 的实现：在 System Prompt 中写入 Reasoning: low / medium / high，再接用户提示。</figcaption></figure>
+<p>开源模型 GPT-OSS 展示了 effort 旋钮的<strong>朴素实现</strong>：推理级别不是 API 参数，
+而是直接写进<strong>系统提示</strong>的一行文本——<code>Reasoning: low</code> / <code>medium</code> / <code>high</code>，
+之后才是用户提示（"Solve this math problem…"）。模型在训练时见过这三档指令，
+据此调节 &lt;think&gt; 块的长度与深度。这说明 effort 控制本质上是指令遵循问题，
+框架层面无需特殊机制，一行提示即可切换。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 144</span>Some ways it is done：effort 的训练方法</h3>
+<figure><img src="slides/slide-144.png" alt="Inkling 的 token 惩罚与 Kimi K3 的多教师蒸馏" loading="lazy">
+<figcaption>左：Inkling 用 R(e)=R_task−λ(e)N_tokens 按 token 数惩罚推理长度；右：Kimi K3 用 3 领域×3 档教师做多教师蒸馏。</figcaption></figure>
+<p>两种让模型学会分档推理的训练做法。<strong>Inkling（Thinking Machines）</strong>在 RL 奖励中
+加入长度惩罚：R(e) = R_task − λ(e)·N_tokens，<strong>λ 调高</strong>时多写 token 代价大→模型学会
+<strong>低 effort</strong>（简洁作答）；<strong>λ 调低</strong>时思考几乎免费→模型展开<strong>高 effort</strong>推理。
+λ 成为连续可调的努力旋钮。<strong>Kimi K3（Moonshot）</strong>则走蒸馏路线：用 3 个领域
+（General Task / General Agent / Coding Agent）× 3 档 effort（High/Med/Low）共 9 个教师模型，
+配合"答对 +1、答错 0、答错且超预算 −1"的奖励，<strong>多教师蒸馏（Multi Teacher Distillation）</strong>
+到一个学生模型，使其同时继承各领域的分档推理能力。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 145</span>Scaling with Repeated Sampling</h3>
+<figure><img src="slides/slide-145.png" alt="重复采样：生成多份候选并用验证器挑选" loading="lazy">
+<figcaption>Step 1：LLM 对同一问题生成多份候选解（红=错、绿=对）；Step 2：验证器（单元测试/证明检查器/多数投票）挑出最终答案。</figcaption></figure>
+<p>推理时扩展的另一条路线：<strong>重复采样（Repeated Sampling）</strong>。
+Step 1 让 LLM 对同一问题独立生成<strong>许多份候选解</strong>；Step 2 用<strong>验证器</strong>
+（单元测试、形式化证明检查器、多数投票等）从中挑出正确答案。该范式把问题拆成两个独立维度：
+<strong>Problem 1（coverage，覆盖率）</strong>——采样足够多时，候选中<strong>是否存在</strong>正确解；
+<strong>Problem 2（precision，精确率）</strong>——能否从候选中<strong>识别出</strong>正确解。
+只要任一维度足够强（或两者配合），总正确率就能随采样数提升。出自 "Large Language Monkeys"（arXiv 2407.21787）。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 146</span>Scaling with Repeated Sampling：pass@k 曲线</h3>
+<figure><img src="slides/slide-146.png" alt="pass@k 随采样数 k 的变化" loading="lazy">
+<figcaption>四个基准上 Llama-3-8B/70B-Instruct 的 pass@k 随 k 上升，逐步追平甚至超过单次采样的 GPT-4o（红虚线）。</figcaption></figure>
+<p>实证数据：纵轴覆盖率 pass@k（k 次采样中至少一次正确的概率），横轴采样数 k（对数轴 1–10⁴）。
+在 MiniF2F-MATH（形式化证明）、CodeContests、MATH、GSM8K 四个基准上，
+Llama-3-8B/70B-Instruct 的 pass@k 随 k <strong>单调上升</strong>：小模型靠海量采样，
+coverage 能追平乃至超过<strong>单次采样的 GPT-4o</strong>（红色虚线）——尤其在有 oracle 验证器的
+MATH/GSM8K 上，pass@k 快速逼近 1。结论：<strong>采样数是一种可与模型规模互换的推理期算力</strong>，
+前提是有可靠的验证器（否则退化为下一节的自一致性）。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 147</span>没有验证器怎么办？Self-Consistency</h3>
+<figure><img src="slides/slide-147.png" alt="贪心解码与自一致性对比" loading="lazy">
+<figcaption>上：CoT 贪心解码单路径给出错误答案 $14；下：自一致性采样多条推理路径（$18/$26/$18），对推理路径边际化、聚合最终答案得 $18。</figcaption></figure>
+<p>当任务没有单元测试这类客观验证器时，<strong>自一致性（Self-Consistency）</strong>提供替代方案：
+标准 CoT 贪心解码（上）只走一条路径，可能得到错误的 $14；自一致性（下）则
+<strong>采样一组多样的推理路径</strong>（示例中三条路径分别得 $18、$26、$18），
+然后<strong>对推理路径做边际化、只聚合最终答案</strong>——多数投票得 $18，正确。
+直觉：通向正确答案的推理路径通常多于通向任一错误答案的路径。出自 arXiv 2203.11171。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 148</span>Self-Consistency：ARC 上的收益</h3>
+<figure><img src="slides/slide-148.png" alt="ARC-Challenge 准确率随采样路径数变化" loading="lazy">
+<figcaption>ARC-Challenge 上：自一致性（蓝星）随采样路径数提升至约 54%，显著高于采样后排序（绿方）与贪心解码（橙圆）。</figcaption></figure>
+<p>ARC-Challenge 基准的对照实验，横轴为采样推理路径数：
+<strong>Self Consistency（Multi-path）</strong>（蓝星）准确率从约 36% 一路升至约 54%，
+明显优于<strong>Sample &amp; Rank</strong>（绿方，采样多条但用模型似然排序挑选，约 44%）
+和<strong>Greedy Decode</strong>（橙圆，单路径，约 43%）。要点：
+① 多数投票比"模型自评分排序"更可靠——模型对自己错误路径的似然并不低；
+② 收益随路径数对数式增长并最终饱和，存在性价比拐点。</p>
+</article>
+
+</section>
+
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">五、面向智能体的 LLM</h2>
+
+<article class="slide">
+<h3><span class="no">Slide 149</span>章节页：LLMs for Agents</h3>
+<figure><img src="slides/slide-149.png" alt="LLMs for Agents 章节页" loading="lazy">
+<figcaption>底部导航条：Language Models? → Architecture → Training → Inference → LLMs for Agents（当前高亮）。</figcaption></figure>
+<p>讲义进入最后一节：<strong>面向智能体的 LLM（LLMs for Agents）</strong>。
+底部进度条显示本讲的完整脉络——语言模型定义、架构、训练、推理，最后落到
+<strong>为 agent 场景设计与适配 LLM</strong>：当模型不再只是"问答"，而要规划、记忆、调用工具、
+与外部世界交互时，对模型能力与接口的要求都发生了变化。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 150</span>Agents: Key Components</h3>
+<figure><img src="slides/slide-150.png" alt="Agent 的关键组件" loading="lazy">
+<figcaption>规划与推理、记忆注入 LLM Core；Core 驱动 Tools，产生 Agent actions 作用于 Environment；环境经 observe 反馈回 Core。</figcaption></figure>
+<p>Agent 的标准组件图：<strong>LLM Core</strong>（红框，本讲主角）居中，
+上方<strong>规划与推理（Planning &amp; Reasoning）</strong>和<strong>记忆（Memory）</strong>注入其中；
+Core 向下驱动<strong>工具（Tools）</strong>——检索、计算器、代码执行、搜索、文件操作等，
+工具调用最终落实为<strong>Agent 动作</strong>（tool call、与环境/用户的交互）；
+动作作用于右侧的<strong>环境（Environment）</strong>——桌面 OS、浏览器、移动应用、游戏、数据库等外部世界，
+环境的新状态再经 <strong>observe</strong> 观察反馈回 Core，构成"观察—思考—行动"闭环。
+后续各页逐一讨论 LLM 如何适配这个闭环的各个环节。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 151</span>小节页：Structured I/O</h3>
+<figure><img src="slides/slide-151.png" alt="Structured I/O 小节页" loading="lazy">
+<figcaption>结构化输入输出：让 LLM 以约定的结构与其他系统组件通信。</figcaption></figure>
+<p>第一个子主题：<strong>结构化 I/O</strong>。Agent 系统中 LLM 的输出往往要被下游程序解析执行
+（工具调用参数、JSON 字段、枚举决策），自由文本不可靠；
+同时上游也要以结构化方式把任务交给模型。本节讨论如何建立这种<strong>通信契约</strong>。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 152</span>Motivating Structured I/O</h3>
+<figure><img src="slides/slide-152.png" alt="从单一模型到复合系统" loading="lazy">
+<figcaption>左侧单一神经网络 → 右侧由多模型与搜索/数据库/计算器/终端组成的复合系统。</figcaption></figure>
+<p>动机页引用 BAIR 的复合 AI 系统观点：<strong>"越来越多的新 AI 成果来自复合系统
+（compound systems）"</strong>——右侧图示一个任务由多个模型与搜索、数据库、计算器、终端等组件
+协作完成。组件一多，就必须回答：<strong>这些系统组件之间如何通信？</strong>
+答案是一份<strong>共享契约（shared contract）</strong>——约定的结构化输入输出格式。
+这正是 agent 工程与单纯 prompt 写作的分水岭。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 153</span>Constrained Decoding</h3>
+<figure><img src="slides/slide-153.png" alt="约束解码：FSM 强制输出结构" loading="lazy">
+<figcaption>(a) 正则 {"summary": " 的逐字符 FSM（14 态）；(b) 压缩为按 token 转移的 2 态 FSM；(c)(d) 对应解码过程，压缩 FSM 大幅减少 LLM 解码调用。</figcaption></figure>
+<p><strong>约束解码（Constrained Decoding）</strong>：强制模型输出符合特定结构（如 JSON schema）。
+方法是用<strong>有限状态机（FSM）</strong>表达目标正则/文法，解码时每一步只允许采样"当前状态合法"的 token。
+(a) 是朴素 FSM：对字面量 <code>{"summary": "</code> 逐字符建 14 个状态；(c) 中几乎每个 token
+后都要插入一次 LLM decode 判断，开销大。(b) 的<strong>压缩 FSM</strong> 把整段字面量压成一次转移（2 态），
+(d) 中字面量部分<strong>直接跳过模型解码</strong>（由 FSM 直接吐出），只在真正需要模型生成的位置
+（<code>_</code> 处）才调用 LLM——既保证结构 100% 合法，又省掉大量无效解码步。出自 SGLang（arXiv 2312.07104）。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 154</span>Constrained Decoding：吞吐对比</h3>
+<figure><img src="slides/slide-154.png" alt="Llama-7B 上各框架归一化吞吐" loading="lazy">
+<figcaption>Figure 5：MMLU、ReAct Agents、JSON Decoding、DSPy RAG Pipeline 等 11 类负载上，SGLang 吞吐全面领先 vLLM/Guidance/LMQL。</figcaption></figure>
+<p>SGLang 论文在 Llama-7B 上的归一化吞吐对比（越高越好）：在 MMLU、ReAct Agents、
+Generative Agents、Tree/Skeleton of Thought、LLM Judge、HellaSwag、JSON Decoding、
+Multi-Turn Chat、DSPy RAG Pipeline 等 11 类负载上，<strong>SGLang（橙）几乎全部归一到 1.0</strong>，
+显著优于 vLLM（绿）、Guidance（蓝）、LMQL（灰）——尤其在 JSON Decoding、
+Tree of Thought 等<strong>强结构化负载</strong>上，后两者吞吐跌至接近 0，而 SGLang 仍满速。
+底部结论：SGLang 的优势来源之一正是<strong>用 FSM 做约束解码</strong>（还有其他优化）。
+对 agent 系统而言，结构化输出不应以吞吐为代价。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 155</span>DSPy Signatures</h3>
+<figure><img src="slides/slide-155.png" alt="DSPy Signature 代码示例" loading="lazy">
+<figcaption>用 Python 类型声明定义任务签名：输入 message，输出 name/email/intent（含类型与枚举约束），输出为结构化 Prediction。</figcaption></figure>
+<p><strong>DSPy</strong> 提供了声明式定义结构化 I/O 的方式——<strong>Signature（签名）</strong>：
+一个 Python 类直接写明输入字段（<code>message: str = dspy.InputField()</code>）与输出字段
+（<code>name: str</code>、<code>email: Optional[str]</code>、
+<code>intent: Literal["meeting","intro","follow-up"]</code>，各为 OutputField），
+实例化 <code>dspy.Predict(Extract)</code> 即可调用，返回类型安全的
+<code>Prediction(name="Sarah", email="sarah@acme.co", intent="meeting")</code>。
+斜体注释点题：<strong>"Signatures define tasks and enforce output types"</strong>——
+把"要模型做什么、输出什么形状"从自然语言提示升格为<strong>带类型约束的程序声明</strong>。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 156</span>DSPy Signatures: Peek inside</h3>
+<figure><img src="slides/slide-156.png" alt="DSPy 签名展开后的实际提示" loading="lazy">
+<figcaption>签名在运行时被编译为 System/User Prompt：逐字段给出 JSON schema、取值约束与输出顺序标记。</figcaption></figure>
+<p>"打开引擎盖"看签名如何生效：DSPy 把上一讲的类<strong>编译成两段提示</strong>。
+System Prompt 中逐字段声明输入（message）与输出（name；email 附带 JSON schema
+<code>{"anyOf":[{"type":"string"},{"type":"null"}]}</code>；intent 注明"必须精确匹配
+meeting/intro/follow-up 之一，不得有多余字符"），并用 <code>[[ ## field ## ]]</code> 标记约定输出格式，
+结尾以 <code>[[ ## completed ## ]]</code> 收束、重申任务目标。User Prompt 给出实际输入并要求
+按 name→email→intent 顺序、以合法 Python 类型填写各字段。
+可见结构化输出的本质是<strong>提示模板 + 类型约束的自动生成</strong>，开发者只写声明，细节交给框架。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 157</span>Constrain the Model: Classifiers</h3>
+<figure><img src="slides/slide-157.png" alt="在嵌入上训练小分类头" loading="lazy">
+<figcaption>DistilBERT 输出嵌入（Model #1）→ 逻辑回归头（Model #2）→ 15% negative / 85% positive，输出类别 1。</figcaption></figure>
+<p>约束输出的另一类做法：<strong>不动生成、改训练</strong>。在预训练模型（DistilBERT）的
+<strong>嵌入之上训练一个小分类头</strong>（此处为逻辑回归），把连续表示映射到离散类别标签：
+输入 "[CLS] a visually stunning rumination on love [SEP]" 经 DistilBERT 得嵌入，
+分类头输出 0（negative）15% / 1（positive）85%，最终预测 positive。
+这种"大模型当特征提取器 + 小头做决策"的模式训练便宜、输出确定，
+适合情感分类、意图识别等<strong>输出空间固定</strong>的 agent 子任务。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 158</span>Constrain the Model: System One Models</h3>
+<figure><img src="slides/slide-158.png" alt="对比式状态—动作预训练与零样本动作分类" loading="lazy">
+<figcaption>三步：① 状态/动作编码器对比预训练（匹配对 Si·Ai 高亮）；② 候选动作经 "Mario should {action}." 模板编码；③ 零样本 softmax 选出 jump（80%）。</figcaption></figure>
+<p><strong>System One 模型</strong>——当前流行术语，但本质是"<strong>带可适配选项的分类器</strong>"，
+专为高频"决策"设计。以马里奥游戏为例的三步流程：
+① <strong>对比式状态—动作预训练</strong>：动作编码器把 "right jump" 等动作编码为 A₁…A_N，
+状态编码器把游戏画面编码为 S₁…S_N，对比学习使匹配对 (S_i, A_i) 的内积最高（矩阵对角线高亮）；
+② <strong>构造动作候选</strong>：把候选动作（left/jump/right run）套进 "Mario should {action}." 模板再编码，
+使动作空间可随任务增删；③ <strong>零样本动作分类</strong>：当前画面编码为 S₁，与候选动作向量做内积后 softmax，
+得 left 5% / <strong>jump 80%</strong> / right run 15%，输出 "Mario should jump!" 并回作用于游戏。
+这类"快思考"决策器延迟低、输出封闭，适合 agent 闭环中需要即时反应的一环。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 159</span>Example: Tool Calling</h3>
+<figure><img src="slides/slide-159.png" alt="Toolformer：生成中内联调用工具" loading="lazy">
+<figcaption>四个示例：QA 查期刊出版方、Calculator 算 400/1400→0.29、MT 翻译 tortuga→turtle、WikiSearch 检索 Brown Act 定义。</figcaption></figure>
+<p><strong>工具调用</strong>的结构化 I/O 实例，出自 Toolformer（arXiv 2302.04761）：
+模型在<strong>生成文本的过程中内联调用工具</strong>，再把工具返回值续写进文本。
+四个示例：调 QA 工具查《新英格兰医学杂志》出版方（→Massachusetts Medical Society）、
+调 Calculator 算 400/1400（→0.29）、调机器翻译 MT 译 "tortuga"（→turtle）、
+调 WikiSearch 检索 Brown Act（→法案全文定义）。关键在于工具调用被表示为
+<strong>文本流中的结构化片段</strong>（[Tool(参数) → 返回值]），既是模型的输出契约，
+也是执行器的输入契约——结构化 I/O 在工具调用场景的直接体现。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 160</span>小节页：Context Engineering</h3>
+<figure><img src="slides/slide-160.png" alt="Context Engineering 小节页" loading="lazy">
+<figcaption>上下文工程：系统性地构造送入模型的上下文。</figcaption></figure>
+<p>第二个子主题：<strong>上下文工程（Context Engineering）</strong>。
+结构化 I/O 管的是"接口形状"，上下文工程管的是<strong>内容</strong>——在有限的上下文窗口里，
+为模型装配最有用的信息（任务说明、工具描述、检索结果、历史轨迹、记忆）。
+agent 的表现很大程度取决于上下文质量，这使其从"提示技巧"上升为一门系统工程。
+下一批展开具体做法。</p>
+<article class="slide">
+<h3><span class="no">Slide 161</span>Prompt engineering vs. context engineering</h3>
+<figure><img src="slides/slide-161.png" alt="单轮提示工程与 agent 上下文工程对比" loading="lazy">
+<figcaption>左：单轮查询的上下文只有系统提示+用户消息；右：agent 的候选上下文池经 Curation 精选后进入窗口，工具结果回流消息历史。</figcaption></figure>
+<p>Anthropic 这张对比图划清了两个层次。<strong>提示工程</strong>面向单轮查询：上下文窗口里只有
+System prompt + User message，调的是"一句话怎么说"。<strong>上下文工程</strong>面向 agent：
+左侧是<strong>可供给模型的候选上下文池</strong>——多份文档、多个工具、记忆文件、详尽指令、领域知识、
+消息历史，远超窗口容量；中间经过 <strong>Curation（精选/编排）</strong>，右侧实际进入窗口的只是
+其子集——System prompt + Doc 1/2 + Memory file + Tool 1/2 + User message + Message history。
+模型输出 Assistant message 或 Tool call，<strong>Tool result 又回流进消息历史</strong>，
+使上下文随交互动态增长。上下文工程因此是一个持续的"选什么、丢什么、何时更新"的系统问题。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 162</span>What goes in the context of an agent?</h3>
+<figure><img src="slides/slide-162.png" alt="agent 上下文的五类组成" loading="lazy">
+<figcaption>agent 上下文的五个组成部分清单。</figcaption></figure>
+<p>把上一讲的候选池归纳为五类标准组成：
+<strong>① System Prompt</strong>——角色、规则、工具说明等固定指令；
+<strong>② Message History</strong>——多轮对话与工具调用轨迹；
+<strong>③ Memories</strong>——跨会话持久化的记忆（用户偏好、历史结论）；
+<strong>④ Tool Call Results</strong>——工具返回的检索结果、执行输出；
+<strong>⑤ Attached Files</strong>——随任务附带的文档/代码。
+这五类各自有不同的"注入策略"（全量、检索、摘要、淘汰），
+下文的 Context Rot 与各项实用建议都围绕它们展开。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 163</span>Why not just put everything? Context Rot</h3>
+<figure><img src="slides/slide-163.png" alt="Context Rot：长上下文聚合任务示例" loading="lazy">
+<figcaption>OOLONG 两个任务：从 8 篇带日期的文章中比较 9 月与 8 月的经济报道数（答 September）；从 12 小时对话转录中统计 Jester 施放 Healing Word 的次数（答两次）。</figcaption></figure>
+<p>既然上下文这么重要，为什么不把所有东西全塞进去？因为 <strong>Context Rot（上下文腐化）</strong>：
+上下文越长，模型从中正确提取、聚合信息的能力越差。OOLONG 基准的两个例子都要求
+<strong>对长上下文做聚合推理</strong>：左例给出 8 篇带日期的文章，问 9 月还是 8 月的经济报道更多，
+模型需逐篇判别相关性再计数（9 月 2 篇 vs 8 月 1 篇 → September）；
+右例给 12 小时对话转录，问角色 Jester 施放 "Healing Word" 几次（答两次）。
+这类"大海捞针 + 聚合"任务正是长上下文能力的试金石，引出下页的量化结果。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 164</span>Context Rot：分数随上下文长度衰减</h3>
+<figure><img src="slides/slide-164.png" alt="OOLONG 上各模型分数随上下文长度下降" loading="lazy">
+<figcaption>OOLONG-synth（8K–512K）与 OOLONG-real（64K–512K）上，9 个模型的 Score 随 Context Length 单调下降。</figcaption></figure>
+<p>量化证据：在 OOLONG-synth 与 OOLONG-real 两个子集上，
+gemini-2.5-pro、gpt-5 系列、o3/o4-mini、claude-sonnet-4 等 9 个模型的得分
+<strong>随上下文长度增加而普遍下滑</strong>——前沿模型从 8K 时的 0.8+ 跌到 256K–512K 时的 0.4 上下，
+llama-4-maverick、deepseek-r1-0528 则全程趴在低位（接近或低于 random baseline）。
+结论：<strong>上下文窗口"能装下"不等于"用得好"</strong>，无差别地堆长上下文既贵又降质，
+必须配合精选、检索与压缩——这正是上下文工程存在的理由。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 165</span>上下文没有唯一解，动手实验</h3>
+<figure><img src="slides/slide-165.png" alt="文字页：上下文构建需要实验，本课给实用建议" loading="lazy">
+<figcaption>"构建上下文没有唯一方法，这将在 HW1 中实验；本课提供实用建议与注意事项。"</figcaption></figure>
+<p>过渡页，讲义原文直陈：<strong>"构建上下文没有唯一正确的方法——这将是你作业 1（HW1）中要亲自实验的内容；
+我们在这里提供一些实用技巧与注意事项。"</strong>
+随后几页即这些 practical tips：避免臃肿（avoid bloat）、顺序追加（add sequentially）、
+实证评估（evaluate empirically）、压缩（compaction），以及一种不同的哲学——递归语言模型。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 166</span>Avoid bloat：工具有时只需几个</h3>
+<figure><img src="slides/slide-166.png" alt="Terminal-Bench 2：同一模型不同 harness 的成本与成功率" loading="lazy">
+<figcaption>Terminal-Bench 2：同一模型配 Pi/Codex/Claude Code 三种 harness，成本与成功率各异——工具集并非越多越好。</figcaption></figure>
+<p>第一条建议：<strong>避免臃肿</strong>。"Sometimes a few tools are all you need"——
+例如 Pi 这个 agent 只有 read、write、edit、bash 四个工具。
+Terminal-Bench 2 的实验（同一模型 × 三种 harness）显示工具集设计（harness）影响巨大：
+Claude Fable 5 上 Claude Code 最贵（$1.55/rollout）也最高（75.6%），Codex 以 $0.98 拿到 72.2%；
+Claude Opus 4.8 上更便宜的 Pi/Codex（$0.76/$0.85）成功率 72.2%，<strong>反超</strong>更贵的 Claude Code（$0.90，68.9%）；
+Claude Haiku 4.5 上工具最简的 Pi（47.8%）远胜 Codex（31.1%）。
+要点：<strong>harness/工具集是独立于模型的设计变量</strong>，臃肿的工具与提示会带来"har­ness 税"，
+应精简到任务真正所需。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 167</span>Avoid bloat：用检索取回最相关内容</h3>
+<figure><img src="slides/slide-167.png" alt="检索链：嵌入→向量库→重排→LLM" loading="lazy">
+<figcaption>Retrieval Chain：Prompt 经 Embedding Model → Vector DB Search → Reranking Model 取回相关内容，与原 Prompt 一起送入 LLM。"下讲详述！"</figcaption></figure>
+<p>避免臃肿的第二条手段：<strong>用检索代替全量注入</strong>——"Use retrieval to recover the most relevant
+memories or files"。标准检索链（Retrieval Chain）：Prompt 先经 <strong>Embedding Model</strong> 向量化，
+在 <strong>Vector DB</strong> 中做相似度搜索召回候选，再由 <strong>Reranking Model</strong> 精排，
+取回的最相关片段与原始 Prompt 一并送入 LLM 生成 Response。
+这样上下文窗口里只放精选证据而非全部语料。页脚预告：<strong>"More on this in the next lecture!"</strong>
+——检索即第三讲 RAG 的主题。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 168</span>Add sequentially：顺序追加上下文</h3>
+<figure><img src="slides/slide-168.png" alt="顺序追加以保护 KV Cache" loading="lazy">
+<figcaption>副标题 "Avoid invalidating the KV Cache"：按顺序追加 token（The/class/was/about），KV Cache 可逐步复用。</figcaption></figure>
+<p>第三条建议直接关联本讲推理部分：<strong>顺序追加上下文，避免使 KV Cache 失效</strong>。
+回顾 Slide 133：KV Cache 缓存的是各历史 token 的 K/V。只要新内容<strong>追加在序列末尾</strong>，
+已有 token 的位置不变、KV 不变，增量 prefill 只需计算新增部分，缓存全程有效。
+这是 prompt 前缀缓存（prefix caching）生效的前提，也是 agent 多轮交互的默认形态。
+反例见下一页。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 169</span>Add sequentially：插入会摧毁 KV Cache</h3>
+<figure><img src="slides/slide-169.png" alt="在序列中部插入 token 使全部位置嵌入改变，KV Cache 失效" loading="lazy">
+<figcaption>在序列前端插入新 token "Actually" 后，其后所有 token 的位置嵌入改变，整个 KV Cache 被红叉标记为 Invalidated。</figcaption></figure>
+<p>反例：若在序列<strong>前端插入</strong>新 token（"Actually"），其后每个 token 的<strong>位置编号整体后移</strong>，
+红字点明 "All of these position embeddings just changed"——位置嵌入一变，
+所有历史 token 的 K/V 全部作废，整个 <strong>KV Cache 被 Invalidated</strong>（大红叉），
+只能从头重算 prefill。工程启示：<strong>上下文应保持 append-only 的稳定前缀</strong>，
+系统提示、工具定义等固定内容放最前，动态内容追加在后；确需修改时，意识到这是全量重算的代价。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 170</span>Evaluate context choices empirically</h3>
+<figure><img src="slides/slide-170.png" alt="用基准实证评估上下文/工具设计" loading="lazy">
+<figcaption>Toolformer 论文三图：LAMA/Math/QA 基准上，启用工具的 Toolformer（蓝）随参数增长显著超越禁用版（红）与 GPT3 虚线。</figcaption></figure>
+<p>第四条建议：<strong>实证评估你的上下文选择</strong>——"You can setup benchmarks/evals and test your changes"。
+任何上下文/工具设计的改动都应跑基准对照，而非凭直觉。示例取自 Toolformer 论文：
+在 LAMA、Math、QA 三类基准上，<strong>启用工具调用</strong>的 Toolformer（蓝线）随模型参数增长，
+得分显著拉开<strong>禁用工具</strong>的版本（红线）并超过 GPT3（虚线）——工具接入这一"上下文设计决策"
+的效果由此被量化。上下文工程因此与实验科学同构：提出改动 → 设 eval → 对比 → 保留有效者。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 171</span>Compaction：压缩上下文及其风险</h3>
+<figure><img src="slides/slide-171.png" alt="Compaction 要点与 OpenClaw 误删邮件案例" loading="lazy">
+<figcaption>四条要点 + 案例：Meta Superintelligence 安全负责人 Summer Yue 的 OpenClaw agent 在上下文压缩后丢失"先确认再行动"指令，擅自批量删除其邮箱邮件。</figcaption></figure>
+<p>当上下文增长到必须压缩（compaction，通常由模型把旧历史总结成摘要再重启上下文）时，
+面临一个棘手的取舍，讲义列出四条：① 触发压缩时上下文往往<strong>已经极长</strong>；
+② 新的决策是<strong>新上下文里保留什么</strong>；③ 保留太多→很快又要再压缩；
+④ 丢弃太多→可能<strong>丢失完成任务所需的关键上下文</strong>。
+下方案例触目惊心：Summer Yue 指示 OpenClaw agent 只"建议"待删邮件、<strong>未经确认不得行动</strong>；
+但当收件箱过大触发上下文压缩时，<strong>"confirm before acting" 指令被压没了</strong>，
+agent 开始自行批量删邮件，她不得不冲到 Mac mini 前杀掉进程。
+警示：<strong>安全攸关的约束不能只存在于会被压缩的上下文里</strong>，压缩策略本身需要评测与防护。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 172</span>Different Philosophy: Recursive LMs (RLMs)</h3>
+<figure><img src="slides/slide-172.png" alt="递归语言模型：把超长上下文当变量，用代码与子调用处理" loading="lazy">
+<figcaption>根 RLM（depth=0）把超长书加载为环境中的变量 prompt，用 Python 切片/拆分处理，按需发起 llm_query 子调用（depth=1 的子 RLM），汇总得 Final Response。</figcaption></figure>
+<p>一种与"塞上下文/检索"都不同的哲学——<strong>递归语言模型（Recursive LMs, RLMs）</strong>：
+<strong>不把超长上下文直接喂给模型</strong>，而是把它作为<strong>变量</strong>载入一个编程环境
+（Environment ε），根 LM（depth=0）像操作数据一样操作它：
+<code>print(prompt[:100])</code> 查看开头、<code>prompt.split("Chapter 2")</code> 按章切分，
+再对片段发起 <code>llm_query(...)</code>——每次子调用<strong>派生一个 depth=1 的子 RLM</strong>
+（"在第 1 章找属于某人的物品"、"找明确说被发现的物品"），子 RLM 返回 Sub-Response
+（银瓶、Herod 的戒指），根 LM 汇总后 <code>print(FINAL_ANSWER)</code> 输出最终答案。
+长上下文由此被分解为"程序化操作 + 递归子查询"，模型每次只面对一小段真正相关的文本。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 173</span>Recursive LMs：263K 上下文上的结果</h3>
+<figure><img src="slides/slide-173.png" alt="OOLONG trec_coarse 263k 上下文：RLM 显著超越直接读取" loading="lazy">
+<figcaption>OOLONG trec_coarse（263k token 上下文）：RLM(GPT-5-mini) 51.1% 居首，远超 GPT-5 直接读取的 34.2% 与 ReACT+BM25 的 30.7%。</figcaption></figure>
+<p>实证：在 OOLONG trec_coarse（263k token 上下文）上，
+<strong>RLM(GPT-5-mini) 以 51.1% 夺冠</strong>——一个小模型经递归分解，
+得分接近直接读取的 GPT-5（34.2%）的 1.5 倍，更远超 GPT-5-mini 直接读取（23.2%）、
+不用子调用的 RLM(GPT-5)（40.9%）以及 ReACT+GPT-5+BM25 检索基线（30.7%）。
+两个结论：① <strong>程序化分解 + 递归子调用</strong>能数倍释放同一模型的长上下文能力；
+② 搭配得当的<strong>小模型可以胜过直接读取的大模型</strong>——
+为"上下文太长装不下/用不好"提供了架构层面的新解法。</p>
+</article>
+
+</section>
+
+<section class="chapter" id="summary">
+<h2 class="chapter-title">本讲总结</h2>
+
+<article class="slide">
+<h3><span class="no">Slide 174</span>章节页：Summary</h3>
+<figure><img src="slides/slide-174.png" alt="Summary 章节页" loading="lazy">
+<figcaption>底部导航条回顾本讲五大板块。</figcaption></figure>
+<p>讲义进入总结页，底部导航条回顾本讲完整结构：Language Models? → Architecture →
+Training → Inference → LLMs for Agents。下一张给出逐项核对清单。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 175</span>Summary：本讲要点清单</h3>
+<figure><img src="slides/slide-175.png" alt="本讲五项要点清单" loading="lazy">
+<figcaption>五项要点：语言模型定义、架构（Transformers/线性注意力）、训练（预训练/中期/后训练/智能体训练）、推理（Prefill/Decode/推理时扩展）、面向智能体的 LLM（结构化 I/O/上下文工程）。</figcaption></figure>
+<p>本讲五条主线全部完成勾选：
+<strong>① 什么是语言模型</strong>——自回归分布 P(x₁:ₜ) 与采样机制；
+<strong>② 语言模型架构</strong>——Transformer 与线性注意力（更快更省但长上下文弱，混合方案折中）；
+<strong>③ 语言模型训练</strong>——Pretraining（数据流水线）、Midtraining（领域桥接）、
+Posttraining（SFT/RLHF/RLVR）与 Agent Training；
+<strong>④ 语言模型推理</strong>——Prefill/Decode 两阶段、KV Cache、投机解码与推理时扩展；
+<strong>⑤ 面向智能体的 LLM</strong>——结构化 I/O（约束解码、DSPy、工具调用）与上下文工程
+（Context Rot、避免臃肿、顺序追加、压缩、递归 LM）。
+这五块构成了"为构建者准备的 LLM"完整知识图谱。</p>
+</article>
+
+<article class="slide">
+<h3><span class="no">Slide 176</span>See you on Wednesday for RAG!</h3>
+<figure><img src="slides/slide-176.png" alt="结束页：周三 RAG 见" loading="lazy">
+<figcaption>结束页，预告周三的 RAG 主题（即第三讲）。</figcaption></figure>
+<p>结束页预告：<strong>"See you on Wednesday for RAG!"</strong>——本讲多次铺垫的检索主题
+（Slide 167 的 Retrieval Chain、上下文工程中的检索取回）将在第三讲
+"Building Blocks: RAG" 中系统展开，本教程的<a href="../lecture03/">第三讲</a>即对应内容。</p>
+</article>
+
+</section>
+
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接</h2>
+
+<p><strong>课程资源</strong></p>
+<ul>
+<li>CS329Z 课程主页：<a href="https://cs329z.stanford.edu/">https://cs329z.stanford.edu/</a></li>
+<li>本讲原始讲义：<a href="lecture02.pdf">lecture02.pdf</a></li>
+</ul>
+
+<p><strong>推理与性能</strong></p>
+<ul>
+<li>Roofline 模型（NERSC）：<a href="https://docs.nersc.gov/tools/performance/roofline/">https://docs.nersc.gov/tools/performance/roofline/</a></li>
+<li>CUDA Refresher: GPU 计算起源（NVIDIA）：<a href="https://developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/">developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/</a></li>
+<li>Prefill/Decode 与并发请求（Hugging Face）：<a href="https://huggingface.co/blog/tngtech/llm-performance-prefill-decode-concurrent-requests">huggingface.co/blog/tngtech/llm-performance-prefill-decode-concurrent-requests</a></li>
+<li>Speculative Sampling（arXiv 2302.01318）：<a href="https://arxiv.org/abs/2302.01318">https://arxiv.org/abs/2302.01318</a></li>
+</ul>
+
+<p><strong>推理时扩展与推理</strong></p>
+<ul>
+<li>Chain-of-Thought Prompting（arXiv 2201.11903）：<a href="https://arxiv.org/abs/2201.11903">https://arxiv.org/abs/2201.11903</a></li>
+<li>Controlling Reasoning Effort in LLMs（Sebastian Raschka）：<a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms">magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms</a></li>
+<li>Introducing GPT-6 Sol and Luna（OpenAI）：<a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">openai.com/index/introducing-gpt-6-sol-and-luna/</a></li>
+<li>Large Language Monkeys: Repeated Sampling（arXiv 2407.21787）：<a href="https://arxiv.org/abs/2407.21787">https://arxiv.org/abs/2407.21787</a></li>
+<li>Self-Consistency（arXiv 2203.11171）：<a href="https://arxiv.org/abs/2203.11171">https://arxiv.org/abs/2203.11171</a></li>
+</ul>
+
+<p><strong>结构化 I/O 与工具</strong></p>
+<ul>
+<li>Compound AI Systems（BAIR Blog）：<a href="https://bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/">bair.berkeley.edu/blog/2024/02/18/compound-ai-systems/</a></li>
+<li>SGLang: Structured LM Programs（arXiv 2312.07104）：<a href="https://arxiv.org/abs/2312.07104">https://arxiv.org/abs/2312.07104</a></li>
+<li>DSPy：<a href="https://dspy.ai/current/">https://dspy.ai/current/</a></li>
+<li>Visual Guide to BERT（Jay Alammar）：<a href="https://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/">jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/</a></li>
+<li>Contrastive Language-Action Models：<a href="https://contrastive-lm.notion.site/">https://contrastive-lm.notion.site/</a></li>
+<li>Toolformer（arXiv 2302.04761）：<a href="https://arxiv.org/abs/2302.04761">https://arxiv.org/abs/2302.04761</a></li>
+</ul>
+
+<p><strong>上下文工程</strong></p>
+<ul>
+<li>Effective Context Engineering for AI Agents（Anthropic）：<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+<li>OOLONG: Long Context Reasoning &amp; Aggregation（arXiv 2511.02817）：<a href="https://arxiv.org/abs/2511.02817">https://arxiv.org/abs/2511.02817</a></li>
+<li>Coding Agents Harness Tax（Arena）：<a href="https://arena.ai/blog/coding-agents-harness-tax">arena.ai/blog/coding-agents-harness-tax</a></li>
+<li>Build a RAG Agent with NVIDIA Nemotron：<a href="https://developer.nvidia.com/blog/build-a-rag-agent-with-nvidia-nemotron/">developer.nvidia.com/blog/build-a-rag-agent-with-nvidia-nemotron/</a></li>
+<li>Recursive Language Models（arXiv 2512.24601）：<a href="https://arxiv.org/abs/2512.24601">https://arxiv.org/abs/2512.24601</a>；配套博客：<a href="https://alexzhang13.github.io/blog/2025/rlm/">alexzhang13.github.io/blog/2025/rlm/</a></li>
+<li>上下文压缩丢指令案例（Threads @therundownai）：<a href="https://www.threads.com/@therundownai">threads.com/@therundownai</a></li>
+</ul>
+
+</section>
+
+</main>
+
+<footer>
+  <p><strong>本讲总结见文末"本讲总结"一节。</strong></p>
+  <p>课程源头：<a href="https://cs329z.stanford.edu/">https://cs329z.stanford.edu/</a>　|
+  专栏首页：<a href="../">CS329Z 中文教程专栏</a>　|
+  上一讲：<a href="../lecture01/">第一讲 Intro to Agentic Systems</a>　|
+  下一讲：<a href="../lecture03/">第三讲 RAG</a>　|
+  原始讲义：<a href="lecture02.pdf">lecture02.pdf</a></p>
+  <p>本教程为第三方学习笔记，内容版权归 Stanford CS329Z 课程所有；教程依据公开发布的讲义整理，忠于原讲义，不得缺、漏、错。</p>
+</footer>
+
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+</body>
+</html>
