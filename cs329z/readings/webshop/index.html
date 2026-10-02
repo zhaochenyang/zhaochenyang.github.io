@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：WebShop — Towards Scalable Real-World Web Interaction with Grounded Language Agents（CS329Z Lecture 17 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 17 扩展</div>
+  <h1>WebShop: Towards Scalable Real-World Web Interaction with Grounded Language Agents</h1>
+  <div class="sub">WebShop：面向可扩展真实网页交互的具身语言智能体</div>
+  <div class="meta">Shunyu Yao, Howard Chen, John Yang, Karthik Narasimhan（Princeton University）· NeurIPS 2022 · arXiv:2207.01206</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2207.01206">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="https://webshop-pnlp.github.io">项目主页</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>WebShop 是一个<strong>模拟电商网站环境</strong>：118 万真实商品 + 12,087 条众包自然语言购物指令，智能体需要搜索、浏览、定制选项并完成购买。它把「网页交互」变成了可大规模训练（RL/IL/预训练模型）且有<strong>自动奖励</strong>的任务：最佳模型成功率 29%（规则基线 9.6%，人类专家 59%），并且训练出的智能体在真实的 Amazon/eBay 上表现出<strong>非平凡的 sim-to-real 迁移</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>此前「把语言接地（grounding）到交互环境」的基准有两条老路，各有硬伤：要么<strong>缺少真实世界的语言元素</strong>（环境文本过于干净、合成），要么<strong>依赖大量人工参与</strong>收集数据或反馈信号而难以规模化。WebShop 的目标是同时解决两者：用真实商品数据与真实网页文本保证「真实性」，用自动化的奖励函数（比对所购商品与指令要求）保证「可扩展性」。</p>
+<blockquote>
+  <span class="en">"Existing benchmarks for grounding language in interactive environments either lack real-world linguistic elements, or prove difficult to scale up due to substantial human involvement in the collection of data or feedback signals."</span>
+  <span class="zh">现有的「语言接地到交互环境」基准，要么缺乏真实世界的语言元素，要么因数据或反馈信号的收集需要大量人工参与而难以规模化。</span>
+</blockquote>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：网购是语言接地的天然综合考题</h3>
+<p>给定一条指定商品需求的文本指令（如「我想要一款无咖啡因、大瓶装、100 元以下的天然洗发水」），智能体要在多类网页间导航、发出多样动作，找到、定制并购买商品。这一任务天然覆盖四类语言接地挑战：<strong>理解组合式指令</strong>（多约束叠加）、<strong>查询（重）表述</strong>、<strong>理解并对网页噪声文本采取行动</strong>（真实商品标题冗长、格式混乱）、<strong>策略性探索</strong>（翻页、比较、回退）。</p>
+
+<h3>观点 2：自动奖励让 RL/IL 可以规模化训练</h3>
+<p>奖励由「商品类型匹配」乘以「属性、选项、价格条件的满足比例」构成，完全自动计算；评测指标为 <span class="term">score</span>（100 × 平均奖励）与 <span class="term">success rate</span>（完全满足指令的比例）。作者收集了 1,600+ 条人工演示，并训练/评测了强化学习、模仿学习与预训练图像/语言模型的多种智能体。</p>
+<blockquote>
+  <span class="en">"Our best model achieves a task success rate of 29%, which outperforms rule-based heuristics (9.6%) but is far lower than human expert performance (59%)."</span>
+  <span class="zh">我们最佳模型的任务成功率为 29%，优于基于规则的启发式方法（9.6%），但远低于人类专家的表现（59%）。</span>
+</blockquote>
+
+<h3>观点 3：sim-to-real——模拟环境训练，真实网站可用</h3>
+<p>只需编写少量页面解析与动作映射脚本，WebShop 上训练的智能体即可直接部署到真实的 Amazon 与 eBay 上购物，并取得非平凡的迁移效果——这证明了「在受控模拟环境中大规模训练网页智能体，再迁移到真实世界」这条路线的可行性。</p>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2207.01206/assets/teaser.png" alt="WebShop 环境总览" loading="lazy">
+  <figcaption>图 1：WebShop 环境——HTML 模式的购物轨迹、简化的结果页观察、商品的符号化表示（来源：原文）</figcaption>
+</figure>
+
+<h2 id="method">方法与架构</h2>
+<h3>环境设计</h3>
+<table>
+  <tr><th>组件</th><th>设计</th></tr>
+  <tr><td>页面类型</td><td>4 类：搜索页、结果页、商品页、商品子页（描述/评论/选项）</td></tr>
+  <tr><td>动作空间</td><td><code>search[query]</code>（仅搜索页）+ <code>choose[按钮文本]</code>（其余页面：返回、翻页、点开商品、选规格、看描述/评论、Buy Now）</td></tr>
+  <tr><td>观察模式</td><td>面向人类的完整 HTML；面向模型的简化文本模式</td></tr>
+  <tr><td>搜索引擎</td><td>Pyserini + BM25，确定性返回前 50 个商品、分 5 页展示</td></tr>
+  <tr><td>奖励函数</td><td>类型匹配 × （属性 + 选项 + 价格条件满足比例），自动计算</td></tr>
+</table>
+
+<h3>数据规模</h3>
+<table>
+  <tr><th>项目</th><th>数值</th></tr>
+  <tr><td>真实商品</td><td>1,181,436（来自 5 大类、113 个子类目查询；842,849 个唯一购买选项、670 个隐藏属性）</td></tr>
+  <tr><td>商品文本</td><td>标题+详情平均长度约 262.9 词元，词表约 224,041</td></tr>
+  <tr><td>众包指令</td><td>12,087 条（平均 15.9 词，词表 9,036），通常含属性、选项与价格上限约束</td></tr>
+  <tr><td>数据划分</td><td>训练 10,587 / 开发 1,000 / 测试 500</td></tr>
+  <tr><td>人工演示</td><td>1,600+ 条（1,012 训练、54 开发调参；500 条测试指令均有人类轨迹）</td></tr>
+</table>
+
+<h3>智能体模型</h3>
+<ul>
+  <li><span class="term">模仿学习（IL）</span>：BART 从指令生成搜索词；BERT 编码观察与候选动作、经交叉注意力为按钮打分选择；图像用 ResNet-50 编码（消融显示图像作用较小）；</li>
+  <li><span class="term">IL + RL</span>：冻结 BART 生成的搜索候选，用策略梯度微调选择模型；</li>
+  <li><span class="term">Choice oracle</span>：诊断用「选择神谕」——给定搜索词后穷举商品与选项以最大化奖励，用于分离「搜索」与「选择」两个环节的贡献。</li>
+</ul>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2207.01206/assets/model.png" alt="选择式模仿学习模型架构" loading="lazy">
+  <figcaption>图 2：选择式模仿学习模型——图像/文本编码、候选动作融合与打分（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">实验结果与结论</h2>
+<table>
+  <tr><th>方法</th><th>Score</th><th>Success Rate</th></tr>
+  <tr><td>规则基线（指令文本直接搜索+买第一个）</td><td>45.6</td><td>约 9.6%</td></tr>
+  <tr><td>IL（模仿学习）</td><td>59.9</td><td>约 29%</td></tr>
+  <tr><td><strong>IL + RL</strong></td><td><strong>62.4</strong></td><td>约 28.7–29.1%</td></tr>
+  <tr><td>人类专家</td><td>82.1</td><td>59.6%</td></tr>
+  <tr><td>普通人类</td><td>—</td><td>约 50%</td></tr>
+</table>
+<h3>关键发现</h3>
+<ul>
+  <li><strong>选择是主要瓶颈</strong>：choice oracle 实验显示，给定搜索词后若能完美选择，规则基线成功率可升至 85.4%（用人类最后一次查询则达 87.8%）——但搜索质量仍重要；</li>
+  <li><strong>预训练很关键</strong>：去掉语言预训练或不用学习型搜索生成会明显降分；直接从 BERT 做 RL 甚至不如规则基线；</li>
+  <li><strong>RL 的副作用</strong>：微调后模型更贪心、探索减少、轨迹变短，选项得分反而下降；</li>
+  <li><strong>sim-to-real 迁移</strong>（100 条测试指令，score / 成功率）：Amazon 上规则 45.8/19%、IL 61.5/27%、IL+RL 65.9/25%、人类 88.2/65%；eBay 上规则 31.7/7%、IL 58.2/21%、IL+RL 62.3/21%、人类 79.7/40%；</li>
+  <li><strong>效率对比</strong>：模型在 Amazon 上平均每回合不到 8 秒，人类平均约 815 秒；</li>
+  <li><strong>错误分析</strong>：智能体最弱的环节是选对商品选项（面对噪声化、同义、格式不规范的文本），其次是搜索改写不足、缺少显式记忆与回退比较能力；人类低分案例多因「急躁」——只搜一次就买第一个看似相关的商品。</li>
+</ul>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2207.01206/assets/main_results.png" alt="主要实验结果" loading="lazy">
+  <figcaption>图 3：测试集上各模型的 score 与成功率，以及搜索/选择组件的预训练消融（来源：原文）</figcaption>
+</figure>
+<blockquote>
+  <span class="en">"Finally, we show that agents trained on WebShop exhibit non-trivial sim-to-real transfer when evaluated on Amazon.com and Ebay.com, indicating the potential value of WebShop in developing practical web-based agents that can operate in the wild."</span>
+  <span class="zh">最后，我们表明在 WebShop 上训练的智能体在 Amazon 与 eBay 上评测时表现出非平凡的 sim-to-real 迁移，显示出 WebShop 在发展「能在真实世界运行的实用网页智能体」方面的潜在价值。</span>
+</blockquote>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：WebShop 是网页智能体（web agent）方向的奠基性基准之一，「大规模真实数据 + 自动奖励 + sim-to-real 验证」的设计被后续 WebArena、OSWorld 等环境继承；第一作者 Shunyu Yao 正是 ReAct（本课程第 6 讲必读）的一作，共同作者 John Yang 是 CS329Z 的讲师之一。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 17 讲「Frontiers &amp; Open Problems」将 WebShop 与 OSWorld 并列为 web 智能体与 computer use 方向的代表基准；其自动奖励设计也呼应第 12 讲（评测框架中的 scorer 组件）与第 10 讲（可扩展反馈信号即数据飞轮的原料）。</li>
+  <li><strong>对智能体构建者的启示</strong>：29% vs 59% 的人机差距主要不在「会不会搜」而在「选不选得对」——对噪声真实文本的细粒度理解与跨商品比较记忆，是网页智能体的核心短板。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Grounded language agent</td><td>接地语言智能体</td><td>把语言理解落地到环境交互中的智能体</td></tr>
+  <tr><td>Web agent</td><td>网页智能体</td><td>在网页环境中完成任务的智能体</td></tr>
+  <tr><td>Sim-to-real transfer</td><td>模拟到真实迁移</td><td>在模拟环境训练、部署到真实网站仍有效</td></tr>
+  <tr><td>Compositional instruction</td><td>组合式指令</td><td>多个约束（属性/选项/价格）叠加的自然语言指令</td></tr>
+  <tr><td>Query (re-)formulation</td><td>查询（重）表述</td><td>根据搜索结果改写查询词的能力</td></tr>
+  <tr><td>Imitation learning (IL)</td><td>模仿学习</td><td>从人工演示中学习策略</td></tr>
+  <tr><td>Reinforcement learning (RL)</td><td>强化学习</td><td>用奖励信号（此处为自动奖励）优化策略</td></tr>
+  <tr><td>Choice oracle</td><td>选择神谕</td><td>诊断组件：给定搜索词后完美选择商品与选项</td></tr>
+  <tr><td>Reward function</td><td>奖励函数</td><td>类型匹配 × 属性/选项/价格满足比例，自动计算</td></tr>
+  <tr><td>Success rate / Score</td><td>成功率 / 得分</td><td>完全满足指令的比例 / 100×平均奖励</td></tr>
+  <tr><td>BM25 (Pyserini)</td><td>—（检索方法/工具）</td><td>WebShop 内置的确定性文本检索引擎</td></tr>
+  <tr><td>Noisy text</td><td>噪声文本</td><td>真实商品标题/描述中冗长、不规范的语言</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2207.01206">WebShop: Towards Scalable Real-World Web Interaction with Grounded Language Agents — arXiv:2207.01206 / NeurIPS 2022</a>　|
+  项目主页：<a href="https://webshop-pnlp.github.io">webshop-pnlp.github.io</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

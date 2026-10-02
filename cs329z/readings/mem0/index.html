@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory（CS329Z Lecture 7 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 7 扩展</div>
+  <h1>Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory</h1>
+  <div class="sub">Mem0：以可扩展长期记忆构建生产级 AI 智能体</div>
+  <div class="meta">Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, Deshraj Yadav（Mem0 公司）· arXiv:2504.19413 · 2025</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2504.19413">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>Mem0（读作 mem-zero）提出一种<strong>以记忆为中心的可扩展架构</strong>：从进行中的对话里动态<strong>提取、整合（consolidate）、检索</strong>关键信息，让 LLM 跨多会话保持一致；其图记忆增强版 Mem0<sup>g</sup> 用「实体为节点、关系为边」的有向标注图进一步建模复杂关系。在 LOCOMO 长对话基准上，Mem0 的 LLM-as-a-Judge 得分相对 OpenAI 记忆功能提升 <strong>26%</strong>，同时相对全上下文方案 <strong>p95 延迟降低 91%、token 成本节省超 90%</strong>——在质量与部署成本之间取得生产可用的平衡。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>LLM 缺乏<strong>持久记忆机制</strong>：信息一旦滑出上下文窗口，模型就等效于「重置」。没有记忆的智能体会忘记用户偏好、重复提问、甚至与已确认的事实自相矛盾——论文开篇举了一个直观例子：用户先说过自己吃素且不吃乳制品，几个会话后问晚餐推荐，无记忆系统可能推荐鸡肉。</p>
+<p>作者论证<strong>扩大上下文窗口只是推迟而非解决问题</strong>，两个理由：</p>
+<ol>
+  <li>随着人机关系跨越数周数月，对话历史总会超过任何上下文上限（即使 GPT-4 128K、o1 200K、Gemini 10M）；</li>
+  <li>真实对话很少保持主题连续——饮食偏好说完后可能隔了几千 token 的编程讨论才回到食物话题，全上下文方案要在大量无关信息中推理，且注意力机制对远距离 token 的效果会衰减。</li>
+</ol>
+<blockquote>
+  <span class="en">"A robust AI memory should selectively store important information, consolidate related concepts, and retrieve relevant details when needed — mirroring human cognitive processes."</span>
+  <span class="zh">健壮的 AI 记忆应当有选择地存储重要信息、整合相关概念、并在需要时检索相关细节——模拟人类的认知过程。</span>
+</blockquote>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：记忆应是「提取出的精炼事实」，而非原始对话文本</h3>
+<p>与 RAG 把对话切成大块原文再检索不同，Mem0 把对话历史转换为<strong>简洁、结构化的自然语言记忆</strong>（只保留最显著的事实）。实验证明这能降噪、给 LLM 更精确的线索：最强 RAG 配置的 J 分约 61%，Mem0 达 67%（约 10% 相对提升），Mem0<sup>g</sup> 超 68%（约 12% 相对提升）。</p>
+
+<h3>观点 2：记忆管理 = LLM 驱动的四操作工具调用</h3>
+<p>每条新提取的候选事实都要与已有记忆比对，由 <strong>LLM 自己（而非单独的分类器）通过 tool call 决定</strong>执行四种操作之一：<span class="term">ADD</span>（无等价记忆时新增）、<span class="term">UPDATE</span>（用互补信息增强已有记忆）、<span class="term">DELETE</span>（删除被新信息矛盾推翻的记忆）、<span class="term">NOOP</span>（无需改动）。这保证知识库的一致性与时间一致性，也是「记忆作为工具动作」的直接体现。</p>
+
+<h3>观点 3：图记忆擅长关系与时序推理，稠密文本记忆擅长简单与多跳检索</h3>
+<p>Mem0<sup>g</sup> 把记忆存为有向标注图，显式建模实体间关系。实验揭示两者<strong>互补</strong>：单跳与多跳问题上稠密自然语言记忆（Mem0）更好——图结构在复杂整合任务中反而引入冗余；而<strong>时序推理</strong>上 Mem0<sup>g</sup> 显著领先（J 58.13 vs 55.51），因为关系图善于捕捉事件顺序与时间关系。</p>
+
+<h3>观点 4：生产可用 = 质量、延迟、token 成本三者的平衡</h3>
+<blockquote>
+  <span class="en">"Mem0 attains a 91% lower p95 latency and saves more than 90% token cost, thereby offering a compelling balance between advanced reasoning capabilities and practical deployment constraints."</span>
+  <span class="zh">Mem0 实现了低 91% 的 p95 延迟并节省超过 90% 的 token 成本，从而在高级推理能力与实际部署约束之间提供了极具吸引力的平衡。</span>
+</blockquote>
+<p>全上下文方案 J 分虽最高（约 73%），但每次查询都要读完约 26,000 token 的完整对话，p95 总延迟约 17 秒；Mem0 仅约 1.44 秒。且随对话变长，全上下文的开销急剧增长，而记忆方案的性能<strong>不随对话长度退化</strong>。</p>
+
+<figure>
+  <img src="assets/main_figure.png" alt="记忆重要性示意：无持久记忆 vs 有持久记忆" loading="lazy">
+  <figcaption>图 1：记忆重要性示意——左：无持久记忆时系统在会话间遗忘用户的素食/无乳制品偏好，给出不当推荐；右：有记忆则跨会话保持饮食偏好，给出符合约束的建议（来源：原文）</figcaption>
+</figure>
+
+<h2 id="method">方法与架构</h2>
+
+<h3>Mem0：提取 + 更新两阶段流水线</h3>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2504.19413/assets/figures/mem0_pipeline.png" alt="Mem0 系统架构：提取阶段与更新阶段" loading="lazy">
+  <figcaption>图 2：Mem0 架构总览——提取阶段处理消息与历史上下文生成新记忆；更新阶段将新记忆与相似的既有记忆比对，经 Tool Call 机制执行相应操作；数据库作为中央仓库（来源：原文）</figcaption>
+</figure>
+<ul>
+  <li><span class="term">提取阶段（extraction）</span>：以消息对 (m<sub>t-1</sub>, m<sub>t</sub>)（用户消息 + 助手回复）为处理单元；上下文由两部分提供——异步刷新（不阻塞主管道）的<strong>全对话摘要 S</strong> + 最近 m 条消息（实验取 m=10）；LLM 提取函数 φ 据此从新消息对中产出一组候选显著记忆 Ω。</li>
+  <li><span class="term">更新阶段（update）</span>：对每条候选事实，先用向量嵌入检索 top-s（实验取 s=10）条语义相似的既有记忆，连同候选事实一起交给 LLM，由其通过函数调用（tool call）裁决 ADD / UPDATE / DELETE / NOOP。</li>
+  <li>实现细节：所有 LLM 操作用 GPT-4o-mini；向量库用稠密嵌入做相似检索。</li>
+</ul>
+
+<h3>Mem0<sup>g</sup>：图记忆变体</h3>
+<figure>
+  <img src="assets/mem0p_pipeline.png" alt="Mem0g 图记忆架构：实体抽取与更新阶段" loading="lazy">
+  <figcaption>图 3：Mem0<sup>g</sup> 图记忆架构——提取阶段用 LLM 把对话消息转成实体与关系三元组；更新阶段在把新信息并入知识图时进行冲突检测与消解（来源：原文）</figcaption>
+</figure>
+<ul>
+  <li><span class="term">表示</span>：有向标注图 G=(V, E, L)——节点 V 为实体（如 Alice、San_Francisco），边 E 为关系（如 lives_in），标签 L 给节点赋语义类型（Person、City）；关系存为三元组 (v<sub>s</sub>, r, v<sub>d</sub>)；每个实体节点含类型分类、语义嵌入向量、创建时间戳。</li>
+  <li><span class="term">两阶段提取</span>：实体抽取器识别人物/地点/物体/概念/事件/属性等实体及类型 → 关系生成器分析语言模式、上下文线索与领域知识，为实体对判定关系并打标（lives_in、prefers、owns、happened_on 等）。</li>
+  <li><span class="term">冲突消解</span>：新三元组并入时按嵌入相似度阈值 t 匹配既有节点；冲突检测机制发现潜在矛盾关系后，由 LLM 更新解析器判定是否过时——<strong>标记为无效而非物理删除</strong>，以支持时序推理。</li>
+  <li><span class="term">双重检索</span>：① 实体中心法——定位查询中的关键实体节点，沿出入边探索构建相关子图；② 语义三元组法——把整个查询编码为稠密向量，与每个关系三元组的文本编码算细粒度相似度，按阈值和相似度排序返回。两者分别擅长实体焦点问题与宽泛概念查询。</li>
+  <li>实现：图数据库用 Neo4j；抽取与更新模块用 GPT-4o-mini 的函数调用能力。</li>
+</ul>
+
+<h2 id="results">实验结果与结论</h2>
+<p><span class="term">基准</span>：LOCOMO——10 段超长对话，每段约 600 轮、平均约 26,000 token、多会话；每段对话平均配 200 个问题，分四类：单跳（single-hop）、多跳（multi-hop）、时序（temporal）、开放域（open-domain）。<span class="term">指标</span>：F1、BLEU-1、LLM-as-a-Judge（J，每方法独立跑 10 次取均值±标准差）；部署侧另测 token 消耗、搜索延迟与总延迟（p50/p95）。<span class="term">基线</span>六类：既有记忆系统（LoCoMo、ReadAgent、MemoryBank、MemGPT、A-Mem）、开源方案 LangMem、不同分块与 k 值的 RAG、全上下文、OpenAI ChatGPT 记忆功能、商业记忆平台 Zep。</p>
+
+<h3>分类别表现（J 分）</h3>
+<table>
+  <tr><th>问题类型</th><th>最佳方法</th><th>关键数字（J ↑）</th></tr>
+  <tr><td>单跳</td><td><strong>Mem0</strong></td><td>Mem0 67.13；OpenAI 63.79 次之；LangMem/Zep 相对低约 8%；A-Mem 落后 25+ 分</td></tr>
+  <tr><td>多跳</td><td><strong>Mem0</strong></td><td>Mem0 51.15（F1 28.64）；图记忆在此无增益——稠密自然语言记忆足以支撑跨会话信息整合</td></tr>
+  <tr><td>开放域</td><td>Zep</td><td>Zep 76.60 略胜；Mem0<sup>g</sup> 75.71 紧随（差 0.89 分），Mem0 72.93</td></tr>
+  <tr><td>时序</td><td><strong>Mem0<sup>g</sup></strong></td><td>Mem0<sup>g</sup> 58.13（F1 51.55）；Mem0 55.51；OpenAI 不足 15%（其生成的记忆大多缺时间戳）</td></tr>
+</table>
+
+<h3>效率对比（整体 J 分与延迟，LOCOMO 全集）</h3>
+<table>
+  <tr><th>方法</th><th>整体 J ↑</th><th>搜索延迟 p50/p95（秒）</th><th>总延迟 p50/p95（秒）</th><th>记忆规模（token/对话）</th></tr>
+  <tr><td>最强 RAG（k=2, 256）</td><td>60.97%</td><td>0.255 / 0.699</td><td>0.802 / 1.907</td><td>—</td></tr>
+  <tr><td>全上下文（约 26k token）</td><td><strong>72.90%</strong></td><td>—</td><td>9.870 / 17.117</td><td>26k（原始对话）</td></tr>
+  <tr><td>A-Mem</td><td>48.38%</td><td>0.668 / 1.485</td><td>1.410 / 4.374</td><td>2520</td></tr>
+  <tr><td>LangMem</td><td>58.10%</td><td>17.99 / 59.82</td><td>18.53 / 60.40</td><td>127</td></tr>
+  <tr><td>Zep</td><td>65.99%</td><td>0.513 / 0.778</td><td>1.292 / 2.926</td><td>&gt;600k（图冗余大）</td></tr>
+  <tr><td>OpenAI 记忆</td><td>52.90%</td><td>—</td><td>0.466 / 0.889</td><td>4437</td></tr>
+  <tr><td><strong>Mem0</strong></td><td>66.88%</td><td><strong>0.148 / 0.200</strong></td><td><strong>0.708 / 1.440</strong></td><td>约 7k</td></tr>
+  <tr><td><strong>Mem0<sup>g</sup></strong></td><td>68.44%</td><td>0.476 / 0.657</td><td>1.091 / 2.590</td><td>约 14k</td></tr>
+</table>
+<p>要点：</p>
+<ul>
+  <li>Mem0 的<strong>搜索延迟全场最低</strong>（p50 0.148s / p95 0.200s），总延迟中位数 0.708s，适合延迟敏感的交互式智能体；</li>
+  <li>Mem0<sup>g</sup> 取得<strong>所有方法中最高的 J 分（68.44%）</strong>——仅次于计算上不可行的全上下文方案（72.90%），但总 p95 延迟只有其约 1/7（2.59s vs 17.1s）；</li>
+  <li>相对 OpenAI 记忆，Mem0 的 J 分相对提升 26%（66.88 vs 52.90）；</li>
+  <li>记忆占用：Mem0 约 7k token/对话，Mem0<sup>g</sup> 约 14k，而 Zep 的记忆图超过 600k（在每个节点缓存完整摘要+边上存事实导致大量冗余），是原始对话（26k）的 20 余倍；</li>
+  <li>作者还观察到 Zep 图构建依赖大量异步 LLM 调用与后台处理：写入后立即检索常常失败，数小时后重跑才正常——不适合实时应用。</li>
+</ul>
+
+<h3>结论</h3>
+<p>稠密自然语言记忆与图记忆<strong>优势互补</strong>：简单查询用前者更高效，需要细腻时序与关系整合的任务离不开后者。结构化的持久记忆机制是长期对话一致性的关键，也是「从健忘的应答器到可靠的长期协作者」这一转变的基础。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：Mem0 是生产级智能体记忆服务的代表（mem0.ai），本文给出了记忆系统与 RAG、全上下文、商业竞品的系统性横向评测，其「提取-整合-检索」管道与 ADD/UPDATE/DELETE/NOOP 记忆操作被广泛借鉴。</li>
+  <li><strong>与 CS329Z 第七讲的关联</strong>：对应「短期 vs 长期记忆」「结构化记忆范式」主题——Mem0 的记忆库是长期记忆，最近消息窗口与对话摘要是短期上下文；「记忆作为工具动作」体现为更新阶段的 tool-call 裁决；Mem0<sup>g</sup> 的知识图是「结构化记忆」的典型实现。与本讲必读 MemGPT 对照：MemGPT 关注<strong>上下文窗口内外的分页调度</strong>（OS 隐喻），Mem0 关注<strong>从对话中蒸馏可演进的事实库</strong>（数据库隐喻），两者代表了智能体记忆的两条主线。</li>
+  <li><strong>评测方法论</strong>：论文对 F1/BLEU 等词面指标的批评（词面重叠高但事实错误仍得高分）与 LLM-as-a-Judge 的采用，呼应课程评测单元（L12/L13）的主题。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Persistent memory</td><td>持久记忆</td><td>跨会话保留信息的能力，本文要解决的核心缺失</td></tr>
+  <tr><td>Memory extraction / update phase</td><td>记忆提取 / 更新阶段</td><td>Mem0 两阶段流水线的组成部分</td></tr>
+  <tr><td>Consolidation</td><td>（记忆）整合</td><td>把相关概念合并、去冗余、消矛盾</td></tr>
+  <tr><td>ADD / UPDATE / DELETE / NOOP</td><td>新增/更新/删除/无操作</td><td>LLM 通过工具调用裁决的四种记忆操作</td></tr>
+  <tr><td>Tool call / function calling</td><td>工具调用 / 函数调用</td><td>让 LLM 结构化地执行记忆操作（第二讲主题）</td></tr>
+  <tr><td>Graph memory</td><td>图记忆</td><td>Mem0<sup>g</sup>：实体为节点、关系为边的有向标注图</td></tr>
+  <tr><td>Relationship triplet</td><td>关系三元组</td><td>(源实体, 关系, 目标实体)，如 (Alice, lives_in, San_Francisco)</td></tr>
+  <tr><td>Conflict detection / update resolver</td><td>冲突检测 / 更新解析器</td><td>发现矛盾关系并标记过时（不物理删除，支持时序推理）</td></tr>
+  <tr><td>LOCOMO</td><td>LOCOMO 基准</td><td>长期对话记忆评测集：10 段超长多会话对话 + 四类问题</td></tr>
+  <tr><td>Single-hop / multi-hop / temporal / open-domain</td><td>单跳 / 多跳 / 时序 / 开放域</td><td>LOCOMO 的四种问题类型</td></tr>
+  <tr><td>LLM-as-a-Judge (J)</td><td>LLM 评审</td><td>用更强 LLM 评估事实准确性/相关性/完整性（第十三讲主题）</td></tr>
+  <tr><td>p50 / p95 latency</td><td>中位数 / 95 分位延迟</td><td>部署指标；p95 反映尾部体验</td></tr>
+  <tr><td>Full-context approach</td><td>全上下文方案</td><td>把整个对话历史塞进上下文窗口的基线</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2504.19413">Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory — arXiv:2504.19413 (2025)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

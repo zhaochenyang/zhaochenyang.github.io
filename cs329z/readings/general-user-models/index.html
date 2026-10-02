@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Creating General User Models from Computer Use（CS329Z Lecture 16 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  code{background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:13px;}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 16 必读</div>
+  <h1>Creating General User Models from Computer Use</h1>
+  <div class="sub">从计算机使用行为中构建通用用户模型（GUM）</div>
+  <div class="meta">Shaikh et al.（Stanford 等）· UIST 2025 · arXiv:2505.10831</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2505.10831">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">GUM 架构与流水线</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>本文提出<strong>通用用户模型（General User Model, GUM）</strong>架构——通过观察用户与计算机的<strong>任意非结构化交互</strong>（如屏幕截图、系统通知），用多模态大模型持续构建并修订<strong>带置信权重的自然语言命题（confidence-weighted propositions）</strong>，刻画用户的知识、偏好与情境；在其上构建的主动助手 <strong>GUMBO</strong> 能「主动发现并执行用户自己都想不到去请求的有用操作」。实验显示 GUM 推断准确（邮件场景 76.15%、屏幕场景 0.79）且置信度校准良好（Brier 0.17–0.28）。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<blockquote>
+  <span class="en">"Human-computer interaction has long imagined technology that understands us... yet current user models remain fragmented, narrowly tailored to specific apps."</span>
+  <span class="zh">人机交互领域长久以来梦想着「能理解我们」的技术……然而现有的用户模型仍然是碎片化的、只为特定应用窄化定制的。</span>
+</blockquote>
+<p>传统用户建模局限于单个应用内的信号（推荐系统的点击、IDE 内的操作），无法跨应用、跨情境地理解用户。本文要回答：<strong>能否只靠观察用户在计算机上的日常使用，就构建一个通用、可持续演化、可做校准推理的用户模型</strong>，并以此驱动下一代主动式（proactive）助手？这正是 CS329Z 第 16 讲「Proactive Agents」的核心议题——从被动响应转向主动预判。</p>
+
+<figure>
+  <img src="https://arxiv.org/html/2505.10831v1/figures/fig1.jpg" alt="GUM 总览：从非结构化交互生成用户命题并驱动 GUMBO 主动助手" loading="lazy">
+  <figcaption>图 1：GUM 从任意非结构化交互数据（屏幕截图等）生成关于用户的命题，进而驱动 GUMBO 主动助手发现并执行有用建议（来源：原文 Figure 1）</figcaption>
+</figure>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：用户模型 = 带置信权重的自然语言命题库</h3>
+<p>GUM 不用向量嵌入或固定 schema 存用户画像，而是把对用户的理解表达为<strong>自然语言命题（proposition）</strong>，每条附带：置信度（1–10 打分归一化到 0–1）、<strong>衰减因子</strong>（1–10，表示命题随时间「变陈旧」的速率——「用户是博士生」衰减慢，「用户正在调试内存泄漏」衰减快）、支持它的底层观察、生成理由与时间戳。自然语言形式让用户可以<strong>直接查看、编辑、删除</strong>模型对自己的认知。</p>
+
+<h3>观点 2：从任意非结构化观察持续学习</h3>
+<p>输入是「任何可被大模型处理的观察」：macOS 上实现了 <span class="term">Screen Observer</span>（监听键鼠活动、在输入时截屏、用视觉模型 Qwen 2.5 VL 72B 转成文本更新）与 <span class="term">Notification Observer</span>（读取系统通知数据库）。观察是带来源、时间戳、唯一 ID 的<strong>事实记录</strong>；命题是从中做出的<strong>推断</strong>——两者分离保证了可追溯性。</p>
+
+<h3>观点 3：隐私审计前置（contextual integrity）</h3>
+<p>观察进入命题库之前先过 <span class="term">Audit</span> 模块：基于 Nissenbaum 的<strong>情境完整性（contextual integrity）</strong>理论，用 GUM 已有命题推断用户的隐私预期，逐条判断「是否披露新信息？数据类型？主体是谁？接收方是谁？应否传入模型？」。工作邮件可保留；银行凭据、金融账号等敏感输入被阻止。</p>
+
+<h3>观点 4：主动助手的价值在于「用户想不到去请求」</h3>
+<blockquote>
+  <span class="en">"Proactively identify and perform actions that users wouldn't think to request explicitly."</span>
+  <span class="zh">主动识别并执行用户自己都想不到去明确请求的操作。</span>
+</blockquote>
+<p>GUMBO 的高价值建议实例：根据用户的研究习惯生成 LaTeX 大纲、根据搬家相关信息制定搬迁计划、根据 Twitch 观看行为推荐相关主播、帮配置 Gmail 通知、给演示幻灯片提建议。是否打断用户采用 <span class="term">mixed-initiative（混合主动）</span>决策：比较「打扰的期望效用」与「不打扰的期望效用」（综合建议有用概率、完成收益、错误打扰成本、错失帮助成本），另加 token-bucket 速率限制（最多每分钟 1 条建议）。</p>
+
+<h2 id="method">GUM 架构与流水线</h2>
+
+<figure>
+  <img src="https://arxiv.org/html/2505.10831v1/figures/final_pipeline.jpg" alt="GUM 流水线：观察、隐私审计、命题生成、检索、修订的迭代过程" loading="lazy">
+  <figcaption>图 2：GUM 流水线——观察（Observe）→ 隐私审计（Audit）→ 命题生成（Propose）→ 检索（Retrieve）→ 修订（Revise）的持续迭代（来源：原文 Figure 4）</figcaption>
+</figure>
+
+<table>
+  <tr><th>阶段</th><th>机制细节</th></tr>
+  <tr><td>Observe 观察</td><td>Screen Observer（键鼠触发截屏，Qwen 2.5 VL 72B 视觉转写）+ Notification Observer（读系统通知库）；输出带来源/时间戳/ID 的事实记录</td></tr>
+  <tr><td>Audit 审计</td><td>情境完整性过滤：用已有命题推断隐私预期，阻止敏感数据入库</td></tr>
+  <tr><td>Propose 生成</td><td>先生成推理说明（观察与用户的关系）→ 自然语言命题 → 置信度（1–10 → 0–1）→ 命题级衰减因子（1–10）</td></tr>
+  <tr><td>Retrieve 检索</td><td>BM25 词法检索 → 时间衰减调整（衰减分 × 年龄，k=2，按天计）→ MMR 多样性（λ=0.5）→ LLM 重排为 identical / similar / unrelated 三类；相同或相似触发修订</td></tr>
+  <tr><td>Revise 修订</td><td>新旧命题冲突/强化时合并、改写或更新，重新生成置信度（可升可降）；置信度归零的命题不删除（保留透明性），仅默认查询不展示</td></tr>
+</table>
+
+<p><span class="term">模型选型</span>：刻意优先开源、可本地部署——屏幕转写用 Qwen 2.5 VL 72B，命题/修订/审计/重排等文本推理用 Llama 3.3 70B；系统兼容任何支持 OpenAI ChatCompletions API 的指令跟随模型。GUMBO 的工具执行默认禁用外部工具，需要 Google 搜索或代码执行时才调用 Gemini 2.0 Flash，本地文件检索用 macOS Spotlight，Computer Use（Operator API）在评估中因太慢且不稳定而禁用。</p>
+
+<p><span class="term">应用接口</span>：实例化 GUM（绑定一个指令跟随 LLM）→ 订阅观察流 → 自然语言查询命题与底层观察（查询参数可控制相关性/多样性权衡、时间范围、是否应用时间衰减）。三类应用：给聊天助手补充上下文、管理 OS 通知只浮现重要信息、跨应用适应偏好的交互式智能体。</p>
+
+<h2 id="results">实验结果与结论</h2>
+
+<h3>评估一：邮件场景的准确性与校准（18 名参与者）</h3>
+<p>数据：每人 Gmail Primary Inbox 最近 200 封邮件（排除 Promotions/Social），按时间顺序喂给 GUM；对 30 条分层抽样命题做准确性判断与成对偏好排序。对比三个消融变体：</p>
+<table>
+  <tr><th>变体</th><th>准确性</th><th>用户偏好 win rate</th><th>Brier 校准分</th></tr>
+  <tr><td><strong>Full GUM</strong>（Propose+Retrieve+Revise）</td><td>76.15 ± 5.85</td><td><strong>0.618 ± 0.07</strong></td><td><strong>0.17 ± 0.03</strong></td></tr>
+  <tr><td>No Retrieve（有修订、仅滑动窗口）</td><td>73.28 ± 4.42</td><td>0.463 ± 0.07</td><td>0.36 ± 0.07</td></tr>
+  <tr><td>No Retrieve, Revise（裸生成）</td><td>74.41 ± 7.81</td><td>0.420 ± 0.07</td><td>—</td></tr>
+</table>
+<ul>
+  <li>单条命题<strong>准确性差异不显著</strong>——各变体都能生成相当准的命题；完整架构的优势在<strong>偏好排序</strong>（win rate，Holm 校正后 p&lt;0.05）与<strong>置信度校准</strong>（Brier 0.17 vs 0.36）。</li>
+  <li>置信度打满 10 分的命题被参与者评为 <strong>100% 准确</strong>；参与者对命题准确性平均打分 6.47/7。</li>
+</ul>
+
+<figure>
+  <img src="https://arxiv.org/html/2505.10831v1/figures/win_rates.jpg" alt="完整 GUM 与消融变体的用户偏好 win rate" loading="lazy">
+  <figcaption>图 3：用户偏好 win rate——完整 GUM 显著优于消融变体，说明检索与修订相互依赖、共同贡献质量（来源：原文 Figure 5）</figcaption>
+</figure>
+
+<h3>评估二：隐私审计模块</h3>
+<ul>
+  <li>180 条生成命题中仅 <strong>7 条</strong>被参与者标记为违反隐私预期；对情境完整性解释的认同度平均 6.06/7。</li>
+  <li>「最佳审计判断」选择率：Full GUM <strong>61.1%</strong> vs 无检索 22.2% vs 无修订 16.6%。</li>
+  <li>系统检查确认命题中未出现逐字信用卡号/电话/地址；但仍发现越界案例：引用朋友姓名令用户惊讶、把钓鱼邮件误当成用户兴趣。</li>
+</ul>
+
+<h3>评估三：GUMBO 端到端屏幕观察（5 名参与者，5 天部署）</h3>
+<p>24 小时静默数据收集 + 4 天主动使用（IRB 出于风险考虑限最多 5 人，补偿 75 美元）。结果：命题准确性 <strong>0.79 ± 0.07</strong>，Brier <strong>0.28 ± 0.04</strong>（误差主要来自<strong>欠自信</strong> underconfident，而非过度自信）；<strong>25%</strong> 的建议被评为 strong/excellent（7 分量表 6–7 分）；<strong>20.69%</strong> 方向正确但执行失败；5 人中 2 人研究结束后仍想继续用、2 人截图保存了建议。</p>
+
+<figure>
+  <img src="https://arxiv.org/html/2505.10831v1/figures/calibration_plot.png" alt="GUM 置信度校准曲线" loading="lazy">
+  <figcaption>图 4：校准曲线——GUM 总体校准良好，错误偏向「不自信」而非「过度自信」，这对主动助手的安全性是良性方向（来源：原文 Figure 6）</figcaption>
+</figure>
+
+<h3>局限与伦理</h3>
+<ul>
+  <li><span class="term">局限</span>：样本小且偏技术用户（熟人网络招募）；仍会产生错误的高置信命题（幻觉/误归因，甚至虚构应用）；屏幕只是上下文的狭窄代理（手机、线下活动无法捕获）；执行能力不足（如声称设了提醒但实际没有通知 API 权限）；时机问题（建议过早、或建议用户已完成的事）；对压力/工作不满/能力的直白推断让部分用户觉得「被评判」（judgmental）。</li>
+  <li><span class="term">安全</span>：垃圾邮件/钓鱼/广告可能污染命题库——论文称之为 <strong>「GUM injection」</strong>风险；防御手段包括对异常输入要求用户确认、类反垃圾过滤、红队测试；强烈建议 GUM 在用户本地或个人基础设施上运行，外部访问受控且可审计。</li>
+  <li><span class="term">伦理</span>：可能被滥用于劝说、广告定向或监控；第三方可能在未获同意下训练用户模型；底层大模型的偏见会被放大；存在「隐私悖论」（口头重视隐私，系统越好用越愿意交数据）。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与 CS329Z 第 16 讲（Proactive Agents）的关系</strong>：该讲主线是「从被动到主动」——GUM、Next Action Prediction、开源主动个人智能体、隐私与信任、何时主动发起 vs 等待（mixed initiative）。本文正是 GUM 概念的提出之作：它给出了主动智能体的「用户理解层」参考架构，其 mixed-initiative 打断决策与 token-bucket 限速是「何时该主动」的具体工程答案。</li>
+  <li><strong>与课程其他讲次的呼应</strong>：命题库的 Propose/Retrieve/Revise 循环是第 7 讲「记忆架构」（MemGPT/Mem0 的提取-整合-更新）在用户建模上的镜像；「GUM injection」对应第 14 讲安全主题中的间接 prompt injection 与隐私风险；置信度校准（Brier 分）呼应第 13 讲评估基础设施。</li>
+  <li><strong>领域意义</strong>：把「用户模型」从推荐系统的隐式嵌入升级为<strong>可解释、可编辑、可审计的自然语言命题库</strong>，为 OS 级主动助手（计算机使用智能体的个性化层）提供了一条兼顾能力与隐私的路径。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>General User Model (GUM)</td><td>通用用户模型</td><td>从任意计算机使用观察中学习的跨应用用户理解架构</td></tr>
+  <tr><td>Confidence-weighted proposition</td><td>带置信权重的命题</td><td>关于用户知识/偏好/情境的自然语言陈述 + 置信度 + 衰减 + 证据</td></tr>
+  <tr><td>Decay factor</td><td>衰减因子</td><td>命题随时间变陈旧的速率（1–10）</td></tr>
+  <tr><td>Contextual integrity</td><td>情境完整性</td><td>Nissenbaum 的隐私理论：信息流是否符合情境规范</td></tr>
+  <tr><td>Observer</td><td>观察器</td><td>Screen/Notification Observer，把原始活动转为事实记录</td></tr>
+  <tr><td>Propose / Retrieve / Revise</td><td>生成 / 检索 / 修订</td><td>命题库的三个核心操作，构成持续学习循环</td></tr>
+  <tr><td>MMR (Maximal Marginal Relevance)</td><td>最大边际相关</td><td>检索时平衡相关性与多样性（λ=0.5）</td></tr>
+  <tr><td>Brier score</td><td>布赖尔分</td><td>置信度校准指标，越低越好</td></tr>
+  <tr><td>Underconfident</td><td>欠自信</td><td>系统置信度低于实际准确率（比过度自信更安全）</td></tr>
+  <tr><td>GUMBO</td><td>GUM 主动助手</td><td>基于 GUM 的 proactive assistant，发现并执行有用建议</td></tr>
+  <tr><td>Mixed-initiative interaction</td><td>混合主动交互</td><td>系统与用户双方都可发起；按期望效用决定是否打扰</td></tr>
+  <tr><td>Token bucket</td><td>令牌桶</td><td>速率限制：最多每分钟 1 条主动建议</td></tr>
+  <tr><td>GUM injection</td><td>GUM 注入攻击</td><td>垃圾/钓鱼内容污染用户命题库的风险</td></tr>
+  <tr><td>Proactive assistant</td><td>主动式助手</td><td>不等请求、主动预判并行动的智能体（第 16 讲主题）</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2505.10831">Creating General User Models from Computer Use — arXiv:2505.10831（UIST 2025）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；图片热链自 arXiv 官方 HTML 版本；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

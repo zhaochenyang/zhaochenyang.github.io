@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：AutoMetrics — Approximate Human Judgements with Automatically Generated Evaluators（CS329Z Lecture 13 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 13 必读</div>
+  <h1>AutoMetrics: Approximate Human Judgements with Automatically Generated Evaluators</h1>
+  <div class="sub">AutoMetrics：用自动生成的评估器逼近人类判断</div>
+  <div class="meta">Michael J. Ryan, Yanzhe Zhang, Amol Salunkhe, Yi Chu, Di Xu, Diyi Yang（含 CS329Z 两位授课教师 Michael Ryan 与 Diyi Yang）· arXiv 2025-12 · ICLR 2026</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2512.17267">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">框架与组件</a>
+  <a href="#results">实验结果</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>AutoMetrics 解决「<strong>评估指标从哪里来</strong>」的问题：在人工反馈稀缺（&lt;100 个标注点）的低数据条件下，自动合成一套可解释的评估器——从收录 <strong>48 个指标的 MetricBank</strong> 中检索候选指标，结合由轻量人工反馈引导的<strong>自动生成 LLM-as-a-Judge 准则</strong>，再用<strong>回归</strong>学习各指标的组合权重，使综合分数与人类判断对齐。在 5 个任务上，与人类判断的相关性（Kendall τ）比裸用 LLM-as-a-Judge <strong>最高提升 33.4%</strong>；作为优化信号（proxy reward）时，效果<strong>与可验证奖励（verifiable reward）相当甚至更好</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>旅行规划、临床笔记生成、开放式对话等<strong>面向用户的 AI 应用</strong>没有唯一正确答案，其理想评估信号来自真实用户——评分反馈、留存、行为数据。但在原型阶段和研究项目中，这类信号<strong>要么不足、要么来得太慢</strong>，无法及时指导系统优化。而单一的整体式 LLM-as-a-Judge 打分又常与真实人类偏好脱节。AutoMetrics 的目标是：</p>
+<ul>
+  <li>用<strong>极少量人工反馈</strong>（Likert 评分、二元判断或行为信号）自动构建一组<strong>细粒度、可解释</strong>的评估指标；</li>
+  <li>把「昂贵的人类评估」转化为<strong>可复用的自动评估基础设施</strong>，既用于评测，也用作优化的奖励信号。</li>
+</ul>
+<blockquote>
+  <span class="en">"...synthesizes evaluation metrics in low-data settings by retrieving metrics from MetricBank... combined with automatically generated LLM-as-a-Judge criteria guided by lightweight human feedback, and composes them via regression."</span>
+  <span class="zh">（AutoMetrics）在低数据条件下合成评估指标：从 MetricBank 检索指标，结合由轻量人工反馈引导的自动生成 LLM-as-a-Judge 准则，并通过回归将其组合。</span>
+</blockquote>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：评估指标应「检索 + 生成」双通道合成，而非从零手写</h3>
+<p>已有研究沉淀了大量可复用指标（BERTScore、各类 rubric 等），但散落在论文里难以取用。AutoMetrics 把它们整理为带文档的 <span class="term">MetricBank</span>（48 个指标），新任务先<strong>检索</strong>适用指标，再<strong>生成</strong>任务专属的 judge 准则——既继承已有经验，又覆盖新任务特性。</p>
+
+<h3>观点 2：组合优于单一 judge——用回归学习指标权重</h3>
+<p>任何单一指标都只捕捉人类判断的一个侧面。AutoMetrics 把各指标分数<strong>标准化后用 PLS 回归</strong>学习组合权重，并筛选最终指标子集；训练数据就是那不到 100 个人工反馈点。实验显示<strong>约 80 个反馈样本即达饱和</strong>。</p>
+
+<h3>观点 3：好的评估器可以直接当奖励信号用</h3>
+<p>评估与优化是一体两面：如果自动指标与人类判断高度相关，就可以替代稀缺的真实反馈去驱动系统优化。在 τ-bench 航空客服智能体的优化实验中，AutoMetrics 作为 <span class="term">proxy reward</span>（代理奖励）达到了与 <span class="term">verifiable reward</span>（可验证奖励，即任务本身有确定对错）相近的效果——这把「评估基础设施」直接接进了「优化闭环」。</p>
+<blockquote>
+  <span class="en">"...achieves up to 33.4% higher Kendall correlation with fewer than 100 feedback points compared to LLM-as-a-Judge, and can serve as a proxy reward matching verifiable rewards."</span>
+  <span class="zh">相比 LLM-as-a-Judge，（AutoMetrics 用）少于 100 个反馈点即可实现最高 33.4% 的 Kendall 相关性提升，并可作为代理奖励，达到与可验证奖励相当的效果。</span>
+</blockquote>
+
+<h2 id="method">框架与组件</h2>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2512.17267/assets/MethodsFigure.png" alt="AutoMetrics 框架图" loading="lazy">
+  <figcaption>图 1：AutoMetrics 框架——MetricBank 检索 + 准则生成 + 回归组合（来源：原文）</figcaption>
+</figure>
+<table>
+  <tr><th>组件</th><th>做法</th></tr>
+  <tr><td>MetricBank</td><td>收录 48 个已有评估指标，为每个指标建立说明文档（适用场景、计算方式）</td></tr>
+  <tr><td>Metric retrieval（指标检索）</td><td>用任务描述检索候选指标：先以 ColBERT 做稠密粗筛，再由 LLM 精选最终指标</td></tr>
+  <tr><td>Criteria generation（准则生成）</td><td>自动生成多种 judge 指标：默认 10 个单准则（single-criterion）、5 个评分细则（rubric）、1 个示例优化、1 个提示优化型 LLM-judge</td></tr>
+  <tr><td>Regression composition（回归组合）</td><td>各指标分数标准化后，用 PLS 回归在少量人工反馈上学习组合权重并做指标筛选</td></tr>
+</table>
+<div class="note">值得注意的细节：检索阶段用了 <strong>ColBERT</strong>（CS329Z 第 3 讲扩展阅读、延迟交互检索模型）作为粗筛器——课程阅读材料之间形成了直接呼应。</div>
+
+<h2 id="results">实验结果与结论</h2>
+<p>在 5 个覆盖不同应用形态的任务上评估与人类判断的一致性（Kendall τ 相关性）：</p>
+<table>
+  <tr><th>任务数据集</th><th>应用类型</th></tr>
+  <tr><td>SimpEval</td><td>句子简化</td></tr>
+  <tr><td>HelpSteer2</td><td>对话帮助性</td></tr>
+  <tr><td>EvalGen</td><td>商品描述生成</td></tr>
+  <tr><td>RealHumanEval</td><td>代码补全</td></tr>
+  <tr><td>CoGym</td><td>旅行规划智能体</td></tr>
+</table>
+<ul>
+  <li><span class="term">与人类判断的相关性</span>：相对裸用 LLM-as-a-Judge，Kendall 相关性最高提升 <strong>33.4%</strong>（EvalGen 上相对最近基线亦为该幅度）；所需人工反馈点 <strong>&lt;100</strong>，约 <strong>80</strong> 个样本即饱和。</li>
+  <li><span class="term">作为代理奖励</span>：在 τ-bench airline 智能体优化中，2000 次 rollout 后，可验证奖励得分 0.680±0.11，AutoMetrics 代理奖励 <strong>0.720±0.06</strong>——达到「匹配或超越」可验证奖励的水平。</li>
+  <li><span class="term">开源产物</span>：论文发布 AutoMetrics toolkit 与 MetricBank，目标是让 LLM 应用评估「自适应、可复用」。</li>
+</ul>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2512.17267/assets/TauBench_v2.png" alt="τ-bench 代理奖励实验结果" loading="lazy">
+  <figcaption>图 2：τ-bench airline 优化实验——AutoMetrics 代理奖励 vs 可验证奖励（来源：原文）</figcaption>
+</figure>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与 CS329Z 第 13 讲的关联</strong>：该讲主题是「LLM-as-Judge 与评估基础设施」。本文由课程两位授课教师（Michael Ryan、Diyi Yang）合著，代表课程主张的方向：评估不应是一次性打分，而应是<strong>可自动生成、可组合、可复用的基础设施</strong>；它把同讲必读的 MT-Bench/LLM-as-a-Judge 论文中的「单一裁判」推进为「多指标检索 + 生成 + 回归组合」。</li>
+  <li><strong>与 AutoLibra（同讲扩展阅读）的互补</strong>：AutoLibra 从<strong>开放式自然语言反馈</strong>归纳新指标；AutoMetrics 从<strong>指标库检索 + 自动生成准则</strong>合成指标并用少量数值反馈校准。两者共同回答「评估指标从哪里来」。</li>
+  <li><strong>工程意义</strong>：&lt;100 个标注点即可搭建对齐人类的评估器，且评估器可直接作为 RL/优化信号的代理奖励，降低了智能体系统迭代优化的数据门槛。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>MetricBank</td><td>指标库</td><td>收录 48 个带文档的可复用评估指标</td></tr>
+  <tr><td>LLM-as-a-Judge</td><td>LLM 裁判</td><td>用 LLM 按准则给输出打分的评估方式</td></tr>
+  <tr><td>Metric retrieval</td><td>指标检索</td><td>按任务描述检索适用指标（ColBERT 粗筛 + LLM 精选）</td></tr>
+  <tr><td>Criteria generation</td><td>准则生成</td><td>自动生成 judge 打分准则（单准则/rubric 等）</td></tr>
+  <tr><td>Regression composition</td><td>回归组合</td><td>用 PLS 回归学习多指标的组合权重</td></tr>
+  <tr><td>Kendall correlation (τ)</td><td>肯德尔相关系数</td><td>衡量指标排序与人类判断排序的一致性</td></tr>
+  <tr><td>Proxy reward</td><td>代理奖励</td><td>用自动评估分数替代真实/可验证奖励做优化</td></tr>
+  <tr><td>Verifiable reward</td><td>可验证奖励</td><td>任务有确定对错时可直接计算的奖励</td></tr>
+  <tr><td>Rubric</td><td>评分细则</td><td>分维度、分档位的打分标准</td></tr>
+  <tr><td>Likert feedback</td><td>李克特量表反馈</td><td>如 1–5 分的分级人工评分</td></tr>
+  <tr><td>τ-bench</td><td>—（智能体基准）</td><td>工具调用型客服智能体基准（airline/retail 域）</td></tr>
+  <tr><td>ColBERT</td><td>—（检索模型）</td><td>延迟交互稠密检索模型，此处用于指标粗筛</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2512.17267">AutoMetrics: Approximate Human Judgements with Automatically Generated Evaluators — arXiv 2512.17267（ICLR 2026）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

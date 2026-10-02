@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：A Dynamic LLM-Powered Agent Network for Task-Oriented Agent Collaboration（CS329Z Lecture 8 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 8 扩展</div>
+  <h1>A Dynamic LLM-Powered Agent Network for Task-Oriented Agent Collaboration</h1>
+  <div class="sub">面向任务的动态 LLM 智能体协作网络（DyLAN）</div>
+  <div class="meta">Zijun Liu, Yanzhe Zhang, Peng Li, Yang Liu, Diyi Yang（Tsinghua / Georgia Tech / Carnegie Mellon）· COLM 2024（arXiv 2023）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2310.02170">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结论</a>
+  <a href="#impact">影响</a>
+  <a href="#glossary">术语</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>DyLAN 针对既有多智能体方法「<strong>智能体数量固定、通信结构静态</strong>」的局限，提出按任务动态组队：先在预备阶段用无监督的<strong>智能体重要性得分（Agent Importance Score）</strong>从候选池中筛选出最优团队，再在求解阶段按查询动态调整通信图、支持提前收敛停止——在代码生成、决策、通用推理与算术推理四类任务上以适中计算开销取得一致提升（MMLU 特定学科组队最高提升 <strong>25.0%</strong>）。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>既有多智能体协作方法有两个通病：<strong>团队构成固定</strong>（不论什么任务都用同一批角色）与<strong>通信结构静态</strong>（消息传递拓扑事先写死）。然而不同任务需要不同专长：数学题需要推理强的智能体，代码题需要会写测试的智能体；同一任务内部，不同查询的难度与类型也不同。</p>
+<p>DyLAN 要回答：<strong>能否自动地从候选智能体池中为每个任务挑选团队，并在求解过程中动态调整协作结构？</strong></p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：协作结构应随任务而变</h3>
+<p>论文把多智能体协作建模为<strong>时间分层的前馈图（time-layered feed-forward graph）</strong>：每一层是一个交互步，节点是该步的智能体，边是消息传递。这个形式化让「动态通信结构」成为可计算的对象，而非工程 trick。</p>
+
+<h3>观点 2：智能体重要性可以被无监督地度量</h3>
+<p>不需要人工标注谁重要：让后层智能体给前层智能体的回答打分，再把分数沿图<strong>反向传播聚合</strong>，即可估计每个候选智能体的贡献——「智能体重要性得分」由此而来。</p>
+
+<h3>观点 3：少而精胜过多而杂</h3>
+<blockquote>
+  <span class="en">"Fewer proper agents in a team could have better performance."</span>
+  <span class="zh">团队中更少但更合适的智能体，反而可能带来更好的表现。</span>
+</blockquote>
+<p>实验反复验证了这一点：缩减候选团队常常提升准确率并大幅节省 API 调用（见下文）。</p>
+
+<h2 id="method">方法与架构</h2>
+<blockquote>
+  <span class="en">"DyLAN adopts a two-stage paradigm."</span>
+  <span class="zh">DyLAN 采用两阶段范式。</span>
+</blockquote>
+
+<figure>
+  <img src="https://arxiv.org/html/2310.02170v2/overview-fig1.png" alt="DyLAN 两阶段流程总览" loading="lazy">
+  <figcaption>图 1：DyLAN 总览——第一阶段对候选智能体评估剪枝组队，第二阶段入选团队通过分层交互求解目标查询（来源：原文）</figcaption>
+</figure>
+
+<h3>阶段一：团队优化（Team Optimization）</h3>
+<ol>
+  <li><span class="term">预备协作</span>：候选智能体先在试跑任务上协作一轮，形成分层交互图；</li>
+  <li><span class="term">评分（Rating）</span>：后层智能体对其收到的前层智能体回答打分；</li>
+  <li><span class="term">反向聚合</span>：前层智能体的重要性 = 后层智能体重要性 × 所得评分，沿图反向传播更新；最终层得分先初始化并归一化，回答顺序随机打乱以消除位置偏差；</li>
+  <li><span class="term">选择</span>：跨层累加每个智能体的得分，取 top-k 组成任务专属团队。</li>
+</ol>
+
+<h3>阶段二：任务求解（Task Solving）</h3>
+<ul>
+  <li>入选智能体对真实查询协作求解；<strong>LLM 排序器</strong>在运行中评估各智能体的当前回答，只让较强者进入后续层——通信图随查询动态改变；</li>
+  <li><span class="term">提前停止</span>：当超过三分之二的智能体收敛到一致答案时，可提前结束迭代，节省计算。</li>
+</ul>
+
+<figure>
+  <img src="https://arxiv.org/html/2310.02170v2/overview-old.v4.png" alt="分层协作图细节与重要性反向传播" loading="lazy">
+  <figcaption>图 2：分层协作图细节——运行中移除较弱智能体，以及用于计算各智能体重要性的反向传播过程（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">实验结果与结论</h2>
+<p>四类任务的评测（单智能体执行为基线）：</p>
+<table>
+  <tr><th>任务 / 基准</th><th>DyLAN</th><th>基线</th><th>API 调用</th></tr>
+  <tr><td>代码生成 HumanEval（Pass@1）</td><td><strong>82.9</strong>（GPT-4 团队可达 92.1）</td><td>73.2</td><td>16.85（GPT-4 版 15.94）</td></tr>
+  <tr><td>决策 WebShop（reward / 成功率）</td><td><strong>68.3</strong> / 42.0</td><td>50.6</td><td>24.85</td></tr>
+  <tr><td>通用推理 MMLU（总体）</td><td><strong>70.5</strong>（人文 62.1 / 社科 79.1 / STEM 69.7 / 其他 75.5）</td><td>66.4</td><td>4.39</td></tr>
+  <tr><td>算术推理 MATH（CoT / 复杂 CoT）</td><td><strong>35.7 / 37.6</strong></td><td>31.6 / 34.1</td><td>—</td></tr>
+</table>
+<p>关键观察：</p>
+<ul>
+  <li><strong>按学科组队收益巨大</strong>：MMLU 特定学科上用该学科最优团队，准确率最高提升 <strong>25.0 个百分点</strong>（如大学数学从 40.0 → 65.0）。</li>
+  <li><strong>团队瘦身</strong>：候选池经优化普遍缩小（代码生成 12→8、决策 8→4、通用推理 7→4）；一个 3 智能体的通用推理团队即可超过筛选前配置与 4 智能体辩论（debate）基线，同时 API 用量分别减少 <strong>52.9%</strong> 与 <strong>67.8%</strong>。</li>
+  <li><strong>提前停止</strong>：算术推理省 45.0%、通用推理省 66.2%、代码生成省 11.3%、决策省 54.2% 的 API 调用，且准确率略有上升。</li>
+</ul>
+<blockquote>
+  <span class="en">"DyLAN improves overall performance on different tasks with a reasonable computational cost."</span>
+  <span class="zh">DyLAN 以合理的计算开销，在不同任务上全面提升了整体性能。</span>
+</blockquote>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：DyLAN 是「动态组队」路线的早期代表（2023 年 10 月），把多智能体协作形式化为分层图并给出无监督的智能体贡献度量，发表于 COLM 2024；其一作来自 Diyi Yang（CS329Z 主讲教授）的 Georgia Tech 实验室，与本课程内容同源。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 8 讲讨论编排模式与「谁该参与协作」。DyLAN 给出的答案是：参与者不应事先固定，而应按任务重要性得分动态选择；这与 AutoGen 的「对话即编排」互补——AutoGen 定义了对话机制，DyLAN 优化对话的参与者与拓扑。其「提前收敛停止」也是本讲「停止准则」设计的一个具体实例（与第 12 讲评测 4 元组呼应）。</li>
+  <li><strong>实践启示</strong>：多智能体系统上线前值得做一轮「团队消融」：跑重要性评分、砍掉低贡献成员，往往既省钱又提效——这与《Don't Sleep on Single-agent Systems》的告诫殊途同归：结构要服务于任务，而非相反。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>DyLAN (Dynamic LLM-Agent Network)</td><td>动态 LLM 智能体网络</td><td>本文提出的任务导向协作框架</td></tr>
+  <tr><td>Team optimization</td><td>团队优化</td><td>第一阶段：从候选池筛选任务专属团队</td></tr>
+  <tr><td>Agent Importance Score</td><td>智能体重要性得分</td><td>无监督贡献度量：评分 + 反向聚合</td></tr>
+  <tr><td>Time-layered feed-forward graph</td><td>时间分层前馈图</td><td>协作结构的形式化：层=交互步，边=消息</td></tr>
+  <tr><td>Backward aggregation</td><td>反向聚合</td><td>沿图反向传播重要性</td></tr>
+  <tr><td>Dynamic communication structure</td><td>动态通信结构</td><td>求解中按回答质量调整通信图</td></tr>
+  <tr><td>Early stopping / convergence</td><td>提前停止 / 收敛</td><td>超 2/3 智能体答案一致即终止</td></tr>
+  <tr><td>Multi-agent debate</td><td>多智能体辩论</td><td>对比基线：固定角色的辩论式协作</td></tr>
+  <tr><td>Position bias</td><td>位置偏差</td><td>评分时打乱回答顺序以消除</td></tr>
+  <tr><td>API calls</td><td>API 调用数</td><td>衡量多智能体计算开销的指标</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2310.02170">A Dynamic LLM-Powered Agent Network for Task-Oriented Agent Collaboration — arXiv 2310.02170（COLM 2024）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

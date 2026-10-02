@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation（CS329Z Lecture 8 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 8 必读</div>
+  <h1>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</h1>
+  <div class="sub">AutoGen：通过多智能体对话构建下一代 LLM 应用</div>
+  <div class="meta">Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed Hassan Awadallah, Ryen W. White, Doug Burger, Chi Wang（Microsoft Research / Penn State / University of Washington）· COLM 2024（arXiv 2023）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2308.08155">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结论</a>
+  <a href="#impact">影响</a>
+  <a href="#glossary">术语</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>AutoGen 是微软推出的开源多智能体框架，其核心思想是把各种复杂的 LLM 应用<strong>统一抽象为「多个可对话智能体（conversable agents）之间的会话」</strong>——每个智能体可以由 LLM、人类输入、工具或三者的任意组合驱动，开发者用自然语言和代码定义智能体角色与对话模式，即可搭建从数学解题、检索问答到代码优化、决策任务的各类应用。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>2023 年前后，基于 LLM 的应用（如 ChatGPT 插件、Copilot 类工具）展现出强大能力，但构建<strong>复杂工作流</strong>时开发者面临碎片化困境：LLM 调用、提示工程、工具接入、人类参与（human-in-the-loop）、多步控制流各自为政，缺乏统一的编程抽象。已有系统往往把控制流写死在代码里，难以灵活组合「模型推理 + 外部工具 + 人类反馈」。</p>
+<p>AutoGen 要回答的问题是：<strong>能否用一个通用框架，把「LLM 应用的编排」简化并统一为多智能体对话？</strong>论文全文 43 页（正文 10 页 + 附录 30 页），既给出框架设计，也用 6 类示例应用做了实证。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：多智能体对话是通用编程抽象</h3>
+<p>AutoGen 的核心洞察是：绝大多数 LLM 应用都可以建模为<strong>多个智能体通过交换消息来完成任务</strong>的会话过程。智能体（agent）是可定制、可对话的实体，背后可以是 LLM、人类、工具，或任意组合。</p>
+<blockquote>
+  <span class="en">"A fundamental insight of AutoGen is to simplify and unify complex LLM application workflows as multi-agent conversations."</span>
+  <span class="zh">AutoGen 的一个基本洞察，是把复杂的 LLM 应用工作流简化并统一为多智能体对话。</span>
+</blockquote>
+
+<h3>观点 2：可对话智能体（Conversable Agents）</h3>
+<p>框架定义了两类内置智能体：<span class="term">AssistantAgent</span>（默认由 LLM 驱动，负责提出解答、编写代码、根据反馈修改）与 <span class="term">UserProxyAgent</span>（代表人类或执行环境，可征求人类输入、执行生成的代码、调用函数并把结果回传给其他智能体）。人类参与的频率（总是 / 从不 / 仅终止时）可配置，天然支持 human-in-the-loop。</p>
+<blockquote>
+  <span class="en">"AutoGen uses a generic design of agents that can leverage LLMs, human inputs, tools, or a combination of them."</span>
+  <span class="zh">AutoGen 采用通用的智能体设计，可以借助 LLM、人类输入、工具，或它们的组合。</span>
+</blockquote>
+
+<h3>观点 3：会话编程（Conversation Programming）</h3>
+<p>开发者先定义各具角色的智能体，再<strong>用自然语言（系统消息）和代码（回复函数、终止条件）共同编程智能体间的交互行为</strong>。计算以「回复生成（reply generation）」为中心，控制流由消息交换驱动——这使得同一个框架既能表达固定流水线，也能表达完全自主的动态对话。</p>
+<blockquote>
+  <span class="en">"Both natural language and computer code can be used to program flexible conversation patterns for different applications."</span>
+  <span class="zh">自然语言和计算机代码都可以用来为不同应用编程灵活的对话模式。</span>
+</blockquote>
+
+<figure>
+  <img src="https://arxiv.org/html/2308.08155v2/autogen_landing_full.png" alt="AutoGen 框架总览" loading="lazy">
+  <figcaption>图 1：AutoGen 总览——可配置的智能体通过任务求解对话协作，人类可选择性参与，交互模式灵活可变（来源：原文）</figcaption>
+</figure>
+
+<h2 id="method">方法与架构</h2>
+<table>
+  <tr><th>组件</th><th>职责</th></tr>
+  <tr><td>ConversableAgent</td><td>核心抽象：维护会话上下文、收发消息、生成回复；后端可为模型推理、人类、工具或混合</td></tr>
+  <tr><td>AssistantAgent</td><td>内置的 LLM 助手：提出解答、写代码、依反馈修改，遵循结构化会话指令</td></tr>
+  <tr><td>UserProxyAgent</td><td>内置的人类/环境代理：征求人类输入、执行代码、调用函数、回传结果；人类介入频率可配</td></tr>
+  <tr><td>GroupChat / GroupChatManager</td><td>多方群聊：共享上下文；管理器负责挑选下一个发言者、获取回复并广播给全组，实现动态而非固定的轮次</td></tr>
+  <tr><td>会话编程接口</td><td>用自然语言系统消息 + 代码（自定义回复逻辑、程序化终止条件、函数调用）共同定义交互行为</td></tr>
+</table>
+
+<figure>
+  <img src="https://arxiv.org/html/2308.08155v2/app_horizontal_6.png" alt="六个示例应用的对话结构" loading="lazy">
+  <figcaption>图 2：六个示例应用及其不同的对话结构——两智能体对话、顺序对话、群聊等模式都由同一框架构建（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">实验结果与结论</h2>
+<p>论文用六类示例应用做实证研究，覆盖不同复杂度与 LLM 能力组合：</p>
+<table>
+  <tr><th>应用</th><th>关键结果</th></tr>
+  <tr><td>数学问题求解（MATH）</td><td>完整测试集 5000 题上，AutoGen（GPT-4 + AssistantAgent/UserProxyAgent 对话式求解）准确率 <strong>69.48%</strong>，显著高于 GPT-4 直接求解的 <strong>55.18%</strong>；引入人类输入可解出模型独立无法解决的难题</td></tr>
+  <tr><td>检索增强问答/代码生成（RetrieveChat）</td><td>Natural Questions 上（前 500 题），去掉交互式检索的消融版本 F1 为 23.40%、召回 62.60%；约 19.4% 的问题触发上下文更新（interactive context updating）</td></tr>
+  <tr><td>ALFWorld 决策任务</td><td>134 个未见任务：ReAct 平均成功 54，AutoGen 两智能体 54，加入 grounding agent 的三智能体版 <strong>69</strong>（约 +15%）；best-of-3 下三智能体版达 77</td></tr>
+  <tr><td>OptiGuide 供应链代码优化</td><td>commander/writer/safeguard 三智能体流水线：核心工作流代码从 430+ 行降到 <strong>100 行</strong>，用户耗时约省 3 倍、交互次数减少 3–5 倍；不安全代码检测 F1 提升 8%（GPT-4）/ 35%（GPT-3.5-turbo）</td></tr>
+  <tr><td>动态群聊（GroupChat）</td><td>12 个人工构造的复杂任务试点：基于角色扮演的发言者选择提高成功率并减少模型调用次数</td></tr>
+  <tr><td>对话式国际象棋</td><td>无定量基准；消融显示去掉棋盘智能体的规则校验后，非法走子会破坏对局——说明工具型智能体的验证价值</td></tr>
+</table>
+<p>结论：多智能体对话作为通用抽象，能够以少量代码支撑差异极大的应用形态；LLM、人类与工具的组合方式直接影响任务表现（如 grounding agent、safeguard agent 的增益）。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：AutoGen 是最早（2023 年 8 月）系统化提出「多智能体对话」编程范式的开源框架之一，GitHub 星标数万，直接催生了后续多智能体框架生态；发表于 COLM 2024。其后续版本（AG2 / AutoGen 0.4）重构为事件驱动架构。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 8 讲（Multi-Agent Systems）讨论单 vs 多智能体架构、编排模式、handoff 与状态转移。AutoGen 是「对话驱动编排」路线的代表：控制流不在代码里写死，而是由智能体间的消息交换涌现。本讲扩展阅读《Why Do Multi-Agent LLM Systems Fail?》分析的 7 个框架中即包含 AG2（AutoGen 社区分支），两篇对读可以看到「框架能力」与「系统性失效模式」的一体两面；另一篇扩展阅读《Don't Sleep on Single-agent Systems》则对多智能体结构本身提出质疑，与本文形成有价值的对照。</li>
+  <li><strong>实践启示</strong>：引入多智能体前先问「对话结构是否真的带来增益」——论文自己的消融（如 ALFWorld 两智能体 vs ReAct 打平）也说明多智能体并非处处占优。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Multi-agent conversation</td><td>多智能体对话</td><td>AutoGen 的核心抽象：应用 = 智能体间会话</td></tr>
+  <tr><td>Conversable agent</td><td>可对话智能体</td><td>能收发消息并生成回复的实体，后端可为 LLM/人/工具</td></tr>
+  <tr><td>Conversation programming</td><td>会话编程</td><td>用自然语言 + 代码定义智能体交互行为</td></tr>
+  <tr><td>AssistantAgent</td><td>助手智能体</td><td>默认 LLM 驱动，提解、写码、改错</td></tr>
+  <tr><td>UserProxyAgent</td><td>用户代理智能体</td><td>代表人类/执行环境，可执行代码与函数调用</td></tr>
+  <tr><td>GroupChat</td><td>群聊</td><td>多方共享上下文的对话，管理器动态选发言者</td></tr>
+  <tr><td>Human-in-the-loop</td><td>人类在环</td><td>人类以可配置频率介入智能体对话</td></tr>
+  <tr><td>Grounding agent</td><td>接地智能体</td><td>ALFWorld 实验中提供环境反馈对齐的智能体</td></tr>
+  <tr><td>Termination condition</td><td>终止条件</td><td>程序化定义的会话结束规则</td></tr>
+  <tr><td>Reply generation</td><td>回复生成</td><td>框架中计算的基本单元</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2308.08155">AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation — arXiv 2308.08155（COLM 2024）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

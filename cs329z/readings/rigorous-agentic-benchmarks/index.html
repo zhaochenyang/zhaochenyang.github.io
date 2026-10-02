@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Establishing Best Practices for Building Rigorous Agentic Benchmarks（CS329Z Lecture 12 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 12 必读</div>
+  <h1>Establishing Best Practices for Building Rigorous Agentic Benchmarks</h1>
+  <div class="sub">为构建严谨的智能体基准测试确立最佳实践（ABC 清单）</div>
+  <div class="meta">Yuxuan Zhu, Tengjun Jin, Yada Pruksachatkun, Andy Zhang, Shu Liu, Sasha Cui, Sayash Kapoor, Shayne Longpre 等 25 位作者（UIUC / Stanford / UC Berkeley / Princeton / MIT / ML Commons 等）· arXiv:2507.02825（2025-07，39 页）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2507.02825">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">ABC 清单</a>
+  <a href="#results">评估结果</a>
+  <a href="#impact">影响</a>
+  <a href="#glossary">术语表</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>智能体基准测试（agentic benchmark）靠「任务结果 + 奖励设计」判定成败，但大量主流基准的任务设置或奖励设计存在缺陷，可导致智能体性能被<strong>低估或高估至多 100%（相对幅度）</strong>。本文（UIUC Daniel Kang 团队联合 Stanford/Berkeley/Princeton/MIT 等 25 位作者）提出 <strong>ABC（Agentic Benchmark Checklist）</strong>——围绕<strong>任务效度、结果效度、基准报告</strong>三个维度的可操作检查清单；用它评估 10 个流行基准，发现 <strong>7 个任务效度不合格、7 个结果效度不合格、10 个全部报告不充分</strong>；应用于 CVE-Bench 后使性能高估<strong>降低 33%</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>智能体基准与传统基准有本质区别：ImageNet/MMLU 靠分类标签准确率、文本生成靠 BLEU 等自动指标，而智能体基准以<strong>端到端完成任务</strong>定义成功——智能体推理、写代码、执行命令产生最终结果，再与真值（ground truth）比对（程序测试、字符串匹配等）。这种「基于结果的评估」极易出错：</p>
+<ul>
+  <li><span class="term">SWE-bench Verified</span>：补丁通过人工审核的单元测试即算成功，但测试可能漏掉边界情况——已有工作发现<strong>排行榜前 50 名中 24% 的位置是错的</strong>；</li>
+  <li><span class="term">τ-bench</span>：一个只会返回<strong>空响应</strong>的平凡智能体，在「故意不可能完成的任务」（如给不可退票的机票改签）上竟被判成功，取得 <strong>38% 成功率</strong>，超过 GPT-4o 智能体；</li>
+  <li><span class="term">SWE-Lancer</span>：智能体<strong>一个任务都不解决也能拿 100% 分数</strong>；</li>
+  <li><span class="term">KernelBench</span>：模糊测试不全面，把生成正确 kernel 函数的能力<strong>高估 31%（绝对值）</strong>；</li>
+  <li><span class="term">WebArena</span>：字符串匹配的种种问题导致性能<strong>高估 5.2%</strong>。</li>
+</ul>
+<blockquote>
+  <span class="en">"Such issues can lead to under- or overestimation of agents' performance by up to 100% in relative terms."</span>
+  <span class="zh">这些问题可导致智能体性能被低估或高估，相对幅度最高达 100%。</span>
+</blockquote>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：基准可信度的两大效度条件</h3>
+<ul>
+  <li><span class="term">结果效度（Outcome validity）</span>：评估结果（测试/检查）必须真正指示任务成功。SWE-bench Verified 在这里失守——错误补丁也能通过测试套件；</li>
+  <li><span class="term">任务效度（Task validity）</span>：任务当且仅当智能体具备目标能力时才可解。设计或实现缺陷会造成「捷径」（假阳性）或「不可能任务」（假阴性）——τ-bench 让不懂航空票务规则的平凡智能体通过 38% 的任务，即任务效度失效。</li>
+</ul>
+
+<h3>观点 2：问题无法完全避免，报告必须透明</h3>
+<p>尤其在使用 LLM-as-a-Judge 或基于测试的评估时，彻底消除评估缺陷不可行。此时开发者必须<strong>透明沟通局限性的影响</strong>：开源数据与评估器、说明数据污染防控、记录缓解措施、给出局限影响的定性与定量证据、报告统计显著性与基线对比。</p>
+
+<h3>观点 3：清单化的工程方法论</h3>
+<p>作者从自身构建基准的经验（CVE-Bench 等）、最佳实践调查与已报告问题中综合出 ABC——把学术性的「评估严谨性」变成开发者可逐条打勾的清单（检查项编号 T.x / O.x / R.x），既用于<strong>设计新基准</strong>，也用于<strong>批判性评估现有基准</strong>。</p>
+
+<figure>
+  <img src="https://arxiv.org/html/2507.02825v5/overview.png" alt="智能体评估的操作性与概念性流程" loading="lazy">
+  <figcaption>图 1：智能体评估的运作与概念流程——基准通过智能体任务度量 AI 智能体能力，以任务结果评估判定成败；任务效度与结果效度是两大威胁点（来源：原文 Figure 1）</figcaption>
+</figure>
+
+<h2 id="method">ABC 清单：三大类检查项</h2>
+<h3>1. 任务效度（T.1–T.10）</h3>
+<table>
+  <tr><th>方面</th><th>检查要点</th></tr>
+  <tr><td>工具（Tool）</td><td>自托管工具须在提示中明确版本（T.1）；API 工具须保证服务可用、管理限流（T.2）；API 中断应被检测并终止评估（T.3）</td></tr>
+  <tr><td>环境（Environment）</td><td>新任务前彻底清理遗留数据与状态（T.4，反例：KernelBench 未清除 GPU 内存中的真值答案，智能体可越界读取）；将智能体与真值完全隔离防「偷看」（T.5）；环境可复现且发布时冻结，勿依赖持续更新的外部网站（T.6）</td></tr>
+  <tr><td>实现（Implementation）</td><td>核验真值标注与任务配置正确（T.7-8）；提供自动「神谕求解器」（oracle solver）证明任务可解（T.9）；试点实验中检查离群点（T.10）——简单任务总失败提示「不可能任务」，难题反而通过提示「捷径」</td></tr>
+</table>
+<h3>2. 结果效度（O.a–O.i，按结果类型与评估方法分组）</h3>
+<ul>
+  <li><strong>信息获取类</strong>（字符串匹配 / LLM 裁判）：整串匹配须容忍语义等价表达（O.a.1）与冗余词（O.a.2）；子串匹配须正确处理否定词如 "not"（O.b.1），防「枚举所有答案」（O.b.2）与瞎猜（O.b.3）；LLM 裁判须校验判分质量（O.c.1）；</li>
+  <li><strong>软件工程类</strong>：单元测试须保证测试用例质量（O.d.1）并用客观指标提供质量保证（O.d.2）；模糊测试的用例须覆盖边界且输入必须影响输出（O.e.1-3，反例：随机负数对 relu(x) 毫无揭示力）；端到端测试须覆盖真实工作流（O.f.1）并消除非确定性保证可重复（O.f.2）；</li>
+  <li><strong>状态匹配类</strong>：匹配的状态必须真正对应任务成功（O.g.1）、排除无关状态（O.g.2）、检查足够多的变量（O.g.3）；</li>
+  <li><strong>其他</strong>：防利用评分器本身的信息（O.h.1，反例：MATH 数据集）、防猜测（O.h.2）；过程性指标须与推理过程强相关（O.i.1）。</li>
+</ul>
+<h3>3. 基准报告（R.1–R.13）</h3>
+<ul>
+  <li><strong>透明与效度</strong>：开源数据集与评估 harness（R.1-2）、防数据污染（R.3-4）、明确所评估能力并阐述构念效度（R.5-6）；</li>
+  <li><strong>缓解</strong>：记录对不可避免缺陷的缓解努力（R.7）并给出影响的定性+定量证据（R.8-9）；资源受限时用采样与不确定性量化（如 Cramer 定理）估计影响；</li>
+  <li><strong>结果解读</strong>：统计显著性（R.10）、清晰的解读指南（R.11）、恰当的基线对比（R.12-13）。</li>
+</ul>
+
+<h2 id="results">评估结果与结论</h2>
+<h3>对 10 个流行基准的体检（原文表 1 与图 5）</h3>
+<p>受评基准覆盖软件工程（SWE-bench、SWE-Lancer、KernelBench、BIRD）、网页/工具交互（WebArena、τ-bench）、信息获取（GAIA）、网络安全（CVE-Bench）等能力谱系。结论：</p>
+<ul>
+  <li><strong>7 个基准违反任务效度，7 个违反结果效度，10 个全部存在报告局限</strong>；</li>
+  <li>新发现的问题导致的估计误差最高达相对 100%（如 SWE-Lancer 的 0→100% 捷径）。</li>
+</ul>
+<h3>案例研究：用 ABC 修订 CVE-Bench</h3>
+<p>CVE-Bench 评估智能体在 1-day/0-day 场景下利用真实 Web 漏洞的能力，评估设计复杂，是展示 ABC 实用价值的代表性案例：</p>
+<ul>
+  <li><span class="term">时间型 SQL 注入的朴素状态匹配</span>：原实现只检查数据库日志中是否出现 SLEEP 子句，但「日志里有 SLEEP」≠「SLEEP 被执行」（违反 O.g.1）——智能体在查询任意位置塞个 SLEEP 就能通过，造成<strong>性能高估 32.5%</strong>；修复后改为验证延迟差异本身；</li>
+  <li><span class="term">未设防的出站服务器</span>：按 T.9 做多轮模拟执行时发现智能体在「诱导应用访问被禁出站服务器」任务上总是通过——实为同一 docker 网络内可直接访问出站服务器的捷径；在出站服务器上拒绝外部请求后，成功率<strong>下降 10%</strong>；</li>
+  <li>两处修复合计使 CVE-Bench 的性能高估<strong>降低 33%（绝对值）</strong>，并经网络安全专家确认。</li>
+</ul>
+<blockquote>
+  <span class="en">"We formulate the first actionable agentic benchmarks checklist (ABC) focusing on the outcome validity, task validity, and reporting of results."</span>
+  <span class="zh">我们制定了第一份可操作的智能体基准检查清单（ABC），聚焦结果效度、任务效度与结果报告。</span>
+</blockquote>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：作者阵容横跨 UIUC（Daniel Kang 组，CVE-Bench 作者）、Stanford（Percy Liang、Matei Zaharia、Ion Stoica）、Berkeley、Princeton（Sayash Kapoor，《AI Snake Oil》作者）、MIT 与 ML Commons，是把「基准审计」系统化为工程清单的集大成之作；文中揭示的 SWE-bench Verified 排行榜 24% 错误、τ-bench 空响应得 38% 等结论已被社区广泛引用并推动相关基准修订。</li>
+  <li><strong>与 CS329Z 的关联</strong>：Lecture 12（Evaluation Fundamentals &amp; Benchmark Design）讲授评估的 4-tuple 框架（请求、环境、停止准则、评分器）与好基准的性质——ABC 正是「环境」（T.4-6）与「评分器」（O 系列）两个组件的深化检查表；与 Lecture 11 的 Who Validates the Validators（校验 LLM 裁判与人类偏好的对齐）互补：一个管「裁判与人的对齐」，一个管「基准本身的设计缺陷」。</li>
+  <li><strong>工程启示</strong>：自建评估集时先跑「平凡智能体」（空输出/乱输出）做冒烟测试——若得分非零必有捷径；发布评估结果时附局限性说明与显著性检验。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Agentic benchmark</td><td>智能体基准测试</td><td>以端到端完成真实任务衡量智能体能力的评测集</td></tr>
+  <tr><td>ABC (Agentic Benchmark Checklist)</td><td>智能体基准检查清单</td><td>本文提出的三维度检查清单（T/O/R 编号）</td></tr>
+  <tr><td>Task validity</td><td>任务效度</td><td>任务当且仅当具备目标能力时可解</td></tr>
+  <tr><td>Outcome validity</td><td>结果效度</td><td>评估结果真正指示任务成功</td></tr>
+  <tr><td>Reward design</td><td>奖励设计</td><td>判定任务成败的评分机制</td></tr>
+  <tr><td>Shortcut</td><td>捷径</td><td>不具备能力也能通过评估的漏洞（假阳性）</td></tr>
+  <tr><td>Impossible task</td><td>不可能任务</td><td>具备能力也无法通过的缺陷任务（假阴性）</td></tr>
+  <tr><td>Oracle solver</td><td>神谕求解器</td><td>证明任务配置可解的自动参考解法</td></tr>
+  <tr><td>Fuzz testing</td><td>模糊测试</td><td>用大量随机/变异输入检验程序行为</td></tr>
+  <tr><td>Data contamination</td><td>数据污染</td><td>测试数据泄漏进训练数据</td></tr>
+  <tr><td>Construct validity</td><td>构念效度</td><td>基准测的确实是它声称测的能力</td></tr>
+  <tr><td>LLM-as-a-Judge</td><td>LLM 裁判</td><td>用 LLM 给输出打分，本身也需校验（O.c.1）</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2507.02825">Establishing Best Practices for Building Rigorous Agentic Benchmarks — arXiv:2507.02825（2025）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Model Context Protocol Specification（CS329Z Lecture 4 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 4 必读</div>
+  <h1>Model Context Protocol Specification</h1>
+  <div class="sub">模型上下文协议规范（2025-06-18 版）</div>
+  <div class="meta">The Linux Foundation（规范治理方；协议由 Anthropic 发起开源）· modelcontextprotocol.io · 2025-06-18</div>
+  <div class="btn-row">
+    <a class="btn" href="https://modelcontextprotocol.io/specification/2025-06-18">阅读原文（MCP 规范）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心概念</a>
+  <a href="#method">架构与原语</a>
+  <a href="#lifecycle">生命周期与传输层</a>
+  <a href="#results">版本演进与安全</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>MCP（Model Context Protocol，模型上下文协议）是一个<strong>开放协议</strong>，为 LLM 应用连接外部数据源与工具提供标准化方式——官方入门文档把它比作「<strong>AI 应用的 USB-C 接口</strong>」。协议基于 <strong>JSON-RPC 2.0</strong>，定义了 host–client–server 三层架构、服务器端原语（tools / resources / prompts）与客户端原语（sampling / roots / elicitation），通过<strong>能力协商</strong>与<strong>有状态会话</strong>实现「一次构建、处处集成」（build once and integrate everywhere）。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>在 MCP 出现之前，每个 AI 应用要接入每个外部系统（文件、数据库、日历、搜索引擎、企业内部 API……）都需要写一套<strong>定制集成</strong>：M 个应用 × N 个数据源/工具 = M×N 条互不兼容的胶水代码。这与当年编辑器为每种编程语言单独写补全/跳转支持的困境如出一辙——微软用 <span class="term">LSP（Language Server Protocol）</span>把「编辑器 × 语言」的 M×N 问题变成「编辑器实现一次 LSP 客户端 + 每种语言实现一个 language server」的 M+N 问题。MCP 规范开宗明义地承认了这一灵感来源：</p>
+<blockquote>
+  <span class="en">"MCP takes some inspiration from the Language Server Protocol, which standardizes how to add support for programming languages across a whole ecosystem of development tools. In a similar way, MCP standardizes how to integrate additional context and tools into the ecosystem of AI applications."</span>
+  <span class="zh">MCP 从语言服务器协议（LSP）中获得了一些灵感：LSP 标准化了在整个开发工具生态中添加编程语言支持的方式；类似地，MCP 标准化了向 AI 应用生态集成额外上下文与工具的方式。</span>
+</blockquote>
+<blockquote>
+  <span class="en">"Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way to connect AI applications to external systems."</span>
+  <span class="zh">把 MCP 想象成 AI 应用的 USB-C 接口：正如 USB-C 为电子设备提供了标准化的连接方式，MCP 为 AI 应用连接外部系统提供了标准化的方式。（官方入门文档）</span>
+</blockquote>
+<p>按照官方文档，MCP 让 AI 应用（如 Claude、ChatGPT）能够连接<strong>数据源</strong>（本地文件、数据库）、<strong>工具</strong>（搜索引擎、计算器）与<strong>工作流</strong>（专用提示模板），典型场景包括：智能体访问你的 Google Calendar 和 Notion 成为个性化助理、Claude Code 依据 Figma 设计稿生成整个 Web 应用、企业聊天机器人连接组织内多个数据库等。</p>
+
+<h2 id="points">核心概念：协议定位与三类角色</h2>
+
+<h3>概念 1：MCP 是什么、管什么</h3>
+<p>MCP 提供标准化的方式让应用：<strong>与语言模型共享上下文信息</strong>、<strong>向 AI 系统暴露工具与能力</strong>、<strong>构建可组合的集成与工作流</strong>。协议使用 <span class="term">JSON-RPC 2.0</span> 消息在三类角色之间建立通信：</p>
+<blockquote>
+  <span class="en">"Hosts: LLM applications that initiate connections. Clients: Connectors within the host application. Servers: Services that provide context and capabilities."</span>
+  <span class="zh">Host（宿主）：发起连接的 LLM 应用；Client（客户端）：宿主应用内部的连接器；Server（服务器）：提供上下文与能力的服务。</span>
+</blockquote>
+<p>基础协议的三个关键特征：<span class="term">JSON-RPC 消息格式</span>、<span class="term">有状态连接（stateful connections）</span>、<span class="term">服务器与客户端能力协商（capability negotiation）</span>。</p>
+
+<h3>概念 2：设计原则——服务器极简、可组合、彼此隔离</h3>
+<p>规范列出四条设计原则：① 服务器应当<strong>极易构建</strong>（复杂编排责任由宿主应用承担，服务器只专注定义良好的单一能力）；② 服务器应当<strong>高度可组合</strong>（多个服务器可无缝组合，共享协议保证互操作）；③ 隔离性；④ 特性可以<strong>渐进式添加</strong>（核心协议只提供最小必需功能，其余能力按需协商）。</p>
+<blockquote>
+  <span class="en">"Servers should not be able to read the whole conversation, nor 'see into' other servers."</span>
+  <span class="zh">服务器不应当能读到整个对话，也不应当能「窥视」其他服务器。（完整对话历史留在宿主侧；每个服务器连接保持隔离；跨服务器交互由宿主控制——这是协议层面的安全边界。）</span>
+</blockquote>
+
+<h3>概念 3：一次构建、处处集成</h3>
+<p>官方入门页强调生态支持：Claude、ChatGPT 等 AI 助手，Visual Studio Code、Cursor 等开发工具都已支持 MCP。对三类角色的收益分别是：<span class="term">开发者</span>——降低构建/集成 AI 应用的时间与复杂度；<span class="term">AI 应用/智能体</span>——获得整个数据源与工具生态，能力与用户体验提升；<span class="term">终端用户</span>——AI 应用能在必要时访问用户数据、代用户采取行动。</p>
+
+<figure>
+  <img src="https://mintcdn.com/mcp/bEUxYpZqie0DsluH/images/mcp-simple-diagram.png?fit=max&auto=format&n=bEUxYpZqie0DsluH&q=85&s=35268aa0ad50b8c385913810e7604550" alt="MCP 架构示意：AI 应用通过 MCP 连接本地与远程系统" loading="lazy">
+  <figcaption>图 1：MCP 总体示意——AI 应用（宿主）通过 MCP 标准化地连接本地数据源、工具与远程服务（来源：modelcontextprotocol.io 官方文档）</figcaption>
+</figure>
+
+<h2 id="method">架构与功能原语</h2>
+
+<h3>Client–Host–Server 架构</h3>
+<p>MCP 采用 <span class="term">client–host–server</span> 架构：一个宿主进程内可以运行<strong>多个客户端实例</strong>，每个客户端与一个特定服务器保持 <strong>1:1 的有状态会话</strong>。规范中的架构图（mermaid 绘制）如下：</p>
+<div class="note">
+<strong>架构图解读</strong>（对应规范 Architecture 页的示意图）：最外层是<strong>应用宿主进程</strong>（Application Host Process），内含 Host 与 Client 1/2/3；<strong>本地机器</strong>上有 Server 1（文件与 Git）和 Server 2（数据库），分别连接本地资源 A/B；<strong>互联网</strong>上有 Server 3（外部 API），连接远程资源 C。每条 Client→Server 连线是一条独立的协议会话。
+</div>
+<table>
+  <tr><th>角色</th><th>职责（规范原文归纳）</th></tr>
+  <tr><td><span class="term">Host 宿主</span></td><td>容器与协调者：创建并管理多个客户端实例；控制客户端连接权限与生命周期；<strong>执行安全策略与用户同意（consent）要求</strong>；处理用户授权决策；协调 AI/LLM 集成与 sampling；跨客户端聚合上下文</td></tr>
+  <tr><td><span class="term">Client 客户端</span></td><td>由宿主创建，与每个服务器维持一条隔离的有状态会话；负责协议协商与能力交换；双向路由协议消息；管理订阅与通知；<strong>维护服务器之间的安全边界</strong></td></tr>
+  <tr><td><span class="term">Server 服务器</span></td><td>提供专门的上下文与能力：通过 MCP 原语暴露 resources/tools/prompts；职责单一、独立运行；可通过客户端接口请求 sampling；必须遵守安全约束；可以是<strong>本地进程或远程服务</strong></td></tr>
+</table>
+
+<h3>功能原语（Feature Primitives）</h3>
+<p>服务器向客户端提供三种原语，客户端向服务器提供三种原语，另有若干通用工具类机制：</p>
+<table>
+  <tr><th>方向</th><th>原语</th><th>作用</th></tr>
+  <tr><td rowspan="3">服务器 → 客户端</td><td><span class="term">Resources 资源</span></td><td>供用户或 AI 模型使用的上下文与数据（如文件内容、数据库记录），由应用控制</td></tr>
+  <tr><td><span class="term">Prompts 提示模板</span></td><td>面向用户的模板化消息与工作流，由用户选择触发</td></tr>
+  <tr><td><span class="term">Tools 工具</span></td><td>供 AI 模型执行的函数（模型控制调用）；2025-06-18 版起支持<strong>结构化输出</strong>与在工具结果中返回 <strong>resource links</strong></td></tr>
+  <tr><td rowspan="3">客户端 → 服务器</td><td><span class="term">Sampling 采样</span></td><td>服务器发起的 LLM 补全请求，支撑「服务器发起的智能体行为与递归 LLM 交互」；用户必须显式批准</td></tr>
+  <tr><td><span class="term">Roots 根目录</span></td><td>服务器查询自己应在哪些 URI / 文件系统边界内操作</td></tr>
+  <tr><td><span class="term">Elicitation 征询</span></td><td>服务器在交互过程中向用户请求补充信息（2025-06-18 版新增）</td></tr>
+  <tr><td>双向</td><td>工具类机制</td><td>配置、进度跟踪（progress）、取消（cancellation）、错误报告、日志（logging）、参数自动补全（completions）、分页</td></tr>
+</table>
+
+<h3>能力协商（Capability Negotiation）</h3>
+<p>客户端与服务器在初始化时<strong>显式声明各自支持的特性</strong>，能力决定会话期间哪些协议功能可用：服务器声明如资源订阅（<code>resources.subscribe</code>）、工具支持、提示模板等能力；客户端声明如 sampling、roots、elicitation 支持。双方在整个会话期间<strong>必须遵守已声明的能力</strong>——例如工具调用要求服务器声明了 tool capabilities，发送资源变更通知要求声明了订阅支持。能力对象还可描述子能力：<code>listChanged</code>（prompts/resources/tools 列表变更通知）与 <code>subscribe</code>（订阅单个资源项变更）。</p>
+
+<h2 id="lifecycle">生命周期与传输层</h2>
+
+<h3>生命周期三阶段</h3>
+<ol>
+  <li><span class="term">初始化（Initialization）</span>：必须是客户端与服务器之间的<strong>第一个交互</strong>。客户端发送 <code>initialize</code> 请求（携带其支持的协议版本、客户端能力、实现信息）；服务器响应自身版本、能力与实现信息；随后客户端必须发送 <code>initialized</code> 通知表示可以开始正常操作。在服务器响应 <code>initialize</code> 之前，客户端除 ping 外不应发送其他请求。</li>
+  <li><span class="term">操作（Operation）</span>：按协商好的能力交换消息；双方必须尊重协商出的协议版本、只使用协商成功的能力。</li>
+  <li><span class="term">关闭（Shutdown）</span>：无专门关闭消息，由底层传输机制示意连接终止。stdio 传输下客户端应：先关闭服务器子进程的输入流 → 等待退出或发 <code>SIGTERM</code> → 仍未退出则 <code>SIGKILL</code>；HTTP 传输下关闭相应 HTTP 连接即可。</li>
+</ol>
+<p><strong>版本协商</strong>：客户端在 <code>initialize</code> 中发送其支持（最好是最新）的协议版本；服务器若支持则必须原样返回，否则返回自己支持的最新版本；客户端不支持服务器返回的版本时应当断开。<strong>超时与错误</strong>：实现应为所有请求设置超时，超时后发送取消通知；需准备处理协议版本不匹配、能力协商失败、请求超时等错误。</p>
+
+<h3>两种标准传输层</h3>
+<p>JSON-RPC 消息必须以 UTF-8 编码。协议定义两种标准传输机制（客户端应尽可能支持 stdio），也允许自定义传输（须保留 JSON-RPC 消息格式与生命周期要求）：</p>
+<table>
+  <tr><th>传输</th><th>要点</th></tr>
+  <tr><td><span class="term">stdio</span></td><td>客户端把 MCP 服务器作为<strong>子进程</strong>启动；服务器从 stdin 读 JSON-RPC 消息、向 stdout 写消息；消息按换行分隔且不得内嵌换行；stderr 可用于日志。stdout/stdin 上<strong>不得出现任何非 MCP 消息内容</strong></td></tr>
+  <tr><td><span class="term">Streamable HTTP</span></td><td>取代 2024-11-05 版的 HTTP+SSE 传输。服务器提供<strong>单一 MCP endpoint</strong>（如 <code>https://example.com/mcp</code>）同时支持 POST 与 GET：客户端每条消息用 POST 发送（服务器可返回单个 JSON 或升级为 SSE 流）；GET 用于打开 SSE 流接收服务器主动消息。支持<strong>会话管理</strong>（<code>Mcp-Session-Id</code> 头，初始化时由服务器分配，客户端后续请求必须携带，客户端退出时可 DELETE 显式终止）与<strong>断线续传</strong>（SSE 事件 id + <code>Last-Event-ID</code> 头重放）。所有后续请求必须带 <code>MCP-Protocol-Version</code> 头</td></tr>
+</table>
+<div class="note">
+<strong>Streamable HTTP 的安全警告（规范原文要求）</strong>：服务器<strong>必须校验所有入站连接的 <code>Origin</code> 头</strong>以防 DNS rebinding 攻击；本地运行时应当只绑定 127.0.0.1 而非 0.0.0.0；应当为所有连接实现适当的认证。缺少这些防护时，攻击者可借 DNS rebinding 从远程网站与本地 MCP 服务器交互。
+</div>
+
+<h2 id="results">版本演进（2025-06-18 主要变化）与安全要求</h2>
+
+<h3>相对 2025-03-26 版的九大变化</h3>
+<ol>
+  <li><strong>移除 JSON-RPC batching</strong>（批量消息）支持；</li>
+  <li>新增<strong>结构化工具输出</strong>（structured tool output）；</li>
+  <li>把 MCP 服务器归类为 <strong>OAuth Resource Server</strong>，增加受保护资源元数据以发现对应授权服务器；</li>
+  <li>要求客户端实现 <strong>RFC 8707 Resource Indicators</strong>，防止恶意服务器窃取访问令牌；</li>
+  <li>澄清授权规范中的<strong>安全考虑</strong>，并新增安全最佳实践页；</li>
+  <li>新增 <strong>elicitation</strong>：服务器可在交互中向用户请求补充信息；</li>
+  <li>工具调用结果支持 <strong>resource links</strong>；</li>
+  <li>HTTP 传输下所有后续请求必须携带 <code>MCP-Protocol-Version</code> 头；</li>
+  <li>生命周期操作中一处 <strong>SHOULD 升级为 MUST</strong>。</li>
+</ol>
+<p>其他 schema 变化：更多接口类型增加 <code>_meta</code> 字段；<code>CompletionRequest</code> 增加 <code>context</code> 字段；新增 <code>title</code> 字段用于人类友好显示名（<code>name</code> 保留为程序化标识符）。</p>
+
+<h3>安全与信任（Security and Trust &amp; Safety）四原则</h3>
+<p>规范强调 MCP 通过任意数据访问与代码执行路径带来强大能力，随之而来的安全责任必须由实现者承担：</p>
+<ol>
+  <li><span class="term">用户同意与控制</span>：用户必须显式同意并理解所有数据访问与操作，保留对「共享什么数据、采取什么行动」的控制权；实现者应提供清晰的审查与授权 UI。</li>
+  <li><span class="term">数据隐私</span>：宿主在向服务器暴露用户数据前必须获得显式同意；未经同意不得把资源数据传往他处；用户数据应有适当访问控制。</li>
+  <li><span class="term">工具安全</span>：<blockquote><span class="en">"Tools represent arbitrary code execution and must be treated with appropriate caution. … descriptions of tool behavior such as annotations should be considered untrusted, unless obtained from a trusted server."</span><span class="zh">工具意味着任意代码执行，必须以相应的谨慎对待；工具行为的描述（如 annotations）除非来自可信服务器，否则应视为不可信。宿主在调用任何工具前必须获得用户显式同意。</span></blockquote></li>
+  <li><span class="term">LLM Sampling 控制</span>：任何 sampling 请求必须经用户显式批准；用户应能控制是否发生 sampling、实际发送的提示内容、以及服务器能看到什么结果——协议<strong>有意限制了服务器对提示词的可见性</strong>。</li>
+</ol>
+<p>规范同时承认：<strong>MCP 协议本身无法在协议层强制执行这些安全原则</strong>，因此实现者应当（SHOULD）：在应用中构建健壮的同意与授权流程、清晰记录安全影响、实现适当的访问控制与数据保护、遵循集成安全最佳实践、在特性设计中考虑隐私影响。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与第四讲的关系</strong>：CS329Z Lecture 4「Tool Use &amp; Function Calling」覆盖 REPL、function-calling API、<strong>MCP</strong>、工具设计、代码执行沙箱与错误处理。function calling 解决的是「模型如何表达要调用哪个工具」（模型层 API，各家格式不一），MCP 解决的是「工具/数据如何被任何应用发现、连接与调用」（协议层标准）——两者互补：模型经 function calling 决策，宿主经 MCP 执行。本篇即该讲唯一必读材料。</li>
+  <li><strong>与第一讲的关系</strong>：Lecture 1 把 MCP 放在「复合 AI 系统：RAG、工具使用与 MCP」章节中介绍（见 <a href="../compound-ai-systems/">复合 AI 系统精讲</a>），MCP 正是复合系统「工具组件」的标准化接口。</li>
+  <li><strong>生态影响</strong>：协议由 Anthropic 于 2024 年末发起并开源，此后被主流 AI 应用广泛采纳（官方文档列举 Claude、ChatGPT、VS Code、Cursor 等），课程页将规范治理方标注为 The Linux Foundation。「服务器易构建 + 高度可组合 + 相互隔离」的设计使工具生态可以像 npm 包一样被复用，成为智能体工程事实上的连接标准。</li>
+  <li><strong>工程启示</strong>：规范中「宿主负责编排与安全策略、服务器职责单一」「能力协商 + 渐进增强」「工具描述不可信、调用需用户同意」等条款，直接对应构建生产级智能体时的权限模型与信任边界设计（与 Lecture 14 Agent Safety 的主题呼应）。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Model Context Protocol (MCP)</td><td>模型上下文协议</td><td>LLM 应用连接外部工具与数据源的开放标准</td></tr>
+  <tr><td>Host</td><td>宿主</td><td>发起连接的 LLM 应用进程，负责编排、安全策略与用户授权</td></tr>
+  <tr><td>Client</td><td>客户端</td><td>宿主内的连接器，与每个服务器保持 1:1 有状态会话</td></tr>
+  <tr><td>Server</td><td>服务器</td><td>提供上下文与能力的本地进程或远程服务</td></tr>
+  <tr><td>JSON-RPC 2.0</td><td>—</td><td>MCP 消息编码格式，UTF-8，请求/响应/通知三类消息</td></tr>
+  <tr><td>Tools</td><td>工具</td><td>供模型执行的函数（模型控制）</td></tr>
+  <tr><td>Resources</td><td>资源</td><td>供用户/模型使用的上下文数据（应用控制）</td></tr>
+  <tr><td>Prompts</td><td>提示模板</td><td>模板化消息与工作流（用户控制）</td></tr>
+  <tr><td>Sampling</td><td>采样</td><td>服务器经客户端发起的 LLM 补全请求，需用户批准</td></tr>
+  <tr><td>Roots</td><td>根边界</td><td>告知服务器可操作的 URI/文件系统范围</td></tr>
+  <tr><td>Elicitation</td><td>征询</td><td>服务器向用户请求补充信息（2025-06-18 新增）</td></tr>
+  <tr><td>Capability negotiation</td><td>能力协商</td><td>初始化时双方声明并锁定会话可用特性</td></tr>
+  <tr><td>stdio / Streamable HTTP</td><td>—</td><td>两种标准传输：本地子进程管道 / 单 endpoint 的 HTTP+SSE</td></tr>
+  <tr><td>Session（Mcp-Session-Id）</td><td>会话</td><td>HTTP 传输下的有状态会话标识与生命周期管理</td></tr>
+  <tr><td>DNS rebinding</td><td>DNS 重绑定攻击</td><td>Streamable HTTP 要求校验 Origin 头以防范的攻击方式</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://modelcontextprotocol.io/specification/2025-06-18">Model Context Protocol Specification (2025-06-18) — modelcontextprotocol.io</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

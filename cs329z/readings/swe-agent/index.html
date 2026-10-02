@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering（CS329Z Lecture 15 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 15 必读</div>
+  <h1>SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering</h1>
+  <div class="sub">SWE-agent：智能体-计算机接口让软件工程自动化成为可能</div>
+  <div class="meta">John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press（Stanford / Princeton 等）· NeurIPS 2024 · arXiv 2024-05（v3 2024-11）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2405.15793">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>这篇论文提出了 <strong>ACI（Agent-Computer Interface，智能体-计算机接口）</strong>的概念——正如人类需要 IDE 与图形界面来高效操作计算机，LM 智能体也需要<strong>专门为它设计的接口</strong>来浏览仓库、查看/编辑文件、执行命令。作者据此构建 SWE-agent，在 SWE-bench 上以 <strong>pass@1 = 12.5%</strong>、在 HumanEvalFix 上以 <strong>87.7%</strong> 大幅刷新当时纪录，证明「接口设计本身」就是智能体性能的关键变量。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>软件工程智能体要解决的典型任务是：给定一个 GitHub 仓库和一个 issue 描述，自主修改代码、通过测试（即 SWE-bench 任务，见本讲扩展阅读）。此前最强的方案多是<strong>非交互式</strong>的：用检索（RAG）把可能相关的代码片段塞进一次提示里，让模型一次性输出补丁。这类方法在真实仓库上效果很差。</p>
+<p>作者的出发点是：LM 智能体是「一类新的终端用户（a new category of end users）」，但它们在操作计算机时用的却是为人类设计的接口（如原始 bash 命令行）。人类几十年来的经验表明，<strong>接口设计对效率影响巨大</strong>——从命令行到图形界面到 IDE，每次接口升级都带来生产力跃迁。那么，为 LM 智能体量身定制的接口应该长什么样？这就是本文要系统研究的问题。</p>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2405.15793/assets/swe_agent_overview.png" alt="SWE-agent 总览：LM 通过 ACI 与计算机交互" loading="lazy">
+  <figcaption>图 1：SWE-agent 总览——LM 在每轮循环中生成「思考 + 命令」，命令经 ACI 执行后，环境返回格式化的观察结果（来源：原文）</figcaption>
+</figure>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：LM 智能体需要专用接口（ACI）</h3>
+<p>论文把「人机交互（HCI）」的经验迁移到「智能体-计算机交互」上，提出 ACI 概念：一套为 LM 智能体设计的命令、反馈格式与防护机制，让智能体能够<strong>创建与编辑代码文件、浏览整个仓库、执行测试与其他程序</strong>。核心论断是：</p>
+<blockquote>
+  <span class="en">"The design of the ACI can impact agents' behavior and performance."</span>
+  <span class="zh">ACI 的设计会实质影响智能体的行为与性能。</span>
+</blockquote>
+<p>换句话说：<strong>同一个模型，换一套接口，解决率可以差数倍</strong>。这把「智能体脚手架（scaffold）设计」从工程玄学提升为可实验、可消融的研究对象。</p>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2405.15793/assets/aci-ui.png" alt="人类 IDE 与 LM agent 的 ACI 类比" loading="lazy">
+  <figcaption>图 2：类比——人类用 IDE 提效，LM 智能体用 ACI 提效（来源：原文）</figcaption>
+</figure>
+
+<h3>观点 2：好接口的三条设计原则</h3>
+<p>作者在大量消融实验中提炼出 ACI 设计原则，论文中的原句：</p>
+<blockquote>
+  <span class="en">"Actions should be compact and efficient."</span>
+  <span class="zh">动作应当紧凑、高效。</span>
+</blockquote>
+<blockquote>
+  <span class="en">"Environment feedback should be informative but concise."</span>
+  <span class="zh">环境反馈应当信息充分但简洁。</span>
+</blockquote>
+<blockquote>
+  <span class="en">"Guardrails mitigate error propagation and hasten recovery."</span>
+  <span class="zh">防护栏（guardrails）能抑制错误传播、加速恢复。</span>
+</blockquote>
+<p>这三条对应了智能体系统设计的三个层面：<strong>动作空间</strong>（少而正交的命令优于把整个 bash 丢给模型）、<strong>观察空间</strong>（返回内容要控制长度，避免污染上下文窗口）、<strong>错误处理</strong>（在接口层直接拦截可预防的错误，而不是指望模型自己发现）。</p>
+
+<h3>观点 3：交互式智能体远胜一次性生成</h3>
+<p>与「检索 + 一次性补全」的非交互基线相比，SWE-agent 的多轮交互（看文件→搜索→编辑→跑测试→再修）让模型可以逐步收集信息、验证假设。实验中 RAG 基线在 SWE-bench Full 上仅 1.31%–3.79%，而 SWE-agent 达到 10.46%–12.47%，<strong>差距约 3–10 倍</strong>。</p>
+
+<h2 id="method">方法与架构</h2>
+
+<h3>整体框架：ReAct 式循环</h3>
+<p>SWE-agent 每轮让模型生成「思考（thought）+ 命令（command）」，环境执行命令后返回观察（observation），格式化后拼入下一轮上下文。上下文管理策略：<strong>最近 5 条之前的观察会被折叠成单行</strong>，防止长轨迹撑爆上下文窗口。整套 ACI（提示模板、命令定义、解析与控制逻辑）由配置文件声明，便于消融与复用。</p>
+
+<h3>ACI 的具体组件</h3>
+<table>
+  <tr><th>组件</th><th>设计</th><th>解决的问题</th></tr>
+  <tr><td>文件查看器</td><td><code>open</code> 打开文件，<code>goto</code>/<code>scroll_up</code>/<code>scroll_down</code> 翻页；窗口视图一次最多显示 <strong>100 行</strong>，输出带行号、总行数、上下被省略的行数</td><td>大文件不可能一次放进上下文；行号让模型能精确引用位置</td></tr>
+  <tr><td>搜索命令</td><td><code>find_file</code>（按文件名）、<code>search_file</code>（文件内搜字符串）、<code>search_dir</code>（目录内搜索）；结果<strong>摘要化</strong>，每次最多返回 50 条，超出则提示模型写更具体的查询</td><td>裸 grep 可能返回成千上万行，直接污染上下文</td></tr>
+  <tr><td>编辑命令</td><td><code>edit</code> 指定起止行 + 替换文本，一次完成多行替换；编辑成功后文件查看器<strong>立即刷新显示修改结果</strong></td><td>比在 bash 里用 sed/python 脚本改文件可靠得多，且模型能马上看到编辑效果</td></tr>
+  <tr><td>Lint 防护</td><td>编辑时集成 <code>flake8</code> 检查（未定义名称、重复参数、缩进、语法错误等）；<strong>若编辑会引入错误，则拒绝应用</strong>，返回错误说明 + 拟议编辑片段 + 原始代码片段</td><td>在接口层拦截低级错误，避免坏补丁沿轨迹传播</td></tr>
+  <tr><td>其他 guardrails</td><td>格式错误的命令要求重试；限制搜索结果数量；折叠陈旧观察</td><td>减少无效轮次，保住上下文预算</td></tr>
+</table>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2405.15793/assets/search_comparison.png" alt="不同搜索接口对比" loading="lazy">
+  <figcaption>图 3：搜索接口消融——Shell-only（裸 grep）、Iterative search、Summarized search 的轨迹对比；不加控制的搜索结果会淹没上下文（来源：原文）</figcaption>
+</figure>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2405.15793/assets/edit_comparison.png" alt="不同编辑接口对比" loading="lazy">
+  <figcaption>图 4：编辑接口消融——用 bash 脚本编辑 vs. SWE-agent 专用 <code>edit</code> 命令；后者成功率高且反馈直观（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">实验结果与结论</h2>
+<p>论文在两个基准上评测，均为当时 SOTA：</p>
+<table>
+  <tr><th>设置</th><th>解决率</th><th>平均成本</th></tr>
+  <tr><td><strong>SWE-bench Full</strong>：SWE-agent + GPT-4 Turbo</td><td><strong>12.47%</strong></td><td>$1.59 / 实例</td></tr>
+  <tr><td>SWE-bench Full：SWE-agent + Claude 3 Opus</td><td>10.46%</td><td>$2.59</td></tr>
+  <tr><td>SWE-bench Full：RAG 基线 + GPT-4 Turbo</td><td>1.31%</td><td>—</td></tr>
+  <tr><td>SWE-bench Full：RAG 基线 + Claude 3 Opus</td><td>3.79%</td><td>—</td></tr>
+  <tr><td><strong>SWE-bench Lite</strong>：SWE-agent + GPT-4 Turbo</td><td><strong>18.00%</strong></td><td>$1.67</td></tr>
+  <tr><td>SWE-bench Lite：Shell-only + GPT-4 Turbo（无 demonstration）</td><td>7.33%</td><td>—</td></tr>
+  <tr><td>SWE-bench Lite：RAG + GPT-4 Turbo</td><td>2.67%</td><td>—</td></tr>
+</table>
+<p>HumanEvalFix（函数级 bug 修复）pass@1：Python <strong>87.7</strong>、JavaScript 89.7、Java 87.9。开源模型（Llama 3、DeepSeek Coder）在同一框架下表现明显更弱。</p>
+<p><strong>结论</strong>：接口的每个组件（窗口大小、搜索摘要、编辑反馈、lint 防护）都通过消融验证了贡献；「把整个 bash 交给模型」的 shell-only 设置显著差于精心设计的 ACI。软件智能体的瓶颈不只在模型能力，<strong>同样在于我们给它的接口</strong>。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：本文（与 SWE-bench 同一团队，Princeton/Stanford，作者含 Ofir Press、Karthik Narasimhan、Shunyu Yao）确立了「ACI」这一术语，是编码智能体方向的奠基工作之一；SWE-agent 框架被后续大量研究（含 OpenHands 平台，见本讲另一必读）直接采用或对比。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 15 讲「Coding & Software Agents」以本文为核心必读，对应主题「scaffolds as design decisions」——智能体脚手架是设计决策而非实现细节；ACI 三原则（紧凑动作、简洁反馈、错误防护）也是第 4 讲「designing good tools」的具体化范例。</li>
+  <li><strong>工程启示</strong>：构建任何工具使用型智能体时，应像设计人类 UI 一样设计工具的输出格式、错误信息与防护机制——这是低成本、高回报的优化点。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Agent-Computer Interface (ACI)</td><td>智能体-计算机接口</td><td>为 LM 智能体专门设计的操作计算机的接口层</td></tr>
+  <tr><td>Scaffold</td><td>脚手架</td><td>包裹模型的工具、提示与控制逻辑的总称</td></tr>
+  <tr><td>Observation / Action</td><td>观察 / 动作</td><td>智能体循环中环境返回的信息与模型发出的指令</td></tr>
+  <tr><td>Guardrail</td><td>防护栏</td><td>接口层拦截错误动作的机制（如 lint 检查）</td></tr>
+  <tr><td>Windowed file viewer</td><td>窗口式文件查看器</td><td>一次只显示约 100 行的文件浏览方式</td></tr>
+  <tr><td>pass@1</td><td>一次通过率</td><td>只采样一次即解决问题的比例</td></tr>
+  <tr><td>SWE-bench</td><td>软件工程基准</td><td>真实 GitHub issue 修复任务基准（见本讲扩展阅读）</td></tr>
+  <tr><td>HumanEvalFix</td><td>函数级修复基准</td><td>HumanEval 的 bug 修复变体</td></tr>
+  <tr><td>Context window pollution</td><td>上下文污染</td><td>过长/无关的观察挤占有限上下文的现象</td></tr>
+  <tr><td>Ablation</td><td>消融实验</td><td>逐一移除组件以验证其贡献</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2405.15793">SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering — arXiv:2405.15793 / NeurIPS 2024</a>（项目主页：<a href="https://swe-agent.com">swe-agent.com</a>）　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

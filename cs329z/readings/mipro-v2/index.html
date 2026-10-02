@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Optimizing Instructions and Demonstrations for Multi-Stage Language Model Programs（CS329Z Lecture 9 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 9 扩展</div>
+  <h1>Optimizing Instructions and Demonstrations for Multi-Stage Language Model Programs</h1>
+  <div class="sub">为多阶段语言模型程序联合优化指令与示例（MIPRO / DSPy 中的 MIPROv2）</div>
+  <div class="meta">Krista Opsahl-Ong* · Michael J Ryan*（共同一作）· Josh Purtell · David Broman · Christopher Potts · Matei Zaharia · Omar Khattab（Stanford / Basis / KTH / UC Berkeley）· EMNLP 2024 · arXiv:2406.11695</div>
+  <div class="btn-row">
+    <a class="btn" href="https://aclanthology.org/2024.emnlp-main.597/">阅读原文（ACL Anthology）</a>
+    <a class="btn ghost" href="https://arxiv.org/abs/2406.11695">arXiv</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>MIPRO（Multiprompt Instruction PROposal Optimizer，在 DSPy 中发布为 <strong>MIPROv2</strong>）首次为<strong>多阶段 LM 程序</strong>把「自由文本指令」与「few-shot 示例」<strong>联合自动优化</strong>：先自举示范、再做有依据（grounded）的指令提议，最后用<strong>贝叶斯代理模型（TPE）+ 随机小批量评估</strong>搜索最佳组合——在 7 个多样化 LM 程序中的 5 个上超过基线，准确率最高提升 <strong>13%</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>现代 NLP 系统越来越是<strong>多模块 LM 程序</strong>（如多跳检索问答：生成查询 → 检索 → 再生成查询 → 汇总作答），每个模块有自己的提示模板。难点在于：</p>
+<ul>
+  <li>各阶段的提示必须<strong>协同</strong>有效——改了上游指令，下游的最优提示也会变；</li>
+  <li>监督信号只存在于最终任务层面：<blockquote><span class="en">"The metric μ provides supervision only at the level of the entire task."</span><span class="zh">指标 μ 只在完整任务的层面提供监督。</span></blockquote>中间模块没有金标签、没有梯度，也无法访问权重或对数概率；</li>
+  <li>手工 prompt engineering 依赖试错、无法扩展；APE、OPRO、EvoPrompt 等单提示优化器不直接适用于多阶段程序。</li>
+</ul>
+<p>问题形式化：给定多模块程序、任务指标与训练数据，为每个提示模板中的变量（指令 + few-shot 示例）寻找赋值，使程序指标最大化。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：两大核心挑战——候选提议与跨阶段贡献分配</h3>
+<p>多模块程序的提示组合空间爆炸，需要（a）生成<strong>少量高质量</strong>候选指令与示范；（b）在只有整体分数的情况下判断<strong>哪个模块</strong>的哪种组合真正带来提升（credit assignment）。</p>
+
+<h3>观点 2：示范可以「自举」出来，不必人工标注</h3>
+<p>拒绝采样式自举（bootstrapping）：在训练输入上运行完整程序，凡最终输出达到指标阈值的运行，其中各模块的输入/输出轨迹就成为候选 few-shot 示例。实验发现<strong>自举示范往往比只优化指令更能带来提升</strong>；但当任务含难以从示例中归纳的<strong>条件式规则</strong>时（HotPotQA Conditional），指令优化至关重要（23.3 vs 14.6）。</p>
+
+<h3>观点 3：指令提议要「有依据」（grounded）</h3>
+<p>让提议 LM 生成新指令时，喂给它五类上下文：训练数据摘要/模式、程序控制流摘要、自举示范、历史指令及其分数、增加多样性的生成技巧。Grounding 有帮助，但<strong>最佳提议策略因任务而异</strong>——因此 MIPRO++ 变体进一步用贝叶斯优化学习「提议策略本身的超参数」（是否用数据摘要、温度、展示哪些示范等）。</p>
+
+<h3>观点 4：贝叶斯代理搜索胜过贪心与纯历史式提议</h3>
+<p>论文比较三类贡献分配/搜索策略：<span class="term">Greedy</span>（逐模块改动，效率低）、<span class="term">History-based</span>（类似 OPRO，让提议 LM 看历史分数自行改进）、<span class="term">Surrogate/Bayesian</span>（用代理模型学「参数组合 → 分数」的分布，指导下一轮试验）——贝叶斯路线（TPE）总体最有效。</p>
+
+<h2 id="method">方法与架构</h2>
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2406.11695/assets/first_page_fig.png" alt="多跳检索 LM 程序的提示优化问题" loading="lazy">
+  <figcaption>图 1（原文 Figure 1）：以多跳检索 LM 程序为例——给定问答对与整体指标，优化器为各阶段提议新指令并自举示范（来源：原文）</figcaption>
+</figure>
+<p>MIPRO 的优化循环（原文 Figure 4）：</p>
+<ol>
+  <li><strong>初始化</strong>：为每个模块自举多组 few-shot 示范；通过 grounded proposal 为每个模块生成多条候选指令；</li>
+  <li><strong>采样提议</strong>：用 TPE（Tree-structured Parzen Estimator）类贝叶斯优化，从「指令 × 示范」组合空间中选出下一次试验的配置；</li>
+  <li><strong>随机小批量评估</strong>：每轮只在随机 minibatch 上跑程序打分，提高效率并平滑噪声；</li>
+  <li><strong>更新代理模型</strong>：用 minibatch 分数更新组合→分数的后验估计；</li>
+  <li><strong>最终选择</strong>：周期性把高分组合放到全量训练集上复评，返回得分最高的程序配置。</li>
+</ol>
+<figure>
+  <img src="https://arxiv.org/html/2406.11695v2/mipro_vertical.png" alt="MIPRO 流程图" loading="lazy">
+  <figcaption>图 2（原文 Figure 4）：MIPRO 全流程——自举示范 → grounded 指令提议 → 贝叶斯优化选择最佳组合（来源：原文）</figcaption>
+</figure>
+<p>论文还给出简化变体作为基线：<span class="term">0-Shot MIPRO</span>（只优化指令）、<span class="term">Bayesian Bootstrap</span>（只优化自举示范）、<span class="term">Bootstrap Random Search</span>（随机搜索示范组合）。</p>
+
+<h2 id="results">实验结果与结论</h2>
+<p>7 个任务（4 个多阶段 + 单阶段程序）：HotPotQA、HotPotQA Conditional、ScoNe、HoVer、Iris、Iris-Typo、Heart Disease。任务模型 <strong>Llama-3-8B</strong>，指令提议模型 GPT-3.5；ScoNe/HoVer 等难任务用 GPT-4o 作 teacher 自举示范。</p>
+<table>
+  <tr><th>任务</th><th>指标</th><th>MIPRO（测试）</th><th>最佳基线</th><th>结果</th></tr>
+  <tr><td>ScoNe</td><td>Exact Match</td><td><strong>79.4</strong></td><td>77.4（Bayesian Bootstrap）</td><td>✅ 最佳</td></tr>
+  <tr><td>HotPotQA</td><td>Exact Match</td><td><strong>46.4</strong></td><td>46.2（Bayesian Bootstrap）</td><td>✅ 最佳</td></tr>
+  <tr><td>HoVer</td><td>Recall@21</td><td><strong>39.0</strong></td><td>37.6（Bayesian Bootstrap）</td><td>✅ 最佳</td></tr>
+  <tr><td>HotPotQA Conditional</td><td>自定义</td><td><strong>23.3</strong></td><td>14.6（0-Shot MIPRO）</td><td>✅ 最佳</td></tr>
+  <tr><td>Iris-Typo</td><td>Accuracy</td><td><strong>68.7</strong></td><td>58.7（Bootstrap RS）</td><td>✅ 最佳</td></tr>
+  <tr><td>Iris</td><td>Accuracy</td><td>88.6</td><td><strong>94.1</strong>（Bootstrap RS）</td><td>❌ 非最佳</td></tr>
+  <tr><td>Heart Disease</td><td>Accuracy</td><td>74.2</td><td><strong>79.2</strong>（Bootstrap RS）</td><td>❌ 非最佳</td></tr>
+</table>
+<blockquote>
+  <span class="en">"MIPRO, a novel optimizer that outperforms baselines on five of seven diverse LM programs by as much as 13% accuracy."</span>
+  <span class="zh">MIPRO 这一新优化器在 7 个多样化 LM 程序中的 5 个上超过基线，准确率提升最高达 13%。</span>
+</blockquote>
+<p><strong>主要结论</strong>：自举示范通常非常重要；指令 + 示范<strong>联合优化</strong>总体最好；条件规则类任务尤其依赖指令优化；grounded 提议有效但最佳策略任务相关。两个小型分类任务（Iris、Heart Disease）上示范随机搜索反而更强——提示优化的收益与任务性质强相关。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>课程定位</strong>：CS329Z 第九讲（Optimization）列举的提示优化器 GEPA、MIPROv2、OPRO、TextGrad 中，本文即 <strong>MIPROv2</strong>——「贝叶斯搜索」路线的代表，也是同讲必读 GEPA 论文的主要对照基线。共同一作 Michael J Ryan 正是 CS329Z 讲师。</li>
+  <li><strong>生态影响</strong>：作为 DSPy 的默认提示优化器发布（dspy.ai），是复合 AI 系统「不微调也能系统级调优」的标准工具；后续 BetterTogether（本讲另一篇扩展阅读）把 MIPROv2 与权重微调交替结合。</li>
+  <li><strong>工程启示</strong>：多阶段流水线不要逐模块手调提示——用整体指标 + 自举示范 + 代理搜索做程序级联合优化；小数据、无中间标签的场景尤其适用。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>LM program</td><td>语言模型程序</td><td>多个模块化 LM 调用组成的流水线</td></tr>
+  <tr><td>Instruction</td><td>指令</td><td>提示模板中的自由文本部分</td></tr>
+  <tr><td>Few-shot demonstration</td><td>少样本示例（示范）</td><td>提示中放入的输入/输出样例</td></tr>
+  <tr><td>Bootstrapping</td><td>自举</td><td>运行程序收集成功轨迹作为候选示范</td></tr>
+  <tr><td>Grounded proposal</td><td>有依据的（指令）提议</td><td>给提议 LM 喂数据/程序/历史上下文</td></tr>
+  <tr><td>Bayesian surrogate model</td><td>贝叶斯代理模型</td><td>学习「配置→分数」分布以指导搜索</td></tr>
+  <tr><td>TPE (Tree-structured Parzen Estimator)</td><td>树结构 Parzen 估计器</td><td>本文使用的贝叶斯优化算法</td></tr>
+  <tr><td>Credit assignment</td><td>贡献分配</td><td>判断哪个模块的改动带来提升</td></tr>
+  <tr><td>Stochastic minibatch evaluation</td><td>随机小批量评估</td><td>每轮只在随机子集上打分</td></tr>
+  <tr><td>Prompt optimization</td><td>提示优化</td><td>自动搜索提示内容的总称</td></tr>
+  <tr><td>DSPy / MIPROv2</td><td>—</td><td>声明式 LM 编程框架及其内置的本优化器</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://aclanthology.org/2024.emnlp-main.597/">Optimizing Instructions and Demonstrations for Multi-Stage Language Model Programs — EMNLP 2024</a> · <a href="https://arxiv.org/abs/2406.11695">arXiv:2406.11695</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

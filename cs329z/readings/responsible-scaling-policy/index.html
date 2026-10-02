@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Anthropic's Responsible Scaling Policy（CS329Z Lecture 14 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 14 扩展</div>
+  <h1>Introducing Anthropic's Responsible Scaling Policy</h1>
+  <div class="sub">Anthropic 责任扩展政策（RSP）发布文</div>
+  <div class="meta">Anthropic · 2023-09-19 · 官方政策公告</div>
+  <div class="btn-row">
+    <a class="btn" href="https://www.anthropic.com/news/anthropics-responsible-scaling-policy">阅读原文（Anthropic）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">ASL 框架剖析</a>
+  <a href="#results">结论与承诺</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>RSP 是 Anthropic 管理更强 AI 模型风险的<strong>技术与组织协议</strong>：借鉴生物实验室的「生物安全等级」思想，把模型能力划分为 <strong>ASL（AI Safety Levels）等级</strong>，每个等级对应「日益严格的安全性证明」与相应的部署/安全承诺；并明确一条硬触发器——<strong>若能力发展超出安全合规能力，将暂停训练</strong>。这是前沿实验室第一个公开的、把「继续扩展」与「安全门槛」制度化绑定的政策框架。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>2023 年，前沿实验室在「快速扩展模型能力」与「防范灾难性风险」之间缺乏公开的制度化约束。Anthropic 关注的重点是<strong>灾难性风险（catastrophic risks）</strong>，包括两类：</p>
+<ul>
+  <li><span class="term">蓄意滥用（deliberate misuse）</span>：坏人利用模型造成大规模伤害（如协助制造生化武器）；</li>
+  <li><span class="term">自主行动造成的破坏</span>：模型自身具备自主能力后失控带来的风险。</li>
+</ul>
+<blockquote>
+  <span class="en">RSP consists of "technical and organizational protocols" for managing the risks of increasingly powerful AI, with a focus on catastrophic risks.</span>
+  <span class="zh">RSP 由管理更强 AI 风险的「技术与组织协议」构成，重点关注灾难性风险。</span>
+</blockquote>
+<p>RSP 要回答的问题：如何在<strong>不确定未来模型会多强</strong>的前提下，提前建立「能力达到某门槛 → 必须先满足对应安全标准」的规则，避免安全评估总是落后于能力增长？</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：用「生物安全等级」的思路给 AI 分级</h3>
+<blockquote>
+  <span class="en">The framework of "AI Safety Levels" is modeled on "biosafety level" conventions; higher levels require "increasingly strict demonstrations of safety."</span>
+  <span class="zh">AI 安全等级（ASL）框架参照生物安全等级（BSL）的惯例设计；等级越高，要求的安全性证明越严格。</span>
+</blockquote>
+<p>正如生物实验室按病原体危险程度分 BSL-1 到 BSL-4 并对应不同的设施与操作规范，ASL 按模型的<strong>危险能力潜力</strong>分级，每级对应明确的安全与安保（safety &amp; security）标准——先定级，再决定能否训练/部署下一级。</p>
+
+<h3>观点 2：等级由「能力评估」触发，而非日程表</h3>
+<p>模型的 ASL 等级取决于定期评估中表现出的能力。关键机制是<strong>评估触发条件</strong>：一旦评估显示模型逼近更高等级的能力门槛，对应标准立即生效。最硬的承诺是：</p>
+<blockquote>
+  <span class="en">If capability development "outstrips our ability to comply" with the safety protocols, Anthropic commits to "temporarily pause training."</span>
+  <span class="zh">若能力发展超出了我们遵守安全协议的能力，Anthropic 承诺将暂时暂停训练。</span>
+</blockquote>
+
+<h3>观点 3：承诺要「提前写」，且受治理结构保护</h3>
+<ul>
+  <li>RSP 由<strong>董事会批准</strong>；修改政策需先咨询 <strong>Long Term Benefit Trust</strong>（Anthropic 特有的长期利益信托，可在极端情况下影响董事会决策），再经董事会批准，并设有程序性保障（procedural safeguards）；</li>
+  <li><span class="term">ASL-4 的标准要在到达 ASL-3 之前写好</span>——「先立法后到站」，避免临场降低标准；未来高等级标准可能依赖<strong>可解释性（interpretability）方法</strong>。</li>
+</ul>
+
+<h3>观点 4：RSP 是「当前最佳猜测」，预期快速迭代</h3>
+<blockquote>
+  <span class="en">Anthropic calls the current commitments "our current best guess" and "an early iteration," expecting "rapid iteration and course correction."</span>
+  <span class="zh">Anthropic 称当前承诺是「我们眼下的最佳猜测」和「早期版本」，预期将快速迭代并纠正航向。</span>
+</blockquote>
+<p>政策明确其目标是「在防控灾难性风险与推动有益应用之间取得平衡（strike a balance）」，并希望引发行业「向上竞争（race to the top）」——让竞争压力转向安全研究而非单纯的能力冲刺。</p>
+
+<h2 id="method">ASL 框架剖析</h2>
+<table>
+  <tr><th>等级</th><th>能力界定</th><th>对应要求 / 状态</th></tr>
+  <tr><td><strong>ASL-1</strong></td><td>无有意义的灾难性风险（no meaningful catastrophic risk）</td><td>示例：早期旧模型、只会下棋的系统；无需特殊防护</td></tr>
+  <tr><td><strong>ASL-2</strong></td><td>出现危险能力的早期迹象（early signs），但提供 uplift 不超过搜索引擎或教科书</td><td><strong>当前 LLM（包括 Claude）所处等级</strong>；执行现行安全与安保标准，与 Anthropic 向白宫作出的自愿承诺重叠</td></tr>
+  <tr><td><strong>ASL-3</strong></td><td>可能「实质性提升灾难性滥用的风险」，或具备低水平自主能力</td><td>要求「异常强（unusually strong）」的安保标准；若对抗性测试（可由世界级红队执行）显示出有意义的灾难性滥用风险，则<strong>承诺不部署</strong>；部署与安全标准须先行满足</td></tr>
+  <tr><td><strong>ASL-4+</strong></td><td>尚未定义；预期包含灾难性滥用潜力与自主性的「质的跃升」</td><td>标准须在到达 ASL-3 前制定；可能依赖可解释性等未来方法</td></tr>
+</table>
+<div class="note">一个工程细节：Anthropic 允许用<strong>上一等级的模型</strong>来辅助开发下一等级所需的安全特性（用 ASL-2 模型帮助构建 ASL-3 的防护）——安全开发本身也借助 AI 加速。</div>
+
+<h2 id="results">结论与承诺</h2>
+<ul>
+  <li><strong>对现有产品零影响</strong>：RSP 发布「不会改变 Claude 当前的使用方式」（will not alter current uses of Claude）——它约束的是<strong>未来更强模型</strong>的训练与部署门槛；</li>
+  <li><strong>三条核心承诺</strong>：① 持续评估模型能力并据此定级；② 每一级先满足安全与安保标准再部署/继续扩展；③ 合规能力跟不上时暂停训练；</li>
+  <li><strong>行业意图</strong>：公开政策细节，推动其他实验室采取类似框架，形成安全上的「向上竞争」。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与 L14 主题的关系</strong>：本讲覆盖「红队测试、沙箱与权限模型、责任部署（responsible deployment）」。RSP 是「责任部署」在<strong>实验室治理层面</strong>的标杆文本：红队/对抗测试在 RSP 中不是可选项，而是决定模型能否部署的<strong>门槛机制</strong>（ASL-3 的部署承诺直接以对抗测试结果为准绳）。</li>
+  <li><strong>与同讲其他阅读的互补</strong>：OpenAI《Understanding Prompt Injections》讲「产品侧多层防御」，RSP 讲「组织侧分级治理」——一个是工程护栏，一个是制度护栏，合起来构成智能体安全的完整图景。</li>
+  <li><strong>后续影响</strong>：RSP 发布后成为前沿实验室安全框架的模板（Anthropic 后续多次更新 RSP 版本；OpenAI 的 Preparedness Framework、Google DeepMind 的 Frontier Safety Framework 均属同一谱系），「能力阈值 → 安全标准」的分级思路也被纳入多国的 AI 安全治理讨论。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Responsible Scaling Policy (RSP)</td><td>责任扩展政策</td><td>把能力扩展与安全门槛制度化绑定的政策框架</td></tr>
+  <tr><td>AI Safety Level (ASL)</td><td>AI 安全等级</td><td>类比生物安全等级（BSL）的模型能力风险分级</td></tr>
+  <tr><td>Catastrophic risk</td><td>灾难性风险</td><td>可造成大规模严重伤害的风险，RSP 的核心关注对象</td></tr>
+  <tr><td>Deliberate misuse</td><td>蓄意滥用</td><td>恶意行为者利用模型造成大规模伤害</td></tr>
+  <tr><td>Autonomy</td><td>自主性</td><td>模型独立采取行动的能力，ASL 分级的维度之一</td></tr>
+  <tr><td>Uplift</td><td>（能力）增益</td><td>模型为滥用者提供的超出公开资料（搜索/教科书）的帮助</td></tr>
+  <tr><td>Adversarial testing</td><td>对抗性测试</td><td>由红队主动攻击模型以探测危险能力</td></tr>
+  <tr><td>Red-teaming</td><td>红队测试</td><td>模拟攻击者行为评估模型安全性的实践</td></tr>
+  <tr><td>Long Term Benefit Trust</td><td>长期利益信托</td><td>Anthropic 治理结构中对重大决策有咨询/制衡作用的信托机构</td></tr>
+  <tr><td>Interpretability</td><td>可解释性</td><td>理解模型内部机制的研究方向，未来高等级 ASL 标准的潜在依据</td></tr>
+  <tr><td>Race to the top</td><td>向上竞争</td><td>让行业竞争压力转向安全研究而非能力冲刺</td></tr>
+  <tr><td>Deployment standards</td><td>部署标准</td><td>模型向公众发布前必须满足的安全条件</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://www.anthropic.com/news/anthropics-responsible-scaling-policy">Introducing Anthropic's Responsible Scaling Policy — Anthropic (2023-09-19)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

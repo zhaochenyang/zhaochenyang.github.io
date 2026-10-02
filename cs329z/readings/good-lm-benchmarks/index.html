@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：How to Build Good Language Modeling Benchmarks（CS329Z Lecture 12 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 12 扩展</div>
+  <h1>How to Build Good Language Modeling Benchmarks</h1>
+  <div class="sub">如何构建好的语言模型基准</div>
+  <div class="meta">Ofir Press（华盛顿大学，SWE-bench 合作者之一）· 个人博客 ofir.io · 2024-08-07（2025-01 / 2025-05 / 2026-06 持续增补）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://ofir.io/How-to-Build-Good-Language-Modeling-Benchmarks/">阅读原文（ofir.io）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">设计框架剖析</a>
+  <a href="#results">结论与建议</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>好的 benchmark 与好的模型同等重要——它应当<strong>自然（Natural）、可自动评测（Automatically Evaluateable）、足够难（Challenging）</strong>；作者给出的难度标准随模型能力飙升一路收紧：从「顶级模型得分 1%–35%」到「0.1%–9%」，再到要求设计出「即使模型能力提升 3 倍仍然得 0 分」的「-200%」级任务。每个任务应显式设计为 <strong>&lt;request, environment, stopping criteria, scorer&gt; 四元组</strong>，并配备接近真实使用方式的基线脚手架（scaffolding）。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>作者是 SWE-bench 等基准的合作者，长期思考「什么样的 benchmark 才能真正推动领域进步」。文章开篇即指出：社区里推动某个 benchmark 上 SOTA 的工作很多，但<strong>「构建好的 benchmark 与构建新系统同样重要」</strong>。一个设计糟糕的基准会误导整个社区的努力方向——要么太容易很快饱和，要么形式不自然导致分数与真实能力脱节。这篇博文把作者的基准设计经验浓缩为三条核心属性、一条加分属性和一组实操守则，并随 LLM 能力的快速演进多次增补修订（2025 年 1 月、2025 年 5 月、2026 年 6 月）。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>属性 1：Natural——问题必须来自真实人类的真实需求</h3>
+<p>基准中的问题应当是「某类人群经常提出的自然问题」。典型正例：<span class="term">SWE-bench</span> 使用真实 GitHub 仓库中用户提交的 bug 报告；<span class="term">AssistantBench</span> 使用「找一节清晨瑜伽课」这类真实网页助理查询；<span class="term">CiteME</span> 要求回答真实的学术溯源问题。检验标准很朴素：<strong>如果系统在基准上得分提高，是否真的能帮人节省时间、提升生产力？</strong></p>
+<p>作者点名两种常见的「不自然」设计：</p>
+<ul>
+  <li><strong>问题形式不真实</strong>：例如把开放式任务强行改成多选题（multiple choice）。「我看医生时从不会说：医生，我手肘疼，而且肯定是这四个选项之一导致的」。</li>
+  <li><strong>问题凭空编造</strong>：而非来自真实用户。更好的做法是从真实搜索日志/用户提问中筛选——例如用户翻到搜索结果第二页、或在页面停留超过 5 分钟，往往说明已有结果不够好，这类问题就是天然的高质量样本。</li>
+</ul>
+<blockquote>
+  <span class="en">"Try to build a benchmark that has natural questions that some category of humans ask on a frequent basis."</span>
+  <span class="zh">尽量构建一个由某类人群经常提出的自然问题组成的基准。</span>
+</blockquote>
+
+<h3>属性 2：Automatically Evaluateable——答案对错必须能自动判定</h3>
+<p>给定模型生成的答案，基准必须能自动判断正误，否则无法规模化使用。代码类任务天然占优：可以用单元测试验证（如 <span class="term">HumanEval</span>、<span class="term">SWE-bench</span>）。摘要（summarization）类任务虽然有用但很难自动评测，因为「正确答案」形式多样。作者明确<strong>不赞成让同一个语言模型既作答又评分</strong>——这与 CS329Z 第 13 讲对 LLM-as-judge 偏差的讨论相呼应。</p>
+
+<h3>属性 3：Challenging——难度标准随时代不断收紧</h3>
+<p>如果发布时最强模型就能拿到 80% 准确率，这个基准会被立刻视为「已解决」而失去价值。作者的难度建议经历了三轮演进，本身就是一部 LLM 能力飙升的编年史：</p>
+<table>
+  <tr><th>时间</th><th>建议的发布时顶级模型准确率</th><th>说明</th></tr>
+  <tr><td>2024-08（初版）</td><td>1% – 35%</td><td>最初的「足够难」区间</td></tr>
+  <tr><td>2025-01 增补</td><td>0.1% – 9%</td><td>「高于此区间大概率太容易」</td></tr>
+  <tr><td>2025-05 增补</td><td>「-200%」</td><td>要求任务难到即使模型能力提升 3 倍仍得 0 分，并预判 6–12 个月后的模型水平</td></tr>
+</table>
+<blockquote>
+  <span class="en">"Find questions that are so hard that even if the models improve 3x they'll still get zero."</span>
+  <span class="zh">去找那些难到即使模型能力提升 3 倍仍然得零分的题目。</span>
+</blockquote>
+<p>若基线已达 70% 左右，可以<strong>过滤简单样本</strong>：Bamboogle 剔除 Google 搜索能直接答对的问题；CiteME 剔除 GPT-4o 在非智能体提示下能答对的问题。但 2026 年 6 月的增补给出警告：<strong>如果必须靠过滤才能让基准变难，说明整个任务分布太容易了，应当直接转向更难的领域</strong>。</p>
+<p>难度也要有下限——分数过低会吓退研究者。SWE-bench 首发时最强模型仅约 <strong>1.96%</strong>，直到 SWE-agent 把它提到约 <strong>13%</strong>，才带动大量后续工作涌入。「看得见进步空间」是基准被采用的关键。</p>
+
+<h3>加分属性：抗数据污染（contamination resistance）</h3>
+<p>尽量让基准<strong>即使泄漏进训练数据也难以刷分</strong>。正例：<span class="term">SciCode</span> 由博士生编写高难度科研编程题，并刻意不公开答案，从而降低答案混入训练语料的风险。</p>
+
+<h2 id="method">设计框架剖析</h2>
+
+<h3>任务的 4-tuple 结构</h3>
+<p>文章结论部分给出了与 CS329Z 第 12 讲一致的<strong>四元组任务框架</strong>：benchmark = 一组任务，每个任务 = &lt;request, environment, stopping criteria, scorer&gt;。</p>
+<blockquote>
+  <span class="en">"A benchmark is a collection of tasks, where each task is made up of &lt;request, environment, stopping criteria, scorer&gt; 4-tuples."</span>
+  <span class="zh">基准是任务的集合，每个任务由「请求、环境、停止条件、评分器」四元组构成。</span>
+</blockquote>
+<table>
+  <tr><th>组件</th><th>含义</th><th>示例</th></tr>
+  <tr><td>Request（请求）</td><td>要模型实际完成的事</td><td>SWE-bench：「修复这个 issue」+ issue 正文</td></tr>
+  <tr><td>Environment（环境）</td><td>能否联网、依赖是否可用、提供哪些工具的完整描述</td><td>代码任务应允许执行代码</td></tr>
+  <tr><td>Stopping criteria（停止条件）</td><td>轮数上限、成本上限或墙钟时间</td><td>防止无限循环烧钱</td></tr>
+  <tr><td>Scorer（评分器）</td><td>二元通过/失败、连续分数或排名式分数</td><td>SWE-bench 用测试判定；AlgoTune 用运行时间比值；CodeClash 用 ELO</td></tr>
+</table>
+
+<h3>基线脚手架要贴近真实使用方式</h3>
+<p>评估用的 scaffolding（脚手架）应尽可能接近当下最好的真实使用方式：代码任务应允许执行代码，知识任务应允许联网，否则「不现实」。作者强调这通常并不费事：</p>
+<blockquote>
+  <span class="en">"mini-SWE-agent is able to get very competitive scores (and sometimes even surpass) Claude Code these days, even though it is orders of magnitude simpler."</span>
+  <span class="zh">mini-SWE-agent 如今能拿到非常有竞争力（有时甚至超过）Claude Code 的分数，尽管它简单了好几个数量级。</span>
+</blockquote>
+
+<h2 id="results">结论与建议（实操守则）</h2>
+<ul>
+  <li><span class="term">单一主指标</span>：基准对外只推广一个易懂的总分；细分维度的分析放论文里，不要同时推多个指标或多个类别。</li>
+  <li><span class="term">强基线</span>：必须包含顶级闭源模型与领先开源模型；不要用 GPT-3.5 或 Llama 3 7B 这类弱/过时模型充数。</li>
+  <li><span class="term">任务数量</span>：至少约 150 个任务；最好 300–500 个以获得统计分辨率；超过 500 会运行太慢、不利于采用。「50 个大任务 × 每个 10 个子任务」也可接受。</li>
+  <li><span class="term">接受饱和周期</span>：基准通常在约一年内饱和，不必强求五年有效；即使部分问题的答案会随时间变化，也可以接受。</li>
+  <li><span class="term">现实主义的传播优势</span>：越贴近真实使用的基准越好「卖」（越容易被社区采用）。</li>
+</ul>
+<div class="note">
+本文没有实验数据，属于经验总结型（guidelines）文章；其说服力来自作者参与 SWE-bench 等基准的一手经验，以及文中大量正/反例（Bamboogle、CiteME、SciCode、AlgoTune、CodeClash、mini-SWE-agent）。
+</div>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与课程的关联</strong>：CS329Z 第 12 讲「Evaluation Fundamentals &amp; Benchmark Design」讲授的 4-tuple 框架（request、environment、stopping criteria、scorer）与本文的「Concluding Thoughts」完全同源；必读文章（Zhu et al. 2025《Establishing Best Practices for Building Rigorous Agentic Benchmarks》）是对本文经验法则的系统化、实证化版本。</li>
+  <li><strong>领域影响</strong>：「发布时顶级模型得分应低于 10%」与「-200%」难度哲学直接影响了后续 agentic benchmark 的设计取向（如更难的多步骤、长程任务）；SWE-bench 从 1.96% 到 13% 再到饱和的完整生命周期，成为「基准约一年饱和」论断的经典注脚。</li>
+  <li><strong>对智能体构建者的启示</strong>：为自己的智能体产品搭内部 eval 时同样适用——任务来自真实用户失败案例、能自动判分、留出能力增长空间（呼应第 13 讲 Anthropic 的 evals 路线图）。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Benchmark</td><td>基准（评测集）</td><td>一组用于衡量模型能力的标准化任务</td></tr>
+  <tr><td>Natural</td><td>自然性</td><td>问题来自真实人类的真实需求</td></tr>
+  <tr><td>Automatically evaluateable</td><td>可自动评测</td><td>答案对错可由程序判定</td></tr>
+  <tr><td>Saturation</td><td>饱和</td><td>顶级模型得分逼近上限，基准失去区分度</td></tr>
+  <tr><td>Data contamination</td><td>数据污染</td><td>评测题泄漏进训练数据导致虚高分数</td></tr>
+  <tr><td>4-tuple</td><td>四元组</td><td>&lt;request, environment, stopping criteria, scorer&gt;</td></tr>
+  <tr><td>Request</td><td>请求</td><td>交给模型的具体任务描述</td></tr>
+  <tr><td>Environment</td><td>环境</td><td>工具、依赖、联网权限等运行条件</td></tr>
+  <tr><td>Stopping criteria</td><td>停止条件</td><td>轮数/成本/时间上限</td></tr>
+  <tr><td>Scorer / grader</td><td>评分器</td><td>二元、连续或排名式（ELO）打分逻辑</td></tr>
+  <tr><td>Scaffolding</td><td>脚手架</td><td>包裹模型的评测/执行框架，应尽量贴近真实用法</td></tr>
+  <tr><td>Statistical resolution</td><td>统计分辨率</td><td>任务数量足够多才能区分模型的细微差异</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://ofir.io/How-to-Build-Good-Language-Modeling-Benchmarks/">How to Build Good Language Modeling Benchmarks — ofir.io (2024)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

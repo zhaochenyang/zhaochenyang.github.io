@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Effective Harnesses for Long-Running Agents（CS329Z Lecture 15 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  code{background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:13px;}
+  pre{background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:12px 16px;font-size:13px;overflow-x:auto;}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 15 扩展</div>
+  <h1>Effective Harnesses for Long-Running Agents</h1>
+  <div class="sub">面向长时间运行智能体的有效 Harness（工程脚手架）</div>
+  <div class="meta">Justin Young（Anthropic）· Anthropic Engineering Blog · 2025-11-26</div>
+  <div class="btn-row">
+    <a class="btn" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">阅读原文（Anthropic）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">Harness 设计剖析</a>
+  <a href="#results">结论与建议</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>要让智能体在<strong>跨越多个上下文窗口的长任务</strong>（如从零构建一个完整 Web 应用）中可靠工作，仅靠上下文压缩（compaction）不够——需要一套工程化的 <strong>harness（脚手架）</strong>：用「初始化智能体 + 编码智能体」双角色，把项目状态<strong>外化为文件、Git 历史、进度记录与结构化功能清单</strong>，让每个新会话都能像接手项目的工程师一样快速上手、小步推进、可验证、可回退。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>复杂项目无法在一个上下文窗口内完成，长任务必须拆成多个离散会话，而<strong>新会话不知道之前发生了什么</strong>。作者以「让 Claude Agent SDK + Opus 4.5 从零构建一个 claude.ai 克隆」为例说明：只给高层提示时，即使模型很强，也产不出生产级应用。典型失败模式包括：</p>
+<ul>
+  <li>智能体试图「一口吃成胖子」（one-shot 整个应用），一次做太多事；</li>
+  <li>上下文耗尽后代码停留在半成品状态、没有文档，后续会话只能靠猜；</li>
+  <li>后期会话看到已有进展，<strong>过早宣布项目完成</strong>；</li>
+  <li>环境里留下 bug、混乱代码或未记录的进展；</li>
+  <li>功能没做端到端测试就被标记为完成；</li>
+  <li>新会话浪费大量时间弄清如何启动应用。</li>
+</ul>
+<p>上下文压缩（compaction）能缓解但不能根治：<strong>指令与状态仍可能传递不清</strong>。文章的答案是向人类工程团队的协作方式学习——项目知识不该只存在于某个人的脑子里，而应外化为文档、版本历史与任务清单。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：Harness 是弥补上下文断裂的关键基础设施</h3>
+<p>文中的 harness 指围绕模型运行的工程化脚手架：提示词、工具、脚本、文件、Git、测试流程与会话交接机制。Agent 是执行任务的模型循环，harness 负责给它<strong>方向、状态、工具和可恢复的工作环境</strong>。</p>
+<blockquote>
+  <span class="en">"Relying on compaction alone is not enough to make agents work reliably over long time horizons."</span>
+  <span class="zh">仅靠上下文压缩，不足以让智能体在长时间跨度上可靠工作。</span>
+</blockquote>
+
+<h3>观点 2：双角色结构——Initializer Agent 与 Coding Agent</h3>
+<p>首次会话用<span class="term">初始化智能体（initializer agent）</span>搭好地基，后续会话都用<span class="term">编码智能体（coding agent）</span>增量推进。作者强调二者的差异主要只是<strong>不同的初始用户提示词</strong>（different initial user prompts）——角色由 harness 的 prompt 定义，而非不同的模型。</p>
+
+<h3>观点 3：状态外化——文件、Git、进度记录</h3>
+<p>初始化阶段建立四件套：<code>init.sh</code>（一键启动环境）、<code>claude-progress.txt</code>(进度记录)、初始 Git 提交、以及<strong>完整功能清单</strong>。此后每个新会话的启动流程固定：运行 <code>pwd</code> 确认环境 → 读进度文件、功能清单、Git 日志 → 检查 <code>init.sh</code> → 启动开发服务器做冒烟测试 → 才开始开发。<strong>先验证已有功能再叠加新功能</strong>，避免在已损坏的应用上继续施工。</p>
+
+<h3>观点 4：用 JSON 功能清单驱动增量开发</h3>
+<p>初始化智能体把高层需求展开成结构化功能项（claude.ai 克隆一例生成了<strong>超过 200 个功能项</strong>），全部标记为「failing」；编码智能体每轮<strong>只挑一个高优先级未完成功能</strong>（one feature at a time），充分测试后才允许把状态改为「passes」。清单用 JSON 而非 Markdown——JSON 更不容易被模型随意改写，并配合强约束提示：</p>
+<blockquote>
+  <span class="en">"It is unacceptable to remove or edit tests."</span>
+  <span class="zh">删除或修改测试是不可接受的。</span>
+</blockquote>
+
+<h3>观点 5：像真实用户一样做端到端验证</h3>
+<p>明确要求智能体做端到端测试而不是只跑单元测试；在 Web 应用示例中通过 <strong>Puppeteer MCP</strong> 操作浏览器并截图验证 UI。只有充分测试后才把功能标为「passing」，直接针对「过早宣布完成」这一失败模式。</p>
+
+<h2 id="method">Harness 设计剖析</h2>
+
+<div class="note">
+<strong>架构图（原文示意，文字描述）：</strong>左侧为 Initializer Agent 会话——读取高层需求后生成 init.sh、claude-progress.txt、200+ 项 JSON 功能清单（全部 failing）并做初始 Git 提交；右侧为多个 Coding Agent 会话依次接力——每个会话先读进度文件/功能清单/Git 日志恢复状态，选取一个高优先级功能，实现→端到端测试（Puppeteer 截图）→更新 passes 状态→写清晰提交信息→更新进度文件，留下「干净可交接状态」给下一个会话。
+</div>
+
+<table>
+  <tr><th>机制</th><th>做法</th><th>针对的失败模式</th></tr>
+  <tr><td>初始化脚手架</td><td><code>init.sh</code> + 进度文件 + 初始提交 + 完整功能清单</td><td>新会话不知如何启动、不知道项目全貌</td></tr>
+  <tr><td>JSON 功能清单</td><td>类别/描述/步骤/<code>passes</code> 字段；初始全部 failing；只许改 passes</td><td>需求被模型改写、范围漂移、过早完成</td></tr>
+  <tr><td>单功能增量</td><td>每轮只做一个高优先级功能（one feature at a time）</td><td>一次做太多、半成品堆积</td></tr>
+  <tr><td>会话启动协议</td><td>pwd → 读进度/清单/Git 日志 → 启动服务器 → 冒烟测试</td><td>盲目开工、在损坏状态上叠加</td></tr>
+  <tr><td>Git 检查点</td><td>频繁提交、清晰提交信息；出错可 <code>git revert</code>/回退到可用状态</td><td>错误改动无法恢复</td></tr>
+  <tr><td>端到端测试</td><td>Puppeteer MCP 浏览器操作 + 截图验证；测试通过才标 passes</td><td>「看起来完成」但未验证</td></tr>
+  <tr><td>干净交接</td><td>每次会话结束时保持 clean state：代码整洁、无重大 bug、进度已记录</td><td>下一位「工程师」面对烂摊子</td></tr>
+</table>
+
+<h3>功能清单条目示例（JSON 结构）</h3>
+<pre>{
+  "category": "chat",
+  "description": "用户可在会话中发送消息并收到流式回复",
+  "steps": ["...", "..."],
+  "passes": false
+}</pre>
+
+<h2 id="results">结论与建议</h2>
+<ul>
+  <li>长时间运行智能体的关键<strong>不是单次会话更强，而是多个上下文窗口之间的可靠交接</strong>：初始化阶段建立完整需求、脚本与记录机制；后续阶段小步推进、持续测试、提交 Git、留下清晰进度。</li>
+  <li>该方法显著减少「迷失、回退、虚假完成」三类问题。</li>
+  <li><strong>开放问题</strong>（作者原文提出）：单一通用智能体是否最优，还是应由测试、QA、清理等专用智能体组成多智能体系统？这些经验能否推广到 Web 开发之外的领域？</li>
+  <li>文中提到配套代码示例见 Claude Agent SDK quickstart。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与 CS329Z 第 15 讲（Coding &amp; Software Agents）的关系</strong>：该讲的核心论点之一是「scaffold（脚手架）即设计决策」——SWE-agent、Claude Code、OpenHands 的差异很大程度在脚手架而非模型。本文是这一论点最直接的工程实证：同一模型（Opus 4.5），有无 harness 决定能否产出生产级应用。</li>
+  <li><strong>与课程其他讲次的呼应</strong>：状态外化到文件呼应第 7 讲「文件系统作为外化记忆」（MemGPT/Letta 的思路）；单功能增量 + 清单驱动呼应第 6 讲 plan-and-execute 模式；「先验证再开发、端到端测试」呼应第 12–13 讲评估基础设施（verifier/scorer 设计）。</li>
+  <li><strong>实践影响</strong>：「progress 文件 + JSON 功能清单 + 会话启动协议」已成为社区构建 long-running coding agent 的常见模式，与 Claude Code 最佳实践中的 checklist/scratchpad 建议一脉相承。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Harness</td><td>脚手架 / 挽具</td><td>围绕模型的工程化支撑：提示、工具、脚本、文件、Git、测试与交接机制</td></tr>
+  <tr><td>Long-running agent</td><td>长时间运行智能体</td><td>任务跨越多个上下文窗口/会话的智能体</td></tr>
+  <tr><td>Compaction</td><td>上下文压缩</td><td>接近上下文上限时自动摘要历史；本文认为单靠它不够</td></tr>
+  <tr><td>Initializer agent</td><td>初始化智能体</td><td>首个会话角色：搭脚手架、生成完整功能清单</td></tr>
+  <tr><td>Coding agent</td><td>编码智能体</td><td>后续会话角色：每轮实现一个功能并验证</td></tr>
+  <tr><td>Feature list (JSON)</td><td>功能清单</td><td>结构化需求项，含 passes 状态字段，防模型改写</td></tr>
+  <tr><td>State externalization</td><td>状态外化</td><td>把项目状态写进文件/Git/进度记录而非依赖模型记忆</td></tr>
+  <tr><td>Checkpoint</td><td>检查点</td><td>Git 提交点，出错可回退恢复</td></tr>
+  <tr><td>Smoke test</td><td>冒烟测试</td><td>会话开始时验证应用能启动、基础功能可用</td></tr>
+  <tr><td>End-to-end testing</td><td>端到端测试</td><td>像真实用户一样操作验证（Puppeteer MCP 截图）</td></tr>
+  <tr><td>Clean state / handoff</td><td>干净状态 / 交接</td><td>会话结束时保持代码整洁、进度已记录，便于下一会话接手</td></tr>
+  <tr><td>Claude Agent SDK</td><td>Claude 智能体 SDK</td><td>Anthropic 构建智能体的开发套件，本文示例的运行基础</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective Harnesses for Long-Running Agents — Anthropic Engineering (2025)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

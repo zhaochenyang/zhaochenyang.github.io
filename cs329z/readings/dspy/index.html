@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：DSPy — Compiling Declarative Language Model Calls into Self-Improving Pipelines（CS329Z Lecture 5 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 5 必读</div>
+  <h1>DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines</h1>
+  <div class="sub">DSPy：将声明式语言模型调用编译为自我改进的流水线</div>
+  <div class="meta">Omar Khattab, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Sri Vardhamanan, Saiful Haq, Ashutosh Sharma, Thomas T. Joshi, Hanna Moazam, Heather Miller, Matei Zaharia, Christopher Potts（Stanford / CMU / Databricks 等）· ICLR 2024 · arXiv 2023-10-05</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2310.03714">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">编程模型与编译器</a>
+  <a href="#results">实验结果</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>DSPy 主张<strong>把「手写提示词」换成「写程序 + 编译」</strong>：开发者用<strong>签名（signature）</strong>声明每一步文本转换「做什么」，用<strong>模块（module）</strong>像搭 PyTorch 网络一样组合流水线，再由<strong>优化器（optimizer/teleprompter）</strong>针对给定指标自动学习提示组合、few-shot 示例乃至微调权重。编译后 GPT-3.5 与 Llama2-13b-chat 相比标准 few-shot 提示分别通常提升 <strong>25% 与 65% 以上</strong>，编译到 770M 参数 T5 的小模型流水线可与依赖专家手写提示链的 GPT-3.5 方案竞争。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>当前 LLM 应用的主流开发方式是：人肉试错拼出冗长的提示模板（prompt templates），把指令、few-shot 示例、思维链触发语等硬编码进字符串。DSPy 论文开篇指出这种做法的根本缺陷：</p>
+<blockquote>
+  <span class="en">"...hard-coded 'prompt templates'... can be brittle and unscalable... conceptually akin to hand-tuning the weights for a classifier."</span>
+  <span class="zh">硬编码的提示模板……可能既脆弱又难以规模化……这在概念上相当于手工调一个分类器的权重。</span>
+</blockquote>
+<blockquote>
+  <span class="en">A single prompt string "might not generalize to different pipelines or across different LMs, data domains, or even inputs."</span>
+  <span class="zh">单一提示字符串「可能无法泛化到不同的流水线、不同的语言模型、不同的数据域，甚至不同的输入」。</span>
+</blockquote>
+<p>换句话说：提示工程把「任务逻辑」与「如何向特定模型表达任务」耦合在了一起。换个模型、换个流水线结构、换个数据域，精心调好的提示就可能失效，只能重新手调。DSPy 的答案是借鉴深度学习框架的经验——<strong>声明式编程 + 自动优化</strong>：正如 PyTorch 用户定义网络结构（计算图）而把权重交给优化器，DSPy 用户定义 LM 调用的「文本转换图」而把提示/示例/权重交给编译器。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：LM 流水线是「文本转换图」，应当被声明而非硬编码</h3>
+<p>DSPy 把任意 LLM 流水线抽象为 <span class="term">text transformation graphs</span>（文本转换图）：节点是带参数的声明式 LM 调用，边是文本（中间结果）流动。程序里不再出现手写提示字符串，只出现<strong>签名</strong>（这一步把什么输入变成什么输出）与<strong>模块</strong>（用哪种调用策略）。</p>
+
+<h3>观点 2：签名（Signature）——「做什么」而非「怎么做」</h3>
+<p>签名是对函数的<strong>自然语言类型声明</strong>（natural-language typed declaration of a function）。最简形式如 <code>question -&gt; answer</code>：字段名承载语义角色，DSPy 会自动将其扩展为对 LM 有意义的指令；复杂签名可附字段描述与类型（如 <code>answer: bool</code>）。签名声明「做什么」，把「怎么向模型说」留给编译器。</p>
+
+<h3>观点 3：模块（Module）——参数化、可组合的调用策略</h3>
+<p>模块是<strong>参数化的可调用组件，类似 PyTorch 的层</strong>。基础模块 <code>Predict</code> 保存签名、可选 LM 与 demonstrations（示例）列表；<code>ChainOfThought</code>、<code>ReAct</code>、<code>MultiChainComparison</code> 等都通过组合 <code>Predict</code> 实现——例如 <code>ChainOfThought</code> 只是在签名前添加一个带 "Let's think step by step." 前缀的推理输出字段。模块的「参数」（指令文本、few-shot 示例、甚至 LM 权重）不靠人写，靠优化器学。</p>
+
+<h3>观点 4：优化器（Optimizer / Teleprompter）——把提示工程变成编译</h3>
+<p>给定 DSPy 程序 + 少量训练输入 + 指标函数，优化器自动改进程序。论文给出三阶段视角：</p>
+<ol>
+  <li><span class="term">候选生成（Candidate Generation）</span>：递归找出程序里所有 <code>Predict</code> 模块，用「教师程序」在训练输入上模拟运行、追踪多阶段 traces，经指标过滤（拒绝采样）得到候选 demonstrations——<code>BootstrapFewShot</code> 即此策略；</li>
+  <li><span class="term">参数优化（Parameter Optimization）</span>：对候选示例、指令等参数用随机搜索或 Optuna 等超参优化选择最优组合；<code>BootstrapFinetune</code> 则更进一步，把示例用于微调小模型权重；</li>
+  <li><span class="term">高阶优化（Higher-Order Optimization）</span>：修改程序控制流本身，如把程序复制为集成（ensemble）再用多数投票归约预测。</li>
+</ol>
+<p>优化器可组合：<strong>昂贵程序（大模型 + 复杂流水线）可以作为 teacher 去监督廉价程序（小模型 + 简单流水线）</strong>——这为「用 GPT-4 级模型蒸馏出小模型流水线」提供了系统化的路径。</p>
+
+<h2 id="method">编程模型与编译器：一个完整示例</h2>
+<p>论文用一个简洁的 RAG 系统展示 DSPy 的表达力（附录另给出多跳检索、代理循环等更复杂程序）：</p>
+<div class="note">
+<strong>签名声明</strong>（自然语言「类型签名」）：<br>
+<code>class GenerateSearchQuery(dspy.Signature):</code><br>
+<code>&nbsp;&nbsp;"""Write a simple search query that will help answer a complex question."""</code><br>
+<code>&nbsp;&nbsp;context = dspy.InputField(desc="may contain relevant facts")</code><br>
+<code>&nbsp;&nbsp;question = dspy.InputField()</code><br>
+<code>&nbsp;&nbsp;query = dspy.OutputField()</code><br><br>
+<strong>程序组装</strong>（模块像神经网络层一样组合）：<br>
+<code>class RAG(dspy.Module):</code><br>
+<code>&nbsp;&nbsp;def __init__(self):</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;self.retrieve = dspy.Retrieve(k=3)</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;self.generate_answer = dspy.ChainOfThought("context, question -&gt; answer")</code><br>
+<code>&nbsp;&nbsp;def forward(self, question):</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;context = self.retrieve(question).passages</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;return self.generate_answer(context=context, question=question)</code><br><br>
+之后只需 <code>teleprompter.compile(RAG(), trainset=...)</code>，优化器就会为每个模块自举示例、调好指令——全程没有手写提示字符串。把 <code>ChainOfThought</code> 换回 <code>Predict</code>、或把签名改成 <code>"context, question -&gt; search_query"</code>，都只是一行改动（体现模块化）。
+</div>
+<p>与 LangChain / LlamaIndex 等库相比（论文附录 B 专门讨论）：这些库聚焦「把 LM 调用与外部组件接起来」的<strong>集成胶水</strong>，提示仍由人手写；DSPy 关注的是<strong>把这些调用组织成可优化的程序</strong>——两者定位不同，DSPy 程序中完全可以调用检索器等组件。</p>
+
+<h2 id="results">实验结果与结论</h2>
+<p>案例研究覆盖四类任务：数学应用题推理（GSM8K）、多跳检索问答（HotPotQA）、带引用的复杂问答、代理循环（ReAct 式）。核心数字：</p>
+<table>
+  <tr><th>任务 / 模型</th><th>基线（zero-shot 或手写 few-shot）</th><th>DSPy 编译后</th></tr>
+  <tr><td>GSM8K · GPT-3.5</td><td>24.0%（zero-shot）；论文口径整体 33%</td><td>bootstrap CoT 72.9% → reflection+bootstrap <strong>76.0%</strong>（论文口径整体 82%）</td></tr>
+  <tr><td>GSM8K · Llama2-13b-chat</td><td>7.0%（zero-shot）；论文口径整体 9%</td><td>reflection+bootstrap <strong>46.9%</strong>（论文口径整体 47%）</td></tr>
+  <tr><td>HotPotQA 多跳 · GPT-3.5</td><td>手写 few-shot 31.5%</td><td>multihop+bootstrap 39.6% → +集成 <strong>45.6%</strong></td></tr>
+  <tr><td>HotPotQA 多跳 · Llama2-13b-chat</td><td>手写 few-shot 21.8%</td><td>multihop+bootstrap 36.4% → +集成 <strong>41.0%</strong></td></tr>
+  <tr><td>HotPotQA · T5-Large（770M 参数，微调）</td><td>—</td><td>dev EM <strong>39.3%</strong> / 段落准确率 46.0%，仅用 200 条标注 + 800 条无标注问题</td></tr>
+</table>
+<p>摘要层面的总结论：编译后流水线相对标准 few-shot 提示，GPT-3.5 与 Llama2-13b-chat 通常分别提升 <strong>25% 与 65% 以上</strong>；相对专家手工构造示例的流水线，提升可达 <strong>5–46% 与 16–40%</strong>；编译到 770M T5 或 Llama2-13b-chat 的 DSPy 程序，可与依赖专家提示链的专有 GPT-3.5 方案竞争。</p>
+<div class="note">
+<strong>图表说明</strong>：论文正文无位图插图（其图均为附录中的提示模板文本示例），故本页不转载图片；上表已还原论文表 1（GSM8K）与表 2（HotPotQA）的关键数字。
+</div>
+<p><strong>结论</strong>：把提示工程从「手工艺」变为「编译问题」是可行且高收益的——简洁的声明式程序足以表达复杂流水线，而自动优化系统性地超过人工调参。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与第五讲的关系</strong>：CS329Z Lecture 5「Frameworks &amp; Agent Design」以 DSPy 为必读，正对应其主题「框架抽象了什么 vs. 你从零构建了什么、如何选择抽象层级」——DSPy 代表「声明式 + 编译器」这一抽象路线，与 LangChain/LangGraph（编排胶水）、LlamaIndex（数据框架）形成对照。</li>
+  <li><strong>作者脉络</strong>：一作 Omar Khattab 也是 ColBERT（本专栏 <a href="../colbert/">第三讲扩展阅读精讲</a>）的一作，通讯/资深作者包括 Matei Zaharia（Spark 之父、<a href="../compound-ai-systems/">复合 AI 系统</a>一文主笔）与 Christopher Potts——DSPy 可视为「复合 AI 系统」理念在编程模型层面的落地。</li>
+  <li><strong>领域影响</strong>：DSPy 开创了「LM 程序编译」范式，后续 prompt 优化研究（MIPROv2、GEPA 等，均为 CS329Z 第九讲 Optimization 的阅读材料）多以 DSPy 为宿主框架；其内建的 <code>ReAct</code> 模块也把第六讲必读的 ReAct 模式变成了可组合组件。</li>
+  <li><strong>工程启示</strong>：当你发现自己在反复手调提示、且提示换个模型就失效时，DSPy 的路径是：写出签名与模块结构 → 定义指标 → 准备少量训练输入 → 让优化器自举示例与指令；对小模型场景还可用 <code>BootstrapFinetune</code> 把优化结果固化进权重。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Signature</td><td>签名</td><td>文本转换的自然语言类型声明（输入字段 → 输出字段）</td></tr>
+  <tr><td>Module</td><td>模块</td><td>参数化可调用的 LM 调用策略，类似 PyTorch 的层</td></tr>
+  <tr><td>Optimizer / Teleprompter</td><td>优化器（提词器）</td><td>针对指标自动改进程序的编译器组件</td></tr>
+  <tr><td>BootstrapFewShot</td><td>自举少样本（优化器）</td><td>用教师程序模拟运行 + 指标过滤，自动收集 few-shot 示例</td></tr>
+  <tr><td>BootstrapFinetune</td><td>自举微调（优化器）</td><td>把自举示例用于微调小模型权重</td></tr>
+  <tr><td>Demonstrations</td><td>示例（演示）</td><td>模块参数之一：few-shot 示例列表，由优化器学习</td></tr>
+  <tr><td>Text transformation graph</td><td>文本转换图</td><td>DSPy 对 LM 流水线的抽象：声明式节点 + 文本边</td></tr>
+  <tr><td>Rejection sampling</td><td>拒绝采样</td><td>生成多个候选轨迹、仅保留通过指标的作为示例</td></tr>
+  <tr><td>Teacher program</td><td>教师程序</td><td>昂贵（大模型/复杂）程序，用于给廉价学生程序生成示例</td></tr>
+  <tr><td>Ensemble / majority vote</td><td>集成 / 多数投票</td><td>高阶优化：多副本预测后投票归约</td></tr>
+  <tr><td>Metric</td><td>指标（函数）</td><td>编译目标：判定输出好坏，驱动示例筛选与参数搜索</td></tr>
+  <tr><td>Prompt template</td><td>提示模板</td><td>被 DSPy 取代的硬编码字符串式做法</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2310.03714">DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines — arXiv 2310.03714 (ICLR 2024)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

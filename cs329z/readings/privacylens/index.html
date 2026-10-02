@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action（CS329Z Lecture 14 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 14 必读</div>
+  <h1>PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action</h1>
+  <div class="sub">PrivacyLens：在真实行动中评估语言模型的隐私规范意识</div>
+  <div class="meta">Yijia Shao（Stanford）· Tianshi Li、Weiyan Shi（Northeastern）· Yanchen Liu（Harvard）· Diyi Yang（Stanford）· NeurIPS 2024 Datasets &amp; Benchmarks</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2409.00138">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="https://github.com/SALT-NLP/PrivacyLens">数据集与代码</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>PrivacyLens 是首个从<strong>隐私视角评估 LM 智能体「行动」</strong>（而非静态问答）的基准框架：它把 493 条基于<strong>情境完整性（Contextual Integrity）</strong>理论的隐私敏感「种子」自动扩展为情景短剧（vignette）与可执行的智能体轨迹（trajectory），发现模型「嘴上懂隐私、手上会泄密」——GPT-4 与 Llama-3-70B 即使加了隐私增强提示，仍在 <strong>25.68% / 38.69%</strong> 的案例中泄露敏感信息。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>语言模型正被广泛部署在<strong>个性化通信场景</strong>（代发邮件、写社交媒体帖子、消息回复）并被赋予一定程度的自主性（agency）。此时模型是否遵守<strong>情境化隐私规范</strong>——什么信息、关于谁、由谁、传给谁、以什么条件传——变得至关重要。但量化这种「隐私规范意识」面临两大困难：</p>
+<ul>
+  <li><span class="term">隐私敏感案例是情境化且长尾的</span>：同一条信息流，改变任何一个要素（如接收者从密友变成陌生人）都可能从合规变为违规，无法用固定测试集穷举；</li>
+  <li><span class="term">缺少贴近真实应用场景的评估方法</span>：以往 LM 隐私研究集中在「模型是否记忆训练数据、能否被攻击者抽取」，而<strong>没有工作从隐私角度评估 LM 智能体的实际行动</strong>；人工标注轨迹成本高且易被数据污染（contamination）淘汰。</li>
+</ul>
+<blockquote>
+  <span class="en">"As language models are widely utilized in personalized communication scenarios and endowed with a certain level of agency, ensuring they act in accordance with the contextual privacy norms becomes increasingly critical."</span>
+  <span class="zh">随着语言模型被广泛用于个性化通信场景并被赋予一定程度的自主性，确保它们的行为符合情境化隐私规范变得日益关键。</span>
+</blockquote>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：新的风险模型——没有攻击者也会泄密</h3>
+<p>PrivacyLens 关注的风险设定（risk model）包含三方：<strong>发送者（sender，日常用户）</strong>指示 LM 智能体协助通信；<strong>接收者（recipient）</strong>由用户指令指定；<strong>LM 智能体</strong>可调用工具（邮件、消息、日历等）。关键在于：即使<strong>不存在恶意攻击者</strong>，智能体对隐私规范的无意识（unawareness）就足以导致泄露。论文示例：John 让智能体帮忙给同事发消息，智能体顺口带出 John「正在和几家公司谈跳槽」——这条信息本不应流向同事。</p>
+<div class="note">原文图 1（Risk Model）示意：用户 → LM 智能体（带工具调用）→ 接收者的信息流中，智能体生成的最后一条消息可能违反该情境下的隐私规范。PrivacyLens 量化的正是这种「协助通信时无意识泄露私人信息」的新型风险。</div>
+
+<h3>观点 2：用情境完整性理论形式化「隐私种子」</h3>
+<p>基于 Helen Nissenbaum 的 <span class="term">Contextual Integrity（情境完整性）</span>理论，每条隐私敏感种子 S 被定义为一个五元组：</p>
+<table>
+  <tr><th>要素</th><th>含义</th></tr>
+  <tr><td>Data type 数据类型</td><td>被传输的信息属性/类型</td></tr>
+  <tr><td>Data subject 数据主体</td><td>信息所指向的人</td></tr>
+  <tr><td>Data sender 数据发送者</td><td>信息的发出方</td></tr>
+  <tr><td>Data recipient 数据接收者</td><td>信息的接收方</td></tr>
+  <tr><td>Transmission principle 传输原则</td><td>传输方式或附加条件</td></tr>
+</table>
+<p>五要素齐备使种子「情境化」——改动任一要素都可能改变适用的隐私规范。这种结构化定义让种子可以<strong>程序化地批量扩展</strong>，天然对抗长尾与数据污染。</p>
+
+<h3>观点 3：核心发现——「知道」不等于「做到」</h3>
+<p>论文对比两种评估：<strong>QA 探测</strong>（直接问模型「这样的信息流是否合适」，1,479 道探测题、三个层级）与<strong>行动评估</strong>（把模型放进智能体轨迹，让它生成最后的通信动作，从动作判定是否泄露）。结果揭示显著脱节：强模型在问答上近乎满分，在行动上照样泄密。</p>
+<blockquote>
+  <span class="en">"We reveal a discrepancy between LM performance in answering probing questions and their actual behavior when executing user instructions in an agent setup. State-of-the-art LMs, like GPT-4 and Llama-3-70B, leak sensitive information in 25.68% and 38.69% of cases, even when prompted with privacy-enhancing instructions."</span>
+  <span class="zh">我们揭示了 LM 在回答探测问题与其在智能体设定下执行用户指令时的实际行为之间的脱节：GPT-4 与 Llama-3-70B 等最先进模型，即使被给予隐私增强提示，仍分别在 25.68% 与 38.69% 的案例中泄露敏感信息。</span>
+</blockquote>
+
+<h3>观点 4：动态基准，可用于红队测试</h3>
+<p>PrivacyLens 不是静态测试集：每个种子可被重新扩展成<strong>多条新轨迹</strong>，持续生成新评估实例，从而缓解数据污染并支持对 LM 隐私泄露风险的<strong>红队测试（red-teaming）</strong>。</p>
+
+<h2 id="method">方法与架构：Seed → Vignette → Trajectory</h2>
+<p>PrivacyLens 的三级流水线：</p>
+<ol>
+  <li><span class="term">种子收集（493 条）</span>：来源包括美国隐私法规、关于弱势/边缘群体的隐私研究文献、以及 Prolific 众包；每条种子由 3 名标注者中至少 2 人判定为隐私敏感才保留。</li>
+  <li><span class="term">情景短剧生成（493 个 vignette）</span>：用基于模板的 GPT-4 生成把种子扩写为有表现力的短场景；「Surgery Kit」模块对未通过单元测试的生成结果做修订（例如删去直白点出「敏感」的字眼，避免提示模型）。</li>
+  <li><span class="term">可执行轨迹（493 条 trajectory）</span>：基于 ToolEmu 沙箱构建，LM 智能体可调用 Gmail、Slack、Messenger、Notion、Facebook、Zoom 等模拟工具，由 GPT-4 模拟器（emulator）产生工具观测；轨迹中<strong>删除最后的通信动作</strong>，让被测模型自己生成这一收尾动作，再据此判定泄露。</li>
+</ol>
+<p>评估指标：<strong>LR（泄露率）</strong>与 <strong>LR<sub>h</sub></strong>（仅统计「有用性得分为正」的案例的泄露率，排除靠摆烂不泄露的模型）；提示条件分「基础提示」与「隐私增强提示」两档。泄露判定采用 LM 辅助评估。</p>
+
+<h2 id="results">实验结果与结论</h2>
+<p>共评测 9 个模型（ChatGPT-3.5、GPT-4、Claude-3-Haiku/Sonnet、Mistral-7B、Mixtral-8x7B、zephyr-7b-beta、Llama-3-8B/70B-Instruct）。关键数据（轨迹层探测准确率 / 行动泄露率，均为「隐私增强提示」下的数字）：</p>
+<table>
+  <tr><th>模型</th><th>QA 探测准确率（基础→隐私增强）</th><th>行动泄露率 LR<sub>h</sub>（基础→隐私增强）</th></tr>
+  <tr><td>GPT-4</td><td>97.57% → 98.99%</td><td>27.23% → <strong>25.68%</strong></td></tr>
+  <tr><td>Llama-3-70B-Instruct</td><td>94.32% → 98.58%</td><td>38.04% → <strong>38.69%</strong></td></tr>
+  <tr><td>Claude-3-Sonnet</td><td>99.80% → 100.00%</td><td>38.83% → 37.74%</td></tr>
+  <tr><td>ChatGPT-3.5</td><td>64.10% → 91.28%</td><td>37.69% → 31.25%</td></tr>
+  <tr><td>Llama-3-8B-Instruct</td><td>31.44% → 71.81%</td><td>22.84% → 23.16%</td></tr>
+  <tr><td>zephyr-7b-beta</td><td>60.45% → 59.43%</td><td>33.44% → 34.88%</td></tr>
+</table>
+<p>主要结论：</p>
+<ul>
+  <li><strong>问答与行动脱节普遍存在</strong>：Claude-3-Sonnet 探测准确率 100%，行动泄露率仍约 37.7%；GPT-4 探测近满分、行动仍泄露约四分之一案例。</li>
+  <li><strong>隐私增强提示作用有限</strong>：对部分模型略有帮助（如 ChatGPT-3.5），但对 Llama-3-70B 反而略升，远未弥合差距。</li>
+  <li><strong>小模型「少泄露」不等于「懂隐私」</strong>：Llama-3-8B 泄露率最低（约 23%），但其探测准确率也最低（长轨迹上下文处理能力弱），且低泄露常伴随有用性下降——存在<strong>隐私与有用性的张力</strong>。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：首个面向 LM 智能体「行动中隐私规范意识」的动态基准，被 NeurIPS 2024 Datasets &amp; Benchmarks 收录；数据集与代码开源于 <a href="https://github.com/SALT-NLP/PrivacyLens">SALT-NLP/PrivacyLens</a>。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 14 讲（Agent Safety &amp; Guardrails）讨论「工具访问带来的隐私风险」，本文正是该风险的系统化度量工具；同讲必读的 Zhang &amp; Yang《Searching for Privacy Risks in LLM Agents via Simulation》可视为本文的延伸——从「被动度量泄露」到「主动搜索攻击与防御」；三作 Tianshi Li 亦是该方向后续研究（Agentic Deanonymizers）的作者。本文通讯作者 Diyi Yang 即 CS329Z 主讲人。</li>
+  <li><strong>工程启示</strong>：评测智能体隐私安全必须<strong>基于行动</strong>（放进沙箱轨迹里看它实际做什么），仅靠问卷式 QA 会严重高估安全性；隐私增强提示不能替代权限模型与输出护栏。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Contextual Integrity</td><td>情境完整性</td><td>Nissenbaum 的隐私理论：信息流是否合规取决于情境规范</td></tr>
+  <tr><td>Privacy norm</td><td>隐私规范</td><td>特定情境下对信息流的适当性约束</td></tr>
+  <tr><td>Seed / Vignette / Trajectory</td><td>种子 / 情景短剧 / 轨迹</td><td>PrivacyLens 三级扩展：五元组 → 短场景 → 可执行智能体轨迹</td></tr>
+  <tr><td>Transmission principle</td><td>传输原则</td><td>五元组之一：信息传输的方式或条件</td></tr>
+  <tr><td>Data subject</td><td>数据主体</td><td>信息所指向的人</td></tr>
+  <tr><td>Leakage rate (LR / LR<sub>h</sub>)</td><td>泄露率</td><td>行动评估中泄露的比例；LR<sub>h</sub> 仅统计有用性为正的案例</td></tr>
+  <tr><td>Probing question</td><td>探测问题</td><td>直接询问模型某信息流是否合适的 QA 评估</td></tr>
+  <tr><td>Red-teaming</td><td>红队测试</td><td>主动构造攻击/新实例挖掘模型风险</td></tr>
+  <tr><td>ToolEmu / LM emulation</td><td>工具模拟 / LM 仿真</td><td>用 LM 模拟工具执行与环境观测的沙箱评测框架</td></tr>
+  <tr><td>Privacy-enhancing prompt</td><td>隐私增强提示</td><td>在系统提示中显式要求注意隐私的干预手段</td></tr>
+  <tr><td>Data contamination</td><td>数据污染</td><td>测试集内容进入训练数据导致评估失效</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2409.00138">PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action — arXiv (NeurIPS 2024 D&amp;B)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

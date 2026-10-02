@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Data Flywheels for LLM Applications（CS329Z Lecture 10 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 10 必读</div>
+  <h1>Data Flywheels for LLM Applications</h1>
+  <div class="sub">LLM 应用的数据飞轮</div>
+  <div class="meta">Shreya Shankar（UC Berkeley）· 个人博客 · 2024-07-01</div>
+  <div class="btn-row">
+    <a class="btn" href="https://www.sh-reya.com/blog/ai-engineering-flywheel/">阅读原文（sh-reya.com）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">飞轮三阶段</a>
+  <a href="#results">结论与建议</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>LLM 应用上线不是终点而是起点——把<strong>生产环境数据</strong>（日志、人工修正、用户反馈）通过「评估 → 监控 → 持续改进」的闭环不断回灌到提示与管道中，形成<strong>数据飞轮（Data Flywheel）</strong>，让应用随使用而自我改进；作者强调这套框架「刻意简单」，<strong>现在就可以构建自我改进的应用</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>作者 Shreya Shankar（Berkeley 博士生，LLM 应用评估方向，后续课程第 11 讲必读《Who Validates the Validators?》即其工作）指出，基于 LLM API 构建的生产应用面临几个与传统软件不同的现实：</p>
+<ul>
+  <li><strong>人类偏好会漂移</strong>：用户喜欢的回答风格随时间变化，需要定期让人参与评估；</li>
+  <li><strong>模型不总是听话</strong>：「LLM API 并不总是遵循提示中的指令」，因此输出必须被验证；</li>
+  <li><strong>微调昂贵</strong>：多数团队依赖 API 而非训练自己的模型，改进空间集中在提示、示例与管道层面；</li>
+  <li><strong>LLM-as-a-judge 日益可行</strong>：模型越来越便宜、快速、可靠，可以用模型实现主观指标的自动评估。</li>
+</ul>
+<p>问题是：生产系统每天产生大量真实交互数据，绝大多数团队却只是把它们存进日志就不管了。本文回答「如何把这些数据变成持续改进应用的燃料」。</p>
+
+<figure>
+  <img src="https://www.sh-reya.com/blogimages/data-flywheel-pipeline.png" alt="持续演化的 LLM 应用管道：输入验证、动态少样本示例检索、代码指标与模型指标、日志记录形成闭环" loading="lazy">
+  <figcaption>图 1：理想化的持续演化 LLM 应用管道——输入经过验证与动态少样本示例检索后送入 LLM，输出同时经代码指标与模型指标评估并记入日志，人工修正回流到示例库（来源：原文，改编自其论文图 1）</figcaption>
+</figure>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：指标必须从真实输出中「长」出来</h3>
+<p>成功指标不能只靠理论推导，必须先观察生产环境的真实输出再确定。例如客服机器人：你可能最初只关心「回复简洁」「有同理心」，但看到真实输出后发现 <span class="term">"delve""crucial"</span> 这类词让回复充满「模型味」，于是新增一个「避免 LLM 惯用词」的指标。</p>
+<blockquote>
+  <span class="en">"binary metrics (True/False) are much easier to align and reason about from a UX standpoint."</span>
+  <span class="zh">二元指标（真/假）在用户体验层面更容易对齐、也更容易推理——建议优先使用二元指标而非连续打分。</span>
+</blockquote>
+
+<h3>观点 2：把「好输出」拆成多个指标，而不是一个总分</h3>
+<ul>
+  <li>人工标注多个二元指标比打整体分数<strong>更一致</strong>；</li>
+  <li>单个指标更容易让 LLM 评审（judge）对齐；</li>
+  <li>分数能<strong>定位具体短板</strong>（是简洁度不合格还是同理心不合格），指导针对性修复。</li>
+</ul>
+
+<h3>观点 3：验证器要像探针一样布进调用图</h3>
+<p>对多步管道，应像软件可观测性（observability）中的探针那样，在关键节点放置验证器。作者把节点分为三类：</p>
+<table>
+  <tr><th>节点类型</th><th>例子</th><th>验证方式</th></tr>
+  <tr><td>分类器（classifier）</td><td>意图识别与路由（账单/技术支持/一般咨询）</td><td>准确率、精确率、召回率、F1；附加规则（提到账单/支付必须归为账单类）</td></tr>
+  <tr><td>生成器（generator）</td><td>撰写回复、摘要</td><td>质量、连贯性、任务约束、品牌语气（多为模型评审）</td></tr>
+  <tr><td>代码生成器</td><td>生成 SQL 查询</td><td>静态分析、linter、测试套件；必要时真正执行并校验结果</td></tr>
+</table>
+
+<figure>
+  <img src="https://www.sh-reya.com/blogimages/multi-step-pipeline.png" alt="客服支持聊天机器人的调用图：菱形为分类器、六边形为代码生成器、矩形为生成器" loading="lazy">
+  <figcaption>图 2：客服聊天机器人的调用图——菱形=分类器，六边形=代码生成器，矩形=生成/写作节点；为清晰起见省略了工具调用（如执行数据库查询、检索知识库）（来源：原文）</figcaption>
+</figure>
+
+<h3>观点 4：输入同样要严格验证</h3>
+<p>借用 Postel 法则的反向表述：<span class="term">"be strict in what you send to the LLM"（对送入 LLM 的内容要严格）</span>。作者列举 7 类输入验证：</p>
+<ol>
+  <li><strong>用户权限</strong>：查询只能涉及已认证客户的数据（比对订单号/账户与数据库记录）；</li>
+  <li><strong>主题相关</strong>：关键词匹配或语义相似度，可设阈值（如 0.7）；</li>
+  <li><strong>查询复杂度</strong>：token 数、句数、句法结构是否在预期范围；</li>
+  <li><strong>语言检测</strong>：确认属于支持的语言；</li>
+  <li><strong>敏感信息</strong>：正则/实体识别检出信用卡号、社保号等；</li>
+  <li><strong>对抗输入</strong>：检测越权、重复尝试、提示注入（prompt injection）模式；</li>
+  <li><strong>异常检测</strong>：查询向量与近期查询比较，低于阈值转人工复查。</li>
+</ol>
+
+<h3>观点 5：指标集不是静态的</h3>
+<blockquote>
+  <span class="en">"Your metric set is not meant to be static."</span>
+  <span class="zh">你的指标集不应是静态的——可以部署代理定期分析已标注的生产样本，提出新增、修改或删除指标的建议，再由工程师审核。</span>
+</blockquote>
+
+<h2 id="method">数据飞轮的三个阶段</h2>
+
+<h3>阶段 1：评估（Evaluation）——定义成功指标</h3>
+<p>如观点 1–4 所述：从真实输出归纳指标，优先二元指标；每个指标用<strong>代码规则</strong>（如字符数衡量简洁）或<strong>模型评审</strong>（主观指标）实现；在多步管道的分类器/生成器/代码生成器节点上布置验证器。</p>
+
+<h3>阶段 2：监控（Monitoring）——让指标实现持续对齐</h3>
+<ul>
+  <li>定期从生产数据中<strong>采样并人工标注</strong>一批回复（保留时间戳，有人还保存向量索引），核对指标实现是否仍然对齐人类判断；</li>
+  <li>模型评审的提示应<strong>动态化</strong>：「从数据库中检索与当前待验证实例相关的示例」作为 few-shot，而非写死；</li>
+  <li>示例挑选策略：优先取<strong>人工标签与模型预测不一致</strong>的样例（更有信息量），或按新近度加权；</li>
+  <li>LangChain 探索的折中：模型先标注、人工编辑修正——缓解标注负担，但长期是否与人工判断一致仍是开放问题。</li>
+</ul>
+
+<h3>阶段 3：持续改进（Continual Improvement）——关闭循环</h3>
+<p>前提是「维护输出及其指标分数的完整日志」（可用 LangSmith 等工具）。两条路径：</p>
+<ul>
+  <li><strong>手动改进</strong>：定期查看指标分布、低分聚类、输入分布变化，做对照实验后调整提示或管道配置；</li>
+  <li><strong>自动改进</strong>：按日/周对低分输出运行修复流程——找出错误 → 重写正确输出 → 记录修改原因，保存运行记录、指标分数与人工修正。</li>
+</ul>
+<p>运行时对每个新查询，<strong>检索相似的已修正样例作为动态 few-shot 示例</strong>。检索策略可尝试：同时取最相似的原始样例与修复样例、按新近度加权、加入多样性避免示例类型过窄。这一步把提示工程转化成了检索问题。</p>
+<div class="note">安全脚注：动态示例库要防「提示投毒」——对抗性查询不应被选入 few-shot 示例；某些行业的提示变更还需法务/合规审批。</div>
+
+<h2 id="results">结论与开放挑战</h2>
+<p>本文是实践框架型博文，无量化实验；其结论来自作者对从业者的访谈与自身研究（相关工作已被 Alta、LangChain、UpTrain 等垂直 AI / LLMOps 产品采用）。作者还指出三个开放挑战：</p>
+<ul>
+  <li><strong>不确定性量化</strong>：指令微调模型的 next-token 概率是未校准的（uncalibrated），模型自报置信度也不可靠；若有可靠不确定性估计，可更好地对齐验证器、挑选信息量大的示例、安排人工标注优先级；</li>
+  <li><strong>调用图上的飞轮</strong>：「一个节点的错误会经由后续节点放大」，需要图感知指标、分层验证、动态插入验证探针、面向图结构的少样本检索（图嵌入/子图匹配）；多步管道的完整验证仍是开放问题；</li>
+  <li><strong>数据库驱动的验证</strong>：把验证器下沉到数据库系统（触发器/存储过程/视图/增量语义索引维护），减轻应用开发者的工程负担。</li>
+</ul>
+<blockquote>
+  <span class="en">"The framework I outlined is intentionally simple... Self-improving applications are actually possible to build right now."</span>
+  <span class="zh">我勾勒的框架是刻意简单的——不依赖复杂工具、机器学习平台或企业级监控系统……自我改进的应用现在就是可以构建的。</span>
+</blockquote>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>课程关联</strong>：CS329Z 第 10 讲「What Data Do Agents Need?」的核心议题——traces（运行轨迹）、demonstrations（示范）、feedback（反馈），数据用于优化还是评估，以及<strong>数据飞轮</strong>——本文正是「数据飞轮」这一概念的代表性出处；文中的 LLM-as-a-judge、动态 few-shot 检索也直接铺垫第 13 讲（LLM-as-Judge &amp; Evaluation Infrastructure）与第 9 讲（Optimization，提示优化）。</li>
+  <li><strong>作者后续工作</strong>：Shankar 之后的《Who Validates the Validators?》（第 11 讲必读）研究如何让 LLM 评审对齐人类偏好，可视为本文「阶段 2 监控」问题的正式学术化。</li>
+  <li><strong>行业影响</strong>：「数据飞轮」已成为 LLMOps 的标准叙事——生产日志 → 评估 → 修复样例库 → 动态提示的闭环被 LangSmith、UpTrain 等工具产品化；「把提示工程转化为检索问题」的观点也与上下文工程（context engineering）思潮呼应。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Data flywheel</td><td>数据飞轮</td><td>生产数据回灌改进应用的自增强闭环</td></tr>
+  <tr><td>LLM-as-a-judge</td><td>LLM 评审（模型当裁判）</td><td>用另一个 LLM 自动评估输出的主观指标</td></tr>
+  <tr><td>Binary metric</td><td>二元指标</td><td>真/假判定，比连续分数更易对齐与推理</td></tr>
+  <tr><td>Validator / probe</td><td>验证器 / 探针</td><td>布置在调用图节点上的输入输出检查器</td></tr>
+  <tr><td>Call graph</td><td>调用图</td><td>多步 LLM 管道的节点与依赖结构</td></tr>
+  <tr><td>Dynamic few-shot retrieval</td><td>动态少样本示例检索</td><td>按当前查询检索相似历史（修正）样例入提示</td></tr>
+  <tr><td>Prompt poisoning</td><td>提示投毒</td><td>对抗性查询混入示例库污染提示</td></tr>
+  <tr><td>Uncertainty quantification</td><td>不确定性量化</td><td>估计模型输出的可靠程度；API 场景下缺乏校准概率</td></tr>
+  <tr><td>Calibration</td><td>校准</td><td>置信度与真实正确率的一致性</td></tr>
+  <tr><td>Observability / tracing</td><td>可观测性 / 追踪</td><td>记录每次调用与指标分数以调试监控（如 LangSmith）</td></tr>
+  <tr><td>Drift</td><td>漂移</td><td>用户偏好或输入分布随时间变化</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://www.sh-reya.com/blog/ai-engineering-flywheel/">Data Flywheels for LLM Applications — Shreya Shankar (2024)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

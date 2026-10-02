@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：OpenHands: An Open Platform for AI Software Developers（CS329Z Lecture 15 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 15 必读</div>
+  <h1>OpenHands: An Open Platform for AI Software Developers</h1>
+  <div class="sub">OpenHands：面向 AI 软件开发者智能体的开放平台</div>
+  <div class="meta">Xingyao Wang 等 24 位作者（UIUC / Stanford / MIT / CMU 等产学研社区）· ICLR 2025 · arXiv 2024-07（v3 2025-04）· 前身 OpenDevin</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2407.16741">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">平台架构</a>
+  <a href="#results">评测与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>OpenHands（前身 OpenDevin）是一个 <strong>MIT 许可的开源 AI 软件开发智能体平台</strong>：智能体可以写代码、执行命令行、浏览网页，在<strong>沙箱化 Docker 运行时</strong>中安全操作；平台以<strong>事件流（event stream）</strong>为中心统一动作与观察，内置 <strong>10+ 种可插拔智能体</strong>、多智能体协作（委派）、聊天式 GUI 与 <strong>15 个评测基准</strong>的评测设施，由超过 <strong>188 位贡献者、2.1K+ 次贡献</strong>的社区共同建设。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>「AI 软件开发者」类智能体（如 Devin、SWE-agent）需要同时具备多种能力：在真实环境中执行代码、操作文件系统、调用命令行、浏览网页、与用户交互。研究者与开发者若要从零搭建这样一套系统，需要处理沙箱安全、状态管理、前后端分离、评测复现等大量<strong>与智能体算法无关的基础设施</strong>问题。</p>
+<p>OpenHands 的目标是把这些基础设施做成开放平台，让社区可以：<strong>（a）</strong>在统一框架下实现和比较新智能体；<strong>（b）</strong>在沙箱环境中安全地让智能体执行代码；<strong>（c）</strong>支持多智能体协作；<strong>（d）</strong>直接集成主流评测基准。项目 2024 年以 OpenDevin 之名发起（对标闭源 Devin），后更名 OpenHands，累积约 <strong>32K GitHub stars</strong>。</p>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2407.16741/assets/screenshot-stack.png" alt="OpenHands 用户界面截图" loading="lazy">
+  <figcaption>图 1：OpenHands 聊天式 GUI——可查看文件、已执行的命令/Python 代码与浏览器活动，支持实时反馈与中断（来源：原文）</figcaption>
+</figure>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：以「事件流」为中心的统一抽象</h3>
+<p>平台的核心状态是一条<strong>事件流（event stream）</strong>：所有历史动作（action）、观察（observation）、用户输入，以及成本统计与多智能体委派信息，都汇入这一条流。智能体的每一步是「读事件流 → 生成下一个动作」，环境把执行结果作为观察追加回流中。这一抽象使得<strong>任意智能体、任意运行时、任意前端</strong>都可以在同一协议下组合。</p>
+<blockquote>
+  <span class="en">"OpenHands includes an agent hub with over 10 implemented agents."</span>
+  <span class="zh">OpenHands 内置一个「智能体集线器」，收录了超过 10 种已实现的智能体。</span>
+</blockquote>
+
+<h3>观点 2：代码执行必须沙箱化</h3>
+<p>让 LLM 执行任意代码/命令存在真实风险。OpenHands 为每个任务启动<strong>隔离的 Docker 容器</strong>作为运行时（runtime），容器内提供 REST API 封装的三类执行环境：bash shell、Jupyter/IPython、Chromium（Playwright 驱动）浏览器，并支持自定义镜像。智能体只通过 API 与沙箱交互，宿主机不受影响。</p>
+
+<h3>观点 3：多智能体协作与社区共建</h3>
+<blockquote>
+  <span class="en">"OpenHands allows interactions between multiple agents as well."</span>
+  <span class="zh">OpenHands 同样支持多个智能体之间的交互。</span>
+</blockquote>
+<p>通过 <code>AgentDelegateAction</code>，一个智能体可以把子任务委派给另一个更专长的智能体（如把网页浏览交给 BrowsingAgent）。论文强调这是一个<strong>跨越学界与产业的社区项目</strong>：</p>
+<blockquote>
+  <span class="en">"OpenHands is a community project spanning academia and industry."</span>
+  <span class="zh">OpenHands 是一个横跨学术界与工业界的社区项目。</span>
+</blockquote>
+
+<h2 id="method">平台架构</h2>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2407.16741/assets/oh_arch.png" alt="OpenHands 总体架构" loading="lazy">
+  <figcaption>图 2：OpenHands 总体架构——智能体（Agent）产生动作，控制器（Controller）管理状态与事件流，运行时（Runtime）在沙箱中执行并返回观察（来源：原文）</figcaption>
+</figure>
+
+<table>
+  <tr><th>层</th><th>内容</th></tr>
+  <tr><td>动作原语</td><td><code>IPythonRunCellAction</code>（执行 Python 单元）、<code>CmdRunAction</code>（bash 命令）、<code>BrowserInteractiveAction</code>（浏览器操作）、<code>AgentDelegateAction</code>（委派其他智能体）、<code>MessageAction</code>（与用户对话）、<code>AgentFinishAction</code>（结束任务）</td></tr>
+  <tr><td>观察类型</td><td>命令/代码执行输出、用户消息、浏览器状态（DOM、可访问性树、截图、标签页信息）</td></tr>
+  <tr><td>运行时（Runtime）</td><td>每任务一个隔离 Docker 容器；内部 REST API 提供 bash、Jupyter/IPython、Chromium/Playwright；支持自定义镜像；镜像构建有独立工作流（按需叠加依赖层）</td></tr>
+  <tr><td>智能体集线器</td><td>10+ 种智能体：<span class="term">CodeActAgent</span>（主力，用 Python 代码作为统一动作空间）、<span class="term">BrowsingAgent</span>（网页浏览）、<span class="term">GPTSwarm Agent</span>（图式多智能体）、<span class="term">Micro Agent(s)</span>（针对特定任务的轻量智能体）等</td></tr>
+  <tr><td>技能库（AgentSkills）</td><td>可复用的 Python 辅助函数：<code>edit_file</code>、<code>scroll_up</code>/<code>scroll_down</code>、<code>parse_image</code>、<code>parse_pdf</code> 等——与 SWE-agent 的 ACI 思想一脉相承</td></tr>
+  <tr><td>前端</td><td>聊天式 GUI，实时展示文件、命令、浏览器活动；用户可随时插话、纠正、中断</td></tr>
+  <tr><td>评测设施</td><td>内置对 15 个基准的支持（见下节），统一复现流程</td></tr>
+</table>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2407.16741/assets/figs/runtime/oh_runtime_workflow.png" alt="运行时工作流" loading="lazy">
+  <figcaption>图 3：运行时工作流——智能体动作经沙箱 API 执行，观察回流事件流（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">评测与结论</h2>
+<p>论文用 <strong>15 个基准</strong>展示平台能力，覆盖软件工程、网页浏览与通用任务：SWE-Bench、HumanEvalFix、BIRD、BioCoder、ML-Bench、Gorilla APIBench、ToolQA、WebArena、MiniWoB++、GAIA、GPQA、AgentBench、MINT、Entity Deduction Arena、ProofWriter。关键数字（gpt-4o-mini / gpt-4o / Claude 3.5 Sonnet）：</p>
+<table>
+  <tr><th>基准</th><th>智能体</th><th>结果</th></tr>
+  <tr><td>SWE-Bench Lite</td><td>CodeActAgent v1.8</td><td>6.3 / 22.0 / <strong>26.0</strong></td></tr>
+  <tr><td>WebArena</td><td>BrowsingAgent v1.0</td><td>8.5 / 14.8 / <strong>15.5</strong>（经委派协作：8.3 / 14.5 / 15.3）</td></tr>
+  <tr><td>HumanEvalFix</td><td>CodeActAgent</td><td>79.3</td></tr>
+  <tr><td>GPQA diamond</td><td>—</td><td>52.0</td></tr>
+  <tr><td>GAIA L1（validation）</td><td>GPTSwarm</td><td>30.2 / 32.1</td></tr>
+  <tr><td>MiniWoB++ / AgentBench-OS / MINT-math</td><td>—</td><td>40.8 / 57.6 / 77.3</td></tr>
+</table>
+<p><strong>结论</strong>：OpenHands 证明了「统一的开放基础设施」足以支撑从软件修复到网页操作的多类智能体研究与开发；平台本身（事件流 + 沙箱运行时 + 智能体集线器 + 评测集成）是论文的主要贡献，而非某个单点算法。</p>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：OpenHands 是最活跃的开源软件智能体平台之一（约 32K stars、188+ 贡献者、MIT 许可），其事件流架构与沙箱运行时设计被广泛借鉴；CS329Z 讲师 John Yang 与 OpenHands 社区关系密切（本讲扩展阅读《Don't Sleep on Single-agent Systems》即发表于 OpenHands 博客）。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 15 讲以 SWE-agent 与 OpenHands 为两大必读，对应主题「OpenHands architectures」——比较「专用 ACI 脚手架」（SWE-agent）与「通用平台」（OpenHands）两种路线；平台中的 AgentSkills 与运行时隔离也呼应第 4 讲工具设计与沙箱、第 8 讲多智能体委派。</li>
+  <li><strong>工程启示</strong>：做智能体产品时，「执行环境的安全性」与「状态/事件的可回放性」是必须前置设计的基础设施；把动作空间统一到「写代码执行」（CodeAct）是一种强有力的通用化手段。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Event stream</td><td>事件流</td><td>记录全部动作/观察/用户输入的中心状态</td></tr>
+  <tr><td>Runtime</td><td>运行时</td><td>每任务隔离的 Docker 沙箱执行环境</td></tr>
+  <tr><td>Action / Observation</td><td>动作 / 观察</td><td>智能体指令与环境反馈的基本事件类型</td></tr>
+  <tr><td>Delegation</td><td>委派</td><td>一个智能体把子任务交给另一智能体</td></tr>
+  <tr><td>CodeActAgent</td><td>代码动作智能体</td><td>以 Python 代码为统一动作空间的主力智能体</td></tr>
+  <tr><td>AgentSkills</td><td>智能体技能库</td><td>可复用辅助函数（编辑文件、解析 PDF 等）</td></tr>
+  <tr><td>Agent hub</td><td>智能体集线器</td><td>可插拔的多种智能体实现集合</td></tr>
+  <tr><td>Sandbox</td><td>沙箱</td><td>限制代码执行影响范围的安全隔离机制</td></tr>
+  <tr><td>Accessibility tree</td><td>可访问性树</td><td>浏览器页面的结构化表示，供智能体读取</td></tr>
+  <tr><td>SWE-Bench Lite</td><td>SWE-bench 精简版</td><td>300 个任务的子集基准</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2407.16741">OpenHands: An Open Platform for AI Software Developers as Generalist Agents — arXiv:2407.16741 / ICLR 2025</a>（项目：<a href="https://github.com/All-Hands-AI/OpenHands">github.com/All-Hands-AI/OpenHands</a>）　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

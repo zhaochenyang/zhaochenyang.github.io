@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Don't Sleep on Single-agent Systems（CS329Z Lecture 8 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 8 扩展</div>
+  <h1>Don't Sleep on Single-agent Systems</h1>
+  <div class="sub">别忽视单智能体系统</div>
+  <div class="meta">Graham Neubig（CMU，OpenHands / All Hands AI 联合创始人）· OpenHands Blog · 2024-09-26</div>
+  <div class="btn-row">
+    <a class="btn" href="https://openhands.dev/blog/dont-sleep-on-single-agent-systems">阅读原文（OpenHands Blog）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">内容剖析</a>
+  <a href="#results">结论与建议</a>
+  <a href="#impact">影响</a>
+  <a href="#glossary">术语</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>在多智能体设计大行其道之时，OpenHands 作者 Graham Neubig 提出冷静反思：<strong>一个「单一强模型 + 统一动作空间 + 灵活提示」的单智能体系统，往往能以更低的复杂度达到甚至超过多智能体分工的效果</strong>——多智能体结构带来的上下文丢失与可维护性成本经常被低估，「有时候简单才是最好的（Sometimes simple is best）」。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>2024 年前后，MetaGPT、AutoGen、CodeR 等「多智能体」设计成为热点：把软件开发拆成产品经理、架构师、工程师、测试员等角色智能体，各司其职、互相对话。Neubig 作为 OpenHands（开源软件智能体平台，本讲扩展阅读之一）的核心作者，从工程实践出发追问：<strong>这种「加结构」的做法，收益是否配得上代价？</strong></p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：智能体 = 模型 + 提示 + 动作空间，多智能体无非改动其中至少一项</h3>
+<p>Neubig 先给出一个极简的智能体构成框架：任何智能体都由三要素组成——<span class="term">底层 LLM（The Underlying LLM）</span>、<span class="term">提示（The Prompt）</span>、<span class="term">动作空间（The Action Space）</span>。所谓「多智能体系统」，本质是让不同智能体在这三项上有所差异（不同角色提示、不同工具子集、甚至不同模型）。</p>
+<blockquote>
+  <span class="en">"Multi-agent systems add structure to solve problems."</span>
+  <span class="zh">多智能体系统通过增加结构来解决问题。</span>
+</blockquote>
+<p>但结构本身有代价：加的结构若与任务不匹配，反而成为负担。</p>
+
+<h3>观点 2：上下文丢失——多智能体的隐性成本</h3>
+<p>智能体之间交接（handoff）信息时必然发生压缩与筛选，细节会丢失：</p>
+<blockquote>
+  <span class="en">"Multi-agent systems typically pass information between multiple agents, but this can be a source of information loss."</span>
+  <span class="zh">多智能体系统通常在多个智能体之间传递信息，而这可能成为信息丢失的源头。</span>
+</blockquote>
+<p>单智能体则天然保有完整的交互历史（<span class="term">Preserving Context</span>），无需在角色间「转述」。</p>
+
+<h3>观点 3：可维护性——多套提示与代码路径的工程负担</h3>
+<blockquote>
+  <span class="en">"Because of this, multi-agent systems can have larger and more complex codebases."</span>
+  <span class="zh">正因如此，多智能体系统的代码库可能更大、更复杂。</span>
+</blockquote>
+<p>每个角色智能体都有自己的提示词、工具配置与代码路径，调试时要在多条链路间跳转；单智能体系统「一处修改、全局生效」。</p>
+
+<h3>观点 4：专用分工 vs 通用单智能体</h3>
+<p>Neubig 承认「专用智能体在特定任务上表现良好（specialized agents work well on specific tasks）」——例如 CodeR 把规划、复现、故障定位、编辑、验证分给五个角色。但他认为随着模型能力增强，<strong>一个能力足够强的通用配置完全可以与之竞争</strong>：单模型（Single LLM）+ 单动作空间（Single Action Space，如 OpenHands 把写代码、执行、浏览网页统一给一个智能体）+ 单提示技术（Single Prompting Technique）。</p>
+
+<figure>
+  <img src="https://openhands.dev/assets/notion-blog/dont-sleep-on-single-agent-systems/cover.png" alt="文章封面" loading="lazy">
+  <figcaption>图 1：文章封面（来源：OpenHands Blog 原文）</figcaption>
+</figure>
+
+<h2 id="method">核心内容剖析</h2>
+<p>文章把「如何构造单智能体替代方案」拆成具体操作：</p>
+<table>
+  <tr><th>设计维度</th><th>多智能体做法</th><th>单智能体替代</th></tr>
+  <tr><td>提示组织</td><td>每个角色一套系统提示</td><td>把所有提示拼接（Concatenate All the Prompts）成一个综合提示；或用<strong>检索增强提示（Retrieval-augmented Prompting）</strong>按需注入相关指令</td></tr>
+  <tr><td>工具/动作</td><td>每个角色限定工具子集</td><td>统一动作空间：如 OpenHands 让一个编码智能体同时具备创建代码、执行代码、浏览网页的能力</td></tr>
+  <tr><td>模型</td><td>不同角色用不同模型</td><td>单一强模型承担全部推理</td></tr>
+  <tr><td>典型案例</td><td>MetaGPT（软件公司角色分工）、AutoGen（对话编排）、CodeR（规划/复现/定位/编辑/验证五角色）</td><td>OpenHands（单一编码智能体 + 全工具）</td></tr>
+</table>
+
+<h2 id="results">结论与建议</h2>
+<p>这是一篇观点性博文，没有基准实验，结论以工程判断给出：</p>
+<ul>
+  <li><strong>多智能体并非一无是处</strong>：在数据权限隔离（不同角色只能接触不同数据）或代表不同用户利益（distinct user representation）的场景下，多智能体仍是恰当选择。</li>
+  <li><strong>不要为了结构而结构</strong>：作者告诫避免不必要的复杂性——「None of this is to say that multi-agent systems don't have their place」（这并非说多智能体系统没有用武之地），但默认应从单智能体做起。</li>
+  <li><strong>强模型改变权衡</strong>：随着底层模型能力增强、工具生态统一、提示技术灵活化，通用单智能体的适用范围持续扩大；<strong>「Sometimes simple is best」</strong>。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>领域地位</strong>：本文是多智能体热潮中流传最广的「冷思考」文章之一，其「模型 + 提示 + 动作空间」三要素框架成为讨论智能体架构的常用词汇；作者 Neubig 是机器翻译与软件智能体领域知名学者，OpenHands 后来成为最活跃的开源编码智能体平台之一（见第 15 讲必读 OpenHands 论文）。</li>
+  <li><strong>与课程的关联</strong>：CS329Z 第 8 讲正是「单 vs 多智能体架构」的正反方辩论场——必读 AutoGen 展示多智能体对话框架的能力，扩展阅读《Why Do Multi-Agent LLM Systems Fail?》用 1600+ 条轨迹证明多智能体系统的失效大多来自结构与协调（呼应本文对「加结构」代价的担忧），本文则给出单智能体路线的系统论证。三篇对读，恰好构成「何时该用多智能体」的完整决策依据。</li>
+  <li><strong>实践启示</strong>：先用单智能体 + 全工具打基线；只有当出现数据隔离、利益代表、或单提示确实无法承载的复杂度时，再引入多智能体结构。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Single-agent system</td><td>单智能体系统</td><td>一个智能体承担全部推理与行动</td></tr>
+  <tr><td>Action space</td><td>动作空间</td><td>智能体可执行的动作/工具集合</td></tr>
+  <tr><td>Handoff</td><td>交接</td><td>智能体间转移任务与信息，可能丢失上下文</td></tr>
+  <tr><td>Context preservation</td><td>上下文保持</td><td>单智能体的天然优势：完整交互历史</td></tr>
+  <tr><td>Maintainability</td><td>可维护性</td><td>多套提示/代码路径带来的工程负担</td></tr>
+  <tr><td>Concatenate all the prompts</td><td>提示拼接</td><td>把多角色提示合并为一个综合提示</td></tr>
+  <tr><td>Retrieval-augmented prompting</td><td>检索增强提示</td><td>按需检索注入相关指令，替代固定角色提示</td></tr>
+  <tr><td>Role-based agents</td><td>角色化智能体</td><td>如 CodeR 的规划者/编辑者/验证者分工</td></tr>
+  <tr><td>Generalist agent</td><td>通用智能体</td><td>单一强模型 + 全工具的通才路线</td></tr>
+  <tr><td>Mixed initiative</td><td>混合主动</td><td>（延伸）系统与用户谁主导交互的设计问题</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://openhands.dev/blog/dont-sleep-on-single-agent-systems">Don't Sleep on Single-agent Systems — OpenHands Blog（Graham Neubig, 2024-09-26）</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

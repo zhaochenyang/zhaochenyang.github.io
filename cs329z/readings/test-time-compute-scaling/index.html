@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters（CS329Z Lecture 9 必读）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 9 必读</div>
+  <h1>Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters</h1>
+  <div class="sub">最优地扩展 LLM 推理时计算，有时比扩展模型参数更有效</div>
+  <div class="meta">Charlie Snell（UC Berkeley）· Jaehoon Lee · Kelvin Xu · Aviral Kumar（Google DeepMind）· ICLR 2025 · arXiv:2408.03314（2024-08）</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2408.03314">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>在固定推理预算下，<strong>按题目难度自适应分配推理时计算（test-time compute）</strong>——组合并行采样、串行修订与验证器搜索——能让小模型在等 FLOPs 对比中追平<strong>大约 14 倍规模</strong>的更大模型（对容易/中等难度题目）；但推理时计算与预训练计算<strong>不能 1:1 互换</strong>：对最难的题目或高推理负载场景，继续扩大预训练往往更划算。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>传统上，提升 LLM 能力的几乎唯一途径是<strong>扩大预训练规模</strong>。但人类面对难题时会投入更多思考时间——LLM 同样可以在<strong>推理阶段</strong>花更多计算（多次采样、自我修订、搜索验证）来改进答案。本文回答两个问题：</p>
+<ul>
+  <li>给定固定的推理预算，<strong>哪种推理时计算策略最有效</strong>？效果如何随题目难度变化？</li>
+  <li>推理时计算能否<strong>替代</strong>更大的预训练模型？在什么条件下更划算（等 FLOPs 对比）？</li>
+</ul>
+<p>这是「test-time scaling」（推理时扩展，第二讲也介绍过）方向的奠基性实证研究之一，被视为 o1/R1 一类推理模型浪潮的理论前奏。实验以 <span class="term">MATH</span> 基准（12k 训练题 / 500 测试题）为主，基础模型为 PaLM 2-S*（Codey），并针对修订与验证能力做了专门微调。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：三类推理时计算策略，各有所长</h3>
+<table>
+  <tr><th>策略</th><th>机制</th><th>直觉</th></tr>
+  <tr><td><span class="term">并行采样（Best-of-N / majority voting）</span></td><td>独立生成 N 个答案，用验证器或多数投票选一个</td><td>全局广度搜索</td></tr>
+  <tr><td><span class="term">串行修订（sequential revisions）</span></td><td>微调过的修订模型看到之前的尝试，逐步改进答案</td><td>局部精炼，改变提议分布</td></tr>
+  <tr><td><span class="term">验证器引导搜索（PRM beam / lookahead search）</span></td><td>用过程奖励模型给<strong>每一步</strong>打分，做束搜索或前瞻搜索</td><td>有向导的系统性搜索</td></tr>
+</table>
+
+<h3>观点 2：没有普适最优策略——效果强烈依赖题目难度</h3>
+<blockquote>
+  <span class="en">"The effectiveness of different approaches to scaling test-time compute critically varies depending on the difficulty of the problem at hand."</span>
+  <span class="zh">不同推理时计算扩展方法的有效性，随题目难度发生关键性变化。</span>
+</blockquote>
+<p>论文据此提出核心贡献：<strong>难度感知的自适应分配</strong>。将题目按难度分为五档（difficulty bins，用 oracle pass rate 或验证器预测分数估计），对每一档、每个预算，离线选出最优策略与超参数；推理时先估计难度，再套用对应策略。</p>
+<ul>
+  <li><strong>容易题</strong>：偏好局部精炼（串行修订占优）；</li>
+  <li><strong>中等题</strong>:混合并行采样 + 串行修订最好；</li>
+  <li><strong>最难题</strong>：现有推理时方法收益有限，更需要大预训练模型。</li>
+</ul>
+
+<h3>观点 3：过程奖励模型（PRM）优于结果奖励模型（ORM）</h3>
+<p>ORM 只给最终答案打分；PRM 给<strong>每个推理步骤</strong>打分，从而支持束搜索等细粒度搜索。本文的 PRM 用 <span class="term">Monte Carlo rollout</span> 自动估计每步正确概率来训练，<strong>无需人工步骤标注</strong>。实验显示 PRM 选择器优于 ORM，且优势随采样数增大而扩大。</p>
+
+<h3>观点 4：推理时计算常优于加大预训练，但不可完全互换</h3>
+<blockquote>
+  <span class="en">"For these regimes, test-time compute is often preferable to additional pretraining... current approaches to scaling test-time compute may not be 1-to-1 exchangeable with scaling pretraining."</span>
+  <span class="zh">在这些场景下，推理时计算通常比追加预训练更可取……但当前的推理时计算扩展方法与预训练扩展并不是 1:1 可互换的。</span>
+</blockquote>
+<p>等 FLOPs 对比下：当<strong>推理负载相对预训练负载较低</strong>、题目为容易/中等难度时，小模型 + 自适应推理可以胜过约 <strong>14 倍大</strong>的模型贪心解码；但对最难题或高推理负载场景，更大预训练模型仍然更好。</p>
+
+<h2 id="method">方法与架构</h2>
+<h3>难度估计与自适应分配</h3>
+<p>对每道训练题采样 <strong>2048</strong> 次估计 pass rate（或部署时用验证器分数预测难度），把题目分入五个难度档；对每档 × 每个预算组合，事先网格搜索最优策略/超参，形成「难度 → 策略」映射表。</p>
+
+<h3>搜索策略细节</h3>
+<ul>
+  <li><span class="term">束搜索（beam search）</span>：低生成预算下强于 Best-of-N；高预算下会<strong>过度优化 PRM</strong>（exploit 验证器弱点，产生重复或过短的解），在容易题上尤其明显；</li>
+  <li><span class="term">前瞻搜索（lookahead search）</span>：同等生成预算下通常更差，因为额外计算花在了 rollout 上；</li>
+  <li><span class="term">自适应搜索分配</span>：接近 Best-of-N 的最好效果，但生成次数少约 <strong>4 倍</strong>（如 16 次 vs 64 次）。</li>
+</ul>
+
+<h3>修订策略细节</h3>
+<ul>
+  <li>朴素修订链有风险：约 <strong>38%</strong> 的正确答案会在修订中被改错——因此必须配合验证器/多数投票做<strong>选择</strong>；</li>
+  <li>带选择的串行修订略优于并行采样；容易题几乎纯串行即可，难题需要「并行 + 串行」混合预算；</li>
+  <li>自适应修订分配胜过 Best-of-N 且样本少约 <strong>4 倍</strong>（如 64 vs 256）。</li>
+</ul>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2408.03314/assets/revisions_varing_ratio_and_with_difficulty.png" alt="串行修订与并行采样预算配比随难度变化" loading="lazy">
+  <figcaption>图 1（原文 Figure 7）：串行修订 vs 并行采样的预算配比变化及按难度分档的效果——不同难度档的最优配比明显不同（来源：原文）</figcaption>
+</figure>
+
+<h2 id="results">实验结果与结论</h2>
+<table>
+  <tr><th>结论</th><th>关键数字</th></tr>
+  <tr><td>自适应 PRM 搜索 ≈ Best-of-N 效果</td><td>生成次数少约 4 倍（16 vs 64）</td></tr>
+  <tr><td>自适应修订 &gt; Best-of-N</td><td>样本数少约 4 倍（64 vs 256）</td></tr>
+  <tr><td>小模型 + 自适应推理 vs 大模型贪心（等 FLOPs）</td><td>可追平约 <strong>14×</strong> 大的模型（容易/中等难度、低推理负载）</td></tr>
+  <tr><td>相对 Best-of-N 的整体效率增益</td><td>约 <strong>2–4×</strong> 计算节省</td></tr>
+  <tr><td>朴素修订链的副作用</td><td>约 38% 正确答案被改错 → 必须加选择</td></tr>
+</table>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2408.03314/assets/comparing_test_pretrain_v8.png" alt="等 FLOPs 下推理时计算与预训练的对比" loading="lazy">
+  <figcaption>图 2（原文 Figure 9）：等 FLOPs 对比——横轴为预训练计算量，不同曲线为推理负载；在低推理负载、容易/中等难度档位，小模型 + 自适应推理时可匹敌约 14 倍大的预训练模型；最难档则相反（来源：原文）</figcaption>
+</figure>
+
+<p><strong>主要注意事项（caveats）</strong>：</p>
+<ul>
+  <li>方法依赖<strong>针对修订/验证能力的专门微调</strong>，不假设现成模型自带这些能力；</li>
+  <li>难度估计本身消耗计算，论文大体未计入该开销；</li>
+  <li>PRM 搜索可能利用验证器弱点（reward hacking），产生退化解；</li>
+  <li>结论基于 MATH + PaLM 2-S*，作者预期同级 LLM 有类似规律，但最难题收益有限。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>课程定位</strong>：CS329Z 第九讲（Optimization）把优化空间概括为「提示 vs 权重 vs 推理时计算」三条轴，本文是<strong>推理时计算轴</strong>的必读奠基之作，直接回答「什么时候该在推理阶段花计算，而不是把模型做大/微调」。与第二讲的 test-time scaling 一节前后呼应。</li>
+  <li><strong>领域影响</strong>：「按难度自适应分配推理预算 + PRM 引导搜索」成为后续推理模型（o1、R1 类）与智能体 scaffolding 中预算控制的核心思想；也是 GEPA 等提示优化工作对照的「推理时搜索」基线范式。</li>
+  <li><strong>工程启示</strong>：构建智能体系统时，简单子任务用小模型 + 少量修订即可，把昂贵的采样/搜索预算留给中高难度子任务；同时警惕验证器被过度优化。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Test-time compute / scaling</td><td>推理时计算 / 扩展</td><td>推理阶段投入更多计算换质量</td></tr>
+  <tr><td>Best-of-N (parallel sampling)</td><td>N 中选优（并行采样）</td><td>独立采样 N 个答案后选一个</td></tr>
+  <tr><td>Sequential revision / self-refinement</td><td>串行修订 / 自我精炼</td><td>基于前次尝试迭代改进答案</td></tr>
+  <tr><td>Process Reward Model (PRM)</td><td>过程奖励模型</td><td>给每个推理步骤打分</td></tr>
+  <tr><td>Outcome Reward Model (ORM)</td><td>结果奖励模型</td><td>只给最终答案打分</td></tr>
+  <tr><td>Beam search</td><td>束搜索</td><td>保留 top-k 部分解逐步扩展</td></tr>
+  <tr><td>Lookahead search</td><td>前瞻搜索</td><td>用 rollout 估计中间步骤价值</td></tr>
+  <tr><td>Monte Carlo rollout</td><td>蒙特卡洛推演</td><td>随机模拟到终局以估计步骤正确率</td></tr>
+  <tr><td>Difficulty bin</td><td>难度档</td><td>按通过率把题目分档（本文五档）</td></tr>
+  <tr><td>Compute-optimal / FLOPs-matched</td><td>计算最优 / 等浮点运算量对比</td><td>固定总计算量比较不同分配方式</td></tr>
+  <tr><td>Majority voting</td><td>多数投票</td><td>取出现最多的答案（self-consistency）</td></tr>
+  <tr><td>Reward hacking / over-optimization</td><td>奖励钻空 / 过度优化</td><td>搜索利用验证器弱点产生退化解</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2408.03314">Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters — arXiv:2408.03314 / ICLR 2025</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Contextualized Privacy Defense for LLM Agents（CS329Z Lecture 14 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 14 扩展</div>
+  <h1>Contextualized Privacy Defense for LLM Agents</h1>
+  <div class="sub">面向 LLM 智能体的情境化隐私防御</div>
+  <div class="meta">Yule Wen, Yanzhe Zhang, Jianxun Lian, Xiaoyuan Yi, Xing Xie, Diyi Yang · arXiv:2603.02983 · 2026-03-03 · 25 页</div>
+  <div class="btn-row">
+    <a class="btn" href="https://arxiv.org/abs/2603.02983">阅读原文（arXiv）</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>现有智能体隐私防御多是<strong>静态、被动</strong>的（固定提示或守卫拦截），本文提出 <strong>CDI（Contextualized Defense Instructing，情境化防御指导）</strong>新范式：由一个指导模型在智能体执行过程中<strong>逐步生成结合当前上下文的隐私指引</strong>，主动引导而非简单否决智能体行为；再用强化学习把「含隐私违规的失败轨迹」转化为训练环境，最终在测试集上达到 <strong>94.2% 隐私保护率 + 80.6% 有用性</strong>，全面超越基线。值得注意的是，末位作者 Diyi Yang 正是 CS329Z 课程主讲人。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>LLM 智能体越来越多地代表用户处理个人信息——读邮件、发消息、操作社交应用。一旦智能体在多步执行中被诱导（如社会工程攻击、伪造紧急性/权威的接收方），就可能把<strong>不可分享的隐私数据</strong>泄露出去。本文的问题意识：</p>
+<ul>
+  <li><span class="term">静态防御不适配多步执行</span>：在系统提示里写死「不要泄露隐私」无法感知执行中途出现的新情境；</li>
+  <li><span class="term">被动防御（守卫拦截）伤害有用性</span>：守卫模型只会「放行/阻断」，阻断后智能体不知道怎样改写行动才既安全又完成任务；</li>
+  <li><span class="term">缺乏可优化的学习信号</span>：隐私违规往往发生在长轨迹的某一步，如何把失败经验转化为防御能力的训练数据，此前没有系统方案。</li>
+</ul>
+<p>本文与同讲必读的 Zhang &amp; Yang《Searching for Privacy Risks in LLM Agents via Simulation》（arXiv:2508.10880）直接衔接：那篇论文提供了<strong>隐私风险仿真框架</strong>，本文在其统一仿真环境中形式化比较各类防御，并提出可学习的情境化防御。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：防御应形式化为「智能体循环中的介入点」</h3>
+<p>论文把各类隐私防御统一刻画为在智能体执行循环（系统提示 → 用户消息 → 工具调用 → 工具结果 → 下一动作）中的不同<strong>介入位置</strong>：</p>
+<table>
+  <tr><th>防御范式</th><th>介入点</th><th>机制</th></tr>
+  <tr><td>无防御</td><td>—</td><td>智能体直接按上下文行动</td></tr>
+  <tr><td>固定提示（prompting）</td><td>初始化阶段</td><td>系统提示中加入静态隐私要求</td></tr>
+  <tr><td>守卫拦截（guarding）</td><td>工具调用执行前</td><td>守卫模型判定外发动作「允许 / 阻断」</td></tr>
+  <tr><td><strong>CDI（本文）</strong></td><td><strong>工具结果之后、下一动作之前</strong></td><td>指导模型分析当前上下文，生成一步一用的情境化隐私指引，以用户消息形式注入智能体上下文</td></tr>
+</table>
+<blockquote>
+  <span class="en">CDI proactively shapes agent behavior with step-by-step, context-aware privacy guidance, rather than merely restricting or vetoing actions.</span>
+  <span class="zh">CDI 通过逐步的、情境感知的隐私指引主动塑造智能体行为，而不只是限制或否决其动作。</span>
+</blockquote>
+
+<h3>观点 2：「指导」优于「拦截」——引导如何行动，而不只是阻止</h3>
+<p>守卫拦截在强化后虽然更谨慎，但因为只阻断、不告诉智能体<strong>怎样改写行动</strong>，任务完成率（有用性）明显下降。论文的案例研究（图 3）专门展示了这一点：增强版守卫把很多本可安全分享的请求也一并拦掉。</p>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2603.02983/Figure1.png" alt="三种隐私防御范式对比示意" loading="lazy">
+  <figcaption>图 1：固定提示、守卫拦截与 CDI 三种隐私防御范式对比（以 Emily/David/Mike 的情境为例）——CDI 在观察到新工具结果后生成情境化指导，在隐私与有用性之间取得更好平衡（来源：原文）</figcaption>
+</figure>
+
+<h3>观点 3：失败轨迹是最好的防御训练环境（经验驱动优化）</h3>
+<p>论文提出把<strong>隐私违规轨迹</strong>转化为强化学习训练数据的完整流程：</p>
+<ol>
+  <li>让数据发送方智能体在<strong>优化过的攻击者</strong>面前运行，收集发生隐私泄露的轨迹；</li>
+  <li>定位<strong>最早发生泄露的位置</strong>，在该处截断轨迹（保留泄露前上下文，移除导致失败的旧指导）；</li>
+  <li>让指导模型基于截断上下文<strong>重新生成一条指导</strong>，插回后让智能体再产生一次动作；</li>
+  <li>按新动作是否兼顾隐私与有用性计算奖励，用 <strong>GRPO</strong> 算法更新指导模型。</li>
+</ol>
+<blockquote>
+  <span class="en">Failed trajectories containing privacy violations are converted into a learning environment via experience-driven optimization with reinforcement learning.</span>
+  <span class="zh">通过经验驱动的强化学习优化，包含隐私违规的失败轨迹被转化为学习环境。</span>
+</blockquote>
+
+<h3>观点 4：隐私与有用性必须联合度量</h3>
+<p>论文定义三个指标（设不可分享项共 N<sub>u</sub> 个、实际泄露 n<sub>u</sub> 个；可分享项共 N<sub>s</sub> 个、实际分享 n<sub>s</sub> 个）：</p>
+<ul>
+  <li><span class="term">PP（Privacy Preservation，隐私保护率）</span> = 1 − n<sub>u</sub>/N<sub>u</sub>；</li>
+  <li><span class="term">HS（Helpfulness Score，有用性）</span> = n<sub>s</sub>/N<sub>s</sub>；</li>
+  <li><span class="term">AD（Appropriate Disclosure，适当披露，主指标）</span> = 2n<sub>s</sub>/(n<sub>s</sub>+n<sub>u</sub>+N<sub>s</sub>)——同时惩罚「漏分享」与「错分享」。</li>
+</ul>
+
+<h2 id="method">方法与架构</h2>
+<h3>仿真框架</h3>
+<p>每次仿真含三个智能体角色：<strong>数据主体</strong>（拥有私人信息的用户）、<strong>数据发送方</strong>（代表主体处理信息并对外回复的智能体，即防御对象）、<strong>数据接收方</strong>（在攻击场景中等同攻击者）。智能体可操作 Messenger、Gmail、Facebook 等模拟通信应用；每个场景配置社会关系、私人数据项及可分享/不可分享标签，评判模型检查消息历史判定泄露。</p>
+<p><span class="term">攻击者能力</span>：策略型攻击者通过迭代搜索优化攻击提示，可生成多轮、自适应、长尾的社会工程攻击，包括伪造紧急性、伪造权威或同意、诱导确认、缩小请求范围、利用格式化指令等策略。</p>
+
+<h3>RL 训练细节</h3>
+<table>
+  <tr><th>项目</th><th>配置</th></tr>
+  <tr><td>算法</td><td>GRPO（组相对策略优化）</td></tr>
+  <tr><td>奖励</td><td>两阶段：前 400 步用 PP 热身，后 200 步切换为 AD</td></tr>
+  <tr><td>微调方式</td><td>LoRA（rank 32），AdamW，学习率 2e-5</td></tr>
+  <tr><td>训练数据</td><td>15 个训练配置 × 每配置 20 次仿真 → 185 条训练轨迹 + 30 条验证轨迹</td></tr>
+  <tr><td>硬件与长度</td><td>单张 NVIDIA A6000；batch 4 × 梯度累积 4；上下文窗口 5200 tokens，最大生成 2048 tokens</td></tr>
+</table>
+<div class="note">为什么要「PP 热身再转 AD」？训练曲线（原文图 2）显示：只优化 PP 会大幅牺牲有用性（智能体学会什么都不分享）；直接用 AD 训练 CDI 会遇到<strong>冷启动</strong>问题（训练初期 AD 长期在 20 左右徘徊）；先 PP 后 AD 的两阶段策略能同时保住隐私与有用性。</div>
+
+<h2 id="results">实验结果与结论</h2>
+<h3>主结果：优化前后对比（PP / HS / AD，%）</h3>
+<table>
+  <tr><th>防御</th><th>训练集</th><th>对抗集</th><th>测试集</th></tr>
+  <tr><td>无防御</td><td>35.5 / 81.2 / 66.1</td><td>8.8 / 94.9 / 66.3</td><td>36.8 / 80.7 / 66.3</td></tr>
+  <tr><td>固定提示（未优化）</td><td>48.1 / 73.1 / 65.0</td><td>11.8 / 94.1 / 66.7</td><td>38.0 / 80.4 / 66.5</td></tr>
+  <tr><td>守卫拦截（未优化）</td><td>42.3 / 83.1 / 69.0</td><td>14.6 / 89.7 / 65.2</td><td>47.6 / 79.3 / 68.6</td></tr>
+  <tr><td>CDI（未优化）</td><td>66.2 / 89.2 / 80.0</td><td>32.3 / 90.6 / 70.2</td><td>70.0 / 81.6 / 77.1</td></tr>
+  <tr><td>固定提示（已优化）</td><td>89.0 / 85.0 / 87.0</td><td>55.1 / 87.0 / 75.0</td><td>85.1 / 82.7 / 83.8</td></tr>
+  <tr><td>守卫拦截（已优化）</td><td>80.2 / 70.7 / 80.5</td><td>50.3 / 81.0 / 70.2</td><td>83.6 / 69.0 / 74.8</td></tr>
+  <tr><td><strong>CDI（已优化）</strong></td><td><strong>89.7 / 89.7 / 89.7</strong></td><td><strong>79.5 / 84.5 / 82.4</strong></td><td><strong>94.2 / 80.6 / 86.5</strong></td></tr>
+</table>
+<p>关键结论：</p>
+<ul>
+  <li><span class="term">未优化时 CDI 已显著领先</span>：测试 AD 77.1 vs 守卫 68.6、固定提示 66.5；面对策略型攻击者，所有未优化防御的 PP 都崩塌（≤38%），CDI 仍保有 32.3%；</li>
+  <li><span class="term">优化后 CDI 在对抗集上优势最大</span>：PP 79.5% vs 次优 55.1%，说明情境化指导对自适应攻击更鲁棒；</li>
+  <li><span class="term">守卫拦截优化后有用性受损</span>（测试 HS 仅 69.0），验证「拦截伤有用性」的判断；</li>
+  <li><span class="term">跨骨干模型泛化</span>：把优化后的 CDI 换到 gpt-4.1-nano / Qwen3-32B / gpt-4.1 上，测试 AD 分别为 90.4 / 86.1 / 91.0，均优于同骨干的其他防御；</li>
+  <li><span class="term">奖励设计消融</span>：只用 PP 训练会让测试 HS 掉到 45–48；AD + PP 热身是唯一同时保住两项的配置。</li>
+</ul>
+
+<figure>
+  <img src="https://ar5iv.labs.arxiv.org/html/2603.02983/guard_case_study.png" alt="强化守卫伤害有用性的案例" loading="lazy">
+  <figcaption>图 2：案例研究——增强后的守卫拦截虽更谨慎，但因只阻断、不给出改写建议，导致有用性下降（来源：原文）</figcaption>
+</figure>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>与 L14 主题的关系</strong>：本讲（Agent Safety &amp; Guardrails）覆盖「工具访问的隐私风险、输出护栏、human-in-the-loop」。本文正是「输出护栏」方向的前沿演进：把护栏从<strong>静态规则/二值拦截</strong>升级为<strong>可学习的、情境化的行动指导</strong>，并给出隐私—有用性权衡的量化评测方法。</li>
+  <li><strong>方法论价值</strong>：「失败轨迹 → 截断 → 重新指导 → RL 奖励」的闭环，与课程中 Optimization 一讲（GEPA、test-time compute）共享同一思想：用执行反馈自动改进智能体系统，而非人工调提示。</li>
+  <li><strong>课程纽带</strong>：一作团队与课程高度相关——末位作者 Diyi Yang 为 CS329Z 主讲人；本文的仿真框架直接构建于同讲必读论文（Zhang &amp; Yang 2025）之上，两篇对照阅读效果最佳。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Contextualized Defense Instructing (CDI)</td><td>情境化防御指导</td><td>本文提出的防御范式：执行中逐步生成情境化隐私指引</td></tr>
+  <tr><td>Guard / guarding</td><td>守卫（拦截）</td><td>动作执行前判定允许或阻断的被动防御</td></tr>
+  <tr><td>Privacy Preservation (PP)</td><td>隐私保护率</td><td>1 − 泄露项/不可分享项总数</td></tr>
+  <tr><td>Helpfulness Score (HS)</td><td>有用性分数</td><td>实际分享的可分享项占比</td></tr>
+  <tr><td>Appropriate Disclosure (AD)</td><td>适当披露</td><td>联合度量隐私与有用性的主指标</td></tr>
+  <tr><td>Data subject / sender / receiver</td><td>数据主体 / 发送方 / 接收方</td><td>仿真中的三方角色；接收方在攻击场景中即攻击者</td></tr>
+  <tr><td>Social engineering attack</td><td>社会工程攻击</td><td>伪造紧急性、权威、同意等诱导披露</td></tr>
+  <tr><td>Strategic attacker</td><td>策略型攻击者</td><td>迭代搜索优化攻击提示的自适应攻击者</td></tr>
+  <tr><td>GRPO</td><td>组相对策略优化</td><td>本文使用的强化学习算法</td></tr>
+  <tr><td>Failed-trajectory truncation</td><td>失败轨迹截断</td><td>在最早泄露处截断轨迹以构造训练样本</td></tr>
+  <tr><td>LoRA</td><td>低秩适配微调</td><td>rank 32 的参数高效微调</td></tr>
+  <tr><td>Cold start</td><td>冷启动</td><td>直接用 AD 奖励训练初期难以起步的现象</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://arxiv.org/abs/2603.02983">Contextualized Privacy Defense for LLM Agents — arXiv:2603.02983 (2026)</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

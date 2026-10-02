@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅读材料精讲：Fine-Tuning and Prompt Optimization: Two Great Steps that Work Better Together（CS329Z Lecture 9 扩展）</title>
+<style>
+  :root{--cardinal:#8C1515;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg:#fff;--bg-soft:#f6f8fa;--accent-bg:#fdf3f3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;}
+  header.masthead{background:var(--cardinal);color:#fff;padding:36px 20px 30px;text-align:center;}
+  header.masthead .course{font-size:14px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:26px;}
+  header.masthead .sub{font-size:16px;opacity:.95;}
+  header.masthead .meta{margin-top:12px;font-size:13.5px;opacity:.85;}
+  header.masthead a{color:#fff;text-decoration:underline;}
+  .btn-row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-row a.btn{display:inline-block;background:#fff;color:var(--cardinal);text-decoration:none;font-weight:600;font-size:14px;padding:8px 18px;border-radius:999px;}
+  .btn-row a.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7);}
+  nav.toc{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;}
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:880px;margin:0 auto;padding:32px 20px 70px;}
+  h2{font-size:22px;color:var(--cardinal);border-left:6px solid var(--cardinal);padding-left:12px;margin:44px 0 14px;}
+  h3{font-size:17.5px;margin:26px 0 8px;}
+  .tldr{background:var(--accent-bg);border:1px solid #f0d6d6;border-radius:10px;padding:16px 20px;font-size:16.5px;margin:24px 0;}
+  .tldr strong{color:var(--cardinal);}
+  blockquote{margin:12px 0;padding:10px 18px;border-left:4px solid var(--cardinal);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:14.5px;}
+  blockquote .en{color:var(--muted);font-style:italic;display:block;}
+  blockquote .zh{display:block;margin-top:4px;}
+  figure{margin:18px 0;}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:5px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .note{background:var(--bg-soft);border-left:4px solid var(--cardinal);padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0;}
+  footer{max-width:880px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);}
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">CS329Z 阅读材料精讲 · LECTURE 9 扩展</div>
+  <h1>Fine-Tuning and Prompt Optimization: Two Great Steps that Work Better Together</h1>
+  <div class="sub">微调与提示优化：两大步骤，携手更强（BetterTogether）</div>
+  <div class="meta">Dilara Soylu · Christopher Potts · Omar Khattab（Stanford University）· EMNLP 2024 · arXiv:2407.10930</div>
+  <div class="btn-row">
+    <a class="btn" href="https://aclanthology.org/2024.emnlp-main.597/">阅读原文（ACL Anthology）</a>
+    <a class="btn ghost" href="https://arxiv.org/abs/2407.10930">arXiv</a>
+    <a class="btn ghost" href="../../">专栏首页</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#tldr">TL;DR</a>
+  <a href="#bg">背景与问题</a>
+  <a href="#points">核心观点</a>
+  <a href="#method">方法与架构</a>
+  <a href="#results">实验结果与结论</a>
+  <a href="#impact">影响与课程关联</a>
+  <a href="#glossary">术语对照</a>
+</nav>
+
+<main>
+
+<div class="tldr" id="tldr">
+<strong>一句话总结：</strong>提示优化与权重微调不是二选一。<strong>BetterTogether</strong> 首次把两者结合进 LM 程序的优化流程——<strong>交替执行</strong>提示优化与微调，让同一个 LM「自我教学」（用自己产生的成功轨迹改进自己）——在多跳问答、数学推理与特征分类任务上，平均最高超过只优化权重 <strong>60%</strong>、只优化提示 <strong>6%</strong>。
+</div>
+
+<h2 id="bg">背景与要解决的问题</h2>
+<p>模块化 NLP 管线（如 RAG、多跳推理）中，每个模块包含一个 LM 和提示模板；中间模块没有人工标签，整个程序通常不可微，难以端到端优化。已有的两条改进路线各自为战：</p>
+<ul>
+  <li><strong>提示优化</strong>（不改权重）：自举示范、搜索指令（如 MIPROv2、BootstrapFewShotWithRandomSearch）；</li>
+  <li><strong>权重微调</strong>（不改提示）：用自举轨迹做 LoRA 微调（如 BootstrapFinetune）。</li>
+</ul>
+<p>本文的问题：<strong>两者是否互补？以什么顺序组合最好？</strong>论文提出两个假设：（1）微调<strong>之前</strong>先做提示优化，能产生更多高质量的成功轨迹作为训练数据；（2）微调<strong>之后</strong>再做提示优化，能在权重移动后恢复/再适配系统表现。</p>
+
+<h2 id="points">核心观点</h2>
+
+<h3>观点 1：交替优化，让同一个 LM 自我教学</h3>
+<blockquote>
+  <span class="en">"We propose combining the weight and prompt optimization strategies, alternating between the two to get the same LM to teach itself."</span>
+  <span class="zh">我们提出把权重优化与提示优化两种策略结合起来，在两者之间交替进行，让同一个 LM 自我教学。</span>
+</blockquote>
+<p>提示优化、轨迹生成、权重微调全部由<strong>同一个 LM</strong> 完成：模型先在优化过的提示下跑出正确轨迹，这些轨迹又成为下一轮微调的训练对——形成自我改进循环，无需任何模块级人工标注。</p>
+
+<h3>观点 2：组合优于单干，但没有普适最优顺序</h3>
+<p>论文系统比较了多种策略：仅提示、仅权重、提示×2、权重×2、提示→权重（P→W）、权重→提示（W→P）、提示→权重→提示（P→W→P）。结果：<strong>9 组「任务 × 模型」组合中有 7 组</strong>的最佳成绩来自同时使用两类优化；但哪种顺序最好<strong>因任务与模型而异</strong>，没有一贯赢家。</p>
+
+<h3>观点 3：提示优化本身就不可忽视</h3>
+<p>即便不做任何微调，提示优化通常也能显著提升零样本表现（如 Mistral-7B 在 HotPotQA 上 17.2 → 33.8）；而只微调权重有时反而不如提示优化（同任务 22.9 &lt; 33.8）——这正说明两条路线互补而非替代。</p>
+
+<h2 id="method">方法与架构</h2>
+<div class="note">
+<strong>交替流程示意（原文无独立架构图）</strong>：程序 + 少量训练数据 → ① <span class="term">提示优化（BFRS 式）</span>：运行程序收集各模块中间输入/输出，只保留最终指标判定为正确的轨迹，从中采样 few-shot 示例并在验证集上选出最佳提示组合 → ② <span class="term">权重微调（BFT 式）</span>：基于（新提示下产生的）正确轨迹，把各模块输入/输出整理成训练对，合并为多任务式数据集，用 <span class="term">LoRA</span>（低秩适配）微调同一个 LM → 可再回到 ①（P→W→P）。
+</div>
+<p><strong>实验设置</strong>：</p>
+<table>
+  <tr><th>任务</th><th>程序结构</th><th>数据规模</th></tr>
+  <tr><td>HotPotQA（多跳问答）</td><td>3 个思维链 LM 模块（两个生成检索查询、一个生成答案），检索器固定</td><td>训练 1000 / 开发 500 / 测试 1500（提示优化内部：训练 100 / 验证 250）</td></tr>
+  <tr><td>GSM8K（数学推理）</td><td>单模块思维链程序</td><td>训练 1000 / 开发 500 / 测试 1319（内部 100 / 250）</td></tr>
+  <tr><td>Iris（特征分类）</td><td>单模块思维链程序</td><td>共 150 条，训练/开发/测试各 50（内部 15 / 35）</td></tr>
+</table>
+<p>模型：<span class="term">mistral-7b-instruct-v0.2</span>、<span class="term">llama-2-7b-chat</span>、<span class="term">llama-3-8b-instruct</span>；结果为 3 个随机种子的测试集平均准确率。</p>
+
+<h2 id="results">实验结果与结论</h2>
+<blockquote>
+  <span class="en">"Strategies that combine both outperform directly optimizing weights alone and prompts alone by up to 60% and 6%, respectively."</span>
+  <span class="zh">结合两者的策略，平均最高分别超过只优化权重 60%、只优化提示 6%。</span>
+</blockquote>
+<p>代表性数字（测试集准确率 %）：</p>
+<table>
+  <tr><th>模型 × 任务</th><th>零样本</th><th>仅提示</th><th>仅权重</th><th>联合最佳（策略）</th></tr>
+  <tr><td>Mistral-7B × HotPotQA</td><td>17.2</td><td>33.8</td><td>22.9</td><td><strong>37.6</strong>（P→W→P）</td></tr>
+  <tr><td>Llama-2-7B × HotPotQA</td><td>13.2</td><td>33.3</td><td>12.2</td><td><strong>34.8</strong>（W→P）</td></tr>
+  <tr><td>Llama-3-8B × HotPotQA</td><td>31.6</td><td><strong>46.9</strong></td><td>34.8</td><td>46.7（P→W→P，与仅提示持平）</td></tr>
+  <tr><td>Mistral-7B × GSM8K</td><td>40.3</td><td>46.4</td><td>40.7</td><td><strong>48.3</strong>（W→P）</td></tr>
+  <tr><td>Llama-3-8B × GSM8K</td><td>72.7</td><td>77.9</td><td>75.1</td><td><strong>78.9</strong>（W→P）</td></tr>
+  <tr><td>Mistral-7B × Iris</td><td>26.0</td><td>57.3</td><td>29.3</td><td><strong>66.7</strong>（W→P）</td></tr>
+</table>
+<p>分任务的相对增益区间（vs 仅提示或仅权重）：HotPotQA <strong>5–78%</strong>、GSM8K <strong>2.5–10%</strong>、Iris <strong>3.5–88%</strong>。</p>
+<p><strong>结论与局限</strong>：</p>
+<ul>
+  <li>提示优化 + 权重微调交替进行通常优于任一单独使用；自举的正确轨迹（而非人工模块标注）是核心训练信号；</li>
+  <li>局限：仅覆盖 3 个任务 / 3 种程序 / 3 个模型；权重优化只用了 LoRA；作者观察到有效但<strong>尚未充分解释为什么</strong>两者都重要；个别情况（Llama-3 × HotPotQA）仅提示已接近或略优于联合策略。</li>
+</ul>
+
+<h2 id="impact">影响与课程关联</h2>
+<ul>
+  <li><strong>课程定位</strong>：CS329Z 第九讲（Optimization）的核心问题是「<strong>什么时候优化提示、什么时候优化权重、什么时候花推理计算</strong>」——本文直接回答了前两者的关系：不是互斥选项，而是可以交替叠加的互补步骤；与必读的 Snell et al.（推理时计算 vs 预训练）构成同一决策框架的不同边。</li>
+  <li><strong>生态关联</strong>：BetterTogether 已作为 DSPy 优化器发布（组合 MIPROv2 类提示优化器与 BootstrapFinetune 类权重优化器，如 <code>P→W→P</code> 调度）；三位作者与本讲扩展阅读 MIPROv2、必读 GEPA 的作者团队高度重合（Potts、Khattab、Soylu）。</li>
+  <li><strong>工程启示</strong>：小数据（数百至千条）场景下，先用提示优化「探路」收集高质量成功轨迹，再微调、再回到提示优化，是低成本提升复合系统的实用配方。</li>
+</ul>
+
+<h2 id="glossary">关键术语中英对照</h2>
+<table>
+  <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+  <tr><td>Prompt optimization</td><td>提示优化</td><td>自动搜索指令与 few-shot 示例</td></tr>
+  <tr><td>Weight fine-tuning</td><td>权重微调</td><td>更新 LM 参数</td></tr>
+  <tr><td>BetterTogether</td><td>—（本文框架名）</td><td>交替执行两类优化的元优化器</td></tr>
+  <tr><td>LoRA (Low-Rank Adaptation)</td><td>低秩适配</td><td>参数高效微调方法</td></tr>
+  <tr><td>Bootstrapping / correct traces</td><td>自举 / 正确轨迹</td><td>程序成功运行产生的模块级输入输出</td></tr>
+  <tr><td>Self-teaching</td><td>自我教学</td><td>同一 LM 用自己的成功案例改进自己</td></tr>
+  <tr><td>Alternating strategies (P→W, W→P, P→W→P)</td><td>交替策略</td><td>提示/权重优化的组合顺序</td></tr>
+  <tr><td>LM program</td><td>语言模型程序</td><td>多模块 LM 调用组成的流水线</td></tr>
+  <tr><td>Multi-hop QA</td><td>多跳问答</td><td>需多次检索推理的问答（HotPotQA）</td></tr>
+  <tr><td>Chain-of-Thought (CoT) module</td><td>思维链模块</td><td>先推理后作答的模块提示方式</td></tr>
+  <tr><td>DSPy</td><td>—</td><td>声明式 LM 编程框架，BetterTogether 已内置</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <p>原文：<a href="https://aclanthology.org/2024.emnlp-main.597/">Fine-Tuning and Prompt Optimization: Two Great Steps that Work Better Together — EMNLP 2024</a> · <a href="https://arxiv.org/abs/2407.10930">arXiv:2407.10930</a>　|
+  返回：<a href="../../">CS329Z 中文教程专栏</a>　|
+  课程源头：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></p>
+  <p>本页面为学习性中文导读，内容版权归原作者，仅少量引用；请支持阅读原文。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
