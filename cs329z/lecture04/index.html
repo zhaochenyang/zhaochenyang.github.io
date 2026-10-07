@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第四讲：工具使用与函数调用（Tool Use &amp; Function Calling）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第四讲：工具使用与函数调用</h1>
+  <div class="sub">Tool Use &amp; Function Calling</div>
+  <div class="meta">讲师：Diyi Yang　|　中文讲解教程（忠于原讲义，共 68 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a></div>
+  <div class="meta">本讲必读阅读材料精讲：<a href="../readings/mcp-specification/" style="color:#fff;">Model Context Protocol（MCP）规范</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 课程公告与本讲结构</a>
+  <a href="#ch1">一 RAG 收尾：RAG 的局限</a>
+  <a href="#ch2">二 为什么需要工具</a>
+  <a href="#ch3">三 什么是工具</a>
+  <a href="#ch4">四 学习调用工具：Toolformer</a>
+  <a href="#ch5">五 扩展到海量工具：Gorilla</a>
+  <a href="#ch6">六 标准接口：REST / Function Calling / MCP</a>
+  <a href="#ch7">七 评测工具使用</a>
+  <a href="#summary">本讲总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第四讲
+<strong>《Tool Use（工具使用）》</strong>的中文讲解（课程官网本讲标题为 Tool Use &amp; Function Calling）。
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。全讲按讲义开头的 Lecture Overview 分为七个部分：
+RAG 收尾（5 分钟）、为什么需要工具（5 分钟）、什么是工具（5 分钟）、学习调用工具：Toolformer（15 分钟）、
+扩展到海量工具：Gorilla（10 分钟）、标准接口：REST、函数调用、MCP（15 分钟）、评测工具使用：BFCL、ToolBench、τ-bench（15 分钟）。
+学习目标（Learning Objective）：<strong>理解为什么 LLM 需要工具、模型如何学会调用工具、工具如何通过标准接口暴露、以及工具使用如何评测。</strong></p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、课程公告与本讲结构</h2>
+<p class="chapter-sub">Announcements &amp; Lecture Overview（Slide 1–3）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：Tool Use（工具使用）</h3>
+  <figure><img src="slides/slide-01.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Tool Use（讲师 Diyi Yang）</figcaption></figure>
+  <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第四讲主题
+  <span class="term">Tool Use（工具使用）</span>，由 Diyi Yang 授课。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
+  <figure><img src="slides/slide-02.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>项目提案示例、算力致谢、Homework 1 与提案截止日期</figcaption></figure>
+  <ul>
+    <li><span class="term">项目提案示例（Project proposal examples）</span>：示例已发布在 Canvas 上；</li>
+    <li><span class="term">算力（Compute）</span>：感谢 Google、Tinker、Laude 提供的算力支持（后续还会有更多）；</li>
+    <li><span class="term">Homework 1</span>：今天发布；</li>
+    <li><span class="term">项目提案（Proposal）</span> 截止 <strong>10 月 9 日（周五）</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-03.png" alt="Slide 3 本讲结构" loading="lazy"><figcaption>本讲七个部分及时间分配 + 学习目标</figcaption></figure>
+  <p>本讲共七个部分：</p>
+  <ul>
+    <li>RAG 收尾（Wrap up RAG，5 分钟）</li>
+    <li>为什么需要工具（Why tools?，5 分钟）</li>
+    <li>什么是工具（What are tools?，5 分钟）</li>
+    <li>学习调用工具：Toolformer（Learning to call tools，15 分钟）</li>
+    <li>扩展到海量工具：Gorilla（Scaling to many tools，10 分钟）</li>
+    <li>标准接口：REST、函数调用、MCP（Standard interfaces，15 分钟）</li>
+    <li>评测工具使用：BFCL、ToolBench、τ-bench（Evaluating tool use，15 分钟）</li>
+  </ul>
+  <p><strong>学习目标</strong>：理解为什么 LLM 需要工具；模型如何学会调用工具；工具如何通过标准接口暴露；工具使用如何评测。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、RAG 收尾：RAG 的局限</h2>
+<p class="chapter-sub">Wrap up RAG（Slide 4–13）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>Issues with RAG（RAG 的问题，九宫格总览）</h3>
+  <figure><img src="slides/slide-04.png" alt="Slide 4 RAG 的问题九宫格" loading="lazy"><figcaption>检索侧 / 阅读器侧 / 循环侧三类问题，其中「迷失在中间」高亮</figcaption></figure>
+  <p>承接上一讲，RAG 的问题可按三个环节归类：</p>
+  <ul>
+    <li><span class="term">检索侧（Retrieval）</span>：召回上限（Recall ceiling，证据缺失限制智能体）、过期索引（Stale index，嵌入未更新）、权限泄漏（Permission leak，使用了无权访问的内容）；</li>
+    <li><span class="term">阅读器侧（Reader）</span>：<strong>迷失在中间（Lost in the middle）</strong>——位置偏差（高亮强调）、干扰（Distraction，相似但不相关的内容）、证据冲突（Evidence conflict，来源之间或与参数化知识矛盾）；</li>
+    <li><span class="term">循环侧（Loop）</span>：误差累积（Compounding error，早期错误影响后续决策）、无停止规则（No stopping rule，缺乏明确终止条件）、提示注入（Prompt injection，检索到的文本劫持智能体）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>Problem: How many documents can we use?（问题：能用多少文档？）</h3>
+  <figure><img src="slides/slide-05.png" alt="Slide 5 文档数量问题" loading="lazy"><figcaption>为什么不直接把海量文档塞进 LM：输入上下文示例与期望答案</figcaption></figure>
+  <p>一个自然的想法：与其费力检索，不如直接把大量文档塞进上下文。本页给出输入上下文示例——三段文档（其中第二段加粗标出与问题相关），
+  问题为「谁获得了第一个诺贝尔物理学奖？」（who got the first nobel prize in physics），期望答案为
+  <span class="term">Wilhelm Conrad Röntgen</span>（威廉·康拉德·伦琴）。问题是：当文档数量增长时，模型还能从中找到并利用证据吗？</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>LM's can't pay attention to the entire context（LM 无法关注整个上下文，Liu et al., 2023）</h3>
+  <figure><img src="slides/slide-06.png" alt="Slide 6 长上下文位置偏差实验" loading="lazy"><figcaption>10/20/30 篇文档（约 2K/4K/6K tokens）下的 U 形精度曲线</figcaption></figure>
+  <p>Liu et al. (2023) 的多文档问答实验：检索 10/20/30 篇文档拼进上下文，把答案所在位置沿上下文扫描，
+  模型精度呈 <span class="term">U 形曲线</span>——答案放在开头或结尾时表现好，放在中间时明显变差。
+  参测模型包括 claude-1.3、claude-1.3-100k、gpt-3.5-turbo-0613、gpt-3.5-turbo-16k-0613、mpt-30b-instruct、longchat-13b-16k。
+  两个参考基准：<strong>最佳闭卷（Best Closed-Book）</strong>为 GPT-3.5-Turbo 约 56%；<strong>最佳 Oracle</strong>（只喂入相关文档）为 GPT-3.5-Turbo 约 88.5%。
+  可见多文档输入远达不到「只给相关文档」的效果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>In practice: LMs cannot use many documents（实践中：LM 用不了很多文档）</h3>
+  <figure><img src="slides/slide-07.png" alt="Slide 7 检索器与 RAG 饱和曲线" loading="lazy"><figcaption>随文档数量增加的召回与 RAG 精度曲线</figcaption></figure>
+  <p>检索器召回（contriever，黄色曲线）随文档数增加缓慢上升，到 50 篇时约 90%；
+  但 RAG 整体精度在 <strong>10–20 篇文档后就迅速饱和</strong>（约 55–60%）。
+  瓶颈不在检索器找不到证据，而在阅读器无法有效利用越来越多的上下文。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>LLMs citation and hallucinations (1)（LLM 的引用与幻觉）</h3>
+  <figure><img src="slides/slide-08.png" alt="Slide 8 引用与幻觉：Bing Chat 示例" loading="lazy"><figcaption>Bing Chat 多伦多行程回答，编号引用 1–5 与来源列表</figcaption></figure>
+  <p>RAG 的独特好处之一是能<strong>引用来源</strong>；但这些引用本身也是 LLM 生成的，因此引用同样可能被幻觉出来。
+  本页示例为 Bing Chat 的多伦多行程规划回答，正文带编号引用（1–5），底部列出 Learn more 来源
+  （cntower.ca、travel.usnews.com、bing.com、rom.on.ca、tripadvisor.com）——引用「看起来」可靠，但未必真实或相关。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>LLMs citation and hallucinations (2)（Liu et al., 2023）</h3>
+  <figure><img src="slides/slide-09.png" alt="Slide 9 引用质量评测表" loading="lazy"><figcaption>四家搜索增强聊天机器人的感知效用/流畅度/引用精确率/召回率</figcaption></figure>
+  <p>对四家商用搜索增强聊天机器人的评测（Liu et al., 2023）：</p>
+  <table>
+    <tr><th>指标</th><th>Bing Chat</th><th>NeevaAI</th><th>perplexity.ai</th><th>YouChat</th><th>均值</th></tr>
+    <tr><td>感知效用（Perceived Utility，1–5）</td><td>4.34</td><td>4.48</td><td>4.56</td><td>4.62</td><td>4.50</td></tr>
+    <tr><td>流畅度（Fluency，1–5）</td><td>4.40</td><td>4.43</td><td>4.51</td><td>4.59</td><td>4.48</td></tr>
+    <tr><td>引用精确率（Citation Precision）</td><td>89.5</td><td>72.0</td><td>72.7</td><td>63.6</td><td>74.5</td></tr>
+    <tr><td>引用召回率（Citation Recall）</td><td>58.7</td><td>67.6</td><td>68.7</td><td>11.1</td><td>51.5</td></tr>
+  </table>
+  <p>输出「读起来」流畅、对评测者显得有用，但<strong>引用精确率与召回率都偏低</strong>（YouChat 的引用召回率仅 11.1%）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>LLMs citation and hallucinations (3)（幻觉引用进入学术论文）</h3>
+  <figure><img src="slides/slide-10.png" alt="Slide 10 GPTZero 与 ICLR 对幻觉引用的处理" loading="lazy"><figcaption>GPTZero 对 2025 年录用论文的检测 + ICLR 拒稿公告</figcaption></figure>
+  <p>幻觉引用问题已从聊天机器人蔓延到学术写作：</p>
+  <ul>
+    <li>GPTZero 分析了 <strong>4841 篇 2025 年录用论文</strong>，其中 <strong>100+ 篇确认存在幻觉引用</strong>（NAZAR SHMATKO，2026 年 1 月 21 日）；</li>
+    <li>ICLR 官方博客《Taking Actions on Hallucinated References》宣布：对含幻觉参考文献的投稿予以 <strong>desk reject（直接拒稿）</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>Pressure Testing Claude-2.1 200K（Needle In A HayStack）</h3>
+  <figure><img src="slides/slide-11.png" alt="Slide 11 Claude-2.1 200K 大海捞针测试" loading="lazy"><figcaption>35 个文档深度 × 35 个上下文长度（1K→200K）的检索精度热图</figcaption></figure>
+  <p>「大海捞针」压力测试：把一条事实随机插入不同深度的文档中，在不同上下文长度（1K→200K tokens）下测试 Claude-2.1 的检索精度。
+  结果随<strong>上下文长度增长，检索精度整体下降</strong>——超长上下文的「全量塞入」路线并不可靠。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>Pressure Testing GPT-4 128K（Needle In A HayStack）</h3>
+  <figure><img src="slides/slide-12.png" alt="Slide 12 GPT-4 128K 大海捞针测试" loading="lazy"><figcaption>15 个深度 × 15 个长度（1K→128K）的检索精度热图</figcaption></figure>
+  <p>对 GPT-4（gpt4-1106-preview，128K）的同类测试：当事实被放在文档深度的 <strong>10%–50%</strong> 区间、且上下文较大时，开始出现退化。
+  测试工具开源：<a href="https://github.com/gkamradt/needle-in-a-haystack">github.com/gkamradt/needle-in-a-haystack</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>Issues with RAG（小结回顾页）</h3>
+  <figure><img src="slides/slide-13.png" alt="Slide 13 RAG 问题回顾" loading="lazy"><figcaption>再次呈现 RAG 三类问题九宫格，收束 RAG 部分</figcaption></figure>
+  <p>收束 RAG 部分：检索侧（召回上限、过期索引、权限泄漏）、阅读器侧（迷失在中间、干扰、证据冲突）、
+  循环侧（误差累积、无停止规则、提示注入）——这些局限正是本讲转向「工具使用」的动机。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、为什么需要工具</h2>
+<p class="chapter-sub">Why tools?（Slide 14–17）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>Lecture Overview（进度页：进入「为什么需要工具」）</h3>
+  <figure><img src="slides/slide-14.png" alt="Slide 14 进度页" loading="lazy"><figcaption>「Wrap up RAG」变灰，进入 Why tools? 部分</figcaption></figure>
+  <p>进度页：第一部分「Wrap up RAG」已完成（变灰），当前进入第二部分「为什么需要工具」（Why tools?）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>LLMs Cannot Solving That?（LLM 算不了？）</h3>
+  <figure><img src="slides/slide-15.png" alt="Slide 15 LLM 计算能力局限" loading="lazy"><figcaption>GPT-4 大数乘法精度与 o1-mini 按位数的精度热图</figcaption></figure>
+  <p>LLM 在计算任务上不可靠：GPT-4 的<strong>多位数乘法精度仅约 59%</strong>；
+  o1-mini 的位数热图显示，随着参与运算的数字位数增加，精度持续下降。计算正是需要工具的第一类场景。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>LLMs Struggle as Task Complexity Increases（任务复杂度上升，LLM 表现下滑）</h3>
+  <figure><img src="slides/slide-16.png" alt="Slide 16 复杂度热图" loading="lazy"><figcaption>随组合深度/步数增加的精度热图（Dziri et al., 2023）</figcaption></figure>
+  <p>Dziri et al. (2023) 的结果：随着任务的<strong>组合深度（步数）增加</strong>，LLM 的精度系统性下降。
+  多步推理链中每一步的小误差会复合放大——这是需要工具把「可靠子步骤」外包出去的第二重动机。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>Why Tools?（为什么需要工具）</h3>
+  <figure><img src="slides/slide-17.png" alt="Slide 17 为什么需要工具" loading="lazy"><figcaption>三类「LLM 做不到」的问题与对应的工具方案</figcaption></figure>
+  <p>把「LLM 为什么需要工具」归纳为三类缺口，每类对应一种工具方案：</p>
+  <ul>
+    <li><span class="term">不能算（Computation）</span>：算术、排序、聚合等确定性计算不可靠 → 计算器/代码执行工具；</li>
+    <li><span class="term">训练没见过（Knowledge）</span>：训练截止后的新知识、私有数据 → 检索/搜索工具；</li>
+    <li><span class="term">够不着（Access / Interaction）</span>：发消息、下单、改数据库等真实世界动作 → 可执行的工具/API。</li>
+  </ul>
+  <p>（页内配图以一张 SpongeBob 梗图形象化「LLM 独自硬撑 vs 借助工具」的对比。）</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">三、什么是工具</h2>
+<p class="chapter-sub">What are tools?（Slide 18–20）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>What Are Tools?（什么是工具）</h3>
+  <figure><img src="slides/slide-18.png" alt="Slide 18 工具的定义" loading="lazy"><figcaption>工具 = 外部程序的函数接口；LM 生成函数调用与参数</figcaption></figure>
+  <p>工具的定义：<span class="term">工具是通往外部程序的函数接口（function interface）</span>——
+  语言模型负责<strong>生成函数调用与参数</strong>，由外部程序执行并返回结果。
+  参考：Wang et al., <a href="https://arxiv.org/abs/2403.15452">arXiv:2403.15452</a> (2024)。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>Scenarios of Tool Use（工具使用的五类场景）</h3>
+  <figure><img src="slides/slide-19.png" alt="Slide 19 工具使用场景表" loading="lazy"><figcaption>五类场景及示例函数签名</figcaption></figure>
+  <p>工具使用可归纳为五类场景（每类配示例签名）：</p>
+  <ul>
+    <li><span class="term">知识访问（Knowledge access）</span>：获取训练语料之外/之后的信息（如搜索）；</li>
+    <li><span class="term">计算（Computation）</span>：可靠的数值/符号计算（如计算器）；</li>
+    <li><span class="term">交互（Interaction）</span>：与外部系统/用户通信（如发消息、下单）；</li>
+    <li><span class="term">非文本（Non-textual）</span>：处理图像、音频、视频等非文本模态；</li>
+    <li><span class="term">专项技能 LMs（Special-skilled LMs）</span>：调用在特定任务上更强的专用模型。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>Basic Tool Use Examples（基础工具使用示例）</h3>
+  <figure><img src="slides/slide-20.png" alt="Slide 20 基础工具使用示例" loading="lazy"><figcaption>计算器与天气查询两个最小示例</figcaption></figure>
+  <p>两个最小示例，演示「模型生成调用 → 外部执行 → 结果回填」的完整回路：</p>
+  <ul>
+    <li><span class="term">计算器</span>：17423 × 892 → 工具返回 <strong>15,541,316</strong>；</li>
+    <li><span class="term">天气</span>：调用 <code>check_weather()</code> → 经 API 查询 → 返回 <strong>sunny</strong>。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">四、学习调用工具：Toolformer 及其变体</h2>
+<p class="chapter-sub">Learning to call tools: Toolformer（Slide 21–35）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>Lecture Overview（进度页：进入 Toolformer）</h3>
+  <figure><img src="slides/slide-21.png" alt="Slide 21 进度页" loading="lazy"><figcaption>前三部分变灰，进入「Learning to call tools: Toolformer」</figcaption></figure>
+  <p>进度页：Wrap up RAG、Why tools?、What are tools? 三部分已完成（变灰），进入「学习调用工具：Toolformer」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>LLMs can teach themselves to use tools（LLM 能自学使用工具，Schick et al., 2023）</h3>
+  <figure><img src="slides/slide-22.png" alt="Slide 22 Toolformer 概览" loading="lazy"><figcaption>Toolformer 核心思想 + 四种 API 调用内嵌示例</figcaption></figure>
+  <p><span class="term">Toolformer</span>（Schick et al., 2023）让 LM 自己学会：调用哪些 API、何时调用、传什么参数、以及如何最好地把结果融入文本。
+  方法采用<strong>自监督学习</strong>，每个 API 只需少量演示（a handful of demonstrations）。右侧四个内嵌调用示例：</p>
+  <ul>
+    <li>问答 API：<code>QA("Who is the publisher of The New England Journal of Medicine?") → Massachusetts Medical Society</code>；</li>
+    <li>计算器：<code>Calculator(400 / 1400) → 0.29</code>；</li>
+    <li>机器翻译：<code>MT("tortuga") → turtle</code>；</li>
+    <li>维基搜索：<code>WikiSearch("Brown Act") → The Ralph M. Brown Act is an act of the California State Legislature…</code>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>Toolformer: Candidate Tools（候选工具）</h3>
+  <figure><img src="slides/slide-23.png" alt="Slide 23 候选工具" loading="lazy"><figcaption>五类候选 API：问答、搜索、计算器、日历、翻译</figcaption></figure>
+  <p>Toolformer 使用的五类候选工具：<span class="term">问答系统（Q&amp;A system）、计算器（calculator）、搜索引擎（search engine）、翻译系统（translation system）、日历（calendar）</span>。
+  图示每类的输入→输出示例：</p>
+  <ul>
+    <li>问答：「What other name is Pittsburgh known by?」→ <strong>The Steel City</strong>；</li>
+    <li>搜索：「War memorial Flodden」→「[…] was created in memory of the Battle of Flodden.」；</li>
+    <li>计算器：3435*235/9 → <strong>89691.67</strong>；</li>
+    <li>日历：∅ → <strong>Thursday, March 10, 2019</strong>；</li>
+    <li>翻译：「Os Melhores Escolas em Jersey」→ <strong>The Best Schools in Jersey</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>Toolformer: Method（方法总览）</h3>
+  <figure><img src="slides/slide-24.png" alt="Slide 24 Toolformer 方法" loading="lazy"><figcaption>三步流水线：采样 API 调用 → 执行 → 过滤，得到含 API 调用的新数据集</figcaption></figure>
+  <p>方法两步走：<strong>构造一个用 API 调用增强（augmented）的新数据集</strong>，再用该数据集<strong>微调 GPT-J（6B）</strong>。
+  流水线三步：① Sample API Calls（采样候选调用）→ ② Execute API Calls（执行调用）→ ③ Filter API Calls（按效用过滤）。
+  示例：原文「Pittsburgh is also known as the Steel City.」经增强后变为
+  「Pittsburgh is also known as <strong>[QA(What …? → Steel City)]</strong> the Steel City.」——只保留真正降低预测损失的调用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>Toolformer: (1) Sample API Calls（采样 API 调用）</h3>
+  <figure><img src="slides/slide-25.png" alt="Slide 25 采样 API 调用" loading="lazy"><figcaption>在预测概率高的位置采样候选调用</figcaption></figure>
+  <p>对输入 <em>x</em>，选出满足 <code>p_i &gt; τ_s</code> 的位置 <em>i</em>，再在这些位置采样 API 调用候选
+  <code>c_i^1, c_i^2, … c_i^m</code>，其中 <code>p_i = p_M(&lt;API&gt; | P(x), x_{1:i-1})</code>。
+  采样本身用少量演示引导：提示形如「Your task is to add calls to a Question Answering API to a piece of text […]
+  Input: Pittsburgh is known as the Steel City. Output:」，模型输出带内嵌调用的文本。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>Toolformer: (2) Execute API Calls（执行 API 调用）</h3>
+  <figure><img src="slides/slide-26.png" alt="Slide 26 执行 API 调用" loading="lazy"><figcaption>真实执行候选调用并得到返回结果</figcaption></figure>
+  <p>实际执行这些 API 调用，并<strong>过滤掉所有未能降低后续 token 损失 <code>L_i</code> 的调用</strong>。
+  示例：<code>c_i^1</code>（What other name is Pittsburgh known by?）执行后得到 <code>r_i^1 = Steel City</code>；
+  <code>c_i^2</code>（Which country is Pittsburgh in?）得到 <code>r_i^2 = United States</code>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>Toolformer: (3) Filter API Calls（过滤 API 调用）</h3>
+  <figure><img src="slides/slide-27.png" alt="Slide 27 过滤 API 调用" loading="lazy"><figcaption>加权交叉熵损失与保留判据</figcaption></figure>
+  <p>效用判定基于<strong>加权交叉熵损失</strong>：<code>L_i(z) = −Σ_{j=i}^{n} w_{j−i} · log p_M(x_j | z, x_{1:j−1})</code>（权重随距离衰减）。比较两个量：</p>
+  <ul>
+    <li><code>L_i^+ = L_i(e(c_i, r_i))</code>：同时插入 API 调用与其执行输出；</li>
+    <li><code>L_i^− = min(L_i(ε), L_i(e(c_i, ε)))</code>：不调用、与「调用但不给输出」两者取较小。</li>
+  </ul>
+  <p>仅当 <code>L_i^− − L_i^+ ≥ τ_f</code>（收益超过阈值）时保留该调用——即调用必须<strong>确实帮助预测后续文本</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>Toolformer: (3) Filter API Calls - Example（过滤示例）</h3>
+  <figure><img src="slides/slide-28.png" alt="Slide 28 过滤示例" loading="lazy"><figcaption>三种前缀下的损失对比与 Usefulness 计算</figcaption></figure>
+  <p>以预测「the Steel City」为例，记 <code>L•(PREFIX) = −log p(the Steel City. | PREFIX)</code>：</p>
+  <ul>
+    <li>A. 无 API 调用（Pittsburgh is known as）：<strong>2.5</strong>；</li>
+    <li>B. 调用但不执行（…[QA("What other name is Pittsburgh known by?") → ?]）：<strong>2.1</strong>；</li>
+    <li>C. 调用并执行（…→ Steel City]）：<strong>0.8</strong>。</li>
+  </ul>
+  <p>Usefulness = min(L_A, L_B) − L_C = min(2.5, 2.1) − 0.8 = <strong>1.3</strong> &gt; 0，故保留该调用。</p>
+</article>
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Example Text and Usefulness Scores（效用分数示例）</h3>
+  <figure><img src="slides/slide-29.png" alt="Slide 29 效用分数示例" loading="lazy"><figcaption>正分（日历/计算器）与负分（无用的问答调用）</figcaption></figure>
+  <p>三个增强文本示例与对应 Usefulness 分数：</p>
+  <ul>
+    <li><strong>2.11</strong>：「The WL will be open on Friday, [Calendar() → Today is Thursday, March 9, 2017.] March 10, and Sunday, March 19 for regular hours.」——日历调用有助于推断「Friday」；</li>
+    <li><strong>1.59</strong>：「…Venus' main temperature to be 499 K rather than 735 K which is [Calculator(735 / 499) → 1.47] 1.47 times hotter.」——计算器给出倍数；</li>
+    <li><strong>−1.23</strong>：「The last time I was with [QA("Who was the last time I was with?") → The Last Time] him…」——负分：调用无助于预测，会被过滤掉。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>Toolformer Result on Diverse Tasks（多样化任务结果）</h3>
+  <figure><img src="slides/slide-30.png" alt="Slide 30 Toolformer 任务结果" loading="lazy"><figcaption>GPT-J (6B) / Toolformer (6B) / GPT-3 (175B) 五类任务对比</figcaption></figure>
+  <p>Toolformer（6B）与基座 GPT-J (6B)、大 30 倍的 GPT-3 (175B) 对比：</p>
+  <table>
+    <tr><th>任务</th><th>GPT-J (6B)</th><th>Toolformer (6B)</th><th>GPT-3 (175B)</th></tr>
+    <tr><td>事实补全（Fact Completion）</td><td>18.3</td><td><strong>33.3</strong></td><td>24.7</td></tr>
+    <tr><td>问答（Question Answering）</td><td>25.3</td><td>31.0</td><td><strong>39.3</strong></td></tr>
+    <tr><td>数学（Math）</td><td>7.7</td><td><strong>37.7</strong></td><td>14.7</td></tr>
+    <tr><td>时间（Temporal）</td><td>4.0</td><td><strong>27.0</strong></td><td>1.0</td></tr>
+    <tr><td>多语言（Multilingual）</td><td>11.0</td><td>11.0</td><td>4.0</td></tr>
+  </table>
+  <p>6B 模型加上少量 API 调用，在数学、时间等任务上大幅反超 175B 的 GPT-3。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>GPT-2 Models with and without Toolformer（不同规模 GPT-2 对比）</h3>
+  <figure><img src="slides/slide-31.png" alt="Slide 31 GPT-2 规模曲线" loading="lazy"><figcaption>LAMA / Math / QA 基准上随模型参数变化的曲线</figcaption></figure>
+  <p>在 LAMA、Math、QA 三类基准上，随模型参数（M）增加：开启 Toolformer（蓝线）的精度始终高于关闭版（红线，Toolformer disabled），
+  且<strong>在远小于 GPT-3（紫虚线）的规模上就达到甚至超过 GPT-3 水平</strong>——工具学习能替代一部分模型规模。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>View Tools as "Words"? Toolken GPT（把工具当「词」？Hao et al., 2024）</h3>
+  <figure><img src="slides/slide-32.png" alt="Slide 32 ToolkenGPT 概览" loading="lazy"><figcaption>工具作为新 token（toolken）参与嵌入与预测；花园面积示例</figcaption></figure>
+  <p><span class="term">ToolkenGPT</span>（Hao et al., 2024）把每个工具表示为一个新 token（「toolken」）并学习其嵌入；
+  一旦某个 toolken 被触发，LM 就接着补全该工具的执行参数。词表由普通词与三类 toolken 组成（KB：winner_of/father_of；Math：square/GCD；Robot：grab/walk）。
+  花园示例（长 64 米宽 48 米，划分最大正方形区块）：推理模式先调用 <code>GCD(64, 48)</code> 得边长 16 米，
+  再切换工具模式执行 <code>square(16) → 256</code>，最后把结果填回文本——三步：① 模式切换、② 调用工具、③ 回填文本。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>ToolkenGPT Framework（框架流程）</h3>
+  <figure><img src="slides/slide-33.png" alt="Slide 33 ToolkenGPT 框架" loading="lazy"><figcaption>词与 toolken 统一预测的五步流程</figcaption></figure>
+  <p>LLM 统一预测下一个 token（词或 toolken）：<code>P(t_i | t_&lt;i) = softmax([W_ν; W_τ] · h_{i−1})</code>（词嵌入矩阵与 toolken 嵌入矩阵拼接）。五步流程：</p>
+  <ul>
+    <li><span class="term">Toolken predicted</span>：预测出 toolken（模式切换）；</li>
+    <li><span class="term">Generation pauses</span>：生成暂停，上下文移入新提示；</li>
+    <li><span class="term">Tool-mode prompt</span>：工具模式提示，含 <code>[tool](args)</code> 语法的演示；</li>
+    <li><span class="term">Arguments filled</span>：由上下文学习（ICL）补全参数；</li>
+    <li><span class="term">Tool executes</span>：工具执行，返回值重新进入推理模式。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>Learning Toolken Embeddings（学习 toolken 嵌入）</h3>
+  <figure><img src="slides/slide-34.png" alt="Slide 34 toolken 嵌入学习" loading="lazy"><figcaption>结果 token 被替换为 toolken + [N/A]，损失只算在 toolken 位置</figcaption></figure>
+  <p>训练语料改写示例「the area is 256 square feet」：原序列中的结果 token「2 5 6」在改写序列 s′ 中被替换为
+  <code>[square]</code>（在第一个结果 token 处预测出 toolken）加两个 <code>[N/A]</code>（结果 token，在损失中跳过）。
+  损失只在 toolken 位置计算：<code>L(W_τ) = Σ_{(s,s′)∈D} Σ_i −log P(t′_i | t_&lt;i) · 𝟙[t′_i ≠ N/A]</code>。
+  训练数据：带 ground-truth 工具调用的数据集，以及合成数据。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>ToolkenGPT involving different numbers of tools（不同工具数量的表现）</h3>
+  <figure><img src="slides/slide-35.png" alt="Slide 35 工具数量扩展性" loading="lazy"><figcaption>基准对比表 + 精度随测试集关系数（30→234）变化曲线</figcaption></figure>
+  <p>左表（GSM8K-XL (4) / FuncQA (13) One-Hop / Multi-Hops）：0-shot ChatGPT 0.17 / 0.55 / 0.09；CoT 0.18 / 0.20 / 0.03；
+  ReAct 0.32 / 0.57 / 0.06；<strong>ToolkenGPT 0.33 / 0.73 / 0.15</strong>（各项最优）。
+  右图：随测试集所用关系（工具）数从 30 增到 234，<strong>ToolkenGPT (sup) 保持约 0.95 以上基本不掉</strong>，
+  ToolkenGPT (syn) 从约 0.6 降到 0.26，而 ICL / ICL (desc) / Prompting 均显著下滑——嵌入化的工具表示在工具数量扩展上更稳。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">五、扩展到海量工具：ToolLLM 与 Gorilla</h2>
+<p class="chapter-sub">Scaling to many tools: Gorilla（Slide 36–45）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>Lecture Overview（进度页：进入「扩展到海量工具」）</h3>
+  <figure><img src="slides/slide-36.png" alt="Slide 36 进度页" loading="lazy"><figcaption>前四部分变灰，进入「Scaling to many tools: Gorilla」</figcaption></figure>
+  <p>进度页：前四部分（含 Toolformer）已完成（变灰），进入第五部分「扩展到海量工具：Gorilla」。
+  该部分同时涵盖把工具规模推向 16k 的 ToolLLM/ToolBench。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>ToolLLM: Enable LLMs to Use 16k+ APIs（ToolLLM：让 LLM 用上 16k+ API）</h3>
+  <figure><img src="slides/slide-37.png" alt="Slide 37 ToolLLM 概览" loading="lazy"><figcaption>数据构建流水线：API 收集 → 指令生成 → 解法路径标注 → SFT</figcaption></figure>
+  <p><span class="term">ToolLLM</span>：微调 LLaMA 得到 <span class="term">ToolLLaMA</span>，并为其配备一个<strong>神经 API 检索器</strong>，
+  为每条指令推荐合适的 API。数据流水线：API Collection（源自 RapidAPI）→ Instruction Generation → Solution Path Annotation
+  （由 ChatGPT 辅助）→ 汇成 <span class="term">ToolBench</span> → 对 LLaMA 做 SFT 得到 ToolLLaMA。
+  代码：<a href="https://github.com/OpenBMB/ToolBench">github.com/OpenBMB/ToolBench</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>ToolLLM: Enable LLMs to Use 16k+ APIs（训练 + 推理全流程）</h3>
+  <figure><img src="slides/slide-38.png" alt="Slide 38 ToolLLM 全流程" loading="lazy"><figcaption>Data Construction &amp; Train &amp; Inference 全景图</figcaption></figure>
+  <p>同一张图补全<strong>推理</strong>流程：新指令先经 API Retriever 检索出 Retrieved APIs（相关 API 集合），
+  连同指令一起交给 ToolLLaMA 迭代执行（×N，调用真实 RapidAPI），产出 Final Answer，并由
+  <span class="term">ToolEval</span> 评估。训练与推理共用同一套 API 检索器与数据构建机制。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>Arising Issue in Tool Use and Hallucination（工具使用中的幻觉问题）</h3>
+  <figure><img src="slides/slide-39.png" alt="Slide 39 工具调用幻觉对比" loading="lazy"><figcaption>同一提示下 GPT-4 / Claude / Gorilla 生成的 API 调用代码对比</figcaption></figure>
+  <p>提示：「Help me find an API to convert the spoken language in a recorded audio to text using Torch Hub.」三个模型给出的调用代码：</p>
+  <ul>
+    <li><span class="term">GPT-4</span>：<code>torch.hub.load('snakers4/silero-models', 'asr', source='local')</code> —— <strong>Hallucinate!</strong>（不存在的模型名/参数）；</li>
+    <li><span class="term">Claude</span>：<code>torchaudio.pipelines.WAV2VEC2_ASR_PIPELINE("audio.wav")</code> —— <strong>Wrong library!</strong>（用错了库）；</li>
+    <li><span class="term">Gorilla</span>：<code>torch.hub.load('snakers4/silero-models', 'silero_sst')</code> + <code>asr_model.transcribe(audio_path)</code> —— <strong>Good to go!</strong></li>
+  </ul>
+  <p>闭源大模型会「凭空捏造」API 签名，而基于真实 API 库训练的 Gorilla 能给出可执行的调用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>Gorilla: LLMs connected with massive APIs（Gorilla：连接海量 API 的 LLM，Patil et al., 2023）</h3>
+  <figure><img src="slides/slide-40.png" alt="Slide 40 Gorilla 概览" loading="lazy"><figcaption>数据集构建（1,645 真实 API → 16,450 合成指令对）+ 检索增强的零样本推理</figcaption></figure>
+  <p><span class="term">Gorilla</span>（Patil et al., 2023）：<strong>数据集构建</strong>——1,645 条 API 调用，其中 Torch Hub 94 条（穷尽）、
+  TensorFlow Hub v2 626 条（穷尽）、HuggingFace 925 条（每个 domain 取 Top 20）；用 self-instruct 加上下文示例生成
+  <strong>16,450 组 {instruction, API} 对</strong>，用于训练 Gorilla-7B。
+  <strong>推理</strong>：用户说「I want to see some cats dancing in celebration!」→ Information Retriever 从 API Database 检索参考 API →
+  Gorilla 生成调用 <code>StableDiffusionPipeline.from_pretrained(stabilityai/stable-diffusion-2-1)</code> → 执行得到猫咪跳舞图像（Execution Results!）。
+  该回路既可走检索，也可纯零样本（Zero-shot）。</p>
+</article>
+<article class="slide">
+  <h3><span class="no">Slide 41</span>Data: Scaling to Many Tools（数据：扩展到海量工具）</h3>
+  <figure><img src="slides/slide-41.png" alt="Slide 41 工具数据构建" loading="lazy"><figcaption>三大 Hub 的 API 收集 → JSON 化 → GPT-4 合成指令</figcaption></figure>
+  <p>工具数据来源：HuggingFace「The Model Hub」、PyTorch Hub、TensorFlow Hub。共整理出
+  <strong>1645 条 JSON 格式的 API 调用</strong>，字段为 <code>{domain, framework, functionality, api_name, api_call,
+  api_arguments, environment_requirements, example_code, performance, description}</code>；
+  再用 <strong>GPT-4 生成合成指令数据</strong>（对应前页 16,450 组指令对）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>Retrieval Aware Training（检索感知训练，RAT）</h3>
+  <figure><img src="slides/slide-42.png" alt="Slide 42 RAT" loading="lazy"><figcaption>训练模型使用或忽略检索上下文；Gorilla 推理：零样本或检索</figcaption></figure>
+  <p><span class="term">Retrieval Aware Training (RAT)</span> 的三要点：</p>
+  <ul>
+    <li>微调模型学会<strong>使用或忽略</strong>检索到的上下文；</li>
+    <li>在指令微调阶段<strong>同时引入正确与错误的检索结果</strong>；</li>
+    <li>RAT 确保模型对<strong>低质量检索保持鲁棒</strong>——检索错了也能自己纠正，而不是照单全收。</li>
+  </ul>
+  <p>Gorilla 推理支持两种模式：zero-shot 或 retrieval（图示与 Slide 40 相同的检索回路）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>AST Sub-Tree Matching to measure hallucination（AST 子树匹配度量幻觉）</h3>
+  <figure><img src="slides/slide-43.png" alt="Slide 43 AST 子树匹配" loading="lazy"><figcaption>把生成的调用解析为 AST，检查是否为真实 API 结构的子树</figcaption></figure>
+  <p>把模型生成的调用（如 <code>torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True)</code>）
+  解析成调用链树（torch → hub → load → pytorch/vision → densenet121 → pretrained=True），
+  再检查它是否是<strong>真实 API 抽象语法树（AST）的子树</strong>（右侧：torch 下含 utils/hub/Tensor，
+  hub 下含 load，load 下含各 repo/model/pretrained 取值）。匹配失败即判定为幻觉调用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>Improved accuracy with reduced hallucination（精度提升、幻觉下降）</h3>
+  <figure><img src="slides/slide-44.png" alt="Slide 44 Gorilla 基准结果" loading="lazy"><figcaption>三个 Hub 的精度柱状图 + 四种检索设置下的精度-幻觉散点</figcaption></figure>
+  <p>上排（配 GPT-Retriever 的精度柱状图）：Torch Hub——LLAMA 14.51、GPT-3.5 60.21、GPT-4 59.13、Claude 60.21、<strong>Gorilla 61.82</strong>；
+  HuggingFace——LLAMA 10.17、GPT-3.5 47.34、GPT-4 44.57、Claude 41.37、<strong>Gorilla 47.45</strong>；
+  Tensorflow Hub——LLAMA 15.62、GPT-3.5 65.59、GPT-4 43.94、Claude 55.62、<strong>Gorilla 64.96</strong>。
+  下排（精度 × 幻觉散点，0-shot / BM25 / GPT-Retriever / Oracle 四种检索设置）：Gorilla 稳定落在<strong>左上角（高精度、低幻觉）</strong>，
+  而 LLAMA 落在右下（高幻觉），GPT-3.5 / GPT-4 / Claude 居中——Gorilla 同时做到更准、更少幻觉。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Learning to Use Tools: Summary（工具学习方法总结表）</h3>
+  <figure><img src="slides/slide-45.png" alt="Slide 45 四种方法对比表" loading="lazy"><figcaption>Toolformer / ToolkenGPT / ToolLLM / Gorilla 六维对比</figcaption></figure>
+  <p>四种「学习使用工具」方法的横向对比：</p>
+  <table>
+    <tr><th>维度</th><th>Toolformer</th><th>ToolkenGPT</th><th>ToolLLM</th><th>Gorilla</th></tr>
+    <tr><td>工具调用形式（Tool call is）</td><td>文本（text）</td><td>一个新 token</td><td>ReAct 式轨迹</td><td>文本，API 调用代码</td></tr>
+    <tr><td>训练对象（What is trained）</td><td>模型（GPT-J 6B）</td><td>嵌入</td><td>模型（LLaMA 7B）</td><td>模型（LLaMA 7B）</td></tr>
+    <tr><td>标签来源（Labels）</td><td>自监督</td><td>ground-truth 或合成调用</td><td>ChatGPT 轨迹</td><td>GPT-4 self-instruct</td></tr>
+    <tr><td>何时学习（Learns when）</td><td>损失过滤（loss filter）</td><td>嵌入学习</td><td>微调</td><td>微调</td></tr>
+    <tr><td>学到什么（Learns what）</td><td>微调</td><td>上下文内（in-context）</td><td>微调</td><td>微调</td></tr>
+    <tr><td>规模（Scale）</td><td>5 个工具</td><td>234 个工具</td><td>16k API</td><td>1.6k API</td></tr>
+  </table>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch6">
+<h2 class="chapter-title">六、标准接口：REST、Function Calling、MCP</h2>
+<p class="chapter-sub">Standard interfaces: REST, function calling, MCP（Slide 46–56）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>Lecture Overview（进度页：进入「标准接口」）</h3>
+  <figure><img src="slides/slide-46.png" alt="Slide 46 进度页" loading="lazy"><figcaption>前五部分变灰，进入「Standard interfaces: REST, function calling, MCP」</figcaption></figure>
+  <p>进度页：前五部分已完成（变灰），进入第六部分「标准接口：REST、函数调用、MCP」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>Why Standard Interfaces?（为什么需要标准接口）</h3>
+  <figure><img src="slides/slide-47.png" alt="Slide 47 为什么需要标准接口" loading="lazy"><figcaption>「改模型适配工具」→「改工具描述以适配任意模型」</figcaption></figure>
+  <p>思路的转变：</p>
+  <ul>
+    <li>左侧（旧范式）：<strong>Change the model to fit the tools</strong>——Toolformer、ToolkenGPT、Gorilla 每接入一个新 API 就意味着又一次训练；</li>
+    <li>右侧（新范式，红框）：<strong>Change how the tools are described so any model can use them</strong>——REST、函数调用、MCP 在<strong>运行时</strong>给出 schema，而不是为每个 API 逐一微调。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>Standard Interfaces: Three Generations（标准接口的三代演进）</h3>
+  <figure><img src="slides/slide-48.png" alt="Slide 48 三代标准接口" loading="lazy"><figcaption>面向人（REST）→ 面向模型（Function Calling）→ 面向生态（MCP）</figcaption></figure>
+  <p>三代接口，面向的对象逐层升级：</p>
+  <ul>
+    <li><span class="term">面向人（Human-facing）— REST API</span>：端点 + 文档；每个服务各自鉴权；LLM 必须读文档并手写请求；没有机器可读契约。示例：<code>GET /v1/weather?city=SF</code>；</li>
+    <li><span class="term">面向模型（Model-facing）— Function Calling</span>：每个工具一份 JSON schema；模型输出 name + args；由 harness 校验并分发；schema 存放在代码库中。示例：<code>{"name":"get_weather","arguments":{"city":"SF"}}</code>；</li>
+    <li><span class="term">面向生态（Ecosystem-facing）— MCP</span>：一个协议、任意客户端；服务器暴露工具、资源、提示词；运行时发现；一次编写、跨宿主复用。示例：<code>tools/list → tools/call</code>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>REST APIs: Tools Over HTTP（REST：HTTP 之上的工具）</h3>
+  <figure><img src="slides/slide-49.png" alt="Slide 49 REST API" loading="lazy"><figcaption>GET 请求与 200 响应示例；四种动词；局限性</figcaption></figure>
+  <p>REST 示例：<code>GET https://api.weather.com/v1/current?city=Stanford</code> →
+  <code>200 {"temp_f": 74, "conditions": "sunny"}</code>。四个动词语义：<strong>GET</strong> 读、<strong>POST</strong> 建、<strong>PUT</strong> 改、<strong>DELETE</strong> 删。
+  <strong>局限</strong>：模型必须事先知道 URL、参数名与响应结构。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>Function Calling: Tools as JSON Schemas（函数调用：工具即 JSON Schema）</h3>
+  <figure><img src="slides/slide-50.png" alt="Slide 50 Function Calling" loading="lazy"><figcaption>Tool Schema → Model Output 的转换；schema/tool_call/result 三角色</figcaption></figure>
+  <p>工具以 JSON Schema 描述（Tool Schema）：<code>{ "name": "get_weather", "description": "Current weather",
+  "parameters": { "type": "object", "properties": { "city": {"type": "string"} }, "required": ["city"] } }</code>；
+  模型据此输出（Model Output）：<code>{ "tool_call": { "name": "get_weather", "arguments": {"city": "Stanford"} } }</code>。
+  三个角色：<span class="term">schema</span> 描述工具输入，<span class="term">tool_call</span> 是模型输出，<span class="term">result</span> 回填给模型。
+  <strong>局限</strong>：为一家 API 写的工具，换一家就得重写。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>Model Context Protocol (MCP)（模型上下文协议）</h3>
+  <figure><img src="slides/slide-51.png" alt="Slide 51 MCP 生态图" loading="lazy"><figcaption>MCP 居中，左侧 AI 应用、右侧数据源与工具，双向数据流</figcaption></figure>
+  <p>MCP 是居中的<span class="term">标准化协议（Standardized protocol）</span>，两侧双向连接：</p>
+  <ul>
+    <li><span class="term">AI 应用侧</span>：聊天界面（Claude Desktop、LibreChat）、IDE 与代码编辑器（Claude Code、Goose）、其他 AI 应用（5ire、Superinterface）；</li>
+    <li><span class="term">数据源与工具侧</span>：数据与文件系统（PostgreSQL、SQLite、GDrive）、开发工具（Git、Sentry 等）、生产力工具（Slack、Google Maps 等）。</li>
+  </ul>
+  <p>延伸阅读：<a href="../readings/mcp-specification/">本讲必读材料精讲——MCP 规范</a>。</p>
+</article>
+<article class="slide">
+  <h3><span class="no">Slide 52</span>MCP Architecture: MCP Host, MCP Client, MCP Server（MCP 架构三要素）</h3>
+  <figure><img src="slides/slide-52.png" alt="Slide 52 MCP 架构" loading="lazy"><figcaption>Host 内含多个 Client，每个 Client 与 Server 维持专用连接</figcaption></figure>
+  <p>MCP 的三个角色：<span class="term">MCP Host</span>（AI 应用，如 IDE 或聊天客户端）内含若干
+  <span class="term">MCP Client</span>（本页 4 个），每个 Client 与一个 <span class="term">MCP Server</span> 维持
+  <strong>Dedicated connection（专用连接）</strong>。Server 可以是本地的（Server A：Filesystem；Server B：Database），
+  也可以是远程的（Server C：Sentry，由 Client 3 与 Client 4 共同连接）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>MCP: Tool Discovery (tools/list)（工具发现）</h3>
+  <figure><img src="slides/slide-53.png" alt="Slide 53 tools/list" loading="lazy"><figcaption>tools/list 请求与响应；服务器返回工具列表</figcaption></figure>
+  <p>工具发现相当于问服务器 <strong>「What tools do you have?」</strong>：</p>
+  <ul>
+    <li>REQUEST：<code>{"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": { "_meta": { … } }}</code>；</li>
+    <li>RESPONSE：<code>{"id": 2, "result": { "tools": [ { "name": "weather_current", "title": "Weather Information",
+    "description": "Current weather for a location", "inputSchema": { "type": "object",
+    "properties": { "location": {"type": "string"}, "units": {"enum": ["metric", "imperial"]} },
+    "required": ["location"] } }, { "name": "calculator_arithmetic", … } ], "ttlMs": 300000 }}</code>。</li>
+  </ul>
+  <p>服务器返回一个列表；每个工具都有 name、description 与 JSON inputSchema。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>MCP: Tool Execution (tools/call)（工具执行）</h3>
+  <figure><img src="slides/slide-54.png" alt="Slide 54 tools/call" loading="lazy"><figcaption>tools/call 请求与响应；结果是交还给 LLM 的内容数组</figcaption></figure>
+  <p>工具执行相当于命令 <strong>「Run this tool with these arguments」</strong>：</p>
+  <ul>
+    <li>REQUEST：<code>{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": { "name": "weather_current",
+    "arguments": { "location": "Stanford", "units": "imperial" }, "_meta": { … } }}</code>；</li>
+    <li>RESPONSE：<code>{"id": 3, "result": { "content": [ { "type": "text", "text": "Current weather in Stanford:
+    68°F, partly cloudy, wind W 8 mph" } ] }}</code>。</li>
+  </ul>
+  <p><span class="term">name</span> 从已列出的工具中选取；<span class="term">arguments</span> 遵循该工具的 inputSchema；
+  结果是一个 <strong>content 数组</strong>，由 host 交还给 LLM。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>Example: Course LMS API → MCP Tools（示例：课程 LMS API 转 MCP 工具）</h3>
+  <figure><img src="slides/slide-55.png" alt="Slide 55 LMS API 转 MCP" loading="lazy"><figcaption>REST 路由到 MCP 工具的映射 + FastMCP 自动转换代码</figcaption></figure>
+  <p>把课程 LMS 的 REST 路由映射为 MCP 工具：<code>GET /assignments → list_assignments</code>；
+  <code>GET /submissions → get_submissions</code>；<code>POST /grade → post_grade</code>（写操作，红框标出）。
+  用 FastMCP 可从 OpenAPI 规范<strong>自动生成</strong>这些工具：</p>
+  <pre class="mono">from fastmcp import FastMCP
+import httpx
+
+api = httpx.AsyncClient(
+    base_url="https://lms.stanford.edu/api/v1")
+
+spec = (await api.get("/openapi.json")).json()
+
+mcp = FastMCP.from_openapi(
+    openapi_spec=spec,
+    client=api,
+    name="Course MCP",
+)
+
+# → list_assignments, get_submissions, post_grade</pre>
+  <p>参考：<a href="https://gofastmcp.com/integrations/openapi">gofastmcp.com/integrations/openapi</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>Example: Inbound vs. Outbound Auth（示例：入站与出站鉴权）</h3>
+  <figure><img src="slides/slide-56.png" alt="Slide 56 入站/出站鉴权" loading="lazy"><figcaption>Agent → MCP server → LMS REST API 三层结构与两个方向的令牌</figcaption></figure>
+  <p>MCP server 居中，鉴权分两个方向：<strong>inbound（agent → server）</strong>用 <code>AGENT_TOKEN</code>；
+  <strong>outbound（server → LMS）</strong>用 <code>LMS_TOKEN</code>。对应代码：</p>
+  <pre class="mono">import os, httpx
+from fastmcp import FastMCP
+from fastmcp.server.auth.providers.jwt import StaticTokenVerifier
+
+# outbound: server → LMS
+api = httpx.AsyncClient(
+    base_url="https://lms.stanford.edu/api/v1",
+    headers={"Authorization":
+        f"Bearer {os.environ['LMS_TOKEN']}"})
+
+# inbound: agent → server
+who_may_call = StaticTokenVerifier(tokens={
+    os.environ["AGENT_TOKEN"]: {"client_id": "ta-agent"}})
+
+mcp = FastMCP.from_openapi(openapi_spec=spec, client=api,
+    name="Course MCP", auth=who_may_call)
+mcp.run(transport="http", port=8001)</pre>
+  <p>参考：<a href="https://gofastmcp.com/servers/auth/token-verification">gofastmcp.com/servers/auth/token-verification</a>。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch7">
+<h2 class="chapter-title">七、评测工具使用：BFCL、ToolBench、τ-bench</h2>
+<p class="chapter-sub">Evaluating tool use: BFCL, ToolBench, τ-bench（Slide 57–67）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>Lecture Overview（进度页：进入「评测工具使用」）</h3>
+  <figure><img src="slides/slide-57.png" alt="Slide 57 进度页" loading="lazy"><figcaption>前六部分变灰，进入「Evaluating tool use: BFCL, ToolBench, τ-bench」</figcaption></figure>
+  <p>进度页：前六部分已完成（变灰），进入最后一部分「评测工具使用：BFCL、ToolBench、τ-bench」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>BFCL: Berkeley Function-Calling Leaderboard（BFCL 排行榜，Patil et al., 2025）</h3>
+  <figure><img src="slides/slide-58.png" alt="Slide 58 BFCL 排行榜快照" loading="lazy"><figcaption>2025 年 11 月快照：Overall Acc / Cost / Agentic / Multi Turn / Single Turn 各列</figcaption></figure>
+  <p>BFCL 排行榜快照（2025 年 11 月），列含 Rank、Overall Acc、Model、Cost ($)、Agentic（Web Search / Memory）、Multi Turn、Single Turn（Non-live AST / Live AST）。前五名：</p>
+  <table>
+    <tr><th>Rank</th><th>Overall Acc</th><th>Model</th><th>Cost ($)</th><th>Web Search</th><th>Memory</th><th>Multi turn</th><th>Non-live (AST)</th><th>Live (AST)</th></tr>
+    <tr><td>1</td><td><strong>77.47</strong></td><td>Claude-Opus-4-5-20251101 (FC)</td><td>86.55</td><td>84.5</td><td>73.76</td><td>68.38</td><td>88.58</td><td>79.79</td></tr>
+    <tr><td>2</td><td>73.24</td><td>Claude-Sonnet-4-5-20250929 (FC)</td><td>43.73</td><td>81</td><td>64.95</td><td>61.37</td><td>88.65</td><td>81.13</td></tr>
+    <tr><td>3</td><td>72.51</td><td>Gemini-3-Pro-Preview (Prompt)</td><td>298.47</td><td>80</td><td>61.72</td><td>60.75</td><td>90.65</td><td>83.12</td></tr>
+    <tr><td>4</td><td>72.38</td><td>GLM-4.6 (FC thinking)</td><td>4.64</td><td>77.5</td><td>55.7</td><td>63</td><td>87.56</td><td>80.9</td></tr>
+    <tr><td>5</td><td>69.57</td><td>Grok-4-1-fast-reasoning (FC)</td><td>17.26</td><td>82.5</td><td>53.98</td><td>58.97</td><td>88.27</td><td>78.46</td></tr>
+  </table>
+  <p>排行榜：<a href="https://gorilla.cs.berkeley.edu/leaderboard.html">gorilla.cs.berkeley.edu/leaderboard.html</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>Berkeley Function Calling Leaderboard（BFCL 评测框架）</h3>
+  <figure><img src="slides/slide-59.png" alt="Slide 59 BFCL 框架介绍" loading="lazy"><figcaption>BFCL 定义、评估方式与数据集构成</figcaption></figure>
+  <p><span class="term">BFCL</span>：对 LLM 调用函数（即 tool calling）能力的<strong>综合评测框架</strong>。</p>
+  <ul>
+    <li><span class="term">评估（Evaluation）</span>：基于抽象语法树（AST）的离线评估；真实执行函数的实际评估；面向多步与多轮函数调用的基于状态（state based）的评估；</li>
+    <li><span class="term">数据集（Datasets）</span>：源自真实使用场景；为函数调用建立不同分类体系（taxonomies）；评测 Python、C++、Java、SQL 等多种语言；
+    测试<strong>相关性与非相关性</strong>（所给函数选项中没有与用户查询相关的——模型应拒绝调用）。</li>
+  </ul>
+  <p>参考：<a href="https://icml.cc/virtual/2025/poster/46593">icml.cc/virtual/2025/poster/46593</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>Example Function Calls（BFCL 函数调用示例与数据集分布）</h3>
+  <figure><img src="slides/slide-60.png" alt="Slide 60 BFCL 示例与旭日图" loading="lazy"><figcaption>多函数 / 并行函数 / 相关性检测三类示例 + 数据集分类旭日图</figcaption></figure>
+  <p>三类函数调用示例：</p>
+  <ul>
+    <li><span class="term">多函数（Multiple Functions）</span>：USER「What is 2 + 3?」，FUNCTIONS 有 add(a, b)、mult(a, b)，AGENT 输出 <code>add(a=2, b=3)</code>；</li>
+    <li><span class="term">并行函数（Parallel Functions）</span>：USER「What is (2+3) and (4+5)?」，FUNCTIONS 仅 add(a, b)，AGENT 输出 <code>add(a=2, b=3), add(a=4, b=5)</code>；</li>
+    <li><span class="term">相关性检测（Relevance Detection）</span>：USER「What is 2*3?」，FUNCTIONS 仅 add(a, b)，AGENT 正确报错：
+    「Error: request is multiplication; only add is available.」</li>
+  </ul>
+  <p>右侧旭日图为 BFCL 数据集分类分布（Crowd-Sourced 2231 / Agentic 300 两大块，下含 Simple、Multiple、Irrelevance、AST、
+  Parallel、Executed、Multi-Function、Hallucination Measure、State &amp; Response based、Base、Long Context、Miss Param、Miss Function、
+  GraphQL、Sub-String、Database (SQL)、Memory、Web Search 等类别及样本数）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>ToolBench / ToolLLM: 16k Real APIs（Qin et al., 2023）</h3>
+  <figure><img src="slides/slide-61.png" alt="Slide 61 ToolBench 概览" loading="lazy"><figcaption>从 RapidAPI 爬取 6000+ 真实 API 并策划人类指令</figcaption></figure>
+  <p><span class="term">ToolBench</span>（Qin et al., 2023）：从 RapidAPI 爬取 <strong>6000+ 真实 API</strong>，
+  并围绕它们策划<strong>真实的人类指令</strong>。图示与 Slide 38 相同的数据构建 + 训练 + 推理全景图
+  （API Collection → Instruction Generation → Solution Path Annotation → ToolBench → SFT → ToolLLaMA；
+  推理侧 Instruction → API Retriever → Retrieved APIs → ToolLLaMA ×N → Final Answer → ToolEval）。
+  代码：<a href="https://github.com/OpenBMB/ToolBench">github.com/OpenBMB/ToolBench</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>ToolBench / ToolLLM: 16k Real APIs（数据构造细节）</h3>
+  <figure><img src="slides/slide-62.png" alt="Slide 62 ToolBench 数据构造" loading="lazy"><figcaption>RapidAPI 三级层次 + API 文档示例 + 三类指令生成</figcaption></figure>
+  <p>左侧：RapidAPI 的三级层次 <strong>Category</strong>（Finance、Movies、Jobs、Top QR Code APIs…）→
+  <strong>Tool</strong>（Star Wars Characters、Streaming Availability、IMDB Search…）→ <strong>API</strong>（GET Services、GET Search By Title、GET Genres）。
+  API 文档示例（Search By Title）：API Name / API Description（按标题搜索电影与剧集）/ Required Parameters（title、country）/
+  Optional Parameters（show_type：movie、series 或 all，默认 all；output_language）/ Code Snippets（GET /v2/search?title=batman&amp;country=us…）/ Example Response。</p>
+  <p>右侧：三类指令——<strong>① 单工具指令</strong>（Single-tool，沿 Category→Tool→API 树采样）；
+  <strong>② 类内多工具指令</strong>（Intra-category multi-tool）；<strong>③ 集合内多工具指令</strong>（Intra-collection multi-tool）。
+  采样出的 API 及其文档交给 ChatGPT，生成「Instructions &amp; Relevant APIs」：
+  指令如「We are planning a movie night in the mountains. Can you suggest …」，相关 API 标注为 API1、API2、API5…。</p>
+</article>
+<article class="slide">
+  <h3><span class="no">Slide 63</span>τ-bench: Tool-Agent-User Interaction（τ-bench：工具-智能体-用户交互，Yao et al., 2024）</h3>
+  <figure><img src="slides/slide-63.png" alt="Slide 63 τ-bench 设置与轨迹" loading="lazy"><figcaption>(a) 三层结构：Tools / Agent（领域政策）/ User（用户指令）；(b) τ-airline 示例轨迹</figcaption></figure>
+  <p>τ-bench（Yao et al., 2024）评测<strong>智能体在领域政策约束下与用户对话并调用工具</strong>的能力。</p>
+  <ul>
+    <li><strong>(a) 设置</strong>：Tools（get_user_details、book_reservation、cancel_reservation、update_reservation_flights…）与 Agent 双向交互；
+    Agent 的<span class="term">领域政策作为系统提示</span>（当前时间 2024-5-15 15:00:00 EST；基础经济舱不可改签；预订后超过 24 小时不可取消…）；
+    User 的<span class="term">用户指令也作为系统提示</span>（你是 mia_li_2017，想把最近的航班改签为同日飞往 SF 而非 LA；若无法改签则希望取消并重订；说话简洁）。</li>
+    <li><strong>(b) τ-airline 示例轨迹</strong>：用户「Change flight」→ 智能体 <code>get_reservation_details[JK9O19]</code> →
+    读数据库 {'cabin': 'basic_economy', 'created_at': '20240514-1800'…} → 智能体依据政策回复「基础经济舱不可改签，但在 24 小时内可取消并重订，要我操作吗？」→
+    用户「那就取消吧」→ 智能体 <code>cancel_reservation[JK9O19]</code> → 写数据库 {…, 'status': 'cancelled'}。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 64</span>Pass^k to reward reliability and consistency（pass^k：奖励可靠性与一致性）</h3>
+  <figure><img src="slides/slide-64.png" alt="Slide 64 pass^k 定义与数据集规模" loading="lazy"><figcaption>pass^k 与 pass@k 公式；τ-retail / τ-airline 数据规模</figcaption></figure>
+  <p>τ-bench 用 <span class="term">pass^k</span> 奖励<strong>可靠且一致</strong>的智能体：</p>
+  <ul>
+    <li><code>pass^k = E_task[ C(c,k) / C(n,k) ]</code>——给定 n 次尝试中 c 次成功时，<strong>抽样的 k 次全部成功</strong>的概率；</li>
+    <li><code>pass@k = 1 − E_task[ C(n−c,k) / C(n,k) ]</code>——抽样的 k 次中<strong>至少 1 次成功</strong>的概率。</li>
+  </ul>
+  <p>两个领域的数据规模：</p>
+  <table>
+    <tr><th></th><th>τ-retail</th><th>τ-airline</th></tr>
+    <tr><td>数据库（Databases）</td><td>500 用户、50 商品、1,000 订单</td><td>500 用户、300 航班、2,000 预订</td></tr>
+    <tr><td>API 工具（API tools）</td><td>7 写 + 8 非写</td><td>6 写 + 7 非写</td></tr>
+    <tr><td>任务数（Tasks）</td><td>115</td><td>50</td></tr>
+  </table>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 65</span>τ-bench 结果：模型对比与方法对比</h3>
+  <figure><img src="slides/slide-65.png" alt="Slide 65 τ-bench 结果" loading="lazy"><figcaption>Table 2 各模型 Pass^1 + Figure 3/4 方法与 k 值影响</figcaption></figure>
+  <p>Table 2：各模型 Pass^1（retail / airline / avg）：</p>
+  <table>
+    <tr><th>Model</th><th>retail</th><th>airline</th><th>avg</th></tr>
+    <tr><td>gpt-4o</td><td><strong>61.2</strong></td><td><strong>35.2</strong></td><td><strong>48.2</strong></td></tr>
+    <tr><td>gpt-4-turbo</td><td>57.7</td><td>32.4</td><td>45.1</td></tr>
+    <tr><td>gpt-4-32k</td><td>56.5</td><td>33.0</td><td>44.8</td></tr>
+    <tr><td>gpt-3.5-turbo</td><td>20.0</td><td>10.8</td><td>15.4</td></tr>
+    <tr><td>claude-3-opus</td><td>44.2</td><td>34.7</td><td>39.5</td></tr>
+    <tr><td>claude-3-sonnet</td><td>26.3</td><td>27.6</td><td>27.0</td></tr>
+    <tr><td>claude-3-haiku</td><td>19.0</td><td>14.4</td><td>16.7</td></tr>
+    <tr><td>gemini-1.5-pro</td><td>21.7</td><td>14.0</td><td>17.9</td></tr>
+    <tr><td>gemini-1.5-flash</td><td>17.4</td><td>26.0</td><td>21.7</td></tr>
+    <tr><td>mistral-large</td><td>30.7</td><td>22.4</td><td>26.6</td></tr>
+    <tr><td>mixtral-8x22b</td><td>17.7</td><td>31.6</td><td>24.7</td></tr>
+    <tr><td>meta-llama-3-70B</td><td>14.8</td><td>14.4</td><td>14.6</td></tr>
+  </table>
+  <p>注：除 Llama-3 用 text-ReAct 外均通过 function calling；均值按领域加权而非按任务。
+  Figure 3（τ-retail 上 pass^1）：<strong>FC &gt; ReAct &gt; Act</strong>（gpt-4o FC 约 60，gpt-3.5-turbo 约 20 出头）。
+  Figure 4（τ-retail 上随 k=1,2,4,8,16,32）：pass^k（实线）随 k 增大<strong>下降</strong>，pass@k（虚线）随 k 增大<strong>上升趋于 100%</strong>——
+  「偶尔成功」与「稳定可靠」是两回事。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 66</span>τ-bench Has Evolved（τ-bench 的演进时间线）</h3>
+  <figure><img src="slides/slide-66.png" alt="Slide 66 τ-bench 演进" loading="lazy"><figcaption>从 τ-bench 到 τ²-bench、τ-knowledge、τ-voice 的时间线</figcaption></figure>
+  <p>τ-bench 系列持续演进（每项附 Paper / Blog 链接）：</p>
+  <ul>
+    <li><span class="term">τ-bench</span>（2024 年 6 月）：工具-智能体-用户交互的原始基准；智能体与模拟用户对话并调用工具，以可验证的数据库结果和 pass^k 可靠性指标评分；领域：Retail、Airline；</li>
+    <li><span class="term">τ²-bench</span>（2025 年 6 月）：<strong>双重控制（Dual control）</strong>——用户现在也能作用于世界，智能体不仅要代用户行动，还要引导用户完成只有用户自己能做的步骤；新增领域：Telecom；</li>
+    <li><span class="term">Task audit &amp; fixes</span>（2026 年 2 月）：审计并修正了 airline 与 retail 领域的 50+ 任务——修正预期动作、含糊指令与不可能约束；</li>
+    <li><span class="term">τ-knowledge</span>（2026 年 3 月）：知识密集型任务——智能体在约 700 篇文档的真实知识库上检索与推理，把检索与政策应用结合；新增领域：Banking；</li>
+    <li><span class="term">τ-voice</span>（2026 年 3 月）：实时语音——全双工对话，含打断、口音与背景噪声，任务严谨性不变，模态换成语音；领域：Retail、Airline、Telecom、Banking。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 67</span>Failure Modes in Tool Use（工具使用的失效模式）</h3>
+  <figure><img src="slides/slide-67.png" alt="Slide 67 失效模式" loading="lazy"><figcaption>单次调用 / 多步链 / 对话三个层面的失效模式</figcaption></figure>
+  <p>工具使用的失效模式按三个层面归类：</p>
+  <ul>
+    <li><span class="term">单次调用（Single call）</span>：Selection——选错工具，或本不需要工具却调了；Arguments——编造字段、类型或单位错误；Hallucinated tool——调用根本不存在的 API；</li>
+    <li><span class="term">多步链（Multi-step chain）</span>：Sequencing——跳过前置调用、顺序错误；Recovery——对同一个失败调用反复重试，而不是回退换路；</li>
+    <li><span class="term">对话（Conversation）</span>：Policy——在规则禁止时仍行动；Interaction——自行假设而不去询问用户；Non-determinism——一次通过、重试却失败（pass^k 要度量的正是这种不一致）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="summary">
+<h2 class="chapter-title">本讲总结（Lecture Summary）</h2>
+<p class="chapter-sub">对应原讲义的完整脉络（Slide 1–68）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 68</span>Lecture Summary（讲义结束页的六条总结）</h3>
+  <figure><img src="slides/slide-68.png" alt="Slide 68 本讲总结" loading="lazy"><figcaption>原讲义的六条要点总结</figcaption></figure>
+  <p>原讲义给出的六条总结：</p>
+  <ul>
+    <li><strong>Why tools</strong>：LLM 训练时没见过的、或够不着的东西（what LLMs didn't see in training, or can't reach）；</li>
+    <li><strong>Toolformer</strong>：LM 自学调用哪些 API、何时调用、传什么参数；</li>
+    <li><strong>Gorilla</strong>：在 1.6k API 上训练；用 AST 匹配度量幻觉；</li>
+    <li><strong>REST / function calling / MCP</strong>：从手写请求到 tools/list、tools/call；</li>
+    <li><strong>BFCL / ToolBench / τ-bench</strong>：单次调用、多步链、工具-智能体-用户三个评测层面；</li>
+    <li><strong>Failure modes</strong>：选错工具、编造参数、顺序错误。</li>
+  </ul>
+</article>
+
+<p>本讲以「RAG 的局限 → 为什么需要工具 → 如何学会调用 → 如何标准化暴露 → 如何评测」为主线：</p>
+<ul>
+  <li><strong>RAG 的局限</strong>：多文档上下文呈 U 形精度（迷失在中间）、RAG 在 10–20 篇文档后饱和；引用本身也会被幻觉（商用聊天机器人引用精确率均值 74.5%、召回率均值 51.5%；幻觉引用已进入学术论文并遭 ICLR desk-reject）；超长上下文的大海捞针测试同样退化。</li>
+  <li><strong>为什么需要工具</strong>：三类缺口——不能算（GPT-4 多位数乘法仅约 59%）、训练没见过、够不着；工具把可靠子步骤外包出去。</li>
+  <li><strong>学习调用工具</strong>：Toolformer 用「采样→执行→按损失过滤」自监督构造含 API 调用的数据集，6B 模型在数学/时间任务上反超 175B GPT-3；ToolkenGPT 把工具做成新 token（toolken），234 个工具下精度不掉。</li>
+  <li><strong>扩展到海量工具</strong>：ToolLLM/ToolBench 从 RapidAPI 爬 6000+ API、ChatGPT 标注解法路径；Gorilla 用 1645 条真实 API + GPT-4 自指令生成 16,450 对训练，RAT 保证对低质量检索鲁棒，AST 子树匹配度量幻觉，精度更高且幻觉更少。</li>
+  <li><strong>标准接口</strong>：范式从「改模型适配工具」转向「改工具描述适配任意模型」；三代演进 REST（面向人）→ Function Calling（面向模型，JSON schema）→ MCP（面向生态，tools/list + tools/call，运行时发现、一次编写跨宿主复用），并用课程 LMS 的 FastMCP 示例演示从 OpenAPI 自动生成工具与入站/出站双向鉴权。</li>
+  <li><strong>评测</strong>：BFCL 覆盖 AST 离线/真实执行/状态评估并测试相关性拒答；τ-bench 引入工具-智能体-用户三方交互与领域政策，用 pass^k 奖励可靠性；失效模式按单次调用（选错/编造参数/幻觉工具）、多步链（顺序/恢复）、对话（政策/交互/非确定性）三层归类。</li>
+</ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接（References）</h2>
+<p class="chapter-sub">原讲义中出现的论文与资源</p>
+<ul>
+  <li>Schick et al., 2023. Toolformer: Language Models Can Teach Themselves to Use Tools — <a href="https://arxiv.org/abs/2302.04761">arXiv:2302.04761</a></li>
+  <li>Liu et al., 2023. Lost in the Middle: How Language Models Use Long Contexts（含多文档位置偏差实验与商用搜索增强聊天机器人引用质量评测）— <a href="https://arxiv.org/abs/2307.03172">arXiv:2307.03172</a></li>
+  <li>Dziri et al., 2023. Faith and Fate: Limits of Transformers on Compositionality — <a href="https://arxiv.org/abs/2305.18654">arXiv:2305.18654</a></li>
+  <li>Wang et al., 2024（原讲义标注 arXiv:2403.15452）. 工具学习综述（Tool Learning with Foundation Models 谱系）— <a href="https://arxiv.org/abs/2403.15452">arXiv:2403.15452</a></li>
+  <li>Hao et al., 2024. ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings — <a href="https://arxiv.org/abs/2305.11554">arXiv:2305.11554</a></li>
+  <li>Patil et al., 2023. Gorilla: Large Language Model Connected with Massive APIs — <a href="https://arxiv.org/abs/2305.15334">arXiv:2305.15334</a></li>
+  <li>Qin et al., 2023. ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs — <a href="https://arxiv.org/abs/2307.16789">arXiv:2307.16789</a>；代码与数据：<a href="https://github.com/OpenBMB/ToolBench">github.com/OpenBMB/ToolBench</a></li>
+  <li>Patil et al., 2025. The Berkeley Function Calling Leaderboard (BFCL) — <a href="https://arxiv.org/abs/2409.00920">arXiv:2409.00920</a>；排行榜：<a href="https://gorilla.cs.berkeley.edu/leaderboard.html">gorilla.cs.berkeley.edu/leaderboard.html</a>；ICML 2025 poster：<a href="https://icml.cc/virtual/2025/poster/46593">icml.cc/virtual/2025/poster/46593</a></li>
+  <li>Yao et al., 2024. τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains — <a href="https://arxiv.org/abs/2406.12045">arXiv:2406.12045</a></li>
+  <li>Greg Kamradt. Needle In A HayStack（长上下文压力测试）— <a href="https://github.com/gkamradt/needle-in-a-haystack">github.com/gkamradt/needle-in-a-haystack</a></li>
+  <li>Model Context Protocol（MCP）规范 — 本讲必读材料精讲：<a href="../readings/mcp-specification/">readings/mcp-specification</a></li>
+  <li>FastMCP 文档（OpenAPI 集成 / 令牌鉴权）— <a href="https://gofastmcp.com/integrations/openapi">gofastmcp.com/integrations/openapi</a>、<a href="https://gofastmcp.com/servers/auth/token-verification">gofastmcp.com/servers/auth/token-verification</a></li>
+  <li>GPTZero. 2025 年录用论文中的幻觉引用分析（Nazar Shmatko，2026-01-21）— <a href="https://gptzero.me/">gptzero.me</a></li>
+  <li>ICLR 官方博客. Taking Actions on Hallucinated References（幻觉参考文献 desk-reject 公告）— <a href="https://iclr.cc/">iclr.cc</a></li>
+</ul>
+<p class="note">注：讲义中部分引用仅标注作者与年份，上表 arXiv 编号为对应论文的标准版本链接，供延伸阅读。</p>
+</section>
+
+</main>
+
+<footer>
+  <p>课程源头：<a href="https://cs329z.stanford.edu/">CS329Z: Engineering AI Agents（cs329z.stanford.edu）</a></p>
+  <p>专栏首页：<a href="../">CS329Z 中文教程专栏</a>　|　上一讲：<a href="../lecture03/">第三讲：检索增强生成（RAG + Agents）</a>　|　下一讲：第五讲（幻灯片尚未发布）</p>
+  <p>原始讲义 PDF：<a href="lecture04.pdf">lecture04.pdf</a></p>
+  <p>本教程为第三方学习笔记，内容版权归 Stanford CS329Z 课程所有；教程依据公开发布的讲义整理，忠于原讲义逐页呈现。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
