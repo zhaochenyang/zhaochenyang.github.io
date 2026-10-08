@@ -867,5 +867,39 @@
  data-theme="preferred_color_scheme" data-lang="zh-CN"
  crossorigin="anonymous" async></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0f766e;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#115e59;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.sp-qr-btn{background:#fff;color:var(--spc,#07c160);border:1.5px solid var(--spc,#07c160);border-radius:18px;padding:6px 16px;font-size:13px;cursor:pointer;}
+.sp-link{display:inline-block;background:#fff;color:#0f766e;border:1.5px solid #0f766e;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+#sp-qr-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:1100;align-items:center;justify-content:center;}
+#sp-qr-mask.open{display:flex;}
+#sp-qr-card{background:#fff;border-radius:14px;padding:18px;text-align:center;max-width:80vw;}
+#sp-qr-card img{max-width:240px;width:100%;}
+#sp-qr-card .sp-qr-tip{font-size:13px;color:#374151;margin-top:8px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><button class="sp-qr-btn" data-src="https://zhaochenyang.github.io/health/assets/sponsor-wechat.png" data-label="微信赞赏" style="--spc:#07c160">微信赞赏</button></div>
+</div>
+<div id="sp-qr-mask"><div id="sp-qr-card"><img id="sp-qr-img" alt="赞赏码"><div class="sp-qr-tip" id="sp-qr-tip">扫码赞赏，金额随意，心意无价</div></div></div>
+<script>
+(function(){
+  var mask=document.getElementById('sp-qr-mask'),img=document.getElementById('sp-qr-img'),tip=document.getElementById('sp-qr-tip');
+  var bs=document.querySelectorAll('.sp-qr-btn');
+  for(var i=0;i<bs.length;i++){
+    bs[i].addEventListener('click',function(){
+      img.src=this.getAttribute('data-src');
+      tip.textContent='扫码赞赏（'+this.getAttribute('data-label')+'），金额随意，心意无价';
+      mask.classList.add('open');
+    });
+  }
+  mask.addEventListener('click',function(){mask.classList.remove('open');});
+})();
+</script>
 </body>
 </html>
