@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17章 口腔健康：龋齿·牙周病·口腔溃疡·智齿 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.simple{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;display:block;overflow-x:auto;}
+  table.simple th,table.simple td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.simple th{background:var(--bg-soft);white-space:nowrap;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第17章 · 常见病专题</div>
+  <h1>口腔健康：龋齿 · 牙周病 · 口腔溃疡 · 智齿 · 口臭 · 儿童口腔</h1>
+  <p>"老掉牙"不是自然规律，是病 —— 口腔是人体的入口，也是被忽视最久的角落：每个问题按五问展开：是什么 · 什么原理 · 怎么预防 · 怎么护理 · 何时就医</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../16-decision/">← 第16章：就医决策</a>
+    <a href="../18-ent/">第18章：耳鼻喉 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">口腔基础</a>
+    <a class="anchor" href="#s2">龋齿</a>
+    <a class="anchor" href="#s3">牙周病</a>
+    <a class="anchor" href="#s4">口腔溃疡</a>
+    <a class="anchor" href="#s5">智齿</a>
+    <a class="anchor" href="#s6">口臭敏感外伤</a>
+    <a class="anchor" href="#s7">儿童口腔</a>
+    <a class="anchor" href="#s8">红旗与谣言</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本站内容仅供健康教育与参考，不构成医疗建议、诊断或治疗方案，不能替代执业医师面诊；请勿仅依据本站内容自行用药或更改治疗。本章涉及的处方药物（如抗生素、止痛药）均须由医生或药师评估后使用。如有不适请及时就医，<strong>颌面部肿胀伴发热、张口受限或呼吸困难，请立即就医或拨打 120</strong>。
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、口腔基础：一个 24 小时开工的"生态系统"</h2>
+    <p class="chapter-sub">先懂嘴里的"江湖"，再谈牙病——几乎所有口腔问题，都是生态失衡的结果</p>
+
+    <article class="view">
+      <h3>嘴里不是"干净的"，而是一个细菌江湖</h3>
+      <p class="ctx">口腔里常驻着数百种细菌，它们在牙齿表面抱团形成一层软膜，叫<strong>牙菌斑</strong>——刷不掉的"生物膜"，是绝大多数牙病的起点。这套生态的运转公式很简单：<strong>细菌 + 糖（食物残渣里的碳水化合物）+ 时间 = 酸</strong>。酸不断冲刷牙齿，矿物质流失（脱矿），牙就坏了；反过来，唾液里的钙磷和牙膏里的氟，又在不断帮牙齿"补矿"（再矿化）。<strong>牙齿的健康，就是脱矿与再矿化的拉锯战</strong>——你每多吃一次零食、每少刷一次牙，都是在往脱矿那边加砝码。</p>
+      <p class="ctx">这也是为什么口腔健康的核心动作只有三件：<strong>减少细菌（刷干净）、减少糖的频率（少给原料）、强化再矿化（用氟）</strong>。后面所有疾病，都是这个公式失衡后的不同结局。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/biology-of-the-mouth-and-teeth/biology-of-the-teeth">默沙东诊疗手册大众版《牙齿生物学》（牙菌斑、脱矿与再矿化）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（"细菌产酸导致龋病""糖与牙齿接触的时间至关重要"）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙齿的"三层房子"：为什么牙坏了不能自己长回来</h3>
+      <p class="ctx">牙齿从外到内三层：<strong>牙釉质</strong>是人体最硬的组织，像房子的外墙，没有神经、没有血管，<strong>坏了不能再生</strong>；<strong>牙本质</strong>是中间的墙体，里面密布通向牙髓的小管，所以烂到这一层就开始对冷热酸甜敏感；最里面的<strong>牙髓</strong>是"水电间"，装着神经和血管，烂到这里就是"牙神经疼"——夜里跳着疼、疼到睡不着的那种。皮肤破了能长好，牙齿坏了不能自愈（只有最早期、肉眼几乎看不见的脱矿，在足量氟的帮助下能逆转），<strong>所以牙病的铁律是：小洞不补，大洞吃苦</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/biology-of-the-mouth-and-teeth/biology-of-the-teeth">默沙东诊疗手册大众版《牙齿生物学》（牙齿结构与萌出）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（2025年3月）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>口腔病为什么值得单独学一章：被严重低估的"全民病"</h3>
+      <p class="ctx">世界卫生组织 2025 年实况报道的数据很扎心：全球<strong>约 37 亿人</strong>受口腔疾病影响；<strong>未经治疗的恒牙龋齿是全球最常见的健康问题</strong>；重度牙周病超过 <strong>10 亿例</strong>。国内的情况同样不乐观——《第四次全国口腔健康流行病学调查》（2017 年发布，结果刊载于《中华口腔医学杂志》2018 年系列报告）显示：5 岁儿童乳牙患龋率约七成，12 岁儿童恒牙患龋率近四成，35-44 岁成人牙周健康率不足一成、牙石检出率超过九成——<strong>几乎每个成年人嘴里都有问题，只是大多数还没疼到非看不可</strong>。好消息是：口腔病几乎全是"可防可控"的，而且口腔健康是《健康中国行动（2019—2030年）》的专项行动之一，国家层面给出的关键词就是：含氟牙膏、定期口腔检查、儿童窝沟封闭。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（2025年3月，全球负担数据）</a> · <a href="https://www.gov.cn/zhengce/zhengceku/2019-07/15/content_5409492.htm">国务院《关于实施健康中国行动的意见》（健康中国行动框架，含口腔健康专项行动）</a> · 国内数据出处：《第四次全国口腔健康流行病学调查》（2017年发布）</div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-17-1.png" alt="牙齿牙刷牙镜与放大镜口腔检查概念插画"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、龋齿（蛀牙）：一场可以预防的"慢动作事故"</h2>
+    <p class="chapter-sub">从一个小黑点到拔牙，龋齿给了你无数次低成本止损的机会——关键是别等它喊疼</p>
+
+    <article class="view">
+      <h3>五问龋齿：它是怎么一步步烂下去的</h3>
+      <p class="ctx"><strong>是什么：</strong>龋齿是细菌利用糖产酸、把牙齿硬组织一点点"溶"掉的慢性破坏，俗称蛀牙、虫牙——里面没有虫，是酸在干活。</p>
+      <p class="ctx"><strong>进展路线：</strong>病变从最外层的牙釉质开始，进展慢、<strong>这个阶段通常不疼</strong>，照镜子可能只看到一个小白斑或小黑点；一旦突破釉质进入牙本质，速度明显加快，开始对冷、甜、酸敏感；再往里烂穿到牙髓，就是"牙神经发炎"（牙髓炎）——自发痛、夜间痛、疼到撞墙；牙髓坏死后感染蔓延到牙根尖，形成脓肿，脸肿、咬合痛、甚至发热。越往后，治疗越贵、越受罪、保住牙的概率越低。</p>
+      <p class="ctx"><strong>一个反直觉的事实：</strong>不疼 ≠ 没事。龋齿在"最便宜、最好治"的阶段恰恰是不疼的，等它疼起来，往往已经要根管治疗了。<strong>每半年到一年一次口腔检查，就是在用最低成本"截胡"</strong>。</p>
+      <table class="simple">
+        <tr><th>阶段</th><th>烂到哪里</th><th>典型感觉</th><th>治疗方式（由医生评估）</th><th>大致代价</th></tr>
+        <tr><td>早期脱矿</td><td>釉质表层</td><td>无感觉，仅白斑/黑点</td><td>强化清洁+用氟，可能逆转</td><td>极低</td></tr>
+        <tr><td>浅龋/中龋</td><td>釉质→牙本质</td><td>无症状，或遇冷甜一过性酸软</td><td>补牙（充填）</td><td>低，一次搞定</td></tr>
+        <tr><td>牙髓炎</td><td>烂穿到牙神经</td><td>自发痛、夜间痛、冷热加剧</td><td>根管治疗+牙冠</td><td>中-高，多次就诊</td></tr>
+        <tr><td>根尖周炎/脓肿</td><td>感染出牙根</td><td>咬合痛、脸肿、发热</td><td>根管或拔牙+修复</td><td>高，牙可能保不住</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（进展与症状）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/pulpitis">默沙东大众版《牙髓炎》</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/periapical-abscess">默沙东大众版《根尖周脓肿》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>补牙、根管、拔牙：三种结局，全看你什么时候去</h3>
+      <p class="ctx">龋齿的治疗决策逻辑，一句话：<strong>能补就补，保住牙神经；神经保不住就做根管保住牙；牙保不住才拔</strong>。补牙是磨掉腐坏部分、用材料填上，一次就诊、花费最小；根管治疗是把发炎坏死的牙神经清理干净、根管消毒后充填，通常需要 2-4 次就诊，之后多数要做一个牙冠保护（失去神经的牙会变脆）；拔牙是最后选项——而且<strong>拔了不是结束</strong>，缺牙长期不修复，邻牙倾斜、对颌牙伸长、咬合紊乱，后续修复（种植牙等）的花费远超当初补牙。另外提醒：孕期、糖尿病、长期服用抗凝药或骨质疏松类药物（双膦酸盐类）的人，看牙前务必主动告知医生全身情况与用药史（药物相关颌骨坏死虽罕见但需预防，具体由医生评估）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（治疗）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/periapical-abscess">默沙东大众版《根尖周脓肿》（根管与拔牙指征）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/medication-related-osteonecrosis-of-the-jaw-mronj">默沙东大众版《药物相关性颌骨坏死》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>防龋三件套：氟、牙线、窝沟封闭（外加"管住吃糖的频率"）</h3>
+      <p class="ctx"><strong>第一件：含氟牙膏。</strong>WHO 建议每日两次使用含氟牙膏（成人牙膏氟浓度通常为 1000-1500 ppm 区间），氟能大幅提升牙釉质的抗酸能力、促进再矿化——<strong>含氟牙膏是公共卫生层面证据最扎实的防龋手段，没有之一</strong>。"怕氟中毒所以不用氟牙膏"是典型误区：刷牙时吐出泡沫、不大量吞咽，正常使用是安全的。儿童用量原则（与我国口腔健康科普通行口径一致）：<strong>3 岁以下米粒大小、3-6 岁豌豆大小</strong>，家长帮助并监督刷牙、防止吞咽，具体以牙膏说明与口腔医生建议为准。</p>
+      <p class="ctx"><strong>第二件：清洁牙缝。</strong>牙刷只能刷到牙齿的三个面，牙缝是龋齿和牙周病的重灾区——<strong>每天至少一次牙线或牙缝刷</strong>（牙缝大的人牙缝刷更高效，水牙线是辅助不能替代）。"用牙线会让牙缝变大"是谣言，牙缝变大是牙结石和牙周病的锅。</p>
+      <p class="ctx"><strong>第三件：窝沟封闭。</strong>大牙咬合面有很多深沟裂隙，刷毛根本进不去，是儿童龋齿的高发地。窝沟封闭就是给这些沟"贴一层保护膜"，把细菌和食物隔绝在外——<strong>这是国家在儿童中重点推广的防龋措施</strong>，最佳时机是第一恒磨牙（"六龄齿"）萌出后尽快做（约 6-7 岁），第二恒磨牙（约 12 岁）同样适用，部分项目免费，具体咨询当地口腔门诊或学校卫生项目。</p>
+      <p class="ctx"><strong>外加一条：控糖的关键是频率，不是总量。</strong>细菌产酸攻击牙齿，每次进食后可持续约半小时到一小时。一天吃 6 次零食，等于让牙齿泡在酸里 6 个周期——<strong>同样是 3 块饼干，一次吃完比分三次吃对牙齿友好得多</strong>；喝完含糖饮料用清水漱口、不马上刷牙（酸蚀后釉质软，等半小时再刷）；少在睡前吃东西，尤其儿童含着奶瓶入睡是"奶瓶龋"的头号元凶（见第七节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（含氟牙膏每日两次、减少游离糖）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（氟化物促再矿化、窝沟封闭原理、糖接触时间）</a> · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《中国公民健康素养66条（2024年版）释义》（口腔健康条目：早晚刷牙、含氟牙膏、定期检查）</a> · <a href="https://www.gov.cn/zhengce/zhengceku/2019-07/15/content_5409492.htm">国务院《关于实施健康中国行动的意见》（儿童窝沟封闭等口腔健康举措）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、牙周病：静悄悄的"牙齿拆迁队"</h2>
+    <p class="chapter-sub">龋齿是一颗牙一颗牙地坏，牙周病是一排牙一排牙地松——成年人掉牙的头号元凶</p>
+
+    <article class="view">
+      <h3>数据说话：为什么这是"全民病"</h3>
+      <p class="ctx">《第四次全国口腔健康流行病学调查》（2017 年发布）的结果几乎可以称为"牙周危机"：35-44 岁成人中，<strong>牙龈出血检出率约 87%，牙石检出率约 97%，而牙周健康率仅约 9%</strong>——也就是说，十个成年人里，九个嘴里有牙周问题。WHO 的全球口径同样严峻：重度牙周病病例超过 10 亿，是牙齿缺失的主要原因。牙周病早期不疼不痒，唯一常见信号是<strong>刷牙出血</strong>，而多数人的反应是"上火，换支清火牙膏"——这个误区，让它静悄悄地完成了对牙齿地基的拆迁。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：国内数据出处：《第四次全国口腔健康流行病学调查》（2017年发布，《中华口腔医学杂志》2018年系列报告） · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（重度牙周病超10亿例）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/gingivitis">默沙东大众版《牙龈炎》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙龈炎 → 牙周炎：一场从"出血"到"松动"的滑坡</h3>
+      <p class="ctx"><strong>第一阶段：牙龈炎。</strong>牙菌斑堆积刺激牙龈，牙龈红肿、刷牙咬硬物出血——<strong>这个阶段完全可逆</strong>，认真清洁+洗牙就能回到健康。</p>
+      <p class="ctx"><strong>第二阶段：牙周炎。</strong>炎症越过牙龈，开始破坏牙齿的"地基"——牙周膜和牙槽骨。牙龈退缩（牙齿显得越来越长）、形成深牙周袋（细菌的"地下车库"，更难清洁）、牙槽骨吸收（地基塌方），最终牙齿松动、移位、脱落。默沙东手册的定义很直白：牙周炎是"严重的牙龈炎"，破坏的是牙齿的支撑结构。<strong>关键区别：牙龈炎可逆，牙周炎造成的骨吸收基本不可逆</strong>——治疗的目标是"刹车"，不是"倒车"。所以牙周病是"发现即干预"，拖一天，地基少一分。</p>
+      <table class="simple">
+        <tr><th>对比项</th><th>牙龈炎</th><th>牙周炎</th></tr>
+        <tr><td>病变范围</td><td>仅牙龈</td><td>牙龈+牙周膜+牙槽骨（支撑结构）</td></tr>
+        <tr><td>典型信号</td><td>刷牙出血、红肿</td><td>牙龈退缩、口臭、牙齿松动移位</td></tr>
+        <tr><td>骨吸收</td><td>无</td><td>有，且基本不可逆</td></tr>
+        <tr><td>可逆性</td><td>可逆</td><td>只能控制进展</td></tr>
+        <tr><td>治疗</td><td>洁治（洗牙）+日常清洁</td><td>洁治+龈下刮治，重者需手术，遵医嘱</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/gingivitis">默沙东大众版《牙龈炎》</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/periodontitis">默沙东大众版《牙周炎》（定义、进展与后果）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/gum-recession">默沙东大众版《牙龈退缩》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>洗牙与龈下刮治：给牙齿"清地基"，不是"伤牙"</h3>
+      <p class="ctx"><strong>洗牙（洁治）：</strong>用超声器械震碎并冲走牙结石——牙结石是钙化了的菌斑，<strong>刷不掉，只能靠专业器械清</strong>，它是牙龈持续发炎和牙周袋形成的物理基础。建议频率：普通人每半年到一年一次，牙周病患者遵医嘱更频密。</p>
+      <p class="ctx"><strong>龈下刮治（深层清洁）：</strong>牙周炎患者牙周袋内的结石藏在牙龈下面，普通洗牙够不着，需要用专门器械深入龈下刮除并做根面平整——这是牙周基础治疗的核心步骤，通常需分次进行、必要时局部麻醉，是否进行、进行几次由医生评估。</p>
+      <p class="ctx"><strong>破除两大"洗牙恐惧"：</strong>①"洗牙把牙缝洗大了、牙洗松了"——真相是牙缝本来就被牙结石和退缩的牙龈"填"着，洗掉结石后真实状况暴露了，松动的牙本来就在松，<strong>不洗才会越松越快</strong>；②"洗牙伤牙釉质"——规范超声洁治对釉质的损伤微乎其微，远小于牙结石对牙周的持续破坏。洗牙后一过性的酸软、少量出血属正常，一般数日内缓解。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/periodontitis">默沙东大众版《牙周炎》（"洗牙和根面平整"为基本治疗）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/gingivitis">默沙东大众版《牙龈炎》（专业清洁的作用）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙周病不只是嘴里的事：它和全身健康连在一起</h3>
+      <p class="ctx">牙周炎的破坏并不局限在牙龈——发炎的牙周组织里布满细菌和炎症因子，它们可以通过溃疡的牙周袋上皮进入血液循环，让口腔炎症成为“全身性低度炎症”的一部分。目前流行病学与机制研究提示的关联包括：①<strong>糖尿病</strong>——双向影响，前面已述：重度牙周炎患者血糖更难控制，牙周规范治疗后部分患者血糖指标可获改善；②<strong>心脑血管疾病</strong>——牙周炎与动脉粥样硬化、冠心病存在流行病学关联（相关关系，因果仍在研究，但“控制口腔炎症对心血管有益”的方向性结论被普遍接受，详见<a href="../05-cardio/">第5章</a>）；③<strong>不良妊娠结局</strong>——孕期激素变化使牙龈炎症加重，重度牙周炎与早产、低出生体重相关，所以备孕口腔检查不只是智齿的事；④<strong>吸入性肺炎</strong>——口腔卫生差的老年人（尤其卧床、吞咽功能下降者），口咽部致病菌误吸入肺的风险升高，这也是“老年照护必须包含口腔清洁”的重要原因；⑤<strong>咀嚼与营养</strong>——牙齿松动缺失、咀嚼力下降直接影响进食质量，与老年人营养不良、体重下降相关。结论很朴素：<strong>把牙周病当慢性病管理，定期洁治、控制炎症，受益的不只是牙</strong>；反过来，糖尿病、心血管病、备孕人群，把口腔检查列入常规日程，是性价比很高的健康动作。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/periodontitis">默沙东大众版《牙周炎》（危险因素与全身关联）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（口腔疾病与慢性病的共同危险因素）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙周病的"加速器"与家庭防线：烟、糖、血糖，和一把正确的牙刷</h3>
+      <p class="ctx"><strong>两大加速器：</strong>①<strong>吸烟</strong>——烟草是牙周炎明确的强危险因素，不仅加速骨吸收，还会让牙龈出血这个"警报"变迟钝（吸烟者牙龈出血反而不明显，等发现时往往更重）；②<strong>糖尿病</strong>——与牙周病是"双向关系"：血糖控制差的人牙周炎更重、更难治，而重度牙周炎又反过来干扰血糖控制（详见<a href="../06-metabolic/">第6章</a>）——糖尿病患者请每年至少一次口腔检查。此外维生素C缺乏、长期精神压力也与牙周问题相关。</p>
+      <p class="ctx"><strong>家庭防线：</strong>①<strong>刷牙方法</strong>：巴氏刷牙法——刷毛与牙齿呈 45 度斜对牙龈沟，小幅度水平颤动后拂刷，每次至少 2 分钟、每天至少 2 次（睡前那次最重要）；②<strong>牙缝每天清</strong>：牙线/牙缝刷，见第二节；③<strong>定期洗牙</strong>：半年到一年一次；④<strong>电动牙刷</strong>不是智商税，对刷不到位的人确有加成，但方法比工具重要。最后记住牙周病的报警信号：<strong>刷牙出血超过两周、持续口臭、牙龈退缩、牙齿变松或移位</strong>——出现任何一条，去口腔科，别再换"清火牙膏"了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/periodontitis">默沙东大众版《牙周炎》（吸烟、糖尿病等危险因素）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（烟草、游离糖为危险因素）</a> · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《中国公民健康素养66条（2024年版）释义》（定期口腔检查）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、口腔溃疡：绝大多数是"自限"的，但两周不愈就是红旗</h2>
+    <p class="chapter-sub">疼是真疼，多数也是真好——学会区分"普通溃疡"和"必须就医的溃疡"</p>
+
+    <article class="view">
+      <h3>五问复发性口腔溃疡（阿弗他溃疡）</h3>
+      <p class="ctx"><strong>是什么：</strong>口腔黏膜上反复出现的疼痛性溃疡，圆形或椭圆形、中央凹陷发黄白、周围一圈红晕，碰一下钻心地疼——是最常见的口腔黏膜病，很多人从儿童期开始、终身反复。</p>
+      <p class="ctx"><strong>诱因：</strong>局部外伤（咬到、硬食划伤、刷牙太猛、矫正器摩擦）、精神压力大、熬夜、月经期、部分食物（巧克力、坚果、菠萝等因人而异），以及维生素/铁缺乏等。注意：<strong>它不是"上火"，也不是单纯的"缺维生素"</strong>，盲目大量补维生素对多数人无效。</p>
+      <p class="ctx"><strong>病程：</strong>典型的小溃疡先有灼痛，1-2 天成溃疡，<strong>约 7-14 天自愈、不留疤</strong>；较大的溃疡（直径超过 1 厘米）可能持续数周、愈合留疤。</p>
+      <p class="ctx"><strong>怎么护理：</strong>没有"根治"办法，处理以减轻疼痛、缩短病程为主：避免辛辣过烫和粗糙食物、温盐水或医生推荐的漱口水漱口；疼痛影响进食睡眠时，可使用市售的口腔溃疡贴膜/喷剂缓解（按说明书使用）；发作频繁或溃疡巨大时就医，医生可能评估后给予局部抗炎等治疗（遵医嘱）。</p>
+      <p class="ctx"><strong>何时就医：</strong>单个溃疡<strong>超过 2-3 周不愈合</strong>、溃疡越来越大或此起彼伏不间断、伴发热/皮疹/外阴或眼睛也长溃疡（需排查白塞病等全身性疾病）、儿童溃疡严重影响进食饮水——都该去口腔科或黏膜科。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/recurrent-aphthous-stomatitis">默沙东大众版《复发性阿弗他口炎》（病程、诱因、处理）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/mouth-sores-and-inflammation">默沙东大众版《口腔溃疡和炎症》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>口腔癌红旗：两周不愈的溃疡、擦不掉的白斑红斑</h3>
+      <p class="ctx">口腔癌（唇癌、舌癌、颊黏膜癌等）全球每年新发约 39 万例、死亡约 19 万例（WHO 2022 年数据）——它的可怕在于发现晚，它的可防在于<strong>口腔是人体少数能"自己看见"的器官</strong>。红旗信号：<strong>①口腔溃疡超过 2 周不愈合，或愈合后又反复在同一处破溃；②口腔内擦不掉的白斑（白斑病）、红斑，或红白相间斑；③不明原因的肿块、硬结、糜烂；④持续的声音嘶哑、吞咽不适、舌运动受限；⑤颈部摸到进行性增大的无痛淋巴结</strong>。出现任一条，去口腔颌面外科，必要时活检——<strong>早期口腔癌的治愈率很高，晚期则凶险</strong>（筛查逻辑详见<a href="../12-cancer/">第12章</a>）。</p>
+      <p class="ctx"><strong>三个明确的风险因素：</strong>①<strong>槟榔</strong>——国际癌症研究机构（IARC）1 类致癌物，嚼槟榔者口腔黏膜下纤维化与口腔癌风险显著升高，<strong>最好的选择是不嚼</strong>；②<strong>吸烟+饮酒</strong>——两者协同放大风险；③<strong>长期不处理的残根残冠、锐利牙缘</strong>反复摩擦同一处黏膜。预防就是三件事：戒烟限酒、不嚼槟榔、定期检查。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（口腔癌新发/死亡数据、烟草槟榔风险）</a> · <a href="https://monographs.iarc.who.int/list-of-classifications/">国际癌症研究机构（IARC）致癌物分类清单（槟榔为1类）</a> · <a href="https://monographs.iarc.who.int/wp-content/uploads/2019/12/OrganSitePoster.Chinese.pdf">IARC《致癌物与部位》中文海报</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/color-changes-and-spots-in-the-mouth">默沙东大众版《口腔中的颜色变化和斑点》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、智齿与冠周炎：拔不拔，不是玄学</h2>
+    <p class="chapter-sub">智齿是人类进化留下的"毛坯房"——空间不够，就容易出事</p>
+
+    <article class="view">
+      <h3>智齿为什么总惹事：颌骨没给它留够位置</h3>
+      <p class="ctx">智齿是最后萌出的第三磨牙（17-25 岁左右），人类颌骨随进化逐渐变小，多数人的颌骨已经没有它的"车位"——于是它只能歪着、横着、甚至倒着卡在骨头和牙龈里，这就是<strong>阻生牙</strong>（最常见的阻生牙就是智齿）。阻生智齿的麻烦有三类：①<strong>冠周炎</strong>——半萌出的智齿被牙龈"盖被子"（盲袋），食物残渣和细菌进去出不来，抵抗力一低（熬夜、感冒、经期）就急性发炎：智齿周围肿痛、张口受限、吞咽痛、甚至脸肿发热；②<strong>把邻牙顶坏</strong>——横长的智齿顶着前面的大牙，清洁死角导致邻牙龋坏，"一颗智齿烂掉两颗牙"并不少见；③反复发炎、牙列拥挤、囊肿等。</p>
+      <p class="ctx"><strong>冠周炎急性期怎么办：</strong>认真清洁+温盐水或医生指导的漱口水冲洗盲袋，<strong>尽早就诊做局部冲洗上药</strong>——这是最有效的缓解方式；疼痛和感染明显时，抗生素与止痛药<strong>须医生评估后使用</strong>，切勿自行翻找家里的剩药（抗生素使用原则见<a href="../03-medicine/">第3章</a>）。脸肿伴发热、张口严重受限、吞咽或呼吸困难，是感染扩散的信号，立即就医（颌面间隙感染可危及生命）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/impacted-teeth">默沙东大众版《阻生牙》（阻生与感染风险）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/introduction-to-urgent-dental-problems">默沙东大众版《口腔急症简介》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>拔不拔的决策表：不是"都该拔"，也不是"都不拔"</h3>
+      <p class="ctx">"智齿都要拔"和"智齿拔了伤神经不能拔"都是片面的。规范的逻辑是<strong>拍片（曲面断层片/CT）评估后分类决策</strong>：</p>
+      <table class="simple">
+        <tr><th>情况</th><th>常见处理（由医生评估）</th><th>理由</th></tr>
+        <tr><td>反复冠周炎、龋坏、顶坏邻牙、形成囊肿</td><td>建议拔除</td><td>留着持续制造问题</td></tr>
+        <tr><td>完全埋伏、无症状、不邻重要结构</td><td>定期观察（拍片随访）</td><td>无指征不盲目手术</td></tr>
+        <tr><td>完全萌出、位置正、有正常咬合、能清洁到位</td><td>可保留</td><td>是颗"正常工作"的牙</td></tr>
+        <tr><td>正畸需要、或反复成为口腔卫生死角</td><td>多建议拔除</td><td>配合整体治疗目标</td></tr>
+      </table>
+      <p class="ctx"><strong>三个常见疑问：</strong>①"拔智齿伤神经、脸会瘫？"——下颌智齿牙根可能靠近下牙槽神经，规范术前影像评估+规范操作可把风险降到很低，"面瘫"是把面部肿胀麻感和神经损伤混为一谈的夸张说法；②"年纪大了拔不动？"——恰恰相反，越年轻骨弹性好、恢复快，反复发炎的智齿拖到四五十岁再拔，难度和风险反而更高；③"备孕前要不要处理？"——孕期激素变化让牙龈炎症加重、智齿冠周炎高发，而孕期治疗受限——<strong>备孕口腔检查是官方和学界都建议的动作</strong>，有隐患的智齿孕前处理更稳妥。拔牙前后注意事项（停不停抗凝药等）务必遵医嘱，不要自行决定。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/impacted-teeth">默沙东大众版《阻生牙》（拔除与诊室处理）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/complications-after-dental-treatment">默沙东大众版《口腔治疗后的并发症》（拔牙后护理与干槽症识别）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、口臭、牙齿敏感、牙外伤：三个高频"小麻烦"</h2>
+    <p class="chapter-sub">口臭先查嘴、敏感要看因、外伤抢时间——三件事各有正确姿势</p>
+
+    <article class="view">
+      <h3>口臭：绝大多数"病从口出"，别总怪胃</h3>
+      <p class="ctx">默沙东手册的口径很明确：<strong>大多数口臭由口腔问题引起</strong>——牙周病、舌背堆积的细菌（舌苔）、龋洞和食物嵌塞、不良修复体藏污纳垢，以及口干（唾液是自洁主力）；其次才是鼻咽部问题（鼻窦炎、扁桃体结石，见<a href="../18-ent/">第18章</a>），真正由"胃病"引起的口臭是少数——<strong>"口臭=胃火，要治胃"是流传最广的误区之一</strong>，幽门螺杆菌与口臭的关联有限，详见<a href="../08-digestive/">第8章</a>。某些全身情况会产生特殊口气（糖尿病酮症的烂苹果味、肝肾功能异常等），但那是另一回事，且通常伴有其他明显症状。</p>
+      <p class="ctx"><strong>处理路径：</strong>①先把口腔的事做到位——刷牙+牙线+<strong>清洁舌背</strong>（刮舌器或牙刷轻刷舌面，很多人漏了这一步）、治好牙周病和龋齿、定期洗牙；②多喝水防口干，戒烟限酒，少碰葱蒜等"气味食物"（一过性，非病）；③漱口水只能短期辅助（含氯己定等成分的长期使用有牙齿着色等副作用，按说明或医嘱）；④做完这些仍有明显口臭，或伴发热、脓涕、咳脓痰、口腔异常斑点，就医排查。一个简易自测：用手掩住口鼻呼气对比"口气"与"鼻气"哪边更重——口气重多提示口腔来源，鼻气重多提示鼻腔鼻窦来源。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/bad-breath">默沙东大众版《口臭》（原因、判断与处理）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙齿敏感（一碰冷热酸甜就酸软）：牙在喊"我裸露了"</h3>
+      <p class="ctx"><strong>原理：</strong>牙本质里密布通向牙神经的小管，正常情况下被釉质（牙冠）和牙龈（牙根）保护。一旦釉质磨损（刷牙太横太用力、夜磨牙、酸蚀）或牙龈退缩（牙周病），牙本质小管暴露，冷热酸甜的刺激直通神经，就是一激灵的酸软痛——这就是牙本质敏感。</p>
+      <p class="ctx"><strong>怎么办：</strong>①先排除"假敏感"——<strong>敏感也可能是龋齿、牙隐裂、牙髓炎的信号</strong>，持续加重的敏感、定位明确的某颗牙敏感，先看牙医；②确认为牙本质敏感的，<strong>坚持使用脱敏牙膏</strong>（其成分通过封闭小管或安抚神经起效，关键在"坚持"：每天两次、连续数周，刷后吐出别马上大量漱口），配合软毛牙刷、改正横向大力刷牙的习惯；③夜磨牙者咨询医生是否需要𬌗垫；④牙龈退缩严重者，医生可能评估脱敏治疗、充填或牙龈手术等（遵医嘱）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/toothache">默沙东大众版《牙痛》（疼痛来源与就医指征）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/periodontal-diseases/gum-recession">默沙东大众版《牙龈退缩》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>牙外伤：整颗牙磕掉，黄金 30 分钟能救回来</h3>
+      <p class="ctx">运动、摔倒、车祸都可能让牙齿折断、松动甚至整颗脱出——<strong>恒牙整颗脱出（脱位）是真正的牙科急症，处理正确可以再植成功、长期保留</strong>。默沙东手册的急救要点：①<strong>立即找牙医</strong>，越快越好，<strong>30 分钟到 1 小时内再植成功机会较高</strong>，拖延会显著降低长期保留可能；②捡起牙齿时<strong>只拿牙冠（白色部分），绝不触碰牙根</strong>；③牙脏了可在冷水下轻冲约 10 秒，<strong>不要搓洗牙根、不要消毒、不要干燥保存</strong>；④保存方式三选一：<strong>放回牙槽窝原位</strong>（最佳，轻轻咬住纱布固定）→ <strong>泡在冷牛奶或生理盐水中</strong>→ 清醒且不会误吞的人可<strong>暂含在舌下/颊侧</strong>（注意防误吞，儿童不建议）；⑤乳牙磕掉一般不再植（避免损伤恒牙胚）；⑥再植后需牙医固定、评估破伤风与感染预防、后续多需根管治疗。牙齿折断：找回断片一起带来，同样泡牛奶保存。更多外伤处置见<a href="../04-firstaid/">第4章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/fractured-loosened-or-knocked-out-teeth">默沙东大众版《牙折、牙松动和牙脱位》（保存方法与黄金时间）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/introduction-to-urgent-dental-problems">默沙东大众版《口腔急症简介》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、儿童口腔健康：6 岁前打下的地基，管用一辈子</h2>
+    <p class="chapter-sub">乳牙不是"迟早要换的临时工"——它管咀嚼、管发音、还给恒牙"占座位"</p>
+
+    <article class="view">
+      <h3>奶瓶龋与"第一次看牙"：两个最容易踩的坑</h3>
+      <p class="ctx"><strong>坑一：含着奶瓶入睡。</strong>奶（包括配方奶、母乳）、果汁里的糖整夜泡着上前牙，细菌持续产酸，几个月就能把门牙蛀成"黑根"——这就是奶瓶龋（婴幼儿早期龋）。预防铁律：<strong>1 岁后逐步戒除夜奶、戒含奶瓶入睡</strong>；喝完奶用清水漱口或纱布清洁；<strong>不要嘴对嘴亲喂、不要共用餐具勺子</strong>——致龋菌会经唾液传给孩子。</p>
+      <p class="ctx"><strong>坑二：等牙疼了才第一次看牙。</strong>国内外的通行建议是：<strong>第一颗乳牙萌出后 6 个月内、最迟不超过 1 岁，完成第一次口腔检查</strong>——目的是评估萌出情况、指导喂养与清洁、建立"看牙不恐怖"的印象。乳牙的重要性常被低估：乳牙龋坏影响咀嚼和营养、炎症可能波及下方恒牙胚、乳牙过早缺失会导致邻牙移位、恒牙萌出空间不足而牙列不齐——<strong>乳牙坏了也要治，"等换牙"是错的</strong>。</p>
+      <p class="ctx"><strong>刷牙这件事谁来做：</strong>第一颗牙萌出就该开始刷（婴儿指套刷或软毛小头刷+极少量含氟牙膏）；学龄前儿童自己刷不干净，<strong>家长要帮刷到 7-8 岁</strong>，之后还要抽查——"孩子说刷了"和"刷干净了"是两回事。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（儿童龋与预防）</a> · <a href="https://www.gov.cn/zhengce/zhengceku/2019-07/15/content_5409492.htm">国务院《关于实施健康中国行动的意见》（婴幼儿与儿童口腔健康举措）</a> · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《中国公民健康素养66条（2024年版）释义》（儿童口腔健康）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>儿童防龋"官方三件套"：氟、封闭、定期检查</h3>
+      <table class="simple">
+        <tr><th>措施</th><th>怎么做</th><th>关键点</th></tr>
+        <tr><td>含氟牙膏</td><td>每天两次刷牙</td><td>3 岁以下米粒大小、3-6 岁豌豆大小；家长帮刷防吞咽；以说明与医嘱为准</td></tr>
+        <tr><td>窝沟封闭</td><td>大牙萌出后给咬合面"贴膜"</td><td>六龄齿（6-7岁）与第二恒磨牙（12岁）是重点窗口期；部分地区免费项目</td></tr>
+        <tr><td>局部用氟（涂氟）</td><td>口腔门诊定期涂氟化物</td><td>龋风险高的孩子收益更大，频率遵医嘱</td></tr>
+        <tr><td>定期口腔检查</td><td>每半年到一年一次</td><td>早发现早处理，别等喊疼</td></tr>
+      </table>
+      <p class="ctx"><strong>饮食配合：</strong>零食集中吃（控制频率）、少喝含糖饮料和乳酸菌饮料（糖含量常被低估）、吃完清水漱口。一个家长常问的问题："孩子不配合涂氟/封闭怎么办？"——可以分次脱敏、家长示范、选孩子状态好的时段，实在抗拒就暂缓并加强日常清洁与复查，<strong>不要因为一次哭闹就放弃整件事</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/zhengceku/2019-07/15/content_5409492.htm">国务院《关于实施健康中国行动的意见》（儿童口腔健康：局部用氟、窝沟封闭）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道（氟化物与游离糖）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/cavities">默沙东大众版《龋洞》（窝沟封闭与儿童预防）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>出牙期的难受、吃手与口呼吸：三个成长期观察点</h3>
+      <p class="ctx"><strong>出牙期：</strong>婴儿 6 个月左右开始萌牙，流口水、爱咬东西、轻微烦躁属常见；牙龈红肿明显、发热、腹泻通常不是"出牙"的锅，别用出牙解释一切不适，该就医就医。磨牙棒、冷藏的牙胶可以缓解不适，避免含糖分高的"安抚食物"。</p>
+      <p class="ctx"><strong>吮指/吐舌等习惯：</strong>2-3 岁前的吮指多是自我安抚，多数会自行消退；<strong>超过 4-5 岁仍持续的吮指、吐舌、咬唇，可能影响牙弓和咬合发育</strong>，用正向引导（奖励不吸的日子、找到替代安抚方式）而非打骂羞辱，必要时咨询口腔正畸医生。</p>
+      <p class="ctx"><strong>口呼吸：</strong>孩子长期张口呼吸、睡觉打鼾、注意力不集中——<strong>先查腺样体和扁桃体</strong>（气道问题，详见<a href="../18-ent/">第18章</a>），长期口呼吸会影响颌面发育和牙齿排列；确认气道通畅后仍张口呼吸的，口腔医生可能评估肌功能训练等干预。记住顺序：<strong>先通气道，再谈矫正</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/malocclusion">默沙东大众版《错位咬合》（不良习惯与咬合发育）</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/symptoms-of-oral-and-dental-disorders/teeth-grinding">默沙东大众版《磨牙》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、红旗信号与谣言粉碎</h2>
+    <p class="chapter-sub">哪些口腔信号一分钟都别等，哪些"常识"其实是谣言——本章收口</p>
+
+    <article class="view">
+      <h3>口腔急症红旗：这四类情况，立即就医</h3>
+      <table class="simple">
+        <tr><th>红旗信号</th><th>可能的情况</th><th>该怎么做</th></tr>
+        <tr><td>颌面部肿胀+发热+张口受限/吞咽或呼吸困难</td><td>间隙感染扩散（可危及气道）</td><td>立即急诊/拨打120</td></tr>
+        <tr><td>外伤后恒牙整颗脱出</td><td>牙脱位</td><td>30分钟内按第六节方法保存并急诊再植</td></tr>
+        <tr><td>口腔溃疡/白斑红斑超过2周不愈、进行性肿块</td><td>需排查口腔癌</td><td>尽快口腔颌面外科就诊，必要时活检</td></tr>
+        <tr><td>自发痛、夜间痛、咬合剧痛伴脸肿</td><td>牙髓炎/根尖周脓肿</td><td>尽快就诊，勿只靠止痛药硬扛</td></tr>
+        <tr><td>拔牙后2-3天疼痛反而加剧、放射至耳颞、口内有异味</td><td>干槽症</td><td>复诊处理（遵医嘱）</td></tr>
+      </table>
+      <p class="ctx"><strong>特别提醒：</strong>止痛药和抗生素都只是"争取时间"的手段，<strong>不能替代牙科处理</strong>——牙源性感染靠"吃药压下去"反复拖延，可能发展为颌面部间隙感染甚至全身感染。免疫力低下（糖尿病控制不佳、化疗、长期激素）人群，口腔感染进展更快，更要尽早就医。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/introduction-to-urgent-dental-problems">默沙东大众版《口腔急症简介》</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/urgent-dental-problems/complications-after-dental-treatment">默沙东大众版《口腔治疗后的并发症》</a> · <a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/tooth-disorders/periapical-abscess">默沙东大众版《根尖周脓肿》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>这些说法，都是谣言</h3>
+      <p class="ctx"><strong>谣言一："洗牙让牙缝变大、牙变松，伤牙釉质。"</strong>——真相：牙缝是牙结石占据和牙龈萎缩的真实暴露，松动是牙周炎本身的进展；规范洁治对釉质影响微乎其微。洗牙是牙周病最基础的治疗，不是伤害。</p>
+      <p class="ctx"><strong>谣言二："牙龈出血是上火，喝凉茶/换清火牙膏就好。"</strong>——真相：刷牙出血是牙龈炎的第一信号，"清火牙膏"掩盖症状、耽误治疗；正确做法是认真清洁+洗牙，出血持续两周以上就医。</p>
+      <p class="ctx"><strong>谣言三："牙膏能治好牙周病/蛀牙。"</strong>——真相：牙膏（含药物牙膏）只能辅助清洁和防龋，已形成的龋洞和牙周袋靠刷牙刷不好；"XX牙膏治牙龈出血"若见效奇快，要警惕违规添加成分，请选正规产品。</p>
+      <p class="ctx"><strong>谣言四："智齿都要拔/智齿不能拔。"</strong>——真相：拍片评估、分类决策，反复惹事的拔，安分守己的留（见第五节决策表）。</p>
+      <p class="ctx"><strong>谣言五："美白牙膏万能，刷一刷就白几个度。"</strong>——真相：美白牙膏主要靠摩擦剂去除外源性着色（烟渍茶渍），不能改变牙齿本色；过度使用粗糙美白产品反而磨损釉质。想要安全美白，咨询牙科医生（冷光美白、贴面等均有适应证和风险）。</p>
+      <p class="ctx"><strong>谣言六："老掉牙是自然规律。"</strong>——真相：牙齿脱落的主因是牙周病和龋齿，两者都可防可控。WHO 与各国口腔健康目标的共识方向是"8020"——<strong>80 岁时仍保有 20 颗功能牙</strong>是可实现的目标，掉牙不是宿命，是账没算对：你欠牙齿多少检查，它就还你多少松动。</p>
+      <p class="ctx"><strong>谣言七："牙疼吃止痛药/甲硝唑就行。"</strong>——真相：止痛药只缓解症状，牙髓炎、根尖炎不处理会反复加重；抗生素更须医生评估（滥用抗生素的危害见<a href="../03-medicine/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台（谣言终结站）</a> · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《中国公民健康素养66条（2024年版）释义》（口腔健康条目）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/oral-health">世界卫生组织《口腔健康》实况报道</a></div>
+    </article>
+
+    <article class="view">
+      <h3>老年人：口腔健康的"最后一公里"</h3>
+      <p class="ctx">口腔问题随年龄累积：第四次全国口腔流调显示 65-74 岁老人平均存留牙数约 22 颗，距离"8020"目标还有明显差距。老年口腔的四个要点：①<strong>牙不是"老了就该掉"</strong>，松牙尽早就诊，能保留的保留；②<strong>缺牙及时修复</strong>——长期缺牙导致咀嚼差、营养下降、邻牙移位，修复方式（活动义齿/固定义齿/种植）由医生结合全身情况评估，糖尿病患者、骨质疏松用药者务必提前告知病史；③<strong>警惕根面龋</strong>——牙龈退缩后暴露的牙根面更易蛀，老年人刷牙出血或牙颈部发黑要重视；④<strong>口干</strong>（多与服药相关）会显著增加龋齿风险，可咨询医生调整用药、用人工唾液或无糖口香糖辅助——口腔变化往往牵动全身（见<a href="../01-body/">第1章</a>衰老部分）。口腔黏膜出现长期不愈溃疡、白斑红斑，老年人同样适用第四节的红旗标准，不要因为"年纪大了"就放弃检查。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/mouth-and-dental-disorders/biology-of-the-mouth-and-teeth/effects-of-aging-on-the-mouth-and-teeth">默沙东大众版《年龄对口腔和牙齿的影响》</a> · 国内数据出处：《第四次全国口腔健康流行病学调查》（2017年发布，老年人存留牙数）</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 本章自查清单（建议每半年对照一次）</h4>
+      <ul>
+        <li>每天刷牙 2 次、每次至少 2 分钟，睡前那次没有漏掉？刷牙方法是不是"斜 45 度对着牙龈沟"而非横拉？</li>
+        <li>每天至少用一次牙线或牙缝刷？舌背清洁做了吗？</li>
+        <li>用的是含氟牙膏吗？家里孩子牙膏用量是不是米粒/豌豆大小、有人帮刷？</li>
+        <li>刷牙出血超过两周了吗？有没有"换支清火牙膏再说"的拖延？</li>
+        <li>距离上一次洗牙/口腔检查超过一年了吗？（牙周病患者是否按医嘱复诊？）</li>
+        <li>孩子的六龄齿（6-7岁）和第二恒磨牙（12岁）做窝沟封闭了吗？第一次看牙在 1 岁前完成了吗？</li>
+        <li>反复发炎的智齿，拍片评估过拔不拔了吗？备孕前做过口腔检查吗？</li>
+        <li>口腔溃疡超过 2 周不愈、口腔内有擦不掉的白斑红斑——知道这要尽快就医排查吗？</li>
+        <li>嚼槟榔吗？（IARC 1 类致癌物——最好的选择是不嚼）吸烟吗？知道这两样与口腔癌、牙周病的关系吗？</li>
+        <li>知道恒牙整颗磕掉后的黄金 30 分钟保存法吗（拿牙冠、不搓牙根、牛奶保存、立即急诊）？</li>
+        <li>家里的老人：松牙就诊了吗？缺牙修复了吗？长期服药的口干问题处理了吗？</li>
+        <li>糖尿病家人是否每年至少一次口腔检查？（牙周与血糖双向影响）</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../16-decision/"><span class="dir">← 第16章</span>就医决策与识谣</a>
+    <a href="../18-ent/"><span class="dir">第18章 →</span>耳鼻喉常见病</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生健康必修课 · 第17章 · 依据世界卫生组织《口腔健康》实况报道（2025年）、国务院《关于实施健康中国行动的意见》、《中国公民健康素养66条（2024年版）》及其释义、《第四次全国口腔健康流行病学调查》（2017年发布）、国际癌症研究机构（IARC）致癌物分类、默沙东诊疗手册大众版（口腔和牙科疾病系列）及国家卫健委健康科普辟谣平台整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议 · 急症请拨打 120 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0f766e;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0f766e;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:56px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 家人哪里不舒服，就找到对应的疾病章节，转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#115e59;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0f766e;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0f766e;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索疾病 / 症状 / 主题，如：扁桃体、胃痛、血压…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/health\/.*/,'/health/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.HEALTH_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+</body>
+</html>
