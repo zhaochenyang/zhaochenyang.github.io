@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1;">
+<title>FileFind — macOS 即时文件搜索工具</title>
+<meta name="description" content="FileFind：macOS 原生的即时文件搜索工具，对标 Windows Everything。文件名毫秒级即输即搜、内容全文检索、FSEvents 实时增量、拼音搜索。">
+<style>
+:root{--indigo:#4f46e5;--indigo-deep:#3730a3;--ink:#1e293b;--muted:#64748b;--bg:#f8fafc;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:var(--ink);background:#fff;line-height:1.75;}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+.hero{background:linear-gradient(135deg,#4f46e5,#3730a3);color:#fff;padding:64px 0 56px;text-align:center;}
+.hero h1{font-size:40px;letter-spacing:.5px;margin-bottom:12px;}
+.hero .sub{font-size:18px;opacity:.92;margin-bottom:8px;}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 16px;font-size:13.5px;margin-top:14px;}
+.hero .cta{display:inline-block;margin-top:26px;background:#fff;color:var(--indigo-deep);font-weight:600;text-decoration:none;border-radius:24px;padding:11px 30px;font-size:15.5px;box-shadow:0 4px 14px rgba(0,0,0,.18);}
+section{padding:48px 0;}
+h2{font-size:24px;color:var(--indigo-deep);margin-bottom:24px;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.card{background:var(--bg);border:1px solid #e2e8f0;border-radius:12px;padding:20px 22px;}
+.card .ic{font-size:26px;margin-bottom:8px;}
+.card h3{font-size:16px;margin-bottom:6px;color:var(--ink);}
+.card p{font-size:14px;color:var(--muted);}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.shots img{width:100%;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 4px 18px rgba(0,0,0,.08);}
+.shots .cap{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;}
+.cmd{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:20px 24px;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:2;overflow-x:auto;}
+.cmd .c{color:#818cf8;}
+footer{border-top:1px solid #e2e8f0;padding:28px 0;text-align:center;font-size:13.5px;color:var(--muted);}
+footer a{color:var(--indigo);text-decoration:none;}
+@media (max-width:700px){.hero h1{font-size:30px;}.shots{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>🔍 FileFind</h1>
+    <div class="sub">macOS 原生的即时文件搜索工具，对标 Windows Everything</div>
+    <div class="sub" style="font-size:15px;opacity:.85;">文件名毫秒级即输即搜 · 内容全文检索 · 索引实时更新</div>
+    <div class="tag">本地索引 · 零上传 · 零外部依赖 · macOS 14+</div>
+    <br>
+    <a class="cta" href="#start">立即开始 ↓</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>为什么需要它</h2>
+    <div class="grid">
+      <div class="card"><div class="ic">⚡️</div><h3>毫秒级即输即搜</h3><p>基于 SQLite FTS5 + trigram 的索引内核，文件名 / 路径边打边出结果，告别 Spotlight 的转圈等待。</p></div>
+      <div class="card"><div class="ic">📄</div><h3>内容全文检索</h3><p>不止搜文件名——文本、代码、PDF、Office 文档的正文内容都能搜，命中片段以【】展示并高亮。</p></div>
+      <div class="card"><div class="ic">🔄</div><h3>实时增量更新</h3><p>FSEvents 监听指定文件夹，新建 / 改名 / 删除即时同步进索引，永远搜到最新状态。</p></div>
+      <div class="card"><div class="ic">🀄</div><h3>拼音搜索</h3><p>输入全拼 baogao 找到「报告」，输入首字母 jsfa 找到「建设方案」——中文用户的刚需。</p></div>
+      <div class="card"><div class="ic">🖥</div><h3>原生 GUI + CLI 双形态</h3><p>SwiftUI 独立窗口：即输即搜、关键词高亮（中文友好）、结果表含名称/大小/时间/路径；命令行内核可脚本化。</p></div>
+      <div class="card"><div class="ic">🔒</div><h3>隐私安全</h3><p>索引全部存在本地，不联网、不上传、无账号。零外部依赖，只用系统自带 SQLite。</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <h2>界面一览</h2>
+    <div class="shots">
+      <div><img src="/images/filefind/shot-1.png" alt="FileFind 搜索界面截图 1"><div class="cap">即输即搜 + 关键词高亮</div></div>
+      <div><img src="/images/filefind/shot-2.png" alt="FileFind 搜索界面截图 2"><div class="cap">内容检索命中片段展示</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <h2>立即开始</h2>
+    <p style="text-align:center;font-size:14.5px;color:var(--muted);margin-bottom:20px;">环境要求：macOS 14+，Swift 6 工具链（构建 GUI 需完整 Xcode）</p>
+    <div class="cmd">
+<span class="c"># 一键构建并打包 App（本地 ad-hoc 签名）</span><br>
+./make-app.sh<br>
+open "dist/FileFind.app"<br><br>
+<span class="c"># 命令行内核</span><br>
+swift build -c release<br>
+fileindex index &lt;文件夹&gt; <span class="c"># 扫描并建立索引</span><br>
+fileindex watch &lt;文件夹&gt; <span class="c"># 实时监听 + 即输即搜</span><br>
+fileindex repl <span class="c"># 交互式搜索</span><br>
+fileindex search "content:关键词" <span class="c"># 内容全文检索</span><br>
+fileindex py jsfa <span class="c"># 拼音搜索：首字母 → 建设方案</span>
+    </div>
+    <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:22px;">📦 App Store 版本筹备中，敬请期待</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    FileFind · 由 <a href="/">记忆小溪</a> 开发 · <a href="/health/">人生健康必修课</a> · <a href="/archives/">技术博客</a>
+  </div>
+</footer>
+
+</body>
+</html>
