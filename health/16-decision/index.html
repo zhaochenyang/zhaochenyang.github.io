@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第16章 就医决策与识别医疗谣言 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.data{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.data th,table.data td{border:1px solid var(--line);padding:6px 10px;text-align:left;}
+  table.data th{background:var(--bg-soft);color:var(--accent-deep);font-weight:700;white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第16章（收官）</div>
+  <h1>就医决策与识别医疗谣言</h1>
+  <p>什么病挂什么科、什么时候直奔急诊、怎么跟医生说话、怎么一眼认出假科普</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../15-sleep-exercise/">← 第15章：睡眠运动心理</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">挂号科室</a>
+    <a class="anchor" href="#s2">急诊红旗</a>
+    <a class="anchor" href="#s3">高效问诊</a>
+    <a class="anchor" href="#s4">分级诊疗</a>
+    <a class="anchor" href="#s5">识破谣言</a>
+    <a class="anchor" href="#s6">课程收官</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本站内容仅供健康教育与参考，不构成医疗建议、诊断或治疗方案，不能替代执业医师面诊；请勿仅依据本站内容自行用药或更改治疗。如有不适请及时就医，<strong>急症请立即拨打 120</strong>。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标：</strong>学完你能——①按症状快速判断挂哪个科、什么情况直接去急诊；②用"时间线+三要素"高效向医生描述病情；③理解分级诊疗、用好家庭医生；④掌握识别虚假健康信息的四红旗与查证三步法，完成全课收官。
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、什么病挂什么科：症状→科室对照</h2>
+    <p class="chapter-sub">以默沙东诊疗手册大众版"症状"栏目为据整理的常用对照；拿不准就挂全科医学科或问导诊台</p>
+
+    <article class="view">
+      <h3>常用症状→科室速查表</h3>
+      <table class="data">
+        <tr><th>症状</th><th>首选科室</th><th>备注</th></tr>
+        <tr><td>胸痛、胸闷、心悸</td><td>心血管内科（急重→急诊）</td><td>详见<a href="../05-cardio/">第5章</a></td></tr>
+        <tr><td>腹痛、腹泻、反酸烧心</td><td>消化内科</td><td>剧痛/呕吐物或便中带血→急诊，见<a href="../08-digestive/">第8章</a></td></tr>
+        <tr><td>头痛、头晕</td><td>神经内科</td><td>伴耳鸣耳闷可查耳鼻喉科；突发剧烈头痛→急诊</td></tr>
+        <tr><td>咳嗽、气短</td><td>呼吸内科</td><td>见<a href="../07-respiratory/">第7章</a></td></tr>
+        <tr><td>皮疹、瘙痒、脱发</td><td>皮肤科</td><td>见<a href="../09-skin/">第9章</a></td></tr>
+        <tr><td>关节痛、腰腿痛</td><td>骨科 / 风湿免疫科</td><td>多关节游走性痛→风湿免疫科，见<a href="../11-musculo/">第11章</a></td></tr>
+        <tr><td>视物模糊、眼红眼痛</td><td>眼科</td><td>见<a href="../10-eye/">第10章</a></td></tr>
+        <tr><td>尿频尿急尿痛</td><td>泌尿外科 / 肾内科</td><td>伴发热腰痛尽快就医</td></tr>
+        <tr><td>月经异常、白带异常</td><td>妇科</td><td>—</td></tr>
+        <tr><td>孩子发热等不适</td><td>儿科</td><td>3月龄以下婴儿发热直接急诊</td></tr>
+        <tr><td>血糖异常、肥胖、甲状腺问题</td><td>内分泌科</td><td>见<a href="../06-metabolic/">第6章</a></td></tr>
+        <tr><td>持续情绪低落、焦虑失眠</td><td>精神科 / 临床心理科</td><td>也可拨打 12356，见<a href="../15-sleep-exercise/#s3">第15章</a></td></tr>
+      </table>
+      <div class="note" style="margin:10px 0 0;">
+        <strong>拿不准科室怎么办？</strong>①挂<strong>全科医学科</strong>（大医院普遍设有，专门做首诊分流）；②到院后问<strong>导诊台</strong>；③已签约家庭医生的，先问家庭医生。挂错科只是浪费一次挂号费，拖着不查才是真风险。
+      </div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home">默沙东诊疗手册大众版（中文，按"症状"栏目检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、这些信号别挂号了，直接去急诊或打 120</h2>
+    <p class="chapter-sub">红旗信号清单——识别急症比选对科室更救命</p>
+
+    <article class="view">
+      <h3>拨 120 / 直奔急诊的红旗信号</h3>
+      <p class="ctx">以下情况<strong>不要研究挂哪个科、不要等"明天再说"</strong>，立即拨打 120 或直接去急诊：</p>
+      <ul style="font-size:14.5px;line-height:2;">
+        <li>🫀 <strong>持续胸痛胸闷</strong>（压迫感、紧缩感，超过几分钟不缓解，可放射到肩背手臂）——可能是心梗，详见<a href="../05-cardio/">第5章</a></li>
+        <li>🧠 <strong>突发一侧肢体无力、口角歪斜、言语不清、视物异常、剧烈头痛</strong>——脑卒中信号，每一分钟都在损失脑细胞</li>
+        <li>😮‍💨 <strong>呼吸困难、喘不上气、口唇发紫</strong></li>
+        <li>🩸 <strong>大出血不止、呕血、便血、外伤动脉出血</strong>（按压止血同时呼救，见<a href="../04-firstaid/">第4章</a>）</li>
+        <li>😵 <strong>意识丧失、抽搐、叫不醒</strong>——无呼吸立即开始 CPR 并让人取 AED</li>
+        <li>🔥 <strong>严重烧伤、疑似中毒/误服药物化学品</strong>（带上包装瓶一起去医院）</li>
+        <li>👶 <strong>3 月龄以下婴儿发热；孩子高热惊厥；气道异物卡喉</strong>（先海姆立克，见<a href="../04-firstaid/">第4章</a>）</li>
+        <li>🤰 <strong>孕期阴道流血流液、剧烈腹痛、胎动明显减少</strong></li>
+      </ul>
+      <p class="ctx"><strong>拨 120 的正确姿势</strong>（北京急救中心科普）：说清<strong>详细地址（区、路、门牌、楼层）→ 什么人、什么症状 → 回拨电话保持畅通</strong>；等救护车期间不要随意搬动伤者（怀疑脊柱伤尤其如此），把门锁打开、派人到路口接车。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.120beijing.cn/">北京急救中心官网（120急救科普）</a> · <span class="c-badge c-m">📘 权威手册</span><a href="https://www.msdmanuals.cn/home">默沙东诊疗手册大众版（急诊医学栏目）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-16-1.png" alt="急诊分流与就医路径决策的概念插画"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、高效问诊：3 分钟让医生抓住重点</h2>
+    <p class="chapter-sub">门诊平均只有几分钟，会描述病情=省钱省时省误诊</p>
+
+    <article class="view">
+      <h3>描述病情的"时间线 + 四要素"模板</h3>
+      <p class="ctx">医生最怕听"大夫我浑身难受"。有效的描述像写新闻导语，按时间线讲清四要素：</p>
+      <blockquote class="q">
+        <strong>①什么时候开始的</strong>（"三天前"比"有一阵了"有用一百倍）<br>
+        <strong>②哪里、什么样的感觉</strong>（位置+性质：是刺痛、胀痛还是烧灼感？）<br>
+        <strong>③什么情况加重或缓解</strong>（饭后疼还是空腹疼？躺下更喘吗？）<br>
+        <strong>④伴随什么其他症状</strong>（发热？呕吐？体重下降？）
+        <span class="qsrc">—— 综合 Mayo Clinic 中文站"就诊准备"与默沙东诊疗手册病史采集要点整理</span>
+      </blockquote>
+      <p class="ctx">举例对比："胃不舒服"（无效）vs "三天前开始上腹正中烧灼样痛，空腹和夜里加重、吃点东西缓解，伴反酸，无呕吐无黑便"（医生立刻能缩小范围）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mayoclinic.org/zh-hans">Mayo Clinic 中文官网（各疾病页"就诊准备"栏目）</a> · <a href="https://www.msdmanuals.cn/home">默沙东诊疗手册大众版（中文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>看病前的"随身三件套"</h3>
+      <p class="ctx">①<strong>用药清单</strong>：正在吃的所有药（含保健品、中成药）拍照或抄下来——这是<a href="../03-medicine/">第3章</a>讲的药物相互作用风险的关键信息；②<strong>过敏史</strong>：药物、食物过敏明确告知；③<strong>既往资料</strong>：以前的检查报告、影像片子、出院小结按时间排好带上，避免重复检查。</p>
+      <p class="ctx">另外两件事同样重要：<strong>如实告知敏感信息</strong>（吸烟饮酒、性接触史、精神类药物使用——医生有保密义务，隐瞒只会导致误诊）；<strong>把想问的问题提前写在手机里</strong>（诊断可能是什么？要做哪些检查、为什么？药怎么吃、吃多久？什么情况需要复诊或急诊？），别出了诊室才想起来。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mayoclinic.org/zh-hans">Mayo Clinic 中文官网（就诊准备指南）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、分级诊疗与家庭医生：别把所有病都堆到三甲</h2>
+    <p class="chapter-sub">依据国务院办公厅《关于推进分级诊疗制度建设的指导意见》（国办发〔2015〕70号）</p>
+
+    <article class="view">
+      <h3>十六字方针：基层首诊、双向转诊、急慢分治、上下联动</h3>
+      <p class="ctx">这是国家医改文件确立的就医秩序，直白翻译：<strong>小病、慢病复诊、开药，先去社区卫生服务中心/乡镇卫生院（基层首诊）；病情复杂了由基层往大医院转、稳定了再转回来（双向转诊）；急危重症直接去二级以上医院甚至急诊，不受首诊限制（急慢分治）；各级医院之间检查结果互认、资源共享（上下联动）</strong>。</p>
+      <p class="ctx">对普通人的实际好处：基层医院挂号快、排队短、报销比例更高；家庭医生熟悉你的完整病史，慢病管理（高血压、糖尿病随访开药）反而比每次去三甲挂不同医生的号更连贯。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/201509/1d374d8faef1403b8d0d41a840ff4e73.shtml">国办发〔2015〕70号《关于推进分级诊疗制度建设的指导意见》</a> · <a href="https://www.nhsa.gov.cn/art/2026/4/10/art_14_20158.html">国家医保局等《关于加快推进分级诊疗体系建设的若干措施》（2026）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>家庭医生签约：免费的"健康总管"入口</h3>
+      <p class="ctx">家庭医生签约服务由基层医疗卫生机构提供，签约后可以获得：健康档案建立与管理、慢病长处方（病情稳定可一次开较长期药量，少跑腿）、转诊绿色通道（需要时帮你转上级医院）、健康咨询。签约在居住地社区卫生服务中心即可办理，基础服务包费用很低且医保有分担，具体政策各地略有差异，可咨询当地社区卫生服务中心。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/201509/1d374d8faef1403b8d0d41a840ff4e73.shtml">国办发〔2015〕70号（建立家庭医生签约服务制度）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、识别医疗谣言：信息时代的健康免疫力</h2>
+    <p class="chapter-sub">依据 Mayo Clinic 识假指南、卫健委辟谣平台与四部门医疗科普新规</p>
+
+    <article class="view">
+      <h3>虚假健康文章的"四大红旗"</h3>
+      <p class="ctx">Mayo Clinic（妙佑医疗国际）中文站总结过识别假健康文章的信号，浓缩成四面红旗——见到任何一面，先把可信度打对折：</p>
+      <ul style="font-size:14.5px;line-height:2;">
+        <li>🚩 <strong>吓唬你</strong>：用恐惧开场（"再不看就晚了""99%的人都中招了"），制造焦虑让你放弃思考</li>
+        <li>🚩 <strong>让你别信专家</strong>："医生不会告诉你""医院故意隐瞒"——凡是挑拨你远离正规医疗的，基本可判定有害</li>
+        <li>🚩 <strong>说不出来源</strong>：没有研究出处、没有机构名称，只有"最新研究发现""国外权威证实"</li>
+        <li>🚩 <strong>承诺神奇速效</strong>："一招根治""三天见效""包治百病"——医学上没有这种万能钥匙，有也是骗局</li>
+      </ul>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mayoclinic.org/zh-hans/healthy-lifestyle/consumer-health/in-depth/spot-fake-health-articles-misinformation/art-20587692">Mayo Clinic 中文《识别虚假健康文章和错误信息》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>查证三步法 + 官方辟谣平台</h3>
+      <p class="ctx">看到一条养生说法，花一分钟走三步：<strong>①谁说的？</strong>——是卫健委/WHO/学会指南，还是带货博主？<strong>②证据呢？</strong>——有没有注明研究、指南或机构名称，能不能点开原文？<strong>③动机是什么？</strong>——文末是否在卖课、卖保健品、引流私域？第三步尤其灵验：<strong>凡是终点是卖东西的"科普"，先把结论倒过来怀疑。</strong></p>
+      <p class="ctx">拿不准就去官方辟谣平台查：国家卫健委健康科普辟谣平台设有<strong>"谣言终结者"</strong>专栏，汇总权威机构对流传甚广的健康谣言的正式澄清。本课程也用它辟过谣——比如<a href="../15-sleep-exercise/">第15章</a>的"睡得越多越健康"就是被官方核心信息明确澄清的误区。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台（谣言终结者专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国家新规：科普必须有出处——对你意味着什么</h3>
+      <p class="ctx">2025 年 8 月，国家卫健委等四部门联合印发《关于规范"自媒体"医疗科普行为的通知》，对自媒体医疗科普提出硬要求：<strong>严格标注信息来源、不得发布未经证实的医疗信息、严禁变相发布医疗药品保健品广告、AI 生成内容须依规标识</strong>。</p>
+      <p class="ctx">这条新规等于给了普通读者一把尺子：<strong>今后看任何健康科普（包括本站），先看它标不标来源。</strong>标了权威来源、能点开验证的，可以读；通篇没有出处、看完就想让你下单的，直接划走。本站每张卡片末尾的来源徽章与官方链接，就是按这把尺子做的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2025-08/01/c_1755764425442686.htm">中央网信办转发：四部门《关于规范"自媒体"医疗科普行为的通知》（2025-08）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-16-2.png" alt="放大镜检视信息与谣言粉碎盾牌的概念插画"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、课程收官：你的人生健康决策地图</h2>
+    <p class="chapter-sub">16 章学完，把知识变成日历上的动作</p>
+
+    <article class="view">
+      <h3>一张清单串起全部课程</h3>
+      <div class="checklist">
+        <h4>🗺️ 健康决策地图（建议打印贴墙）</h4>
+        <ul>
+          <li><strong>每年</strong>：做一次体检并读懂报告 → <a href="../02-checkup/">第2章</a></li>
+          <li><strong>每年</strong>：核对全家疫苗接种（流感/HPV/带状疱疹等）→ <a href="../13-vaccine/">第13章</a></li>
+          <li><strong>按年龄性别</strong>：完成癌症早筛（肠镜、乳腺、宫颈、低剂量CT）→ <a href="../12-cancer/">第12章</a></li>
+          <li><strong>每季度</strong>：量一次血压，超重者量腰围；"四高"人群遵医嘱复查 → <a href="../05-cardio/">第5章</a> <a href="../06-metabolic/">第6章</a></li>
+          <li><strong>每月</strong>：盘点家庭药箱（过期药清理、急救物品在位）→ <a href="../03-medicine/">第3章</a></li>
+          <li><strong>每周</strong>：运动处方打卡（150 分钟中等强度 + 2 天力量）→ <a href="../15-sleep-exercise/">第15章</a></li>
+          <li><strong>每天</strong>：睡够推荐时长、八准则吃饭、久坐每小时打断 → <a href="../14-nutrition/">第14章</a> <a href="../15-sleep-exercise/">第15章</a></li>
+          <li><strong>随时</strong>：识别红旗信号→120/急诊；身体不适→科室速查表；情绪持续低落两周→精神科或 12356 → 本章 <a href="../04-firstaid/">第4章</a> <a href="../15-sleep-exercise/">第15章</a></li>
+          <li><strong>每次读科普</strong>：过一遍四红旗 + 查证三步法 → 本章第五节</li>
+        </ul>
+      </div>
+      <p class="ctx">最后回到<a href="../00-intro/">导论</a>的那句话：健康素养不是医学知识，是<strong>在正确的时间做正确的健康决策的能力</strong>。这门课到此结课——剩下的，是把它用起来。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>总纲：<a href="https://www.nhc.gov.cn/xcs/c100123/202405/73a4927142f34152abed875634a3c13b.shtml">《中国公民健康素养——基本知识与技能（2024年版）》（66条）</a> · <a href="../00-intro/">导论：为什么这是人生必修课</a></div>
+    </article>
+  </section>
+
+  <nav class="pager">
+    <a href="../15-sleep-exercise/"><span class="dir">← 第15章</span>睡眠·运动·心理健康</a>
+    <a href="../"><span class="dir">结课 →</span>返回课程首页</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生健康必修课 · 第16章（收官） · 依据国办发〔2015〕70号分级诊疗指导意见、四部门医疗科普新规（2025）、Mayo Clinic 识假指南及国家卫健委辟谣平台整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议 · 急症请拨打 120 · 心理援助请拨打 12356 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 癌症：预防、早筛与警示信号 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.simple{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0;}
+  table.simple th,table.simple td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.simple th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.simple{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第12章</div>
+  <h1>癌症：预防、早筛与警示信号</h1>
+  <p>超40%的癌症可以预防 · 六种癌症有成熟的早筛手段 · 哪些身体信号不能拖</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../13-vaccine/">第13章：传染病与疫苗 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">认识癌症</a>
+    <a class="anchor" href="#s2">国家防癌守则</a>
+    <a class="anchor" href="#s3">六癌早筛</a>
+    <a class="anchor" href="#s4">警示信号</a>
+    <a class="anchor" href="#s5">谣言与清单</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本站内容仅供健康教育与参考，不构成医疗建议、诊断或治疗方案，不能替代执业医师面诊；请勿仅依据本站内容自行用药或更改治疗。如有不适请及时就医，<strong>急症请立即拨打 120</strong>。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <p class="ctx">这一章的写法和其他章不同：<strong>刻意不贩卖恐慌</strong>。因为官方数据给出的结论恰恰是乐观的——相当大比例的癌症可以被预防，早筛能大幅降低死亡率。癌症防控的主战场不在 ICU，而在生活方式和筛查日历上。这也是国家在 2026 年肿瘤防治宣传周发布《中国防癌健康生活方式守则（2026年版）》的原因：把防癌知识变成人人可执行的条目。</p>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、认识癌症：失控的"违规车辆"</h2>
+    <p class="chapter-sub">先搞懂它是什么，才能搞懂为什么预防和早筛有用</p>
+
+    <article class="view">
+      <h3>癌症是什么问题：细胞层面的"刹车失灵"</h3>
+      <p class="ctx">人体由数十万亿个细胞组成，正常情况下它们像遵守交规的车辆：该分裂时分裂，该凋亡时凋亡。当细胞的基因发生累积突变，"油门"（促增殖基因）被卡死、"刹车"（抑癌基因）失灵，这些细胞就开始不受控地增殖，聚成肿块，侵犯周围组织，甚至通过血液和淋巴"闯红灯"转移到远处器官——这就是癌症。</p>
+      <p class="ctx">理解这个机制，就理解了防癌的两个抓手：<strong>一级预防</strong>是少踩"突变加速器"（烟草、酒精、致癌物、某些感染），<strong>二级预防（早筛）</strong>是在车辆还没成气候时把它拦下来——从一个突变细胞长到能被影像发现的肿块通常要数年到数十年，这个窗口期就是筛查的价值所在。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/cancer">WHO 中文《癌症实况报道》</a> · <a href="https://www.msdmanuals.cn/home/multimedia/video/overview-of-cancer">默沙东诊疗手册大众版《癌症的概况》视频（中文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>数字不会说谎：可预防的比例比大多数人想的高</h3>
+      <blockquote class="q">2022 年全球约有 2000 万癌症新发病例、970 万癌症死亡；约 1/5 的人在一生中会罹患癌症；<strong>30%–50% 的癌症死亡是可以预防的</strong>。
+        <span class="qsrc">—— 世界卫生组织《癌症实况报道》</span>
+      </blockquote>
+      <p class="ctx">2026 年 2 月，国际癌症研究机构（IARC）的最新研究进一步估计：<strong>全球约 37% 的新发癌症病例与可预防的原因相关</strong>（吸烟、饮酒、感染、肥胖、紫外线等）。我国口径与之呼应——《中国防癌健康生活方式守则（2026年版）》的官方解读明确指出：<strong>超过 40% 的癌症可以通过一级预防避免发生</strong>。</p>
+      <p class="ctx">同时要正视趋势：受人口老龄化和危险因素暴露影响，WHO 预计到 2050 年全球年新发病例将超过 3500 万（较 2022 年增长约 77%）。数字越看越应该得出结论：<strong>把"防"和"筛"做到位，是个人对抗这个趋势的全部筹码</strong>——下面两节分别讲这两件事。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/cancer">WHO 中文《癌症实况报道》</a> · <a href="https://www.who.int/zh/news/item/03-02-2026-four-in-ten-cancer-cases-could-be-prevented-globally">IARC：全球四成癌症病例可预防（WHO 中文新闻）</a> · <a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691.shtml">国家卫健委发布《中国防癌健康生活方式守则（2026年版）》通知</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、国家防癌守则：15 条逐条讲</h2>
+    <p class="chapter-sub">2026 年 4 月国家卫健委发布、国家癌症中心编写——这是国家层面给每个人的防癌说明书</p>
+
+    <article class="view">
+      <h3>《中国防癌健康生活方式守则（2026年版）》全文解读</h3>
+      <p class="ctx">守则共 15 条，按主题分六组理解更好记：</p>
+      <p class="ctx"><strong>【烟与酒】</strong><br>
+      <strong>1. 不吸烟，早戒烟，远离二手烟。</strong>烟草是最强的单一可预防致癌因素，与至少 15 种癌症相关；"早戒烟"意味着任何年龄戒都有收益，二手烟同样致病。<br>
+      <strong>4. 少饮酒，不酗酒。</strong>酒精是 IARC 确认的 1 类致癌物，与肝癌、食管癌、结直肠癌、乳腺癌等相关；不存在"养生剂量"，能不喝就不喝。</p>
+      <p class="ctx"><strong>【体重与运动】</strong><br>
+      <strong>2. 保持健康体重。</strong>超重和肥胖与至少 13 种癌症风险上升相关（具体指标见<a href="../06-metabolic/">第6章</a>）。<br>
+      <strong>3. 科学运动，减少久坐。</strong>运动本身降低结肠癌、乳腺癌等风险；久坐是独立危险因素——坐 1 小时起来动几分钟（运动处方见<a href="../15-sleep-exercise/">第15章</a>）。</p>
+      <p class="ctx"><strong>【吃】</strong><br>
+      <strong>5. 不吃霉变食物，避免长期、高频咀嚼槟榔。</strong>霉变花生玉米含黄曲霉毒素（1 类致癌物→肝癌）；槟榔及其制品是 1 类致癌物（→口腔癌），"加了枸杞也不行"。<br>
+      <strong>6. 不吃过烫食物，饮品稍放温再喝。</strong>65°C 以上的热饮被 IARC 列为 2A 类致癌物（→食管癌）；趁热吃是习惯，不是美德。<br>
+      <strong>7. 避免腌制、熏烤、高温油炸食物，少吃加工肉。</strong>加工肉制品（火腿肠、培根、腊肉）是 1 类致癌物（→结直肠癌）；高温烧烤油炸产生杂环胺和多环芳烃。<br>
+      <strong>8. 少吃甜食，不喝或少喝含糖饮料。</strong>主要通过推高体重间接增加癌症风险。<br>
+      <strong>9. 摄入充足蔬菜水果和全谷物。</strong>膳食纤维与多种植物化学物对结直肠癌等有保护作用（怎么吃见<a href="../14-nutrition/">第14章</a>）。</p>
+      <p class="ctx"><strong>【感染与卫生】</strong><br>
+      <strong>10. 不共用牙具、剃须刀等私人物品，提倡公勺公筷。</strong>阻断幽门螺杆菌（→胃癌）、乙肝丙肝病毒（→肝癌）等经唾液、血液传播的致癌感染。<br>
+      <strong>14. 尽早接种乙肝疫苗和人乳头瘤病毒（HPV）疫苗。</strong>这是仅有的两种"防癌疫苗"：乙肝疫苗预防肝癌源头，HPV 疫苗预防宫颈癌（详见<a href="../13-vaccine/">第13章</a>）。</p>
+      <p class="ctx"><strong>【环境与防护】</strong><br>
+      <strong>11. 做好个人职业防护，避免致癌物暴露。</strong>粉尘、石棉、苯、甲醛等职业暴露需按规程防护；装修后充分通风再入住。<br>
+      <strong>12. 避免长时间日光暴晒。</strong>紫外线是皮肤癌明确病因，防晒见<a href="../09-skin/">第9章</a>。<br>
+      <strong>13. 保持室内通风，关注空气质量，污染天气减少出行、佩戴口罩。</strong>室外空气污染和室内燃煤/油烟均与肺癌相关，炒菜开抽油烟机也算防癌。</p>
+      <p class="ctx"><strong>【母乳喂养】</strong><br>
+      <strong>15. 提倡母乳喂养。</strong>哺乳对母亲有降低乳腺癌风险的长期保护作用，对婴儿也有多重健康收益。</p>
+      <div class="fig"><img src="../assets/img-12-1.png" alt="防癌生活方式四要素概念图：远离烟酒、科学运动、均衡餐盘、疫苗防护"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691.shtml">国家卫健委《关于印发中国防癌健康生活方式守则的通知》</a> · <a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691/files/中国防癌健康生活方式守则（含解读）-20260402100911593.pdf">《守则（含解读）》官方 PDF</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、六种癌症：已经有成熟的早筛手段</h2>
+    <p class="chapter-sub">筛查不是体检套餐里的"肿瘤标志物"——每种癌症有各自的专用方法和适用人群</p>
+
+    <article class="view">
+      <h3>肺癌：低剂量螺旋 CT（LDCT），普通胸片查不出早期</h3>
+      <p class="ctx">肺癌是我国发病和死亡的第一大癌。国家卫健委《肺癌筛查与早诊早治方案（2024年版）》推荐的筛查人群为 <strong>50–74 岁</strong>且具有一项以上高危因素者：<strong>吸烟≥20 包年</strong>（每天 1 包×20 年，或每天 2 包×10 年）、戒烟不足 15 年、被动吸烟、职业暴露（石棉、氡等）、慢阻肺或肺纤维化病史、一级亲属肺癌家族史。《中国肺癌低剂量CT筛查指南（2025年版）》将年龄上限放宽到 80 岁。</p>
+      <p class="ctx">筛查方法：<strong>低剂量螺旋 CT，每年 1 次</strong>。大型随机对照试验证实 LDCT 筛查可将肺癌死亡率降低约 20%。要特别提醒：<strong>年度体检拍胸片（X 光）不能替代 LDCT</strong>——胸片对早期小结节的漏诊率很高。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/ylyjs/gzdt/202408/42f43b5f0c4c4ebe90c78ee127959b92.shtml">国家卫健委《肺癌筛查与早诊早治方案（2024年版）》</a>（文中另引《中国肺癌低剂量CT筛查指南（2025年版）》）</div>
+    </article>
+
+    <article class="view">
+      <h3>结直肠癌：从息肉到癌有 5–10 年窗口，肠镜能直接"掐断"</h3>
+      <p class="ctx">结直肠癌是最能体现"筛查即预防"的癌种：约 90% 由腺瘤性息肉缓慢演变而来，这个过程通常长达 5–10 年——<strong>在窗口期做一次肠镜并切掉息肉，等于直接取消了一场癌变</strong>。</p>
+      <p class="ctx">中国指南建议一般风险人群 <strong>40–74 岁</strong>开始筛查：首选<strong>每年 1 次粪便免疫化学检测（FIT，即"便潜血"）</strong>初筛，阳性者做结肠镜确诊；结肠镜是金标准，连续 3 次阴性者可适当延长间隔（不超过 3 年）。<strong>有一级亲属患病史的人要提前</strong>：从 40 岁开始，或比亲属确诊年龄提前 10 年开始，直接做结肠镜。便潜血阳性不可怕也不可惜——它抓到的是最可治愈的阶段。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span>来源：<a href="https://www.csco.org.cn/cn/ncontent.aspx?oid=5255">CSCO《结直肠癌筛查指南》介绍页</a> · <a href="https://www.pumch.cn/detail/30098.html">北京协和医院结直肠癌筛查科普</a></div>
+    </article>
+
+    <article class="view">
+      <h3>乳腺癌：40 岁起定期筛查，中国女性尤其别只做"自检"</h3>
+      <p class="ctx">乳腺癌是我国女性发病率第一的癌症。一般风险女性建议<strong>从 40 岁起</strong>定期筛查；<strong>钼靶（乳腺 X 线）是唯一被证实能降低乳腺癌死亡率的筛查手段</strong>。中国女性乳腺以致密型居多，致密腺体会"遮挡"钼靶影像，因此国内指南推荐<strong>钼靶与超声联合</strong>，国家癌症中心建议 45 岁以上女性定期接受超声筛查。</p>
+      <p class="ctx">高危人群（BRCA 基因突变携带者、一级亲属患病、既往胸部放疗史等）可<strong>提前到 35 岁</strong>开始，采用钼靶+超声、必要时加做 MRI，具体方案由乳腺专科医生制定。同时澄清一个流传极广的误区：<strong>乳房自检不能替代影像学筛查</strong>——自检有助于熟悉自己身体的基线，但没有证据表明单纯自检能降低死亡率。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/cms-search/downFiles/c001a73dfefc4ace889a1ea6e0230865.pdf">国家卫健委《乳腺癌诊疗指南》（PDF）</a> · <a href="https://www.pumch.cn/detail/28489.html">北京协和医院牵头乳腺癌筛查指南解读</a></div>
+    </article>
+
+    <article class="view">
+      <h3>宫颈癌：人类最有希望"消除"的癌症——疫苗+筛查双保险</h3>
+      <p class="ctx">宫颈癌几乎都由高危型 HPV 持续感染引起，从感染到癌变一般需要 10 年以上，且筛查技术成熟——它是世界卫生组织提出"全球消除"目标的唯一癌症。防线有三道：<strong>一级</strong>是接种 HPV 疫苗（见<a href="../13-vaccine/">第13章</a>，守则第 14 条）；<strong>二级</strong>是筛查；<strong>三级</strong>是对癌前病变的规范治疗。</p>
+      <p class="ctx">筛查建议（《中国子宫颈癌筛查指南（一）》及卫健委《子宫颈癌筛查规范（2025年版）》口径）：<strong>25–64 岁女性</strong>，首选<strong>每 5 年 1 次高危型 HPV（HR-HPV）核酸检测</strong>；或每 3 年 1 次细胞学检查（TCT）；也可两者联合每 5 年 1 次。<strong>HPV16/18 型阳性者应直接转诊阴道镜</strong>。我国 HR-HPV 感染率约 12.1%，流行型别以 52、58、53、16、51 为主——与欧美略有差异，所以国内检测试剂对 52/58 型的覆盖很重要。接种过疫苗同样需要筛查（疫苗不能覆盖所有高危型别）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/cervical-cancer">WHO 中文《宫颈癌实况报道》（消除战略）</a> · <a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691.shtml">《中国防癌健康生活方式守则（2026年版）》第14条（HPV 疫苗）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>胃癌：一次胃镜的价值被严重低估，幽门螺杆菌该查该杀</h3>
+      <p class="ctx">我国是胃癌高发国家。国家卫健委《胃癌诊疗指南》界定的高危人群：<strong>年龄 40 岁以上</strong>，且符合以下任一条——胃癌高发地区人群、<strong>幽门螺杆菌（Hp）感染者</strong>、患有慢性萎缩性胃炎/胃溃疡/胃息肉等癌前疾病、一级亲属有胃癌史、存在高盐、腌制饮食、吸烟、重度饮酒等习惯。《胃癌筛查与早诊早治方案（2024年版）》建议高危人群 <strong>45–74 岁</strong>接受筛查，<strong>首选白光内镜（胃镜）</strong>。</p>
+      <p class="ctx">两件性价比极高的事：<strong>①查 Hp 并根除</strong>——WHO/IARC 2025 年确认，根除幽门螺杆菌可使胃癌风险降低 34%–51%，碳13/14 呼气试验无创便宜（Hp 的传播与分餐制见<a href="../08-digestive/">第8章</a>）；<strong>②别怕胃镜</strong>——无痛胃镜已经很成熟，首次胃镜正常者，后续间隔遵医嘱（一般 2–3 年以上），而一次胃镜同时完成"筛查+发现即处理"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/202204/0c1f7d3aca0545abbeb02030ce255930/files/1732863054755_83603.pdf">国家卫健委《胃癌诊疗指南》（PDF，含高危人群定义）</a>（文中另引《胃癌筛查与早诊早治方案（2024年版）》及 IARC 2025 年 Hp 根除获益数据）</div>
+    </article>
+
+    <article class="view">
+      <h3>肝癌：沉默的器官，高危人群每 6 个月一次超声+AFP</h3>
+      <p class="ctx">肝脏没有痛觉神经末梢覆盖实质，早期肝癌几乎无症状——等有症状再查，往往已是中晚期。所以肝癌防控完全依赖<strong>圈定高危人群+定期筛查</strong>。高危人群包括：<strong>乙肝（HBV）或丙肝（HCV）病毒感染者、任何原因导致的肝硬化患者</strong>、长期酗酒者、非酒精性脂肪性肝病患者（见<a href="../08-digestive/">第8章</a>）、黄曲霉毒素暴露者、有肝癌家族史者。</p>
+      <p class="ctx">国家卫健委《原发性肝癌诊疗指南（2026年版）》推荐：高危人群采用<strong>肝脏超声联合甲胎蛋白（AFP）</strong>（必要时加 PIVKA-II）筛查，按 aMAP 等评分分层为低/中/高风险后，<strong>中高风险者至少每 6 个月筛查 1 次</strong>；《中国人群肝癌筛查指南（2022,北京）》同样建议高危人群每 6 个月超声或联合 AFP。预防端两手抓：接种乙肝疫苗（守则第 14 条）+ 不吃霉变食物（守则第 5 条，黄曲霉毒素）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100067/202604/3371c9cb2f7f4f55b18c709ff2c53ab8/files/原发性肝癌诊疗指南（2026版）.pdf">国家卫健委《原发性肝癌诊疗指南（2026年版）》（PDF）</a>（文中另引《中国人群肝癌筛查指南（2022,北京）》）</div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-12-2.png" alt="六种癌症早筛方法沿年龄时间线排布的概念示意图"><div class="cap">插画 · AI 生成</div></div>
+
+    <article class="view">
+      <h3>一表速查：六癌早筛核心口径</h3>
+      <table class="simple">
+        <tr><th>癌种</th><th>起始年龄（一般/高危）</th><th>首选方法</th><th>频率</th></tr>
+        <tr><td>肺癌</td><td>50 岁（高危，至 74–80 岁）</td><td>低剂量螺旋 CT（LDCT）</td><td>每年 1 次</td></tr>
+        <tr><td>结直肠癌</td><td>40 岁；家族史提前 10 年</td><td>FIT 便潜血→阳性肠镜</td><td>FIT 每年；肠镜遵医嘱</td></tr>
+        <tr><td>乳腺癌</td><td>40 岁；高危 35 岁</td><td>钼靶±超声（高危加 MRI）</td><td>每 1–2 年</td></tr>
+        <tr><td>宫颈癌</td><td>25 岁</td><td>HR-HPV 核酸（或 TCT）</td><td>HPV 每 5 年；TCT 每 3 年</td></tr>
+        <tr><td>胃癌</td><td>45 岁（高危）</td><td>白光内镜（胃镜）+ Hp 检测根除</td><td>首查正常后遵医嘱（约 2–3 年起）</td></tr>
+        <tr><td>肝癌</td><td>任何年龄（高危人群）</td><td>肝脏超声 + AFP</td><td>每 6 个月</td></tr>
+      </table>
+      <p class="ctx">表中为指南针对相应人群的推荐口径摘要；个体的起始年龄、间隔和停止时间请由医生结合家族史、既往结果和整体健康状况确定。<strong>肿瘤标志物抽血和 PET-CT 都不适合作为普通人群的常规筛查手段</strong>（前者假阳性多，后者昂贵且有辐射，均非指南推荐的筛查方法）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>汇总依据：上列六癌种各官方指南与方案（链接见各卡片）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、警示信号：哪些身体变化不能拖</h2>
+    <p class="chapter-sub">信号 ≠ 癌症，但"再等等看"是唯一的错误选项</p>
+
+    <article class="view">
+      <h3>持续超过两周的异常，都值得让医生看一眼</h3>
+      <p class="ctx">早期癌症多数没有症状，这正是需要主动筛查的原因；但身体出现以下信号时，<strong>不要自我诊断成"上火""咽炎""痔疮"然后拖着</strong>——它们绝大多数最终确实不是癌症，但确诊"不是"必须由医生完成：</p>
+      <ul>
+        <li><strong>不明原因体重下降</strong>：没有刻意减肥，短期内掉了体重的 5% 以上</li>
+        <li><strong>身体任何部位出现无痛性肿块</strong>且逐渐增大：乳房、颈部、腋下、腹股沟等</li>
+        <li><strong>异常出血</strong>：绝经后阴道出血、非经期不规则出血、便血或大便发黑、尿血、痰中带血、不明原因鼻血</li>
+        <li><strong>持续咳嗽或声音嘶哑</strong>超过 2–3 周；长期吸烟者咳嗽性质发生改变（更要警惕）</li>
+        <li><strong>痣的变化</strong>：牢记 ABCDE 原则——不对称、边缘不规则、颜色不均匀、直径＞6 毫米、近期隆起或变化，任何一条都该看皮肤科（详见<a href="../09-skin/">第9章</a>）</li>
+        <li><strong>排便或排尿习惯持续改变</strong>：大便变细、便秘腹泻交替、排尿困难或尿线变细</li>
+        <li><strong>吞咽困难、持续消化不良或上腹不适</strong></li>
+        <li><strong>持续乏力、不明原因低热</strong>，休息后不缓解</li>
+      </ul>
+      <p class="ctx">记住这个逻辑链：<strong>癌症早诊的治愈率和生存率远高于晚期</strong>（例如早期结直肠癌 5 年生存率可达 90% 左右，晚期骤降）——所以"及时看一眼"是这门课里回报最高的动作之一。就医路径参考<a href="../16-decision/">第16章：就医决策</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/cancer">WHO 中文《癌症实况报道》（早期发现）</a> · <a href="https://www.msdmanuals.cn/home/symptoms">默沙东诊疗手册大众版《症状》索引</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、谣言粉碎与早筛待办清单</h2>
+    <p class="chapter-sub">癌症是谣言密度最高的领域，没有之一</p>
+
+    <article class="view">
+      <h3>谣言一："吃某某食物能抗癌"——没有任何单一食物能防癌</h3>
+      <p class="ctx">大蒜、西兰花、绿茶、碱性水、各种"超级食物"……防癌的证据基础是<strong>整体饮食模式</strong>（守则第 9 条：充足蔬菜水果和全谷物），而不是某种明星食物。任何宣称"吃 X 抗癌/饿死癌细胞"的产品都要警惕——按四部门医疗科普新规，这类内容常涉嫌变相广告。国家卫健委健康科普辟谣平台对"抗癌食物"类谣言有多批正式澄清。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台</a> · <a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691/files/中国防癌健康生活方式守则（含解读）-20260402100911593.pdf">《守则（含解读）》官方 PDF</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言二："酸性体质容易得癌"——"体质酸碱"本身就是伪概念</h3>
+      <p class="ctx">人体血液 pH 值被肺和肾精密调节在 7.35–7.45 之间，<strong>不会因为吃什么而"变酸"</strong>；"酸性体质致癌"是被反复辟谣的伪科学，相关"排酸产品"无一有证据支持。真正的代谢性问题（如酸中毒）是急重症，与这套话术无关。判断方法很简单：凡是先立"酸性体质"这个不存在的靶子、再卖你"碱性方案"的，就是谣言+生意。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台（"酸碱体质"类辟谣）</a> · <a href="https://www.cac.gov.cn/2025-08/01/c_1755764425442686.htm">四部门《关于规范"自媒体"医疗科普行为的通知》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言三："我年年体检都正常，不会得癌"——普通体检 ≠ 癌症早筛</h3>
+      <p class="ctx">常规体检的胸片查不出早期肺癌（要用 LDCT）、抽血肿瘤标志物正常不能排除癌症（敏感性和特异性都不够）、便常规替代不了规范的 FIT/肠镜、不做胃镜就永远看不到胃里的早期病灶。<strong>体检管的是"慢病指标"，癌症早筛有自己的一套专用方法</strong>——本章第三节的表格，就是这两者的分界线。"体检正常"给不了的安心，"按口径筛查"可以给。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台</a> · 六癌种筛查官方方案（链接见第三节各卡片）</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 按年龄段的早筛待办清单（一般风险口径；有家族史/高危因素请咨询医生提前）</h4>
+      <ul>
+        <li><strong>现在（任何年龄）</strong>：未接种乙肝疫苗/HPV 疫苗且在适应年龄内的，安排接种（第13章）；查出幽门螺杆菌感染的，咨询医生根除</li>
+        <li><strong>25–29 岁女性</strong>：开始宫颈癌筛查（首选 HR-HPV 检测，每 5 年）</li>
+        <li><strong>30–39 岁</strong>：女性宫颈癌筛查按周期做；乙肝/丙肝携带者每 6 个月肝脏超声+AFP；直系亲属有乳腺癌/结直肠癌史的，咨询医生是否提前启动相应筛查</li>
+        <li><strong>40 岁</strong>：女性开始乳腺癌定期筛查（钼靶±超声）；开始结直肠癌筛查（每年 FIT）</li>
+        <li><strong>45 岁</strong>：胃癌高危人群做首次胃镜（高发地区、Hp 感染史、癌前疾病、家族史、高盐腌制饮食烟酒者）</li>
+        <li><strong>50 岁</strong>：吸烟≥20 包年或戒烟不足 15 年者，开始每年 1 次 LDCT 肺癌筛查（并立刻戒烟）</li>
+        <li><strong>任何年龄</strong>：第四节的警示信号持续超过 2 周 → 就医，不再观望</li>
+        <li><strong>持续</strong>：对照 15 条守则每年自查一遍生活方式（吸烟？饮酒？体重？运动？饮食？）</li>
+      </ul>
+    </div>
+
+    <div class="note">📌 <strong>版本时效：</strong>本章筛查口径依据 2024–2026 年现行国家方案与指南（肺癌方案 2024 版、胃癌方案 2024 版、子宫颈癌筛查规范 2025 版、原发性肝癌诊疗指南 2026 版、防癌守则 2026 版）。指南会更新，行动前可让医生复核最新口径。</div>
+  </section>
+
+  <nav class="pager">
+    <a href="../11-musculo/"><span class="dir">← 第11章</span>骨骼肌肉：颈腰椎·关节炎·骨质疏松</a>
+    <a href="../13-vaccine/"><span class="dir">第13章 →</span>传染病与疫苗</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生健康必修课 · 第12章 · 依据《中国防癌健康生活方式守则（2026年版）》、国家卫健委各癌种筛查与诊疗方案/指南及 WHO 中文实况报道整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议 · 急症请拨打 120 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

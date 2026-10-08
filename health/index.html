@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人生健康必修课 — 写给每个人的医学健康素养课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:48px 20px;text-align:center;}
+  header .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:10px;}
+  header h1{margin:0 0 10px;font-size:32px;letter-spacing:1px;}
+  header p{margin:4px 0;font-size:15px;opacity:.95;}
+  header a{color:#fff;}
+  .layout{max-width:1150px;margin:0 auto;padding:36px 20px 60px;display:flex;gap:34px;align-items:flex-start;}
+  nav.toc{width:240px;flex-shrink:0;position:sticky;top:20px;font-size:14px;}
+  nav.toc .toc-title{font-weight:700;font-size:15px;color:var(--accent);margin:0 0 10px;letter-spacing:1px;}
+  nav.toc .toc-part{font-size:12px;color:var(--muted);letter-spacing:2px;margin:12px 0 2px;padding-left:10px;font-weight:700;}
+  nav.toc ul{list-style:none;margin:0 0 6px;padding:0;}
+  nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 10px;border-left:3px solid transparent;border-radius:0 6px 6px 0;}
+  nav.toc a:hover{color:var(--accent);background:var(--bg-soft);border-left-color:var(--accent);}
+  main{flex:1;min-width:0;}
+  .intro{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:20px 24px;}
+  .intro p{margin:8px 0;font-size:15px;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:14px;}
+  .disclaimer strong{color:var(--red);}
+  .disclaimer ul{margin:6px 0 0;padding-left:20px;}
+  h2{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:38px 0 6px;}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 18px 18px;}
+  .part-title{font-size:16px;color:var(--accent-deep);letter-spacing:2px;margin:30px 0 0;font-weight:700;}
+  article.card{border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:18px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:16px;transition:box-shadow .15s;}
+  article.card:hover{box-shadow:0 3px 10px rgba(27,31,36,.09);}
+  article.card h3{margin:0 0 8px;font-size:18px;}
+  article.card h3 a{color:var(--ink);text-decoration:none;}
+  article.card h3 a:hover{color:var(--accent);}
+  article.card p{margin:6px 0;color:var(--ink);font-size:15px;}
+  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:12px;border-radius:5px;padding:1px 8px;margin-right:8px;vertical-align:2px;}
+  ul.topics{padding-left:20px;font-size:14px;color:var(--muted);margin:8px 0 0;}
+  .meta-row{font-size:13.5px;color:var(--muted);margin-top:10px;}
+  .meta-row a{color:var(--accent);}
+  .conf-legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px;font-size:13.5px;}
+  .c-badge{display:inline-block;font-size:12px;border-radius:5px;padding:1px 8px;margin-right:4px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  footer{max-width:1150px;margin:0 auto;padding:22px 20px 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;width:auto;margin-bottom:24px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;}
+    nav.toc a{border-left:none;padding:4px 8px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header>
+  <div class="tag">认识身体 · 预防疾病 · 会急救 · 会就医</div>
+  <h1>人生健康必修课</h1>
+  <p>写给每个人的医学健康素养课：把学校没教的这一课，系统补上</p>
+  <p>内容底本：默沙东诊疗手册大众版 · 中国公民健康素养66条（2024年版）· WHO 中文 · 最新中国临床指南 ｜ 每个观点都标注官方来源</p>
+</header>
+
+<div class="layout">
+
+<nav class="toc" id="toc">
+  <p class="toc-title">📑 目录</p>
+  <ul>
+    <li><a href="#intro">课程说明</a></li>
+    <li><a href="00-intro/">导论 · 为什么这是必修课</a></li>
+  </ul>
+  <p class="toc-part">第一部分 · 基础素养</p>
+  <ul>
+    <li><a href="01-body/">第1章 · 身体是怎么工作的</a></li>
+    <li><a href="02-checkup/">第2章 · 读懂体检报告</a></li>
+    <li><a href="03-medicine/">第3章 · 合理用药与家庭药箱</a></li>
+    <li><a href="04-firstaid/">第4章 · 急救技能</a></li>
+  </ul>
+  <p class="toc-part">第二部分 · 大病类分论</p>
+  <ul>
+    <li><a href="05-cardio/">第5章 · 心脑血管</a></li>
+    <li><a href="06-metabolic/">第6章 · 糖尿病与肥胖</a></li>
+    <li><a href="07-respiratory/">第7章 · 感冒·流感·肺炎</a></li>
+    <li><a href="08-digestive/">第8章 · 消化系统常见病</a></li>
+    <li><a href="09-skin/">第9章 · 皮肤病</a></li>
+    <li><a href="10-eye/">第10章 · 眼科常见病</a></li>
+    <li><a href="11-musculo/">第11章 · 骨骼肌肉与跌打损伤</a></li>
+    <li><a href="12-cancer/">第12章 · 癌症早筛</a></li>
+  </ul>
+  <p class="toc-part">第三部分 · 养生与预防</p>
+  <ul>
+    <li><a href="13-vaccine/">第13章 · 传染病与疫苗</a></li>
+    <li><a href="14-nutrition/">第14章 · 饮食营养与体重</a></li>
+    <li><a href="15-sleep-exercise/">第15章 · 睡眠·运动·心理</a></li>
+    <li><a href="16-decision/">第16章 · 就医决策与识谣</a></li>
+    <li><a href="../">← 返回博客首页</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="intro" id="intro">
+    <p>人这一生，和身体打交道的时长超过和任何专业打交道的时长——可关于身体的课，学校里几乎不教：感冒和流感有什么区别？血压计上的两个数字各是什么意思？摔伤了该热敷还是冷敷？体检报告上的箭头要不要紧？这些问题，大多数人第一次认真面对时，往往已经是在医院走廊里。</p>
+    <p>本专题的目标，是把这一门<strong>「人生健康必修课」</strong>系统补上：从认识身体，到读懂体检、合理用药、掌握急救，再到心脑血管、糖尿病、呼吸道、消化、皮肤、眼科、骨骼肌肉、癌症等大病类逐个讲清——<strong>是什么问题、什么原理、怎么预防、怎么护理、何时必须就医</strong>。全课程以权威医学来源为底本，<strong>每个观点都给出官方链接与来源认证</strong>，通俗表达，但不牺牲准确性。</p>
+    <p><strong>来源认证四级标注</strong>（全站统一，宁可少写、不写无据之言）：</p>
+    <div class="conf-legend">
+      <span><span class="c-badge c-v">🏛 官方文件</span>卫健委 / WHO / 疾控中心 / 药监局等政府与国际组织发布</span>
+      <span><span class="c-badge c-m">📘 权威手册</span>默沙东诊疗手册大众版（中文）/ Mayo Clinic 官方中文站</span>
+      <span><span class="c-badge c-a">📋 学术指南</span>中华医学会等学会的现行临床指南与专家共识</span>
+      <span><span class="c-badge c-p">🏷 商业科普</span>丁香医生 / 腾讯医典等，仅作补充、明确标注</span>
+    </div>
+    <p style="color:var(--muted);font-size:13.5px;">时效说明：全部内容以现行最新版本为准（如 AHA 心肺复苏 2025 版指南、中国糖尿病防治指南 2024 版、防癌守则 2026 版），每章页脚标注依据版本与整理日期。英文版来源会注明语言。</p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本站内容仅供<strong>健康教育与参考</strong>，不构成医疗建议、诊断或治疗方案，不能替代执业医师的面诊与专业判断。</li>
+      <li>个体健康状况存在差异，请勿仅依据本站内容自行用药、停药或更改治疗。</li>
+      <li>如有不适请及时就医；<strong>出现急症（胸痛、呼吸困难、大出血、意识丧失、疑似中风等）请立即拨打 120</strong>。</li>
+      <li>各章依据官方文件、权威手册与现行指南整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <h2 id="chapters">课程导航</h2>
+  <p class="sub">导论 + 三部分共 16 章：先打基础（认识身体、看懂检查、用好药、会急救），再逐个击破大病类，最后落实到日常养生与就医决策</p>
+
+  <article class="card" id="ch00">
+    <h3><span class="badge">导论</span><a href="00-intro/">为什么健康素养是人生必修课</a></h3>
+    <p>健康素养是什么、我国居民健康素养现状、国家《健康素养66条（2024年版）》三段式框架，以及本课程的学习方法与使用姿势。</p>
+    <div class="meta-row"><a href="00-intro/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第一部分 · 基础素养 —— 认识身体，会用工具</p>
+
+  <article class="card" id="ch01">
+    <h3><span class="badge">第1章</span><a href="01-body/">身体是怎么工作的</a></h3>
+    <p>不用背名词的生理速览：循环、呼吸、消化、免疫、内分泌、神经六大系统各管什么、彼此怎么配合——这是后面所有疾病章的"原理课"。</p>
+    <ul class="topics">
+      <li>血管像水管网络：血压、血脂问题的物理直觉</li>
+      <li>免疫系统是国防军：为什么会发炎、为什么会过敏</li>
+      <li>激素是信使系统：血糖、体重、情绪背后的内分泌</li>
+    </ul>
+    <div class="meta-row"><a href="01-body/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch02">
+    <h3><span class="badge">第2章</span><a href="02-checkup/">读懂体检报告与常见指标</a></h3>
+    <p>血压、血糖、血脂四项、肝肾功能、血常规、尿酸、结节……体检单上每个箭头什么意思，哪些要复查，哪些要就医。</p>
+    <ul class="topics">
+      <li>官方推荐的体检基本项目（卫健委 2025 版指引）</li>
+      <li>常见指标的正常范围与"临界值"怎么理解</li>
+      <li>甲状腺结节、肺结节、脂肪肝：报告高频词的应对</li>
+    </ul>
+    <div class="meta-row"><a href="02-checkup/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch03">
+    <h3><span class="badge">第3章</span><a href="03-medicine/">合理用药与家庭药箱</a></h3>
+    <p>抗生素不是消炎药、感冒药别叠着吃、处方药不能自行停——家庭用药最常见的坑，和一份可以照单配齐的家庭药箱清单。</p>
+    <ul class="topics">
+      <li>OTC 与处方药的区别，对乙酰氨基酚的安全上限</li>
+      <li>抗生素耐药：为什么"吃完疗程"这么重要</li>
+      <li>家庭药箱该放什么、多久清一次</li>
+    </ul>
+    <div class="meta-row"><a href="03-medicine/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch04">
+    <h3><span class="badge">第4章</span><a href="04-firstaid/">急救技能 —— 关键时刻的四分钟</a></h3>
+    <p>依据 AHA 2025 版指南与中国红十字会教学：心肺复苏与 AED、海姆立克、止血包扎、烧烫伤、跌打损伤处理、如何正确拨打 120。</p>
+    <ul class="topics">
+      <li>成人心肺复苏：按压位置、深度、频率（2025 版要点）</li>
+      <li>气道异物梗阻：海姆立克急救法（成人/儿童/婴儿不同）</li>
+      <li>扭伤拉伤 RICE 原则；烧烫伤"冲脱泡盖送"</li>
+    </ul>
+    <div class="meta-row"><a href="04-firstaid/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第二部分 · 大病类分论 —— 是什么 · 什么原理 · 怎么预防 · 怎么护理 · 何时就医</p>
+
+  <article class="card" id="ch05">
+    <h3><span class="badge">第5章</span><a href="05-cardio/">心脑血管：高血压 · 冠心病 · 脑卒中</a></h3>
+    <p>中国人健康的"头号杀手"。血管如何一步步堵上、血压如何悄悄伤器官；识别中风"120"口诀、心梗的红旗信号；确诊后如何与它长期共处。</p>
+    <div class="meta-row"><a href="05-cardio/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch06">
+    <h3><span class="badge">第6章</span><a href="06-metabolic/">代谢：糖尿病 · 肥胖 · 血脂异常</a></h3>
+    <p>血糖调节的机制、糖尿病前期怎么逆转、肥胖为什么被定义为疾病；饮食运动干预的官方方案与长期护理要点。</p>
+    <div class="meta-row"><a href="06-metabolic/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch07">
+    <h3><span class="badge">第7章</span><a href="07-respiratory/">呼吸道：感冒 · 流感 · 病毒 · 肺炎</a></h3>
+    <p>普通感冒和流感到底怎么分？病毒感染要不要用抗生素？什么情况会发展成肺炎、什么时候必须去医院？居家护理的正确姿势。</p>
+    <div class="meta-row"><a href="07-respiratory/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch08">
+    <h3><span class="badge">第8章</span><a href="08-digestive/">消化系统：胃肠炎 · 胃病 · 脂肪肝 · 胆结石</a></h3>
+    <p>上吐下泻怎么补水、幽门螺杆菌要不要根除、脂肪肝能不能逆转、胆结石何时需要手术；肠胃的日常养护与红旗信号。</p>
+    <div class="meta-row"><a href="08-digestive/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch09">
+    <h3><span class="badge">第9章</span><a href="09-skin/">皮肤病：湿疹 · 痤疮 · 荨麻疹 · 真菌感染</a></h3>
+    <p>皮肤是人体的第一道防线，也是最常被乱治的器官：激素药膏怎么分级用、痤疮的正规治疗路径、脚气为什么老复发、什么情况要活检。</p>
+    <div class="meta-row"><a href="09-skin/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch10">
+    <h3><span class="badge">第10章</span><a href="10-eye/">眼科：近视 · 干眼 · 白内障 · 青光眼</a></h3>
+    <p>近视为什么不可逆、控度数有哪些被证实的办法；干眼的自救与就医边界；白内障青光眼这两大"致盲杀手"的早筛时机。</p>
+    <div class="meta-row"><a href="10-eye/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch11">
+    <h3><span class="badge">第11章</span><a href="11-musculo/">骨骼肌肉：颈腰椎 · 关节炎 · 骨质疏松 · 跌打损伤</a></h3>
+    <p>久坐族的颈腰痛机制与自救、腰突症什么时候必须手术、骨质疏松的筛查与补钙真相、跌打损伤的分期处理与康复。</p>
+    <div class="meta-row"><a href="11-musculo/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch12">
+    <h3><span class="badge">第12章</span><a href="12-cancer/">癌症：早筛与警示信号</a></h3>
+    <p>依据国家癌症中心《中国防癌健康生活方式守则（2026年版）》：哪些癌症有成熟的早筛手段、不同年龄该查什么、身体的哪些信号不能拖。</p>
+    <div class="meta-row"><a href="12-cancer/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第三部分 · 养生与预防 —— 把功夫下在得病之前</p>
+
+  <article class="card" id="ch13">
+    <h3><span class="badge">第13章</span><a href="13-vaccine/">传染病与疫苗</a></h3>
+    <p>疫苗的原理与国家免疫规划（2026 版程序）、成人也该打的疫苗（流感/HPV/带状疱疹/肺炎）、常见疫苗疑虑的官方解答。</p>
+    <div class="meta-row"><a href="13-vaccine/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch14">
+    <h3><span class="badge">第14章</span><a href="14-nutrition/">饮食营养与体重</a></h3>
+    <p>《中国居民膳食指南（2022）》八准则逐条讲透、膳食宝塔怎么落地到一日三餐、官方体重管理方案与常见减肥谣言粉碎。</p>
+    <div class="meta-row"><a href="14-nutrition/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch15">
+    <h3><span class="badge">第15章</span><a href="15-sleep-exercise/">睡眠 · 运动 · 心理健康</a></h3>
+    <p>官方《睡眠健康核心信息（2025）》要点、身体活动指南的运动量标准、焦虑抑郁的识别与求助渠道（12356 心理援助热线）。</p>
+    <div class="meta-row"><a href="15-sleep-exercise/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch16">
+    <h3><span class="badge">第16章</span><a href="16-decision/">就医决策与识别医疗谣言</a></h3>
+    <p>什么病挂什么科、什么情况直接去急诊、怎么向医生高效描述病情、如何识别虚假健康文章与养生谣言（附官方辟谣平台）。</p>
+    <div class="meta-row"><a href="16-decision/">阅读本章 →</a></div>
+  </article>
+
+</main>
+</div>
+
+<footer>
+  <p>人生健康必修课 · 个人整理的公益健康科普资料 · 非官方、无商业合作、无任何带货链接 · 内容以各节标注的官方来源为准</p>
+  <p>本站仅供健康教育参考，不构成医疗建议；不适请及时就医，急症请拨打 120 · 来源标注：🏛 官方文件 ｜ 📘 权威手册 ｜ 📋 学术指南 ｜ 🏷 商业科普（标注） · <a href="../">返回博客首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

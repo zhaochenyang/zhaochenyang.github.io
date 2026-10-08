@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6章 代谢：糖尿病·肥胖·血脂异常 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:12px 0 4px;font-size:14.5px;color:var(--accent);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.dt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+  table.dt th,table.dt td{border:1px solid var(--line);padding:6px 10px;text-align:left;}
+  table.dt th{background:var(--bg-soft);white-space:nowrap;}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第6章 · 大病类分论</div>
+  <h1>代谢三兄弟：糖尿病 · 肥胖 · 血脂异常</h1>
+  <p>一把"钥匙"讲清血糖，一杆秤讲清体重：是什么问题 · 什么原理 · 怎么预防 · 怎么护理 · 何时必须就医</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../05-cardio/">← 第5章：心脑血管</a>
+    <a href="../07-respiratory/">第7章：呼吸道 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">血糖原理</a>
+    <a class="anchor" href="#s2">糖尿病</a>
+    <a class="anchor" href="#s3">肥胖</a>
+    <a class="anchor" href="#s4">血脂异常</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供健康教育与参考，不构成医疗建议、诊断或治疗方案，不能替代执业医师面诊；请勿据此自行用药、停药或更改降糖减重方案。<strong>出现意识改变、严重低血糖等急症表现，请立即拨打 120。</strong>各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    本章覆盖三个代谢病：<strong>糖尿病（重点2型，含"糖尿病前期"）、肥胖症、血脂异常</strong>。三者常常结伴出现（医生口中的"代谢综合征"），且都是<a href="../05-cardio/">第5章</a>心脑血管病的直接推手——管血管先管代谢。每个病种固定五问：<strong>①是什么问题 ②什么原理 ③怎么预防 ④怎么护理与应对 ⑤何时必须就医</strong>。
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、血糖是怎么管的：一把钥匙的比喻</h2>
+    <p class="chapter-sub">先懂原理，糖尿病的预防、用药逻辑、并发症就全都能推出来</p>
+
+    <article class="view">
+      <h3>胰岛素是钥匙，细胞门上有锁</h3>
+      <p class="ctx">吃下去的碳水最终都变成葡萄糖进入血液——血糖本身不是坏事，它是全身细胞的"燃料"。但燃料不能直接在血里烧，得送进细胞。问题是：<strong>葡萄糖自己进不去大多数细胞的门，门需要一把钥匙来开——这把钥匙就是胰岛素</strong>，由胰腺里的胰岛细胞生产。</p>
+      <p class="ctx">正常流程：进食 → 血糖升高 → 胰腺感应到，释放胰岛素 → 胰岛素像钥匙一样打开肌肉、脂肪等细胞的"门" → 葡萄糖进入细胞供能，多余的合成糖原存进肝脏和肌肉 → 血糖回落到平稳水平。两餐之间血糖低了，肝脏再把库存释放出来。整个系统 24 小时自动调节，健康人空腹血糖稳定在 3.9~6.1 mmol/L 区间。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/quick-facts-hormonal-and-metabolic-disorders/diabetes-mellitus-dm-and-disorders-of-blood-sugar-metabolism/diabetes">默沙东诊疗手册大众版《糖尿病》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>糖尿病 = 钥匙系统坏了：两种坏法</h3>
+      <p class="ctx"><strong>2型糖尿病（占90%以上）的坏法是"锁锈了 + 工厂累了"</strong>：先是细胞对胰岛素不敏感——钥匙插进去拧不动了，这叫<strong>胰岛素抵抗</strong>（肥胖、缺乏运动、内脏脂肪是主要推手）；胰腺只好加班加点生产更多钥匙硬撑，撑上几年到十几年，胰岛细胞逐渐"过劳衰竭"，钥匙产量也不够了——血糖从此持续堆积在血里。<strong>1型糖尿病</strong>则是另一种坏法：免疫系统错误攻击并摧毁了生产胰岛素的细胞，钥匙工厂直接停产，多见于儿童青少年，必须终身依赖胰岛素。</p>
+      <p class="ctx">为什么高血糖伤全身？血液里泡着过高浓度的葡萄糖，就像把全身的血管常年泡在"糖水"里——血管内皮受损、加速动脉粥样硬化（机制见<a href="../05-cardio/">第5章</a>），同时糖直接毒害神经和微小血管。所以糖尿病真正的代价不是"血糖数字高"，而是几年十几年后心、脑、眼、肾、脚的并发症。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/quick-facts-hormonal-and-metabolic-disorders/diabetes-mellitus-dm-and-disorders-of-blood-sugar-metabolism/diabetes">默沙东大众版《糖尿病》</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.who.int/zh/news-room/fact-sheets/detail/diabetes">WHO 中文《糖尿病实况报道》</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-06-1.png" alt="胰岛素钥匙打开细胞之门的机制示意插画">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、糖尿病：可防可控可控不住的慢性病</h2>
+    <p class="chapter-sub">中国成人患病率约 12.4%——每 8 个成年人就有 1 个；更可惜的是大量"糖尿病前期"没被发现</p>
+
+    <article class="view">
+      <h3>先看懂诊断数字（《中国糖尿病防治指南（2024版）》）</h3>
+      <table class="dt">
+        <tr><th>状态</th><th>指标（mmol/L）</th></tr>
+        <tr><td>糖尿病前期 · 空腹血糖受损（IFG）</td><td>空腹血糖 6.1 ~ &lt;7.0，且糖负荷后2小时 &lt;7.8</td></tr>
+        <tr><td>糖尿病前期 · 糖耐量异常（IGT）</td><td>空腹血糖 &lt;7.0，且糖负荷后2小时 7.8 ~ &lt;11.1</td></tr>
+        <tr><td>糖尿病</td><td>空腹血糖 ≥7.0，<strong>或</strong>糖负荷后2小时 ≥11.1，<strong>或</strong>随机血糖 ≥11.1 伴典型症状，<strong>或</strong>糖化血红蛋白（HbA1c）≥6.5%</td></tr>
+      </table>
+      <p class="ctx">两个常见疑问：其一，"典型症状"指<strong>多饮、多尿、多食、体重下降</strong>（俗称"三多一少"）——有症状者一次达标即可诊断，<strong>无症状者需改日复查确认</strong>，不能凭一次血糖高就自己吓自己。其二，指南建议 HbA1c ≥5.7% 者做口服葡萄糖耐量试验（OGTT）进一步筛查——<strong>糖尿病前期就是指南划出来的"可逆转窗口期"</strong>，此时通过减重、饮食、运动干预，相当一部分人可以推迟甚至避免进展为糖尿病。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span>来源：<a href="https://diab.cma.org.cn/cn/zhinangongshi.aspx">中华医学会糖尿病学分会《中国糖尿病防治指南（2024版）》官方页</a> · <a href="https://www.scdc.sh.cn/shjk/tn-gfzn/20251031/10990.html">上海市疾控中心指南转载页</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.nhc.gov.cn/ylyjs/gzdt/202407/330feafa9cd7458080c05dcdfd380af8.shtml">国家卫健委等《糖尿病防治行动实施方案（2024—2030年）》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>糖尿病五问</h3>
+      <h4>① 是什么问题</h4>
+      <p class="ctx">以慢性高血糖为特征的代谢性疾病，我国成人患病率约 12.4%（指南数据），且<strong>约一半患者不知道自己患病</strong>——早期几乎无症状，等到"三多一少"明显时往往已病程数年。它是全球主要死因之一：WHO 估计 2022 年全球约 8.3 亿人患糖尿病，绝大多数在低中收入国家。</p>
+      <h4>② 什么原理</h4>
+      <p class="ctx">见第一节"钥匙与锁"：2型 = 胰岛素抵抗为主 + 分泌逐渐不足。理解这个原理就理解了治疗逻辑——所以医生开的方案总是"减重运动（给锁除锈）+ 药物（帮忙开门或减少糖的来源）"的组合，而不是单纯"降数字"。</p>
+      <h4>③ 怎么预防</h4>
+      <p class="ctx">2型糖尿病是最"可预防"的大病之一，核心干预就三条：<strong>控制体重</strong>（腰围标准见第三节，内脏脂肪是胰岛素抵抗的头号推手）、<strong>规律运动</strong>（运动本身就能让细胞对胰岛素更敏感，效果立竿见影）、<strong>合理饮食</strong>（控制总热量与精制糖/含糖饮料，主食粗细搭配，模式详见<a href="../14-nutrition/">第14章</a>）。高危人群——超重肥胖、有糖尿病家族史、有过妊娠糖尿病的女性、糖尿病前期者——应从更早开始筛查（见<a href="../02-checkup/">第2章</a>体检安排）。</p>
+      <h4>④ 怎么护理与应对（已确诊者）</h4>
+      <p class="ctx">糖尿病管理是经典的"五驾马车"：<strong>健康教育、饮食治疗、运动治疗、药物治疗、血糖监测</strong>——五条腿缺一不可，只靠药不管嘴和腿，控制必然失败。日常要点：遵医嘱规律用药、不自行停换（降糖方案个体差异很大，由医生制定）；学会自测血糖并按医生要求记录；每 3~6 个月查一次糖化血红蛋白（HbA1c，反映近2-3个月平均血糖）；<strong>每年至少一次并发症筛查：眼底（散瞳）、尿蛋白/肾功能、足部检查、心血管评估</strong>——并发症早期都没有感觉，只能靠主动筛。日常护足：每天看脚（有无破口、水疱、颜色变化），穿合脚的鞋袜，不赤脚走路，脚上小伤口及时认真处理。</p>
+      <h4>⑤ 何时必须就医（红旗信号）</h4>
+      <p class="ctx"><strong>低血糖比高血糖更急</strong>：心慌、手抖、出冷汗、强烈饥饿感、头晕——立即吃 15 克左右的糖（糖水、含糖饮料、糖块），15 分钟后复测；若出现意识模糊、抽搐、昏迷，旁人应<strong>立即拨打 120</strong>，切勿给昏迷者喂食喂水。<strong>高血糖危象</strong>：恶心呕吐、深大呼吸、口中有烂苹果味、极度口渴乏力、意识改变——立即急诊。另外：视力突然下降、足部伤口溃破不愈或发黑、下肢麻木刺痛加重——尽快专科就诊，这些都是并发症进展的信号。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span>来源：<a href="https://diab.cma.org.cn/cn/zhinangongshi.aspx">《中国糖尿病防治指南（2024版）》</a> · <span class="c-badge c-m">📘 权威手册</span><a href="https://www.msdmanuals.cn/home/quick-facts-hormonal-and-metabolic-disorders/diabetes-mellitus-dm-and-disorders-of-blood-sugar-metabolism/diabetes">默沙东大众版《糖尿病》</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.who.int/zh/news-room/fact-sheets/detail/diabetes">WHO《糖尿病实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么医生总说"怕的不是血糖，是并发症"</h3>
+      <p class="ctx">长期高血糖对血管的损害分两条线：<strong>大血管</strong>——加速心脑动脉粥样硬化，糖尿病患者发生心梗、卒中的风险成倍升高（见<a href="../05-cardio/">第5章</a>）；<strong>微血管</strong>——专挑三处最精细的地方下手：<strong>眼</strong>（视网膜病变，糖尿病是工作年龄人群失明的主要原因之一）、<strong>肾</strong>（糖尿病肾病，是终末期肾病的常见原因）、<strong>神经与足</strong>（神经病变导致脚失去痛觉保护，一个小伤口发展成溃疡、感染，糖尿病是非创伤性截肢的首要原因）。</p>
+      <p class="ctx">这解释了糖尿病管理的全部逻辑：<strong>把血糖、血压、血脂、体重四个指标一起长期管住，并发症就可以大幅推迟甚至避免</strong>——糖尿病不可怕，"确诊后不管了"才可怕。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home/quick-facts-hormonal-and-metabolic-disorders/diabetes-mellitus-dm-and-disorders-of-blood-sugar-metabolism/diabetes">默沙东大众版《糖尿病》（并发症部分）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.who.int/zh/news-room/fact-sheets/detail/diabetes">WHO《糖尿病实况报道》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、肥胖：一种病，不是意志力问题</h2>
+    <p class="chapter-sub">我国成人超重或肥胖率已超过一半；肥胖是很多慢性病共同的"上游"</p>
+
+    <article class="view">
+      <h3>中国标准：BMI 和腰围，两把尺子都要量</h3>
+      <p class="ctx">BMI（身体质量指数）= 体重(kg) ÷ 身高(m)²。注意：<strong>中国标准比 WHO 国际标准更严</strong>（亚洲人在同样 BMI 下体脂率更高、代谢风险更大），判定按国家卫生行业标准 WS/T 428：</p>
+      <table class="dt">
+        <tr><th>BMI（kg/m²）</th><th>判定</th></tr>
+        <tr><td>&lt;18.5</td><td>体重过低</td></tr>
+        <tr><td>18.5 ~ 23.9</td><td>正常</td></tr>
+        <tr><td>24.0 ~ 27.9</td><td>超重</td></tr>
+        <tr><td>≥28.0</td><td>肥胖</td></tr>
+      </table>
+      <p class="ctx">第二把尺子是<strong>腰围</strong>——它量的是内脏脂肪，而内脏脂肪才是真正"有毒"的那部分（分泌炎症因子、直接推动胰岛素抵抗）。《肥胖症诊疗指南（2024年版）》标准：<strong>男性腰围 ≥90cm、女性 ≥85cm 即为中心性肥胖</strong>；男性 85~90cm、女性 80~85cm 为中心性肥胖前期。很多人 BMI 正常但腰围超标（"瘦胖子"），代谢风险照样高——所以两把尺子都要量。指南同时给出肥胖症分级：BMI 28~32.5 轻度、32.5~37.5 中度、37.5~50 重度、≥50 极重度。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/wjw/yingyang/201308/a233d450fdbc47c5ad4f08b7e394d1e8.shtml">卫生行业标准《成人体重判定》WS/T 428-2013</a> · <a href="https://www.nhc.gov.cn/yzygj/c100068/202410/18966b78087d44429f934a2ef028b027.shtml">国家卫健委《肥胖症诊疗指南（2024年版）》</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/obesity-and-overweight">WHO 中文《肥胖与超重实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>肥胖五问</h3>
+      <h4>① 是什么问题</h4>
+      <p class="ctx">WHO 的定义：肥胖是"可能损害健康的异常或过量脂肪蓄积"——<strong>它本身就是一种慢性病</strong>，而不只是体型问题或"自控力差"。《肥胖症诊疗指南（2024年版）》是我国第一部肥胖症诊疗领域的国家级指南，把它正式按慢性病管理。</p>
+      <h4>② 什么原理</h4>
+      <p class="ctx">直接原理是长期的能量正平衡（摄入 &gt; 消耗），但"管住嘴迈开腿"为什么这么难？因为体重受一套强大的生理调节系统控制：脂肪细胞分泌瘦素等激素向大脑汇报"库存充足"，而长期肥胖会让大脑对这类信号钝化；节食减重后，身体会主动降低代谢、升高食欲来"保卫"原有体重——这是进化留下的生存机制，所以<strong>反弹是生理现象，不是意志失败</strong>。此外遗传、肠道菌群、睡眠不足、压力、部分药物都参与其中。</p>
+      <h4>③ 怎么预防</h4>
+      <p class="ctx">按国家卫健委《体重管理指导原则（2024年版）》：从家庭入手（尤其儿童青少年——超重肥胖的孩子大概率长成超重大人）、规律三餐、控制含糖饮料与高能量零食、每周 150 分钟以上中等强度运动、保证睡眠（睡眠不足直接推高食欲激素）。定期量体重和腰围，趋势比单次数值重要。</p>
+      <h4>④ 怎么护理与应对（已超重/肥胖者）</h4>
+      <p class="ctx">官方路径是"阶梯式"：<strong>第一阶梯永远是生活方式干预</strong>——《成人肥胖食养指南（2024年版）》给出具体吃法，配合运动和行为调整；指南一般的减重节奏建议是循序渐进，先设定"3~6 个月减去当前体重的 5%~10%"这样可达成的中等目标——减掉 5% 就已能显著改善血糖血脂。生活方式干预效果不佳者，应到<strong>体重管理门诊/内分泌科/营养科</strong>接受专业评估，由医生决定是否启动药物或其他医学干预（本专题不介绍具体药物）。极端节食、代餐完全替代三餐、减肥茶等"捷径"不在官方路径里。</p>
+      <h4>⑤ 何时必须就医（红旗信号）</h4>
+      <p class="ctx">BMI ≥28，或腰围超标且伴血糖/血压/血脂异常——应就诊评估代谢状况；短期内体重快速上升且伴水肿、怕冷、月经不调等——需排查甲状腺功能减退等继发性肥胖；重度以上肥胖伴睡眠中呼吸暂停（打鼾憋醒、白天嗜睡）——需筛查睡眠呼吸暂停（与<a href="../15-sleep-exercise/">第15章</a>相关）。儿童体重增长曲线异常偏离，应尽早就诊儿科/内分泌科。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/202410/18966b78087d44429f934a2ef028b027.shtml">《肥胖症诊疗指南（2024年版）》</a> · <a href="https://www.nhc.gov.cn/ylyjs/zcwj/202412/75cb79c171c94def9e768193e65484f7.shtml">国家卫健委《体重管理指导原则（2024年版）》</a> · <a href="https://www.nhc.gov.cn/sps/c100088/202402/9ba512ba8e314a47a181db11d2fa188d/files/1743476136267_20714.pdf">《成人肥胖食养指南（2024年版）》PDF</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：减重降糖三大常见坑</h3>
+      <p class="ctx"><strong>"无糖食品可以放心吃"</strong>——错。无糖饼干糕点的主要成分是淀粉，消化后照样变成葡萄糖升血糖，且往往含大量油脂；"无糖"只是不含蔗糖。看配料表和总热量，而不是看"无糖"两个字。</p>
+      <p class="ctx"><strong>"吃苦瓜/秋葵/某种茶能降糖，可以代替药"</strong>——错。没有任何食物能替代降糖治疗，擅自停药换"食疗"是糖尿病管理中最危险的操作之一；卫健委健康科普辟谣平台对此类说法有集中辟谣。</p>
+      <p class="ctx"><strong>"排毒/清宿便能减肥"</strong>——错。排掉的主要是水分和肠道内容物，脂肪一克没少；长期用泻药类"排毒"产品反而伤肠道功能和电解质平衡。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台</a> · <span class="c-badge c-m">📘 权威手册</span><a href="https://www.msdmanuals.cn/home/quick-facts-hormonal-and-metabolic-disorders/diabetes-mellitus-dm-and-disorders-of-blood-sugar-metabolism/diabetes">默沙东大众版《糖尿病》</a>（治疗以医嘱为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、血脂异常：血管里最厚的"水垢"</h2>
+    <p class="chapter-sub">它是唯一"完全没感觉"的三高成员，只能靠化验发现</p>
+
+    <article class="view">
+      <h3>血脂异常五问</h3>
+      <h4>① 是什么问题</h4>
+      <p class="ctx">血中胆固醇、甘油三酯过高，或"好胆固醇"过低。化验单上四个主角：<strong>总胆固醇（TC）、低密度脂蛋白胆固醇（LDL-C，"坏胆固醇"）、高密度脂蛋白胆固醇（HDL-C，"好胆固醇"）、甘油三酯（TG）</strong>。怎么读这四个数、理想范围是什么，见<a href="../02-checkup/">第2章体检报告解读</a>。</p>
+      <h4>② 什么原理</h4>
+      <p class="ctx">胆固醇本身不是坏东西（细胞膜和激素的原料），坏的是运输方式失衡：LDL 负责把胆固醇送往全身，多出来的 LDL 会钻进血管壁沉积成斑块——这就是<a href="../05-cardio/">第5章</a>动脉粥样硬化的直接原料，所以 <strong>LDL-C 是血脂管理中最重要的干预靶点</strong>；HDL 则负责把外周多余的胆固醇运回肝脏处理，相当于"回收车"。甘油三酯过高除了也促进硬化，还与胰腺炎风险相关。另外：血脂长期偏高、肝脏处理不过来时，脂肪会堆进肝细胞——这就是脂肪肝的主要来源之一（详见<a href="../08-digestive/">第8章</a>）。</p>
+      <h4>③ 怎么预防</h4>
+      <p class="ctx">饮食端：减少饱和脂肪（肥肉、动物油、奶油）和反式脂肪（部分加工烘焙食品、植脂末），增加膳食纤维（全谷物、豆类、蔬菜）和深海鱼；体重端：减重对降甘油三酯效果显著；运动端：规律有氧运动有助于升高 HDL。吸烟会降低 HDL，戒烟本身就是调血脂。<strong>定期检测</strong>：成人应定期检查血脂（频率与项目见<a href="../02-checkup/">第2章</a>），有早发心血管病家族史者应更早、更频繁。</p>
+      <h4>④ 怎么护理与应对（已确诊者）</h4>
+      <p class="ctx">由医生评估整体心血管风险后确定干预强度和 LDL-C 目标值（风险越高目标越严，已患心脑血管病者尤其严格）；生活方式干预是所有方案的地基，不因服药而省略；若医生启动降脂药物治疗，需遵医嘱长期服用并按期复查血脂、肝功能和肌肉症状——<strong>降脂药"吃吃停停"基本无效</strong>，斑块管理是长期工程。</p>
+      <h4>⑤ 何时必须就医（红旗信号）</h4>
+      <p class="ctx">血脂异常本身几乎无症状，"就医信号"主要来自三处：<strong>体检发现 LDL-C 或甘油三酯明显升高</strong>（如甘油三酯重度升高，需尽快就诊以防胰腺炎）；<strong>皮肤/眼睑出现黄色瘤</strong>（黄色小斑块或结节，提示胆固醇沉积，可能是家族性高胆固醇血症的线索）；<strong>直系亲属有早发冠心病或年轻时胆固醇极高</strong>——家族性高胆固醇血症需要尽早专科评估，并对直系亲属进行连锁筛查。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/cardiovascular-diseases">WHO《心血管疾病实况报道》</a>（不健康饮食/血脂为主要危险因素） · <span class="c-badge c-a">📋 学术指南</span><a href="https://www.scdc.sh.cn/shjk/gxy-gfzn/20241011/9843.html">《中国高血压防治指南（2024年修订版）》</a>（心血管风险分层中的血脂管理） · <span class="c-badge c-m">📘 权威手册</span><a href="https://www.msdmanuals.cn/home/heart-and-blood-vessel-disorders/atherosclerosis/atherosclerosis">默沙东大众版《动脉粥样硬化》</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-06-2.png" alt="体重与代谢平衡概念插画">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <div class="checklist">
+      <h4>📋 代谢健康自查清单（建议每年对照一次）</h4>
+      <ul>
+        <li>我知道自己的空腹血糖数值吗？上一次查是什么时候？（40 岁以上建议每年查；有家族史/超重者更早）</li>
+        <li>我算过自己的 BMI 吗？在 18.5~23.9 之间吗？</li>
+        <li>我量过腰围吗？男性 &lt;90cm、女性 &lt;85cm 了吗？</li>
+        <li>我的血脂四项（TC/LDL-C/HDL-C/TG）最近一次结果还记得吗？（见<a href="../02-checkup/">第2章</a>）</li>
+        <li>我家有糖尿病、肥胖或早发心脑血管病史吗？（有 = 筛查要更早更勤）</li>
+        <li>我多久喝一次含糖饮料？（指南建议控制，白水/淡茶优先）</li>
+        <li>我每周中等强度运动达到 150 分钟了吗？（快走、骑行、游泳都算）</li>
+        <li>家人中已确诊糖尿病者：最近一次 HbA1c 和并发症筛查（眼底/尿蛋白/足部）是什么时候做的？</li>
+        <li>家里有降糖药使用者：全家人都会识别低血糖症状（心慌手抖出冷汗）并知道"先补糖、昏迷拨120"吗？</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../05-cardio/"><span class="dir">← 第5章</span>心脑血管：高血压·冠心病·脑卒中</a>
+    <a href="../07-respiratory/"><span class="dir">第7章 →</span>呼吸道：感冒·流感·肺炎</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>第6章 代谢 · 依据《中国糖尿病防治指南（2024版）》《肥胖症诊疗指南（2024年版）》《体重管理指导原则（2024年版）》、WS/T 428-2013、WHO 中文实况报道及默沙东诊疗手册大众版整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议 · 严重低血糖、意识改变等急症请立即拨打 120 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

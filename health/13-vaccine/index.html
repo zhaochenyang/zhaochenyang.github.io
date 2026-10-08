@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 传染病与疫苗 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.simple{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.simple th,table.simple td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.simple th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第三部分 养生与预防 · 第13章</div>
+  <h1>传染病与疫苗</h1>
+  <p>疫苗是免疫系统的一场"军事演习" · 孩子打的是国家安排，成年人打的要自己安排</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../14-nutrition/">第14章：饮食营养与体重 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">疫苗原理</a>
+    <a class="anchor" href="#s2">儿童免疫规划</a>
+    <a class="anchor" href="#s3">成人疫苗</a>
+    <a class="anchor" href="#s4">疑虑解答</a>
+    <a class="anchor" href="#s5">防护基本功</a>
+    <a class="anchor" href="#s6">谣言粉碎</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本站内容仅供健康教育与参考，不构成医疗建议、诊断或治疗方案，不能替代执业医师面诊。疫苗接种的具体品种、剂次与禁忌，请以当地疾控部门建议和疫苗说明书为准。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标：</strong>看完你能回答三个问题——①疫苗到底怎么起效，为什么它被称为"最划算的健康投资"；②国家免费给孩子打的是哪些针，漏了怎么补；③<strong>作为成年人，你自己还欠着哪几针</strong>（这是大多数人的盲区，也是本章重点）。
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、疫苗原理：给免疫系统安排一场"军事演习"</h2>
+    <p class="chapter-sub">不生病也能获得免疫力——这是人类医学史上性价比最高的发明之一</p>
+
+    <article class="view">
+      <h3>疫苗是什么：一次不流血的实战演习</h3>
+      <blockquote class="q">"疫苗是一种简单的干预措施，用于预防疾病、挽救生命……疫苗接种可以预防白喉、破伤风、百日咳、流感、麻疹等 30 多种可能危及生命的疾病。"
+        <span class="qsrc">—— 世界卫生组织《什么是疫苗接种》问答（中文）</span>
+      </blockquote>
+      <p class="ctx">回忆一下<a href="../01-body/">第1章</a>讲过的免疫系统：它是一支需要"见过敌人"才能高效作战的国防军。疫苗做的事，就是把敌人的<strong>无害版形象</strong>（灭活病毒、减毒病毒或病毒的一小段蛋白/遗传指令）拿给免疫系统"通缉令拍照"——免疫细胞照例产生抗体和记忆细胞，演习结束后记忆细胞长期驻留。等真病毒来袭，免疫系统不用从零学起，几天内就能完成本该两三周的动员，在病毒站稳脚跟前把它清掉。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》</a> · <a href="https://www.who.int/zh/health-topics/vaccines-and-immunization">WHO 中文《疫苗和免疫接种》专题</a></div>
+    </article>
+
+    <article class="view">
+      <h3>群体免疫：你打的每一针，也在保护打不了针的人</h3>
+      <p class="ctx">当人群中足够多的人接种了疫苗，病毒就很难找到下一个宿主，传播链自然断掉——这叫<strong>群体免疫</strong>。通俗地说：如果一条街上有免疫力的人足够多，病毒"走两步就碰壁"，那些<strong>因为年龄太小、正在化疗、免疫缺陷而没法打疫苗的人</strong>也间接被保护了。反过来，接种率一旦掉下来，已经近乎绝迹的传染病（如麻疹）就会卷土重来——这也是"打不打疫苗是个人自由"这个说法最大的漏洞：<strong>传染病没有纯个人的选择，只有共同体的选择。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》（群体免疫部分）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-13-1.png" alt="疫苗原理示意：免疫系统识别疫苗后产生记忆细胞"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、儿童免疫规划：国家替你安排好的那些针</h2>
+    <p class="chapter-sub">免疫规划疫苗=政府免费+应当接种；漏种可补，记住接种本比记密码重要</p>
+
+    <article class="view">
+      <h3>两类疫苗：免疫规划（免费）vs 非免疫规划（自费自愿）</h3>
+      <p class="ctx">中国的疫苗分两类：<strong>免疫规划疫苗</strong>由政府免费提供，公民应当依照规定受种（如乙肝疫苗、卡介苗、脊灰疫苗、百白破疫苗、麻腮风疫苗等，覆盖结核、乙肝、脊髓灰质炎、百日咳、白喉、破伤风、麻疹、风疹、腮腺炎等）；<strong>非免疫规划疫苗</strong>由居民自愿自费接种（如流感、肺炎球菌、手足口病 EV71、轮状病毒、水痘疫苗等）。"免费"不代表"不重要"，"自费"也不代表"可打可不打"——只是财政承担方式不同，防护价值要单独评估。</p>
+      <p class="ctx">现行的接种时间表是<strong>《国家免疫规划疫苗儿童免疫程序及说明（2026年版）》</strong>：几月龄打什么针、间隔多久、漏种怎么补，都有官方明确规定。孩子入托入学要查验预防接种证，这本绿色小册子请长期保存。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinacdc.cn/jkyj/mygh02/yfjzfw/mycx/202607/t20260709_1837982.html">中国疾控中心：《国家免疫规划疫苗儿童免疫程序及说明（2026年版）》解读</a> · <a href="https://www.chinacdc.cn/jkyj/mygh02/">中国疾控中心免疫规划频道</a></div>
+    </article>
+
+    <article class="view">
+      <h3>新变化：13 周岁女孩免费接种 HPV 疫苗已纳入免疫规划</h3>
+      <p class="ctx">据国家疾控局科普问答：我国已将 HPV（人乳头瘤病毒）疫苗纳入国家免疫规划，<strong>2011 年 11 月 10 日以后出生、满 13 周岁的女孩可免费接种双价 HPV 疫苗 2 剂次</strong>（间隔 6 个月）。HPV 疫苗是全世界第一种用于<strong>预防癌症</strong>（宫颈癌）的疫苗——这部分内容在第12章癌症早筛中还会再次出现。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.ndcpa.gov.cn/jbkzzx/c100040/common/content/content_2089546092879712256.html">国家疾控局《人乳头瘤病毒（HPV）疫苗系列科普问答》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、成人疫苗：大多数人不知道自己还欠着几针</h2>
+    <p class="chapter-sub">孩子的疫苗本家长盯着打，成年人的疫苗没人提醒——这张表建议收藏</p>
+
+    <article class="view">
+      <h3>中国疾控官方建议：成年人与老年人该打的疫苗</h3>
+      <blockquote class="q">"老年人建议：①每年接种流感疫苗；②尽早接种肺炎球菌疫苗，尤其慢性病患者；③接种带状疱疹疫苗（50 岁以上人群建议接种）。"
+        <span class="qsrc">—— 中国疾控中心《儿童、成年人、老年人分别应该接种哪些疫苗？疾控建议来了》（2025-05）；国家疾控局同主题科普明确"50 岁以上人群建议接种带状疱疹疫苗"</span>
+      </blockquote>
+      <p class="ctx">展开成一张自查表（具体品种、剂次与禁忌以当地接种门诊和疫苗说明书为准）：</p>
+      <table class="simple">
+        <tr><th>疫苗</th><th>谁需要</th><th>要点</th></tr>
+        <tr><td><strong>流感疫苗</strong></td><td>6 月龄以上所有人，每年一针</td><td>流感病毒每年变异，去年的针保护不了今年；老年人、慢性病患者、孕妇、医务人员优先</td></tr>
+        <tr><td><strong>肺炎球菌疫苗</strong></td><td>老年人尽早接种，慢性病患者尤其建议</td><td>肺炎球菌是老人社区获得性肺炎和重症肺炎的主要元凶之一，与流感疫苗常搭配接种</td></tr>
+        <tr><td><strong>带状疱疹疫苗</strong></td><td>50 岁及以上人群</td><td>得过水痘的人，病毒终身潜伏在神经节里，免疫力下降时可"复活"为带状疱疹；重组疫苗程序为 2 剂、间隔 2–6 个月</td></tr>
+        <tr><td><strong>HPV 疫苗</strong></td><td>9–45 岁适龄女性（九价 2022 年经国家药监局批准扩龄至 9–45 岁）</td><td>9–14 岁可选 2 剂次程序；接种过不等于免筛查，宫颈癌筛查仍要做（见<a href="../12-cancer/">第12章</a>）</td></tr>
+        <tr><td><strong>乙肝疫苗</strong></td><td>无接种史或抗体阴性的成年人</td><td>《成人乙型肝炎疫苗接种专家建议》（2024，中华预防医学会）：18–59 岁未接种者按 0-1-6 月程序接种 3 针</td></tr>
+      </table>
+      <p class="ctx">一个提醒：这些成人疫苗多数属于<strong>非免疫规划（自费）疫苗</strong>，部分省市已对老年人免费或补贴（如流感、肺炎球菌疫苗），可咨询当地疾控或社区卫生服务中心。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinacdc.cn/jkkp/mygh/ymyf/202505/t20250519_306895.html">中国疾控中心《儿童、成年人、老年人分别应该接种哪些疫苗？疾控建议来了》</a> · <a href="https://www.ndcpa.gov.cn/jbkzzx/c100040/common/content/content_1921836016002830336.html">国家疾控局同主题科普</a> · <a href="https://www.ndcpa.gov.cn/jbkzzx/c100040/common/content/content_2089546092879712256.html">国家疾控局 HPV 疫苗科普问答</a></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span>乙肝部分：<a href="https://www.lcgdbzz.org/cn/article/doi/10.12449/JCH240808">《成人乙型肝炎疫苗接种专家建议》（2024，中华预防医学会，刊于《临床肝胆病杂志》）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、常见疑虑，官方怎么答</h2>
+    <p class="chapter-sub">不回避问题——每个疑虑都给出权威出处</p>
+
+    <article class="view">
+      <h3>"疫苗安全吗？有没有质量监管？"</h3>
+      <p class="ctx">WHO 的官方回答是：疫苗在引入之前要经过严格的临床试验评估，上市后各国还持续进行安全性监测。我国对疫苗实行全生命周期最严格监管（批签发制度：每一批疫苗上市前都要经国家检验合格）。接种后常见的局部红肿、低热，属于免疫系统"演习后拉练"的正常反应，通常一两天自行消退；严重异常反应极罕见，且接种点均要求留观 30 分钟以即时处置。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》（安全性部分）</a> · <a href="https://www.chinacdc.cn/jkyj/mygh02/">中国疾控中心免疫规划频道</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"打疫苗不如自然感染获得免疫？"——这笔账官方替你算过了</h3>
+      <p class="ctx">自然感染确实也能产生免疫，但代价是<strong>真得一场病</strong>：麻疹可并发肺炎和脑炎，HPV 持续感染可致宫颈癌，水痘-带状疱疹病毒会终身潜伏、老年时可能爆发为剧痛的带状疱疹，流感对老年人可致命。疫苗给的是同样的"记忆"，却把风险从"真枪实弹"降为"模拟演习"。WHO 问答明确指出：疫苗可预防 30 多种可能危及生命的疾病——自然感染换来的免疫，是用本来不必付的健康代价买的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》</a> · <a href="https://www.ndcpa.gov.cn/jbkzzx/c100040/common/content/content_1921836016002830336.html">国家疾控局疫苗科普</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"刚打完疫苗就生病了，是不是白打了？"——认识偶合反应</h3>
+      <p class="ctx">有人打完流感疫苗几天后感冒了，认定"疫苗把我打病了"。这多半是<strong>偶合反应</strong>：接种时恰好处于某种疾病的潜伏期，发病时间碰巧与接种重叠，二者并无因果。另外要分清"流感疫苗"和"普通感冒"——流感疫苗只防流感病毒，不防两百多种普通感冒病毒（两者的区别见<a href="../07-respiratory/">第7章</a>）。判断是否为疫苗相关不良反应，应由接种单位和疾控部门专业评估，而不是凭时间先后下结论。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinacdc.cn/jkkp/mygh/">中国疾控中心免疫规划科普专栏</a> · <a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、传染病防护基本功：疫苗之外的日常防线</h2>
+    <p class="chapter-sub">传播途径决定防护手段——切断哪条路，就防住哪类病</p>
+
+    <article class="view">
+      <h3>按传播途径防护：呼吸道、消化道、血液体液</h3>
+      <p class="ctx">传染病防控的三原则是<strong>控制传染源、切断传播途径、保护易感人群</strong>（疫苗属于第三种）。日常防护对应前两条，按传播途径各有关键动作：</p>
+      <p class="ctx"><strong>呼吸道传播</strong>（流感、新冠、肺结核、麻疹等）：通风是成本最低的措施；人多密闭场所戴口罩；咳嗽喷嚏掩口鼻。<strong>消化道传播</strong>（诺如、甲肝、手足口、霍乱等）：勤洗手（饭前便后、流动水+皂液）、食物煮熟、生熟分开、不喝生水。<strong>血液/体液传播</strong>（乙肝、丙肝、HIV 等）：不共用剃须刀牙刷、正规机构纹身穿刺、安全性行为；乙肝已有疫苗，其余以切断途径为主。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinacdc.cn/jkkp/">中国疾控中心健康科普频道</a>（传染病防控系列） · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《健康素养66条（2024年版）释义》（传染病防控相关条目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>洗手这件小事，值得单独一张卡</h3>
+      <p class="ctx">在所有防护动作里，<strong>正确洗手</strong>是投入产出比最高的一个：流动水打湿→皂液搓揉至少 20 秒（覆盖掌心、手背、指缝、指尖、拇指、手腕）→冲净→擦干。关键时机：饭前、便后、接触公共物品后、护理病人后、咳嗽打喷嚏用手遮挡后。免洗手消（含酒精）可应急替代，但手上有可见污渍时效果不如流动水+皂液。《健康素养66条》把"勤洗手、常洗澡"列为基本健康生活方式与行为。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">《健康素养66条（2024年版）释义》</a> · <a href="https://www.who.int/zh/health-topics/vaccines-and-immunization">WHO 中文健康专题（卫生与感染预防）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、谣言粉碎：疫苗界最著名的冤案</h2>
+    <p class="chapter-sub">"疫苗导致自闭症"——一个已被彻底证伪、却流毒至今的说法</p>
+
+    <article class="view">
+      <h3>"疫苗导致自闭症"是彻头彻尾的伪科学</h3>
+      <p class="ctx">这个说法源自 1998 年一篇声称麻腮风疫苗与自闭症有关的论文。后续调查发现该研究存在严重利益冲突与数据造假，论文被《柳叶刀》<strong>完全撤稿</strong>，作者被吊销行医执照。此后全球多轮大样本研究（覆盖数百万儿童）均未能发现疫苗与自闭症之间的任何关联。WHO 在官方问答中明确将"疫苗导致自闭症"列为流传最广的疫苗谣言之一予以驳斥。遇到此类说法，直接对照官方辟谣平台核实即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination">WHO 中文《什么是疫苗接种》（谣言驳斥部分）</a> · <a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 本章自查清单（可截图收藏）</h4>
+      <ul>
+        <li>能找到孩子的预防接种证吗？免疫规划疫苗有没有漏种（漏种可到接种单位补种）？</li>
+        <li>家里老人今年打流感疫苗了吗？肺炎球菌、带状疱疹疫苗评估过吗？</li>
+        <li>自己今年（流感季前）打流感疫苗了吗？</li>
+        <li>适龄女性（9–45 岁）评估过 HPV 疫苗吗？13 周岁女孩知道可以免费接种双价吗？</li>
+        <li>知道自己有没有乙肝抗体吗？没有的话咨询过补种吗？</li>
+        <li>家里通风、洗手、生熟分开这三件基本功，做得怎么样？</li>
+        <li>下次看到"疫苗导致自闭症"式文章，知道去哪查证吗？（卫健委辟谣平台）</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../12-cancer/"><span class="dir">← 第12章</span>癌症早筛与警示信号</a>
+    <a href="../14-nutrition/"><span class="dir">第14章 →</span>饮食营养与体重</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生健康必修课 · 第13章 · 依据 WHO 中文疫苗问答与专题、中国疾控中心《国家免疫规划疫苗儿童免疫程序及说明（2026年版）》解读、国家疾控局疫苗科普问答、《成人乙型肝炎疫苗接种专家建议》（2024）及《健康素养66条（2024年版）释义》整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议；接种事宜请咨询当地疾控部门或接种门诊 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

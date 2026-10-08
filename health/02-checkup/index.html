@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 读懂体检报告与常见指标 — 人生健康必修课</title>
+<style>
+  :root{--accent:#0f766e;--accent-deep:#115e59;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.ref{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px;}
+  table.ref th,table.ref td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.ref th{background:var(--bg-soft);font-weight:700;}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ccfbf1;color:var(--accent-deep);border:1px solid #99f6e4;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul,.checklist ol{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.ref{font-size:12.5px;}
+    table.ref th,table.ref td{padding:5px 6px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生健康必修课 · 第2章 · 基础素养</div>
+  <h1>读懂体检报告与常见指标</h1>
+  <p>血压、血糖、血脂、肝肾功能、血常规、尿酸、结节……每个箭头什么意思，哪些要复查，哪些要就医</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-body/">← 第1章：身体是怎么工作的</a>
+    <a href="../03-medicine/">第3章：合理用药 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">该查什么</a>
+    <a class="anchor" href="#s2">心血管代谢指标</a>
+    <a class="anchor" href="#s3">器官功能指标</a>
+    <a class="anchor" href="#s4">报告高频词</a>
+    <a class="anchor" href="#s5">谣言粉碎</a>
+    <a class="anchor" href="#s6">三步读报告</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章解读的参考范围来自公开权威文件，仅供健康教育与理解报告之用，<strong>不构成诊断依据</strong>；不同医院因检测方法不同，参考区间会有差异，<strong>请以你化验单上印的参考区间为准，异常结果请交由医生判读</strong>。请勿仅依据本站内容自行用药、停药或更改治疗。急症请立即拨打 120。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（15分钟）：</strong>学完你能——①知道一次规范体检的"基本盘"包含什么、加项怎么按风险挑；②看懂血压/血糖/血脂/肝肾功能/血常规/尿酸/BMI 七类高频指标的数字含义；③听到"结节""脂肪肝""幽门螺杆菌阳性"不再恐慌，知道下一步做什么。
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、一次体检，该查什么</h2>
+    <p class="chapter-sub">国家已经给出"基本项目清单"，加项按个人风险来</p>
+
+    <article class="view">
+      <h3>官方推荐的基本项目：问诊 + 查体 + 化验 + 影像</h3>
+      <p class="ctx">国家卫生健康委发布的《成人健康体检项目推荐指引（2025年版）》给出了成人健康体检的基本项目框架，大体分四块：<strong>①问卷与病史</strong>（生活方式、家族史——这部分最便宜也最容易被跳过，却是医生判断你风险的主要依据）；<strong>②体格检查</strong>（身高体重腰围、血压、内外科触诊等）；<strong>③实验室检查</strong>（血常规、尿常规、肝肾功能、血糖、血脂等）；<strong>④影像与功能检查</strong>（心电图、腹部超声、胸部影像等）。</p>
+      <p class="ctx">体检前注意：多数生化指标需要<strong>空腹8-12小时</strong>（可以少量喝白水）；前一天避免大量饮酒和剧烈运动（会影响转氨酶、肌酸激酶）；女性避开月经期做尿检。</p>
+      <div class="fig"><img src="../assets/img-02-2.png" alt="体检报告放大镜与指标箭头示意"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/202511/4feaeb6de63e44cb9fd4ac8f579ca279.shtml">国家卫健委《成人健康体检项目推荐指引（2025年版）》</a> · <a href="https://www.msdmanuals.cn/home/special-subjects/prevention/overview-of-preventive-care">默沙东大众版《预防性护理概述》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>加项不是越贵越好，按"风险因素"挑</h3>
+      <p class="ctx">加项的正确逻辑是找自己的风险：长期吸烟或高龄→关注肺部低剂量螺旋CT；有胃癌家族史或幽门螺杆菌阳性→关注胃镜；40岁以上女性→乳腺与宫颈筛查；有糖尿病或高血压→眼底和尿微量白蛋白。癌症相关筛查项目的年龄与人群划分，见<a href="../12-cancer/">第12章（癌症早筛）</a>。</p>
+      <p class="ctx">反过来说，没有对应风险的"豪华套餐"里很多项目意义有限，甚至带来假阳性的过度检查（见本章第五节"谣言粉碎"）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/ylyjs/gzdt/202604/f56a4ba13e91496ea304cec6d5729691.shtml">《中国防癌健康生活方式守则（2026年版）》（国家癌症中心）</a> · <a href="https://www.msdmanuals.cn/home/special-subjects/prevention/overview-of-preventive-care">默沙东大众版《预防性护理概述》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、心血管代谢指标：血压、血糖、血脂</h2>
+    <p class="chapter-sub">慢性病"四高"里的三 highs，都在这一节；数字来自现行中国指南与 WHO</p>
+
+    <article class="view">
+      <h3>血压：两个数字，两条线</h3>
+      <table class="ref">
+        <tr><th>分级</th><th>高压（收缩压）</th><th>低压（舒张压）</th><th>怎么办</th></tr>
+        <tr><td>正常</td><td>&lt;120 mmHg</td><td>&lt;80 mmHg</td><td>保持，每年测</td></tr>
+        <tr><td>正常高值</td><td>120–139</td><td>和/或 80–89</td><td>生活方式干预，增加测量频率</td></tr>
+        <tr><td>达到高血压诊断切点</td><td>≥140</td><td>和/或 ≥90</td><td>非同日多次测量确认，就医评估</td></tr>
+      </table>
+      <p class="ctx">要点：①诊断不能靠一次测量——需<strong>非同日多次</strong>诊室测量确认（家庭自测标准更低：≥135/85 即提示）；②《中国高血压防治指南（2024年修订版）》诊断切点仍为 140/90，但一般患者确诊后的控制目标更严（多数&lt;130/80，由医生个体化设定）；③家用上臂式电子血压计即可，测前静坐5分钟、袖带与心脏同高。</p>
+      <div class="fig"><img src="../assets/img-02-1.png" alt="血压计表盘与分级示意：正常、正常高值、高血压三个区间"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.scdc.sh.cn/shjk/gxy-gfzn/20241011/9843.html">《中国高血压防治指南（2024年修订版）》</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/hypertension">WHO 中文《高血压实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>血糖：空腹血糖 + 糖化血红蛋白，一个看当下一个看三个月</h3>
+      <table class="ref">
+        <tr><th>指标</th><th>正常</th><th>糖尿病前期</th><th>糖尿病诊断切点（需复测确认）</th></tr>
+        <tr><td>空腹血糖</td><td>3.9–6.1 mmol/L</td><td>6.1–7.0（空腹血糖受损）</td><td>≥7.0 mmol/L</td></tr>
+        <tr><td>糖化血红蛋白 HbA1c</td><td>反映近2-3个月平均血糖</td><td>—</td><td>≥6.5%（已纳入2024版中国指南诊断标准）</td></tr>
+      </table>
+      <p class="ctx">糖化血红蛋白像"三个月的血糖平均分"，不受当天吃没吃影响，所以和空腹血糖互为补充。<strong>糖尿病前期是最重要的窗口期</strong>：这个阶段通过饮食运动干预，相当一部分人可以逆转（详见<a href="../06-metabolic/">第6章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://diab.cma.org.cn/cn/zhinangongshi.aspx">《中国糖尿病防治指南（2024版）》（中华医学会糖尿病学分会）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/diabetes">WHO 中文《糖尿病实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>血脂四项：重点盯住"坏胆固醇"LDL-C</h3>
+      <table class="ref">
+        <tr><th>指标</th><th>俗称</th><th>合适水平（低危人群）</th><th>说明</th></tr>
+        <tr><td>总胆固醇 TC</td><td>—</td><td>&lt;5.2 mmol/L</td><td>5.2–6.2 边缘升高</td></tr>
+        <tr><td>低密度脂蛋白 LDL-C</td><td>坏胆固醇</td><td>&lt;3.4 mmol/L</td><td>3.4–4.0 边缘升高，≥4.1 升高；干预首要靶点</td></tr>
+        <tr><td>甘油三酯 TG</td><td>—</td><td>&lt;1.7 mmol/L</td><td>受近期饮食饮酒影响大</td></tr>
+        <tr><td>高密度脂蛋白 HDL-C</td><td>好胆固醇</td><td>&gt;1.0 mmol/L</td><td>偏低是风险因素</td></tr>
+      </table>
+      <p class="ctx">关键认知：上表的"合适水平"<strong>只适用于心血管风险低危人群</strong>。《中国血脂管理指南（2023年）》按 ASCVD（动脉粥样硬化性心血管病）风险分层设定不同目标——中危高危者 LDL-C 要降到 &lt;2.6，极高危 &lt;1.8 且降幅过半，超高危 &lt;1.4。所以<strong>同一个 3.5 的 LDL-C，对健康年轻人可能只是"边缘升高"，对放过支架的人就是严重超标</strong>——这就是为什么血脂单必须由医生结合你的整体风险判读。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span>来源：<a href="https://csc.cma.org.cn/attach/0/96b4e603cee74b7fb208b278aa92bd8b.pdf">《中国血脂管理指南（2023年）》全文 PDF（中华医学会心血管病学分会官网）</a> · <a href="https://csc.cma.org.cn/art/2023/3/28/art_619_50122.html">指南发布页</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、器官功能与通用指标</h2>
+    <p class="chapter-sub">肝肾功能、血常规、尿酸、BMI——异常≠得病，先看幅度和趋势</p>
+
+    <article class="view">
+      <h3>肝功能与肾功能：转氨酶和肌酐在报告什么</h3>
+      <p class="ctx"><strong>转氨酶（ALT/AST）</strong>是肝细胞里的酶，细胞受损破裂才会大量漏进血里——所以它升高提示"肝细胞正在受伤"，常见原因从熬夜、饮酒、剧烈运动、脂肪肝到药物性肝损伤都有，轻度升高先复查+找原因，而不是自己买"护肝片"（见<a href="../08-digestive/">第8章</a>）。<strong>肌酐</strong>是肌肉代谢废物、靠肾排出，血肌酐持续升高提示肾滤过能力下降；肾脏代偿能力极强，<strong>早期肾病往往肌酐还正常，所以要结合尿常规（尿蛋白）一起看</strong>——高血压、糖尿病患者尤其要定期查尿微量白蛋白。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→肝脏及胆囊疾病；肾脏疾病"栏目（含肝功能检查、肾功能检查解读）</a> · <a href="https://www.msdmanuals.cn/home/tests-and-procedures">默沙东大众版"检查与操作"总入口</a></div>
+    </article>
+
+    <article class="view">
+      <h3>血常规：三系细胞各管一摊</h3>
+      <p class="ctx">血常规看三大类细胞：<strong>红细胞/血红蛋白</strong>负责运氧——低了是贫血（WHO 标准：成年男性 Hb&lt;130 g/L、非孕女性 &lt;120 g/L；国内化验单参考区间可能略有不同，以单据为准）；<strong>白细胞</strong>是免疫部队——升高常见于细菌感染或应激，降低见于病毒感染后、某些药物等；<strong>血小板</strong>负责止血——过低有出血风险，过高有血栓风险。单项轻度偏离且无症状时，医生通常建议先复查再判断。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/data/gho/data/themes/theme-details/GHO/nutrition-anaemia">WHO 贫血数据主题页（贫血定义）</a> · <a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→血液疾病"栏目（血常规解读）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>尿酸与 BMI：两个"生活方式仪表盘"</h3>
+      <p class="ctx"><strong>血尿酸</strong>是嘌呤代谢的终产物，长期过高会在关节里析出结晶——那就是痛风（急性发作时的处理属就医范畴，见<a href="../11-musculo/">第11章</a>）；国内指南与共识普遍以非同日两次空腹血尿酸 <strong>&gt;420 μmol/L</strong> 作为高尿酸血症界值（不分男女）。海鲜、动物内脏、酒精（尤其啤酒）和含糖饮料是主要饮食推手。</p>
+      <p class="ctx"><strong>BMI = 体重(kg) ÷ 身高(m)²</strong>，中国成人标准：18.5–23.9 正常，24.0–27.9 超重，≥28.0 肥胖，&lt;18.5 体重过低。BMI 不看肌肉量，健身人群可能"被肥胖"，所以要配<strong>腰围</strong>一起看：中国成人男性腰围 ≥90cm、女性 ≥85cm 即为中心型肥胖——肚子上的内脏脂肪比全身匀称的微胖更伤代谢。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/ylyjs/zcwj/202412/75cb79c171c94def9e768193e65484f7.shtml">国家卫健委《体重管理指导原则（2024年版）》（BMI 与腰围标准）</a> · <a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→肌肉骨骼和结缔组织疾病→痛风"栏目（高尿酸界值）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、报告高频词：结节、脂肪肝、幽门螺杆菌</h2>
+    <p class="chapter-sub">这四个词是体检报告"恐慌制造机"，逐个拆</p>
+
+    <article class="view">
+      <h3>甲状腺结节 + TI-RADS 分级：数字越小越安心</h3>
+      <p class="ctx">甲状腺结节非常常见，超声检出率高，但<strong>绝大多数是良性</strong>。报告上的 TI-RADS（中国标准为 C-TIRADS）是按超声特征给出的恶性风险分级：</p>
+      <table class="ref">
+        <tr><th>分级</th><th>恶性风险</th><th>一般处理</th></tr>
+        <tr><td>2 类</td><td>0%（良性）</td><td>无需处理</td></tr>
+        <tr><td>3 类</td><td>&lt;2%（可能良性）</td><td>定期随访</td></tr>
+        <tr><td>4A 类</td><td>2%–10%</td><td>较大者（如&gt;15mm）医生可能建议细针穿刺</td></tr>
+        <tr><td>4B / 4C 类</td><td>10%–50% / 50%–90%</td><td>穿刺评估，遵医嘱</td></tr>
+        <tr><td>5 类</td><td>&gt;90%</td><td>尽快就医</td></tr>
+      </table>
+      <p class="ctx">记住两点：①3 类及以下占了大多数，"定期复查"就是最好的处理；②是否穿刺、何时穿刺由专科医生按结节大小与特征决定，不要拿着分级自行搜索吓自己。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术指南</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://chinanm.cma.org.cn/art/2024-12-31/art_1367_59554.html">《甲状腺结节和分化型甲状腺癌诊治指南（第二版）》（中华医学会）</a> · <a href="https://www.cma.org.cn/art/2023/6/28/art_4584_51517.html">中华医学会科普图文《甲状腺结节知多少？》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>肺结节：随访间隔是医生定的"观察实验"</h3>
+      <p class="ctx">CT 分辨率提高后，肺小结节检出率大幅上升，但其中<strong>多数为陈旧灶、炎性灶等良性病变</strong>。规范做法是按结节大小与形态特征定期复查 CT（几毫米的微小结节通常以年度随访为主），由医生对比变化——"随访"不是"不管"，而是用时间维度鉴别良恶性最稳妥的方法。是否需要更积极处理（增强CT、穿刺、手术），由呼吸科/胸外科医生评估。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/202511/4feaeb6de63e44cb9fd4ac8f579ca279.shtml">《成人健康体检项目推荐指引（2025年版）》（肺部检查项目设置）</a> · <a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→肺部疾病"栏目</a></div>
+    </article>
+
+    <article class="view">
+      <h3>脂肪肝与幽门螺杆菌阳性：两个"可逆/可治"的信号</h3>
+      <p class="ctx"><strong>脂肪肝</strong>（超声报告"肝回声增强/脂肪浸润"）本质是肝细胞里囤了太多脂肪，与超重、饮食、饮酒、代谢密切相关。它最重要的性质是<strong>早中期可逆</strong>：减重、调整饮食结构、限酒、运动就能明显改善——官方体重管理方案给了具体路径（见<a href="../14-nutrition/">第14章</a>）；放任不管则可能进展为脂肪性肝炎、肝纤维化。</p>
+      <p class="ctx"><strong>幽门螺杆菌（Hp）阳性</strong>：这种胃内细菌与慢性胃炎、消化性溃疡及胃癌风险相关，主要通过口口、粪口传播（分餐、公筷是家庭防护要点）。是否根除、用什么方案，需要消化科医生结合症状、年龄、家族史评估——根除治疗是规范的处方治疗，<strong>不要自行买药</strong>（用药安全见<a href="../03-medicine/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nhc.gov.cn/sps/c100088/202402/9ba512ba8e314a47a181db11d2fa188d/files/1743476136267_20714.pdf">《成人肥胖食养指南（2024年版）》（卫健委，脂肪肝相关食养原则）</a> · <a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→消化系统疾病→幽门螺杆菌"栏目</a> · <a href="https://www.nhc.gov.cn/wjw/yjzj/202404/c30d31cb877749ce94ce23d2c55ad973/files/1733220375762_77083.pdf">健康素养66条（2024年版）释义（分餐制条目）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、谣言粉碎</h2>
+    <p class="chapter-sub">关于体检的三个经典误解</p>
+
+    <article class="view">
+      <h3>"指标都正常 = 没病？"——筛查不是诊断</h3>
+      <p class="ctx">体检的定位是<strong>筛查</strong>：在无症状人群里找出高风险线索。任何筛查都有窗口期与灵敏度限制——早期病变可能还不足以让指标越线。所以"指标正常"的正确读法是"本次未发现异常线索"，该做的年龄相关筛查（如胃肠镜、乳腺/宫颈筛查）仍要按医嘱做（见<a href="../12-cancer/">第12章</a>），身体的新症状也永远优先于上一次的正常报告。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.msdmanuals.cn/home/special-subjects/prevention/overview-of-preventive-care">默沙东大众版《预防性护理概述》（筛查的意义与局限）</a> · <a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"肿瘤标志物升高 = 得癌了？"——大多数升高另有原因</h3>
+      <p class="ctx">肿瘤标志物（如 CEA、AFP、CA19-9）受炎症、良性疾病、吸烟、检测波动影响很大，<strong>轻度升高绝大多数不是癌症</strong>；反过来，标志物正常也不能排除癌症。它们更适合医生用于辅助诊断和疗效监测，不建议无症状人群拿它当"查癌神器"自己吓自己。正确动作：交给医生，按建议复查或进一步检查。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nhc.gov.cn/kppypt/index.shtml">国家卫健委健康科普辟谣平台（肿瘤标志物相关谣言）</a> · <a href="https://www.msdmanuals.cn/home">默沙东大众版"医学主题→癌症"栏目（肿瘤标志物）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"去年体检没问题，今年就不用查了？"——频率跟着风险走</h3>
+      <p class="ctx">慢性病指标（血压、血糖、血脂）随年龄与生活方式逐年漂移，多数指南建议成人<strong>每年一次</strong>常规体检；已确诊慢病或有家族史、吸烟、肥胖等风险因素者，复查频率由医生加密。血压甚至值得在家自测——诊室测量可能因紧张偏高（"白大衣高血压"），家庭自测数据对医生更有参考价值。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nhc.gov.cn/yzygj/c100068/202511/4feaeb6de63e44cb9fd4ac8f579ca279.shtml">《成人健康体检项目推荐指引（2025年版）》</a> · <a href="https://www.scdc.sh.cn/shjk/gxy-gfzn/20241011/9843.html">《中国高血压防治指南（2024年修订版）》（家庭血压监测）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、本章自查清单</h2>
+    <div class="checklist">
+      <h4>📋 三步读报告法（可截图收藏）</h4>
+      <ol>
+        <li><strong>先看箭头，再看幅度</strong>：轻度越线且无症状，多数先复查；大幅越线或伴症状，尽快就医。</li>
+        <li><strong>对照单据上的参考区间</strong>：不同医院方法不同，别拿网上的通用值套自己的单子。</li>
+        <li><strong>把"趋势"带给医生</strong>：连续几年的报告一起带去——单次数值不如变化方向有信息量。</li>
+      </ol>
+      <h4 style="margin-top:14px;">📋 就医随身清单</h4>
+      <ul>
+        <li>历次体检报告原件/照片（按时间排好）</li>
+        <li>正在吃的所有药：药盒拍照（含保健品）——医生评估相互作用的依据（见<a href="../03-medicine/">第3章</a>）</li>
+        <li>症状记录：什么时候开始、什么情况下加重/缓解</li>
+        <li>家族史：直系亲属的慢性病与肿瘤情况</li>
+        <li>想问的问题提前列成 3 条以内，别浪费问诊时间</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../01-body/"><span class="dir">← 第1章</span>身体是怎么工作的</a>
+    <a href="../03-medicine/"><span class="dir">第3章 →</span>合理用药与家庭药箱</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生健康必修课 · 第2章 · 依据《成人健康体检项目推荐指引（2025年版）》《中国高血压防治指南（2024年修订版）》《中国血脂管理指南（2023年）》《中国糖尿病防治指南（2024版）》《甲状腺结节和分化型甲状腺癌诊治指南（第二版）》、WHO 中文实况报道及默沙东诊疗手册大众版整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供健康教育参考，不构成医疗建议；化验单参考区间以检测机构为准 · 急症请拨打 120 · <a href="../">返回课程首页</a></p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
