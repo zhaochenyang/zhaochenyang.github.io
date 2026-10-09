@@ -227,5 +227,56 @@
   <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/health/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
   <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
 </div>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:64px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4e89;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4e89;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eef4fb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:56px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 觉得有用，就分享给需要的朋友</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:112px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4e89;border:1.5px solid #1d4e89;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eef4fb;}
+@media (max-width:700px){#home-fab{top:100px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
 </body>
 </html>
