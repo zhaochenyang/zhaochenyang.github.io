@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第五讲：框架与编排（Frameworks &amp; Orchestration）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第五讲：框架与编排</h1>
+  <div class="sub">Frameworks &amp; Orchestration</div>
+  <div class="meta">讲师：Diyi Yang, Michael Ryan, John Yang　|　中文讲解教程（忠于原讲义，共 132 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a></div>
+  <div class="meta">本讲必读阅读材料精讲：<a href="../readings/dspy/" style="color:#fff;">DSPy</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 课程公告与本讲结构</a>
+  <a href="#ch1">一 什么是「工程化」Agents</a>
+  <a href="#ch2">二 工作流与程序的框架（DSPy）</a>
+  <a href="#ch3">二（续） LangGraph</a>
+  <a href="#ch4">三 开源 Agent Harnesses</a>
+  <a href="#ch5">四 编排与遥测</a>
+  <a href="#ch6">五 最佳实践与挑战</a>
+  <a href="#summary">本讲总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第五讲
+<strong>《Frameworks &amp; Orchestration（框架与编排）》</strong>的中文讲解。
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。全讲按讲义开头的 Lecture Overview 分为五个部分：
+什么是「工程化」Agents（"Engineer" Agents?）、工作流与程序的框架（Workflows：DSPy、LangGraph）、
+开源 Agent Harnesses、编排与遥测（Orchestration：Temporal 及可观测性工具）、最佳实践与挑战（Best Practices and Challenges）。
+学习目标（Learning Objectives）：<strong>识别（Identify）构建 agent 系统的主流框架及其定位；将框架概念与课程已讲过的原理相联系（Relate）；评估（Assess）不同框架/设计选择的权衡。</strong></p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、课程公告与本讲结构</h2>
+<p class="chapter-sub">Announcements, Abstractions &amp; Lecture Overview（Slide 1–8）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：Frameworks &amp; Orchestration（框架与编排）</h3>
+  <figure><img src="slides/slide-001.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Frameworks &amp; Orchestration（Diyi Yang, Michael Ryan, John Yang）</figcaption></figure>
+  <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第五讲主题
+  <span class="term">Frameworks &amp; Orchestration（框架与编排）</span>，由 Diyi Yang、Michael Ryan、John Yang 授课。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
+  <figure><img src="slides/slide-002.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>项目提案截止、算力申请、Homework 1 截止</figcaption></figure>
+  <ul>
+    <li><span class="term">项目提案（Project Proposal）</span>：截止 <strong>10 月 9 日（周五）11:59pm</strong>，通过 Gradescope 提交，<strong>以组为单位</strong>；</li>
+    <li><span class="term">算力（Credits）</span>：请于<strong>本周五前</strong>申请 Google Credits；OpenRouter credits 由 <strong>Laude</strong> 提供；</li>
+    <li><span class="term">Homework 1</span>：已发布，截止 <strong>10 月 30 日（周五）11:59pm</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>Quick Poll（课堂快问）</h3>
+  <figure><img src="slides/slide-003.png" alt="Slide 3 Quick Poll" loading="lazy"><figcaption>Who in this room has used PyTorch?</figcaption></figure>
+  <p>课堂快问：<strong>Who in this room has used PyTorch?</strong>（在座有多少人用过 PyTorch？）
+  这一问引出本讲的类比——PyTorch 之于深度学习，正如本讲要介绍的框架之于 agent 系统。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>Abstractions in Frameworks（框架中的抽象）</h3>
+  <figure><img src="slides/slide-004.png" alt="Slide 4 框架抽象" loading="lazy"><figcaption>手写反向传播 vs PyTorch 三行代码</figcaption></figure>
+  <p>以 PyTorch 类比说明框架的作用：左侧是手写反向传播（Backprop）需要自行推导并实现梯度计算；
+  右侧在 PyTorch 中只需三行——<code>optimizer.zero_grad()</code>、<code>loss.backward()</code>、<code>optimizer.step()</code>。
+  框架把底层细节抽象掉了。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>框架抽象掉系统细节</h3>
+  <figure><img src="slides/slide-005.png" alt="Slide 5 框架抽象掉系统细节" loading="lazy"><figcaption>Frameworks abstract away system details</figcaption></figure>
+  <p>框架（Frameworks）抽象掉系统细节；但课程其余部分恰恰要求你去实现和理解这些系统细节。
+  今天的目标是<strong>学习这些抽象（learn the abstractions）</strong>——理解框架替你做了什么、代价是什么。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>Learning Objectives（学习目标）</h3>
+  <figure><img src="slides/slide-006.png" alt="Slide 6 学习目标" loading="lazy"><figcaption>Identify / Relate / Assess</figcaption></figure>
+  <p>本讲三个层次的学习目标：</p>
+  <ul>
+    <li><span class="term">Identify（识别）</span>：识别构建 agent 系统的主流框架及其定位；</li>
+    <li><span class="term">Relate（联系）</span>：将框架概念与课程已讲过的原理联系起来；</li>
+    <li><span class="term">Assess（评估）</span>：评估不同框架与设计选择的权衡（tradeoffs）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-007.png" alt="Slide 7 本讲结构" loading="lazy"><figcaption>本讲五个部分及时间分配</figcaption></figure>
+  <p>本讲共五个部分：</p>
+  <ul>
+    <li>什么是「工程化」Agents（"Engineer" Agents?）</li>
+    <li>工作流与程序的框架（Frameworks for Workflows and Programs）</li>
+    <li>开源 Agent Harnesses（Open Source Agent Harnesses）</li>
+    <li>编排与遥测（Orchestration and Telemetry）</li>
+    <li>最佳实践与挑战（Best Practices and Challenges）</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>随堂代码指引（Live Demo 仓库）</h3>
+  <figure><img src="slides/slide-008.png" alt="Slide 8 随堂代码指引" loading="lazy"><figcaption>git clone 本讲代码仓库 + 安装脚本 + OpenRouter credits</figcaption></figure>
+  <p>本讲配有现场编程演示，跟随方式：</p>
+  <ul>
+    <li>克隆代码仓库：<code>git clone https://github.com/cs329z/lecture5-frameworks</code>；</li>
+    <li>运行安装脚本：<code>./setup.sh</code>；</li>
+    <li>notebook 大约需要 <strong>$1 的 OpenRouter credits</strong>。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、什么是「工程化」Agents？</h2>
+<p class="chapter-sub">"Engineer" Agents?（Slide 9–18）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>分节页："Engineer" Agents?</h3>
+  <figure><img src="slides/slide-009.png" alt="Slide 9 分节页" loading="lazy"><figcaption>五段进度条，首段「"Engineer" Agents?」高亮为红色</figcaption></figure>
+  <p>进入第一部分。讲义底部的五段进度条分别对应本讲五部分，当前高亮首段「"Engineer" Agents?」。
+  这一部分回答：当我们说「工程化」一个 agent 时，到底在做什么。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>Three Pillars（三大支柱）</h3>
+  <figure><img src="slides/slide-010.png" alt="Slide 10 三大支柱" loading="lazy"><figcaption>Data（蓝）/ System（绿）/ Evaluation + Metric（红）三张卡片</figcaption></figure>
+  <p>工程化 AI 系统的三大支柱：</p>
+  <ul>
+    <li><span class="term">Data（数据）</span>——蓝色卡片；</li>
+    <li><span class="term">System（系统）</span>——绿色卡片；</li>
+    <li><span class="term">Evaluation + Metric（评测与指标）</span>——红色卡片。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>三大支柱：System 高亮 → AI System</h3>
+  <figure><img src="slides/slide-011.png" alt="Slide 11 System 高亮" loading="lazy"><figcaption>绿色 System 卡片高亮，标注「AI System」</figcaption></figure>
+  <p>当聚焦于<strong>系统（System）</strong>这一支柱时，得到的是一个 <span class="term">AI System</span>——
+  即模型之外的工程部分（数据流、控制流、工具、基础设施）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>三大支柱全部高亮 → AI System Engineering</h3>
+  <figure><img src="slides/slide-012.png" alt="Slide 12 三大支柱全部高亮" loading="lazy"><figcaption>三张卡片全部高亮，标注「AI System Engineering」</figcaption></figure>
+  <p>当数据、系统、评测三大支柱都被工程化地对待时，才是完整的
+  <span class="term">AI System Engineering（AI 系统工程）</span>——这正是本课程的整体视角，
+  而本讲聚焦其中的「系统」支柱：框架与编排。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>This Course（本课程与三大支柱的对应）</h3>
+  <figure><img src="slides/slide-013.png" alt="Slide 13 本课程映射" loading="lazy"><figcaption>课程各讲主题用四色图例映射到三大支柱</figcaption></figure>
+  <p>课程各讲与三大支柱的对应关系图：用颜色图例标出每一讲侧重 Data / System / Evaluation + Metric
+  中的哪些支柱。本讲（框架与编排）落在「System」支柱上。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>Framework Landscape（框架谱系）</h3>
+  <figure><img src="slides/slide-014.png" alt="Slide 14 框架谱系" loading="lazy"><figcaption>Model → Workflow / Compound AI System → Agent 的谱系</figcaption></figure>
+  <p>框架谱系（Framework Landscape）：从 <span class="term">Model（模型）</span>出发，
+  中间是 <span class="term">Workflow / Compound AI System（工作流/复合 AI 系统）</span>，
+  右端是 <span class="term">Agent（智能体）</span>——控制流逐渐从程序移交给模型。
+  各类框架分布在这条谱系的不同位置上。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>框架谱系 + 可靠性/可观测性</h3>
+  <figure><img src="slides/slide-015.png" alt="Slide 15 框架谱系加顶条" loading="lazy"><figcaption>谱系上方新增 Reliability / Observability 横条</figcaption></figure>
+  <p>在谱系上方新增一条横贯所有层级的 <span class="term">Reliability / Observability（可靠性/可观测性）</span>：
+  无论你构建的是模型调用、工作流还是 agent，可靠性与可观测性都是贯穿始终的工程需求。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>框架谱系 + 本讲三部分标注</h3>
+  <figure><img src="slides/slide-016.png" alt="Slide 16 谱系加 Part 标注" loading="lazy"><figcaption>谱系上标注 Part 1 / 2 / 3 对应的区域</figcaption></figure>
+  <p>在谱系图上标注本讲各部分的落点（Part 1/2/3）：工作流框架（Workflows）、Agent Harnesses、
+  以及横跨全局的编排与可观测性（Orchestration / Reliability / Observability）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>框架的使用度（流行度与就业市场）</h3>
+  <figure><img src="slides/slide-017.png" alt="Slide 17 框架使用度" loading="lazy"><figcaption>GitHub stars 与招聘数据：DSPy / LangGraph / Temporal</figcaption></figure>
+  <p>用数据说明这些框架的产业存在感：</p>
+  <ul>
+    <li>GitHub stars：<span class="term">dspy 38.5k</span>、<span class="term">langgraph 42.8k</span>、<span class="term">temporal 23.5k</span>；</li>
+    <li>DSPy 相关岗位薪资 <strong>$260K–$320K</strong>，共 <strong>1136</strong> 条招聘；</li>
+    <li>Indeed 上 LangGraph 相关招聘 <strong>2610</strong> 条。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>Recap（第一部分小结）</h3>
+  <figure><img src="slides/slide-018.png" alt="Slide 18 Recap" loading="lazy"><figcaption>第一部分要点回顾</figcaption></figure>
+  <p>第一部分回顾：工程化一个 agent 意味着同时把握数据、系统、评测三大支柱；
+  框架分布「模型 → 工作流 → agent」谱系的不同位置，可靠性/可观测性横贯全局；
+  这些框架在产业中已被广泛使用。</p>
+</article>
+</section>
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、工作流与程序的框架：DSPy</h2>
+<p class="chapter-sub">Frameworks for Workflows and Programs — DSPy（Slide 19–51）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>分节页：Workflows（工作流与程序的框架）</h3>
+  <figure><img src="slides/slide-019.png" alt="Slide 19 分节页" loading="lazy"><figcaption>五段进度条，「Workflows」段高亮</figcaption></figure>
+  <p>进入第二部分：工作流与程序的框架。这一部分用两个代表性框架——DSPy 与 LangGraph——
+  演示同一类任务（邮件 → 提取事件 → 选 emoji → 写入日历）的两种编程范式。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>YOU ARE HERE（工作流框架的位置）</h3>
+  <figure><img src="slides/slide-020.png" alt="Slide 20 YOU ARE HERE" loading="lazy"><figcaption>框架谱系中间 Workflow 列标注 YOU ARE HERE</figcaption></figure>
+  <p>在框架谱系图上，<strong>YOU ARE HERE</strong> 指向中间的 Workflow / Compound AI System 列——
+  逻辑与编排（logic and orchestration）掌握在程序手中，而非模型手中。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>DSPy</h3>
+  <figure><img src="slides/slide-021.png" alt="Slide 21 DSPy logo" loading="lazy"><figcaption>DSPy logo</figcaption></figure>
+  <p>第一个框架：<span class="term">DSPy</span>（Stanford NLP 出品）。本讲必读阅读材料精讲即为
+  <a href="../readings/dspy/">DSPy</a>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>DSPy 三大概念</h3>
+  <figure><img src="slides/slide-022.png" alt="Slide 22 DSPy 三大概念" loading="lazy"><figcaption>Signatures（What）/ Modules（How）/ Optimizers</figcaption></figure>
+  <p>DSPy 的三个核心概念：</p>
+  <ul>
+    <li><span class="term">Signatures（签名）</span>——描述「做什么」（What）：输入输出的声明；</li>
+    <li><span class="term">Modules（模块）</span>——描述「怎么做」（How）：调用 LLM 的策略（如 ChainOfThought、ReAct）；</li>
+    <li><span class="term">Optimizers（优化器）</span>——用数据与指标自动改进程序。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>Live Demo（DSPy 现场演示分节页）</h3>
+  <figure><img src="slides/slide-023.png" alt="Slide 23 Live Demo" loading="lazy"><figcaption>Live Programming Demo（DSPy）</figcaption></figure>
+  <p class="note">注：S24 起的 DSPy 页面多为<strong>现场编程演示的备用页</strong>（页面底部红条标注
+  "This is a backup slide in case we cannot do the live demo."），课堂上以 notebook 现场演示为准。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>Signatures（签名）</h3>
+  <figure><img src="slides/slide-024.png" alt="Slide 24 Signatures 标题页" loading="lazy"><figcaption>Signatures（现场演示备用页）</figcaption></figure>
+  <p><span class="term">Signatures</span> 小节开始：签名用一行字符串或类型化的类声明 LLM 任务的输入与输出，
+  是 DSPy 描述「做什么」的方式。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>最简单的签名：一行字符串</h3>
+  <figure><img src="slides/slide-025.png" alt="Slide 25 一行签名" loading="lazy"><figcaption>chat=dspy.Predict("message -> response")</figcaption></figure>
+  <p>最简单的签名只需一行字符串：<code>chat = dspy.Predict("message -> response")</code>——
+  声明输入 <code>message</code>、输出 <code>response</code>，即一个聊天模块。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>字符串签名的问题：格式不一致</h3>
+  <figure><img src="slides/slide-026.png" alt="Slide 26 格式不一致" loading="lazy"><figcaption>sentiment 输出格式不一致的问题</figcaption></figure>
+  <p>以情感分析为例说明纯字符串签名的问题：模型输出的格式不稳定（如 "positive"、"Positive"、
+  "The sentiment is positive" 等不一致写法），下游程序难以可靠解析。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>类型化签名：Literal 与 confidence</h3>
+  <figure><img src="slides/slide-027.png" alt="Slide 27 类型化签名" loading="lazy"><figcaption>typed_signature 使用 Literal 约束取值、附带 confidence</figcaption></figure>
+  <p>用 Python 类型解决格式问题：类型化签名（typed_signature）用 <code>Literal</code> 约束输出取值
+  （如只能是 "positive" / "negative" / "neutral"），并可同时输出 <code>confidence</code>（置信度），
+  使输出结构化、可解析。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>类型化签名示例：ExtractEvent</h3>
+  <figure><img src="slides/slide-028.png" alt="Slide 28 ExtractEvent 类" loading="lazy"><figcaption>class ExtractEvent：InputField + 多个 OutputField</figcaption></figure>
+  <p>本讲贯穿示例的签名：定义 <code>class ExtractEvent</code>——
+  输入字段（InputField）<code>email</code>（邮件原文）；
+  输出字段（OutputField）<code>event_name</code>、<code>date</code>、<code>start</code>、<code>duration_minutes</code>
+  （事件名、日期、开始时间、时长）。类型化字段保证提取结果可直接被程序使用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Modules（模块）</h3>
+  <figure><img src="slides/slide-029.png" alt="Slide 29 Modules 标题页" loading="lazy"><figcaption>Modules（现场演示备用页）</figcaption></figure>
+  <p><span class="term">Modules</span> 小节开始：模块描述「怎么调用 LLM」——
+  直接预测（Predict）、链式思考（ChainOfThought）、代理循环（ReAct）等，并可用纯 Python 把多个模块组合起来。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>ChainOfThought：输出中多一个 reasoning</h3>
+  <figure><img src="slides/slide-030.png" alt="Slide 30 ChainOfThought" loading="lazy"><figcaption>dspy.ChainOfThought 在输出中加入 reasoning 字段</figcaption></figure>
+  <p>把模块从 <code>Predict</code> 换成 <code>dspy.ChainOfThought</code>：同样的签名下，
+  模型会先输出一个 <code>reasoning</code>（推理过程）字段，再给出最终答案——
+  用「先思考后回答」的策略提高质量。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>PickEmoji：为事件选 emoji</h3>
+  <figure><img src="slides/slide-031.png" alt="Slide 31 PickEmoji" loading="lazy"><figcaption>PickEmoji 签名与 ChainOfThought 模块</figcaption></figure>
+  <p>第二个模块 <span class="term">PickEmoji</span>：输入事件名（event_name），输出一个合适的 emoji——
+  同样用 ChainOfThought 实现，演示多个签名/模块在同一程序中共存。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>组合模块：UpdateCalendarFromEmail</h3>
+  <figure><img src="slides/slide-032.png" alt="Slide 32 UpdateCalendarFromEmail" loading="lazy"><figcaption>class UpdateCalendarFromEmail(dspy.Module)：两次 LLM 调用 + 纯 Python 控制流</figcaption></figure>
+  <p>把两个模块组合成一个完整程序：<code>class UpdateCalendarFromEmail(dspy.Module)</code>——
+  先调用事件提取模块，再调用 emoji 选择模块，两次 LLM 调用之间用<strong>纯 Python 控制流</strong>衔接
+  （判断、字段传递等），体现「编排逻辑在程序里」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>组合模块的两次调用输出</h3>
+  <figure><img src="slides/slide-033.png" alt="Slide 33 两次调用输出" loading="lazy"><figcaption>提取事件与选择 emoji 的两次 LLM 调用输出</figcaption></figure>
+  <p>运行 <code>UpdateCalendarFromEmail</code> 的输出：第一次调用提取出事件的结构化字段，
+  第二次调用为事件选出 emoji，展示模块组合的实际效果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>tinycal 日历界面</h3>
+  <figure><img src="slides/slide-034.png" alt="Slide 34 tinycal 截图" loading="lazy"><figcaption>tinycal 周视图日历</figcaption></figure>
+  <p><span class="term">tinycal</span> 是本讲演示用的迷你日历应用（周视图）：
+  DSPy 程序提取出的事件最终被写入这个日历，作为贯穿全讲的可视化目标。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>Optimizers（优化器）</h3>
+  <figure><img src="slides/slide-035.png" alt="Slide 35 Optimizers 标题页" loading="lazy"><figcaption>Optimizers（现场演示备用页）</figcaption></figure>
+  <p><span class="term">Optimizers</span> 小节开始：DSPy 的优化器利用训练数据与评测指标，
+  自动改进程序的提示词/指令乃至权重，而不是靠人手调 prompt。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>优化器的三类输入</h3>
+  <figure><img src="slides/slide-036.png" alt="Slide 36 优化器三类输入" loading="lazy"><figcaption>Data / System or Model / Evaluation + Metric 三卡片</figcaption></figure>
+  <p>优化器围绕三大支柱工作：</p>
+  <ul>
+    <li><span class="term">Data（数据）</span>：Training Data、Rollouts、Demonstrations、Human Feedback 等；</li>
+    <li><span class="term">System or Model（系统或模型）</span>：Language Model、Compound AI System / Workflow、Agentic System 等——优化器改进的对象；</li>
+    <li><span class="term">Evaluation + Metric（评测与指标）</span>：Pass Rate、Exact Match、LLM Judge、Cost/Latency 等——优化的目标信号。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>准备标注数据：50 封邮件</h3>
+  <figure><img src="slides/slide-037.png" alt="Slide 37 50 封邮件 gold labels" loading="lazy"><figcaption>50 emails with gold labels</figcaption></figure>
+  <p>优化需要数据：准备 <strong>50 封带 gold labels（标准答案标注）</strong>的邮件，
+  每封邮件对应正确的事件提取结果，作为优化与评测的基准。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>划分训练集与测试集</h3>
+  <figure><img src="slides/slide-038.png" alt="Slide 38 30 train / 20 test" loading="lazy"><figcaption>30 train / 20 test 划分</figcaption></figure>
+  <p>把 50 封标注邮件划分为 <strong>30 封训练集（train）</strong>与 <strong>20 封测试集（test）</strong>：
+  优化器在训练集上改进程序，测试集只用于最终评估，防止过拟合。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>评测指标：三字段全匹配</h3>
+  <figure><img src="slides/slide-039.png" alt="Slide 39 metric 三字段全匹配" loading="lazy"><figcaption>metric：event_name / date / start 三个字段全部匹配</figcaption></figure>
+  <p>定义评测指标（metric）：提取结果的 <code>event_name</code>、<code>date</code>、<code>start</code>
+  <strong>三个字段全部匹配</strong>才算正确——一个严格的精确匹配指标。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>基线：强模型直接达标</h3>
+  <figure><img src="slides/slide-040.png" alt="Slide 40 gpt-5.4-nano 100%" loading="lazy"><figcaption>gpt-5.4-nano 达到 100%</figcaption></figure>
+  <p>用强模型（gpt-5.4-nano）跑未经优化的程序，在该指标上已达 <strong>100%</strong>——
+  强模型基线已经很好，但成本更高；这为下面「用优化把弱模型提上来」提供对照。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 41</span>基线：弱模型只有 55%</h3>
+  <figure><img src="slides/slide-041.png" alt="Slide 41 Gemma 3 12B 55%" loading="lazy"><figcaption>Gemma 3 12B 仅 55%</figcaption></figure>
+  <p>换成开源弱模型 <span class="term">Gemma 3 12B</span>：同一程序、同一指标，准确率掉到 <strong>55%</strong>——
+  模型能力不足时，需要用优化器来弥补。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>运行 GEPA 优化器</h3>
+  <figure><img src="slides/slide-042.png" alt="Slide 42 GEPA 配置" loading="lazy"><figcaption>GEPA：max_metric_calls=100、reflection_lm</figcaption></figure>
+  <p>用 <span class="term">GEPA</span> 优化器改进 Gemma 3 12B 的程序：配置评测预算
+  <code>max_metric_calls=100</code>，并指定一个 <code>reflection_lm</code>（反思用模型）——
+  GEPA 通过反思执行轨迹来迭代改进提示词（本讲阅读材料精讲含 GEPA 论文）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>优化后：弱模型也到 100%</h3>
+  <figure><img src="slides/slide-043.png" alt="Slide 43 优化后 100%" loading="lazy"><figcaption>GEPA 优化后 Gemma 3 12B 达到 100%</figcaption></figure>
+  <p>GEPA 优化后，Gemma 3 12B 在测试集上从 55% 提升到 <strong>100%</strong>——
+  优化后的程序（更好的指令/提示）让便宜的开源模型达到了与强模型相当的效果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>优化改了什么：只有 instructions 文本</h3>
+  <figure><img src="slides/slide-044.png" alt="Slide 44 仅 instructions 变化" loading="lazy"><figcaption>优化前后对比：仅指令（instructions）文本变化</figcaption></figure>
+  <p>对比优化前后，模型与代码结构都没变，<strong>变化的只有 instructions（指令）文本</strong>——
+  GEPA 自动写出的指令包含了从训练样例与失败反思中总结出的规则。这就是「优化器即自动提示工程」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Agents（DSPy 中的 agent）</h3>
+  <figure><img src="slides/slide-045.png" alt="Slide 45 Agents 标题页" loading="lazy"><figcaption>Agents（现场演示备用页）</figcaption></figure>
+  <p><span class="term">Agents</span> 小节开始：把工作流的固定控制流换成由模型决定调用顺序的 agent——
+  DSPy 用一行 <code>dspy.ReAct</code> 即可构造。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>dspy.ReAct：一行 agent</h3>
+  <figure><img src="slides/slide-046.png" alt="Slide 46 dspy.ReAct" loading="lazy"><figcaption>agent = dspy.ReAct("request -> summary", tools=tinycal.TOOLS)，8.3s 完成复合请求</figcaption></figure>
+  <p>一行构造 agent：<code>agent = dspy.ReAct("request -> summary", tools=tinycal.TOOLS)</code>——
+  指定输入输出签名与可用工具集。调用它处理复合请求（"在 10 月 7 日下午讲座之后安排与 John 的 30 分钟咖啡，
+  并给那周所有讲座加上书本 emoji"），<strong>8.3 秒</strong>返回 summary：
+  给两场 CS329Z 讲座加了 📚，并排定了 Coffee with John（10 月 7 日 15:00–15:30 ☕）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>tinycal：ReAct agent 的结果</h3>
+  <figure><img src="slides/slide-047.png" alt="Slide 47 tinycal 截图" loading="lazy"><figcaption>tinycal 日历展示 ReAct agent 写入的事件</figcaption></figure>
+  <p>tinycal 日历界面展示 ReAct agent 的执行结果——咖啡约会与带 emoji 的讲座均已正确写入，
+  验证 agent 自主调用多个工具完成了复合任务。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>dspy.RLM：递归语言模型</h3>
+  <figure><img src="slides/slide-048.png" alt="Slide 48 dspy.RLM" loading="lazy"><figcaption>dspy.RLM 处理 inbox 问题</figcaption></figure>
+  <p>另一个 agent 模块 <span class="term">dspy.RLM</span>（Recursive Language Model，递归语言模型）：
+  演示用它回答关于收件箱（inbox）的问题——RLM 可以把长上下文卸载到代码执行环境中按需读取。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>ReAct 论文</h3>
+  <figure><img src="slides/slide-049.png" alt="Slide 49 ReAct 论文图" loading="lazy"><figcaption>ReAct 论文（arXiv:2210.03629）的推理-行动循环图</figcaption></figure>
+  <p><code>dspy.ReAct</code> 的出处：<span class="term">ReAct</span>（Reasoning + Acting）论文——
+  模型在「思考（thought）→ 行动（action）→ 观察（observation）」循环中交替推理与调用工具。
+  论文：<a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a>（本讲阅读材料精讲亦含 react）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>RLM 架构图</h3>
+  <figure><img src="slides/slide-050.png" alt="Slide 50 RLM 架构图" loading="lazy"><figcaption>RLM：可深度派生子 RLM 处理子任务</figcaption></figure>
+  <p>RLM 的架构：模型把长文本当作环境中的对象，通过代码按需切片读取，
+  并且可以<strong>深度派生子 RLM（recursively spawn child RLMs）</strong>来处理子任务，
+  突破单次上下文窗口的限制。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>DSPy Summary</h3>
+  <figure><img src="slides/slide-051.png" alt="Slide 51 DSPy Summary" loading="lazy"><figcaption>DSPy 小结</figcaption></figure>
+  <p>DSPy 小结：用 <strong>Signatures</strong> 声明做什么、用 <strong>Modules</strong>（Predict / ChainOfThought / ReAct / RLM）
+  声明怎么做、用 <strong>Optimizers</strong>（如 GEPA）凭数据与指标自动改进——
+  程序逻辑始终是显式的 Python，模型只负责被声明好的子任务。</p>
+</article>
+</section>
+<!-- ============================================================ -->
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">二（续）、工作流与程序的框架：LangGraph</h2>
+<p class="chapter-sub">LangGraph — State / Nodes / Edges（Slide 52–77）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 52</span>LangGraph</h3>
+  <figure><img src="slides/slide-052.png" alt="Slide 52 LangGraph logo" loading="lazy"><figcaption>LangGraph logo</figcaption></figure>
+  <p>第二个框架：<span class="term">LangGraph</span>（LangChain 团队出品）——
+  用「图」（State、Nodes、Edges）显式描述工作流的控制流。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>Outline：State（共享工作区）</h3>
+  <figure><img src="slides/slide-053.png" alt="Slide 53 State" loading="lazy"><figcaption>State：节点间共享的工作区</figcaption></figure>
+  <p>LangGraph 核心概念之一——<span class="term">State（状态）</span>：所有节点共享的工作区
+  （workspace），节点通过读写 State 交换数据。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>Outline：Start / End</h3>
+  <figure><img src="slides/slide-054.png" alt="Slide 54 Start/End" loading="lazy"><figcaption>图的入口 __start__ 与出口 __end__</figcaption></figure>
+  <p>每个图都有显式的入口 <code>__start__</code> 与出口 <code>__end__</code>——
+  数据从入口流入，在出口汇总结果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>Outline：Nodes（节点）</h3>
+  <figure><img src="slides/slide-055.png" alt="Slide 55 Nodes" loading="lazy"><figcaption>Nodes：读取并更新 State 的函数</figcaption></figure>
+  <p><span class="term">Nodes（节点）</span>：就是普通函数——读取 State、做计算（包括调用 LLM）、
+  把结果写回 State。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>Outline：Edges（边）与条件边</h3>
+  <figure><img src="slides/slide-056.png" alt="Slide 56 Edges" loading="lazy"><figcaption>Edges：控制流；条件边按 State 决定下一步</figcaption></figure>
+  <p><span class="term">Edges（边）</span>定义控制流：固定边把节点顺序连起来；
+  <span class="term">条件边（conditional edges）</span>根据 State 的内容动态决定下一个节点。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>Outline：概念汇总</h3>
+  <figure><img src="slides/slide-057.png" alt="Slide 57 概念汇总" loading="lazy"><figcaption>State / Start-End / Nodes / Edges 汇总图</figcaption></figure>
+  <p>把四个概念合到一张图上：State 是共享工作区，__start__/__end__ 是出入口，
+  Nodes 读写 State，Edges（含条件边）决定控制流。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>Agent 图：LLM ⇄ Tools 循环</h3>
+  <figure><img src="slides/slide-058.png" alt="Slide 58 Agent 图" loading="lazy"><figcaption>agent = LLM 与 Tools 之间的循环图</figcaption></figure>
+  <p>用图描述 agent：LLM 节点决定调用工具，工具节点执行后把结果写回 State 再交还 LLM——
+  agent 循环就是图上 LLM 与 Tools 之间的环（直到 LLM 决定结束、走向 __end__）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>Live Demo（LangGraph 现场演示分节页）</h3>
+  <figure><img src="slides/slide-059.png" alt="Slide 59 Live Demo" loading="lazy"><figcaption>Live Programming Demo（LangGraph）</figcaption></figure>
+  <p class="note">注：S60 起的 LangGraph 页面同为<strong>现场编程演示的备用页</strong>
+  （底部红条 "This is a backup slide in case we cannot do the live demo."）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>Building the Graph：结构化输入输出</h3>
+  <figure><img src="slides/slide-060.png" alt="Slide 60 结构化输入输出" loading="lazy"><figcaption>用 pydantic 定义 ExtractEvent + with_structured_output（备用页）</figcaption></figure>
+  <p>开始用 LangGraph 构建同一个邮件→日历程序。第一步给 LLM 调用加上结构化输出：
+  用 <span class="term">pydantic</span> 定义 <code>ExtractEvent</code> 模型，
+  通过 <code>with_structured_output</code> 让模型直接返回类型化对象。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>Structured I/O：ExtractEvent</h3>
+  <figure><img src="slides/slide-061.png" alt="Slide 61 Structured I/O" loading="lazy"><figcaption>pydantic ExtractEvent + with_structured_output（备用页）</figcaption></figure>
+  <p>结构化输入输出（Structured I/O）：pydantic 的 <code>ExtractEvent</code> 声明
+  event_name / date / start / duration_minutes 等字段，模型输出被约束为该 schema——
+  与 DSPy 的类型化签名异曲同工。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>State：TypedDict</h3>
+  <figure><img src="slides/slide-062.png" alt="Slide 62 State TypedDict" loading="lazy"><figcaption>用 TypedDict 定义图的 State（备用页）</figcaption></figure>
+  <p>定义图的 State：用 Python 的 <code>TypedDict</code> 声明共享工作区的字段（如 email、event 等），
+  所有节点都读写这个结构。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 63</span>Node：extract</h3>
+  <figure><img src="slides/slide-063.png" alt="Slide 63 Node extract" loading="lazy"><figcaption>extract 节点：调用结构化 LLM 并写回 State（备用页）</figcaption></figure>
+  <p>第一个节点 <code>extract</code>：读取 State 中的 email，调用带结构化输出的 LLM 提取事件，
+  把结果写回 State。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 64</span>Graph：组装与编译</h3>
+  <figure><img src="slides/slide-064.png" alt="Slide 64 Graph 组装" loading="lazy"><figcaption>StateGraph / add_node / add_edge / compile + __start__→extract→__end__ 图（备用页）</figcaption></figure>
+  <p>组装图：<code>StateGraph</code> 创建图、<code>add_node</code> 加节点、<code>add_edge</code> 连边、
+  <code>compile</code> 编译为可运行对象。此时是最简单的线性图：
+  <code>__start__ → extract → __end__</code>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 65</span>运行：graph.invoke</h3>
+  <figure><img src="slides/slide-065.png" alt="Slide 65 graph.invoke 输出" loading="lazy"><figcaption>graph.invoke 输出 ExtractEvent（备用页）</figcaption></figure>
+  <p>用 <code>graph.invoke</code> 运行图：传入含 email 的 State，得到填充好字段的
+  <code>ExtractEvent</code> 对象——线性图跑通。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 66</span>Conditional Edges and Workflows（条件边）</h3>
+  <figure><img src="slides/slide-066.png" alt="Slide 66 Conditional Edges 标题页" loading="lazy"><figcaption>Conditional Edges and Workflows（备用页）</figcaption></figure>
+  <p>进入<strong>条件边（Conditional Edges）</strong>小节：根据提取结果动态决定后续路径
+  （有事件才继续选 emoji 并入日历，否则直接结束）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 67</span>扩展 State：CalendarState</h3>
+  <figure><img src="slides/slide-067.png" alt="Slide 67 CalendarState" loading="lazy"><figcaption>CalendarState 增加 emoji / status 字段（备用页）</figcaption></figure>
+  <p>扩展 State 为 <code>CalendarState</code>：在原字段基础上增加 <code>emoji</code> 与
+  <code>status</code>，供后续节点与条件路由使用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 68</span>新增节点：pick_emoji 与 add_to_calendar</h3>
+  <figure><img src="slides/slide-068.png" alt="Slide 68 两个新节点" loading="lazy"><figcaption>pick_emoji + add_to_calendar 节点（备用页）</figcaption></figure>
+  <p>新增两个节点：<code>pick_emoji</code>（为事件选 emoji）与 <code>add_to_calendar</code>
+  （把事件写入 tinycal），都读写 CalendarState。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 69</span>条件边：route 函数</h3>
+  <figure><img src="slides/slide-069.png" alt="Slide 69 route 函数" loading="lazy"><figcaption>route -> Literal["pick_emoji", "__end__"]（备用页）</figcaption></figure>
+  <p>条件边由一个路由函数实现：<code>route</code> 根据 State 返回
+  <code>Literal["pick_emoji", "__end__"]</code>——有事件走 pick_emoji，没事件直接结束。
+  控制流以显式代码表达。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 70</span>完整图与分支结构</h3>
+  <figure><img src="slides/slide-070.png" alt="Slide 70 完整图" loading="lazy"><figcaption>完整 graph + 分支图（备用页）</figcaption></figure>
+  <p>完整的图：<code>__start__ → extract →（条件边）→ pick_emoji → add_to_calendar → __end__</code>，
+  或无事件时 <code>extract → __end__</code>。配分支示意图。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 71</span>两次 invoke 的结果</h3>
+  <figure><img src="slides/slide-071.png" alt="Slide 71 两次 invoke" loading="lazy"><figcaption>Dentist 🦷 added / Credits None（备用页）</figcaption></figure>
+  <p>两次 <code>graph.invoke</code> 演示条件边：含预约的邮件 → 提取出 Dentist、选 emoji 🦷、
+  状态 added；无关邮件（Credits）→ 无事件，直接结束（None）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 72</span>tinycal：条件分支写入结果</h3>
+  <figure><img src="slides/slide-072.png" alt="Slide 72 tinycal 截图" loading="lazy"><figcaption>tinycal 日历（备用页）</figcaption></figure>
+  <p>tinycal 日历展示条件分支的实际效果：有效事件被写入，无效邮件不产生任何日历条目。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 73</span>Agents（LangGraph 中的 agent）</h3>
+  <figure><img src="slides/slide-073.png" alt="Slide 73 Agents 标题页" loading="lazy"><figcaption>Agents（备用页）</figcaption></figure>
+  <p>最后一小节：把图换成由模型控制循环的 agent——LangGraph 提供 <code>create_agent</code>
+  一行构造 LLM ⇄ Tools 循环。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 74</span>create_agent：两行代码</h3>
+  <figure><img src="slides/slide-074.png" alt="Slide 74 create_agent" loading="lazy"><figcaption>create_agent 两行 + model⇄tools 循环图（备用页）</figcaption></figure>
+  <p><code>create_agent</code> 只需两行（指定 model 与 tools）即得到 agent；
+  配图展示 model ⇄ tools 的循环：模型决定调用哪个工具，工具结果回流给模型，直至结束。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 75</span>运行 agent：移动咖啡时间</h3>
+  <figure><img src="slides/slide-075.png" alt="Slide 75 agent invoke" loading="lazy"><figcaption>invoke 移动咖啡 30 分钟 + tinycal 显示 3:30–4:00pm（备用页）</figcaption></figure>
+  <p>invoke 该 agent 处理「把咖啡约会挪 30 分钟」之类的请求，tinycal 中事件更新为
+  3:30–4:00pm——与 DSPy ReAct 相同的任务，用图框架的 agent 抽象完成。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 76</span>LangGraph Summary</h3>
+  <figure><img src="slides/slide-076.png" alt="Slide 76 LangGraph Summary" loading="lazy"><figcaption>LangGraph 五条要点小结</figcaption></figure>
+  <p>LangGraph 小结（五条要点）：State 是共享工作区；Nodes 是读写 State 的函数；
+  Edges 定义控制流；条件边让控制流依赖运行时状态；agent 即 model ⇄ tools 的循环图。
+  一切控制流都以显式代码表达。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 77</span>Recap（第二部分小结）</h3>
+  <figure><img src="slides/slide-077.png" alt="Slide 77 Recap" loading="lazy"><figcaption>四条要点 + DSPy / LangGraph / LlamaIndex / crewAI 四个框架 logo</figcaption></figure>
+  <p>第二部分回顾（四条要点）：工作流框架把工作流写成显式程序；DSPy 以签名/模块/优化器组织，
+  LangGraph 以 State/Nodes/Edges 组织；两者都能在一行内升级为 agent。
+  页面同时展示四个同类框架的 logo：<span class="term">DSPy、LangGraph、LlamaIndex、crewAI</span>——
+  框架选型空间很大。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">三、开源 Agent Harnesses</h2>
+<p class="chapter-sub">Open Source Agent Harnesses（Slide 78–89）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 78</span>分节页：Agent Harnesses</h3>
+  <figure><img src="slides/slide-078.png" alt="Slide 78 分节页" loading="lazy"><figcaption>五段进度条，「Agent Harnesses」段高亮</figcaption></figure>
+  <p>进入第三部分：开源 Agent Harnesses——围绕 LLM 的「运行时外壳」，
+  决定工具、记忆、上下文管理与执行方式等设计选择。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 79</span>Framework Landscape：Agent 列</h3>
+  <figure><img src="slides/slide-079.png" alt="Slide 79 YOU ARE HERE Agent 列" loading="lazy"><figcaption>谱系 Agent 列红框 + YOU ARE HERE</figcaption></figure>
+  <p>在框架谱系图上，<strong>YOU ARE HERE</strong> 指向最右端的 Agent 列（红框）——
+  控制流交给模型，harness 负责模型之外的一切。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 80</span>What is an Agent Harness（什么是 agent harness）</h3>
+  <figure><img src="slides/slide-080.png" alt="Slide 80 Agent Harness 架构图" loading="lazy"><figcaption>Planning &amp; Reasoning + Memory → LLM Core → Tools → Agent actions；环境 observe/act（Image Credit: CS329Z Lecture 1）</figcaption></figure>
+  <p>Agent Harness 的架构图：<span class="term">Planning &amp; Reasoning</span> 与
+  <span class="term">Memory</span> 汇入 <span class="term">LLM Core</span>，
+  LLM 通过 <span class="term">Tools</span> 产生 <span class="term">Agent actions</span>，
+  与环境之间以 observe/act 交互。（图引自 CS329Z 第一讲）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 81</span>不同 harness 的差异</h3>
+  <figure><img src="slides/slide-081.png" alt="Slide 81 harness 差异" loading="lazy"><figcaption>design choices / tradeoffs / balance</figcaption></figure>
+  <p>什么让 harness 彼此不同：</p>
+  <ul>
+    <li>构建 agent 涉及一系列<strong>设计选择</strong>：工具、记忆、上下文管理、执行方式；</li>
+    <li>不同 harness 为各自的任务与运行环境做出不同的<strong>权衡（tradeoffs）</strong>；</li>
+    <li>好的 harness 在<strong>任务成功率、成本、延迟、用户控制</strong>之间取得平衡——最佳平衡取决于用例。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 82</span>Mini SWE-Agent</h3>
+  <figure><img src="slides/slide-082.png" alt="Slide 82 Mini SWE-Agent" loading="lazy"><figcaption>mini SWE-agent：仅 bash、线性 history、subprocess.run</figcaption></figure>
+  <p><span class="term">Mini SWE-Agent</span>——极简主义：</p>
+  <ul>
+    <li>除 <code>bash</code> 外没有其他工具；</li>
+    <li>完全<strong>线性的 history</strong>——每一步只是追加到 messages；</li>
+    <li>动作用 <code>subprocess.run</code> 执行——每个动作完全独立（而不是保持一个有状态的 shell 会话）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 83</span>OpenHands</h3>
+  <figure><img src="slides/slide-083.png" alt="Slide 83 OpenHands" loading="lazy"><figcaption>每步存一个 event JSON、持久 tmux terminal、卡住自停</figcaption></figure>
+  <p><span class="term">OpenHands</span>：</p>
+  <ul>
+    <li>每一步存为一个 <strong>event</strong>——磁盘上每 event 一个 JSON 文件，发给模型的消息在每步从 event 重建；</li>
+    <li>维护<strong>持久 terminal</strong>——一个 tmux 会话，<code>cd</code>、环境变量、virtualenv 跨命令保留；</li>
+    <li><strong>卡住时自停</strong>——同一动作与结果重复 4 次后，检测器终止执行。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 84</span>Pi Agent</h3>
+  <figure><img src="slides/slide-084.png" alt="Slide 84 Pi Agent" loading="lazy"><figcaption>四工具、无权限系统、树状 history、刻意简单</figcaption></figure>
+  <p><span class="term">Pi Agent</span>：</p>
+  <ul>
+    <li>只有<strong>四个工具</strong>——read、write、edit、bash，system prompt 不到 1000 tokens；</li>
+    <li><strong>无权限系统</strong>——以启动时的权限运行；</li>
+    <li>history 存为<strong>树而非列表</strong>——可以回到之前的消息并从那里分支；</li>
+    <li><strong>刻意简单</strong>——没有 plan mode、没有 sub-agent 工具。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 85</span>OpenClaw</h3>
+  <figure><img src="slides/slide-085.png" alt="Slide 85 OpenClaw" loading="lazy"><figcaption>heartbeat 唤醒、长驻 Gateway、Markdown 身份文件、每晚存记忆</figcaption></figure>
+  <p><span class="term">OpenClaw</span>（常驻型个人助理 harness）：</p>
+  <ul>
+    <li>每 <strong>30 分钟</strong>自动唤醒——heartbeat 回合按调度运行，agent 回复 <code>NO_REPLY</code> 以保持安静；</li>
+    <li>作为<strong>单个长驻 Gateway</strong> 运行——一个进程管理所有聊天渠道；</li>
+    <li>用 <strong>Markdown 文件构建身份</strong>——AGENTS.md、SOUL.md、IDENTITY.md、USER.md、MEMORY.md 注入 system prompt；</li>
+    <li><strong>每晚 3AM 存记忆</strong>——后台任务回读当天笔记，把值得保留的部分写入 MEMORY.md。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 86</span>The Harness can make a big difference</h3>
+  <figure><img src="slides/slide-086.png" alt="Slide 86 Terminal-Bench 2 harness 对比" loading="lazy"><figcaption>Terminal-Bench 2：同模型不同 harness 的 Cost per rollout 与 Success rate（Image Credit: arena.ai/blog/coding-agents-harness-tax）</figcaption></figure>
+  <p>Terminal-Bench 2 数据：<strong>同一模型、不同 harness</strong>，成本与成功率差异显著
+  （Cost per rollout / Success rate）：</p>
+  <table>
+    <tr><th>模型</th><th>Pi</th><th>Codex</th><th>Claude Code</th></tr>
+    <tr><td>Claude Fable 5</td><td>$1.08 / 71.1%</td><td>$0.98 / 72.2%</td><td>$1.55 / 75.6%</td></tr>
+    <tr><td>Claude Opus 4.8</td><td>$0.76 / 72.2%</td><td>$0.85 / 72.2%</td><td>$0.90 / 68.9%</td></tr>
+    <tr><td>Claude Sonnet 4.6</td><td>$0.61 / 65.6%</td><td>$0.55 / 63.3%</td><td>$0.67 / 62.2%</td></tr>
+    <tr><td>Claude Haiku 4.5</td><td>$0.25 / 47.8%</td><td>$0.21 / 31.1%</td><td>$0.25 / 41.1%</td></tr>
+  </table>
+  <p>结论：harness 的选择可以像模型的选择一样重要。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 87</span>Meta-Harness：搜索循环（Figure 2）</h3>
+  <figure><img src="slides/slide-087.png" alt="Slide 87 Meta-Harness 搜索循环" loading="lazy"><figcaption>Filesystem → Propose Harness Code → Harness → Evaluate → Store all Logs（Image Credit: arxiv.org/pdf/2603.28052）</figcaption></figure>
+  <p>Meta-Harness 的搜索循环（论文 Figure 2）：</p>
+  <ol>
+    <li>agent 读取一个文件系统——其中保存着所有候选的<strong>源码、执行轨迹、得分</strong>——并提出新 harness；</li>
+    <li>提出的 harness 在评测任务上被<strong>评估</strong>；</li>
+    <li>所有日志（提出代码、推理轨迹、评测得分）<strong>存回文件系统</strong>的新目录，循环继续。</li>
+  </ol>
+  <p>论文：<a href="https://arxiv.org/abs/2603.28052">arXiv:2603.28052</a></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 88</span>Meta-Harness：结果（Figure 1）</h3>
+  <figure><img src="slides/slide-088.png" alt="Slide 88 Meta-Harness 结果" loading="lazy"><figcaption>左：搜索进度 Meta-Harness 最高约 57%；右：TerminalBench-2 Pass Rate Meta-Harness 37.6 领先（Image Credit: arxiv.org/pdf/2603.28052）</figcaption></figure>
+  <p>Meta-Harness 的结果（论文 Figure 1）：</p>
+  <ul>
+    <li><strong>左图（Harness Optimizer Search Progress）</strong>：Meta-Harness（约 57%）超过 TTT-Discover（约 45.5%）、OpenEvolve（约 43.5%）与 ACE（约 41%）等此前方法，且仅需约 4 次评估就达到次优方法的最终精度；</li>
+    <li><strong>右图（TerminalBench-2 Pass Rate）</strong>：Meta-Harness <strong>37.6</strong> 领先所有人工编写的 harness——Goose 35.5、Terminus-KIRA 33.7、Mini-SWE-Agent 29.8、Terminus-2 28.3、Claude Code 27.5。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 89</span>Bringing it together</h3>
+  <figure><img src="slides/slide-089.png" alt="Slide 89 Bringing it together" loading="lazy"><figcaption>没有唯一正确方式；课程将实验这些设计决策</figcaption></figure>
+  <p>第三部分收束：</p>
+  <ul>
+    <li>构建 agent <strong>没有唯一正确的方式</strong>；</li>
+    <li>本课程将<strong>实验所有这些设计决策</strong>；</li>
+    <li>也许你能做出下一个流行的 agent harness :D</li>
+  </ul>
+</article>
+</section>
+<!-- ============================================================ -->
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">四、编排与遥测</h2>
+<p class="chapter-sub">Orchestration and Telemetry — Temporal &amp; Observability（Slide 90–122）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 90</span>分节页：Orchestration and Telemetry</h3>
+  <figure><img src="slides/slide-090.png" alt="Slide 90 分节页" loading="lazy"><figcaption>五段进度条，「Orchestration」段高亮</figcaption></figure>
+  <p>进入第四部分：编排（Orchestration）与遥测（Telemetry）——
+  让长时间运行的 agent 系统可靠、可调试、可观测。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 91</span>Framework Landscape：可靠性/可观测性</h3>
+  <figure><img src="slides/slide-091.png" alt="Slide 91 YOU ARE HERE 顶条" loading="lazy"><figcaption>谱系顶条 Reliability / Observability 红框 + YOU ARE HERE</figcaption></figure>
+  <p>在框架谱系图上，<strong>YOU ARE HERE</strong> 指向横贯全局的顶条
+  <span class="term">Reliability / Observability</span>——这一层不属于某个框架，
+  而是所有 agent 系统都需要的工程基础设施。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 92</span>Why needed：任务时长指数增长</h3>
+  <figure><img src="slides/slide-092.png" alt="Slide 92 METR 时间视野图" loading="lazy"><figcaption>METR：不同 LLM 50% 完成率的任务时长随模型发布时间指数增长（Image Credit: metr.org/time-horizons/）</figcaption></figure>
+  <p>METR 的「时间视野（time horizons）」图：不同 LLM 能<strong>以 50% 成功率完成</strong>的软件任务时长
+  （人类所需时间）随模型发布呈指数增长——从 GPT-2 的约 4 秒（回答问题）、GPT-4 的约 6 分钟，
+  到 Claude Opus 4.6 / Claude Mythos Preview 的约 <strong>16 小时</strong>量级
+  （如「最优地压缩语言模型规模」）。图中也注明：超过 16 小时的测量在当前任务集下尚不可靠。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 93</span>Why needed：基础设施必须跟上</h3>
+  <figure><img src="slides/slide-093.png" alt="Slide 93 Why needed 要点" loading="lazy"><figcaption>长时间运行 → infra 可靠；日志/可观测性利于调试；软件工程教训迁移</figcaption></figure>
+  <p>为什么需要编排与遥测：</p>
+  <ul>
+    <li>agents 运行时间越来越长（上一页是按<strong>人类时间</strong>计），支撑它们的<strong>基础设施必须可靠</strong>；</li>
+    <li><strong>日志与可观测性工具</strong>利于调试；</li>
+    <li>这些都是<strong>软件工程实践中来之不易的教训</strong>，同样适用于 agent。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 94</span>Temporal</h3>
+  <figure><img src="slides/slide-094.png" alt="Slide 94 Temporal logo" loading="lazy"><figcaption>Temporal logo</figcaption></figure>
+  <p>本部分的代表工具：<span class="term">Temporal</span>——durable execution（持久化执行）平台，
+  把工作流的每一步记录在案，进程崩溃后可从记录恢复继续。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 95</span>Temporal Execution Model（1）：Activities</h3>
+  <figure><img src="slides/slide-095.png" alt="Slide 95 执行模型 1" loading="lazy"><figcaption>Your Code（Client）+ 红色 Activities：可失败的功能单元</figcaption></figure>
+  <p>执行模型渐进图第一步：你的代码作为 <span class="term">Client</span>，
+  其中的 <span class="term">Activities</span>（红圆）是<strong>可能失败的功能单元</strong>
+  （functional units that can fail）——如一次 LLM 调用、一次写日历。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 96</span>Temporal Execution Model（2）：Workflows</h3>
+  <figure><img src="slides/slide-096.png" alt="Slide 96 执行模型 2" loading="lazy"><figcaption>绿色 Workflows 把 Activities 链接起来</figcaption></figure>
+  <p>第二步：<span class="term">Workflows</span>（绿线）<strong>把 activities 链接起来</strong>——
+  工作流代码描述步骤之间的编排逻辑，其执行历史被服务器记录。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 97</span>Temporal Execution Model（3）：Workers</h3>
+  <figure><img src="slides/slide-097.png" alt="Slide 97 执行模型 3" loading="lazy"><figcaption>Workers：Activity Workers 与 Workflow Workers</figcaption></figure>
+  <p>第三步：右侧出现 Server 侧，底部是 <span class="term">Workers</span>——
+  <strong>Activity Workers</strong>（执行可能失败的具体任务）与 <strong>Workflow Workers</strong>
+  （重放工作流逻辑）两类进程。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 98</span>Temporal Execution Model（4）：Server</h3>
+  <figure><img src="slides/slide-098.png" alt="Slide 98 执行模型 4" loading="lazy"><figcaption>Server：Task Queue + Execution History &amp; State + Storage</figcaption></figure>
+  <p>第四步：完整的 Server 侧——<span class="term">Task Queue</span>（Activity Queue / Workflow Queue）
+  分发任务，<span class="term">Execution History &amp; State</span> 记录每次执行的历史与状态，
+  最终落盘到 <span class="term">Storage</span>。这就是「durable」的来源：状态在服务器，worker 可随时被杀死再拉起。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 99</span>Live Demo（Temporal 现场演示分节页）</h3>
+  <figure><img src="slides/slide-099.png" alt="Slide 99 Live Demo" loading="lazy"><figcaption>Live Programming Demo（Orchestration）</figcaption></figure>
+  <p class="note">注：S100 起的 Temporal 页面同为<strong>现场编程演示的备用页</strong>
+  （底部红条 "This is a backup slide in case we cannot do the live demo."）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 100</span>Durable Workflows（持久化工作流）</h3>
+  <figure><img src="slides/slide-100.png" alt="Slide 100 Durable Workflows 标题页" loading="lazy"><figcaption>Durable Workflows（备用页）</figcaption></figure>
+  <p>演示主题：<span class="term">Durable Workflows</span>——
+  把第三部分的邮件→日历流程改写成 Temporal 的 activity + workflow。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 101</span>Making a Durable Workflow: Activities</h3>
+  <figure><img src="slides/slide-101.png" alt="Slide 101 Activities 代码" loading="lazy"><figcaption>@activity.defn 包裹 extract_event / select_emoji / add_to_calendar（备用页）</figcaption></figure>
+  <p>把三个步骤声明为 activities（<code>@activity.defn</code>）：
+  <code>extract_event</code>（复用 DSPy 的提取模块，缺字段返回 None）、
+  <code>select_emoji</code>（复用 DSPy 的 emoji 模块）、<code>add_to_calendar</code>（写 tinycal）。
+  Activities 是<strong>可失败的功能单元</strong>，由 workflow 编排。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 102</span>Making a Durable Workflow: Workflow</h3>
+  <figure><img src="slides/slide-102.png" alt="Slide 102 Workflow 代码" loading="lazy"><figcaption>@workflow.defn CalendarWorkflow：execute_activity + RetryPolicy（备用页）</figcaption></figure>
+  <p>Workflow 类 <code>CalendarWorkflow</code>（<code>@workflow.defn</code>）：
+  对每个可能失败的调用都用 <code>workflow.execute_activity</code> 包裹，
+  配 <code>RetryPolicy(initial_interval=1s, maximum_attempts=5)</code> 与 1 分钟超时。
+  关键约束：workflow 必须<strong>确定性</strong>（自身不做 LLM 调用与 I/O），
+  因为 Temporal 会依据记录<strong>重放</strong>它。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 103</span>Making a Durable Workflow: Worker</h3>
+  <figure><img src="slides/slide-103.png" alt="Slide 103 Worker 代码" loading="lazy"><figcaption>Worker(client, task_queue="calendar", workflows=[...], activities=[...])（备用页）</figcaption></figure>
+  <p>Worker 是<strong>真正运行 workflows 与 activities 的进程</strong>：
+  <code>Worker(client, task_queue="calendar", workflows=[CalendarWorkflow],
+  activities=[extract_event, select_emoji, add_to_calendar],
+  activity_executor=ThreadPoolExecutor(4))</code>，然后 <code>asyncio.create_task(worker.run())</code> 启动。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 104</span>Making a Durable Workflow: Run it</h3>
+  <figure><img src="slides/slide-104.png" alt="Slide 104 运行与输出" loading="lazy"><figcaption>client.execute_workflow 两次 + 输出 added to calendar / no event found in email（备用页）</figcaption></figure>
+  <p>运行：两次 <code>client.execute_workflow(CalendarWorkflow.run, ...)</code>——
+  「Office hours are Thursday October 8th at 3pm」→ <code>added to calendar</code>；
+  「Thanks for sending the slides, they look great!」→ <code>no event found in email</code>。
+  注释提示：<strong>每一步都被记录</strong>，可打开 http://localhost:8233 查看 calendar-1。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 105</span>tinycal：workflow 写入结果</h3>
+  <figure><img src="slides/slide-105.png" alt="Slide 105 tinycal 截图" loading="lazy"><figcaption>tinycal：Office hours 已出现在周四（备用页）</figcaption></figure>
+  <p>tinycal 周视图（2026 年 10 月 4–10 日）：周四出现 🕐 Office hours（3:00–4:00pm），
+  验证 durable workflow 端到端跑通。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 106</span>Temporal UI：Timeline</h3>
+  <figure><img src="slides/slide-106.png" alt="Slide 106 Timeline 截图" loading="lazy"><figcaption>Temporal UI Timeline：extract_event / select_emoji / add_to_calendar 依次执行（备用页）</figcaption></figure>
+  <p>Temporal 内置 UI 的 Timeline 视图（10/4/26 4:06:56 AM PDT）：
+  三个 activity 依次执行——extract_event（约 10–18ms）、select_emoji（约 23–28ms）、
+  add_to_calendar（约 33–34ms）。<strong>可观测性开箱即用</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 107</span>Retries（重试）</h3>
+  <figure><img src="slides/slide-107.png" alt="Slide 107 Retries 标题页" loading="lazy"><figcaption>Retries（备用页）</figcaption></figure>
+  <p>下一演示主题：<span class="term">Retries（重试）</span>——
+  activities 天然可能失败（限流、超时、网络抖动），重试策略由服务器按 RetryPolicy 自动执行。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 108</span>Retrying Flaky Activities：模拟不稳定服务</h3>
+  <figure><img src="slides/slide-108.png" alt="Slide 108 flaky_select_emoji" loading="lazy"><figcaption>flaky_select_emoji：attempt &lt; 3 时抛 503（备用页）</figcaption></figure>
+  <p>用一个「不稳定」activity 演示：<code>@activity.defn(name="select_emoji")</code>（activities 按名字匹配）
+  定义 <code>flaky_select_emoji</code>——打印当前 attempt，<strong>前两次尝试抛
+  <code>RuntimeError("503 Service Unavailable")</code></strong>，第三次才真正调用 emoji 模块。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 109</span>Retrying Flaky Activities：服务器自动重试</h3>
+  <figure><img src="slides/slide-109.png" alt="Slide 109 重试运行" loading="lazy"><figcaption>worker task_queue="retries" + invoke，输出 attempt 1/2/3 后成功（备用页）</figcaption></figure>
+  <p>换用含 flaky activity 的 worker（task_queue="retries"）并 invoke 一条「散步」邮件：
+  输出显示 <code>select_emoji attempt 1 / 2 / 3</code> 后返回 <code>'added to calendar'</code>（4.1s）——
+  <strong>服务器按 RetryPolicy 替你重试</strong>，workflow 代码无需任何改动。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 110</span>tinycal：重试后写入成功</h3>
+  <figure><img src="slides/slide-110.png" alt="Slide 110 tinycal 截图" loading="lazy"><figcaption>tinycal：周二出现 Go for a walk（备用页）</figcaption></figure>
+  <p>tinycal 更新：周二 9:00–9:30am 出现 🚶 Go for a walk——两次失败重试后最终成功写入。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 111</span>Temporal UI：重试在 Timeline 上可见</h3>
+  <figure><img src="slides/slide-111.png" alt="Slide 111 重试 Timeline" loading="lazy"><figcaption>Timeline：「3 · select_emoji」红色条表示重试 3 次（备用页）</figcaption></figure>
+  <p>Timeline 上 select_emoji 显示为<strong>「3 · select_emoji」的红色条</strong>
+  （4:15:17–4:15:20 AM PDT）——重试次数与耗时一目了然，失败与恢复全程可观测。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 112</span>Server Based Orchestration（基于服务器的编排）</h3>
+  <figure><img src="slides/slide-112.png" alt="Slide 112 Server Based Orchestration 标题页" loading="lazy"><figcaption>Server Based Orchestration（备用页）</figcaption></figure>
+  <p>下一演示主题：<span class="term">Server Based Orchestration</span>——
+  定时器、等待等编排能力由服务器承担，而非依赖某个活着的进程。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 113</span>Server Based Timing：workflow.sleep</h3>
+  <figure><img src="slides/slide-113.png" alt="Slide 113 ReminderWorkflow" loading="lazy"><figcaption>ReminderWorkflow：execute_child_workflow + workflow.sleep（备用页）</figcaption></figure>
+  <p><code>ReminderWorkflow</code>：先通过 <code>workflow.execute_child_workflow</code>
+  跑日历子流程，再 <code>await workflow.sleep(seconds)</code> 等到提醒时刻。
+  要点：<strong>一个 workflow 可以一行代码「睡」数月甚至数年</strong>——睡眠由服务器计时，不占用 worker。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 114</span>杀掉 worker，workflow 仍在运行</h3>
+  <figure><img src="slides/slide-114.png" alt="Slide 114 杀 worker 仍 RUNNING" loading="lazy"><figcaption>sleep 中途 cancel worker，workflow status 仍为 RUNNING（备用页）</figcaption></figure>
+  <p>实验：启动 ReminderWorkflow（Lab meeting，20 秒后提醒），等日历步骤完成、
+  <strong>在 sleep 中途 cancel 掉 worker</strong>——<code>handle.describe()</code> 显示
+  workflow 状态<strong>仍为 RUNNING</strong>（已无任何 worker 存活）。状态在服务器，进程死了流程不死。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 115</span>拉起新 worker：定时器照常触发</h3>
+  <figure><img src="slides/slide-115.png" alt="Slide 115 恢复 worker" loading="lazy"><figcaption>重新拉起 worker，定时器触发，LLM 步骤不会重跑（备用页）</figcaption></figure>
+  <p>重新拉起 worker 后：定时器触发，workflow 正常结束，返回
+  <code>Reminder! (Lab meeting on Thursday, October 8th, 2026 at 11am for 60 minutes.)</code>；
+  日历中只有一个 Lab meeting（不是两个）——<strong>LLM 步骤不会重跑，因为结果早已被记录</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 116</span>tinycal：Lab meeting 只出现一次</h3>
+  <figure><img src="slides/slide-116.png" alt="Slide 116 tinycal 截图" loading="lazy"><figcaption>tinycal：周四 11:00am–12:00pm Lab meeting（备用页）</figcaption></figure>
+  <p>tinycal 确认：周四 11:00am–12:00pm 出现 📅 Lab meeting 一次——
+  崩溃恢复没有造成重复写入（exactly-once 语义的直观体现）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 117</span>Temporal UI：20 秒睡眠在 Timeline 上</h3>
+  <figure><img src="slides/slide-117.png" alt="Slide 117 睡眠 Timeline" loading="lazy"><figcaption>Timeline：「1 (20s)」橙色 timer 条（备用页）</figcaption></figure>
+  <p>Timeline 上可见一条 <strong>「1 (20s)」橙色 timer 条</strong>（4:23:18–4:23:38 AM PDT）
+  与 CalendarWorkflow 子流程条——20 秒的服务器端睡眠及其跨 worker 重启的恢复全程留痕。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 118</span>Additional Observability Frameworks</h3>
+  <figure><img src="slides/slide-118.png" alt="Slide 118 Additional Observability Frameworks 标题页" loading="lazy"><figcaption>Additional Observability Frameworks</figcaption></figure>
+  <p>编排之外，还有专门的<strong>可观测性框架</strong>——用于追踪、记录、分析 LLM 应用的每一次调用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 119</span>MLFlow</h3>
+  <figure><img src="slides/slide-119.png" alt="Slide 119 MLFlow 截图" loading="lazy"><figcaption>MLflow UI：LM.__call__ 的 Inputs/Outputs（Image Credit: notebooks.databricks.com/devrel/mlflow/2024-11-27-dspy.html）</figcaption></figure>
+  <p><span class="term">MLflow</span>（Databricks）：Experiments 面板记录 DSPy 实验（如 dspy-paper-su…），
+  点开 <code>LM.__call__</code>（0.01s）可见 Inputs（prompt：「Please tell me what MLflow is for.」、
+  messages）与 Outputs（模型回答原文），并可 Show timeline。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 120</span>LangSmith</h3>
+  <figure><img src="slides/slide-120.png" alt="Slide 120 LangSmith 截图" loading="lazy"><figcaption>LangSmith ProductionTraces：runs/tokens/latency/feedback + 过滤器（Image Credit: langchain.com/blog/announcing-langsmith）</figcaption></figure>
+  <p><span class="term">LangSmith</span>（LangChain）：ProductionTraces 项目面板——
+  TOTAL RUNS 578、TOTAL TOKENS 23,010、LATENCY P99 1.20s / P50 3.20s、FEEDBACK
+  （helpfulness/coherence/relevance 等）；Runs 表逐条列出 LLMChain 的输入、延迟与反馈分；
+  右侧 Filters 可按反馈、来源、运行类型、状态等筛选。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 121</span>LangFuse</h3>
+  <figure><img src="slides/slide-121.png" alt="Slide 121 LangFuse 截图" loading="lazy"><figcaption>Langfuse Home：latencies / usage / costs / traces / scores 六面板（Image Credit: langfuse.com）</figcaption></figure>
+  <p><span class="term">Langfuse</span>：Home 仪表板六面板——
+  Model latencies（分位数折线）、Model usage（按模型成本）、Observations by type（Default/Debug/Error）、
+  Model costs（$57.44，按模型列 token 与美元）、Traces（4.78K，按名称统计）、
+  Scores（12.32K，如 # answer-fit 平均 0.75）——成本、延迟、质量一站式监控。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 122</span>Recap（第四部分小结）</h3>
+  <figure><img src="slides/slide-122.png" alt="Slide 122 Recap" loading="lazy"><figcaption>四条要点：可靠、可观测、软件工程教训、区分 building 与 engineering</figcaption></figure>
+  <p>第四部分回顾：</p>
+  <ul>
+    <li><strong>编排让 agents 保持可靠</strong>（Orchestration keeps agents reliable）；</li>
+    <li><strong>可观测性支撑调试与监控</strong>（Observability enables debugging and monitoring）；</li>
+    <li>从软件工程借鉴的最佳实践与工具<strong>同样适用于 agent 工程</strong>；</li>
+    <li>建立 evals、监控、durable execution 等，正是<strong>「搭建 agents」与「工程化 agents」的分水岭</strong>。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch6">
+<h2 class="chapter-title">五、最佳实践与挑战</h2>
+<p class="chapter-sub">Best Practices and Challenges（Slide 123–130）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 123</span>分节页：Best Practices and Challenges</h3>
+  <figure><img src="slides/slide-123.png" alt="Slide 123 分节页" loading="lazy"><figcaption>五段进度条，「Best Practices」段高亮</figcaption></figure>
+  <p>进入最后一部分：把全讲内容沉淀为可执行的最佳实践，并直面框架带来的挑战。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 124</span>Keep it Simple（保持简单）</h3>
+  <figure><img src="slides/slide-124.png" alt="Slide 124 Keep it Simple" loading="lazy"><figcaption>Model → Workflow/Compound AI System → Agent 轴 + 三条建议</figcaption></figure>
+  <p>「Model → Workflow or Compound AI System → Agent」轴上标注：
+  Model 是更大系统的一小部分；Workflow 的逻辑与编排在程序里；Agent 的控制流交给 AI 模型。三条建议：</p>
+  <ul>
+    <li><strong>你不一定总要构建 agent</strong>——有时 workflow 就适合任务；</li>
+    <li>真要构建 agent 时，<strong>仔细考虑该包含哪些工具</strong>；</li>
+    <li>如果数据充足，你甚至可能<strong>端到端优化一个模型</strong>就够了。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 125</span>Make Failures Observable and Recoverable</h3>
+  <figure><img src="slides/slide-125.png" alt="Slide 125 失败可观测可恢复" loading="lazy"><figcaption>四条实践 + Temporal/mlflow/Langfuse logo + 终端错误截图</figcaption></figure>
+  <p>让失败可观测、可恢复：</p>
+  <ul>
+    <li><strong>追踪</strong>模型调用、工具调用、状态变化与错误；</li>
+    <li>设置<strong>超时、重试上限与执行预算</strong>；</li>
+    <li><strong>记录输出</strong>并诊断失败；</li>
+    <li><strong>监控系统状态</strong>。</li>
+  </ul>
+  <p>右侧列出对应工具：Temporal / mlflow / Langfuse 等；底部终端截图展示一个被拦截的错误命令，
+  配文：You can raise the error to the agent to try again.（可以把错误抛给 agent 让它重试）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 126</span>Example: Shepherd（元 agent 示例）</h3>
+  <figure><img src="slides/slide-126.png" alt="Slide 126 Shepherd 论文图" loading="lazy"><figcaption>Shepherd meta-agents：上图 trace 干预 + 代码，下图三项基准结果（Image Credit: arxiv.org/pdf/2605.10913）</figcaption></figure>
+  <p>Shepherd 论文（<a href="https://arxiv.org/abs/2605.10913">arXiv:2605.10913</a>）的
+  <span class="term">meta-agent</span>：一个更强的 agent 观察、拦截、回退（revert）、分叉（fork）
+  另一个 agent 的执行轨迹（代码示例：<code>@agent(LLM="haiku") implement</code> 被
+  <code>@agent(LLM="opus", tool=[observe, revert, fork]) oversee</code> 监管）。三项结果：</p>
+  <ul>
+    <li><strong>(a) 运行时干预</strong>（CooperBench, Pair Coding）：无 meta-agent 28.8% → Sonnet 4.6 w/ meta-agent 45.3% → Opus 4.7 w/ meta-agent 54.7%；</li>
+    <li><strong>(b) 反事实优化</strong>（LiveCodeBench）：CRO 51.0% 高于 GEPA 48.7%、MetaHarness 40.0%、未优化 30.7%；</li>
+    <li><strong>(c) Tree-GRPO</strong>（TerminalBench-2）：Qwen3.5-35B-A3B 26.1→39.4、Nemotron-3-Super-120B-A12B 30.3→37.2。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 127</span>Run Evaluations（跑评测）</h3>
+  <figure><img src="slides/slide-127.png" alt="Slide 127 Run Evaluations" loading="lazy"><figcaption>五条建议 + 天平插图</figcaption></figure>
+  <p>跑评测（配天平插图，喻指权衡）：</p>
+  <ul>
+    <li>做设计决策的最好方式是把它们<strong>建立在 evals 之上</strong>；</li>
+    <li>评测使<strong>优化</strong>成为可能；</li>
+    <li>构建一个恰当的 eval 是制作 AI 系统<strong>最重要的步骤之一</strong>；</li>
+    <li><strong>明智地选择指标</strong>（准确率、成本、延迟等）；</li>
+    <li>测试<strong>代表性任务、边界情况与失败场景</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 128</span>Run Evaluations：自建领域评测</h3>
+  <figure><img src="slides/slide-128.png" alt="Slide 128 自建领域评测" loading="lazy"><figcaption>左侧 TERMINAL-BENCH/SWE-bench/DeepSWE 打红叉，右侧 Your Custom Domain Eval 打绿勾</figcaption></figure>
+  <p>左侧给通用编码基准（TERMINAL-BENCH、SWE-bench、DeepSWE）打上红叉，
+  右侧推荐 <strong>Your Custom Domain Eval!</strong>（你的自建领域评测）打上绿勾。
+  底部说明：<strong>除非</strong>你在构建通用编码 agent harness、或在测试通用 agent 系统改进，
+  否则标准编码基准<strong>不是</strong>你应该攀比的指标。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 129</span>Challenges / Limitations（挑战与局限）</h3>
+  <figure><img src="slides/slide-129.png" alt="Slide 129 挑战与局限" loading="lazy"><figcaption>三条挑战 + Batman「SHOW ME THE PROMPT」meme（Image Credit: hamel.dev/blog/posts/prompt/）</figcaption></figure>
+  <p>框架带来的挑战：</p>
+  <ul>
+    <li>抽象让你远离底层系统细节，所以要确保<strong>知道引擎盖下在发生什么</strong>（know what is going on under the hood）；</li>
+    <li>构建复杂 AI 系统时很难定位失败来源——<strong>一定要看 traces</strong>（Make sure to look at the traces!）；</li>
+    <li>建立在框架之上意味着<strong>依赖外部库</strong>，需要它们持续被维护。</li>
+  </ul>
+  <p>右侧 meme（Hamel Husain 博客配图）：库宣传「pip install llm-magic 就能得到最佳输出」，
+  而 Batman 一巴掌——「SHOW ME THE PROMPT」（把 prompt 给我看），呼应「抽象之下仍是 prompt」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 130</span>Recap（第五部分小结）</h3>
+  <figure><img src="slides/slide-130.png" alt="Slide 130 Recap" loading="lazy"><figcaption>五条要点：工程循环、从简、为失败设计、用证据评估、吃透系统</figcaption></figure>
+  <p>最佳实践回顾：</p>
+  <ul>
+    <li>以 <strong>Building → Running → Evaluating → Improving</strong> 循环来工程化 agents——工程过程是一个环；</li>
+    <li><strong>从简单开始</strong>，为新增的复杂度提供理由；</li>
+    <li><strong>为失败与恢复而设计</strong>；</li>
+    <li>用<strong>证据与评测</strong>评估质量、成本与延迟；</li>
+    <li><strong>完全理解</strong>你的系统如何工作。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="summary">
+<h2 class="chapter-title">本讲总结（Lecture Summary）</h2>
+<p class="chapter-sub">对应原讲义的完整脉络（Slide 1–132）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 131</span>Summary（总结分节页）</h3>
+  <figure><img src="slides/slide-131.png" alt="Slide 131 Summary 分节页" loading="lazy"><figcaption>五段进度条收束：Summary</figcaption></figure>
+  <p>全讲结束，进入总结页。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 132</span>Summary（五条总结）</h3>
+  <figure><img src="slides/slide-132.png" alt="Slide 132 五条总结" loading="lazy"><figcaption>原讲义的五条勾选总结</figcaption></figure>
+  <p>原讲义给出的五条总结：</p>
+  <ul>
+    <li>✅ 什么是「工程化」Agents（What does it mean to "Engineer" Agents?）；</li>
+    <li>✅ 工作流与程序的框架：DSPy、LangGraph（Frameworks for Workflows and Programs）；</li>
+    <li>✅ 开源 Agent Harnesses（Open Source Agent Harnesses）；</li>
+    <li>✅ 编排与遥测：Temporal（Orchestration and Telemetry）；</li>
+    <li>✅ 最佳实践与挑战（Best Practices and Challenges）。</li>
+  </ul>
+</article>
+
+<p>本讲以「抽象 vs 系统细节」为主线，逐层展开框架生态：</p>
+<ul>
+  <li><strong>什么是工程化 Agents</strong>：工程化 = 数据、系统、评测三大支柱齐备；框架分布在「模型 → 工作流 → agent」谱系上，可靠性/可观测性横贯全局；DSPy（38.5k stars）、LangGraph（42.8k）、Temporal（23.5k）在产业中已被广泛使用。</li>
+  <li><strong>DSPy</strong>：Signatures 声明「做什么」（一行字符串到类型化类）、Modules 声明「怎么做」（Predict / ChainOfThought / ReAct / RLM，纯 Python 组合控制流）、Optimizers 凭数据与指标自动改进（GEPA 把 Gemma 3 12B 从 55% 提到 100%，改的只是指令文本）。</li>
+  <li><strong>LangGraph</strong>：State 共享工作区、Nodes 读写状态、Edges（含条件边）定义控制流；agent 即 model ⇄ tools 的循环图；一切控制流都是显式代码。</li>
+  <li><strong>Agent Harnesses</strong>：harness 决定工具/记忆/上下文/执行的设计选择——Mini SWE-Agent（极简）、OpenHands（event 存盘 + 持久 tmux）、Pi Agent（四工具 + 树状 history）、OpenClaw（常驻 + 心跳 + Markdown 身份）；Terminal-Bench 2 显示同一模型换 harness 成本与成功率差异显著；Meta-Harness 用搜索循环自动发现更优 harness。</li>
+  <li><strong>编排与遥测</strong>：METR 任务时长指数增长要求基础设施可靠；Temporal 以 Activities/Workflows/Workers/Server（队列+执行历史+存储）实现 durable execution——自动重试、服务器端定时、worker 崩溃后不重跑已记录步骤；MLflow / LangSmith / Langfuse 提供 LLM 级追踪与成本/延迟/质量监控。</li>
+  <li><strong>最佳实践</strong>：保持简单（不必总是 agent）、让失败可观测可恢复、用自建领域评测驱动决策、知道抽象之下在发生什么（SHOW ME THE PROMPT）。</li>
+</ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接（References）</h2>
+<p class="chapter-sub">原讲义中出现的论文与资源</p>
+<ul>
+  <li>本讲代码仓库（随堂演示）— <a href="https://github.com/cs329z/lecture5-frameworks">github.com/cs329z/lecture5-frameworks</a></li>
+  <li>DSPy（本讲必读阅读材料精讲）— <a href="../readings/dspy/">readings/dspy</a></li>
+  <li>Yao et al., 2022. ReAct: Synergizing Reasoning and Acting in Language Models — <a href="https://arxiv.org/abs/2210.03629">arXiv:2210.03629</a></li>
+  <li>Meta-Harness（harness 搜索优化，讲义引用 arxiv.org/pdf/2603.28052）— <a href="https://arxiv.org/abs/2603.28052">arXiv:2603.28052</a></li>
+  <li>Shepherd meta-agents（讲义引用 arxiv.org/pdf/2605.10913）— <a href="https://arxiv.org/abs/2605.10913">arXiv:2605.10913</a></li>
+  <li>METR. Time Horizons（LLM 可完成任务时长）— <a href="https://metr.org/time-horizons/">metr.org/time-horizons</a></li>
+  <li>Arena AI Blog. Coding Agents: The Harness Tax（Terminal-Bench 2 harness 对比图）— <a href="https://arena.ai/blog/coding-agents-harness-tax">arena.ai/blog/coding-agents-harness-tax</a></li>
+  <li>Databricks Notebooks. MLflow + DSPy 追踪示例 — <a href="https://notebooks.databricks.com/devrel/mlflow/2024-11-27-dspy.html">notebooks.databricks.com/devrel/mlflow/2024-11-27-dspy.html</a></li>
+  <li>LangChain Blog. Announcing LangSmith — <a href="https://www.langchain.com/blog/announcing-langsmith">langchain.com/blog/announcing-langsmith</a></li>
+  <li>Langfuse（LLM 可观测性平台）— <a href="https://langfuse.com/">langfuse.com</a></li>
+  <li>Hamel Husain. Your AI Product Needs Evals / Prompt 博客（「SHOW ME THE PROMPT」meme 出处）— <a href="https://hamel.dev/blog/posts/prompt/">hamel.dev/blog/posts/prompt</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+  <p>课程源头：<a href="https://cs329z.stanford.edu/">CS329Z: Engineering AI Agents（cs329z.stanford.edu）</a></p>
+  <p>专栏首页：<a href="../">CS329Z 中文教程专栏</a>　|　上一讲：<a href="../lecture04/">第四讲：工具使用与函数调用</a>　|　下一讲：第六讲（幻灯片尚未发布）</p>
+  <p>原始讲义 PDF：<a href="lecture05.pdf">lecture05.pdf</a></p>
+  <p>本教程为第三方学习笔记，内容版权归 Stanford CS329Z 课程所有；教程依据公开发布的讲义整理，忠于原讲义逐页呈现。</p>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_1/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</footer>
+
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
