@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 什么是情商 — 人生沟通必修课</title>
+<style>
+  :root{--accent:#7c3aed;--accent-deep:#5b21b6;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生沟通必修课 · 第2章 · 基础能力</div>
+  <h1>什么是情商：从科学模型到流行概念的真相</h1>
+  <p>一个被畅销书改写过的科学概念：能力模型四分支、"决定80%成功"说法的证据核查、测评的水有多深、以及它到底能不能练</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-emotion/">← 第1章：情绪的科学</a>
+    <a href="../03-regulate/">第3章：情绪调节 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">概念考古</a>
+    <a class="anchor" href="#s2">四分支模型</a>
+    <a class="anchor" href="#s3">混合模型</a>
+    <a class="anchor" href="#s4">测量真相</a>
+    <a class="anchor" href="#s5">谣言粉碎</a>
+    <a class="anchor" href="#s6">可训练性</a>
+    <a class="anchor" href="#s7">伪情商</a>
+    <a class="anchor" href="#s8">学习地图</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为心理学科普，仅供心理健康教育与参考，不构成心理咨询、诊断或治疗建议，也不构成对任何心理测评产品的推荐。文中涉及的量表与测验均为科研工具，个人结果不能替代专业评估。如情绪或心理困扰持续影响生活，请拨打 <strong>12356 心理援助热线</strong>或前往医院精神心理科（求助渠道详见<a href="../19-help/">第19章</a>）。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①讲清"情商"从 Thorndike 到 Salovey & Mayer 再到 Goleman 的完整概念史，分清科学模型与畅销书版本；②复述能力模型四分支（感知、利用、理解、管理）各是什么、分别对应本课程哪些章节；③用增量效度研究给"情商决定80%成功"的说法定界；④看穿测评市场的三种套路（自陈量表的社会赞许性、能力测验的高门槛、娱乐化测试）；⑤说出情商可训练的实证依据与训练起效的关键要素；⑥识别四种"伪情商"仿冒品（讨好、圆滑、压抑、强制积极）。本章是全书的"概念总纲"，后面 18 章都是四分支的具体展开。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>第一次通读，重点记四分支（第二节）和伪情商清单（第七节）——前者是课程地图的坐标系，后者是价值观的护栏。"概念考古"部分适合在与人争论"情商到底是什么"时回来引用。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、概念考古：情商不是 1995 年发明的</h2>
+    <p class="chapter-sub">从"社会智力"到"情绪智力"：一条被畅销书打断又续上的科学线</p>
+
+    <article class="view">
+      <h3>前史：1920 年，桑代克就发现了 IQ 测不到的东西</h3>
+      <p class="ctx">1920 年，哥伦比亚大学心理学家爱德华·桑代克（Edward Thorndike）——现代教育心理学的奠基人之一——在《Harper's Magazine》撰文指出，智力测验测得再准，也漏掉了一种对人生成败至关重要的能力，他称之为<strong>社会智力（social intelligence）</strong>："理解和管理男女老少——在人际关系中明智行动的能力。"这是"IQ 之外还有别的东西"的第一次正式科学表述。此后几十年里，这条线索时断时续：1983 年哈佛教授霍华德·加德纳（Howard Gardner）提出<strong>多元智能理论</strong>，把"人际智能"（理解他人动机并据此行动）与"内省智能"（理解并运用自己的情感）列为独立智能——这被普遍视为情商概念最直接的理论前身。</p>
+      <p class="ctx">这段前史值得记住，因为它回答了一个常见质疑："情商是不是伪科学/鸡汤概念？"——不是。<strong>它有一条从 1920 年延续至今的严肃学术脉络</strong>，只是 1990 年代被大众媒体重新包装后，科学版本和畅销书版本的分叉才越来越大。本章第二到四节讲的正是科学版本。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Thorndike（1920）"Intelligence and its uses"，Harper's Magazine（学术文献，英文） · Gardner（1983）《智能的结构》（Frames of Mind，书籍） · <a href="https://dictionary.apa.org/social-intelligence">APA 心理学词典 social intelligence 词条（英文）</a> · <a href="https://dictionary.apa.org/multiple-intelligences">APA 心理学词典 multiple intelligences 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>1990 年：Salovey & Mayer 给出第一个科学定义</h3>
+      <p class="ctx">1990 年，耶鲁大学的彼得·萨洛维（Peter Salovey，后任耶鲁校长）与新罕布什尔大学的约翰·梅耶（John Mayer）在期刊《Imagination, Cognition and Personality》发表论文，正式提出<strong>情绪智力（emotional intelligence, EI）</strong>概念并给出学界至今沿用的定义框架：</p>
+      <blockquote class="q">"情绪智力是监控自己和他人的感受与情绪、区分它们、并利用这些信息指导思维与行动的能力。"<span class="qsrc">—— Salovey & Mayer（1990）"Emotional Intelligence"，原文英译中为本站归纳</span></blockquote>
+      <p class="ctx">注意定义里的三个关键词：<strong>能力</strong>（ability，意味着它像视力、工作记忆一样是一种心理机能，可以被客观测量，而不是自我感觉）、<strong>监控与区分</strong>（对自己与他人双向的信息加工）、<strong>指导思维与行动</strong>（情绪不是理性的对立面，而是理性的输入）。1997 年两人修订模型，把它整理为四分支结构（下一节详解），2004 年再次系统阐述。<strong>本课程的"情商"定义全部采用这个能力模型。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Salovey & Mayer（1990）"Emotional Intelligence"，Imagination, Cognition and Personality（学术文献，英文） · Mayer, Salovey & Caruso（2004）"Emotional Intelligence: Theory, Findings, and Implications"，Psychological Inquiry（学术文献，英文） · <a href="https://dictionary.apa.org/emotional-intelligence">APA 心理学词典 emotional intelligence 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>1995 年：Goleman 让全世界知道了它——也改写了它</h3>
+      <p class="ctx">1995 年，科学记者出身的心理学家丹尼尔·戈尔曼（Daniel Goleman）出版《情商：为什么比智商更重要》（Emotional Intelligence），全球销量数百万册，"EQ"一词进入日常词汇。这本书的贡献不可否认：让情绪能力成为严肃话题，推动了学校 SEL（社会情感学习）课程与企业软技能培训的普及。<strong>但学界对它的批评同样明确</strong>：①Goleman 把 EI 从"一种能力"扩展成"能力+人格特质+动机"的大杂烩（乐观、坚持、冲动控制都算情商），外延远超 Salovey & Mayer 的定义；②书名和营销口径夸大了证据——"为什么比智商更重要"在出版时并没有充分实证支撑；③畅销书的巨大成功反而遮蔽了原始科学模型，公众今天理解的"情商"多是 Goleman 版与后续营销的混合物。</p>
+      <p class="ctx">本课程的立场：<strong>用能力模型做科学骨架（可定义、可测量、可训练），承认 Goleman 与畅销书在普及上的功劳，同时如实标注哪些流行说法查无实据</strong>。你以后看到"情商"二字，第一个问题应该是：这是能力模型的情商（四分支），还是大杂烩版的情商（人格+态度+运气）？两者能做的事完全不同。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：Goleman（1995）《情商》（Emotional Intelligence，书籍框架） · Mayer, Salovey & Caruso（2000）对 EI 流行化的回应与模型澄清（学术文献，英文） · Locke（2005）"Why emotional intelligence is an invalid concept"（学术评论，英文；代表最激烈的批评方，其争议本身说明概念需精确化）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、能力模型四分支：情商的科学骨架</h2>
+    <p class="chapter-sub">感知→利用→理解→管理，难度递增——也是全书 20 章的坐标系</p>
+
+    <article class="view">
+      <h3>四分支总览：从读得到用得上</h3>
+      <p class="ctx">Mayer、Salovey 与 Caruso（2004）把情绪智力整理为四个分支（four-branch model），按心理复杂度从低到高排列——这也是它们的发展顺序：孩子先学会认表情，最后才学会管理情绪。</p>
+      <div class="fig"><img src="../assets/img-02-1.png" alt="四分支模型示意：四层递进结构，从感知情绪、利用情绪、理解情绪到管理情绪，像四象限或四层阶梯"><div class="cap">插画 · AI 生成</div></div>
+      <table class="cmp">
+        <tr><th>分支</th><th>核心问题</th><th>日常例子</th><th>对应章节</th></tr>
+        <tr><td><strong>① 感知情绪</strong><br>Perceiving</td><td>我能不能准确读到（自己和别人的）情绪信号？</td><td>看出同事笑容背后的勉强；察觉自己"胸闷"其实是委屈</td><td><a href="../01-emotion/">第1章</a> <a href="../04-listen/">第4章</a></td></tr>
+        <tr><td><strong>② 利用情绪</strong><br>Using</td><td>我能不能让情绪为当前的认知任务服务？</td><td>知道写方案需要平静、头脑风暴需要兴奋，主动切换状态</td><td><a href="../03-regulate/">第3章</a> <a href="../09-workplace/">第9章</a></td></tr>
+        <tr><td><strong>③ 理解情绪</strong><br>Understanding</td><td>我懂不懂情绪的因果与转化规律？</td><td>知道被批评的愤怒下面常藏着受伤；预见到失望会转成疏远</td><td><a href="../01-emotion/">第1章</a> <a href="../05-nvc/">第5章</a></td></tr>
+        <tr><td><strong>④ 管理情绪</strong><br>Managing</td><td>我能不能对自己和关系中的情绪做明智的操作？</td><td>冲突中先降温再谈事；安慰人时不越俎代庖</td><td><a href="../03-regulate/">第3章</a> <a href="../06-couple/">第6章</a>等全部场景章</td></tr>
+      </table>
+      <p class="ctx">四分支的关键性质：它们是<strong>能力</strong>而非态度——像肌肉一样有强弱、可测量、可训练；它们是<strong>层级</strong>的——感知不准，管理无从谈起（把委屈误读成愤怒的人，会用错所有工具）；它们<strong>双向</strong>——每个分支都同时指向自己（对内）和他人（对人），这正是导论说的"情商=对内+对人"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Mayer & Salovey（1997）四分支模型（收录于 Sluyter 编《Emotional Development and Emotional Intelligence》，学术文献，英文） · Mayer, Salovey & Caruso（2004）（学术文献，英文） · <a href="https://dictionary.apa.org/four-branch-model">APA 心理学词典相关词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>分支一详解：感知——一切的地基，最容易被高估</h3>
+      <p class="ctx">感知情绪指准确识别情绪信息的能力：从自己的面部表情、身体感觉、语调中读出"我现在是什么状态"（内感知），从他人的表情、声音、姿态中读出"TA 是什么状态"（外感知）。它是四分支中<strong>最早发展、也最常被高估</strong>的一支——几乎所有人都认为自己"看人很准"，但研究发现：①普通人识别他人情绪的准确率远低于自信水平；②准确率受情境影响巨大——只看脸（去掉声音与语境）的识别成绩显著下降，说明真实生活中我们大量依赖语境线索；③"读心术式"的过度自信本身就是关系事故的主要来源（"TA 肯定是在针对我"——多数时候是误读，见<a href="../03-regulate/">第3章</a>认知偏差）。</p>
+      <p class="ctx">训练入口很朴素：<strong>慢下来看证据</strong>。别人的情绪=你观察到的行为（表情、语气、动作）+你的解读；把两者分开记录（"TA 回复只有两个字"是事实，"TA 对我有意见"是解读），准确率的提升从这一步开始（倾听中的观察技术详见<a href="../04-listen/">第4章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/emotion-perception">APA 心理学词典 emotion perception 词条（英文）</a> · Ekman（2003）《情绪的解析》（Emotions Revealed，书籍） · Barrett 等（2017）情绪知觉的语境依赖性研究（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>分支二详解：利用——情绪是思维的电源，不只是噪音</h3>
+      <p class="ctx">"利用情绪促进思维"（using emotions to facilitate thought）是四分支中最不为人知、也最反直觉的一支：不同的情绪状态适合不同的认知任务。经典研究线索：<strong>积极心境拓宽注意与联想</strong>——Isen 系列实验发现诱发愉快心境后，被试的创造性问题解决（蜡烛难题、远程联想）成绩提升；Fredrickson 的<strong>拓展-建构理论</strong>（broaden-and-build）系统化了这个发现：正性情绪拓宽认知行为库并建构长期资源。<strong>轻度消极心境则利于分析性任务</strong>——Forgas 的心境注入研究（affect infusion）发现，略低落的人做判断时更少轻信、更少被刻板印象带偏，说服性论证的质量分析也更细致。</p>
+      <p class="ctx">实用口径：情绪不是要"排空"才能开始工作的干扰项，而是可以<strong>选择配比的燃料</strong>——头脑风暴、修复关系、给人道歉前，先把自己调到温暖状态（回忆、音乐、散步）；审合同、查数据、评估风险，别在兴高采烈时做（乐观会让你漏掉坏消息）。知道哪种任务需要哪种油，是高情商者隐藏的日程管理术。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Isen（2000）正性情绪与认知组织研究（学术文献，英文） · Fredrickson（2001）"The role of positive emotions in positive psychology: The broaden-and-build theory"（学术文献，英文） · Forgas（1995）情绪注入模型（学术文献，英文） · <a href="https://dictionary.apa.org/mood-congruent-memory">APA 心理学词典 mood congruence 相关词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>分支三详解：理解——情绪有因果链和转化规律</h3>
+      <p class="ctx">理解情绪指掌握情绪的"语法"：①<strong>因果</strong>——什么引发什么（目标受阻→挫败→愤怒；丧失→悲伤；不确定→焦虑）；②<strong>转化</strong>——情绪如何随时间与条件演变（失望累积会转化为疏远；未被承认的委屈常以愤怒的形式出场；羞耻会伪装成攻击）；③<strong>复合</strong>——多种情绪可以同时并存（对父母"又爱又怨"是常态而非矛盾）；④<strong>情境规则</strong>——同一事件在不同关系与场合触发不同情绪。理解分支的标志性测验题形如："一个人被朋友当众开玩笑后微笑，他此刻可能同时在体验哪些情绪？"——高分答案不是单一情绪，而是"尴尬+受伤+对朋友的维护性体谅"的组合。</p>
+      <p class="ctx">这一支与<a href="../01-emotion/">第1章</a>的情绪词汇量（粒度）直接相关：词汇是理解的载体，说不出"委屈"的人，委屈对他就是一个无差别的"难受"，也就无从预测它会转成什么、该怎么接。理解分支也是共情的认知成分——"我懂你为什么这样感受"背后的知识库。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Mayer, Salovey & Caruso（2004）理解分支的界定（学术文献，英文） · <a href="https://dictionary.apa.org/emotional-complexity">APA 心理学词典相关词条（英文）</a> · Zeman 等（2001）儿童情绪理解发展研究（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>分支四详解：管理——最难的一支，也是本书大半的篇幅</h3>
+      <p class="ctx">管理情绪（managing emotions）指对自己和他人的情绪做出明智操作的能力：何时接近、何时回避哪种情绪体验；如何增强、维持或减弱某种情绪；如何在关系中调节情绪的互动（安抚、共调、设限）。它是四分支中<strong>心理机制最复杂、发展最晚、个体差异最大</strong>的一支，也是"情商高"在旁人眼里最直接的体现。两个必须写在前面的边界：其一，管理≠控制≠消灭——健康的目标是灵活（flexibility）：该表达时表达，该暂缓时暂缓，工具见<a href="../03-regulate/">第3章</a>；其二，管理他人情绪≠为他人情绪负责——你可以安抚、可以共情，但没有义务也没有能力"修好"每个成年人，分不清这条线就会滑向讨好（<a href="../18-boundary/">第18章</a>）。本书第 3 章与全部场景章（6-20章）本质上都是管理分支在不同关系里的应用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Mayer, Salovey & Caruso（2004）管理分支界定（学术文献，英文） · Gross（2015）"Emotion regulation: current status and future prospects"，Psychological Inquiry（学术文献，英文） · <a href="https://dictionary.apa.org/emotion-regulation">APA 心理学词典 emotion regulation 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、混合模型与 Goleman 五成分：另一条（流行）路线</h2>
+    <p class="chapter-sub">为什么学界叫它"混合"模型——以及它对 SEL 教育的真实贡献</p>
+
+    <article class="view">
+      <h3>Goleman 五成分与"混合模型"之争</h3>
+      <p class="ctx">Goleman（1995/1998）把情商概括为五个成分：<strong>自我意识</strong>（知道自己的情绪）、<strong>自我管理</strong>（调节自己的情绪）、<strong>动机</strong>（用目标驱动自己、乐观坚持）、<strong>共情</strong>（感知他人情绪）、<strong>社交技能</strong>（管理关系）。这套框架好记好用，是今天大众语境里"情商"的事实标准。学界的批评集中在它的<strong>混合性</strong>：把能力（共情）、人格特质（乐观、冲动控制）、动机（成就驱力）打包进同一个概念，导致测量时与"大五人格"高度重叠——多项研究发现混合模型 EI 分数与大五人格（尤其情绪稳定性、外向性、宜人性）的相关高达 .7 以上，批评者据此质疑：它测的到底是一种新能力，还是老的人格换个名字？（Joseph & Newman 2010 元分析对此有系统处理，见第五节。）</p>
+      <p class="ctx">本课程的处理方式：<strong>能力模型（四分支）做骨架，混合模型的通俗语言做入口</strong>——"自我意识、自我管理、共情、社交技能"这些词你在别处会一直遇到，它们是好的沟通词汇，只是引用时要记得其科学对应物（自我意识≈感知+理解自己；自我管理≈调节自己；共情≈感知+理解他人；社交技能≈关系中的管理+本书全部场景章）。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：Goleman（1998）《职场情商》（Working with Emotional Intelligence，书籍框架） · Mayer, Salovey & Caruso（2000）能力模型与混合模型的对照（学术文献，英文） · <a href="https://doi.org/10.1037/a0017286">Joseph & Newman（2010）"Emotional Intelligence: An Integrative Meta-Analysis"，Journal of Applied Psychology, doi:10.1037/a0017286（学术文献，英文）</a> · Davies, Stankov & Roberts（1998）EI 与大五重叠研究（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>SEL：把情商写进课表的全球运动</h3>
+      <p class="ctx">流行化并非全无实绩。Goleman 参与创立的 CASEL（Collaborative for Academic, Social, and Emotional Learning）把"社会情感学习"（SEL）推进了全球数万所学校，其框架为五大能力：<strong>自我意识、自我管理、社会意识、关系技能、负责任的决策</strong>——可以看作混合模型的教育学转写。最有力的证据来自 Durlak 等（2011）对 213 项学校 SEL 项目、约 27 万名学生的元分析：参加 SEL 的学生在社交情绪技能、态度、亲社会行为上显著提升，行为问题与情绪困扰减少，<strong>学业成绩提高约 11 个百分位</strong>（doi:10.1111/j.1467-8624.2010.01564.x）。这说明情绪能力教育不占挤学业，反而促进学业——因为情绪稳定的孩子学得进去。</p>
+      <p class="ctx">对中国读者：教育部《高等学校学生心理健康教育指导纲要》（2018）与《全面加强和改进新时代学生心理健康工作专项行动计划（2023—2025年）》均把情绪调适、人际交往列为核心内容——学校体系正在补课，而这门课就是给错过补课的成年人的自修版。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.gov.cn/zhengce/zhengceku/2018-07/13/content_5305567.htm">教育部《高等学校学生心理健康教育指导纲要》（gov.cn）</a> · <a href="https://www.gov.cn/zhengce/zhengceku/2023-05/11/content_6781707.htm">教育部等十七部门《全面加强和改进新时代学生心理健康工作专项行动计划（2023—2025年）》（gov.cn）</a> · Durlak 等（2011）SEL 元分析, <a href="https://doi.org/10.1111/j.1467-8624.2010.01564.x">doi:10.1111/j.1467-8624.2010.01564.x（学术文献，英文）</a> · <a href="https://casel.org/">CASEL 官网 SEL 框架（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>本土化再审视：情商概念在中文语境里的水土</h3>
+      <p class="ctx">四分支模型诞生于英语学术世界，直接搬到中文语境至少有三个"水土问题"需要如实说明。<strong>其一，文化负载的评分标准</strong>：MSCEIT 类测验的"正确答案"依赖专家或大样本共识，而情绪表达的得体标准因文化而异——"同事当众批评你，最优反应是什么"在北美样本与东亚样本中的高分答案可能不同（Matsumoto 的跨文化情绪研究对此有系统讨论）。这不代表测验无效，但提醒我们：<strong>分数不能跨文化直接比较</strong>。<strong>其二，中文情绪词汇的粒度差异</strong>：中文有大量英语没有精确对应词的复合情绪概念——"委屈"（不公+无力+期待落空的混合）、"心酸"、"不好意思"（羞愧与谦逊的复合）、"给面子/丢面子"（关系本位的情绪货币）——这既是优势（我们的情绪词库在某些维度更细）也造成测量偏差（英文量表翻译后丢失这些维度）。<strong>其三，"人情"与"世故"的本土概念混入</strong>：中文日常语境的"情商高"常指懂人情世故、会办事——这更接近本土心理学里"人情与面子"构念（黄光国的分析框架）与社交技能的混合，而非能力模型的情绪智力。三者在本课程的处理：科学骨架用四分支，本土概念作为"翻译层"显式讨论——比如"面子"在第6、8、9章的关系技术里会被正面处理（如何在保住双方面子的前提下说真话），而不是假装它不存在。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Matsumoto（2006）情绪判断的跨文化研究（学术文献，英文） · 黄光国《人情与面子：中国人的权力游戏》（本土心理学经典，书籍） · <a href="https://dictionary.apa.org/emotional-intelligence">APA 心理学词典 emotional intelligence 词条（英文，含文化适用性讨论线索）</a> · Matthews, Zeidner & Roberts（2002）《Emotional Intelligence: Science and Myth》（书籍，对 EI 测量文化问题的系统批评）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、情商怎么测：能力测验与自陈量表的真相</h2>
+    <p class="chapter-sub">MSCEIT 像考试，EQ-i 像问卷——以及为什么网上测试的分数别当真</p>
+
+    <article class="view">
+      <h3>两种测量范式：MSCEIT 与自陈量表</h3>
+      <p class="ctx"><strong>能力测验路线：MSCEIT</strong>（Mayer-Salovey-Caruso Emotional Intelligence Test，2002）。它像一张真正的考卷：给你人脸照片问"这是什么情绪"（感知）、问"哪种情绪最有助于完成这个任务"（利用）、给情绪因果链排序（理解）、给情境选最优应对（管理）。答案有对错（以专家共识或大样本常模为准）。优点：不受"你觉得自己怎样"污染；缺点：施测成本高（约1-2小时、需授权付费）、部分题目存在文化偏向、学界对"共识答案能否定义情绪能力"仍有方法论争论。</p>
+      <p class="ctx"><strong>自陈量表路线</strong>：让被试对"我能察觉自己情绪的细微变化"之类的陈述打分（如 EQ-i、SREIS、WLEIS 等，学界常用研究工具）。优点：便宜、快、易施测，所以绝大多数"情商预测工作表现"的研究用的是它；致命缺点：<strong>社会赞许性</strong>（人人都想显得情商高，答案系统性美化）与<strong>自我认知偏差</strong>——研究显示自陈 EI 与能力测验 EI 的相关只有中等偏低（r 约 .2-.3 区间，见 Brackett & Mayer 2003），即"觉得自己情商高"与"实际情商高"是两回事。更扎心的是：实际情绪能力较低的人反而更容易高估自己（与 Dunning-Kruger 效应的自我评估规律一致）。</p>
+      <div class="fig"><img src="../assets/img-02-2.png" alt="两种测量范式对照示意：一侧是带人脸照片与选项的考卷式测验，另一侧是自评问卷的刻度条，中间一架天平"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Mayer, Salovey & Caruso（2002）MSCEIT 手册（学术文献，英文） · Brackett & Mayer（2003）"Convergent, discriminant, and incremental validity of competing measures of emotional intelligence"（学术文献，英文） · <a href="https://dictionary.apa.org/social-desirability">APA 心理学词典 social desirability 词条（英文）</a> · <a href="https://dictionary.apa.org/self-report-inventory">APA 心理学词典 self-report inventory 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>测评市场避坑指南：三种套路与一条原则</h3>
+      <p class="ctx">商业测评市场鱼龙混杂，三种常见套路：<strong>①娱乐化测试</strong>（"测测你的情商有多高"，十道题出报告）：题目无信效度验证、常模不明，分数仅供娱乐，却常被招聘与自媒体当真引用；<strong>②伪科学包装</strong>（把星座、笔迹、微表情"读心术"包装成情商测评）：微表情识别在学术上是特定训练下的有限技能，市面上"三秒看穿人心"的付费测评属于夸大宣传；<strong>③付费洗脑闭环</strong>：低价测评引流→报告制造焦虑（"你的情商低于85%的人"）→高价"情商提升营"收割。识别套路的一条原则：<strong>凡是不公布测量学证据（信度、效度、常模来源）的心理测评，一律按娱乐对待</strong>；正规量表（含 MSCEIT、EQ-i 2.0）都有公开技术手册与授权施测要求。</p>
+      <p class="ctx">对本课程读者的建议：不需要花钱测。本课程每章的自测清单+情绪日记+真实关系里的刻意练习，比任何速成测评都可靠；如果你确实想要一份基线参考，高校心理中心或医院心理科使用标准化量表的专业评估是唯一靠谱渠道（12356 热线可咨询当地正规资源，<a href="../19-help/">第19章</a>）。警惕任何以测评为入口推销课程与"疗愈产品"的机构。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://dictionary.apa.org/psychometrics">APA 心理学词典 psychometrics 词条（英文）</a> · <a href="https://www.gov.cn/xinwen/2019-07/15/content_5409694.htm">国务院《健康中国行动（2019—2030年）》心理健康促进行动（gov.cn，心理健康服务规范口径）</a> · <a href="https://www.12356.org.cn/">12356 心理援助热线平台</a></div>
+    </article>
+    <article class="view">
+      <h3>AI 时代的情商：机器能"读心"吗？</h3>
+      <p class="ctx">情绪识别技术（affective computing，情感计算，Picard 1997 提出该领域）已商用多年：摄像头读表情、语音分析情绪、招聘与客服场景的"AI 测谎/测情绪"。它测的是四分支里的分支一（感知）的机器版，但必须给三层冷水：<strong>①科学层面</strong>——Barrett 等多位情绪科学家 2019 年发表的系统性综述（Psychological Science in the Public Interest）核查了大量商用情绪识别算法的证据，结论是：<strong>面部表情与内在情绪状态之间不存在稳定的一一对应</strong>，跨人群、跨情境的识别准确率被厂商宣传严重高估，且对非西方人脸、残障人士、神经多样性人群的误判率更高；<strong>②伦理层面</strong>——欧盟《人工智能法案》已对工作场所与教育机构的情绪识别作出限制，多国学界呼吁职场情绪监控立法，"AI 面试测情商"在国内招聘中的使用同样缺乏效度证据；<strong>③能力层面</strong>——就算机器能读出"你在生气"，它也不具备四分支的后三支：利用（为你的任务调配情绪）、理解（懂你愤怒的因果链与关系史）、管理（在场、承担后果、修复关系）。情绪能力的核心场景是真实关系中"有人愿意为对方的感受付出注意力与代价"——这恰恰是语言模型模拟得最像、也最不可能真正做到的部分。</p>
+      <p class="ctx">对普通人的两条实用口径：①遇到任何"AI 情绪测评/AI 面试性格分析"，按第4节的娱乐化测评处理，不必为分数改变自我呈现；②AI 可以当你的<strong>练习陪练</strong>（模拟难对话、帮你改措辞——这是安全的低风险演练场），但不要把 AI 当作情绪支持的替代品，真实关系的"在场感"本身就有疗愈成分（导论引用的哈佛成人发展研究：<a href="https://adultdevelopmentstudy.org/">关系的数量与质量预测健康与幸福</a>）。需要真实的人时，12356 热线那头是人，不是算法。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Picard（1997）《Affective Computing》（书籍，领域奠基） · Barrett 等（2019）"Emotional Expressions Reconsidered: Challenges to Inferring Emotion From Human Facial Movements"，Psychological Science in the Public Interest（学术文献，英文） · <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689">欧盟《人工智能法案》Regulation (EU) 2024/1689（英文，工作场所情绪识别限制条款）</a> · <a href="https://adultdevelopmentstudy.org/">哈佛成人发展研究官网（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、谣言粉碎：情商的四个流行说法</h2>
+    <p class="chapter-sub">"决定80%成功""天生注定""高情商=会来事""情商高不用努力学"——逐条对账</p>
+
+    <article class="view">
+      <h3>谣言粉碎：情商四连</h3>
+      <p class="ctx"><strong>误区一："情商决定80%的成功（人生成就）。"</strong>核查：这句话源自 Goleman 团队及畅销书的宣传口径（不同版本有"80%""比IQ重要4倍"等说法），<strong>没有一项严谨研究支持这个比例</strong>。真实的证据是什么？O'Boyle 等（2011）元分析发现：在控制大五人格与认知能力之后，EI 对工作表现仍有小幅但显著的<strong>增量效度</strong>（incremental validity）；Joseph & Newman（2010）区分了情绪能力与情绪调节两个成分对岗位表现的独立贡献。合理口径：<strong>情商是职场与人生表现的有效预测变量之一，尤其在人际密集型岗位上，但它与认知能力、人格、机遇共同起作用——任何"X% 决定论"都是营销话术</strong>。</p>
+      <p class="ctx"><strong>误区二："情商是天生的，成年后就定型了。"</strong>核查：错误。情绪能力有先天与早年经历的成分（气质、依恋模式），但四分支的每一支都有可训练的实证（见第六节），神经可塑性终生存在。"性格改不了"是把人格（相对稳定）与情绪技能（可习得）混为一谈。</p>
+      <p class="ctx"><strong>误区三："情商高=会说话、会来事、不得罪人。"</strong>核查：这是对情商最常见的庸俗化，把"管理他人印象"当成了情绪能力本身。能力模型里，高情商的表现包括<strong>恰当地表达愤怒、坚定地拒绝、说出让人不舒服的真话</strong>——用对方能承受的方式传递真实信息，而不是永远顺滑。只会讨好的"会来事"，在四分支框架下是感知尚可、管理失衡（管理自己焦虑→用顺从换安全），更接近<a href="../18-boundary/">第18章</a>要处理的边界问题。真正的高情商者敢于让关系短期不舒服以换取长期真实。</p>
+      <p class="ctx"><strong>误区四："情商高就不用好好学本事了。"</strong>核查：两者不是替代关系而是相乘关系——专业能力是"1"，情商是后面的"0"；没有专业能力的圆融是空转，没有情绪能力的专业是易碎品。证据上，EI 对工作表现的预测在<strong>高情绪劳动岗位</strong>（销售、管理、医护、教育）最强，在纯技术岗位较弱且不稳定（O'Boyle 2011 的调节效应分析）。正确的顺序：本事与情商一起修，别用任何一边替代另一边。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://doi.org/10.1037/a0017286">Joseph & Newman（2010），Journal of Applied Psychology, doi:10.1037/a0017286（学术文献，英文）</a> · O'Boyle 等（2011）"The relation between emotional intelligence and job performance: A meta-analysis"，Journal of Organizational Behavior（学术文献，英文） · Goleman（1995）（书籍；"80%"说法查无实证出处，本站核查结论） · <a href="https://dictionary.apa.org/incremental-validity">APA 心理学词典 incremental validity 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、情商能练吗：可训练性的实证</h2>
+    <p class="chapter-sub">元分析给出了肯定答案——但"起效的训练"有明确的配方</p>
+
+    <article class="view">
+      <h3>证据：训练确实改变情绪能力</h3>
+      <p class="ctx">Hodzic、Scharfen 等（2018）对 24 项 EI 训练研究的元分析发现：结构化训练能显著提升情绪能力（整体效应量约 d≈0.4-0.5，属中等），且在训练结束后仍有保持；能力测验测量的 EI 与自陈测量的 EI 都能通过训练提升。加上前面 Durlak（2011）在学校场景的大样本证据（+11 百分位学业、行为问题下降），以及正念训练对情绪调节的独立证据链（Khoury 等 2013 元分析），<strong>"情商可训练"已是有元分析支撑的结论，不是励志口号</strong>。</p>
+      <p class="ctx">但要如实标注边界：①效应量是中等而非神奇——训练让你明显进步，不会让你换一个人；②多数研究的训练周期在数周到数月，指望一个周末工作坊脱胎换骨不现实；③训练效果高度依赖方法（下一卡的配方），无效的练习刷一万小时也没用——这与刻意练习研究的总体结论一致（Ericsson 1993：练习的质量结构决定进步）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1177/1534484318772928">Hodzic, Scharfen, Ripoll, Holling & Zenasni（2018）"How Successful Are EI Trainings? A Meta-Analysis"，Organizational Research Methods, doi:10.1177/1534484318772928（学术文献，英文）</a> · Durlak 等（2011）SEL 元分析（学术文献，英文） · Khoury 等（2013）正念元分析，Clinical Psychology Review（学术文献，英文） · Ericsson, Krampe & Tesch-Römer（1993）刻意练习（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>起效训练的配方：本课程的设计逻辑</h3>
+      <p class="ctx">对照元分析里"有效训练"的共同成分，可以提炼出一份配方，也正是本课程 18 个场景章的设计逻辑：<strong>①知识输入</strong>（知道机制才能理解练习为什么这样设计——第1-3章）；<strong>②自我觉察练习</strong>（情绪日记、身体扫描——贯穿全书的基础作业，对应分支一二）；<strong>③具体技能分解</strong>（把"好好说话"拆成倾听四步、非暴力沟通四要素、道歉五要件这类可执行的微技能——第4-5章与各场景章）；<strong>④情境演练</strong>（在低风险场景先练：对镜子、对朋友、复盘昨天的对话——每章"练习"栏）；<strong>⑤真实场景应用+复盘</strong>（在工作与家庭里用，用砸了回来看是哪一步变形——<a href="../20-practice/">第20章</a>的90天计划）；<strong>⑥反馈</strong>（问信任的人"我刚才那样说，你什么感受"——他人反馈是自评偏差的解毒剂）。</p>
+      <blockquote class="q">每日最小训练套餐（10分钟，任何一章通用）：<br>睡前 3 分钟情绪日记（情境—身体—命名—强度—冲动—选择）＋ 白天 1 次"先听后说"（任何对话里刻意先复述对方一句再表达自己）＋ 每周 1 次复盘（本周最糟的一次沟通，写出四分支里哪一支掉线了）。<span class="qsrc">—— 本站整理，基于 Hodzic 等（2018）有效训练成分与刻意练习原则</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hodzic 等（2018）（学术文献，英文） · Ericsson（1993）（学术文献，英文） · <a href="https://casel.org/">CASEL SEL 实施框架（英文，学校场景的训练结构）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 实践库（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、四种"伪情商"仿冒品</h2>
+    <p class="chapter-sub">讨好、圆滑、压抑、强制积极——它们借情商的名义，做反情商的事</p>
+
+    <article class="view">
+      <h3>仿冒品清单：一眼识别，终身受用</h3>
+      <p class="ctx">市面上大量"高情商教学"教的其实是四种仿冒品，它们短期像情商（场面顺滑），长期全是代价：</p>
+      <p class="ctx"><strong>①讨好（people-pleasing）≠共情</strong>。共情是"我理解你的感受"，讨好是"我不敢有让你不快的感受"。共情者保有自我，讨好者出让自我——用顺从购买安全，账最后记在抑郁、躯体化和某天的突然爆发上（边界与讨好模式详见<a href="../18-boundary/">第18章</a>）。鉴别问题："如果对方会不高兴，我还敢说真话吗？"不敢，就是在讨好。<strong>②圆滑操控（manipulation）≠情绪管理</strong>。话术班教的"拿捏人心"确实用到情绪知识（识别对方要什么），但目标是单方获益甚至剥削——这是把四分支武器化。能力模型不含价值观判断，但本课程明确立场：<strong>本书只教防御性应用</strong>——识别操控话术（<a href="../13-manipulation/">第13章</a>），不教操控他人。<strong>③压抑（suppression）≠情绪调节</strong>。第1章已给证据：习惯性表达抑制者负性情绪更多、关系更差、生理代价更高（Gross & John 2003）。"喜怒不形于色"是表达时机的策略，不是情绪处理的方案。<strong>④强制积极（toxic positivity）≠乐观</strong>。"想开点""要正能量"是对他人（和自己）情绪的无效化；健康的乐观是承认现实糟糕之后仍相信可行动的部分（Seligman 的习得性乐观是建立在直面负面证据之上的，与否认式积极相反）。</p>
+      <p class="ctx">一张对照表帮你自检：</p>
+      <table class="cmp">
+        <tr><th>仿冒品</th><th>外表像</th><th>实际是</th><th>长期代价</th></tr>
+        <tr><td>讨好</td><td>共情、善良</td><td>用顺从换安全</td><td>抑郁、爆发、被拿捏</td></tr>
+        <tr><td>圆滑操控</td><td>高情商、会做人</td><td>情绪知识武器化</td><td>信任破产、关系工具化</td></tr>
+        <tr><td>压抑</td><td>成熟、稳重</td><td>表达抑制习惯化</td><td>躯体化、关系疏远、突然失控</td></tr>
+        <tr><td>强制积极</td><td>乐观、正能量</td><td>情绪无效化</td><td>问题延迟暴露、亲密感流失</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Gross & John（2003）抑制代价研究（学术文献，英文） · <a href="https://dictionary.apa.org/people-pleasing">APA 心理学词典相关词条（英文）</a> · Seligman（2006）《活出最乐观的自己》（Learned Optimism，书籍） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 关于 toxic positivity 的科普（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>情绪劳动：当"装出情绪"成为工作本身</h3>
+      <p class="ctx">社会学家霍克希尔德（Arlie Hochschild，1983《心灵的整饰》）提出<strong>情绪劳动（emotional labor）</strong>概念：某些职业要求员工管理自己的表情与内心感受以在他人身上制造特定状态——空乘必须亲切、催收必须冷硬、客服挨骂也必须平稳。它与家务、育儿中的隐形情绪工作（记着每个人的情绪状态、安排与安抚）共同构成大量劳动者"下班后一句话都不想说"的真实原因。研究区分了两种执行方式：<strong>表层扮演</strong>（surface acting：心里烦脸上笑，即职业化的表达抑制）与<strong>深层扮演</strong>（deep acting：通过认知重评真的调整内心感受——"这位顾客不是针对我，他今天可能诸事不顺"）。元分析（Hülsheger & Schewe 2011）显示：表层扮演与情绪耗竭、倦怠稳定正相关，深层扮演则与耗竭关系弱得多——<strong>同为"装"，机制不同，代价天差地别</strong>。这把第1章的 Gross 研究落到了职场：压抑之所以伤人，因为它是表层扮演；重评之所以护人，因为它是深层扮演。</p>
+      <p class="ctx">给高强度情绪劳动者的三条自保建议：①能在岗位内选择时，优先练深层扮演话术（重评句式见<a href="../03-regulate/">第3章</a>），少做"皮笑肉不笑"的表层硬扛；②下班设置<strong>情绪卸妆仪式</strong>——通勤路上听完固定的歌单、到家先洗澡、和家人约定"给我十分钟不说话"，把职业角色卸下来（角色边界的建立见<a href="../15-stress/">第15章</a>）；③长期耗竭、失眠、对一切提不起兴趣时，那是倦怠的信号而非"抗压能力差"，请认真对待并考虑专业支持（12356 或精神心理科，<a href="../19-help/">第19章</a>）。情绪劳动不是矫情——它是真实的工作量，值得被自己看见。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hochschild（1983）《心灵的整饰》（The Managed Heart，书籍） · <a href="https://dictionary.apa.org/emotional-labor">APA 心理学词典 emotional labor 词条（英文）</a> · Hülsheger & Schewe（2011）表层/深层扮演元分析，Journal of Applied Psychology（学术文献，英文） · <a href="https://www.who.int/zh/news-room/questions-and-answers/item/burn-out">WHO 中文《职业倦怠》问答（官方口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、四分支 × 20 章：本课程的学习地图</h2>
+    <p class="chapter-sub">每章在坐标系里的位置——以及三条推荐学习路线</p>
+
+    <article class="view">
+      <h3>坐标系与路线图</h3>
+      <p class="ctx">全书 20 章在四分支坐标系上的分布：<strong>感知与理解自己</strong>（分支一、三的内向面）——第1章情绪科学、第3章情绪调节的自我觉察部分、第14章自我认知；<strong>管理自己</strong>（分支四的内向面）——第3章调节工具箱、第15章压力、第16章冲突中的自我控制、第18章边界；<strong>感知与理解他人</strong>（分支一、三的外向面）——第4章倾听、第7章亲子中的儿童情绪、第12章共情的应用；<strong>管理关系</strong>（分支四的外向面）——第5章非暴力沟通、第6章伴侣、第8章家庭、第9-11章职场/谈判/社交、第13章防御操控、第17章亲密、第19-20章求助与练习。第2章（本章）是总纲。</p>
+      <p class="ctx">三条推荐路线（按需求选，不必顺序通读）：<strong>路线A"先修自己"</strong>（适合情绪内耗重、易反刍易爆发者）：1→3→15→14→18→5；<strong>路线B"先修关系"</strong>（适合具体关系卡住者）：4→5→再选对应场景章（伴侣6/亲子7/家庭8/职场9）→11→17；<strong>路线C"先修判断"</strong>（适合怀疑自己被操控或习惯性讨好者）：13→18→4→5→16→19。无论哪条路线，每日最小训练套餐（第六节）都从第一天开始跑。</p>
+      <p class="ctx">最后一个提醒：学习地图不是消费地图——20 章读完不等于情商提升，Hodzic 元分析里起效的是"训练"而非"阅读"。把每章的自测清单当考卷、把话术模板当器械、把真实对话当训练场，这本书才算用完。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Mayer, Salovey & Caruso（2004）四分支框架（学术文献，英文） · Hodzic 等（2018）训练起效成分（学术文献，英文） · <a href="../">本课程首页章节总览</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>情商概念的三个里程碑（1920 Thorndike、1990 Salovey & Mayer、1995 Goleman）各发生了什么？</li>
+        <li>1990 年定义里的三个关键词是什么？为什么说"情商是能力"很重要？</li>
+        <li>Goleman 对普及情商有什么贡献？学界批评他什么（至少两点）？</li>
+        <li>四分支各解决什么问题？为什么说它们是层级的？</li>
+        <li>感知分支为什么"最容易被高估"？"慢下来看证据"指把什么和什么分开？</li>
+        <li>利用分支：积极心境和轻度消极心境各适合什么任务？"拓展-建构"理论说了什么？</li>
+        <li>理解分支的"情绪语法"包括哪四个方面？举一个"情绪转化"的例子。</li>
+        <li>管理分支的两条边界是什么（对自己、对他人各一条）？</li>
+        <li>为什么学界叫 Goleman 版本"混合模型"？混合模型与什么高度重叠？</li>
+        <li>SEL 是什么？Durlak（2011）元分析的两个关键数字？</li>
+        <li>情商概念在中文语境的三个"水土问题"是什么？"委屈""面子"为什么重要？</li>
+        <li>AI 情绪识别的三层冷水（科学/伦理/能力）各是什么？AI 可以当什么、不能当什么？</li>
+        <li>什么是情绪劳动？表层扮演与深层扮演的区别及各自代价？"情绪卸妆仪式"是什么？</li>
+        <li>MSCEIT 与自陈量表（如 EQ-i）的根本区别？各自的优缺点？</li>
+        <li>为什么"觉得自己情商高"和"实际情商高"是两回事？哪类人最容易高估自己？</li>
+        <li>测评市场三种套路是什么？识别它们的"一条原则"是什么？</li>
+        <li>"情商决定80%成功"的核查结论？增量效度研究实际说了什么？</li>
+        <li>四种伪情商仿冒品各是什么？讨好和共情的鉴别问题是什么？</li>
+        <li>Hodzic（2018）元分析的结论、效应量与三个边界？</li>
+        <li>起效训练的六个成分？你的"每日最小训练套餐"打算怎么排？</li>
+        <li>三条学习路线（先修自己/关系/判断）你属于哪条？为什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>情商有严肃学术前史（Thorndike 1920 社会智力→Gardner 1983 人际/内省智能→Salovey & Mayer 1990 正式定义）；科学版本=能力模型四分支：感知（读情绪）、利用（让情绪服务思维：积极拓宽创造、轻低落利于分析）、理解（情绪的因果/转化/复合/情境语法）、管理（对自己与关系中的情绪做明智操作）——层级递进、对内对外双向；Goleman 1995 让它家喻户晓但混合了能力与人格（与大五高度重叠），其 SEL/CASEL 遗产有硬证据（Durlak 2011：+11 百分位学业）；测量分两路：MSCEIT 能力测验（贵而客观）与自陈量表（便宜但受社会赞许性与自我高估污染，与实际能力相关仅 r≈.2-.3）——无信效度证据的测评一律按娱乐对待；"情商决定80%成功"查无实据，真实结论是小幅但显著的增量效度（O'Boyle 2011；Joseph & Newman 2010），情商×本事是相乘不是替代；情商可训练有元分析支撑（Hodzic 2018，d≈0.4-0.5），起效配方=知识+觉察+技能分解+演练+复盘+反馈；警惕四种伪情商：讨好≠共情、圆滑操控≠管理（本书只教防御）、压抑≠调节、强制积极≠乐观；全书=四分支×关系场景的展开，读完不等于练过——每日 10 分钟套餐从今天开始。
+  </div>
+
+  <nav class="pager">
+    <a href="../01-emotion/"><span class="dir">← 第1章</span>情绪的科学：情绪是什么、有什么用</a>
+    <a href="../03-regulate/"><span class="dir">第3章 →</span>情绪调节：从觉察到工具箱</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生沟通必修课 · 第2章 · 依据 Salovey & Mayer（1990/1997/2004）、Mayer, Salovey & Caruso（2002）、Goleman（1995）、Joseph & Newman（2010）、O'Boyle 等（2011）、Durlak 等（2011）、Hodzic 等（2018）、Gross & John（2003）、Brackett & Mayer（2003）、APA 心理学词典（英文）、CASEL 及教育部相关文件整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供心理健康教育参考，不构成心理咨询或医疗建议 · 心理危机请拨打 12356 · 家庭暴力请拨打 12338 或 110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #7c3aed;border-radius:12px;background:#f5f3ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#5b21b6;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/eq/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#7c3aed;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#7c3aed;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f5f3ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为一段关系发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#5b21b6;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #7c3aed;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f5f3ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#7c3aed;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：道歉、谈判、冷战、青春期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/eq\/.*/,'/eq/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.EQ_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f5f3ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

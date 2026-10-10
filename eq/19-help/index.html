@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第19章 何时求助专业 — 人生沟通必修课</title>
+<style>
+  :root{--accent:#7c3aed;--accent-deep:#5b21b6;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ede9fe;color:var(--accent-deep);border:1px solid #ddd6fe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生沟通必修课 · 第19章 · 关系与心理健康</div>
+  <h1>何时求助专业：沟通课解决不了的事</h1>
+  <p>沟通技巧与心理障碍的分界线、抑郁焦虑的识别信号、心理咨询怎么找、12356 热线怎么用、如何陪伴困境中的人——这一章教你认清课程的边界</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../18-boundary/">← 第18章：边界与自我</a>
+    <a href="../20-practice/">第20章：刻意练习 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">分界线</a>
+    <a class="anchor" href="#s2">抑郁信号</a>
+    <a class="anchor" href="#s3">焦虑信号</a>
+    <a class="anchor" href="#s4">病耻感</a>
+    <a class="anchor" href="#s5">怎么找咨询</a>
+    <a class="anchor" href="#s6">咨询起效</a>
+    <a class="anchor" href="#s7">热线指南</a>
+    <a class="anchor" href="#s8">陪伴困境中的人</a>
+    <a class="anchor" href="#s9">谣言粉碎</a>
+    <a class="anchor" href="#s10">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为心理健康教育科普，仅供识别与求助导向参考，不构成诊断或治疗建议。如你或身边人出现强烈的自伤或伤人念头、无法承受的绝望感，请立即拨打 <strong>12356 心理援助热线</strong>（24 小时）或前往医院精神心理科/急诊；情况紧急请直接拨打 <strong>120</strong>。遭遇家庭暴力请拨打 <strong>12338</strong> 或 <strong>110</strong>。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用"时长、功能损害、痛苦程度"三把尺子判断：这是沟通问题还是可能需要专业帮助的心理问题；②对照 WHO 与卫健委的官方口径识别抑郁障碍和焦虑障碍的信号；③理解病耻感为什么害人、怎么破；④分清医院精神心理科与社会心理咨询机构，掌握辨别靠谱咨询的要点；⑤记住 12356、12338、110 三个号码各自管什么；⑥学会陪伴困境中的人：说什么、不说什么、危机信号怎么识别。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>前十八章都在教"怎么说"，这一章教"什么时候光靠说不够"。建议把 s1 的三把尺子和 s7 的热线表截图存进手机——它们最可能被用到的时刻，恰恰是你最没心情翻资料的时刻。如果你此刻正处在低谷，可以直接跳到 s7。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、分界线：沟通困难还是心理障碍</h2>
+    <p class="chapter-sub">三把尺子：持续时长、功能损害、痛苦程度——沟通课管前者，专业系统管后者</p>
+
+    <article class="view">
+      <h3>为什么这门课要专门讲"课程管不了的事"</h3>
+      <p class="ctx">一门负责任的沟通课必须说清自己的边界。沟通技巧解决的是<strong>信息、情绪与关系层面的问题</strong>：话说不到一起、冲突处理不好、边界立不起来。但如果问题的根源是<strong>心理障碍</strong>——抑郁障碍、焦虑障碍、双相情感障碍、创伤后应激障碍等——那么技巧不仅不够用，还可能有害：让一个中度抑郁的人"学学非暴力沟通"，就像让一个骨折的人"学学跑步姿势"，努力本身会加重挫败感（"方法都用了还是不行，果然是我的问题"），而挫败感正是抑郁的养料。</p>
+      <p class="ctx">两者的关系更准确的描述是：<strong>心理障碍是"地基问题"，沟通技巧是"装修问题"</strong>。地基稳的时候，装修技巧事半功倍；地基出问题时应先加固地基（专业治疗），装修可以暂停。好消息是二者不冲突：治疗起效后，前面学的技巧会重新变得可用；很多人在康复期用<a href="../05-nvc/">第5章</a>的方法修复了生病期间损耗的关系。这一章的任务，就是给你一把判断"地基有没有问题"的尺子。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/health-topics/mental-health">WHO 中文《心理健康》专题页（心理健康的定义与分层应对）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（"心理健康促进行动"相关文件，检索路径：首页→健康中国行动）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三把尺子：时长、功能损害、痛苦程度</h3>
+      <p class="ctx">判断"正常的情绪波动"与"可能需要专业帮助"，精神医学通行的思路是三把尺子一起量：</p>
+      <table class="cmp">
+        <tr><th>尺子</th><th>正常范围（示例）</th><th>警示范围</th></tr>
+        <tr><td><strong>① 持续时长</strong></td><td>失恋难过一两周、项目失败沮丧几天，之后逐渐回暖</td><td>同样的低落/焦虑<strong>持续两周以上</strong>且几乎每天如此（抑郁障碍的官方病程标准即以两周为界）</td></tr>
+        <tr><td><strong>② 功能损害</strong></td><td>难受但班还得上、饭还吃得下、澡还洗得动、朋友还见得动</td><td>工作学习明显滑坡、回避所有社交、个人卫生难以维持、频繁缺勤旷课——<strong>社会功能是硬指标</strong></td></tr>
+        <tr><td><strong>③ 痛苦程度</strong></td><td>痛苦但能自我安抚，"知道自己会好起来"</td><td>痛苦到自己无法缓解、感到绝望无意义、出现<strong>自伤或轻生念头</strong>——出现这一条，跳过所有自查，直接求助（见 s7）</td></tr>
+      </table>
+      <p class="ctx">用法：三把尺子里<strong>任何一把进入警示区</strong>，就值得做一次专业评估（评估≠确诊≠吃药，只是让专业的人看一眼）；两把以上进入警示区，请把"去医院精神心理科挂号"列入本周日程而不是"再观察观察"。特别提醒：这把尺子同样适用于你的家人——孩子突然不想上学、老人突然不出门，先量功能损害，别先讲道理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（两周病程与功能损害判据）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/anxiety-disorders">WHO 中文《焦虑症实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>容易混淆的三组情形</h3>
+      <p class="ctx"><strong>"社恐"是内向还是社交焦虑障碍？</strong>内向是偏好（独处充电，社交耗能但可以做到），社交焦虑障碍是被恐惧绑架（明知没必要却剧烈害怕被审视，并因此回避必要场景，功能受损）。前者不用治，后者值得评估（社交场景的技术准备见<a href="../14-public/">第14章</a>，但技术不能替代治疗）。<strong>"情绪不好"是心情差还是抑郁发作？</strong>心情差有具体对象、会随好消息波动、睡眠食欲大致正常；抑郁发作的核心特征是<strong>兴趣与愉悦感的普遍丧失</strong>（原来爱的事也不想做了）加上几乎每天、整天持续的低落，且常伴随睡眠、食欲、精力的生理改变。<strong>"想太多"是性格还是广泛性焦虑？</strong>性格性的操心在事情解决后就停；广泛性焦虑的担忧是"自由浮动"的——这件事解决了立刻找到下一件可担心的，伴随坐立不安、易疲劳、肌肉紧张，持续数月。</p>
+      <p class="ctx">本节的目的不是让你自我诊断——<strong>诊断只能由精神科医师做出</strong>——而是让你不再把可能需要治疗的状况误认成"性格问题"或"想开了就好"，从而错过求助窗口。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/anxiety-disorders">WHO 中文《焦虑症实况报道》（广泛性焦虑的官方描述）</a> · <a href="https://dictionary.apa.org/social-anxiety-disorder">APA 心理学词典 "social anxiety disorder" 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、抑郁的识别信号：WHO 官方口径</h2>
+    <p class="chapter-sub">抑郁不是"想不开"，是一种有生理基础的常见疾病——可识别、可治疗</p>
+
+    <article class="view">
+      <h3>核心症状与伴随症状：对照 WHO 的清单</h3>
+      <p class="ctx">WHO《抑郁障碍实况报道》给出的识别要点，通俗版如下。<strong>核心症状</strong>（至少其一，几乎每天、持续两周以上）：①持续的情绪低落，多数时间感到悲伤、空虚或绝望；②对几乎所有活动的兴趣或愉悦感显著下降（原来爱打球、爱追剧、爱逛街，现在都觉得"没意思"）。<strong>常见伴随症状</strong>：睡眠改变（失眠或嗜睡）；食欲或体重明显变化；精力下降、异常疲劳；思维迟缓或注意力难以集中（"脑子像生锈"）；无价值感或过度内疚（对小事反复自责）；反复出现死亡或自杀的念头；部分人表现为易怒而非悲伤——<strong>男性的抑郁常常以愤怒、暴躁、酗酒的形式出现</strong>，容易被家人误读为"脾气变差了"。</p>
+      <p class="ctx">两条重要事实：抑郁障碍是<strong>常见病</strong>——WHO 估计全球约 5% 的成年人受其影响，它不是罕见病更不是矫情；抑郁障碍是<strong>可治疗的</strong>——心理治疗（如认知行为治疗）与药物治疗对多数患者有效，中度以上通常建议两者结合。发现信号后的动作：本人→按 s5 挂号评估；家人→按 s8 的陪伴原则处理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》</a> · <a href="https://www.who.int/zh/publications/i/item/9789240020498">WHO《抑郁与焦虑障碍人群心理干预指南》相关发布页（中文资源，WHO 官网检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>危机信号：出现这些，立即行动</h3>
+      <p class="ctx">抑郁的大部分时间是"慢性病式"的难受，但有一类信号属于<strong>急症</strong>，出现任何一条都应视为需要立即干预：<strong>表达"活着没意思""我消失了大家会更好"一类的话</strong>（不要当成"随口说说"——多数自杀者生前发出过语言信号，被接住就能改变结局）；<strong>突然安排后事</strong>（把珍爱的东西送人、交代财务、异常平静地和亲友"告别式"聚会）；<strong>自伤行为</strong>（任何形式）；<strong>长期抑郁后突然的轻松平静</strong>（可能是已做出决定的危险信号）。此时的行动清单：不让他独处；收好危险物品；立即拨打 <strong>12356</strong> 寻求专业指导，或直接送往医院精神心理科/急诊，紧急情况打 <strong>120</strong>。</p>
+      <p class="ctx">本节不描述任何方法细节，只给行动方向——如果你此刻正被这些念头困扰，请现在就拨打 <strong>12356 心理援助热线</strong>（24 小时免费），或告诉一个你还算信任的人"我需要人陪我去医院"。求助不是软弱，是这个处境下最勇敢也最有效的动作。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/suicide">WHO 中文《自杀实况报道》（预警信号与"接住信号"的官方指引）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（12356 心理援助热线开通发布，检索路径：首页→新闻发布）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、焦虑的识别信号：什么时候"紧张"变成了"障碍"</h2>
+    <p class="chapter-sub">焦虑本是保命系统，失调时却让人被"假警报"困住——识别它是第一步</p>
+
+    <article class="view">
+      <h3>焦虑障碍的家族与共同特征</h3>
+      <p class="ctx">焦虑障碍是一个家族，WHO 实况报道列出的主要成员包括：<strong>广泛性焦虑障碍</strong>（对日常事务持续过度的、难以控制的担忧，伴坐立不安、易疲劳、注意力困难、肌肉紧张、睡眠障碍）；<strong>惊恐障碍</strong>（反复突发的强烈恐惧发作，心悸、出汗、发抖、濒死感，几分钟达到顶峰——常被误以为心脏病发作而反复急诊）；<strong>社交焦虑障碍</strong>（对可能被审视的社交场景的强烈恐惧与回避）；以及各类<strong>恐惧症</strong>。它们的共同特征有三条：焦虑的强度或时长<strong>与真实威胁不成比例</strong>；伴随明显的<strong>回避行为</strong>（不去可能焦虑的场合，生活范围越缩越小）；造成<strong>痛苦或功能损害</strong>。</p>
+      <p class="ctx">与抑郁一样，焦虑障碍是可治疗的：心理治疗（认知行为治疗为一线）与药物均有效，WHO 明确建议中度以上情况寻求专业帮助。日常轻中度焦虑的自助工具（担忧时间、接地技术、呼吸调节）在<a href="../03-regulate/">第3章</a>——但请注意自助与治疗的分工：<strong>自助管"调节"，治疗管"障碍"</strong>，用调节技巧硬扛障碍，等于用创可贴处理骨折。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/anxiety-disorders">WHO 中文《焦虑症实况报道》（分类、特征与治疗）</a> · <a href="https://dictionary.apa.org/generalized-anxiety-disorder">APA 心理学词典 "generalized anxiety disorder" 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、病耻感：挡住求助之路的那堵墙</h2>
+    <p class="chapter-sub">"看精神科=疯了"是最贵的误解——它让人平均拖延数年才求助</p>
+
+    <article class="view">
+      <h3>病耻感从哪来，代价是什么</h3>
+      <p class="ctx">病耻感（stigma）指对心理疾病患者的负面标签与歧视，它有三个来源：<strong>公众污名</strong>（"精神病""想不开就是矫情"的社会偏见）、<strong>自我污名</strong>（把偏见内化："我去看病说明我是弱者/废人"）、<strong>结构性障碍</strong>（怕影响升学入职体检、怕被单位知道）。三者叠加的结果是惊人的求助延迟：WHO 的多国研究显示，从出现症状到获得治疗，多数患者拖延一年到数年；在我国，抑郁障碍的治疗率长期处于低位——中国精神卫生调查（2019 年发表于《柳叶刀·精神病学》）显示抑郁障碍的终身患病率约为 6.8%，而其中接受过充分治疗的比例很小。换句话说：<strong>最需要帮助的人，恰恰最不去求助</strong>。</p>
+      <p class="ctx">拆掉这堵墙的三句实话：<strong>第一，心理障碍和高血压一样是病</strong>——有生理基础（神经递质、脑区功能、遗传易感性）、有诊断标准、有循证治疗，看精神心理科与看心内科没有本质区别。第二，<strong>"扛过去"不是坚强，是拖延</strong>——抑郁焦虑不经干预的自发缓解率低、复发率高，拖得越久治疗难度越大，就像糖尿病拖成并发症。第三，<strong>求助记录的影响远小于想象</strong>——就诊信息受医疗隐私保护，常规入职体检不含心理科病历；反过来，未治疗的障碍对工作和关系的实际损害，每一天都在发生。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/mental-disorders">WHO 中文《精神障碍实况报道》（治疗缺口与病耻感的官方表述）</a> · 中国精神卫生调查（China Mental Health Survey，Huang Y. 等，2019，<em>The Lancet Psychiatry</em>，英文期刊，数据以原文为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、心理咨询怎么找：医院 vs 社会机构，资质怎么辨</h2>
+    <p class="chapter-sub">两条正规通道各有分工；辨别要点看资质、看伦理、看流程，不看装修和话术</p>
+
+    <article class="view">
+      <h3>通道一：医院精神心理科——诊断与治疗的唯一合法入口</h3>
+      <p class="ctx"><strong>什么情况直接去医院：</strong>符合 s1 三把尺子警示区的任何情况；有自伤念头或行为；情绪问题伴随明显躯体症状（长期失眠、疼痛、心慌查无实据）；儿童青少年的厌学、拒学、行为突变。<strong>怎么挂号：</strong>综合医院挂"精神心理科/临床心理科/心身医学科"，或精神专科医院（各地精神卫生中心）挂普通门诊即可；首诊通常包含问诊（症状、病程、家族史、生活事件）+ 量表测评，医生据此判断是否需要药物、心理治疗或两者结合。<strong>医院心理治疗</strong>由医院内执业的心理治疗师提供，部分项目纳入医保（各地政策不同，以当地医保目录为准）。</p>
+      <p class="ctx">破除两个常见顾虑：<strong>"去精神科=被当成疯子"</strong>——精神心理科门诊里最多的是失眠、焦虑、抑郁这些常见问题，流程与内科无异；<strong>"吃了药就停不掉/会变傻"</strong>——抗抑郁药物不成瘾，起效需 2-4 周，停药需遵医嘱逐步减量，规范用药是安全成熟的方案，药物疑虑直接与你的主治医生讨论，别信病友群和搜索页面的传言（用药决策权在医师，本章不提供任何用药建议）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（治疗方式与建议）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（精神卫生服务体系建设与心理健康促进行动文件，检索路径：首页→政策法规）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>通道二：社会心理咨询——适合发展性议题，但要会挑</h3>
+      <p class="ctx">社会心理咨询机构（含高校心理中心对在校生免费开放的咨询）适合处理<strong>发展性议题</strong>：关系困扰、职场压力、丧亲哀伤、自我成长——够不上疾病诊断、但确实卡住的问题。挑选要点，按重要性排序：<strong>①看受训背景</strong>——靠谱咨询师会坦然告知受训经历：系统受训项目（如注册系统认可的学历教育、长程连续培训）、督导时数、个人体验时数；只挂"三天速成班证书"的要警惕。<strong>②看伦理守则</strong>——正规咨询师遵守保密原则（并会主动说明保密例外：涉及自伤、伤人、未成年人受侵害时须突破保密），不承诺"包好""几次治愈"，不与来访者发展咨询之外的关系（双重关系），不推销课程套餐。<strong>③看流程</strong>——首次访谈以评估为主，会了解你的情况并讨论目标；每次约 50 分钟、每周 1 次左右是常见设置；费用明码标价。<strong>④参考行业自律组织</strong>——中国心理学会临床心理学注册工作委员会的注册心理师/督导师名单公开可查（中国心理学会官网），是目前国内较有公信力的专业背书之一。</p>
+      <p class="ctx">红旗信号（遇到即换人）：声称能治百病、保证疗效；诱导透露与议题无关的隐私并对外泄露；贬低你的家人朋友以"建立依赖"；以玄学、能量等无法验证的说法为主要工具；索要高价"疗程套餐"并制造紧迫感。按本站红线，本章不点名任何商业平台与机构。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cpsbeijing.org/">中国心理学会官网（临床心理学注册工作委员会注册名单查询入口）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（社会心理服务体系建设试点文件，检索路径：首页→新闻发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>首诊/首访准备清单：把"迈出第一步"拆成可执行的小步骤</h3>
+      <p class="ctx">很多人卡住不是不想求助，而是"不知道去了要干什么"。把未知拆成清单，恐惧会小一半。<strong>去医院精神心理科首诊，建议带上：</strong>①症状记录——最近两周睡眠（几点睡、醒几次）、食欲、情绪低落的时段规律、注意力状况，写在手机备忘录里即可（就诊时间有限，医生最需要的就是这些具体信息）；②时间线——什么时候开始的、当时生活中发生了什么（换工作、失恋、亲人离世、生病）；③家族史——直系亲属有无抑郁、双相、精神分裂、自杀等情况（有遗传相关性，医生问诊必问）；④正在服用的所有药物与保健品清单；⑤医保卡/身份证。<strong>首诊会发生什么：</strong>问诊约 10-20 分钟（精神专科医院可能更快）+ 量表测评（常见的是抑郁焦虑自评量表，如实填即可，没有"标准答案"，装轻了吃亏的是自己）；医生给出初步判断后，可能的方向是：开药、转介心理治疗、观察随访，或排除躯体疾病（如甲状腺功能异常可引起类似焦虑抑郁的症状，医生可能建议先查甲功——这不是推诿，是鉴别诊断的规范动作）。</p>
+      <p class="ctx"><strong>去社会机构做心理咨询首访，你可以直接问咨询师五个问题：</strong>"您的系统受训背景是什么？""您接受督导吗，频率如何？""我们的保密原则和保密例外是什么？""您对我的问题大致的工作思路是什么？""如果几次之后我们觉得不合适，怎么结束或转介？"——正规咨询师不会觉得被冒犯，反而会对提出这些问题的来访者更放心；被问恼了的，正好帮你完成筛选。费用方面：不同城市、资历差异很大，正规机构明码标价、按次收费（单次约 50 分钟），首次可明确告知自己的预算上限，咨询师有义务在预算内给出可行方案或诚实转介——<strong>为咨询借债、被诱导购买大额疗程包，都是危险信号</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（评估与治疗路径）</a> · <a href="https://www.cpsbeijing.org/">中国心理学会官网（注册系统伦理守则，含知情同意与收费规范）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、咨询起效的常识：预期对了，效果才好</h2>
+    <p class="chapter-sub">咨询不是"花钱找人聊天"，它是有结构的专业工作——了解结构能帮你少走弯路</p>
+
+    <article class="view">
+      <h3>咨访关系是第一疗效因子；起效需要时间</h3>
+      <p class="ctx">心理咨询研究几十年最稳定的发现之一：<strong>咨访联盟</strong>（therapeutic alliance，来访者与咨询师之间的信任与合作关系）是预测咨询效果的最重要因素之一——比流派技术更能预测结局。这带来两个实用推论：①<strong>"不合适就换"是正当权利</strong>——前 2-3 次咨询主要在评估匹配度，感觉不被理解、被评判、被推销，可以换人，这不是失败；②<strong>主动说真话决定效果上限</strong>——咨询师不会读心，你对 ta 隐瞒的部分就是治疗照不到的部分，包括"我对咨询本身有怀疑"这种话也值得直接说。关于疗效的时间预期：短期议题常见 8-20 次改善，深层模式（如本章<a href="../18-boundary/">第18章</a>的讨好型人格结构）往往需要更长的程；咨询中的正常曲线是"先更难受再变好"——翻开旧伤口的阶段不适感上升是过程的一部分，持续恶化或出现危机则应立即告知咨询师并联系专业机构。</p>
+      <p class="ctx">主流流派一句话认知（选择时供参考，匹配度优先于流派名气）：<strong>认知行为治疗（CBT）</strong>——聚焦当下的想法-情绪-行为循环，结构化、有作业，循证证据最充分，适合抑郁焦虑与具体问题；<strong>精神动力/心理动力学</strong>——探索早期经历与潜意识模式如何塑造现在，周期较长，适合反复出现的深层关系模式；<strong>人本主义</strong>——强调无条件积极关注与自我成长潜能；<strong>家庭治疗</strong>——把个人问题放回关系系统里看，适合亲子、伴侣议题（伴侣共同咨询见<a href="../06-couple/">第6章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/therapeutic-alliance">APA 心理学词典 "therapeutic alliance" 条目（英文）</a> · <a href="https://dictionary.apa.org/cognitive-behavior-therapy">APA 心理学词典 "cognitive behavior therapy" 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>咨询室里到底发生什么：三个常见预期偏差</h3>
+      <p class="ctx"><strong>偏差一："咨询师会给我建议和答案。"</strong>第一次咨询结束，很多人失望地说"ta 就是听我说，什么建议都没给"。但好的咨询恰恰<strong>不直接给人生建议</strong>——替你做决定的咨询师在制造依赖，而咨询的目标是恢复你自己做决定的能力。咨询师实际在做的事：提问（帮你看见自己没看见的模式）、澄清（把混作一团的情绪拆开命名）、面质（温和地指出你言行不一的地方）、以及提供一个"说什么都不会被评判"的关系样本——这个关系本身就是治疗工具（矫正性情感体验）。<strong>偏差二："我要准备好再开始。"</strong>不需要"想清楚自己的问题是什么"才去咨询，梳理问题正是咨询的工作；也不需要口才好，语无伦次、说三句哭一场都是咨询室里的常态。<strong>偏差三："效果应该立竿见影。"</strong>咨询起效更像健身：前几次可能只感觉"聊了聊"，改变发生在积累之后的某个时刻，而且往往先在具体小事上显形（睡眠改善、某场对话没那么炸了），然后才是深层模式。评估节点建议放在第 4-6 次：如果联盟建立不起来、方向感持续缺失，和咨询师 openly 讨论或考虑更换——这不是半途而废，是正当的质量控制。</p>
+      <p class="ctx">还有一个高频疑问：<strong>"朋友也能听我说，为什么花钱找陌生人？"</strong>四个不可替代性：①<strong>单向性</strong>——咨询关系里 100% 的注意力属于你，不用互惠、不用担心麻烦对方，这在亲密关系里不存在；②<strong>专业工具</strong>——共情倾听之外，咨询师受过数年训练使用结构化技术处理创伤、认知扭曲与关系模式；③<strong>伦理约束</strong>——保密、不评判、不双重关系是有守则和督导保障的制度，不是个人人品；④<strong>陌生反而是优点</strong>——对熟人难以启齿的部分（羞耻、嫉妒、伤害念头），对无利益关联的专业人士更容易说出，而"说出最不敢说的部分"往往正是转折点。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/psychotherapy">APA 心理学词典 "psychotherapy" 条目（英文）</a> · <a href="https://dictionary.apa.org/corrective-emotional-experience">APA 心理学词典 "corrective emotional experience" 条目（英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（英文，"therapy / counseling" 主题检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、三个号码：12356、12338、110</h2>
+    <p class="chapter-sub">把这一节截图存进手机——用得上的人，当时没有力气搜索</p>
+
+    <article class="view">
+      <h3>12356 心理援助热线：全国统一的心理"急诊电话"</h3>
+      <p class="ctx"><strong>12356</strong> 是国家卫生健康委推动设立的<strong>全国统一心理援助热线</strong>，自 2025 年 1 月 1 日起在全国范围陆续开通接入，整合了此前各地分散的心理援助热线号码。它的定位：<strong>免费、24 小时</strong>（各地接入时间以当地公告为准）、由受过培训的心理援助人员接听，提供情绪疏导、心理支持、危机干预与转介指引。<strong>什么时候打：</strong>被强烈的绝望、恐慌、自伤念头笼罩时（危机干预是它的第一优先级）；情绪崩溃需要有人接住时；不确定自己"要不要去看病"、想先问问时；家人不知道如何帮助抑郁的亲人、想咨询路径时。<strong>怎么打：</strong>直接拨打 12356（座机手机均可，无需区号）；通话免费；如果占线，稍等重拨或拨当地精神卫生中心公开的援助电话。打热线不需要"够严重"——<strong>觉得难受就可以打</strong>，评估严重性是接线员的工作，不是你的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.nhc.gov.cn/">国家卫健委官网（12356 心理援助热线开通的新闻发布，检索路径：首页→新闻发布→2024年12月）</a> · <a href="https://www.gov.cn/">中国政府网（12356 全国统一心理援助热线相关报道，gov.cn 检索"12356"）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>12338 与 110：暴力不是沟通问题，是安全问题</h3>
+      <p class="ctx"><strong>12338</strong> 是全国妇联设立的<strong>妇女维权公益服务热线</strong>，提供法律咨询、婚姻家庭纠纷调解指引、家暴投诉受理与转介（各地妇联均接入）。<strong>110</strong> 是公安报警电话——家庭暴力属于公安机关管辖的违法行为，《中华人民共和国反家庭暴力法》明确公安机关接警后应当及时出警、制止暴力，并可出具<strong>告诫书</strong>；受害人还可向法院申请<strong>人身安全保护令</strong>。三条实操提醒：①家暴第一次发生后，求助越早，后续选择空间越大（暴力升级是常见规律）；②证据意识——报警回执、验伤记录、聊天录音都留存；③男性受害人与儿童、老人同样适用求助渠道（妇联热线以妇女为主，男性可拨 110 或向社区、民政部门求助）。<strong>在暴力关系中，"改善沟通"是错误的优先级——安全撤离与法律介入才是</strong>（操控与暴力的识别见<a href="../13-manipulation/">第13章</a>）。</p>
+      <p class="ctx">其他值得记下的官方资源：青少年心理援助可拨 <strong>12355</strong>（共青团中央设立的青少年服务台，含心理咨询与法律援助）；各地精神卫生中心官网均公布本地心理援助热线与就诊指引。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.women.org.cn/">全国妇联官网（12338 妇女维权公益服务热线介绍）</a> · <a href="https://www.gov.cn/">中国政府网《中华人民共和国反家庭暴力法》全文（gov.cn 检索"反家庭暴力法"）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>热线速查表</h3>
+      <table class="cmp">
+        <tr><th>号码</th><th>管什么</th><th>什么时候打</th><th>费用/时间</th></tr>
+        <tr><td><strong>12356</strong></td><td>心理援助：情绪疏导、危机干预、就医转介指引</td><td>绝望/恐慌/自伤念头；情绪崩溃；想评估要不要就医</td><td>免费 · 24小时（以当地接入为准）</td></tr>
+        <tr><td><strong>12355</strong></td><td>青少年服务台：心理咨询+法律援助</td><td>青少年情绪、学业压力、校园欺凌、家庭冲突</td><td>免费 · 各地服务时间见当地公告</td></tr>
+        <tr><td><strong>12338</strong></td><td>妇女维权：法律咨询、家暴投诉、纠纷调解转介</td><td>家庭暴力、婚姻权益受损、需要法律援助指引</td><td>免费 · 工作时间为主</td></tr>
+        <tr><td><strong>110 / 120</strong></td><td>报警 / 急救</td><td>暴力正在发生、人身危险、自伤行为已发生或迫近</td><td>免费 · 24小时</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-19-1.png" alt="一只听筒连起一颗心与一张支持网络：热线把孤立的人接入专业支持系统"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.nhc.gov.cn/">国家卫健委官网（12356）</a> · <a href="https://www.women.org.cn/">全国妇联官网（12338）</a> · <a href="https://www.12355.net/">12355 青少年服务台官网</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、如何陪伴困境中的人：说什么、不说什么、做什么</h2>
+    <p class="chapter-sub">陪伴的目标不是"治好 ta"，是让 ta 不孤独、不失控、能到达专业资源</p>
+
+    <article class="view">
+      <h3>先分清角色：你是陪伴者，不是治疗师</h3>
+      <p class="ctx">家人朋友陷入抑郁焦虑时，陪伴者最常见的两个错误方向：<strong>过度治疗</strong>（自任心理医生，天天分析 ta 的原生家庭、纠正 ta 的认知）和<strong>过度回避</strong>（假装什么都没发生，不敢提不敢问）。正确的角色定位是三件事：<strong>接住情绪、保障安全、送达资源</strong>。接住情绪用的是<a href="../04-listen/">第4章</a>的全部技术——陪伴式倾听（不打断、不评判、不急着给方案），一句"我在听，你慢慢说"胜过十条建议；保障安全指留意 s2 的危机信号、危机时不独处、收好危险物品；送达资源指帮忙查号、挂号、陪同首诊——抑郁状态下"自己去挂号"可能是一座翻不过去的山，<strong>"我陪你周三上午去，号我来挂"是最实际的帮助</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/suicide">WHO 中文《自杀实况报道》（"如何帮助有自杀念头的人"官方指引）</a> · <a href="https://www.who.int/zh/health-topics/mental-health">WHO 中文《心理健康》专题页（社会支持的作用）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>话术对照：这些"安慰"其实伤人，换一句就有用</h3>
+      <table class="cmp">
+        <tr><th>不要说（常见但有害）</th><th>为什么有害</th><th>可以说（替代话术）</th></tr>
+        <tr><td>"你想开点/开心点"</td><td>抑郁不是选择，等于对骨折的人说"你走两步"</td><td>"我知道这不是你想不想的事，你现在很难受。"</td></tr>
+        <tr><td>"比你惨的人多了"</td><td>否定痛苦的正当性，让 ta 连难受都羞愧</td><td>"你的难受是真的，不需要和别人比。"</td></tr>
+        <tr><td>"你就是太闲/太脆弱"</td><td>贴标签+归因于人格，加重自我否定</td><td>"你已经撑了很久了，撑不住是正常的。"</td></tr>
+        <tr><td>"别老想那些事"</td><td>反刍不受意志控制，此话等于要求关掉疼痛</td><td>"想停停不下来对吧？我陪你坐会儿。"</td></tr>
+        <tr><td>"你死了爸妈怎么办"（对轻生者）</td><td>用愧疚施压，加重"我是负担"的核心信念</td><td>"你对我很重要。我们一起找专业的人帮忙，好吗？"</td></tr>
+        <tr><td>追问细节、猎奇式关心</td><td>二次伤害；且 ta 没有义务满足任何人的好奇</td><td>"你愿意说多少说多少，不想说的不用答。"</td></tr>
+      </table>
+      <blockquote class="q">陪伴的核心句式只有三句："我在。""这不是你的错。""我们一起去看看医生/打个 12356，好吗？"——其余的话，多数时候不说比说好。<span class="qsrc">——本章话术模板 · 综合 WHO 自杀预防公众指引与倾听技术（示例）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/suicide">WHO 中文《自杀实况报道》（与有自杀念头者交谈的官方建议）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（英文，"how to support someone with depression" 主题检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>特别提醒：陪伴孩子与青少年</h3>
+      <p class="ctx">如果陷入情绪困境的是孩子，规则有几处不同。<strong>第一，家长的判断权重更高。</strong>青少年未必能准确描述自己的状态，厌学、暴怒、昼夜颠倒、突然换朋友圈、成绩断崖式下滑，都可能是抑郁焦虑的"行为化表达"——孩子用行为说话，大人要学会翻译。<strong>第二，不要单打独斗，尽早接入学校系统。</strong>教育部《高等学校学生心理健康教育指导纲要》及中小学心理健康教育相关文件均要求学校配备心理辅导资源；与班主任、学校心理老师建立沟通，家校信息共享能及早发现风险（涉及自伤等高危情况时，学校保密义务让位于安全）。<strong>第三，就医决策由监护人依法作出，但孩子的知情与参与不可省略。</strong>带青少年去精神心理科前，如实告知要去哪里、见谁、大概聊什么——用欺骗方式押去就诊，会同时摧毁信任和后续治疗配合度。<strong>第四，家长自己的情绪要单独处理。</strong>"孩子抑郁了，家长崩溃了"是最常见的次生危机；家长可以也应当使用自己的支持资源（12356 同样接待家长咨询"我该怎么帮孩子"），而不是把所有情绪重量都挂在一个已经生病的孩子身上。<strong>第五，青少年专属热线要让孩子自己存进手机：</strong>12355（共青团青少年服务台，心理咨询+法律援助，免费）——有些话孩子不跟父母说，但愿意跟热线说，这条通道本身就是安全网的一部分。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.12355.net/">12355 青少年服务台官网</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（儿童青少年心理健康相关行动方案，检索路径：首页→政策法规）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/adolescent-mental-health">WHO 中文《青少年心理健康实况报道》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>照顾好陪伴者自己：氧气面罩原则</h3>
+      <p class="ctx">长期陪伴抑郁焦虑的家人，陪伴者自己出现耗竭、失眠、情绪麻木的比例很高——这不是不爱你，这是人类心理的物理极限。三条自保原则：<strong>①分工</strong>——照护责任不要一个人扛，家庭成员轮班、必要时请专业机构（医院、社区心理服务）分担；<strong>②保留自己的生活</strong>——你的社交、休息、爱好不是奢侈品，是继续陪伴的燃料；<strong>③允许自己求助</strong>——陪伴者同样可以打 12356 咨询"我该怎么帮 ta"，也可以自己去做咨询。记住飞机上的广播逻辑：先给自己戴好氧气面罩，再帮别人。一个耗竭的陪伴者，救不了任何人。还有一条容易被忽略的边界：<strong>陪伴不等于无限兜底</strong>——你不必为对方的每个决定负责，也不必 24 小时待命；把"我能做什么、做不到什么"想清楚并说出口，恰恰是对双方都负责的陪伴方式（边界的完整方法见<a href="../18-boundary/">第18章</a>）。</p>
+      <div class="fig"><img src="../assets/img-19-2.png" alt="两个抽象无脸人物并肩而坐，一人递给另一人一杯冒着热气的水，背景一张由热线、医院、社区组成的支持网络"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://greatergood.berkeley.edu/">Greater Good Science Center（英文，"caregiver burnout / compassion fatigue" 主题检索）</a> · <a href="https://self-compassion.org/">Kristin Neff 自我关怀官网（英文，陪伴者自我关怀练习）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、谣言粉碎：关于求助的四个误解</h2>
+    <p class="chapter-sub">每一个误解都在推迟某个人获得帮助的时间</p>
+
+    <article class="view">
+      <h3>谣言粉碎：求助路上的四块绊脚石</h3>
+      <p class="ctx"><strong>谣言一："心理问题=意志力薄弱。"</strong>抑郁焦虑有明确的生理基础（神经递质系统、脑区功能改变、遗传易感性）与诊断标准，WHO 将其列为疾病而非性格缺陷；对抑郁症患者说"振作点"，与对糖尿病患者说"意志力强点血糖就下来了"同样荒谬（证据见 s2 的 WHO 实况报道）。<strong>谣言二："去看精神科会留案底，影响一辈子。"</strong>就诊记录属于医疗隐私，受法律保护；常规入职、入学体检不包含精神科病历查询；真实存在的"影响"恰恰来自不治疗——障碍持续损害学业、工作与关系。以隐私顾虑拒绝治疗，是用真实的损害去防一个想象的损害。<strong>谣言三："心理咨询就是花钱找人聊天。"</strong>咨询是有评估、有目标、有技术、有伦理约束的专业工作，咨访联盟与结构化干预的疗效有数百项对照研究支持（见 s6）；"聊天"是形式，改变认知-情绪-行为循环是实质。<strong>谣言四："吃了抗抑郁药人就废了/会上瘾。"</strong>规范使用的抗抑郁药物不成瘾（区别于苯二氮䓬类的管理使用），常见副作用多在初期且可管理，"药物让人变傻"是把疾病本身的认知损害误记到药物头上——具体用药方案与疑虑，与你的主治医生讨论，本站不提供用药建议。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/mental-disorders">WHO 中文《精神障碍实况报道》</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（治疗与药物章节）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s10">
+    <h2 class="chapter-title">十、本章自测</h2>
+    <p class="chapter-sub">这一章的自测偏"行动"：号码记住了吗、路径走通了吗</p>
+    <div class="checklist">
+      <h4>📋 求助能力自测（现在就过一遍）</h4>
+      <ul>
+        <li>三把尺子（时长/功能损害/痛苦程度）分别量什么？哪一把进入警示区就该直接求助？</li>
+        <li>抑郁障碍的官方病程标准是多久？核心症状的两条是什么？</li>
+        <li>男性抑郁常以什么形式表现，为什么容易被家人误读？</li>
+        <li>危机信号有哪四条？出现后的行动清单前三步是什么？</li>
+        <li>广泛性焦虑的担忧和性格性操心的区别是什么？（提示：自由浮动）</li>
+        <li>病耻感的三个来源是什么？拆墙的三句实话你能复述吗？</li>
+        <li>什么情况应该直接去医院精神心理科而不是找社会咨询？</li>
+        <li>挑选社会心理咨询的四个要点是什么？红旗信号说出三条。</li>
+        <li>咨访联盟是什么？为什么"前几次不合适就换人"是正当权利？</li>
+        <li>12356 是什么热线、什么时候开通的、什么时候打、打之前需要"够严重"吗？</li>
+        <li>12338、12355、110 各管什么？家暴发生后有哪三条实操提醒？</li>
+        <li>陪伴者的三件事（接住情绪/保障安全/送达资源）各举一个具体动作。</li>
+        <li>对抑郁的家人，"你想开点"错在哪？替代话术怎么说？</li>
+        <li>对表达轻生念头的人，绝对不要说哪句话？应该说哪三句？</li>
+        <li>陪伴者自己的氧气面罩原则是什么？</li>
+        <li>四个谣言里，哪一个曾经拦住过你或你身边的人求助？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>沟通课管"装修"，心理障碍是"地基"——地基出问题先找专业系统；三把尺子=时长（两周）/功能损害/痛苦程度，任一警示就该评估；抑郁核心=持续低落+兴趣丧失，男性常表现为愤怒酗酒；自伤念头、安排后事、突然平静=急症，12356/送医/120；病耻感让人平均拖延数年，心理障碍和高血压一样是病；医院精神心理科管诊断治疗，社会咨询管发展性议题（看受训/伦理/流程/注册名单）；咨访联盟是第一疗效因子，不合适就换；12356 心理援助（24h 免费）、12355 青少年、12338 妇女维权、110/120 紧急；陪伴者三件事=接住情绪、保障安全、送达资源，忌"你想开点"，记住"我在/不是你的错/我们一起去"；先给自己戴氧气面罩。
+  </div>
+
+  <nav class="pager">
+    <a href="../18-boundary/"><span class="dir">← 第18章</span>边界与自我：先安顿好自己，再谈关系</a>
+    <a href="../20-practice/"><span class="dir">第20章 →</span>刻意练习：把知识变成本能</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生沟通必修课 · 第19章 · 依据 WHO 中文实况报道（抑郁障碍、焦虑症、精神障碍、自杀）、国家卫健委 12356 心理援助热线发布、全国妇联 12338、《中华人民共和国反家庭暴力法》、中国精神卫生调查（Lancet Psychiatry, 2019）及 APA 心理学词典整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供心理健康教育参考，不构成心理咨询或医疗建议 · 心理危机请拨打 12356 · 家庭暴力请拨打 12338 或 110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #7c3aed;border-radius:12px;background:#f5f3ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#5b21b6;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/eq/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#7c3aed;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#7c3aed;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f5f3ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为一段关系发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#5b21b6;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #7c3aed;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f5f3ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#7c3aed;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：道歉、谈判、冷战、青春期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/eq\/.*/,'/eq/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.EQ_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f5f3ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

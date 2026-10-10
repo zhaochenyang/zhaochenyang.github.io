@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17章 宏观经济常识：看懂新闻里的钱 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:#92400e;border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);font-size:13px;letter-spacing:.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 第17章 · 认知升级</div>
+  <h1>宏观经济常识：看懂新闻里的钱</h1>
+  <p>GDP、CPI、M2、LPR、降准、汇率中间价——新闻联播里的每个词，其实都直接关系到你的钱包</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../16-behavioral/">← 第16章：行为金融</a>
+    <a href="../18-wealth/">第18章：财富观与幸福 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么学</a>
+    <a class="anchor" href="#s2">GDP</a>
+    <a class="anchor" href="#s3">物价</a>
+    <a class="anchor" href="#s4">货币</a>
+    <a class="anchor" href="#s5">利率</a>
+    <a class="anchor" href="#s6">汇率</a>
+    <a class="anchor" href="#s7">周期</a>
+    <a class="anchor" href="#s8">应对</a>
+    <a class="anchor" href="#s9">谣言粉碎</a>
+    <a class="anchor" href="#s10">自查自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为金融知识教育内容，仅供学习参考，不构成投资建议，不推荐任何具体产品、机构或证券。文中涉及的数字均为讲解原理的示例，以国家统计局、中国人民银行等官方实时发布数据为准。<strong>高收益意味着高风险</strong>；遇到可疑投资骗局，请拨打 <strong>110</strong> 或反诈专线 <strong>96110</strong>。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①看懂新闻里最常出现的八个宏观指标：GDP、CPI、PPI、调查失业率、M2、社会融资规模、LPR、外汇储备，知道每个是谁发布、多久发一次、怎么读；②理解利率的传导链条：央行政策利率 → LPR → 你的房贷和存款利率，知道"降息"到底降的是什么；③明白"降准"是什么、和降息有什么区别；④看懂人民币汇率中间价机制，知道升值贬值分别对谁有利；⑤了解经济周期的常用框架（美林时钟）以及它的局限，不被"周期论大师"忽悠；⑥建立最重要的一条宏观原则：<strong>不预测，只应对</strong>——并学会三条"新闻 → 行动"的翻译。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章不是要把你培养成经济学家——宏观预测连专业机构都经常错。它的目标是"防身"：让你听到"CPI 破 3""M2 破 X 万亿""降准了赶紧买"这类标题时，知道数字的真实含义、知道什么反应是过度反应。建议先通读一遍，之后把第八节的"新闻 → 行动对照表"存下来；每次重大财经新闻出现时翻出来对照，练三个月，你对宏观新闻的"应激反应"会显著下降。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么普通人要学宏观：不是为了预测，是为了不慌</h2>
+    <p class="chapter-sub">宏观数据是经济世界的"天气预报"——你不能改变天气，但你可以决定带不带伞</p>
+
+    <article class="view">
+      <h3>宏观新闻和你的钱包之间，只有三条传导线</h3>
+      <p class="ctx">很多人觉得宏观经济离自己很远："GDP 涨 5% 关我月薪什么事？"其实宏观变量影响普通人，主要就通过三条线：<strong>①物价线</strong>——通胀决定你的钱"毛"得多快，同样的存款能买多少东西（CPI，见第三节）；<strong>②利率线</strong>——决定你的房贷月供多少、存款利息多少、理财收益多少（LPR 与政策利率，见第五节）；<strong>③就业与收入线</strong>——经济增速放缓或加速，最先传导到的是企业招人意愿和你的谈薪空间（GDP 与失业率，见第二节）。除此之外的大部分宏观新闻——贸易谈判细节、某国大选、期货波动——对普通家庭的直接影响其实是二阶的、缓慢的、可对冲的。</p>
+      <p class="ctx">所以学宏观的正确姿势不是"追踪每条新闻"，而是<strong>盯住这三条线的官方数据源</strong>：国家统计局（GDP、CPI、失业率，每月/每季度发布）、中国人民银行（利率、M2、社融，每月发布）、国家外汇管理局（汇率与外储）。这三个官网就是普通人的"宏观仪表盘"，其余自媒体解读，看过官方数字再读，才不会被标题牵着走。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/">国家统计局官网（数据发布栏目）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（调查统计与货币政策栏目）</a> · <a href="https://www.safe.gov.cn/">国家外汇管理局官网</a></div>
+    </article>
+
+    <article class="view">
+      <h3>先立规矩：宏观预测的胜率，没有你想的那么高</h3>
+      <p class="ctx">开讲指标之前，必须先打一支"预防针"：<strong>宏观经济是出了名的难预测</strong>。国际货币基金组织（IMF）自己的研究统计过，其对各经济体增速的事前预测，命中率大致相当于随机水平附近，对"衰退是否到来"的预测漏报率相当高；各国央行对通胀路径的预测也常年偏差。原因不难理解：经济是亿万人决策的涌现结果，还叠加政策反应（预测本身会改变被预测对象的行为）与黑天鹅事件。连拿全量数据、雇顶级团队的专业机构都如此，"民间股神""周期大师"凭什么能稳定预测？</p>
+      <p class="ctx">这不是说宏观数据没用——<strong>数据的价值在"理解现状"而非"预知未来"</strong>：知道当前通胀水平，才能算清自己存款的实际购买力；知道当前利率环境，才能判断房贷要不要提前还（见<a href="../10-house/">第10章</a>）；知道失业率走势，才能评估自己该囤多少应急金（见<a href="../03-budget/">第3章</a>）。这一章教的全部是"读现状"的技能，而第八节会教你把现状翻译成"稳健应对"，而不是"精准下注"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.imf.org/">IMF 官网《世界经济展望》（World Economic Outlook，英文；其预测准确性研究见 IMF 工作论文）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网《货币政策执行报告》（每季度发布，可观察官方自身对形势的判断与措辞变化）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、GDP：经济的"总成绩单"，以及它测不出来的东西</h2>
+    <p class="chapter-sub">国内生产总值是新闻里出镜率最高的数字——但它既不是幸福的度量，也不是你收入的保证</p>
+
+    <article class="view">
+      <h3>GDP 是什么：一年里新创造的最终产品和服务的市场价值总和</h3>
+      <p class="ctx">GDP（Gross Domestic Product，国内生产总值）衡量的是<strong>一个国家/地区在一定时期内（通常一年或一季度）生产的所有最终产品和服务的市场价值总和</strong>。关键词是"最终"——面包算，做面包的面粉不重复算（否则就重复计算了）；关键词是"生产地"——外资企业在中国生产的算中国 GDP，中国企业在海外生产的算当地 GDP（衡量本国人收入的是另一个指标 GNI，国民总收入）。发布方是国家统计局，季度数据一般在季后 15 天左右公布初步核算数，年度数据次年公布。</p>
+      <p class="ctx">从支出法看，GDP 由四大块构成，这就是新闻里"三驾马车"的完整版：<strong>最终消费</strong>（居民消费+政府消费，占比最大，通常超过一半）、<strong>资本形成</strong>（企业设备投资、基建、房地产投资等）、<strong>货物和服务净出口</strong>（出口减进口）。读懂这个构成，你就读懂了大半宏观政策新闻："促消费"政策对应第一块，"扩投资/新基建"对应第二块，"稳外贸"对应第三块——每个政策口号背后，都是在拉动对应的马车。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网·数据发布（GDP 核算结果发布页；其"统计知识"栏目有 GDP 核算方法官方解释）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局《中国统计年鉴》（历年 GDP 及构成，可查）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>GDP 增速怎么读：同比、环比与"不变价"</h3>
+      <p class="ctx">新闻说"上半年 GDP 同比增长 5.3%"，这句话里藏着三个技术细节。<strong>①同比</strong>：和去年同一时期比（今年二季度 vs 去年二季度），排除了季节因素，中国官方主用同比；<strong>②环比</strong>：和上一个季度比（二季度 vs 一季度），美国官方主用"环比折年率"（把季度环比放大成年化，数字看起来波动更大——所以别拿美国 3% 的环比折年率直接和中国 5% 的同比比，口径不同）；<strong>③不变价</strong>：实际增速是剔除了物价因素后的"真实增长"——名义 GDP 增速 = 实际增速 + 物价变动（GDP 平减指数）。这就是为什么"名义增速"和你在新闻里听到的"增速"经常不一样：新闻里说的通常是实际增速。</p>
+      <blockquote class="q">
+        <strong>可手算示例：增速的复利直觉</strong><br>
+        若经济每年实际增长 5%，总量翻倍需要约 <strong>14.4 年</strong>（70 ÷ 5 ≈ 14，"70 法则"，见<a href="../01-money/">第1章</a>复利工具）。<br>
+        若增速降到 3%，翻倍要约 23 年；若为 7%，只要 10 年。<br>
+        这就是为什么"增速换挡"（从高速转向中高速）值得每个家庭关注：它意味着靠"水涨船高"躺赢的时代红利变薄，个人财务更需要靠规划与纪律（这正是本课程存在的理由）。（示例仅为算术演示）
+        <span class="qsrc">翻倍年数 ≈ 70 ÷ 年增长率（%），复利近似公式</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局官网·数据解读栏目（对增速口径的官方说明）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（季度 GDP 初步核算发布公告）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>GDP 测不出来的：它不是幸福指数，也不是分配状况</h3>
+      <p class="ctx">GDP 只统计"市场价值"，因此有一串著名的盲区：家务劳动不计入（自己做饭不算，点外卖算——同样的饭）；环境代价不扣除（污染企业的产出算正贡献，治理污染的花费又算一次正贡献）；地下经济与灰色收入统计不到；<strong>更重要的是，它是总量指标，不反映分配</strong>——人均 GDP 增长不等于每个家庭收入同比例增长，行业间、地区间、群体间的分化可能很大。肯尼迪 1968 年那句著名演讲说得直白：GDP"衡量一切，唯独不包括那些使人生有价值的东西"（此话常被误传为其弟罗伯特·肯尼迪所说，出处以原始演讲记录为准）。</p>
+      <p class="ctx">对普通人的实用启示：①看到"GDP 增长 5%"别直接代入"我的收入也该涨 5%"——你的收入取决于你所在行业、地区、技能的局部景气，而不是全国总量；②判断自己所在的局部，看更贴近的指标：城镇调查失业率（见下一节）、居民人均可支配收入实际增速（统计局同场发布）、你所在行业的招聘数据；③GDP 的真正用途是理解政策的"底线思维"——为什么稳增长政策会在某些时点密集出台，因为就业与收入预期挂在增长上。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网（居民人均可支配收入与 GDP 同场发布，可对比两者增速差异）</a> · Stiglitz, Sen & Fitoussi (2009), <em>Mismeasuring Our Lives</em>（GDP 局限性的权威学术报告，英文；萨科齐委员会报告）</div>
+    </article>
+
+    <article class="view">
+      <h3>失业率：数字背后的统计口径</h3>
+      <p class="ctx">中国官方主用的就业指标是<strong>城镇调查失业率</strong>（通过抽样调查获得，国际通行方法，国家统计局每月发布；过去曾用"城镇登记失业率"，只统计主动去登记的人，口径偏窄）。读懂它要注意三点：①"失业"的国际标准口径（ILO）是"调查期内没有工作、正在寻找工作、随时可以上岗"三条同时满足——没在找工作的不算失业（算"退出劳动力市场"）；②调查失业率覆盖城镇常住人口，含农民工；③除总体失业率外，统计局还发布分年龄组数据（如 16-24 岁青年失业率，口径历经调整，以官方当期说明为准），青年就业状况是当前宏观观察的重点之一。</p>
+      <p class="ctx">与你的关系：失业率是就业市场的"体温计"，它领先于你的谈薪空间——失业率低、招工难时，跳槽涨薪的筹码在你手里；失业率高时，"稳"的价值上升，应急金要加厚（6 个月支出是下限，行业景气差时按 12 个月备，见<a href="../03-budget/">第3章</a>），此时不宜裸辞。这是宏观数据对个人最直接的行动翻译之一。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网·月度数据发布（城镇调查失业率及分年龄组数据）</a> · <a href="https://www.ilo.org/">国际劳工组织 ILO 官网（失业率统计口径的国际标准，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、CPI 与 PPI：你的钱每年"毛"多少</h2>
+    <p class="chapter-sub">通胀是普通人感受最直接的宏观变量——为什么官方数字和你的体感经常对不上？</p>
+
+    <article class="view">
+      <h3>CPI 是什么：一篮子消费品的价格变化</h3>
+      <p class="ctx">CPI（Consumer Price Index，居民消费价格指数）衡量<strong>普通家庭购买的"一篮子"商品和服务的价格随时间的变化</strong>，国家统计局每月发布。篮子里装什么、各占多重，由全国居民消费支出调查决定，并定期调整权重——食品烟酒、衣着、居住、生活用品、交通通信、教育文化娱乐、医疗保健、其他用品及服务八大类。注意"居住"类的构成：它包含房租、水电燃料、物业费等，但<strong>不包含买房的房价</strong>（买房在统计上算投资而非消费）——这是"体感通胀"和 CPI 差异的最大来源之一（见下一节）。</p>
+      <p class="ctx">CPI 的读法：同比（和去年同月比，最常用的头条数字）、环比（和上月比）、核心 CPI（剔除食品和能源后的数字——食品与能源价格波动大，核心 CPI 更能反映持续的通胀压力）。另一个常用衍生指标是"实际增速"：实际工资增速 = 名义工资增速 − CPI 涨幅；实际存款利率 = 存款利率 − CPI 涨幅。<strong>当实际利率为负，存钱等于缓慢亏损</strong>——这就是<a href="../01-money/">第1章</a>讲"通胀是隐形税收"的数据基础。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网·月度发布（CPI 数据及官方解读，含篮子构成与权重说明）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·统计知识栏目（CPI 编制方法官方说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么你的体感和 CPI 不一样：四个真实原因</h3>
+      <p class="ctx">"CPI 才涨 1%，我怎么觉得什么都贵了？"——这种体感差异不是错觉，也不是"数据造假"的必然证据，统计学上有四个正经原因：<strong>①个人篮子 ≠ 平均篮子</strong>：CPI 是全国平均权重，如果你家有学龄儿童（教育支出占比高）或刚租房（房租涨幅高于平均），你的"个人 CPI"就会显著高于全国数；<strong>②损失厌恶的不对称记忆</strong>：涨价的东西记得牢（葱涨 50% 是新闻），降价的东西无感（通信费、猪肉回落没人讨论）——这是<a href="../16-behavioral/">第16章</a>偏差在宏观感知上的应用；<strong>③房价不在 CPI 里</strong>：过去二十年家庭最大的支出感受来自买房，而它在 CPI 之外；<strong>④质量调整</strong>：统计上会处理"同价但质量提升"（去年的手机和今年的手机不是一个东西），部分抵消了名义涨价，但消费者感受不到这个调整。</p>
+      <p class="ctx">实用结论：与其争论 CPI 准不准，不如<strong>算自己的 CPI</strong>：记录你家一年主要支出项（食品、房租/房贷、教育、医疗、交通），对比去年同项金额，加权算出自己的通胀率——第19章的表格工具里有现成模板。这个数字才该用于你的财务规划（应急金厚度、教育金目标、养老测算的通胀假设，见<a href="../12-retire/">第12章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（多次官方回应"体感通胀"与 CPI 差异的原因）</a> · 感知通胀与官方通胀差异的行为经济学研究（如 Cavallo 等基于 scraped data 的价格感知研究，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>PPI 与"剪刀差"：工厂端的价格，迟早传导到消费端</h3>
+      <p class="ctx">PPI（Producer Price Index，工业生产者出厂价格指数）衡量工厂出厂环节的价格变化，与 CPI 同场每月发布。两者的关系是宏观分析的经典看点：PPI 是上游（原材料、出厂价），CPI 是下游（零售消费价）——上游涨价，企业要么自己扛（利润压缩），要么传导给消费者（CPI 上涨）。当 PPI 涨幅显著高于 CPI（所谓"剪刀差"扩大），意味着中下游企业在"高价进货、平价卖货"，利润受挤压，经营压力加大——这对就业和工资是领先信号。反之，PPI 持续为负（出厂价下跌），反映工业需求偏弱。</p>
+      <p class="ctx">普通人看 PPI 的用途不是炒期货，而是<strong>预判就业与收入的二阶传导</strong>：PPI-CPI 剪刀差持续扩大的时期，中下游制造业、零售业从业者的奖金与招聘往往承压；PPI 转正回升，通常是企业盈利改善的前奏。把这个指标和你所在行业的景气度对上，比盯着"GDP 保 5"更有操作意义。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网（PPI 月度发布及官方解读）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行《货币政策执行报告》（对 PPI-CPI 传导的官方分析框架）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>通胀目标：为什么官方要维持"温和通胀"而不是零通胀</h3>
+      <p class="ctx">很多国家央行设有明确的通胀目标（如美联储、欧央行目标为 2% 左右）；中国官方的表述是"保持物价水平基本稳定"，历年政府工作报告中 CPI 预期目标通常设在 3% 左右（以当年报告为准）。为什么目标不是 0% 甚至负数（物价下跌不是好事吗）？主流经济学的理由：<strong>①温和通胀给货币政策留出操作空间</strong>（利率=实际利率+通胀，通胀太低时名义利率很快触到零下限，降息工具箱见底）；<strong>②通缩比温和通胀更危险</strong>——物价持续下跌时，消费者"等等更便宜"推迟消费，企业收入下降裁员降薪，居民更不敢花钱，形成"通缩螺旋"，债务的实际负担还会越滚越重（债务是名义的，收入却在缩水）；<strong>③工资刚性</strong>：名义工资很难下调，温和通胀让"实际工资的调整"可以在不动名义数字的情况下发生，润滑劳动力市场。</p>
+      <p class="ctx">这对你的财务规划意味着一个基本假设：<strong>长期持有现金 = 确定性地、缓慢地损失购买力</strong>。官方维持温和通胀是常态，所以"钱必须有一部分参与增值"不是贪婪，而是对抗购买力侵蚀的防御——防御的工具箱（存款、国债、货基、指数基金等各自的角色与风险）见<a href="../06-invest/">第6章</a>至<a href="../08-fund/">第8章</a>；同时记住反面纪律：对抗通胀的资产都带波动，用"短期要花的钱"去抗通胀，是拿流动性赌命。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.gov.cn/">中国政府网（历年《政府工作报告》CPI 预期目标表述）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（货币政策框架说明与《货币政策执行报告》）</a> · <a href="https://www.federalreserve.gov/">美联储官网：2% 通胀目标的官方说明（英文，作国际对照）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、M2 与社会融资规模：钱是怎么被"创造"出来的</h2>
+    <p class="chapter-sub">"央行印钱"是个流行但不准确的说法——现代货币大部分是商业银行"贷"出来的</p>
+
+    <article class="view">
+      <h3>货币分层：M0、M1、M2 各是什么钱</h3>
+      <p class="ctx">中国人民银行每月发布金融统计数据，其中的货币供应量分三层：<strong>M0</strong> = 流通中的现金（你钱包里的纸币硬币）；<strong>M1</strong> = M0 + 单位活期存款等（企业随时能开支票的钱，反映经济活动的"热钱"；口径经 2025 年初修订，纳入个人活期与非银支付备付金，以央行当期说明为准）；<strong>M2</strong> = M1 + 定期存款 + 居民储蓄存款 + 其他存款（广义货币，"所有的钱"）。新闻标题"M2 突破 X 万亿""M2 同比增长 8%"说的就是广义货币总量与增速。</p>
+      <p class="ctx">比总量更有信息量的是<strong>结构</strong>：M1 增速高，说明企业活期资金多、交易活跃、经济偏热；M1 增速低而 M2 增速高（"M1-M2 剪刀差"为负且扩大），说明钱在"定期化"——居民和企业宁可存定期也不投资不消费，经济偏冷、信心偏弱。这就是央行报告中"资金活化程度"讨论的由来。一个常见的错误解读是"M2 高增长 = 大放水 = 恶性通胀"——事实上 M2 增速要对着"名义 GDP 增速"看：货币增长若与经济活动增长大体匹配，就是正常的；持续显著超出，才谈得上通胀压力（而通胀最终还要看钱是否流入消费品领域，见第三节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html">中国人民银行官网·调查统计司（金融统计数据报告月度发布页；货币供应量口径修订说明亦在此栏目）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行《货币政策执行报告》（货币供应量与名义 GDP 匹配关系的官方阐述）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>社会融资规模：从"谁在借钱"看经济的另一半</h3>
+      <p class="ctx">社融（社会融资规模）是中国人民银行 2010 年代创设的指标，与 M2 互为镜像：<strong>M2 从"钱的供给"看金融体系，社融从"钱的去向"看实体经济从金融体系拿到的资金总额</strong>——包括银行贷款、债券发行、股票融资、信托等表外融资。看社融重点看两块：①总量增速是否与名义 GDP 匹配（官方政策表述"社会融资规模、货币供应量增长同经济增长和价格水平预期目标相匹配"）；②结构——居民中长期贷款（主要是房贷）是否回暖，是企业与居民信心的直接读数；企业债券与股票融资占比，反映直接融资的发展。</p>
+      <p class="ctx">"央行印钱"的真相也在这里：现代信用货币体系下，货币的主要创造渠道是<strong>商业银行放贷</strong>——银行每发放一笔贷款，就在借款人账户上"创造"了一笔等额存款（央行与学界对此有明确共识，英格兰银行 2014 年的科普论文《Money creation in the modern economy》是权威说明，英文）。央行的角色是通过政策利率与准备金调控银行"创造货币"的成本与能力，而不是直接开动印刷机往经济里灌现金。理解这一点，你就不会被"M2 又多了 X 万亿，赶紧买资产保值"的恐慌营销带节奏——货币增长的主体是信贷派生，它对应的是"有人借了钱"，而不是"天上掉了钱"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（社会融资规模统计数据月度发布；社融口径说明见调查统计司栏目）</a> · <a href="https://www.bankofengland.com/">英格兰银行：Money Creation in the Modern Economy（2014，英文，货币创造机制的权威科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、利率体系：从政策利率到你的房贷</h2>
+    <p class="chapter-sub">"降息"两个字背后是一条完整的传导链——搞清链条，才知道自己的月供会不会变、何时变</p>
+
+    <article class="view">
+      <h3>中国的利率传导链：政策利率 → LPR → 你的合同</h3>
+      <p class="ctx">中国当前的利率框架（2019 年 LPR 改革后）大致是一条链：<strong>①央行政策利率</strong>——公开市场 7 天期逆回购操作利率，是央行向市场宣示政策立场的"锚"（另有 MLF 中期借贷便利等工具，政策利率色彩逐步淡化，以央行当期表述为准）；<strong>②LPR</strong>（Loan Prime Rate，贷款市场报价利率）——由主要银行每月 20 日（遇节假日顺延）报价形成，分 1 年期和 5 年期以上两个品种：前者影响企业贷款与消费贷定价，<strong>后者是房贷的定价基准</strong>；<strong>③你的贷款利率</strong> = LPR + 加点（或减点）——加点由银行根据你的资质与当时政策确定，写在合同里，重定价周期内固定。</p>
+      <p class="ctx">对房贷族最实用的一条知识：<strong>LPR 降了，你的月供不一定马上变</strong>。浮动利率房贷合同有"重定价日"（通常每年 1 月 1 日或放款对应日），到了重定价日，才按当时最新的 LPR 重新计算下一周期的月供。所以"降息后我的月供什么时候变"的答案是：看你的合同重定价日（登录手机银行查贷款详情可见）。存量房贷利率的批量调整另有专门政策安排（如 2024 年秋的批量调整），以央行与商业银行的当期公告为准。固定利率 vs 浮动利率（LPR 定价）的选择逻辑见<a href="../10-house/">第10章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（货币政策司·利率体系说明；LPR 改革官方解读）</a> · <a href="https://www.chinamoney.com.cn/">中国货币网（全国银行间同业拆借中心，LPR 每月报价官方发布平台）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>降准是什么：和降息是两副不同的药</h3>
+      <p class="ctx">"降准"（下调存款准备金率）和"降息"经常同场出现，但机制不同。<strong>存款准备金</strong>是商业银行必须存放在央行的钱，占其吸收存款的比例（准备金率）。降准 = 银行被"冻结"的钱变少 = 可贷资金变多 = 货币供应的"量"宽松；降息 = 资金的价格变便宜 = 借钱意愿与成本的变化。一个管"量"，一个管"价"，可以单独用也可以组合用。央行还发展了结构性工具（支农支小再贷款、碳减排支持工具等）做"定向灌溉"——这些工具的名称不用背，只需知道：<strong>新闻里的"宽松"不是单一动作，而是一组量、价、结构的工具箱</strong>。</p>
+      <p class="ctx">降准降息的典型传导（对你的钱包）：LPR 下行 → 新发房贷利率下行、存量房贷到重定价日后月供减少（利好借款人）；存款利率通常随后下调（银行要保住净息差）→ 存款、货基、理财收益率下行（利好借款人、利空储蓄者）；无风险利率整体下移 → 债券价格上行（已持有债券/债基者受益，原理见<a href="../07-bank/">第7章</a>）；理论上利好股票估值（但股市受盈利、情绪、流动性多因素影响，"降息必涨"不成立，见第九节谣言粉碎）。<strong>一个家庭的净效应取决于你是"净借款人"还是"净储蓄者"</strong>：背房贷的年轻人整体受益于降息，靠存款利息的退休者整体受损——这就是为什么利率政策从来不是对所有人均匀的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（货币政策工具栏目：存款准备金、公开市场操作、结构性工具的官方说明；历次降准降息公告）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行《货币政策执行报告》（利率传导机制的官方阐述）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>实际利率：所有利率讨论的"真汇率"</h3>
+      <p class="ctx">把本节和第三节接起来，就得到宏观分析最重要的一个合成指标：<strong>实际利率 = 名义利率 − 通胀率</strong>。它才是资金真实的成本与回报：存款利率 1.5%、CPI 涨 2%，实际利率为 −0.5%，存钱在缓慢亏购买力；存款利率 1.5%、物价零增长，实际利率 +1.5%，现金反而在"增值"。判断"现在该多存钱还是多投资/还贷"，看的不是名义利率高低，而是实际利率与你的机会成本。</p>
+      <blockquote class="q">
+        <strong>可手算示例：提前还房贷的利率比较</strong><br>
+        你的房贷利率 4.0%（LPR+加点），手头有一笔闲钱。<br>
+        若存款/稳健理财的预期年化只有 2.0%（且持续下行），提前还贷相当于获得 <strong>4.0% 的无风险"收益"</strong>（省下的利息是确定的），优于 2% 的存款——数学上划算。<br>
+        但必须同时过三关：①这笔钱未来 3-5 年确定不用（流动性关，见<a href="../03-budget/">第3章</a>应急金先备足）；②合同允许提前还款且违约金可接受（条款关）；③你对"确定省 4%"与"可能赚更高"的心理排序（风险偏好关，见<a href="../16-behavioral/">第16章</a>）。三关都过，才是你的正确答案。（示例数字为讲解用假设，以你的合同与官方实时利率为准，不构成操作建议）
+        <span class="qsrc">核心逻辑：比较"确定性成本节约"与"税后无风险收益"，再叠加流动性与条款约束</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.chinamoney.com.cn/">中国货币网（LPR 官方报价，查询入口）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（存款利率市场化调整机制说明）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、汇率：人民币贵了便宜了，谁受益谁受损</h2>
+    <p class="chapter-sub">中间价、在岸离岸、升值贬值——三分钟看懂汇率新闻的固定话术</p>
+
+    <article class="view">
+      <h3>中间价机制：人民币汇率是怎么定出来的</h3>
+      <p class="ctx">人民币兑美元汇率实行<strong>"以市场供求为基础、参考一篮子货币调节、有管理的浮动汇率制度"</strong>（央行官方表述）。每天的运行框架：早晨 9:15，中国外汇交易中心公布<strong>人民币兑美元中间价</strong>（报价商参考"上日收盘价 + 一篮子货币汇率变化 + 逆周期调节因素"报价形成）；日间交易围绕中间价在 ±2% 的浮动区间内进行（"在岸价" CNY）；境外市场同时存在"离岸价"（CNH），交易更自由，两者价差是观察市场情绪的一个窗口。新闻标题"人民币破 7"说的就是兑美元汇率升破/跌破 7.0 这个整数心理关口——<strong>7 本身没有经济学含义</strong>，它只是市场心理的锚（回顾<a href="../16-behavioral/">第16章</a>锚定效应：连汇率新闻都在被整数锚定）。判断汇率趋势要看"一篮子"：人民币对美元贬值时，对欧元、日元可能在升值——CFETS 人民币汇率指数就是官方的"一篮子"读数。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.chinamoney.com.cn/">中国货币网（人民币兑美元中间价官方发布平台，每日 9:15 更新）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（汇率制度官方表述；《货币政策执行报告》汇率章节）</a> · <a href="https://www.safe.gov.cn/">国家外汇管理局官网（CFETS 人民币汇率指数与外储数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>升值贬值谁受益：一张对照表</h3>
+      <p class="ctx">汇率变动的影响是分布不均的——有人天然受益，有人天然受损，这就是为什么汇率新闻值得每个家庭看懂自己的位置：</p>
+      <table class="cmp">
+        <tr><th>群体</th><th>人民币升值（更值钱）</th><th>人民币贬值（更便宜）</th></tr>
+        <tr><td>出境游客/留学生家庭</td><td>✅ 换汇更划算，学费生活费变便宜</td><td>❌ 同样学费要花更多人民币</td></tr>
+        <tr><td>海淘/进口商品消费者</td><td>✅ 进口货、海外代购相对便宜</td><td>❌ 进口成本上升传导至售价</td></tr>
+        <tr><td>出口企业与外贸从业者</td><td>❌ 产品外币标价变贵，订单承压</td><td>✅ 价格竞争力增强，订单与结汇收入受益</td></tr>
+        <tr><td>持有美元资产/外币存款者</td><td>❌ 折回人民币缩水</td><td>✅ 折算收益上升</td></tr>
+        <tr><td>航空/造纸等外币负债行业</td><td>✅ 还债成本下降</td><td>❌ 债务负担加重</td></tr>
+      </table>
+      <p class="ctx">个人购汇的合规要点（实用）：境内个人每年有 <strong>等值 5 万美元</strong>的便利化购汇额度（凭身份证在银行办理，用于旅游、留学等经常项目）；<strong>购汇不得用于境外买房、证券投资等资本项目</strong>（申请书里白纸黑字承诺）；"蚂蚁搬家"式分拆购汇（借用亲友额度）是外管局明令查处的违规行为，会上"关注名单"。留学购汇凭录取通知书等证明材料可超额度办理（以银行与外管局当期规定为准）。任何"地下钱庄换汇""USDT 换汇"都是违法且高危的——资金被卷跑与涉嫌洗钱的风险并存（见<a href="../13-fraud/">第13章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇管理政策：年度便利化额度、分拆购汇违规查处口径，官方问答栏目可查）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行《货币政策执行报告》（汇率对进出口影响的官方分析）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、经济周期与美林时钟：一个流行框架和它的局限</h2>
+    <p class="chapter-sub">"复苏买股票、过热买商品、滞胀持现金、衰退买债券"——听起来很美，用起来很坑</p>
+
+    <article class="view">
+      <h3>美林时钟：把周期切成四个象限</h3>
+      <p class="ctx">"美林投资时钟"（Merrill Lynch Investment Clock）是美林证券 2004 年研究报告提出的资产配置框架（🏷 商业机构研究，非学术定理，特此标注）：用"经济增长（产出缺口）"和"通胀"两个维度，把经济周期切成四段，每段对应一类历史表现占优的资产——<strong>复苏</strong>（增长↑通胀↓）：股票占优；<strong>过热</strong>（增长↑通胀↑）：大宗商品占优；<strong>滞胀</strong>（增长↓通胀↑）：现金占优；<strong>衰退</strong>（增长↓通胀↓）：债券占优。它的风靡有道理：把复杂的周期理论简化成一张图、四个格子，直觉上极易掌握，且用美国百年数据回测"历史胜率"不错。</p>
+      <div class="fig"><img src="../assets/img-17-1.png" alt="一个抽象的时钟盘面示意图：圆盘分成四个扇形象限，分别用上升曲线加雪花、上升曲线加火焰、下降曲线加火焰、下降曲线加雪花四种符号组合表示四种经济状态，中心是循环箭头"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：Merrill Lynch (2004), <em>The Investment Clock</em>（原始研究报告，英文；该机构后经合并，报告以存档版本为准，标注为商业机构框架） · 经济周期理论的学术脉络可参考 NBER 商业周期测定官方页（<a href="https://www.nber.org/">nber.org，英文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>泼冷水：时钟为什么经常"转不动"</h3>
+      <p class="ctx">必须如实告诉你这个框架的三个硬伤，否则学它反而有害。<strong>①象限判定是"事后"的</strong>：框架要求你先判断"现在是复苏还是过热"——但产出缺口与通胀拐点，都是事后几个月甚至几年才看得清；实时判断的准确率，和抛硬币差距不大（这也是各国央行"数据依赖"措辞谨慎的原因）。<strong>②时钟会被政策与结构变化"拨乱"</strong>：2008 年后全球非常规货币政策（量化宽松）长期压低利率、抬高资产价格，出现了"增长平平但股债双牛"的象限外行情；中国市场流传的调侃是"美林时钟在中国变成了电风扇"——象限切换快、跳档、逆序都有发生（此说法为市场俗语，非学术结论，标注）。<strong>③历史胜率经不起细看</strong>：原报告的"每象限最优资产"结论对样本期与资产选择敏感，学界对其稳健性多有批评。</p>
+      <p class="ctx">那还要不要学它？要，但用法要改：<strong>把美林时钟当"理解框架"用，不当"操作指令"用</strong>——它帮你读懂新闻（"央行宽松+通胀回落"大致是往哪个象限走）、帮你理解为什么专业机构在某个时点调仓；但你的家庭资产配置，应该建立在"股债分散+与自身期限风险偏好匹配"的静态框架上（见<a href="../06-invest/">第6章</a>），再按年做再平衡，而不是按"象限"做择时轮动——后者要求你持续做对宏观判断，而第一节已经说了：连专业机构的宏观预测胜率都撑不起这种操作。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：美林时钟稳健性批评见相关学术检验文献（如对中国市场适用性的实证研究，中文期刊可查） · "电风扇"说法为市场俗语（标注） · <a href="https://www.nber.org/">NBER 商业周期官方测定（英文；注意其拐点判定同样是事后确认）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>70 城房价指数：楼市新闻的官方读数</h3>
+      <p class="ctx">房地产是家庭最大资产（见<a href="../10-house/">第10章</a>），其官方数据是<strong>70 个大中城市商品住宅销售价格变动情况</strong>，国家统计局每月发布。读它有三个要点：①它分"新建商品住宅"和"二手住宅"两套指数，各按一线/二线/三线分组，还分环比、同比——新闻标题通常只摘其中一个切面（"XX 城上涨"），完整表格要点开看；②它是<strong>价格指数</strong>（反映同品质住宅的价格变动，做过质量调整），不是你小区的实际成交单价；③它覆盖 70 城，不代表全部三四线及以下市场。把它和第五节利率（房贷利率走势）、第四节信贷（居民中长期贷款，即房贷投放量）放在一起看，就构成了楼市的官方三角读数：价格、资金成本、资金量。</p>
+      <p class="ctx">给普通家庭的使用边界：这些数据用于<strong>理解你所处市场的温度</strong>（自住置换的时机沟通、家庭资产负债表的压力测试），而不是用于"抄底逃顶"——房价的局部差异（城市、板块、楼龄）远大于全国指数的信息量，任何"看指数炒房"的策略都过于粗糙。房住不炒的政策定位、房贷决策的完整框架，都在<a href="../10-house/">第10章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局官网·月度发布（70 个大中城市商品住宅销售价格变动情况，含官方解读）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（金融统计数据中居民中长期贷款数据；房贷利率政策公告）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、普通人的宏观应对：不预测，只应对</h2>
+    <p class="chapter-sub">三条"新闻 → 行动"翻译，胜过一百次点位预测</p>
+
+    <article class="view">
+      <h3>总原则：把宏观用于"加固系统"，而不是"下注方向"</h3>
+      <p class="ctx">本章所有知识的落点是一句话：<strong>宏观认知用来加固你的财务系统的抗压性，而不是用来给预测下注</strong>。理由在第一节已经铺好：预测胜率撑不起操作；而"系统加固"永远有效——无论下个季度是复苏还是衰退，应急金充足、负债率合理、配置分散、现金流健康的家庭都能扛住。这正是全课程的方法论闭环：第3章的预算与应急金、第5章的负债红线、第6章的分散化、第11章的保险、第12章的长期养老规划——这些"静态工事"就是你对宏观波动的全部应对；宏观知识的作用，是让你在新闻风浪里<strong>不做多余动作</strong>（恐慌赎回、追热点、加杠杆抄底），并且知道什么时候该微调工事（比如利率下行期考虑提前还贷，通胀高企期检查存款占比）。</p>
+      <div class="fig"><img src="../assets/img-17-2.png" alt="一座抽象的小房子建在坚固的基石上，房子周围是起伏的波浪线条代表经济波动，波浪拍不到房子上方，基石由几块标注着不同符号的砖块垒成"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（投资者教育：长期投资、理性投资理念宣传）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行《消费者金融素养调查》报告（居民金融行为官方调查）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"新闻 → 行动"对照表：三条示范翻译</h3>
+      <p class="ctx">把本章知识做成可执行的翻译示范。注意每条的结构都一样：<strong>新闻说什么 → 它真正意味着什么 → 你该做的动作（大概率是"检查"而不是"操作"）</strong>：</p>
+      <table class="cmp">
+        <tr><th>新闻标题</th><th>正确解读</th><th>普通家庭动作</th></tr>
+        <tr>
+          <td>"央行宣布降准 0.5 个百分点，释放长期资金约 X 万亿"</td>
+          <td>货币"量"宽松，通常伴随利率下行预期；对借款人是利好趋势，对存款收益是下行压力</td>
+          <td>①有房贷的：查自己合同的重定价日，理解月供何时可能变化；②有大额存款/理财到期的：接受收益率下行趋势，警惕此时冒出的"高收益替代品"（利率下行期正是理财骗局高发期，见<a href="../13-fraud/">第13章</a>）；③没借款没存款的：无需任何动作</td>
+        </tr>
+        <tr>
+          <td>"CPI 同比上涨 X%，创 X 个月新高"</td>
+          <td>物价涨幅变化；对照自己的"个人篮子"看，别被平均数代替体感，也别被标题放大焦虑</td>
+          <td>①检查应急金与短期资金的购买力安排（若实际利率转负，短期闲钱可考虑货基/国债逆回购等流动性工具，风险特征见<a href="../07-bank/">第7章</a>）；②检查长期规划里的通胀假设是否需要上调（养老金测算，见<a href="../12-retire/">第12章</a>）；③不因为一条月度数据调整股票仓位</td>
+        </tr>
+        <tr>
+          <td>"人民币兑美元汇率跌破/升破 X 关口"</td>
+          <td>整数关口是心理锚，不是经济阈值；要看一篮子（CFETS 指数）与你是否真有外汇需求</td>
+          <td>①有留学/出境计划的：按实际用汇时间表分批购汇（平滑成本），用足年度便利化额度、绝不参与分拆购汇与地下钱庄；②无外汇需求的：不因"保值焦虑"盲目换汇——持有外币同样有汇率风险，且境内投资渠道受限；③看到"汇率崩盘/暴涨"自媒体标题：回到中间价官方发布页自己看数</td>
+        </tr>
+      </table>
+      <p class="ctx">三条示范的共同点：<strong>动作都落在"自己的系统"上（合同、假设、计划），没有一条是"根据新闻买卖资产"</strong>。这就是"不预测，只应对"的操作化。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人购汇合规指引）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（CPI 官方发布）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（降准公告与解读）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、谣言粉碎：宏观话题的四个高频误导</h2>
+    <p class="chapter-sub">这四个说法在自媒体里流传最广，逐个掰正</p>
+
+    <article class="view">
+      <h3>谣言粉碎：四个你多半刷到过的宏观"常识"</h3>
+      <p class="ctx"><strong>误导一："M2 又创新高了，钱越来越不值钱，赶紧买房买金保值！"</strong>——三重错误：①M2 高增长的主体是信贷派生（第四节），对应"有人借钱"，不是"天上下钱"；②M2 增速要对着名义 GDP 增速看，匹配则正常；③"赶紧买 X"的结论最危险——把宏观焦虑直接翻译成单一资产押注，恰恰是<a href="../16-behavioral/">第16章</a>讲的 FOMO+框架效应组合拳，这类话术常被用于推销房产、贵金属、虚拟货币（境内虚拟货币交易不受法律保护，风险提示见<a href="../13-fraud/">第13章</a>与央行等部门公告）。</p>
+      <p class="ctx"><strong>误导二："降息了，股市必涨，快进场。"</strong>——降息降低贴现率，理论上利好股票估值，但股价=盈利×估值，降息周期往往恰好出现在经济下行期（盈利在恶化），历史上降息与股市短期走势并无稳定的一一对应关系；A 股还叠加流动性结构、情绪与政策多因素。"必"字一出现，就把一个多变量问题偷换成了单变量因果——这种确定性话术本身就是风险信号（确定性效应，第16章）。</p>
+      <p class="ctx"><strong>误导三："CPI 才 1%，官方数据造假，真实通胀起码 10%。"</strong>——体感与统计的差异有四个正经统计学原因（第三节：个人篮子、损失记忆、房价不在篮子、质量调整），不需要"造假"假设来解释；当然，任何统计都有改进空间，学界对 CPI 编制也持续有技术性讨论——但"我的体感=真相，官方=造假"是反智的推理结构。正确动作是算自己的 CPI（第三节模板），用自己的数字做自己的规划。</p>
+      <p class="ctx"><strong>误导四："跟着周期大师操作，复苏买股衰退买债，稳赚。"</strong>——美林时钟的三个硬伤（第七节）决定了它只能"事后讲得通"，不能"事前做得对"：象限实时判定准确率极低、政策会打乱节奏、"每象限最优"的历史证据不稳健。凡是把周期框架包装成"稳赚信号"收费带单的，本质是卖焦虑——回到<a href="../13-fraud/">第13章</a>的非法荐股识别框架处理即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（虚拟货币交易炒作风险提示公告；金融统计数据解读）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（CPI 编制与体感差异官方说明）</a> · <a href="https://www.csrc.gov.cn/">证监会官网（非法荐股与"带单"风险提示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s10">
+    <h2 class="chapter-title">十、本章自查与自测</h2>
+    <p class="chapter-sub">对照下面的清单，检验你的"宏观仪表盘"装好了没有</p>
+    <div class="checklist">
+      <h4>📋 宏观素养自查（逐条打勾）</h4>
+      <ul>
+        <li>你能说出 GDP 支出法三大构成（消费、投资、净出口）吗？</li>
+        <li>你知道"同比"和"环比"的区别，以及中美官方主用哪个吗？</li>
+        <li>你知道 GDP 不包含什么（家务、房价、环境代价、分配状况）吗？</li>
+        <li>你能说出 CPI 篮子的八大类，以及"居住"类不含房价吗？</li>
+        <li>你能解释自己体感通胀与 CPI 差异的至少两个统计学原因吗？</li>
+        <li>你知道 PPI 与 CPI 的上下游关系，以及"剪刀差"对就业的含义吗？</li>
+        <li>你知道 M0/M1/M2 的区别，以及"银行放贷创造存款"的货币创造机制吗？</li>
+        <li>你知道社融和 M2 是"钱的去向"与"钱的供给"的镜像关系吗？</li>
+        <li>你能画出利率传导链：政策利率 → LPR → 你的房贷/存款吗？</li>
+        <li>你知道自己房贷合同的重定价日吗？（不知道就去手机银行查）</li>
+        <li>你能说出降准（量）与降息（价）的区别吗？</li>
+        <li>你会算实际利率（名义利率 − 通胀），并用它评估提前还贷吗？</li>
+        <li>你知道人民币中间价何时发布、"破 7"为什么只是心理锚吗？</li>
+        <li>你知道个人年度购汇便利化额度是多少、哪些用途违规吗？</li>
+        <li>你能说出美林时钟四象限，以及它的三个硬伤吗？</li>
+        <li>你有自己的"新闻 → 检查动作"习惯吗？（而不是"新闻 → 买卖动作"）</li>
+      </ul>
+      <h4 style="margin-top:14px;">🧠 理解性自测（讲给家人听试试）</h4>
+      <ul>
+        <li>GDP 增速 5% 对你个人收入意味着什么、不意味着什么？</li>
+        <li>为什么各国官方要维持温和通胀而不是零通胀？通缩螺旋是怎么形成的？</li>
+        <li>"央行印钱"这个说法哪里不准确？现代货币主要靠什么创造？</li>
+        <li>LPR 下调后，你的房贷月供什么时候变、变多少由什么决定？</li>
+        <li>降息对"净借款人"和"净储蓄者"的影响为什么相反？你家属于哪类？</li>
+        <li>人民币升值，哪三类人受益、哪三类人受损？</li>
+        <li>为什么美林时钟只能当理解框架、不能当操作指令？</li>
+        <li>"不预测，只应对"的操作化是什么？举一条你自己的"新闻 → 检查"翻译。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>宏观影响普通人只有三条线：物价（CPI）、利率（LPR 传导链）、就业收入（GDP/失业率）——盯住统计局、央行、外管局三个官方源就够。GDP 是最终产品市场价值总和，三驾马车=消费+投资+净出口；同比≠环比≠不变价；它是总量指标，测不出分配与幸福。CPI 是全国平均篮子（不含房价），体感差异有四个统计学原因，正确动作是算自己的 CPI；PPI 是上游价格，剪刀差扩大=中下游企业承压=就业领先信号；官方维持温和通胀是常态，长期持现金=确定性亏购买力。M0/M1/M2 是货币三层，"央行印钱"不准确——货币主要由银行放贷创造；社融是钱的去向，与 M2 互为镜像；M1-M2 剪刀差反映资金活化。利率链：政策利率→LPR（每月 20 日报价，5 年期以上是房贷基准）→LPR+加点=你的合同；房贷月供在重定价日才变；降准管量、降息管价；实际利率=名义利率−通胀，是提前还贷与存款决策的真标尺。汇率：中间价 9:15 发布、±2% 浮动区间，"破 7"只是心理锚；个人年度购汇便利化额度等值 5 万美元，禁用于境外买房与证券投资，分拆购汇与地下钱庄违法。美林时钟四象限是商业机构框架：象限事后才看得清、政策会拨乱时钟、历史胜率不稳健——只当理解框架，不当操作指令；70 城房价指数与居民中长贷、房贷利率构成楼市官方三角读数。总原则一句话：<strong>不预测，只应对</strong>——宏观认知用于加固系统（应急金、负债率、分散配置、保险），新闻触发的是"检查"而不是"买卖"。
+  </div>
+
+  <nav class="pager">
+    <a href="../16-behavioral/"><span class="dir">← 第16章</span>行为金融：你的大脑如何亏掉你的钱</a>
+    <a href="../18-wealth/"><span class="dir">第18章 →</span>财富观与幸福：钱是手段还是目的</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 第17章 · 依据国家统计局、中国人民银行、国家外汇管理局官方数据发布与解读、《货币政策执行报告》、IMF/NBER 相关材料及美林证券 2004 年研究报告（商业框架，已标注）整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供金融知识教育参考，不构成投资建议 · 高收益意味着高风险 · 遭遇诈骗请拨打 110 或 96110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

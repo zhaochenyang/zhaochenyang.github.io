@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 股票：买股票就是买公司的一部分 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:var(--accent-deep);border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 第9章 · 投资与增值</div>
+  <h1>股票：买股票就是买公司的一部分</h1>
+  <p>股票的本质与股东权利、散户收益的实证真相、估值常识的手算版、投机与投资的界限、杠杆的风险放大，以及普通人参与股市的理性姿势与维权渠道</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-fund/">← 第8章：基金</a>
+    <a href="../10-house/">第10章：房子与房贷 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">股票是什么</a>
+    <a class="anchor" href="#s2">谁赚谁亏</a>
+    <a class="anchor" href="#s3">估值常识</a>
+    <a class="anchor" href="#s4">投机与投资</a>
+    <a class="anchor" href="#s5">消息面陷阱</a>
+    <a class="anchor" href="#s6">杠杆双刃剑</a>
+    <a class="anchor" href="#s7">理性姿势</a>
+    <a class="anchor" href="#s8">谣言粉碎与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为金融通识科普，仅供金融知识教育与参考，<strong>不构成任何投资建议或个股推荐</strong>；文中所有数字均为讲解原理的示例，实际数据以官方发布为准。股市有风险，投资需谨慎；<strong>高收益意味着高风险</strong>。遭遇"荐股"诈骗请立即拨打 110 或反诈专线 96110。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用自己的话讲清"买股票=买公司的一部分所有权"到底意味着什么权利；②看懂 A 股市场的基本结构（交易所、板块、注册制、交易规则）；③对"七亏二平一赚"这类坊间说法有实证的判断，知道自己大概率面对的是什么；④手算市盈率的含义，明白估值的直觉与局限；⑤分清投机与投资，识别内幕交易、荐股群与杀猪盘；⑥理解杠杆（融资融券）如何同时放大收益与亏损；⑦掌握普通家庭参与股市的仓位纪律与维权渠道（12386）。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章不教你选股——任何声称"教你稳定选股赚钱"的内容都应该让你警惕。本章教你的是<strong>看懂这个市场的底层规则</strong>：钱从哪来、亏到哪去、自己被什么心理驱动、出事了找谁。如果你从未开过证券账户，读完本章足以让你对股票类资产建立正确预期；如果你已经在场内，第一、二、四、六节值得对照自己的交易记录重读一遍。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、股票是什么：一张"公司所有权凭证"</h2>
+    <p class="chapter-sub">先把本质讲透，后面所有的涨跌、估值、投机才有锚点</p>
+
+    <article class="view">
+      <h3>买股票=买公司的一部分：这不是一句口号，是一组法定权利</h3>
+      <p class="ctx">股票是股份有限公司签发的、证明股东所持股份的凭证。你买入一家公司 100 股，法律意义上你就成为这家公司的股东之一，按持股比例拥有公司的"一小片"。这一小片对应三项核心权利：<strong>收益权</strong>——公司赚了钱决定分红时，你按持股比例分得股息红利；<strong>表决权</strong>——股东大会上你有权对公司重大事项（董事选举、并购、增资等）投票，散户股份少，但权利是法定的，实践中可以通过网络投票行使；<strong>剩余财产分配权</strong>——公司清算还完债后如有剩余，股东按比例分配（现实中往往所剩无几，这也是"股票风险高于债券"的法律根源：债权人先于股东受偿）。</p>
+      <p class="ctx">理解"所有权"三个字，是股票投资和一切短期炒作的分水岭：如果你买的是"公司的一部分"，你关心的自然是这家公司未来能赚多少钱、愿意分多少给你；如果你买的只是"一个会涨会跌的代码"，那你参与的其实是击鼓传花——赚的每一分钱都来自下一个出更高价的人。这两种玩法的风险结构完全不同，本章第四节会展开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">《中华人民共和国公司法》《中华人民共和国证券法》（中国政府网，法律全文检索"公司法""证券法"）</a> · <a href="https://www.investor.org.cn/">中国投资者网（证监会主管投教平台，"股票投资 basics"栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>股票的长期回报从哪里来：分红 + 盈利增长 + 估值变化</h3>
+      <p class="ctx">持有股票的收益可以拆成三块。第一块是<strong>股息分红</strong>：公司把利润的一部分按股派发，这是唯一"从公司内部流出来"的钱。第二块是<strong>盈利增长推动的股价上涨</strong>：公司利润逐年增长，即便估值倍数不变，股价理论上也随利润同步抬升——这是长期投资者最看重的部分。第三块是<strong>估值变化</strong>：市场愿意为每一块钱利润出的价格（市盈率）在情绪驱动下波动，牛市中估值扩张让人赚钱，熊市中估值收缩让人亏钱，这部分本质上是市场情绪的潮汐，长期看围绕中枢起伏。</p>
+      <p class="ctx">这个拆解给出了一个重要的判断工具：<strong>长期可持续的回报来自前两块（公司真实创造的价值），而短期账面波动大部分来自第三块（情绪）</strong>。全球主要市场百年维度的数据都显示，股票的长期年化回报显著高于债券与存款，但路径极其颠簸——涨三年跌两年是常态。用生活必需的钱、承受不了波动的钱去参与，等于把潮汐当成了地基（风险收益的一般规律见<a href="../06-invest/">第6章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网"证券投资基础"栏目（股票收益构成投教材料）</a> · Bogle《共同基金常识》关于股票长期回报来源的拆解（商业书籍，标注：🏷）</div>
+    </article>
+
+    <article class="view">
+      <h3>A 股市场的基本结构：三家交易所、多个板块、全面注册制</h3>
+      <p class="ctx">中国境内股票市场的官方结构并不复杂：<strong>上海证券交易所</strong>（主板 + 科创板）、<strong>深圳证券交易所</strong>（主板 + 创业板）、<strong>北京证券交易所</strong>（服务创新型中小企业，2021 年设立）构成三家交易所；股票的登记、存管与结算统一由<strong>中国证券登记结算公司</strong>办理。不同板块定位不同：主板面向成熟大型企业，科创板强调"硬科技"，创业板服务成长型创新创业企业，北交所服务"更早、更小、更新"的企业——板块越偏创新，上市门槛的盈利要求越灵活，相应地股价波动与退市风险也越高。</p>
+      <p class="ctx">2023 年起 A 股实行<strong>全面注册制</strong>：企业上市由交易所审核、证监会注册，核心是把"这家公司值不值得投资"的判断交还给市场，监管重点是信息披露的真实、准确、完整。对普通投资者的直接含义有三个：①上市不再等于官方背书，"新股稳赚"的时代制度上已结束；②<strong>退市常态化</strong>，财务造假、交易类指标触线的公司会被强制退市，抱着"跌成仙股等重组"的想法可能血本无归；③读公告、读招股说明书成为投资者的基本功，因为信息披露是维权的法律依据。</p>
+      <div class="fig"><img src="../assets/img-09-1.png" alt="股票所有权示意：一家公司被切分为若干股份，其中一份连着分红、投票、剩余分配三项权利图标"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（"全面实行股票发行注册制"专栏）</a> · <a href="https://www.sse.com.cn/">上海证券交易所官网（市场数据与规则栏目）</a> · <a href="https://www.szse.cn/">深圳证券交易所官网</a> · <a href="http://www.chinaclear.cn/">中国结算官网</a></div>
+    </article>
+
+    <article class="view">
+      <h3>交易规则速览：T+1、涨跌幅限制、开户与费用</h3>
+      <p class="ctx">A 股对普通投资者的关键交易规则可以一页讲完：<strong>T+1 交收</strong>——今天买入的股票明天才能卖出（资金同样 T+1 可取）；<strong>涨跌幅限制</strong>——主板股票单日涨跌上限 10%，科创板、创业板为 20%，新股上市初期另有安排；<strong>最小交易单位</strong>——买入以 100 股（一手）起；<strong>交易时间</strong>——工作日上午 9:30-11:30、下午 13:00-15:00。开户通过证券公司办理，一人可开多个账户，流程已全面线上化。</p>
+      <p class="ctx">费用结构值得每个投资者算清楚：<strong>佣金</strong>（双向收取，费率由券商约定，监管设有上限）、<strong>印花税</strong>（卖出时单向收取，现行税率以财政部、税务总局公告为准）、<strong>过户费</strong>（中国结算收取，比例极低）。别小看这些成本：假设一次买卖的总成本是 0.2%，一个每周全换手一次的激进投资者，一年 50 周光交易成本就磨掉本金的 10%——这是"频繁交易侵蚀收益"最直白的算术（学术证据见下一节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sse.com.cn/">上交所"交易规则"栏目（交易时间、涨跌幅、T+1 制度）</a> · <a href="https://www.szse.cn/">深交所"市场规则"栏目</a> · <a href="https://www.gov.cn/">财政部、税务总局关于证券交易印花税的公告（中国政府网检索"证券交易印花税"）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、谁赚钱谁亏钱：散户收益分布的实证</h2>
+    <p class="chapter-sub">"七亏二平一赚"是坊间口诀，不是官方统计——但学术数据指向的方向一致</p>
+
+    <article class="view">
+      <h3>"七亏二平一赚"说法核查：没有官方口径，但证据方向吻合</h3>
+      <p class="ctx">先做一个诚实的澄清：<strong>"七亏二平一赚"没有任何官方机构发布过这样的统计</strong>，它是市场流传的经验口诀，把它当精确事实引用是不严谨的。但学术界对散户（个人投资者）交易行为的研究，方向上支持"多数散户跑输市场"这个结论。最有代表性的是美国学者 Barber 与 Odean 对数万个个人账户的长期追踪研究（2000 年发表，题为《交易危及你的财富》）：交易最频繁的个人投资者年化净收益显著低于市场基准，扣除交易成本后差距进一步拉大；后续多国研究反复验证了"高换手率与低收益负相关"这一规律。</p>
+      <p class="ctx">中国市场的情况有自己的结构特征：个人投资者账户数量庞大、交易占比长期高于成熟市场，而机构在研究与信息处理上的优势明显。上海证券交易所历年统计年鉴披露过个人投资者交易占比等结构数据（可在官网检索），监管部门在投资者教育材料中也多次提示"个人投资者在信息、研究、风控上处于相对弱势"。结论不是"散户必然亏"，而是：<strong>散户如果没有明确的策略与纪律，默认结局大概率是贡献交易成本与情绪溢价</strong>——你赚的每一笔快钱，对手盘往往是准备更充分的人。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Barber & Odean, "Trading Is Hazardous to Your Wealth", Journal of Finance, 2000（英文，学术数据库检索篇名可得） · <a href="https://www.sse.com.cn/">上交所官网"统计数据→统计年鉴"栏目（投资者结构数据）</a> · <a href="https://www.investor.org.cn/">中国投资者网投资者教育材料（个人投资者风险提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>散户亏钱的四种典型模式：不是运气差，是结构性的</h3>
+      <p class="ctx">把大量亏损案例归类，散户亏钱集中在四种可预防的模式上。①<strong>追涨杀跌</strong>：上涨末期被赚钱效应吸引入场，下跌初期恐慌割肉——行为金融称之为"处置效应+羊群行为"的叠加，买在情绪顶点、卖在情绪谷底（机制详见<a href="../16-behavioral/">第16章</a>）。②<strong>频繁交易</strong>：把交易本身当成参与感，佣金与印花税持续磨损本金，上一节的算术已经算过这笔账。③<strong>重仓单一股票</strong>：听消息、信故事，把大部分积蓄押在一只股票上，违反分散化的基本原理（见<a href="../06-invest/">第6章</a>），一次暴雷即伤筋动骨。④<strong>杠杆加仓</strong>：借钱炒股放大仓位，下跌时被强平，连"等待回本"的资格都没有——本章第六节专讲。</p>
+      <p class="ctx">注意这四种模式的共同点：<strong>没有一种是因为"选股能力差"</strong>。它们全部是行为与结构问题，也就是说全部可以通过纪律预防。这恰恰是本章存在的意义——在学会"怎么赚"之前，先学会"怎么不亏在低级错误上"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Shefrin & Statman, "The Disposition to Sell Winners Too Early and Ride Losers Too Long", Journal of Finance, 1985（英文，处置效应原始研究） · <a href="https://www.csrc.gov.cn/">证监会官网投资者保护栏目（个人投资者风险提示材料）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>那机构一定赚吗：跑赢基准同样是少数</h3>
+      <p class="ctx">一个同样需要诚实呈现的事实：专业投资者也不是稳赚的。全球范围内对主动管理基金的长期统计显示，<strong>多数主动基金在扣除费用后跑不赢对应的市场指数</strong>——标普道琼斯指数公司定期发布的 SPIVA 报告（英文）长期跟踪这一比例，各期结论高度一致；国内公募基金整体相对基准的超额收益同样存在明显的分化与衰减。这正是指数基金兴起的实证基础（详见<a href="../08-fund/">第8章</a>）。</p>
+      <p class="ctx">把散户与机构的数据放在一起，得到的市场图景是：<strong>股票市场整体回报来自企业创造的价值，但参与者之间的分配高度不均</strong>——信息、研究、纪律、成本四个维度占优者持续从劣势者手中赚取差价。对普通人的启示不是"别碰股票"，而是"想清楚自己靠什么赚钱"：如果答案不是"靠企业长期成长"，那你就是在和专业选手拼短线，胜算需要用数据说话。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：S&P Dow Jones Indices, SPIVA Scorecard 系列报告（英文，官网 spiva.spglobal.com） · Fama & French, "Luck versus Skill in the Cross-Section of Mutual Fund Returns", Journal of Finance, 2010（英文） · <a href="https://www.investor.org.cn/">中国投资者网（被动投资与指数基金投教材料）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、估值常识：市盈率到底在说什么</h2>
+    <p class="chapter-sub">一个能手算的指标，帮你把"贵不贵"从感觉变成算术</p>
+
+    <article class="view">
+      <h3>市盈率（PE）：按现在的利润水平，买下这家公司几年回本</h3>
+      <p class="ctx">市盈率 = 股价 ÷ 每股收益，等价于公司总市值 ÷ 公司年净利润。它有一个极其直白的解释：<strong>假设公司利润不变且全额分给你，PE 就是你"回本"需要的年数</strong>。一家公司市值 20 亿、年利润 1 亿，PE 就是 20 倍——你按这个价格买下整家公司，靠利润 20 年回本。PE 越低，按这个静态口径回本越快；这就是"低估值"的全部含义，仅此而已。</p>
+      <blockquote class="q">手算示例：某公司股价 10 元/股，去年每股收益 0.5 元 → PE = 10 ÷ 0.5 = 20 倍。含义：若利润不增长、全额分红，20 年回本；若利润每年增长 10%，回本会明显加快——所以<strong>PE 必须和利润增速放在一起看</strong>，单看倍数高低没有意义。<span class="qsrc">示例数字仅为讲解原理，非任何真实公司</span></blockquote>
+      <p class="ctx">市净率（PB）= 股价 ÷ 每股净资产，衡量你为公司每 1 元账面净资产付了多少钱，常用于重资产行业（银行、地产）。两个指标都可在交易所官网、上市公司定期报告中免费查到原始数据。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.sse.com.cn/">上交所官网"市场数据"栏目（个股估值数据）</a> · <a href="https://www.investor.org.cn/">中国投资者网"读懂上市公司报告"投教专栏</a></div>
+    </article>
+
+    <article class="view">
+      <h3>估值的四个局限：为什么"PE 低"不等于"会涨"</h3>
+      <p class="ctx">估值指标是把双刃剑，用错比不用更危险。第一，<strong>PE 会失效</strong>：亏损公司没有 PE；强周期行业（钢铁、航运、养殖）在利润顶点时 PE 最低——恰恰常是周期见顶的信号，"低 PE 陷阱"由此得名。第二，<strong>跨行业比较无意义</strong>：银行的低 PE 与科技公司的高 PE 反映的是商业模式与增长预期的差异，不是"银行便宜科技贵"。第三，<strong>估值可以长期不修复</strong>：便宜的公司可能因为治理问题、行业衰退而一直便宜，"价值陷阱"指的就是这种看似低估实则基本面恶化的标的。第四，<strong>利润本身可能是假的</strong>：财务造假案的共同特征就是报表利润漂亮——估值建立在你相信报表的前提上，而注册制下的退市案例一再证明这个前提需要核实（信息披露违法的法律后果见下一节）。</p>
+      <p class="ctx">正确姿势是把估值当成"温度计"而不是"预言机"：它告诉你当前价格隐含了什么样的预期（高 PE=市场定价了高增长，低 PE=市场定价了悲观），帮你评估"预期是否离谱"，仅此而已。任何"低估值选股法稳赚"的说法，都是把温度计当药方。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网"行政处罚"栏目（财务造假案例通报，可检索历年典型案例）</a> · 《投资学》（博迪等著，大学金融学教材，估值章节）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、投机 vs 投资：一字之差，风险结构天壤之别</h2>
+    <p class="chapter-sub">你可以选择任何一种玩法，但必须知道自己在玩哪一种</p>
+
+    <article class="view">
+      <h3>三个维度分清投资与投机：时间框架、收益依据、仓位管理</h3>
+      <p class="ctx"><strong>时间框架</strong>：投资以年为单位，赚企业成长的钱，波动是噪音；投机以天甚至分钟为单位，赚价格波动的钱，波动就是全部。<strong>收益依据</strong>：投资的依据是可验证的基本面（利润、分红、行业空间）；投机的依据是价格行为与情绪判断，本质上是零和博弈——扣除交易成本后是负和博弈，你赚的就是对手亏的。<strong>仓位管理</strong>：投资有明确的资产配置框架（股票占家庭资产的比例事先定好）；投机往往仓位随情绪膨胀，赢了加仓、输了补仓。</p>
+      <p class="ctx">经济学大师凯恩斯既是著名经济学家也是成功的投机者，他的自我评价很有参考价值：投机是"预测市场心理的活动"，投资是"预测资产整个存续期收益的活动"——他承认前者即使对聪明人来说也极难持续获胜。监管层面并不禁止投机（合法合规的短线交易是市场流动性的来源），但投资者教育材料反复强调的核心只有一句：<strong>用投机的方式管理养老钱，等于用别人的规则赌自己的人生</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：凯恩斯《就业、利息和货币通论》第12章关于投资与投机的区分（经典文献） · <a href="https://www.investor.org.cn/">中国投资者网"理性投资"投教专栏</a></div>
+    </article>
+
+    <article class="view">
+      <h3>内幕交易与市场操纵：不是"本事"，是犯罪</h3>
+      <p class="ctx">《证券法》明确禁止两类行为。<strong>内幕交易</strong>：知情人（董监高、中介、监管人员及任何非法获取信息者）在内幕信息公开前买卖证券或泄露信息——没收违法所得并处以高额罚款，情节严重的构成《刑法》内幕交易罪，最高十年有期徒刑。近年证监会每年查办内幕交易案件数量都位居各类案件前列（处罚决定在官网公开可查）。<strong>市场操纵</strong>：通过资金、持股优势连续买卖拉抬打压股价，或者利用信息优势（包括"抢帽子"——先建仓再公开推荐再出货）诱导他人交易，同样面临行政处罚与刑事追责。</p>
+      <p class="ctx">对普通投资者的实际提醒有两条：①群里流传的"内部消息"，要么是假的（专门钓你接盘），要么是真的（用了你就可能构成内幕交易共犯）——<strong>无论真假都不能碰</strong>；②"老师带单""坐庄票"话术的完整剧本是：小群晒盈利截图→拉你进"核心群"→荐股小赚建立信任→重仓推荐→暴跌失联，这是杀猪盘的标准流程（完整识别方法见<a href="../13-fraud/">第13章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">《中华人民共和国证券法》（中国政府网检索，现行有效版本）与《中华人民共和国刑法》第180条</a> · <a href="https://www.csrc.gov.cn/">证监会官网"行政处罚决定"栏目（内幕交易、市场操纵案件通报）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、消息面陷阱：你的信息来源决定了你的命运</h2>
+    <p class="chapter-sub">散户的信息劣势不只是"慢半拍"，而是"整条链都是设计好的"</p>
+
+    <article class="view">
+      <h3>"利好出尽是利空"：价格早已包含公开信息</h3>
+      <p class="ctx">有效市场假说（Fama，2013 年诺贝尔经济学奖）的核心洞见是：证券价格会迅速反映公开可得的信息。这意味着当你从财经新闻、短视频、股吧里看到"重大利好"时，这个信息大概率早已反映在此前的价格里——追进去买到的不是利好，是别人等利好兑现的出货窗口。这解释了散户的经典困惑："为什么我一买就跌、一卖就涨？"不是你被针对了，而是<strong>你接收信息的时点，天然处于传导链的末端</strong>：信息从知情者→机构→媒体→大众逐层扩散，每一层都提前完成了定价。</p>
+      <p class="ctx">需要说明：有效市场假说存在学术争议（行为金融学证明价格会系统性偏离价值，Fama 与 Shiller 同获 2013 年诺奖正体现了这种张力），但"公开新闻不是超额收益来源"这一点，是各方实证研究少有的共识。普通投资者对新闻的正确用法是<strong>理解宏观与行业背景</strong>（见<a href="../17-macro/">第17章</a>），而不是当作买卖信号。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fama, "Efficient Capital Markets", Journal of Finance, 1970（英文，有效市场假说原始文献） · 诺贝尔奖委员会 2013 年经济学奖官方说明（英文，nobelprize.org） · Malkiel《漫步华尔街》（商业书籍，标注：🏷）</div>
+    </article>
+
+    <article class="view">
+      <h3>股吧、短视频与"荐股大师"：整条流量链都在收割你</h3>
+      <p class="ctx">围绕散户的信息焦虑，存在完整的灰色产业链：<strong>非法荐股</strong>——无证券投资咨询执业资格的"老师""大师"在社交平台、直播、付费群里提供具体买卖建议，这本身违反证券法关于投资咨询业务持牌经营的规定；<strong>流量收割</strong>——财经大 V 的"实盘""复盘"内容以带货、卖课、引流开户提成为目的，观点对错与其收入无关；<strong>杀猪盘</strong>——从婚恋交友切入建立信任，再引导至虚假"投资平台"充值，账户里的数字从来不是真股票（该类平台资金直接进入骗子账户，识别与报案流程见<a href="../13-fraud/">第13章</a>）。</p>
+      <p class="ctx">三条自保规则：①查验资质——合法的证券投资咨询机构与人员名录可在证监会官网查询，不在名录里的"老师"一律视为骗子；②凡是承诺收益、拉你进"内部群"、让你下载不明 App 转账的，直接拉黑——正规机构不会这样展业；③记住信息不对称的铁律：<strong>真能稳定赚钱的方法，没有人会免费或廉价地告诉陌生人</strong>。</p>
+      <div class="fig"><img src="../assets/img-09-2.png" alt="信息传导链示意：信息从中心节点逐层向外扩散，每经过一层价格上涨一步，最外层的散户在最高价接棒"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（证券期货经营机构名录查询；"非法证券活动风险警示"专栏）</a> · <a href="https://www.mps.gov.cn/">公安部官网（国家反诈中心：虚假投资理财类诈骗预警提示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、杠杆：收益的放大器，也是出局的加速器</h2>
+    <p class="chapter-sub">融资融券的机制、维持担保比例与强制平仓——看懂"被踢出局"是怎么发生的</p>
+
+    <article class="view">
+      <h3>融资融券是什么：向券商借钱买股（融资）或借股卖出（融券）</h3>
+      <p class="ctx"><strong>融资</strong>是散户最常用的杠杆：你有 50 万保证金，最多可以再借约 50 万买入股票（杠杆比例受监管规则与券商风控约束，融资保证金比例不得低于监管下限），持仓总市值 100 万。股价涨 10%，你的本金收益是 20%——杠杆把收益翻倍；股价跌 10%，你的本金亏 20%，同时利息照付。<strong>融券</strong>则是借入股票卖出、等下跌后买回归还，用于做空，券源稀缺、成本高，散户实际使用很少。</p>
+      <p class="ctx">关键机制是<strong>维持担保比例</strong>＝（现金＋持仓市值）÷（借款＋利息），低于券商警戒线（合同通常约定在 130%-150% 区间，以你签署的合同为准）会被要求追加保证金，跌破平仓线且未及时补足，券商有权<strong>强制平仓</strong>——按市价不计成本地卖出你的股票还债。强平的残酷之处在于：它发生在你最亏、市场最恐慌的时刻，卖在最低点，且你从此失去"等回本"的资格。杠杆投资者不是被波动打败的，是被"波动+时间限制"联合打败的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会《证券公司融资融券业务管理办法》（官网"法律法规"栏目检索）</a> · <a href="https://www.sse.com.cn/">上交所"融资融券"专栏（业务规则与投资者适当性要求）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>场外配资：违法的杠杆，血本无归的杠杆</h3>
+      <p class="ctx">比两融更危险的是<strong>场外配资</strong>：配资公司通过分仓系统出借 3-10 倍资金，宣传"低门槛、高杠杆、一键操盘"。它的三重风险：①<strong>违法</strong>——证券法要求融资融券业务必须由持牌券商经营，场外配资被监管明确定性为非法证券活动；②<strong>平仓线更狠</strong>——高杠杆下维持担保比例极脆弱，跌 5%-10% 即被强平，本金瞬间归零；③<strong>资金安全无保障</strong>——你的钱进入配资方控制的账户，对方跑路、账户被冻结时，维权极其困难。2015 年股市异常波动后，监管部门对场外配资进行了全面清理，但其以"股票配资""实盘借贷"名义在网络上仍有变异存在。</p>
+      <blockquote class="q">手算杠杆风险：100 万自有资金，3 倍杠杆买入 400 万股票。股价下跌 20% → 持仓市值 320 万，还掉 300 万借款与利息后剩约 18 万——<strong>股价只跌了两成，本金亏掉八成以上</strong>；下跌 25% 则本金归零。这就是杠杆的算术，没有侥幸空间。<span class="qsrc">示例数字仅为讲解原理（未计利息与平仓时点滑点）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（场外配资违法定性与清理整顿通报；"非法证券活动"风险警示）</a> · <a href="https://www.gov.cn/">《中华人民共和国证券法》关于融资融券业务持牌经营的规定（中国政府网检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、普通人的理性姿势：如果仍要参与，请把纪律写在前面</h2>
+    <p class="chapter-sub">仓位、预期、工具、退出——四件事在开户前就想清楚</p>
+
+    <article class="view">
+      <h3>仓位纪律：股票仓位的上限由"你输得起多少"决定</h3>
+      <p class="ctx">第一条纪律是钱的属性：<strong>只有长期（5-10 年以上）用不到的闲钱才能进股市</strong>——首付、学费、医疗备用金、应急资金（见<a href="../03-budget/">第3章</a>）一股都不能碰。第二条是比例上限：经典的生命周期法则是"股票类资产占比随年龄递减"（如"100 减年龄"的粗略参考，非官方标准），本质逻辑是年轻人有人力资本对冲（未来工资流），可以更激进；临近退休者输不起本金，必须降杠杆降波动。第三条是个股集中度：单一个股不超过股票仓位的较小比例（分散化原理见<a href="../06-invest/">第6章</a>），承认自己没有识别"十倍股"的信息优势。</p>
+      <p class="ctx">还有一个容易被忽视的纪律：<strong>先写下退出规则再买入</strong>——什么情况下卖（基本面恶化？估值极端？需要用钱？），什么情况坚决不卖（单纯下跌不是卖出理由，否则就是把波动变成了永久损失）。没有退出规则的买入，等于没有目的地的航行。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.investor.org.cn/">中国投资者网"资产配置"投教专栏</a> · 《投资学》（博迪等著，大学教材，生命周期配置章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>承认能力边界：借道基金不是认输，是选择对自己有利的战场</h3>
+      <p class="ctx">如果读完前六节你的结论是"我在个股上没有优势"，那么正确的动作不是离开股市，而是<strong>换一个不需要个股优势的方式参与</strong>：通过公募基金（尤其是宽基指数基金）持有市场整体，赚取经济增长与企业盈利的平均回报，把选股问题交给制度而非个人英雄主义。指数基金费率低、透明、天然分散，长期数据表明多数主动资金跑不赢它（见<a href="../08-fund/">第8章</a>）——这不是鸡汤，是 SPIVA 报告十几年的一致结论。</p>
+      <p class="ctx">如果仍想直接参与个股，给自己立三条硬规矩：①用不超过股票仓位一小部分的"学习资金"练手，把它当学费预算；②每笔交易前写一句话说明买入理由，三个月后回看这些理由的兑现率；③每月记录一次持仓与情绪（贪婪/恐惧自评），对照<a href="../16-behavioral/">第16章</a>的偏差清单自查。<strong>能被记录、被复盘的行为才可能被改进</strong>——这是所有交易者的共同起点。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.investor.org.cn/">中国投资者网"基金投资"投教专栏</a> · S&P Dow Jones Indices, SPIVA Scorecard（英文，主动基金长期跑输指数的持续证据）</div>
+    </article>
+
+    <article class="view">
+      <h3>出了事找谁：投资者保护的官方渠道</h3>
+      <p class="ctx">中国资本市场的投资者保护有明确的官方体系：<strong>12386 中国证监会服务平台</strong>——受理投资者的投诉、举报、咨询，是维权第一入口；<strong>中证中小投资者服务中心</strong>（投服中心）——提供纠纷调解、支持诉讼，并创造了"特别代表人诉讼"机制：由投服中心代表全体适格投资者起诉，"默示加入、明示退出"，财务造假案的受损散户无需自己打官司即可能获赔（证监会官网有典型案例通报）；<strong>证券纠纷调解组织</strong>——各地设有调解中心，成本远低于诉讼；<strong>12345 与司法途径</strong>——对券商服务纠纷、合同纠纷可依次升级。</p>
+      <p class="ctx">维权的前提是证据：开户合同、交易记录、聊天记录、宣传材料（承诺收益的截图尤其关键）都要留存。特别提示：<strong>参与非法平台（虚假盘、场外配资、境外无牌券商）的"投资"损失，法律性质是受骗而非证券投资亏损</strong>，应第一时间拨打 110 或 96110 报案，走反诈通道（见<a href="../13-fraud/">第13章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（12386 服务平台介绍；投资者保护局栏目）</a> · <a href="https://www.investor.org.cn/">中国投资者网（维权渠道与特别代表人诉讼投教材料）</a> · <a href="https://www.mps.gov.cn/">公安部国家反诈中心（虚假投资平台报案指引）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>交易成本与分红税：摩擦成本是散户最容易忽略的隐形损耗</h3>
+      <p class="ctx">很多人只盯着涨跌，从不计算"每一次买卖到底交了多少钱"。A 股的交易成本由四块组成：<strong>佣金</strong>（券商收取，双向，费率市场化、可以谈，监管要求不得高于上限且需明示；单笔常有最低收费）；<strong>印花税</strong>（国家税收，目前仅在卖出时单边征收，税率以财政部、税务总局现行规定为准，历史上曾多次调整以调节市场）；<strong>过户费</strong>（中国结算收取，沪深均已双向、费率极低）；<strong>规费与经手费</strong>（交易所收取，通常并入佣金打包）。单看一次交易，成本似乎只有千分之几；但把它放进高频交易的行为模式里，结论完全反转。</p>
+      <blockquote class="q">手算示例：10 万元本金，单次往返（买+卖）综合成本按 0.15% 估算约 150 元。若每周全仓换手一次，一年 50 次往返，交易成本 = 150 × 50 = 7500 元，占本金 7.5%——这意味着你的选股必须先跑赢 7.5% 的摩擦损耗才谈得上赚钱，而前文实证研究显示，多数散户的选股本身就跑不赢指数。<strong>频繁交易的双重惩罚：既承担了更高的判断错误率，又支付了更高的摩擦成本。</strong><span class="qsrc">示例数字仅为讲解原理，实际费率以券商公示与监管规定为准</span></blockquote>
+      <p class="ctx"><strong>分红与税</strong>：上市公司现金分红要缴纳个人所得税，但税率与持股期限挂钩（差别化征收：持股超过一年免征，一个月至一年、一个月以内分档递增，以财政部、税务总局、证监会联合文件为准）——这条规则的立法意图就是鼓励长期持有、抑制炒短。此外要理解<strong>除权除息</strong>机制：分红当日股价相应扣减，"分红"不等于凭空多出的钱，它是把你左口袋（股价）的钱放进右口袋（现金）再按期限计税；把"高股息"简单理解为"额外收益"是概念错误，股息回报的真实来源是公司盈利。摩擦成本与税制合在一起给出的行为指引高度一致：<strong>降低换手、拉长持有期限，既是学术证据支持的胜率策略，也是税务规则明示的省钱策略。</strong>如果你发现自己控制不住"手痒"想频繁操作，回到<a href="../16-behavioral/">第16章</a>的行为金融框架：那不是盘感，是过度自信偏差在替你下单；给自己立一条机械纪律——比如每年只允许两次调仓，并且每次调仓前写下书面理由存档备查，三个月后回头看这些理由的命中率，你会更相信规则而不是直觉，把冲动关进规则的笼子。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（证券交易印花税与上市公司股息红利差别化个人所得税政策检索）</a> · <a href="https://www.sse.com.cn/">上海证券交易所官网（交易费用与除权除息规则栏目）</a> · Barber & Odean (2000)，Trading Is Hazardous to Your Wealth（过度交易显著拉低净收益的实证经典）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">把最流行的五个股市说法放到证据面前过一遍</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于股票的五个流行说法</h3>
+      <p class="ctx"><strong>谣言一："看K线、学技术指标就能稳定赚钱。"</strong>——技术分析的证据基础薄弱：学术研究对"价格动量"等少数现象有过讨论，但绝大多数图形形态在严格检验下不具备稳定超额收益；且公开方法的套利会使信号迅速衰减。监管的风险警示材料一贯将"技术指标稳赚"类宣传列为非法荐股话术特征。真相：技术分析至多是风控参考，绝不是收益来源。<br>
+      <strong>谣言二："股市就是赌场，普通人碰不得。"</strong>——把整个市场等同于赌场，忽视了股票回报的根基是企业盈利与分红（第一节）。赌场是纯负和博弈，股市整体是正和（企业创造价值）+参与者之间的零和再分配。真相：无序投机的散户行为确实像赌博，问题出在玩法而不是工具。<br>
+      <strong>谣言三："低价股便宜、安全，翻倍的容易。"</strong>——股价高低取决于总股本的切分方式，3 元的股票可以比 300 元的贵得多（看的是估值不是单价）；A 股低价股大量集中于基本面恶化、面临面值退市风险的标的，注册制下"炒低价博重组"的旧逻辑已被退市常态化击穿。真相：低价不等于低估，更不等于低风险。<br>
+      <strong>谣言四："跌了就补仓摊薄成本，总会回本。"</strong>——摊薄成本改变不了买入决策错误的本质；对基本面恶化的标的持续补仓，是把小错误滚成大窟窿（处置效应的反面——抱住输家不放）。真相：补仓的前提是买入理由依然成立且估值更有吸引力，"跌了"本身不是理由。<br>
+      <strong>谣言五："跟着主力/庄家有肉吃。"</strong>——所谓"跟庄"信息要么是编造的（诱导接盘），要么涉及内幕交易违法（第四节）；操纵市场的"庄家"本身是执法打击对象。真相：散户能跟的唯一"主力"，是经济长期增长这条大船。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网投资者保护与非法证券活动风险警示专栏</a> · <a href="https://www.sse.com.cn/">上交所投资者教育（退市制度与低价股风险材料）</a> · Lo, Mamaysky & Wang, "Foundations of Technical Analysis", Journal of Finance, 2000（英文，技术分析统计检验的代表研究）</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 本章自测（能讲给别人听，才算真学会）</h4>
+      <ul>
+        <li>买入一只股票后，你依法拥有哪三项核心权利？为什么说债权人比股东先拿钱？</li>
+        <li>股票的长期回报由哪三块构成？哪一块来自公司真实创造的价值？</li>
+        <li>全面注册制对普通投资者的三个直接含义是什么？</li>
+        <li>用"回本年数"解释市盈率：PE=20 倍是什么意思？为什么必须结合利润增速看？</li>
+        <li>"低 PE 陷阱"和"价值陷阱"分别指什么？</li>
+        <li>"七亏二平一赚"是官方统计吗？学术研究中散户跑输市场的主要原因是什么？</li>
+        <li>为什么"你一买就跌"？用信息传导链解释。</li>
+        <li>内幕交易与操纵市场的法律后果分别是什么？群里的"内部消息"为什么碰不得？</li>
+        <li>维持担保比例跌破平仓线会发生什么？为什么强平总发生在最低点？</li>
+        <li>场外配资的三重风险是什么？它和券商两融的本质区别在哪？</li>
+        <li>手算：100 万本金加 3 倍杠杆，股价跌 25% 时本金还剩多少？</li>
+        <li>什么样的钱才能进股市？"100 减年龄"规则的逻辑是什么？</li>
+        <li>为什么借道指数基金参与市场，对多数人是更优解？</li>
+        <li>遭遇证券纠纷的官方维权渠道有哪几个？号码是多少？</li>
+        <li>买了虚假投资平台亏了钱，为什么应该打 110/96110 而不是 12386？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>股票＝公司所有权凭证（收益权/表决权/剩余分配权）；长期回报＝分红＋盈利增长＋估值变化，前两块才是真价值；A股＝沪深北三家交易所＋全面注册制＋退市常态化；"七亏二平一赚"非官方统计，但学术证据支持"无纪律的散户大概率跑输"；PE＝静态回本年数，低估值≠会涨；投资赚企业的钱、投机赚对手的钱（负和）；内幕交易与操纵市场是犯罪，"内部消息"真假都不能碰；公开利好早被定价，别当传导链末端的接棒者；杠杆放大收益更放大出局风险，场外配资违法且血本无归；仓位纪律＝只用长期闲钱＋先写退出规则；能力边界内的正解是借道指数基金；维权记住 12386、投服中心、110/96110（涉诈骗）。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-fund/"><span class="dir">← 第8章</span>基金：普通人参与市场的正规军通道</a>
+    <a href="../10-house/"><span class="dir">第10章 →</span>房子：最大的资产与最大的负债</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 第9章 · 依据《中华人民共和国证券法》、中国证监会全面注册制改革文件与行政处罚通报、上交所/深交所交易规则、SPIVA 报告及 Barber & Odean 等同行评审研究整理 · 内容更新至 2026 年 10 月 · 本章不构成投资建议</p>
+  <p>本站仅供金融知识教育参考 · 高收益意味着高风险 · 遭遇诈骗请拨打 110 或 96110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

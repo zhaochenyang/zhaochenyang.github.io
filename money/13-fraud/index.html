@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 防骗：电诈、非法集资与庞氏骗局 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:var(--accent-deep);border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 第13章 · 风险与守护</div>
+  <h1>防骗：电诈、非法集资与庞氏骗局</h1>
+  <p>官方公布的高发骗局逐个拆：话术特征、心理机关、拆解动作；非法集资的四要件识别、庞氏骗局的数学必然、被骗后的黄金补救——守住钱比赚到钱更急</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../12-retire/">← 第12章：养老规划</a>
+    <a href="../14-family/">第14章：家庭财务 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">电诈全景</a>
+    <a class="anchor" href="#s2">高发类型</a>
+    <a class="anchor" href="#s3">非法集资</a>
+    <a class="anchor" href="#s4">庞氏与P2P</a>
+    <a class="anchor" href="#s5">黄金补救</a>
+    <a class="anchor" href="#s6">受害者心理</a>
+    <a class="anchor" href="#s7">家庭防骗</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为金融知识科普，内容依据国家法律、官方通报与监管部门风险提示整理，仅供教育参考；骗局手法持续演变，以公安部、国家反诈中心与金融监管部门的最新发布为准。<strong>遭遇诈骗请立即拨打 110，或致电全国反诈预警劝阻专线 96110</strong>；疑似非法集资可向地方金融管理部门举报。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出《反电信网络诈骗法》给你的三层保护和 96110 的用途；②逐个识别刷单返利、虚假投资理财、杀猪盘、冒充公检法、冒充客服、贷款代办等高发骗局的话术特征与拆解动作；③用官方"四要件"判断一个项目是不是非法集资；④手算庞氏骗局为什么必然崩盘，从此对"保本高息"免疫；⑤知道被骗后的黄金补救顺序（止付、报案、留证）；⑥理解受害者心理，不指责家人，并学会用不居高临下的方式和父母谈防骗。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章建议全家一起读，尤其第二节和第七节；读完把"红旗信号自查表"（第九节）截图存进家庭群。骗局的杀伤力不在复杂，而在"你没想过它会轮到你"——本章的任务就是让你把每种骗法预先在脑子里过一遍，形成免疫记忆。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、电诈全景：它已经是"第一大犯罪类型"量级的威胁</h2>
+    <p class="chapter-sub">先看官方态度与制度武器，再逐个拆骗法</p>
+
+    <article class="view">
+      <h3>为什么防骗是财商课的一部分</h3>
+      <p class="ctx">前面十二章教你把钱管住、让钱增值；这一章只有一个任务：<strong>别让人把钱骗走</strong>。公安部口径下，电信网络诈骗案件在刑事立案中的占比多年持续上升，是发案增长最快的犯罪类型之一；单案损失从几千元到数百万元都有，且受害者横跨所有学历、年龄与收入层。对个人财务而言，一次被骗的损失往往等于十年储蓄的成果——<strong>防骗是收益率最高的"理财"</strong>：避开一次 20 万的损失，相当于 100 万本金安全增值 20%。</p>
+      <p class="ctx">骗局虽多，底层逻辑高度一致：利用你对<strong>权威</strong>（公检法、监管部门、专家）、对<strong>利益</strong>（高息、返利、内幕）、对<strong>情感</strong>（恋人、老乡、"客服"的体贴）和对<strong>恐惧</strong>（涉案、征信受损、账户冻结）的反应。本章第二节起逐个拆类型，第六节专门讲这些心理机关——先记住一句总纲：<strong>凡是催你"快、瞒、转"的，都是骗局</strong>（催你快、让你瞒着家人、诱导你转账）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mps.gov.cn/">公安部（历年电信网络诈骗打击治理情况通报）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（官方预警与骗法通报平台）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>《反电信网络诈骗法》：2022 年起，防骗有了专门法</h3>
+      <p class="ctx">2022 年 9 月通过、同年 12 月 1 日起施行的<strong>《中华人民共和国反电信网络诈骗法》</strong>是我国第一部反电诈专门法律。它把反诈从"警方事后打击"升级为"全链条事前治理"：<strong>电信治理</strong>（实名登记、异常卡号监测、改号电话拦截）、<strong>金融治理</strong>（银行账户与支付账户实名制、异常交易监测与延迟到账、涉诈资金紧急止付）、<strong>互联网治理</strong>（APP、域名、账号涉诈监测处置），并明确了对"帮信"行为（出售出借电话卡、银行卡，为诈骗提供技术支持与引流）的法律责任。</p>
+      <p class="ctx">这部法和你直接相关的几点：①银行对异常转账有权核实、延迟甚至拦截——所以银行柜员"多问几句"是在履行法定职责，别嫌烦；②你的银行卡、电话卡、支付账号<strong>绝不可出租出借出售</strong>，否则可能构成帮助信息网络犯罪活动罪（"帮信罪"已是起诉人数居前的罪名，最高检历年通报口径），大学生与求职者是高危人群；③被骗资金的追缴返还有了明确法律通道。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">《中华人民共和国反电信网络诈骗法》全文（国家法律法规数据库检索）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（"帮信罪"案件办理情况通报）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>96110 与国家反诈中心 APP：官方给你的两件防具</h3>
+      <p class="ctx"><strong>96110 是全国统一的反诈预警劝阻专线</strong>：它打给你，说明你或你的家人<strong>正在</strong>被骗子接触（警方监测到你与涉诈号码通话、访问涉诈网址等），请务必接听——公安部多次提示，96110 来电不接、劝阻不听的案例中损失率显著更高。它也可以用于咨询"这个情况是不是诈骗"。注意与 110 的分工：<strong>96110 管预警劝阻与咨询，110 管报警处置</strong>；已经转账被骗，第一时间打 110。</p>
+      <p class="ctx"><strong>国家反诈中心 APP</strong>（公安部刑事侦查局开发）提供四项核心功能：诈骗预警（对涉诈来电、短信、APP、网址实时拦截提示）、快速举报、身份核实（验证对方账号是否涉诈）、骗局曝光（官方骗法案例库）。建议全家安装并<strong>开启"来电预警"权限</strong>；它拦截的每一个电话，都可能是一次未遂的转账。老人机用户至少做到：把 96110 存入通讯录、大额转账前先给子女打个电话。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心官网（APP 功能与下载渠道说明）</a> · <a href="https://www.mps.gov.cn/">公安部（96110 预警劝阻专线官方说明）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、高发类型逐个拆：话术特征 · 为什么信 · 怎么拆</h2>
+    <p class="chapter-sub">国家反诈中心历年通报的高发骗法，每种给一套"识别—拆解"动作</p>
+
+    <article class="view">
+      <h3>刷单返利类：发案量最大的"入门骗局"</h3>
+      <p class="ctx"><strong>话术特征</strong>：以"兼职点赞、关注、垫资刷销量，日结高薪"引流（常见于短信、群聊、短视频评论区）；先让你做几单小额任务并<strong>秒返本金加佣金</strong>建立信任；随后诱导下载专用 APP，任务升级为大额"连单""组合单"；当你投入几千上万后，系统提示"操作失误、账户冻结"，要求继续充值解冻——直到你掏空为止。<strong>为什么信</strong>：前几单是真的返钱（骗子的诱饵成本），加上"沉没成本"心理让你舍不得撤。</p>
+      <p class="ctx"><strong>怎么拆</strong>：记住官方定性——<strong>所有刷单都是违法行为</strong>（虚假交易违反《反不正当竞争法》，组织者可能构成非法经营类犯罪），"合法兼职"根本不存在刷单这个品类；凡是"先垫资后返利""做任务需充值"的兼职，一律拉黑。正规兼职通过用人单位直接结算，不需要你先掏一分钱。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（刷单返利类诈骗预警通报）</a> · <a href="https://www.mps.gov.cn/">公安部刑侦局（十大高发电信网络诈骗类型官方盘点）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>虚假投资理财类：损失金额最大的"专业骗局"</h3>
+      <p class="ctx"><strong>话术特征</strong>：通过"股神直播间""荐股群""理财大师一对一"引流，晒盈利截图与"内部渠道"；诱导下载<strong>非应用商店的 APP 或点击链接开户</strong>，入金后账户里数字飞涨（后台可随意改数），小额提现成功一次以巩固信任；加大投入后无法提现，客服以"缴税、保证金、解冻费"名义要求继续打款。<strong>为什么信</strong>：伪装极其专业——有"分析师"、有直播、有K线图，且早期"提现成功"让你验证了"这是真的"。</p>
+      <p class="ctx"><strong>怎么拆</strong>：三个铁律——①<strong>查牌照</strong>：在中国境内从事证券期货基金业务必须持证监会颁发的许可证，可在中国证监会官网"合法机构名录"与<strong>中国证券业协会、中国证券投资基金业协会官网</strong>查询机构与人员执业资格；查不到的，无论包装多专业都是假的。②<strong>查账户</strong>：正规投资入金进入银行第三方存管账户或机构对公账户，<strong>凡是让你转账到个人银行卡或来路不明的对公账户，100% 是骗局</strong>。③记住<a href="../09-stock/">第9章</a>的话："大师"若真能稳定高收益，早已闷声发财，不需要拉你入伙赚你的本金。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.csrc.gov.cn/">中国证监会（合法机构名录与非法证券活动风险提示）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（虚假网络投资理财类诈骗预警）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>杀猪盘：感情与理财的复合骗局，单案损失常达数十万</h3>
+      <p class="ctx"><strong>话术特征</strong>：始于婚恋网站、社交 APP 的"完美对象"——形象好、事业有成、体贴入微，数周内迅速升温确立关系（养猪）；随后"不经意"透露自己有<strong>投资内幕、系统漏洞、博彩规律</strong>，先带你小赚（喂糖）；等你投入积蓄甚至借贷入金后，人号两空（杀猪）。<strong>为什么信</strong>：情感依赖让人关闭怀疑——"他/她怎么会骗我"，且骗局周期长达数月，骗子有充分时间打磨人设。</p>
+      <p class="ctx"><strong>怎么拆</strong>：给所有网恋立一条硬规则——<strong>未在线下长期真实相处前，谈钱即拉黑</strong>。具体信号：从不视频或视频极少且画质可疑（盗用他人影像）、拒绝线下见面总有理由、话题总绕向投资/博彩/加密货币、"带你赚钱"。验证动作：反向搜索对方照片（图片溯源）、要求实时视频并做指定动作、告诉一两位亲友让局外人把关——骗子最怕的不是你怀疑，而是你把关系"晒"到阳光下。被骗后除报警外，保留全部聊天记录与转账凭证（见第五节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（"杀猪盘"类诈骗专题预警）</a> · <a href="https://www.mps.gov.cn/">公安部（跨境电信网络诈骗犯罪集团打击通报，涉婚恋交友类）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>冒充公检法：利用恐惧的"剧本杀"</h3>
+      <p class="ctx"><strong>话术特征</strong>：来电自称公安局、检察院、法院或医保、银行工作人员，报出你的姓名、身份证号（个人信息已被非法获取），声称你"涉嫌洗钱/诈骗/医保违规"，出示伪造的"通缉令""警官证"（网页或图片）；要求你<strong>保密（不许告诉任何人）、独处、开启屏幕共享、把资金转入"安全账户"验资</strong>，或索取银行卡号、密码、验证码。<strong>为什么信</strong>：对公权力的天然敬畏＋精准报出个人信息＋制造的时间压力（"今天不配合就抓你"）。</p>
+      <p class="ctx"><strong>怎么拆</strong>：官方铁律背下来——<strong>公检法机关不会电话办案，不存在"安全账户"，不会线上出示通缉令，更不会索要密码和验证码</strong>。任何自称公检法要求转账/屏幕共享的，直接挂断，然后拨打 110 或到就近派出所当面核实。屏幕共享＝把手机完全交给对方（验证码尽收眼底），对陌生人开屏幕共享等于交出钱包钥匙。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mps.gov.cn/">公安部（"冒充公检法"诈骗官方防范提示：三个"绝不会"）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（冒充类诈骗案例库）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>冒充客服退款与"关闭百万保障"：购物时代的日常陷阱</h3>
+      <p class="ctx"><strong>话术特征</strong>：自称电商或快递客服，准确报出你的订单信息（数据泄露所致），称"商品质量问题可双倍理赔""误将你设为代理商/会员，每月自动扣费需取消""你的微信支付'百万保障'已到期，不关闭将扣费"；随后引导你<strong>下载会议软件屏幕共享、点开钓鱼链接填银行卡、或在借贷平台借款"走流水验证"</strong>。<strong>为什么信</strong>：订单信息全对＋"退款/取消扣费"是为你好的姿态＋对自动扣费的恐慌。</p>
+      <p class="ctx"><strong>怎么拆</strong>：①正规退款<strong>原路退回</strong>，永远不需要你"操作验证"、不需要屏幕共享、更不需要你借款；②所谓"百万保障"本身是支付平台的免费功能，<strong>不存在"到期扣费、需要关闭"</strong>（官方多次辟谣）；③任何客服来电，挂断后从官方 APP 内联系客服回拨核实——不在对方给的链接、二维码、会议号里操作。一句话：<strong>退款要你掏钱（或掏信用）的，都是诈骗。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（冒充电商物流客服类诈骗预警、"百万保障"骗局辟谣）</a> · <a href="https://www.12377.cn/">中央网信办违法和不良信息举报中心（涉诈 APP 与钓鱼网站举报渠道）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>贷款代办与校园贷变体：专挑缺钱的人下手</h3>
+      <p class="ctx"><strong>话术特征</strong>："无抵押、秒到账、不看征信"的贷款广告；放款前以<strong>"工本费、保证金、解冻费、刷流水、验证还款能力"</strong>等名义要求先转账——钱没借到，先被掏空；或诱导在多个非法平台借贷"以贷养贷"。<strong>校园贷变体</strong>：以"培训贷""美容贷""回租贷（卖手机再租回）"等名义向大学生放款，实际年化利率畸高，暴力催收。监管口径早已明确：<strong>小额贷款公司不得向大学生发放互联网消费贷款</strong>（2021 年五部门通知），未经批准的机构不得对在校学生放贷。</p>
+      <p class="ctx"><strong>怎么拆</strong>：正规贷款的三个特征——<strong>先放款后收费</strong>（任何放款前收费都是诈骗）、<strong>持牌机构经营</strong>（在金融监管部门许可名单内，见<a href="../05-credit/">第5章</a>）、<strong>年化利率明示</strong>（合同必须载明 APR，见第5章算法）。缺钱时的正确顺序：先算清真实资金缺口与还款能力，再走银行与持牌机构的正规渠道；"以贷养贷"是通向债务危机的滑梯（自救路径见<a href="../05-credit/">第5章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局（关于规范大学生互联网消费贷款、防范"培训贷"等风险提示）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（贷款代办类诈骗预警）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>新型马甲：AI 换脸、虚拟货币与"数字人民币"名义</h3>
+      <p class="ctx">骗术随技术升级：①<strong>AI 换脸与拟声</strong>——用深度伪造视频/语音冒充亲友、领导借钱（已有判例与官方通报）。拆解动作：涉及转账的"熟人"请求，<strong>挂断后用你通讯录里原有的号码回拨</strong>，或约定只有家人知道的暗语验证；②<strong>虚拟货币名义</strong>——"稳定币理财""矿机托管""链上套利"，我国官方口径明确：虚拟货币相关业务活动属于<strong>非法金融活动</strong>（2021 年十部门通知），所谓虚拟币投资平台不受任何保护，且是洗钱重灾区；③<strong>"数字人民币"名义</strong>——冒充官方推广"数字人民币内测、充值返利"，数字人民币由人民银行发行、通过运营机构办理，<strong>不存在"内测返利"</strong>。</p>
+      <p class="ctx">通用原则不变：新名词不是新机会，而是新马甲。任何投资标的，先问三个问题——<strong>它由谁监管？牌照在哪查？钱进了谁的账户？</strong>三问有一个答不上来，就走人（识别框架详见<a href="../06-invest/">第6章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/">人民银行等十部门《关于进一步防范和处置虚拟货币交易炒作风险的通知》（2021，中国政府网可检索）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行（数字人民币官方说明：法定数字货币由央行发行、运营机构办理）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（AI 换脸诈骗预警）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、非法集资：官方定义与"四要件"识别</h2>
+    <p class="chapter-sub">它和电诈的区别：电诈是"骗了就跑"，非法集资是"养肥再崩"</p>
+
+    <article class="view">
+      <h3>什么是非法集资：法规原文与四要件</h3>
+      <p class="ctx">《防范和处置非法集资条例》（国务院令第 737 号，2021 年 5 月 1 日施行）给出官方定义：<strong>未经国务院金融管理部门依法许可或者违反国家金融管理规定，以许诺还本付息或者给予其他投资回报等方式，向不特定对象吸收资金的行为</strong>。司法实践中的认定通常看四个要件（最高法司法解释口径）：<strong>①非法性</strong>（未经依法许可或借用合法经营形式吸收资金）、<strong>②公开性</strong>（通过网络、媒体、推介会、传单、口口相传等公开宣传）、<strong>③利诱性</strong>（承诺还本付息或给付回报）、<strong>④社会性</strong>（向不特定对象即社会公众吸收资金）。四条同时具备，基本可断定是非法集资。</p>
+      <p class="ctx">用四要件做"三秒排查"：这个项目<strong>有金融牌照吗</strong>（查金融监管总局、证监会官网名录）？<strong>它是不是在公开拉人头</strong>？<strong>有没有承诺保本付息或固定高回报</strong>？<strong>是不是谁的钱都收</strong>？四问中两问以上踩线，立刻远离。特别提醒：非法集资<strong>不一定一开始就打算骗</strong>——很多项目方"真心想做生意"，但只要向公众承诺保本高息融资，就已经违法，且商业失败时投资者血本无归。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/content/2021-02/10/content_5586369.htm">《防范和处置非法集资条例》（国务院令第 737 号，2021）</a> · <a href="https://www.court.gov.cn/">最高人民法院《关于审理非法集资刑事案件具体应用法律若干问题的解释》（法释口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>官方通报的高发马甲：养老、虚拟货币、消费返利、解债</h3>
+      <p class="ctx">处置非法集资部际联席会议办公室与各地金融管理部门历年通报的高发名义包括：<strong>①养老服务</strong>——以"预售养老床位""养老公寓投资""康养会员费"名义收取大额资金，承诺高息或"入住折扣"，实际资金池运作（多地已判决大案，老年人为主要受害者，详见<a href="../15-kids/">第15章</a>）；<strong>②虚拟货币与"区块链"</strong>——发行空气币、假交易所、"链改"概念；<strong>③消费返利</strong>——"购物全返""消费即投资"，用后来者的钱返还先前消费者，本质仍是资金池；<strong>④"解债服务"</strong>——声称能帮你化解债务、修复征信，先收高额"服务费"，官方明确提示此类均为骗局（征信修复本身不存在收费合法渠道，见<a href="../05-credit/">第5章</a>）；⑤假冒"国家政策"——伪造"乡村振兴""共同富裕""数字中国"文件拉投资。</p>
+      <p class="ctx">共同特征只有一个：<strong>承诺保本＋高息（或高额回报）＋向公众收钱</strong>。马甲年年换，特征从不变。查询渠道：地方金融管理局官网的风险提示专栏、"处非联办"通报、国家金融监督管理总局官网——投钱之前花十分钟搜一搜"项目名＋非法集资/风险提示"，是最便宜的尽调。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局（处置非法集资部际联席会议风险提示专栏）</a> · <a href="https://www.gov.cn/zhengce/content/2021-02/10/content_5586369.htm">《防范和处置非法集资条例》（对"养老服务""消费返利"等名义的处置口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>残酷但必须知道：参与非法集资，损失自己承担</h3>
+      <p class="ctx">《防范和处置非法集资条例》第二十五条明确：<strong>因参与非法集资受到的损失，由集资参与人自行承担</strong>。也就是说：处置程序会尽力追赃挽损（查封、扣押、冻结涉案资产并按比例清退），但<strong>国家不兜底、财政不买单</strong>；而此类案件的资产清退率，从历年大案看通常只能覆盖本金的一小部分。这条规定的政策意图不是冷漠，而是把"投资要自负"的责任边界说清楚——高息的诱惑背后，是没有任何制度为你托底。</p>
+      <p class="ctx">由此推出防非的两条纪律：①<strong>只和持牌机构打交道</strong>：存款找银行（且有存款保险，见<a href="../04-saving/">第4章</a>）、证券基金走持牌机构官方渠道、保险找持牌保险公司（牌照均可在监管官网查询）；②<strong>任何"稳赚"承诺都是违法信号本身</strong>——因为合法机构被监管禁止承诺保本保收益（资管新规打破刚性兑付，见<a href="../07-bank/">第7章</a>），敢承诺的恰恰是监管之外的资金池。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/content/2021-02/10/content_5586369.htm">《防范和处置非法集资条例》第二十五条（损失自担条款）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局（"守住钱袋子·护好幸福家"防非宣传月官方材料）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、庞氏骗局的数学必然与 P2P 的教训</h2>
+    <p class="chapter-sub">为什么"保本高息"在数学上就活不下去</p>
+
+    <article class="view">
+      <h3>手算庞氏骗局：承诺月息 10%，资金链什么时候断</h3>
+      <p class="ctx">庞氏骗局的定义特征：<strong>不靠真实盈利，用后来投资者的本金支付先前投资者的利息</strong>。用数学看它为什么必然崩盘——假设平台吸收 100 万元，承诺月息 10%，无真实收益：</p>
+      <blockquote class="q">
+        <p>第 1 个月需付利息 10 万元→必须新募至少 10 万；第 2 个月存量 110 万需付 11 万→新募门槛逐月按 1.1 倍复利抬升；第 12 个月需付约 31 万、第 24 个月需付约 98 万、第 36 个月需付约 309 万……若还要满足随时赎回，新增资金需求更大。要维持两年，累计新募资需达初始规模的数倍；一旦新增放缓（市场饱和、口碑逆转、监管介入），当月利息付不出，挤兑开始，数周内全盘崩塌。</p>
+        <span class="qsrc">教学示例：等比增长模型（月息 10% 时利息支出按 1.1ⁿ 增长）；真实案例见官方通报的历年非法集资大案</span>
+      </blockquote>
+      <p class="ctx">结论：<strong>承诺的利率越高，崩盘来得越快</strong>——月息 10% 撑不过三年，年化 15% 以上的"理财"同样撑不过一轮周期。这就是"高收益意味着高风险"的数学版：收益若来自真实经营，没有任何合法生意能稳定支撑两位数无风险回报；收益若不来自经营，就只能来自下一个人的本金。<strong>看穿庞氏骗局不需要金融知识，只需要小学乘法。</strong></p>
+      <div class="fig">
+        <img src="../assets/img-13-1.png" alt="庞氏骗局金字塔结构正在崩塌的概念插画：琥珀金色调，金币堆砌的金字塔下层出现裂缝并散落，抽象几何风格，无人物面部">
+        <div class="cap">插画 · AI 生成 —— 庞氏金字塔：用后来者的砖，垫先前者的塔，塌只是时间问题</div>
+      </div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：等比数列与资金池模型（数学通识）· <a href="https://www.nfra.gov.cn/">国家金融监督管理总局（非法集资案件中"借新还旧"资金池模式的官方定性）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对照基准：正规金融的收益率坐标长什么样</h3>
+      <p class="ctx">给"高不高"一个坐标系（数字为撰写时的量级口径，以官方实时数据为准）：银行存款与货币基金——年化 1%—2% 量级；储蓄国债——2% 上下；银行 R2 级理财与纯债基金——近年年化多在 2%—4% 区间波动且<strong>不保本</strong>；长期股票类资产的全球历史均值——年化 7%—10%，但单年可能 −30%。<strong>任何宣称"保本"且年化超过 6% 的产品，在这个坐标系里找不到合法位置</strong>——这正是那句被反复引用的官方警示的由来：时任银保监会主席郭树清在 2018 年陆家嘴论坛提示，理财产品收益率超过 6% 就要打问号，超过 8% 就很危险，10% 以上就要准备损失全部本金。</p>
+      <p class="ctx">使用方法：听到任何收益率，先放进坐标系——它比国债高几倍？高出来的部分靠什么赚？说不清利润来源的收益率，来源就是你的本金。这套"收益来源三问"（谁在付钱、为什么付、凭什么持续）值得贴在家庭理财的首页（<a href="../06-invest/">第6章</a>风险收益铁律、<a href="../16-behavioral/">第16章</a>为什么人会选择性忽视这三个问题）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行（存款利率与国债发行利率官方发布）</a> · 郭树清 2018 年陆家嘴论坛演讲（原银保监会官网有实录，现国家金融监督管理总局网站可检索）</div>
+    </article>
+
+    <article class="view">
+      <h3>P2P 的教训：一次全民参与的金融实验</h3>
+      <p class="ctx">P2P 网络借贷 2013—2015 年爆发式生长，高峰期平台约五六千家（行业与监管通报口径），宣称"银行存管、小额分散、信息中介"。2018 年起集中爆雷，到 <strong>2020 年 11 月中旬，全国实际运营的 P2P 网贷机构由峰值约 5000 家完全归零</strong>（银保监会官方宣布）——数千万出借人的资金损失成为一代人的金融记忆。教训三条：①<strong>"银行存管"不等于安全</strong>——存管只管资金流向合规，不担保项目真实与兑付能力，当时大量广告故意混淆两者；②<strong>信息中介变信用中介就是资金池</strong>——平台自融、期限错配、假标自担保，全都踩中非法集资特征；③<strong>监管套利窗口期的"创新"，风险不会消失只会延后集中爆发</strong>。</p>
+      <p class="ctx">P2P 之后，同类逻辑换了马甲继续出现：伪"助贷"、伪"供应链金融"、伪"元宇宙地块"。识别方法没变：<strong>看它有没有牌照、资金进谁的账户、收益从哪来</strong>。对普通人的制度性保护也在加强——金融业务"必须持牌经营"已是监管铁律（金融业务全纳入监管，无例外），所以"无牌而高息"六个字本身就是判决书。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/xinwen/2020-11/27/content_5564863.htm">中国银保监会（2020 年 11 月宣布全国实际运营 P2P 网贷机构完全归零，中国政府网新闻）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局（金融业务持牌经营与互联网贷款监管规则）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、已经转了账：黄金补救顺序</h2>
+    <p class="chapter-sub">被骗后的头一小时，决定资金追回的概率</p>
+
+    <article class="view">
+      <h3>三步走：止付、报案、留证</h3>
+      <p class="ctx"><strong>第一步：立刻拨打 110（或 96110）申请紧急止付。</strong>公安机关与银行之间有涉诈资金紧急止付机制：报案越早，骗子还没把钱转走（拆分、洗钱通常需要时间）的概率越大，冻结追回的可能越高——警方提示以"分钟"计，不要"先自己找找看""怕丢人等天亮"。<strong>第二步：到公安机关做正式笔录</strong>，取得受案回执；涉案账户被冻结的，后续按《反电信网络诈骗法》与相关规定走资金返还程序。<strong>第三步：完整保存证据</strong>——转账记录（银行/支付平台电子回单）、聊天记录（不要删除、不要拉黑对方以免丢失上下文）、对方账号信息（银行卡号、手机号、社交账号、APP 名称与下载链接）、通话记录。</p>
+      <p class="ctx">同时做两件事保护自己：①若泄露过银行卡密码/验证码，立即挂失换卡、修改各平台密码；②若被诱导开通过贷款，联系持牌机构说明情况并保留被骗证据（涉刑案件中的债务处理可咨询律师与办案机关）。<strong>心理建设也重要</strong>：被骗是犯罪受害，不是"蠢"——及时报案既为自己止损，也为警方提供线索、阻止下一个人受害。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mps.gov.cn/">公安部（电信网络诈骗案件报案与紧急止付官方指引）</a> · <a href="https://flk.npc.gov.cn/">《反电信网络诈骗法》（涉诈资金紧急止付与返还的法律依据，国家法律法规数据库检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>警惕二次诈骗："帮你追回资金的人"也是骗子</h3>
+      <p class="ctx">官方多次通报的"维权追回"类二次诈骗：受害者在网上搜索"被骗了怎么追回钱"，遇到自称<strong>"网警""黑客""维权律师""清退回款专员"</strong>的人，声称有内部渠道追回资金，先收"技术费、保证金、解冻费"，或诱导点击"回款登记"钓鱼链接再盗刷一轮。识别要点：<strong>公安机关办案不收费，不会通过 QQ/微信/网站私聊办案</strong>；网络上主动联系你、承诺"百分百追回"的，全部是骗子。P2P 清退期还出现过"官方回款群"骗局：伪造清退文件，要求先缴税/先充值才能"回款"——正规清退由处置部门公告并通过法院执行款账户发放，绝不会要你先掏钱。</p>
+      <p class="ctx">正确姿势只有一条：<strong>一切进展只通过 110/办案单位官方渠道核实</strong>。已遭遇二次诈骗的，同样立即报案——两案可并案处理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（"虚假维权/追回资金"类二次诈骗预警）</a> · <a href="https://www.mps.gov.cn/">公安部（网警不会网上办案的官方声明）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、为什么聪明人也会被骗：受害者心理学</h2>
+    <p class="chapter-sub">不是智商问题，是心理机制被精准利用</p>
+
+    <article class="view">
+      <h3>骗子针对的六个心理按钮</h3>
+      <p class="ctx">犯罪心理学与反诈宣传材料归纳的共同机制：①<strong>权威服从</strong>——冒充公检法、监管、专家，触发"服从权威"的自动反应（社会心理学家米尔格拉姆的经典实验早已证明人对权威的服从程度远超自我认知）；②<strong>稀缺与紧迫</strong>——"名额只剩一个""今天不办就冻结"，压缩你的思考时间，让系统 1（直觉）代替系统 2（理性）做决定（<a href="../16-behavioral/">第16章</a>）；③<strong>互惠与信任投资</strong>——先给你小利（刷单返利、杀猪盘的体贴、免费礼品），触发"回报对方"的心理负债感；④<strong>承诺一致性</strong>——你已投入的钱和已承认的身份（"我是来做兼职的"）让你倾向继续投入以证明自己没错；⑤<strong>社会认同</strong>——群里的"托"都在晒收益，"这么多人赚到钱总不会是假的"；⑥<strong>情感缺口</strong>——孤独、婚恋焦虑、对家人的牵挂，是杀猪盘与养老诈骗的入口。</p>
+      <p class="ctx">关键结论：<strong>受骗风险与智商、学历、财富不相关，与"当下处境是否命中按钮"相关</strong>——失业中的人遇到"高薪兼职"、单身的人遇到"完美恋人"、老人遇到"贴心客服"、企业主遇到"过桥资金"。这也是为什么"我绝不会被骗"本身就是最大的风险因子（过度自信偏差，见<a href="../16-behavioral/">第16章</a>）：骗术是工业化迭代的产物，而你的警惕是一次性的。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（诈骗心理与防范技巧官方科普）</a> · Stanley Milgram 服从实验、Robert Cialdini《影响力》六原则（社会心理学经典，标注为学术/商业出版物）</div>
+    </article>
+
+    <article class="view">
+      <h3>高危人群画像：给全家对号入座</h3>
+      <p class="ctx">官方通报与案例数据反复印证的高危画像：<strong>①年轻人（18—35 岁）</strong>——发案占比最高，集中于刷单、游戏交易、贷款代办、杀猪盘（"我没什么钱"不构成免疫：贷款类骗局骗的是你的信用额度）；<strong>②老年人</strong>——损失金额占比最高，集中于养生保健、养老服务、"以房养老"、冒充子女熟人（孤独＋信息差＋积蓄，三重暴露，详见<a href="../15-kids/">第15章</a>）；<strong>③财务人员与企业主</strong>——冒充老板 QQ 指令转账、虚假对公业务，单案金额巨大；<strong>④宝妈与待业人群</strong>——"在家兼职"话术的精准目标；⑤<strong>情感空窗期人群</strong>——杀猪盘的目标库。</p>
+      <p class="ctx">家庭防护的组织学做法：把"高危画像"当作<strong>体检表</strong>而不是笑话——家里谁正处于画像中的状态（刚退休、刚失业、刚分手、刚卖房有现金），谁就需要更多关注与更严格的"大额转账冷静机制"（见下一节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mps.gov.cn/">公安部刑侦局（高发诈骗类型与受害人群画像通报）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（分人群防骗指南：学生、老年人、财务人员专篇）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、家庭防骗：制度比叮嘱有用</h2>
+    <p class="chapter-sub">把防线做成家庭财务的基础设施，而不是每次靠嘴提醒</p>
+
+    <article class="view">
+      <h3>家庭防骗的四层基础设施</h3>
+      <p class="ctx"><strong>①工具层</strong>：全家安装国家反诈中心 APP 并开启预警；老人手机开启骚扰电话拦截（运营商免费服务）；支付平台设置转账限额与延迟到账（大额转账 24 小时到账功能，为撤销争取时间——各银行/支付机构均提供设置入口）。<strong>②制度层</strong>：家庭约定"大额转账冷静规则"——单笔超过约定金额（如 5000 元）转给陌生人前，必须和一个家人通气；这不是不信任，是双签制度（<a href="../14-family/">第14章</a>会把这条写进家庭财务会议）。<strong>③知识层</strong>：每季度家庭群转发一次官方最新骗法（国家反诈中心案例库直接转发，不用自己编）；重点人群（刚退休的父母）针对性讲养老类骗局。<strong>④资产层</strong>：家庭大额资产不过度集中于老人单一账户（骗子瞄准的是"能独立支配大额资金的人"），重要账户信息全家知情（<a href="../14-family/">第14章</a>的知情权机制）。</p>
+      <p class="ctx">四层里最有效的是<strong>制度层</strong>：叮嘱会被忘记，工具会被关掉，但"转账前跟家人说一声"这个动作一旦成为家规，就能在骗子制造的信息茧房上凿开一个洞——所有骗术都要求你保密，而保密恰恰是家规禁止的。</p>
+      <div class="fig">
+        <img src="../assets/img-13-2.png" alt="家庭防骗盾牌概念插画：琥珀金色调，一面盾牌守护着代表家庭账户的抽象图形，盾牌上有警示雷达波纹，扁平插画风格，无人物面部无文字">
+        <div class="cap">插画 · AI 生成 —— 家庭防线：工具、制度、知识、资产四层叠成的盾牌</div>
+      </div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（APP 预警功能与家庭防范建议）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行（支付账户转账限额与延迟到账设置的官方说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>怎么劝爸妈：不居高临下的沟通术</h3>
+      <p class="ctx">对父母说"你别上当了"通常无效，甚至起反作用（触发逆反与自尊防御，沟通原理见沟通专题）。更有效的做法：<strong>①借助权威而不是借助你</strong>——转发警方通报、社区反诈讲座、银行柜员的提示（"警察说的""银行说的"比"儿子说的"有分量）；<strong>②讲案例不讲道理</strong>——"隔壁小区王阿姨被养老公寓骗了 30 万"比任何风险理论都有效（叙事优于论证）；<strong>③给操作不给禁令</strong>——帮他们把 APP 装好、把 96110 存进通讯录、把"转账前给我打个电话"约定成"我需要你帮我把关"（让他们感到被需要而非被管制）；<strong>④管好情感缺口</strong>——老人被"贴心客服""干儿子"攻破的根源常是孤独；增加真实陪伴，是成本最高的投入，也是最深的防线（老年金融守护的完整方案见<a href="../15-kids/">第15章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（老年人防骗官方指引与案例）</a> · 适老化沟通方法参考大众心理学读物（标注为商业出版物框架）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：防骗话题的五个错觉</h2>
+    <p class="chapter-sub">错误的安心感，比无知更危险</p>
+
+    <article class="view">
+      <h3>谣言粉碎：这些"安全感"都是假的</h3>
+      <p class="ctx"><strong>①"我没钱，骗子看不上我。"</strong>错。发案量最大的刷单返利起步只需几十元；贷款类骗局骗的是你的<strong>信用额度</strong>——没存款的人被诱导网贷后，背上的债比存款多得多；"帮信罪"盯上的正是出租银行卡赚"小钱"的人。没钱不是护身符，反而是某些骗局的精准筛选条件。</p>
+      <p class="ctx"><strong>②"我学历高/懂金融，不会被骗。"</strong>错。受害者画像横跨所有学历（官方通报中硕博、金融从业者、程序员案例并不罕见）；虚假投资理财骗局恰恰偏爱"懂一点"的人——半懂的人更容易被专业话术说服（过度自信偏差，见<a href="../16-behavioral/">第16章</a>）。骗局攻击的不是知识，是处境与情绪。</p>
+      <p class="ctx"><strong>③"银行存管/大平台背书＝安全。"</strong>错。P2P 时代"银行存管"广告铺天盖地，存管只管资金通道合规，<strong>不担保项目真实、更不担保兑付</strong>（见第四节）。判断安全只看一件事：机构是否持牌、业务是否在牌照范围内。</p>
+      <p class="ctx"><strong>④"被骗了找黑客/网警能追回。"</strong>错，且会二次被骗。追回只有官方渠道：110 报案＋紧急止付＋司法程序（见第五节）。网上所有"专业追回"都是二次诈骗。</p>
+      <p class="ctx"><strong>⑤"接 96110 电话的是骗子。"</strong>错到危险。96110 是官方反诈预警劝阻专线，它来电说明你正被骗子接触；真正的骗子<strong>不可能</strong>用 96110 给你打电话。把 96110 存入通讯录并告诉父母：这个号码来电，必须接。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjfzzx.cn/">国家反诈中心（96110 专线说明与常见防骗误区辟谣）</a> · <a href="https://www.mps.gov.cn/">公安部（受害人群画像与"帮信罪"案例通报）</a> · <a href="https://www.gov.cn/xinwen/2020-11/27/content_5564863.htm">银保监会 P2P 归零通报（"存管≠安全"的制度教训）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自查与自测</h2>
+    <p class="chapter-sub">把本章变成全家的免疫接种</p>
+
+    <div class="checklist">
+      <h4>📋 家庭防骗红旗自查（对照最近一个月的经历）</h4>
+      <ul>
+        <li>有没有陌生人让你下载过应用商店之外的 APP，或点击来路不明的链接？</li>
+        <li>有没有人向你承诺"保本"且年化超过 6% 的任何"投资/理财/项目"？</li>
+        <li>有没有"客服"要求你屏幕共享、提供验证码，或让你先借款再"走流水"？</li>
+        <li>有没有自称公检法的人提到"安全账户""保密办案"？</li>
+        <li>有没有网聊对象开始带你"投资/博彩/买币"？</li>
+        <li>有没有兼职要求你先垫资、先充值、先交保证金？</li>
+        <li>父母最近有没有提过"养老公寓""高息理财""干儿子/贴心客服"？</li>
+        <li>全家是否已安装国家反诈中心 APP 并开启预警？96110 是否已存入通讯录？</li>
+        <li>家里有没有约定"大额转账前和家人通气"的规则？支付延迟到账设置了吗？</li>
+        <li>你的银行卡、电话卡、支付账号有没有出借、出售给任何人（含"跑分兼职"）？</li>
+      </ul>
+      <h4>🧠 理解性自测（讲给家人听试试）</h4>
+      <ul>
+        <li>"凡是催你快、瞒、转的都是骗局"——三种催法各对应骗子的什么目的？</li>
+        <li>非法集资四要件是哪四个？用它们排查一个你见过的"项目"。</li>
+        <li>为什么《防范和处置非法集资条例》规定损失由参与人自担？这条对你选择机构有什么指导？</li>
+        <li>月息 10% 的平台，为什么两年内必然崩盘？用等比增长讲一遍。</li>
+        <li>收益率坐标系：国债、存款、理财、股票的量级各是多少？"保本年化 12%"该放在哪？</li>
+        <li>P2P"银行存管"为什么救不了它？判断机构安全真正要看什么？</li>
+        <li>被骗后的三步顺序是什么？为什么第一步是打 110 而不是找银行理论？</li>
+        <li>为什么"维权黑客能追回资金"必然是二次诈骗？</li>
+        <li>骗子利用的六个心理按钮，说出至少四个，并各配一个拆招。</li>
+        <li>劝父母防骗的四个技巧是什么？为什么"讲案例"比"讲道理"有效？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>防骗总纲＝凡是催你"快、瞒、转"的都是骗局；制度武器＝《反电信网络诈骗法》（2022）＋96110 预警专线＋国家反诈中心 APP（来电必接、全家安装）；高发类型＝刷单返利（发案最多）、虚假投资理财（损失最大）、杀猪盘（情感＋投资复合）、冒充公检法（三个"绝不会"：不电话办案、无安全账户、不要密码验证码）、冒充客服退款（正规退款原路退回）、贷款代办（放款前收费即诈骗）、AI 换脸与虚拟币马甲（十部门定性虚拟币业务为非法金融活动）；非法集资＝四要件（非法性、公开性、利诱性、社会性），官方通报马甲：养老服务/消费返利/解债服务/假冒国家政策，铁律：参与非法集资损失自担；庞氏骗局＝用后来者本金付先前利息，数学上必然崩盘（收益来源三问：谁付钱、为什么付、凭什么持续）；收益坐标＝保本超 6% 打问号、8% 很危险、10% 以上准备损失全部本金（郭树清 2018 官方警示）；P2P 教训＝存管≠安全、无牌高息即判决书；被骗补救三步＝立即 110 紧急止付→正式报案留回执→完整留证，警惕"维权追回"二次诈骗；受害者心理六按钮（权威/稀缺/互惠/一致/认同/情感）——被骗与智商无关，与处境有关；家庭防线四层＝工具＋制度（大额转账双签家规）＋知识＋资产分散。
+  </div>
+
+  <nav class="pager">
+    <a href="../12-retire/"><span class="dir">← 第12章</span>养老规划：三支柱与你的养老金缺口</a>
+    <a href="../14-family/"><span class="dir">第14章 →</span>家庭财务：夫妻、婚姻与传承</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 第13章 · 依据《中华人民共和国反电信网络诈骗法》（2022 年施行）、《防范和处置非法集资条例》（国务院令第 737 号，2021）、最高人民法院非法集资刑事司法解释、公安部与国家反诈中心历年预警通报、银保监会 P2P 网贷风险专项整治归零通报（2020）及人民银行等十部门虚拟货币风险处置通知（2021）整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供金融知识教育参考，不构成投资建议 · 高收益意味着高风险 · 遭遇诈骗请立即拨打 110 或 96110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第16章 行为金融：你的大脑如何亏掉你的钱 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:#92400e;border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);font-size:13px;letter-spacing:.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 第16章 · 认知升级</div>
+  <h1>行为金融：你的大脑如何亏掉你的钱</h1>
+  <p>两位诺贝尔奖得主的发现：人不是理性的经济人——尤其在钱面前。每个偏差，配一个反偏差动作</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../15-kids/">← 第15章：子女财商与老人守护</a>
+    <a href="../17-macro/">第17章：宏观经济常识 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">两个系统</a>
+    <a class="anchor" href="#s2">前景理论</a>
+    <a class="anchor" href="#s3">价格感知</a>
+    <a class="anchor" href="#s4">市场行为</a>
+    <a class="anchor" href="#s5">时间偏差</a>
+    <a class="anchor" href="#s6">信息偏差</a>
+    <a class="anchor" href="#s7">反偏差清单</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自查自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为金融知识教育内容，仅供学习参考，不构成投资建议，不推荐任何具体产品、机构或证券。文中涉及的收益、比例等数字均为讲解原理的示例，以官方实时数据与研究原文为准。<strong>高收益意味着高风险</strong>；遇到可疑投资骗局，请拨打 <strong>110</strong> 或反诈专线 <strong>96110</strong>。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用 Kahneman 的"双系统"解释自己为什么明知道该长期持有却拿不住；②说出前景理论的三个核心（参考点、损失厌恶、确定性效应）以及它们如何制造"割肉在地板上、满仓在山顶上"；③逐一识别十个最常见的认知偏差：锚定、框架、心理账户、羊群、过度自信、处置效应、沉没成本、双曲贴现、确认偏误、后见之明；④给每个偏差配一个可执行的"反偏差动作"；⑤明白行为金融的正确用法是"防自己"和"防被利用"，而不是"预测别人去收割"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章是全课程的"内功心法"——前面十五章教的工具再好，被偏差劫持的手也握不住。建议第一遍通读，之后把第七节的"反偏差动作清单"打印或截图，贴在电脑旁；每次做超过月收入 10% 的财务决策前，对照清单过一遍。读完本章再回头看<a href="../09-stock/">第9章</a>的散户收益数据和<a href="../13-fraud/">第13章</a>的骗局设计，你会突然发现：骗子和市场，利用的是同一批心理漏洞。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、两个系统：快思考和慢思考</h2>
+    <p class="chapter-sub">你亏钱，往往不是"想错了"，而是"根本没想"——系统1替你做了决定</p>
+
+    <article class="view">
+      <h3>Kahneman 的双系统：大脑的自动挡与手动挡</h3>
+      <p class="ctx">2002 年诺贝尔经济学奖得主丹尼尔·卡尼曼（Daniel Kahneman，心理学家出身）在《思考，快与慢》中给出了理解一切财务错误的总框架：人的大脑有两套决策系统。<strong>系统1</strong>是"快思考"——自动、直觉、毫不费力：看到 2+2 就知道是 4，看到愤怒的脸就知道危险，看到账户飘红就心里一紧。<strong>系统2</strong>是"慢思考"——刻意、逻辑、耗费精力：算 17×24 要动笔，比较两份保险合同条款要逐行读，判断一只股票贵不贵要翻财报。问题在于：系统1 全天候在线且反应极快，系统2 又懒又贵——大脑为了省能量，默认让系统1 先给出答案，系统2 往往只是"批准"而不是"审核"。</p>
+      <p class="ctx">这套分工在草原上躲狮子时是救命的，在金融市场里却是灾难性的：市场恰恰是"直觉最不可靠"的领域——K线图的形态让你"感觉"要涨（系统1），恐惧的下跌让你"感觉"必须跑（系统1），而真正正确的决策（估值、配置、纪律）全都需要吃力地启动系统2。<strong>所谓投资纪律，本质上就是一套强制启动系统2 的程序</strong>：写下来的规则、事先设定的条件、冷静期的等待——都是为了在你"感觉"最强烈的时候，把方向盘从系统1 手里抢回来。</p>
+      <div class="fig"><img src="../assets/img-16-1.png" alt="一个大脑分成左右两半的抽象示意：左半是闪电符号代表的快速直觉区，右半是齿轮与天平代表的慢速思考区，中间一道闸门"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/">诺贝尔奖官网：2002 年经济学奖授予 Daniel Kahneman（英文）</a> · 《思考，快与慢》（Kahneman, 2011，商业书籍框架，标注为书籍观点）</div>
+    </article>
+
+    <article class="view">
+      <h3>"经济人"假设的破产：行为经济学为什么能拿诺奖</h3>
+      <p class="ctx">传统经济学的大厦建立在"理性人"假设上：人知道自己要什么、能算清得失、始终选择效用最大化。而卡尼曼与阿莫斯·特沃斯基（Amos Tversky）从 1970 年代开始的实验研究系统性地证明：<strong>真实的人稳定地、可预测地"不理性"</strong>——而且错得有规律。这个"有规律"非常关键：如果人是随机犯错，市场会自动纠错；但人是在同样的场景下犯同样的错，于是错误会被市场放大成泡沫与踩踏，也会被商家和骗子批量利用。</p>
+      <p class="ctx">这条研究路线先后拿下多个诺贝尔经济学奖：2002 年卡尼曼（把心理学洞见引入经济学）、2013 年席勒（Robert Shiller，证明市场存在非理性繁荣）、2017 年塞勒（Richard Thaler，"心理账户"与"助推"理论）。行为金融学由此成为显学。对普通人的意义只有一句话：<strong>你不需要成为经济学家，但你需要知道自己大脑的"bug 清单"</strong>——因为市场上的每一个对手方（机构、商家、骗子）都比你更早背熟了这张清单。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2017/thaler/facts/">诺贝尔奖官网：2017 年经济学奖授予 Richard Thaler（英文）</a> · <a href="https://www.nobelprize.org/prizes/economic-sciences/2013/shiller/facts/">诺贝尔奖官网：2013 年经济学奖授予 Robert Shiller（英文）</a> · <a href="https://www.csrc.gov.cn/">证监会官网（投资者保护教育中对"理性投资"与认知偏差的提示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、前景理论：损失厌恶如何扭曲一切</h2>
+    <p class="chapter-sub">同样是一万块，丢掉它的痛苦约是捡到它的快乐的两倍——这个不对称，是散户亏钱的第一引擎</p>
+
+    <article class="view">
+      <h3>前景理论三件套：参考点、损失厌恶、确定性效应</h3>
+      <p class="ctx">卡尼曼与特沃斯基 1979 年发表于《Econometrica》的"前景理论"（Prospect Theory: An Analysis of Decision under Risk）用实验推翻了"期望效用理论"，核心发现有三条。<strong>①参考点依赖</strong>：人评价得失，不是看绝对财富，而是看相对于某个"参考点"的变化——同一份月薪 8000 元，从 6000 涨上来的人觉得是赚，从 12000 降下来的人觉得是亏；你买股票的"成本价"就是最顽固的参考点，尽管市场根本不关心你的成本。<strong>②损失厌恶</strong>：等量的损失带来的痛苦，约为等量收益带来的快乐的 2 到 2.5 倍（实验测得的系数因情境而异）——这解释了为什么人会为了"不亏"做出极不划算的决策：死拿亏损股不肯止损（卖出=把浮亏变实亏=承认损失）、为省 20 元运费绕路半小时。<strong>③确定性效应</strong>：人对"确定的小收益"的偏爱远超概率权重——"100% 拿 3000 元"比"80% 拿 4000 元"更有吸引力，尽管后者期望值更高；这正是各种"保本保息""稳赚不赔"话术（全是违规的，见<a href="../13-fraud/">第13章</a>）的心理引力来源。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kahneman & Tversky (1979), Prospect Theory: An Analysis of Decision under Risk, <em>Econometrica</em> 47(2)（英文，经典文献） · <a href="https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/">诺贝尔奖官网 2002 年经济学奖官方介绍（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>损失厌恶在市场的经典形态：割肉在地板上，满仓在山顶上</h3>
+      <p class="ctx">把三件套放进股市，就能解释散户最痛的行为模式。市场下跌时：亏损越来越深，损失厌恶让人拒绝卖出（"不卖就不算亏"）；跌到最深处、账户缩水过半、恐惧终于压过厌恶，割肉——往往割在底部区域。市场上涨时：早期不敢买（怕接盘），眼看天天涨、身边人都在赚（参考点被抬高、FOMO 启动），终于重仓杀入——往往买在顶部区域。事后看，这套行为的净值曲线就是"高买低卖"；但身处其中的每一步，都是系统1 在损失厌恶驱动下的"合理"反应。<strong>这就是为什么"低买高卖"这四个字人人会写，做到的人凤毛麟角——它要求你在每个当下都对抗自己的神经回路</strong>。</p>
+      <p class="ctx">反偏差动作：把决策从"当下"移到"事前"。①买入前写下"卖出条件"（达到目标估值卖、逻辑破坏卖、纪律止损线），条件触发时执行不讨论；②用定期定额（定投）把"择时"从人手里拿走——定投的本质不是收益最优，而是<strong>用制度废掉你的情绪投票权</strong>（定投的原理与局限见<a href="../08-fund/">第8章</a>）；③减少看盘频率：研究表明，查看账户越频繁，感受到的波动痛苦越多，决策质量越差——因为短期波动里亏损时刻远多于盈利时刻的"体感"（Benartzi & Thaler 的"短视性损失厌恶"研究，英文）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Benartzi & Thaler (1995), Myopic Loss Aversion and the Equity Premium Puzzle, <em>Journal of Finance</em>（英文） · <a href="https://www.csrc.gov.cn/">证监会官网（投资者教育：理性投资与长期投资理念宣传）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>可手算示例：损失厌恶的不对称账单</h3>
+      <blockquote class="q">
+        <strong>亏 50% 之后，需要赚多少才回本？</strong><br>
+        本金 10 万元，跌 50% 剩 5 万。从 5 万回到 10 万，需要上涨 <strong>100%</strong>。<br>
+        同理：跌 20% 需要涨 25% 回本；跌 30% 需要涨约 42.9%；跌 70% 需要涨 233%。<br>
+        <strong>结论：亏损的伤害是不对称的——跌得越深，回本越难，且难度加速上升。</strong>这就是"控制回撤"比"抓住大涨"更重要的数学原因，也是分散化（见<a href="../06-invest/">第6章</a>）与止损纪律的价值所在。（示例仅为算术演示，不构成任何操作建议）
+        <span class="qsrc">回本涨幅 = 跌幅 ÷ (1 − 跌幅)，可自行验算</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（投资者教育专栏·风险与收益基础）</a> · Markowitz (1952) 组合选择理论（回撤控制与分散化的学术源头，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、价格感知的偏差：锚定、框架与心理账户</h2>
+    <p class="chapter-sub">同一个数字，换个说法、换个参照、换个口袋，你的决定就完全不同——商家对此比你熟</p>
+
+    <article class="view">
+      <h3>锚定效应：第一个数字劫持了你的估值</h3>
+      <p class="ctx">特沃斯基与卡尼曼 1974 年的"幸运轮盘"实验发现：先让人转一个动了手脚的轮盘（停在 10 或 65），再问"非洲国家占联合国席位比例是多少"——看到 10 的人平均估 25%，看到 65 的人平均估 45%。<strong>一个明知无关的随机数字，都能拉动判断</strong>，这就是锚定效应。商业世界里锚无处不在：商品的"原价 999、现价 299"（999 是锚，让你觉得赚了，尽管你可能根本不知道它值多少）；谈判中对方先报的价（先出价者设定了战场）；理财销售口中的"去年客户都拿到了 8%"（历史收益成为你对未来的锚，而历史收益不预示未来，这句免责声明是有原因的）。</p>
+      <p class="ctx">反偏差动作：①购物大额决策前，先自己独立估一个"我认为它值多少"，再去看标价——顺序反了，锚就先入为主；②谈判与砍价时，若对方先报了离谱的价，明确"拒绝入锚"（"这个价格和我们的讨论基础差太远，我们重新从需求出发"）；③对任何"原价"保持怀疑：查历史价格、查同类比价，让锚变成你自己核实过的数字。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Tversky & Kahneman (1974), Judgment under Uncertainty: Heuristics and Biases, <em>Science</em> 185（英文，经典文献） · 《思考，快与慢》（Kahneman, 2011，商业书籍，锚定章节，标注为书籍观点）</div>
+    </article>
+
+    <article class="view">
+      <h3>框架效应："90% 存活率"和"10% 死亡率"是同一件事，但你不这么觉得</h3>
+      <p class="ctx">经典实验：面对同一种治疗方案，被告知"术后一个月存活率 90%"的患者，选择手术的比例显著高于被告知"术后一个月死亡率 10%"的患者——两个说法在数学上完全等价，但前者被系统1 编码为" gain 框架"（安全），后者为" loss 框架"（危险）。金融场景里，框架是销售的武器："预期年化 6%"（框架：确定、温和）与"可能亏损 20% 的波动资产"（同一产品的另一面）唤起完全不同的感受；"每天只需一杯咖啡钱"（框架：小）把一个 20 年期的长期支出合同说成了零钱；"限时加息券"（框架：不领就亏）把"要不要存"偷换成了"要不要占便宜"。</p>
+      <p class="ctx">反偏差动作：养成"翻译"习惯——看到任何金融表述，先翻译成它的反面和绝对数："预期年化 6%"→"最大可能亏多少？合同里怎么写亏损情形？"；"每天一杯咖啡钱"→"总额是多少？期限多长？中途退出什么代价？"；"限时"→"如果这个优惠永远不存在，我还要不要这个产品？"。<strong>凡是只在某一个框架下显得诱人的东西，都值得警惕</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Tversky & Kahneman (1981), The Framing of Decisions and the Psychology of Choice, <em>Science</em> 211（英文） · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（金融产品销售宣传行为规范与风险提示要求）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>心理账户：钱在数学上不分家，在你脑子里分了八个账户</h3>
+      <p class="ctx">2017 年诺奖得主塞勒的"心理账户"（Mental Accounting）理论指出：人会在心里把钱分进不同账户——工资账户（精打细算）、年终奖账户（大手大脚）、彩票中奖账户（挥霍无罪）、股票账户（浮盈是"庄家的钱"敢赌）——尽管钱是等值的，一元就是一元。实验证据：买好电影票后丢了票，多数人不肯再买一张（"电影账户"已支出 200 元，再买等于花 400 看场电影）；但如果丢的是等额的 200 元现金，多数人照样买票——同样的损失，因为记在不同账户里，决策完全不同。</p>
+      <p class="ctx">心理账户有两副面孔。危险的一面：年终奖"来得容易"就乱花（其实那是你用 12 个月劳动换来的钱）；股票浮盈"不是自己的钱"就重仓豪赌（赌场盈利效应）；已经花了的会员费"不花就亏了"就硬消费（沉没成本，见第五节）。但聪明人也能反过来利用它——这是塞勒"助推"（Nudge）思想的家用版：<strong>主动设立"专款账户"，让心理账户为你打工</strong>：工资到账当天自动划转一笔进"储蓄账户"（眼不见为净，不心疼）；设立"教育账户""养老账户"（贴上标签的钱，挪用会有心理阻力）；给孩子设"三罐法"账户（见<a href="../15-kids/">第15章</a>）。既然脑子非要分账户，那就让它分到你想要的方向。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2017/thaler/facts/">诺贝尔奖官网：Richard Thaler 获奖官方介绍（含心理账户理论，英文）</a> · Thaler (1985), Mental Accounting and Consumer Choice, <em>Marketing Science</em>（英文） · 《"错误"的行为》（Thaler, 2015，商业书籍，标注为书籍观点）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、市场行为的偏差：羊群、过度自信与处置效应</h2>
+    <p class="chapter-sub">这三个偏差联手，制造了"散户总是最后知道消息、最早交出筹码"的经典剧本</p>
+
+    <article class="view">
+      <h3>羊群行为：FOMO 不是性格缺陷，是出厂设置</h3>
+      <p class="ctx">人是社会性动物，跟随多数在进化上是保命策略（大家都跑，你也别站着）。但在市场里，"大家都买"意味着价格已被推高、预期收益被透支，"大家都卖"意味着价格可能已低于价值——<strong>羊群行为让你系统性地买在情绪顶点、卖在情绪谷底</strong>。席勒对"非理性繁荣"的研究（2000 年互联网泡沫、2008 年房地产泡沫）反复证明：泡沫的燃料不是信息，是"别人都赚了"的叙事传染——社交媒体时代，这种传染以小时计。FOMO（Fear of Missing Out，错失恐惧）就是羊群行为的主观体验：看到群里的收益截图，你的心跳加速不是"机会来了"的信号，而是进化出来的从众本能被劫持的信号。</p>
+      <p class="ctx">反偏差动作：①给自己的热情装一个"新闻检验"：一个投资机会如果只能通过"群里/直播间/朋友推荐"知道，而你无法在官方渠道（交易所、监管机构、公司公告）核实其基本逻辑，默认放弃；②设定"冷静期"规则：任何因"看到别人赚钱"而起的买入冲动，强制搁置 72 小时——72 小时后还想买的才是决策，72 小时内消散的是情绪；③记住一个不对称事实：真赚钱的机会不怕你晚三天，怕你晚三天的机会，怕的是你"不赶紧把钱交出来"（这正是<a href="../13-fraud/">第13章</a>骗局的紧迫感设计）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2013/shiller/facts/">诺贝尔奖官网：Robert Shiller 获奖官方介绍（非理性繁荣研究，英文）</a> · <a href="https://www.csrc.gov.cn/">证监会官网（"理性投资 相伴长远"系列投资者教育，对市场跟风行为的提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>过度自信：交易越勤，亏得越多（数据说话）</h3>
+      <p class="ctx">心理学测量显示：约八成司机认为自己的驾驶水平在平均线以上——这在统计上不可能的自评，就是过度自信的直观证据。金融领域的经典研究来自 Barber 与 Odean（2001，"Boys Will Be Boys: Gender, Overconfidence, and Common Stock Investment"，<em>Quarterly Journal of Finance</em>，英文）：对数万个散户账户的分析发现，<strong>交易最频繁的组别，年化收益显著低于交易最不频繁的组别与市场基准</strong>；其中男性平均交易频率比女性高约 45%，而更频繁的交易带来了更低的净收益——过度自信让人高估自己判断的准确性，把"我觉得"当成"我知道"。另一项同系列研究（Barber & Odean 2000）发现，个人投资者买入的股票，在其后一年里的表现平均跑输其卖出的股票——散户不仅择时差，选股方向的自我感觉也系统性偏高。</p>
+      <p class="ctx">过度自信还有一层市场伪装：<strong>事后诸葛偏差（后见之明）会不断喂养它</strong>——每次市场走势出来后，人都倾向于觉得"我早看出来会这样"，于是记忆被反复篡改，自信被反复充值。反偏差动作：①给自己的判断留"决策日志"：买入理由、预期、止损线白纸黑字写下来，三个月后对照原文复盘——这是戳破后见之明的唯一办法，因为纸不会替你改记忆；②数一数自己上个月的交易次数，如果超过 2 次，问自己"我的信息优势是什么"（答不出来，就是过度自信在交易）；③把"我可能是错的"设为默认状态：任何重仓决策，强制自己写出三条"反方理由"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Barber & Odean (2001), Boys Will Be Boys, <em>Quarterly Journal of Finance</em>；Barber & Odean (2000), Trading Is Hazardous to Your Wealth, <em>Journal of Finance</em>（英文，经典文献） · <a href="https://www.csrc.gov.cn/">证监会官网（投资者教育：频繁交易的成本与风险）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>处置效应：为什么你总是"卖掉赚的，死拿亏的"</h3>
+      <p class="ctx">Odean（1998，"Are Investors Reluctant to Realize Their Losses?"，<em>Journal of Finance</em>，英文）对一万个散户账户的研究发现：投资者卖出盈利股票的概率显著高于卖出亏损股票——尽管从税务和动量角度看，这个顺序常常是反的。这个现象叫<strong>处置效应</strong>，机理正是前景理论：浮盈状态下人变得风险厌恶（赶紧落袋为安，怕煮熟的鸭子飞了），浮亏状态下人反而变得风险偏好（赌一把回本，卖了就等于承认自己错了）。注意这个诡异的反转：<strong>损失厌恶不仅让人怕亏，还会让人在亏损后更愿意冒险</strong>——赌场里输红了眼加注的赌徒，和死拿腰斩股票"等回本"的散户，是同一个心理机制。</p>
+      <p class="ctx">更深一层，处置效应的燃料是"成本价锚定"：你的买卖决策围着"我的成本"转，而市场定价围着"资产的未来"转——成本价是你自己的历史，与资产的未来无关。反偏差动作：①决策时强制换位提问："如果我现在空仓，会不会按今天的价格买入这只股票？"——不会买，就没有理由继续拿（这个问题绕开了成本价锚）；②止损线写在买入之前、执行不带讨论；③把"落袋为安"的冲动也规则化：设定分批卖出条件，而不是凭"感觉涨到头了"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Odean (1998), Are Investors Reluctant to Realize Their Losses?, <em>Journal of Finance</em> 53(5)（英文，经典文献） · <a href="https://www.csrc.gov.cn/">证监会官网（投资者保护·卖出决策与持有周期教育）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、时间与成本的偏差：双曲贴现与沉没成本</h2>
+    <p class="chapter-sub">一个让你管不住现在的手，一个让你舍不得过去的钱</p>
+
+    <article class="view">
+      <h3>双曲贴现："先享后付"如何预支你的未来</h3>
+      <p class="ctx">理性的贴现应该是"双曲线越平越好"——今天的一百元和一年后的一百一十元，人应该按统一利率折算。但实验发现人的贴现是"双曲型"的：<strong>对眼前的诱惑严重高估，对遥远的代价严重低估</strong>："今天就要"的权重被放大，"明年还款"的重量被缩小。这就是双曲贴现，也是明知该储蓄却月光、明知该锻炼却躺平、明知分期贵却"先买了再说"的共同引擎。商业世界把它做成了基础设施：先用后付、免息分期（手续费往往就是利息的化名，真实年化利率的算法见<a href="../05-credit/">第5章</a>）、一键下单、刷脸支付——每一个设计都在降低"现在花钱"的摩擦，同时提高"感受未来还款痛感"的门槛。</p>
+      <p class="ctx">反偏差动作：①给大额消费加摩擦（与商家的设计反着来）：超过月收入 5% 的非必需消费，强制放入购物车等待 7 天；②把未来的代价拉到眼前：分期前用 IRR 算出真实年化利率，把"每月 300"翻译成"这笔钱 24 个月后共付多少、如果拿去定投会是多少"（复利对照见<a href="../01-money/">第1章</a>）；③用"预付制"对抗"先享制"：储蓄自动划转发生在工资到账当天（先存后花），而不是月底（先花后存）——把意志力问题改造成流程问题，这正是塞勒"助推"的核心思想。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Laibson (1997), Golden Eggs and Hyperbolic Discounting, <em>Quarterly Journal of Economics</em>（英文） · <a href="http://www.pbc.gov.cn/">中国人民银行官网（《消费者金融素养调查》报告中关于信贷消费与分期成本的提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>沉没成本："来都来了""买都买了"是最贵的两句话</h3>
+      <p class="ctx">经济学的第一课就说：决策只看未来的成本与收益，已经付出且无法收回的成本（沉没成本）不应影响决策。但人做不到——花 200 元买的电影票，电影难看至极，多数人硬着头皮看完（"不看完就白花了"），结果是钱没了、两小时也没了，双输；被套牢 40% 的股票不肯卖（"卖了就真亏了"），是用未来的钱为过去的错误继续买单；办了三年卡只去了两次的健身房，第二年还续费（"前面的钱不能白花"）。<strong>"来都来了""买都买了""都坚持这么久了"——每句话背后都是沉没成本在绑架未来决策</strong>。</p>
+      <p class="ctx">反偏差动作只有一个思维工具，但值得练一辈子：<strong>"归零提问"</strong>——把已经投入的全部清零，问自己："如果我现在是空仓/没买票/没办卡，我会按当前的价格与条件进入吗？"不会，就该退出；退出损失的不是"过去的投入"（那已经损失了），止损挽回的是"未来本可以继续损失的部分"。这个提问在股票上叫成本价脱锚（见上节），在消费上叫及时离场，在人生选择上叫及时止损——换了专业、干了五年的错行业、谈了互相消耗的恋爱，决策逻辑一模一样。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Arkes & Blumer (1985), The Psychology of Sunk Cost, <em>Organizational Behavior and Human Decision Processes</em>（英文，经典文献） · 《思考，快与慢》（Kahneman, 2011，商业书籍，损失厌恶与沉没成本章节，标注为书籍观点）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、信息的偏差：确认偏误、后见之明与荐股群</h2>
+    <p class="chapter-sub">你以为你在研究，其实你在为自己的冲动找弹药；你以为你记得，其实记忆已被结果改写</p>
+
+    <article class="view">
+      <h3>确认偏误：人只看自己想看的证据</h3>
+      <p class="ctx">确认偏误（confirmation bias）是心理学最稳健的发现之一：人倾向于搜索、记住、相信那些支持自己既有观点的信息，同时忽略、贬低、遗忘反面证据。在投资里，它的表现极其标准：看好某只股票后，你的搜索词变成了"XX 股票 利好""XX 公司 前景"（而不是"XX 公司 风险 造假 诉讼"）；股吧里同好的帖子越看越有道理，质疑的帖子一眼扫过"黑子无疑"；重仓之后，你甚至开始为它编故事——持仓改变认知，这是确认偏误的加强版（认知失调理论：人会为了让自己的行动显得合理，而悄悄修改自己的信念）。</p>
+      <p class="ctx">反偏差动作：①<strong>强制反方搜索</strong>：每次研究一个标的，规定自己至少花同样时间搜"风险、质疑、做空报告、诉讼"，把找到的最强反方理由写进决策日志；②<strong>设立"打脸指标"</strong>：买入前写下"出现什么情况证明我错了"（业绩连续两季不及预期、大股东减持、逻辑依赖的政策转向），指标触发就执行离场，不给自己讲故事的机会；③<strong>找真人唱反调</strong>：把买入理由讲给一位和你利益无关、且不持有该资产的朋友听，请 ta 专门挑毛病——一个人研究是确认偏误的温床，被质询过一轮的观点才算经过初步压力测试。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Nickerson (1998), Confirmation Bias: A Ubiquitous Phenomenon in Many Guises, <em>Review of General Psychology</em>（英文，权威综述） · <a href="https://www.csrc.gov.cn/">证监会官网（投资者教育：独立判断与信息来源核实）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>后见之明偏差："我早知道"是记忆在替你的自尊打工</h3>
+      <p class="ctx">后见之明偏差（hindsight bias）由 Fischhoff 在 1970 年代系统研究：事情发生后，人会把"事前的自己"的记忆悄悄改写成"我早就预见到了"。经典实验：让受试者事先估计尼克松访华期间各事件发生的概率，访问结束后再让他们回忆自己当时的估计——回忆值系统性地朝实际结果偏移，仿佛自己从一开始就看透了结局。金融市场是后见之明的重灾区：每一次暴涨暴跌事后都"逻辑清晰"，财经评论员事后都能"复盘出必然性"，你自己也常觉得"当时那么多信号我怎么没看见"——<strong>事实是，事前那些信号淹没在同样多的反向信号里，事后叙事只保留了命中的那几条</strong>。</p>
+      <p class="ctx">它的财务危害有两层。第一层是喂养过度自信：既然"我一直看得准"（被篡改的记忆），下次就敢下更重的注——赌场里"我早就觉得这把会开大"的赌徒，输掉的就是这层幻觉。第二层是毒化复盘：没有真实的事前判断记录，复盘就变成了给结果编故事，你既不知道自己错在哪（因为你"记得"自己是对的），也学不到任何可复用的教训——这就是为什么职业投资机构强制要求决策留痕：投委会纪要、买入备忘录、风控检查单，全部白纸黑字，事后对着原始文件复盘而不是对着记忆复盘。</p>
+      <p class="ctx">反偏差动作：①<strong>决策日志是唯一的解药</strong>——纸不会替你改记忆：每笔超过月收入 10% 的决策，当场写下日期、买入/卖出理由、预期结果、判断置信度（比如"七成把握"）、打脸指标；三个月后对照原文复盘，你会第一次看到自己判断力的真实水平（多数人的第一反应是震惊：原来我事前根本没想清楚，原来我的置信度和准确率完全不匹配）；②听任何"我早就说过"的事后分析时（包括自己嘴里的），自动打对折——事后叙事的信息量约等于零；③复盘时只问"事前的决策质量"，不问"结果好坏"：好决策遇上坏运气仍叫好决策，坏决策碰上好运气是最危险的东西——它会被你的记忆记成"我眼光准"，然后在下一次加倍押注时把本金还回去。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Fischhoff (1975), Hindsight ≠ Foresight: The Effect of Outcome Knowledge on Judgment Under Uncertainty, <em>Journal of Experimental Psychology</em>（英文，经典文献） · 《思考，快与慢》（Kahneman, 2011，商业书籍，后见之明章节，标注为书籍观点）</div>
+    </article>
+
+    <article class="view">
+      <h3>信息茧房与荐股群：当偏差遇到算法和剧本</h3>
+      <p class="ctx">确认偏误是单机版漏洞，互联网给它装上了联网外挂：推荐算法持续投喂你爱看的观点（信息茧房），你的"研究"越来越像照镜子；而"荐股群""老师带单直播间"则是骗子对行为偏差的定向武器——回顾<a href="../13-fraud/">第13章</a>的杀猪盘与非法荐股剧本，你会发现每一步都在打偏差的连招：免费课程建立权威锚（锚定+权威信任）→群里晒收益图制造"大家都在赚"（羊群+幸存者展示，亏损者早被踢出群，你看到的样本是被筛选过的）→限时限额开户（稀缺框架+紧迫感，剥夺系统2 的启动时间）→先让你小赚一笔（确定性效应+"这平台是真的"的错误验证，确认偏误自动替骗子完成背书）→重仓杀入后无法提现（收网）。</p>
+      <p class="ctx">识别这类局的最简判据（官方反诈宣传口径）：①凡是通过社交软件拉群荐股、承诺收益、晒盈利截图的，涉嫌非法证券活动——证券投资咨询是牌照业务，合法机构名单可在证监会官网查询；②凡是让你把钱转入"指定账户""平台充值"而非正规券商三方存管的，100% 是诈骗；③凡是"内幕消息""老师带单"的，要么骗本金，要么骗会员费，没有第三种结局。反偏差动作：把"我需要别人告诉我买什么"这个念头本身当作最高级别的风险警报——它意味着你的系统2 已经外包了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">证监会官网（非法证券活动风险提示与合法机构名录查询入口）</a> · <a href="https://www.gjfzzx.cn/">国家反诈中心（"荐股群""杀猪盘"类型诈骗官方提示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、反偏差动作总清单：一张表带走</h2>
+    <p class="chapter-sub">知道偏差不等于免疫偏差——只有"事前写好的程序"才拦得住"事中上头的手"</p>
+
+    <article class="view">
+      <h3>偏差 × 动作对照表：一张表带走</h3>
+      <p class="ctx">把本章内容压缩成一张对照表。使用方法：做超过月收入 10% 的财务决策前，逐行扫一遍，命中哪条就执行哪条动作。<strong>所有动作的共同原理只有一个：把决策从"情绪现场"转移到"冷静的事前"，用书面程序替代临场判断</strong>——因为临场判断的主导权在系统1 手里，你赢不了它，只能绕开它。</p>
+      <table class="cmp">
+        <tr><th>偏差</th><th>典型现场</th><th>反偏差动作</th></tr>
+        <tr><td>损失厌恶</td><td>跌了死拿、涨了怕回吐</td><td>买入前写好卖出条件与止损线，触发即执行</td></tr>
+        <tr><td>参考点依赖</td><td>"我的成本价是 20 元"</td><td>归零提问：现在空仓会按现价买吗？</td></tr>
+        <tr><td>确定性效应</td><td>"保本保息"话术心动</td><td>记住监管红线：承诺保本高收益即违规，超 6% 打问号</td></tr>
+        <tr><td>锚定效应</td><td>原价 999 现价 299</td><td>先独立估值再看标价；谈判拒绝入锚</td></tr>
+        <tr><td>框架效应</td><td>"每天一杯咖啡钱"</td><td>翻译成绝对数与反面：总额、期限、退出代价、最大亏损</td></tr>
+        <tr><td>心理账户</td><td>年终奖乱花、浮盈豪赌</td><td>反向利用：自动划转+专款账户贴标签</td></tr>
+        <tr><td>羊群行为</td><td>群里都在晒收益</td><td>官方渠道核实+72 小时冷静期；怕你晚三天的都是局</td></tr>
+        <tr><td>过度自信</td><td>"这次我看准了"</td><td>决策日志+数交易次数+强制写三条反方理由</td></tr>
+        <tr><td>处置效应</td><td>卖赚守亏</td><td>归零提问+事前止损线，禁止"再等等"</td></tr>
+        <tr><td>双曲贴现</td><td>先享后付、免息分期</td><td>大额消费 7 天购物车；分期先算 IRR 真实年化</td></tr>
+        <tr><td>沉没成本</td><td>"来都来了、买都买了"</td><td>归零提问：清零后还会进入吗？不会就离场</td></tr>
+        <tr><td>确认偏误</td><td>只搜利好、只信同好</td><td>强制反方搜索+打脸指标+找利益无关者质询</td></tr>
+        <tr><td>后见之明</td><td>"我早知道会这样"</td><td>决策日志当场留痕，对原始文件复盘而非对记忆复盘</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：本章第二至六节所列 Kahneman & Tversky、Thaler、Barber & Odean、Odean、Laibson、Arkes & Blumer、Nickerson 等经典文献（英文） · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（"收益率超 6% 打问号"风险提示口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么"知道"没用：偏差是硬件，动作才是软件</h3>
+      <p class="ctx">必须坦白一个残酷事实：<strong>读完本章并不能让你免疫</strong>。卡尼曼本人在晚年访谈中承认，研究了一辈子偏差，自己的直觉判断几乎没有改善——因为偏差写在神经硬件里，不随知识更新。行为金融给普通人的真正礼物不是"变聪明"，而是"变制度"：知道自己在哪些场景必然犯错，就提前把那些场景的决定权交给规则——定投代替择时、自动划转代替月底储蓄、冷静期代替即时下单、决策日志代替事后回忆、保险与应急金代替赌博式自救（见<a href="../03-budget/">第3章</a>、<a href="../11-insurance/">第11章</a>）。一句话总结本章：<strong>承认自己是普通人，然后用制度把普通人的错误锁在笼子里</strong>。</p>
+      <div class="fig"><img src="../assets/img-16-2.png" alt="一条蜿蜒的轨道上，一个小球被轨道两侧的护栏挡住无法冲出弯道，护栏由写有清单格子的板子构成，轨道尽头是一个存钱罐形状的终点"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：《思考，快与慢》（Kahneman, 2011，商业书籍，"偏差难以通过认知消除"的论述，标注为书籍观点） · Thaler & Sunstein (2008), <em>Nudge</em>（助推：用制度设计替代意志力，英文；中译本为商业书籍）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：行为金融的三个误读</h2>
+    <p class="chapter-sub">这门学问最容易被用歪的三个方向，逐个掰正</p>
+
+    <article class="view">
+      <h3>谣言粉碎：别把行为金融学成"割韭菜手册"或"免罪符"</h3>
+      <p class="ctx"><strong>误区一："我很理性，偏差影响的是别人。"</strong>——过度自信偏差最狡猾的地方就在于它同样作用于"对偏差的认知"：研究显示，学习过认知偏差的人，对<strong>他人</strong>偏差的识别能力提升，对<strong>自己</strong>偏差的盲区几乎不变（"偏差盲点"研究，Pronin 等，英文）。觉得自己免疫的人，恰恰是最高危人群——解药不是自信，而是清单化自查（见第七节）。</p>
+      <p class="ctx"><strong>误区二："懂了行为金融，就能利用别人的不理性赚钱。"</strong>——两个问题：第一，你的对手盘里有整个行业的量化团队，他们比你更早、更快地利用偏差；第二，主动"收割他人"的很多手段（操纵情绪、制造稀缺假象、荐股带单）涉嫌违法——操纵市场、非法荐股都有明确的法律后果（见<a href="../13-fraud/">第13章</a>与证监会监管口径）。行为金融对普通人的正确用法只有两个方向：<strong>防自己犯错，防被人利用</strong>。</p>
+      <p class="ctx"><strong>误区三："知道偏差就能择时了——别人恐慌我贪婪。"</strong>——"别人恐惧我贪婪"这句话的前提，是你有独立于情绪的估值能力（判断"贪婪点"到底值多少钱）和足够的资金久期（熬得过继续下跌）。没有这两样，"逆着人群"只是把羊群方向反过来，结局常常是接飞刀。巴菲特这句话的完整语境是长期价值投资框架，不是短线择时口诀——而对绝大多数无暇研究财报的普通人，承认"我无法择时"、选择分散化与长期定投（见<a href="../06-invest/">第6章</a>、<a href="../08-fund/">第8章</a>），恰恰是运用了本章知识的最理性行为。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Pronin 等"偏差盲点"（bias blind spot）研究（英文，见 <em>Personality and Social Psychology Bulletin</em> 相关文献） · <a href="https://www.csrc.gov.cn/">证监会官网（操纵市场与非法荐股的法律后果宣传）</a> · <a href="https://www.nobelprize.org/prizes/economic-sciences/2013/shiller/facts/">诺贝尔奖官网：Shiller 关于市场可预测性限度的研究（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自查与自测</h2>
+    <p class="chapter-sub">对照自己最近三个月的财务行为，逐条打勾</p>
+    <div class="checklist">
+      <h4>📋 行为自查（对照自己的账户试试）</h4>
+      <ul>
+        <li>你最近一次买入，有没有事先写下买入理由、预期和止损线？（没有=系统1 下单）</li>
+        <li>你能说出自己持仓的三条最强反方理由吗？（说不出=确认偏误在运作）</li>
+        <li>最近三个月你交易了几次？每次交易的"信息优势"是什么？（答不出=过度自信）</li>
+        <li>你是不是卖掉了赚钱的、留着亏钱的？（是=处置效应）</li>
+        <li>你的卖出决策里，"我的成本价"出现的频率高不高？（高=参考点锚定）</li>
+        <li>最近一次冲动消费，从心动到下单隔了多久？（低于 24 小时=双曲贴现通道畅通）</li>
+        <li>你有没有为"不能白花"而继续消费/持有的东西？（有=沉没成本绑架）</li>
+        <li>你的储蓄是工资到账自动划转，还是月底看剩多少？（后者=和心理账户硬碰硬）</li>
+        <li>分期购物时，你算过真实年化利率（IRR）吗？（没算过=被框架效应收费）</li>
+        <li>你关注的投资信息源里，有几个是官方渠道（交易所公告、监管机构、公司年报）？（全是自媒体=茧房）</li>
+        <li>有没有人拉你进过"荐股群/老师带单群"？你退了吗？（没退=高危，重读第13章）</li>
+        <li>你多久看一次账户？（每天多次=短视性损失厌恶在放大痛苦）</li>
+        <li>大额决策有没有 72 小时冷静期规则？</li>
+        <li>你有没有一份"打脸指标"清单——什么情况出现就承认自己错了？</li>
+        <li>读完本章，你觉得"我基本免疫"吗？（觉得=偏差盲点，回去重读第七节）</li>
+      </ul>
+      <h4 style="margin-top:14px;">🧠 理解性自测（讲给家人听试试）</h4>
+      <ul>
+        <li>系统1 和系统2 各是什么？为什么"投资纪律"本质上是系统2 的程序化？</li>
+        <li>前景理论的三个核心发现是什么？损失厌恶系数大概是多少？</li>
+        <li>亏 50% 为什么需要涨 100% 才回本？这对"控制回撤"意味着什么？</li>
+        <li>"90% 存活率"和"10% 死亡率"的实验说明了什么？金融销售如何利用框架？</li>
+        <li>心理账户的两副面孔是什么？怎么"让心理账户为你打工"？</li>
+        <li>Barber & Odean 的研究发现交易频率和收益是什么关系？</li>
+        <li>处置效应的心理机制是什么？"归零提问"为什么能破解它？</li>
+        <li>荐股群剧本分别利用了哪些偏差？（至少说出四个）</li>
+        <li>后见之明偏差是什么？为什么"决策日志"是它唯一的解药？</li>
+        <li>为什么卡尼曼自己也无法靠知识免疫偏差？普通人的正确应对是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>大脑有两套系统——系统1 快而直觉，系统2 慢而理性，市场里亏钱的决策几乎都是系统1 抢了方向盘。前景理论三件套：参考点依赖（成本价是最顽固的锚）、损失厌恶（丢 100 的痛≈捡 200 的乐；亏 50% 要涨 100% 回本）、确定性效应（"保本"话术的心理引力）。价格感知三偏差：锚定（先报的数劫持估值）、框架（同一事实换个说法换个决定）、心理账户（钱被大脑分了口袋——反过来用：自动划转+专款专用）。市场三偏差：羊群（FOMO 是从众本能被劫持）、过度自信（交易越勤收益越差，Barber & Odean）、处置效应（卖赚守亏，Odean）。时间两偏差：双曲贴现（先享后付预支未来）、沉没成本（"来都来了"最贵）。信息三偏差：确认偏误（只搜自己想信的）、后见之明（"我早知道"是记忆在改写）、茧房与荐股群（偏差的工业化利用）。万能解药只有三味药：<strong>事前程序化</strong>（规则写在冷静时）、<strong>归零提问</strong>（清空成本与投入再决策）、<strong>强制反方</strong>（写反方理由、找利益无关者质询）。承认自己是普通人，用制度锁住普通人的错误——这是行为金融给普通人的全部礼物。
+  </div>
+
+  <nav class="pager">
+    <a href="../15-kids/"><span class="dir">← 第15章</span>子女财商教育与老人金融守护</a>
+    <a href="../17-macro/"><span class="dir">第17章 →</span>宏观经济常识：看懂新闻里的钱</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 第16章 · 依据 Kahneman & Tversky (1974/1979/1981)、Thaler (1985/2017 诺奖)、Barber & Odean (2000/2001)、Odean (1998)、Laibson (1997)、Arkes & Blumer (1985)、Nickerson (1998)、Shiller (2013 诺奖) 等经典文献及证监会、国家金融监督管理总局投资者教育材料整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供金融知识教育参考，不构成投资建议 · 高收益意味着高风险 · 遭遇诈骗请拨打 110 或 96110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

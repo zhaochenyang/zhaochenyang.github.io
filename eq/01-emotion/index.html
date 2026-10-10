@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1章 情绪的科学 — 人生沟通必修课</title>
+<style>
+  :root{--accent:#7c3aed;--accent-deep:#5b21b6;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生沟通必修课 · 第1章 · 基础能力</div>
+  <h1>情绪的科学：情绪是什么、有什么用</h1>
+  <p>不用背名词的情绪心理学速览：情绪的成分与种类、大脑里的高速公路、每种"负面情绪"在替你担心什么——后面所有章节的原理课</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../00-intro/">← 导论</a>
+    <a href="../02-ei/">第2章：什么是情商 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">情绪是什么</a>
+    <a class="anchor" href="#s2">情绪有多少种</a>
+    <a class="anchor" href="#s3">脑与身体</a>
+    <a class="anchor" href="#s4">理论三浪潮</a>
+    <a class="anchor" href="#s5">负面情绪的功劳</a>
+    <a class="anchor" href="#s6">情绪粒度</a>
+    <a class="anchor" href="#s7">表达与文化</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为情绪心理学科普，仅供心理健康教育与参考，不构成心理咨询、诊断或治疗建议。文中"焦虑""抑郁"等词汇均为科普性描述，个体情况请以执业医师面诊为准。如情绪困扰持续两周以上并明显影响生活，或有伤害自己的念头，请立即拨打 <strong>12356 心理援助热线</strong>或前往医院精神心理科（求助渠道详见<a href="../19-help/">第19章</a>）。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①说出情绪的四个成分，并解释"情绪、心境、感受"的区别；②讲出 Ekman 六种基本情绪与 Plutchik 情绪轮的要点及其争议；③用"高低两条路"解释为什么气头上智商掉线（情绪劫持）；④复述情绪理论的三次浪潮（身体先行→认知标签→大脑建构）；⑤给每种常见"负面情绪"说出它的进化功能；⑥用"情绪粒度"解释为什么"把情绪说清楚"本身就是调节的开始。这些是<a href="../03-regulate/">第3章</a>情绪调节与全书所有场景章的地基。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>不必背任何学者名字，每个概念记住一个比喻即可（高速公路、烟雾报警器、天气预报……）。第一次通读；之后各章遇到"为什么我控制不住"的疑问时，回来查第三节和第五节。章末自查清单可以讲给朋友听——能讲明白，才算学会。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、情绪是什么：定义与成分</h2>
+    <p class="chapter-sub">情绪不是"心里的感觉"这么简单，它是一套全身总动员的程序</p>
+
+    <article class="view">
+      <h3>情绪的四个成分：感受只是冰山一角</h3>
+      <p class="ctx">心理学对情绪（emotion）的通行界定是：<strong>对个体有意义的内外部事件引发的、相对短暂的反应模式</strong>，它至少包含四个同步发生的成分——①<strong>主观体验</strong>：你"感觉到"愤怒或害怕，这是唯一你自己能直接观察到的部分；②<strong>生理反应</strong>：心跳加速、出汗、肌肉紧张、激素分泌，由自主神经系统与内分泌系统执行；③<strong>表情行为</strong>：面部表情、姿态、语调的变化，很多是跨文化一致的；④<strong>行动倾向</strong>：愤怒让你想冲上去，恐惧让你想逃，羞耻让你想躲起来——情绪自带"下一步动作"的冲动。</p>
+      <p class="ctx">四个成分通常协同出现，但<strong>也可以脱节</strong>：你可以面带微笑心里发慌（体验与表情分离），可以心跳如鼓却说不清怕什么（生理先行、体验滞后），可以明明愤怒却只觉得"胸口闷"（体验被躯体化）。这个视角非常实用：<strong>识别情绪不必只依赖"我感觉到了什么"，身体的信号往往更早、更诚实</strong>——这是<a href="../03-regulate/">第3章</a>情绪调节的第一条线索。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/emotion">APA 心理学词典 emotion 词条（英文）</a> · Scherer（2005）情绪的组成过程模型（学术文献，英文） · 《心理学与生活》（津巴多等著，大学教材）情绪与动机章节</div>
+    </article>
+
+    <article class="view">
+      <h3>情绪、心境、感受：三个常被混用的词</h3>
+      <p class="ctx"><strong>情绪（emotion）</strong>：有明确对象、来得快去得也快——"因为被抢白而愤怒"，通常持续数秒到数分钟。<strong>心境（mood）</strong>：弥散、持久、对象模糊的情绪背景色——"今天一整天都很烦躁"，说不出为哪件具体的事，可持续数小时到数天。心境像天气，情绪像阵雨：阵雨有来处有去处，天气笼罩一切。<strong>感受（feeling）</strong>：严格用法里指情绪的主观体验成分，日常语境则常与情绪混用。</p>
+      <p class="ctx">区分这三个词的实用价值：处理策略完全不同。情绪（有对象）适合用沟通解决——对引发它的事件和人表达、协商（<a href="../05-nvc/">第5章</a>）；心境（无对象）更多受睡眠、运动、饮食、光照影响，先查生理账再查心理账；持续两周以上的低落心境伴功能受损，则是抑郁的信号而非"心情不好"，需要专业评估（<a href="../19-help/">第19章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/mood">APA 心理学词典 mood 词条（英文）</a> · <a href="https://dictionary.apa.org/feeling">APA 心理学词典 feeling 词条（英文）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（"持续两周以上"的口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么人类有情绪：它是进化写进身体的决策程序</h3>
+      <p class="ctx">情绪不是理性的杂音，而是进化保留下来的<strong>快速决策系统</strong>。面对草丛里的蛇形物，来不及做"它有多大概率是毒蛇"的贝叶斯推算——恐惧程序直接接管：跳开、心跳加速、注意力收窄到威胁源。这套系统在几百万年里救过我们祖先无数次命，代价是偶尔误报（把绳子当蛇）。达尔文 1872 年的《人类和动物的表情》就已论证表情的进化连续性；现代进化心理学的基本共识是：<strong>每种基本情绪都对应一类反复出现的生存/繁衍问题</strong>——恐惧应对威胁、愤怒应对侵犯、厌恶应对污染、快乐标记值得重复的事（详见第五节）。</p>
+      <blockquote class="q">"情绪是组织化程度很高的身体反应程序，是进化为解决反复出现的生存问题而设计的。"<span class="qsrc">—— 转述自 Nesse（1990）进化情绪研究的核心论点（学术文献，英文；译文为本站归纳）</span></blockquote>
+      <p class="ctx">理解这一点的直接收益是自我态度的转变：情绪上头时不再骂自己"怎么又没出息/又冲动"，而是看见"我的警报系统在响，只是这次可能是误报"——从对抗情绪转为审查情绪带来的信息，这正是<a href="../03-regulate/">第3章</a>认知重评的起点。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Darwin（1872）《人类和动物的表情》（The Expression of the Emotions in Man and Animals，书籍） · Nesse（1990）"Evolutionary explanations of emotions"，Human Nature（学术文献，英文） · <a href="https://dictionary.apa.org/basic-emotions">APA 心理学词典 basic emotions 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、情绪有多少种：基本情绪理论与情绪轮</h2>
+    <p class="chapter-sub">六种？八种？还是无穷多种组合——以及"基本情绪"说的争议</p>
+
+    <article class="view">
+      <h3>Ekman 六种基本情绪：跨文化的面部证据</h3>
+      <p class="ctx">保罗·艾克曼（Paul Ekman）1970 年代的经典研究发现：<strong>快乐、悲伤、愤怒、恐惧、厌恶、惊讶</strong>六种情绪的面部表情，在文化背景迥异的人群中能被一致识别——包括巴布亚新几内亚与世隔绝的 Fore 族人（他们通过照片辨认情绪的成绩与美国大学生相当），这支持了"部分情绪表达是先天的、跨文化普遍的"。这套六分类后来被通俗化为"喜怒哀惧恶惊"，也深刻影响了表情识别技术与动画产业（皮克斯《头脑特工队》的角色设定即源于此，影片把六种简化为五种）。</p>
+      <p class="ctx">需要如实说明：<strong>基本情绪理论存在持续的学术争议</strong>。后续跨文化研究发现识别准确率受方法与语境影响很大；建构论阵营（见第四节 Barrett）认为表情并不存在一对一的"指纹"。稳健的结论是：<strong>部分情绪表达有显著的跨文化一致性，但情绪的种类划分是科学模型而非自然事实</strong>——你不必记"到底几种"，要记住的是"情绪有通用成分，也有文化成分"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Ekman（1972）"Universals and cultural differences in facial expressions of emotion"（学术文献，英文） · Ekman & Friesen（1971）Fore 族研究（学术文献，英文） · <a href="https://dictionary.apa.org/basic-emotions">APA 心理学词典 basic emotions 词条（英文，含争议说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>Plutchik 情绪轮：八种基色调出全部情绪</h3>
+      <p class="ctx">罗伯特·普拉切克（Robert Plutchik, 1980）提出了更像"调色盘"的模型：八种基本情绪两两相对（快乐—悲伤、信任—厌恶、恐惧—愤怒、惊讶—期待），每种有强度梯度（ annoyance→anger→rage：烦躁→愤怒→暴怒），相邻情绪可混合出复合情绪（快乐+信任=爱；期待+愤怒=进攻性）。情绪轮的价值不在"对不对"，而在<strong>好用</strong>：它给了普通人一张"情绪词汇地图"，帮你把笼统的"不爽"精确定位成"被打断的烦躁"还是"被轻视的愤怒"——定位越准，应对越对（这正是第六节"情绪粒度"的工具）。</p>
+      <div class="fig"><img src="../assets/img-01-1.png" alt="情绪轮示意：八种基本情绪像色轮一样排列，相邻情绪混合出复合情绪，每种情绪由内向外强度递增"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Plutchik（1980）"A general psychoevolutionary theory of emotion"（学术文献，英文） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 情绪专题（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、情绪在大脑和身体里：为什么气头上智商掉线</h2>
+    <p class="chapter-sub">一条快而糙的低路，一条慢而准的高路——以及"情绪劫持"的真相</p>
+
+    <article class="view">
+      <h3>杏仁核与双通路：情绪的高速公路</h3>
+      <p class="ctx">神经科学家约瑟夫·勒杜（Joseph LeDoux）对恐惧通路的研究给出了一个经典图景：感觉信息进入大脑后走两条路。<strong>"低路"（low road）</strong>：丘脑直接把粗略信号抄近道送给<strong>杏仁核</strong>——快（约十几毫秒）但糙，只能判断"像不像威胁"，宁可误报不可漏报；<strong>"高路"（high road）</strong>：信号经丘脑送到<strong>大脑皮层</strong>做精细分析再通知杏仁核——慢（比低路慢一拍）但准，能识别"那是绳子不是蛇"。</p>
+      <div class="fig"><img src="../assets/img-01-2.png" alt="大脑双通路示意：一条粗而短的快路直达杏仁核，一条绕行大脑皮层的慢路更精细，两路在杏仁核汇合"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">这个结构解释了大量日常现象：为什么你会被突然的巨响吓得一激灵然后才反应过来；为什么恐怖片明知道是假的还是怕——低路根本不理睬你的知识；为什么<strong>愤怒和恐惧来袭时，讲道理没用</strong>：负责讲道理的前额叶皮层在强情绪下被边缘系统"抢了方向盘"。需要说明：杏仁核并非"恐惧中心"那么简单，它对一切<strong>意义重大、需要注意</strong>的刺激都反应（包括正性刺激），"低路/高路"是教学性简化，细节机制学界仍在研究。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：LeDoux（1996）《情绪大脑》（The Emotional Brain，书籍） · <a href="https://dictionary.apa.org/amygdala">APA 心理学词典 amygdala 词条（英文）</a> · Adolphs（2013）对"杏仁核=恐惧"简单化的修正讨论（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>情绪劫持：6 秒还是更久？一个流行说法的证据核查</h3>
+      <p class="ctx">"情绪劫持"（amygdala hijack）一词由 Goleman 在《情商》（1995）中普及：指杏仁核绕开皮层直接触发全面应激反应，人在瞬间被情绪接管，做出事后完全无法理解的行为——路怒、暴怒摔东西、恐慌逃离。这个词精确命名了一种真实体验，但配套流传的"杏仁核反应只持续 6 秒，数六下就能冷静"是<strong>无出处的通俗演绎</strong>：肾上腺素等应激化学物质的代谢远不止 6 秒，Goleman 原书也没有这个数字。</p>
+      <p class="ctx">不过"数到十"背后的原理是真的：<strong>给前额叶争取重新接管的时间</strong>。有效的不是数数本身，而是任何能降低生理唤起、把注意力从刺激源拉开的暂停技术——深呼吸（延长呼气激活副交感）、离开现场、喝水、把注意力放到身体感觉上。Gottman 团队对夫妻冲突的生理测量给出了更实用的阈值：当心率显著高于静息水平（其研究中常用每分钟 100 次上下作为"生理淹没"的参考线），人的信息处理与幽默感显著下降，此时的正确动作不是"继续把话说清楚"，而是<strong>约定式暂停至少 20 分钟</strong>（操作详见<a href="../06-couple/">第6章</a>与<a href="../03-regulate/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：Goleman（1995）《情商》"amygdala hijack"章节（书籍框架；"6 秒"说法无实证出处，本站核查结论） · Gottman & Levenson 系列夫妻生理研究（学术文献，英文） · <a href="https://www.gottman.com/">Gottman 研究院官网（英文）"flooding"相关文章</a></div>
+    </article>
+
+    <article class="view">
+      <h3>情绪的身体地图：感受在身体哪个部位发生</h3>
+      <p class="ctx">2014 年芬兰 Aalto 大学 Nummenmaa 团队在《PNAS》发表了一项跨文化研究（超过 700 名被试，芬兰与瑞典样本加东亚对照）：让被试用涂色的方式报告不同情绪时身体哪些部位活跃、哪些麻木，结果发现<strong>不同情绪的身体感觉地图高度一致且跨文化稳定</strong>——愤怒集中在上半身与拳头，恐惧在胸腹部，快乐是全身性的温暖感，抑郁则是全身活力的普遍下降。这支持了情绪的"躯体标记"视角：身体感觉是情绪信息的重要载体。</p>
+      <p class="ctx">实用转化：<strong>情绪日记可以从身体写起</strong>。说不出"我是什么情绪"时，先扫描身体——"胸口发紧、手心出汗、胃里下沉"，对照地图往往能反推出"这是焦虑"。身体扫描也是<a href="../03-regulate/">第3章</a>接地技术与正念练习的入口。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Nummenmaa, Glerean, Hari & Hietanen（2014）"Bodily maps of emotions"，PNAS, <a href="https://doi.org/10.1073/pnas.1321664111">doi:10.1073/pnas.1321664111（学术文献，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、情绪从哪里来：理论三浪潮</h2>
+    <p class="chapter-sub">身体先行？认知标签？还是大脑的预测建构——一百多年的争论与它对你的意义</p>
+
+    <article class="view">
+      <h3>第一波：身体先行（James-Lange）与同时发生（Cannon-Bard）</h3>
+      <p class="ctx">1884 年前后，威廉·詹姆斯（William James）与丹麦生理学家兰格分别提出惊人主张：<strong>我们不是因为害怕而发抖，而是因为发抖（及一系列身体变化）才感到害怕</strong>——情绪是对身体反应的知觉。坎农（Walter Cannon）1927 年反驳：身体反应太慢、太笼统（心跳加速在恐惧和兴奋时都有），不足以产生区分度如此高的情绪体验，他主张丘脑同时向皮层（产生体验）和身体（产生反应）发令——体验与生理反应是<strong>并行</strong>的。</p>
+      <p class="ctx">这场争论的遗产是实用的：如果身体状态参与构成情绪，那么<strong>调节身体就能调节情绪</strong>——深呼吸、放松肌肉、跑步、甚至刻意做出微笑表情（面部反馈假说，效应量存在争议但方向多次复现），都是合法的情绪干预入口。"挺直腰板深呼吸三次"不是玄学，是对 James-Lange 路线的工程应用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：James（1884）"What Is an Emotion?"，Mind（学术文献，英文） · Cannon（1927）The James-Lange Theory of Emotions（学术文献，英文） · <a href="https://dictionary.apa.org/james-lange-theory">APA 心理学词典 James-Lange theory 词条（英文）</a> · 面部反馈的注册复制研究（Coles 等 2019，效应小但稳健，学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>第二波：认知标签（Schachter 两因素与评价理论）</h3>
+      <p class="ctx">1962 年，沙赫特（Stanley Schachter）与辛格做了心理学史上著名的肾上腺素实验：给被试注射肾上腺素制造生理唤起（心跳快、手抖），然后安排他们与一个假装兴奋或假装愤怒的"同伴"（实为实验员）相处。结果：<strong>不知情的被试把自己的生理唤起"标签"成了同伴的情绪</strong>——跟兴奋的人在一起觉得自己开心，跟愤怒的人在一起觉得自己愤怒。结论：情绪 = 生理唤起 + 对唤起的认知解释。同样的心跳加速，解释成"我紧张"还是"我兴奋"，体验完全不同。</p>
+      <p class="ctx">拉扎勒斯（Richard Lazarus）随后把认知成分深化为<strong>评价（appraisal）理论</strong>：情绪取决于你对事件的解读——"这件事对我重要吗？我有能力应对吗？"同一句批评，评价为"针对我个人"产生愤怒或羞耻，评价为"帮我改进"产生感激。这给了<a href="../03-regulate/">第3章</a>认知重评（cognitive reappraisal）最坚实的理论基础：<strong>改变解读，就能改变情绪</strong>——这也是目前循证等级最高的情绪调节策略之一。经典应用：演讲前心跳狂飙，与其默念"别紧张"（往往失败），不如对自己说"我很兴奋"（把唤起重标签为兴奋）——Alison Wood Brooks（2014）的实验显示这种"焦虑重评为兴奋"显著提升演讲表现。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Schachter & Singer（1962）"Cognitive, social, and physiological determinants of emotional state"，Psychological Review（学术文献，英文；后续复制研究对其强度有修正） · Lazarus & Folkman（1984）《压力、评价与应对》（书籍） · <a href="https://dictionary.apa.org/cognitive-appraisal">APA 心理学词典 cognitive appraisal 词条（英文）</a> · Brooks（2014）"Get Excited"，Journal of Experimental Psychology: General（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>第三波：建构论——情绪是大脑的"预测"</h3>
+      <p class="ctx">心理学家莉莎·费尔德曼·巴瑞特（Lisa Feldman Barrett）2017 年在《情绪从何而来》（How Emotions Are Made）中提出<strong>情绪建构论</strong>：大脑并不被动"检测到"情绪，而是基于过往经验、身体状态（她称为"身体预算" body budget）与情境线索，<strong>主动预测并建构</strong>出情绪体验——不存在每种情绪固定的神经"指纹"，"愤怒"是大脑在特定文化概念框架下对一组身体感觉与情境的归类。</p>
+      <p class="ctx"><strong>如实标注争议</strong>：建构论与基本情绪论的争论仍在进行（对跨文化表情证据的解读、对神经影像数据的再分析各执一词），本课程不裁判谁对。对你而言两个模型各有用途：基本情绪论给你<strong>通用词汇</strong>（人人都有喜怒哀惧，你不孤独），建构论给你<strong>能动性</strong>——如果情绪是大脑基于经验的建构，那么①丰富情绪词汇和经验就能提升情绪能力（第六节情绪粒度的理论根基）；②情绪不是不可控的天灾，而是可以被"重新分类"的解读；③照顾好身体（睡眠、饮食、运动）就是给情绪系统充电——"身体预算"透支时，大脑更容易把世界预测成威胁。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Barrett（2017）《情绪从何而来》（How Emotions Are Made，书籍框架；学术版见 Barrett 2006 "Solving the emotion paradox"，Personality and Social Psychology Review，英文） · <a href="https://dictionary.apa.org/psychological-constructivism">APA 心理学词典 psychological constructivism 词条（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>共情、同情与情绪感染：三种"感受他人"的不同线路</h3>
+      <p class="ctx">日常说的"有同理心"，在研究里其实是三条不同的线路，混在一起会出很多问题。<strong>情绪感染（emotional contagion）</strong>：最原始的一层，自动、无意识地"传染"——打哈欠会传染，一屋子人的焦虑也会传染，机制与镜像神经元系统和自动模仿（表情、姿态、语调的无意识同步）有关。它是共情的地基，但本身不含理解——婴儿被别的婴儿哭声带着哭就是纯粹感染。<strong>共情（empathy）</strong>：在感染之上加了认知成分——既能感受对方的情绪，又清楚"这是对方的情绪，不是我的"，并能理解对方为什么这样感受。研究通常拆成情感共情（感受对方所感）与认知共情（理解对方视角，即心智理论）两个成分，两者可以分离——这也是<a href="../04-listen/">第4章</a>倾听训练的理论基础。<strong>同情/关怀（sympathy/compassion）</strong>：感到对方的苦，并产生想帮忙的动机，但不必体验同样的情绪。</p>
+      <p class="ctx">区分三条线路的实用价值在于避免<strong>共情疲劳</strong>：护理人员、热线接线员、长期照顾者的高倦怠，往往来自"感染线路"过载——天天陪着痛，自己也痛。研究发现：把"与他人一起痛"（empathic distress）主动转换为"愿他人好"的关怀动机（compassion，慈悲训练可显著增强该回路），主观痛苦下降而助人意愿不降反升。给普通人的口径：<strong>陪伴不等于陪痛</strong>——你可以深深理解朋友的绝望，同时守住自己情绪的岸（边界操作见<a href="../18-boundary/">第18章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/emotional-contagion">APA 心理学词典 emotional contagion 词条（英文）</a> · <a href="https://dictionary.apa.org/empathy">APA 心理学词典 empathy 词条（英文）</a> · Decety & Jackson（2004）共情成分模型（学术文献，英文） · Klimecki, Leiberg & Singer 慈悲训练与共情痛苦转化研究（学术文献，英文） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 共情专题（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、每种"负面情绪"都在替你干活</h2>
+    <p class="chapter-sub">焦虑是报警器，愤怒是卫兵，悲伤是求救信号——读懂功能，才谈得上管理</p>
+
+    <article class="view">
+      <h3>焦虑：烟雾报警器（附：报警器坏了的判断标准）</h3>
+      <p class="ctx"><strong>功能</strong>：焦虑是对<strong>未来潜在威胁</strong>的预警系统——它提前调动资源（注意力集中到风险、身体进入备战、反复演练坏情况）。适度焦虑提升表现（耶克斯-多德森定律：中等唤起水平表现最佳）；准备考试、面试前的紧张，本质是系统在帮你 rehearse。<strong>代价与失灵</strong>：报警器可能过于灵敏——持续六个月以上、无明确对象或明显超出实际风险、伴随躯体症状（心悸、出汗、颤抖）且显著影响功能时，可能已是焦虑障碍而非"性格谨慎"，需要专业评估（口径参见 WHO 中文实况报道与<a href="../19-help/">第19章</a>）。管理的方向从来不是"消灭焦虑"，而是校准报警器（<a href="../03-regulate/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/anxiety-disorders">WHO 中文《焦虑障碍实况报道》</a> · Yerkes & Dodson（1908）唤起与表现定律（学术文献，英文） · <a href="https://dictionary.apa.org/anxiety">APA 心理学词典 anxiety 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>愤怒：边界卫兵——以及它最容易被滥用的地方</h3>
+      <p class="ctx"><strong>功能</strong>：愤怒在目标受阻、边界被侵犯、遭受不公时启动，作用是<strong>动员能量、宣示边界、纠正不公</strong>——进化视角下，愿意为侵犯付出反击代价的个体更不易被持续剥削。社会心理学研究还发现愤怒有独特的"信息效应"：表达适度愤怒的人在谈判中常被让渡更多利益（Van Kleef 等 2004 的谈判实验，学术文献，英文）——愤怒信号传递"我的底线到了"。<strong>失灵模式</strong>：愤怒的攻击性是双刃剑，长期用愤怒解决一切的人会把"边界信号"用成"核弹"，亲友学会的不再是尊重边界而是躲避你。愤怒管理的要义：<strong>保留信号，卸掉弹头</strong>——用语言说出"这件事越过了我的底线"，而不是用音量与人身攻击表达（句式见<a href="../05-nvc/">第5章</a>；愤怒工具箱见<a href="../03-regulate/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Van Kleef, De Dreu & Manstead（2004）谈判中的情绪效应研究（学术文献，英文） · <a href="https://dictionary.apa.org/anger">APA 心理学词典 anger 词条（英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 愤怒专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>悲伤：求助信号与修复期； disgust：防毒与道德直觉</h3>
+      <p class="ctx"><strong>悲伤的功能</strong>有三层：①<strong>发出求助信号</strong>——悲伤的表情（嘴角下垂、眼泪、低姿态）跨文化地引发他人照料行为，眼泪尤其被研究发现能降低旁观者的攻击性、唤起共情（Vingerhoets 的哭泣研究，学术文献，英文）；②<strong>强制降速</strong>——低落情绪让人退缩、减少能量消耗，把注意力转向内部反思，类似系统的"维护模式"；③<strong>哀悼与告别</strong>——丧失后的悲伤是依恋系统在重新组织与逝者的关系，正常的哀伤有自己的时间表（通常以月计），不宜被催促"走出来"（复杂性哀伤才需要专业干预，见<a href="../19-help/">第19章</a>）。<strong>厌恶（disgust）的功能</strong>：原始的厌恶是行为免疫系统——对腐坏食物、排泄物、病容的强烈排斥降低感染风险；进化心理学家（Haidt 等）进一步发现厌恶被"征用"到道德领域：道德违反（背叛、乱伦、伪善）激活的脑区与生理厌恶部分重叠，这解释了为什么道德争论常带有"恶心"的生理质感、且极难说服——对方不是在跟你辩论事实，而是在体验污染感。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Vingerhoets & Bylsma（2016）哭泣研究综述（学术文献，英文） · Haidt（2001）社会直觉主义模型（学术文献，英文） · <a href="https://dictionary.apa.org/disgust">APA 心理学词典 disgust 词条（英文）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍实况报道》（哀伤与抑郁的区分口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>嫉妒、愧疚与羞耻：三种最容易认错的社会情绪</h3>
+      <p class="ctx"><strong>嫉妒</strong>是关系价值的信号：你对谁嫉妒，暴露你在乎什么（伴侣的注意、同事的认可、朋友的时间）。研究显示适度嫉妒能提供动机信息，但反刍式比较会显著拉低幸福感——处理嫉妒的正确动作是把它翻译成"我想要的东西"清单，而不是盯着对方（社会比较理论 Festinger 1954，学术文献，英文）。<strong>愧疚与羞耻必须分开</strong>：愧疚（guilt）指向<strong>行为</strong>——"我做错了事"，它促进道歉与修复，是亲社会的；羞耻（shame）指向<strong>自我</strong>——"我是个糟糕的人"，它促进躲藏、攻击与否认，是破坏性的。Tangney 系列研究发现： prone to guilt 的人关系质量更好，prone to shame 的人更容易抑郁与攻击。这个区分直接改变你道歉与自我对话的方式（道歉的操作见<a href="../11-social/">第11章</a>；羞耻与自我关怀见<a href="../18-boundary/">第18章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Tangney, Stuewig & Mashek（2007）"Moral emotions and moral behavior"，Annual Review of Psychology（学术文献，英文） · Festinger（1954）社会比较理论（学术文献，英文） · <a href="https://dictionary.apa.org/shame">APA 心理学词典 shame 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、情绪粒度：能命名，才能管理</h2>
+    <p class="chapter-sub">"把感受说成 words"本身就是最便宜的情绪调节术</p>
+
+    <article class="view">
+      <h3>情绪粒度：同一场雨，有人只说"下雨了"</h3>
+      <p class="ctx">巴瑞特团队提出<strong>情绪粒度（emotional granularity）</strong>概念：指一个人区分不同情绪状态的精细程度。低粒度的人只能报告"我感觉很糟/很烦"；高粒度的人能区分"我这是 70% 的委屈 + 20% 的失望 + 10% 的自责"。研究发现粒度是可测量的个体差异，且<strong>高粒度者情绪调节能力更强、攻击行为更少、就医与用药更少、酒精滥用风险更低</strong>（Kashdan & Barrett 2001；Pond 等 2012，学术文献，英文）。原理不难理解：分类越精细，应对方案越对症——"烦"没有解法，"被忽视的委屈"有解法（表达需要），" deadline 前的焦虑"有解法（拆任务）。</p>
+      <p class="ctx">好消息：粒度可以训练，方法朴素——<strong>扩充情绪词汇 + 每天记录</strong>。把"难受"细化为委屈/挫败/失落/嫉妒/羞耻/孤独/无力；记录格式建议"情境—身体感觉—情绪名称—强度0-10—我想做什么"（模板见下）。这与建构论的逻辑一致：情绪是分类的产物，分类系统越丰富，情绪体验越可导航。</p>
+      <blockquote class="q">情绪日记最小模板（每天 3 分钟）：<br>① 刚才发生了什么（只写事实）；② 身体哪里有什么感觉；③ 如果必须用一个精确的词命名，是什么（不准用"烦""难受"）；④ 强度 0-10；⑤ 这个情绪想让我做什么？我打算做吗？<span class="qsrc">—— 本站整理，基于情绪粒度研究与情绪日记（mood diary）的通行做法</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kashdan & Barrett（2001）情绪区分研究（学术文献，英文） · Pond 等（2012）情绪区分与攻击（学术文献，英文） · <a href="https://dictionary.apa.org/emotional-differentiation">APA 心理学词典 emotion differentiation 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>情感标签化实验：把感受说出口，杏仁核就降温</h3>
+      <p class="ctx">UCLA 的利伯曼（Matthew Lieberman）团队 2007 年在《Psychological Science》发表的 fMRI 研究发现了<strong>情感标签化（affect labeling）效应</strong>：让被试看愤怒或恐惧的人脸照片并给情绪贴标签（选一个词描述这张脸的情绪），相比单纯观看，<strong>杏仁核激活显著下降，右侧前额叶（腹外侧）激活上升</strong>——用语言命名情绪，本身就在生理层面减弱情绪强度。后续研究在公共演讲等真实压力场景中复现了该效应。这给"找个朋友说说"提供了神经层面的解释：<strong>倾诉起效的机制之一，可能正是命名本身</strong>。</p>
+      <p class="ctx">操作要点：①命名要具体（"我有点受伤，因为刚才的话让我觉得自己不重要"优于"我好烦"）；②书写同样有效——把感受写下来（expressive writing，Pennebaker 范式）被大量研究证实改善情绪与健康指标；③对他人情绪做标签（"你现在听起来很失望？"）是最强的共情句式，详见<a href="../04-listen/">第4章</a>反映式倾听。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Lieberman 等（2007）"Putting Feelings Into Words"，Psychological Science, <a href="https://doi.org/10.1111/j.1467-9280.2007.01900.x">doi:10.1111/j.1467-9280.2007.01900.x（学术文献，英文）</a> · Pennebaker 表达性书写研究（学术文献，英文） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center 情绪标注专题（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、表达与文化：情绪也有"交通规则"</h2>
+    <p class="chapter-sub">感受是普遍的，表达规则是文化的——以及"憋着"的代价</p>
+
+    <article class="view">
+      <h3>表现规则：同样的情绪，不同的演出许可</h3>
+      <p class="ctx">Ekman 与 Friesen（1969）提出<strong>表现规则（display rules）</strong>：每种文化都规定哪些情绪可以在什么场合对什么人表露、以什么强度表露。日本研究中的经典例子：被试观看令人不适的手术影片时，独自观看与有权威在场时的表情差异显著——后者用微笑 masking 不适。中国文化的情绪表达规则有自己的特点：整体偏<strong>含蓄与情境化</strong>（"喜怒不形于色"被视为修养）、正性情绪的表达也常克制（"别得意忘形"）、情绪困扰更多以<strong>躯体化</strong>形式表达（"心里难受"说成"胸闷、没胃口、睡不好"）——这在跨文化精神病学研究中被反复观察到，也是为什么中文语境里识别抑郁焦虑要特别留意身体主诉。</p>
+      <p class="ctx">对本课程的意义：所有引入的沟通技术（非暴力沟通、情绪验证）都需要<strong>本土化改装</strong>——直接对父母说"我感到很愤怒"在多数中国家庭会造成地震，等效而安全的做法可能是先说事实与需要（"我想把事情说清楚"），或借助书信与第三方。各场景章都会给"文化适配版"话术。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Ekman & Friesen（1969）display rules 概念（学术文献，英文） · Matsumoto 跨文化表情研究系列（学术文献，英文） · 躯体化的跨文化研究综述（学术文献，英文；中文语境可参见精神医学教材相关章节） · <a href="https://dictionary.apa.org/display-rule">APA 心理学词典 display rules 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>压抑表达的真实代价：不是"忍一时风平浪静"</h3>
+      <p class="ctx">"忍一忍就过去了"是被文化默认的情绪策略，但研究给出的账单并不便宜。Gross & John（2003）对习惯性<strong>表达抑制</strong>（suppress：感到情绪但压住不表现）者的追踪发现：与习惯用<strong>认知重评</strong>（reappraisal：改变对事件的解读）的人相比，高抑制者体验到<strong>更多的负性情绪、更少的正性情绪、更低的幸福感与更差的人际关系质量</strong>，甚至记忆表现也更差（压制情绪占用了认知资源）。生理研究进一步发现：抑制愤怒表达时，交感神经激活（血压、皮电）反而<strong>高于</strong>自然表达者——表面平静，体内风暴。</p>
+      <p class="ctx">必须澄清两个常见混淆：①<strong>抑制≠调节</strong>。情绪调节是个工具箱，抑制只是其中一件、且是代价最高的常备件；在不当场合暂缓表达（先离开会议室再处理情绪）是策略性的、有时限的，与习惯性压抑完全不同。②<strong>表达≠发泄</strong>。健康的表达是"说出感受与需要"（第5章非暴力沟通），不是"把情绪泼向对方"。既不憋着，也不炸掉，中间那条路就是这门课要教的主干道（完整工具箱见<a href="../03-regulate/">第3章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Gross & John（2003）"Individual differences in two emotion regulation processes"，Journal of Personality and Social Psychology（学术文献，英文） · Gross（1998）情绪调节过程模型（学术文献，英文） · <a href="https://dictionary.apa.org/emotion-regulation">APA 心理学词典 emotion regulation 词条（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>"90秒法则"核查：情绪的海浪模型与反刍</h3>
+      <p class="ctx">流行说法："任何情绪的化学反应只持续90秒，90秒后还生气都是你自己选择的。"数字出自神经科学家 Jill Bolte Taylor 的畅销书《奇迹的人生》（My Stroke of Insight），指她观察到的单次情绪生理反应大致在一分半钟内代谢完毕。<strong>核查结论</strong>：作为精确生理学它没有严格的实证文献支撑，但方向是对的——一次情绪反应的<strong>初始生理波峰确实是短暂的</strong>，情绪之所以能持续几小时几天，主要靠<strong>反刍（rumination）</strong>：反复回放事件、脑内重演对话、给情绪续柴。Nolen-Hoeksema 数十年的反刍研究证实：习惯性反刍显著延长和加深抑郁焦虑，是情绪问题最重要的认知风险因素之一。</p>
+      <p class="ctx">海浪模型比"90秒"更好用：把一次情绪想象成一浪——升起、峰顶、落下，你无法阻止浪来，但可以决定<strong>不往海里扔更多石头</strong>。操作上分两步：浪头期（峰顶一两分钟）只做一件事——不行动、不决策、不发消息，配合呼吸等生理波峰过去（<a href="../03-regulate/">第3章</a>）；浪落后如果情绪反复回来，检查你在不在反刍——反刍与"解决问题式思考"的区别是：反刍循环问"为什么是我"，解决问题问"下一步做什么"。把问题写下来、列出可行动作，是从反刍切换到解决的最直接开关。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：Taylor（2008）《奇迹的人生》（My Stroke of Insight，书籍；"90秒"为书中说法，无严格实证文献，本站核查结论） · Nolen-Hoeksema（1991）反应风格理论及反刍系列研究（学术文献，英文） · <a href="https://dictionary.apa.org/rumination">APA 心理学词典 rumination 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>述情障碍：真的有人"说不出自己怎么了"</h3>
+      <p class="ctx">约每十人中就有一人左右存在不同程度的<strong>述情障碍（alexithymia）</strong>——希腊语原意"没有词汇来表达情感"：能感到身体不适和情绪波动，却极难识别、命名和描述自己的情绪（"我不知道我是生气还是难过，我只觉得胸口堵"）。它不是冷漠，恰恰相反，很多述情障碍者情绪反应强烈，只是缺乏从身体信号到情绪词汇的"翻译层"。研究把它与躯体化症状、物质滥用风险、关系困难、以及抑郁焦虑的迁延都联系了起来；它也被视为一个连续的个体差异维度而非非黑即白的"病"。</p>
+      <p class="ctx">如果你自查后觉得"我好像就是这样"，三个针对性的练习（都是低粒度的补课）：①从<strong>身体</strong>入手而不从词汇入手——对照第三节身体地图，先描述"胃里发沉、太阳穴发紧"，再猜情绪名；②用<strong>有限选项</strong>而不是开放题——给自己列 8 个常用情绪词（愤怒/悲伤/害怕/委屈/羞愧/失望/孤独/焦虑）每次只从中选，选择题比问答题容易；③<strong>借他人之镜</strong>——问信任的人"你觉得我刚才是什么情绪"，别人常常比你自己先看见。这些练习与第六节的情绪日记是同一套肌肉，坚持数周通常有明显改善；若伴随长期躯体不适，请就医排查（12356 或精神心理科）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/alexithymia">APA 心理学词典 alexithymia 词条（英文）</a> · Sifneos（1973）概念提出（学术文献，英文） · Taylor & Bagby 述情障碍研究系列与 TAS-20 量表（学术文献，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于情绪的三大流行误区</h2>
+    <p class="chapter-sub">每条都流传极广，每条都与证据相悖</p>
+
+    <article class="view">
+      <h3>谣言粉碎：情绪篇三连</h3>
+      <p class="ctx"><strong>误区一："愤怒要发泄出来，憋着伤身——去打枕头、去吼两嗓子。"</strong>事实恰恰相反：Bushman（2002）的受控实验让被激怒的大学生分组"发泄"（用力打沙袋并回想激怒自己的人）、分心（打沙袋想别的事）或静坐，随后给他们"惩罚对手"的机会——<strong>反刍式发泄组的攻击性显著最高</strong>，静坐组反而最低。原理：带着愤怒反刍地"发泄"是在反复排练愤怒神经回路，把火越扇越旺。有效路径是先降生理唤起（离开现场、呼吸、运动到心率恢复），再做认知处理（<a href="../03-regulate/">第3章</a>）。</p>
+      <p class="ctx"><strong>误区二："负面情绪是有害的，要积极乐观，消灭一切消极想法。"</strong>强制积极（toxic positivity）的问题：①情绪是信息，消灭报警器不消灭火情——焦虑不处理只会转地下（躯体化、爆发、慢性化）；②对他人强制积极（"想开点""至少你还有……"）是最常见的情绪无效化（emotional invalidation），研究显示被无效化的体验加重痛苦并损害关系；③接纳负性情绪（不评判地承认"我现在很难受"）反而是大量研究支持的适应性策略，也是正念与接纳承诺疗法（ACT）的核心成分。健康口径：<strong>所有情绪都欢迎，不是所有行为都放行</strong>。</p>
+      <p class="ctx"><strong>误区三："男人天生比女人情绪少/不会情绪化。"</strong>生理与体验层面的研究并不支持"男性情绪更少"：多数研究发现两性在情绪<strong>体验强度</strong>上差异很小，差异主要在<strong>表达规则</strong>——"男儿有泪不轻弹"的文化脚本让男性更多抑制悲伤与脆弱、相对更被允许表达愤怒，久而久之形成"男性只会愤怒"的表达窄化，以及更高的述情障碍（alexithymia，说不出自己情绪）检出率与更差的求助率。这不是天性而是社会化结果——也因此可以改变：本课程的全部方法对任何性别同等适用，且对表达窄化者收益更大。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Bushman（2002）"Does Venting Anger Feed or Extinguish the Flame?"，Personality and Social Psychology Bulletin（学术文献，英文） · <a href="https://dictionary.apa.org/emotional-invalidation">APA 心理学词典 emotional invalidation 词条（英文）</a> · <a href="https://dictionary.apa.org/alexithymia">APA 心理学词典 alexithymia 词条（英文）</a> · 性别与情绪表达的社会化研究综述（学术文献，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>情绪的四个成分是什么？为什么"只依赖感觉"识别情绪不可靠？</li>
+        <li>情绪、心境、感受的区别？三者的处理策略分别是什么？</li>
+        <li>从进化视角讲：情绪为什么不是理性的杂音？</li>
+        <li>Ekman 六种基本情绪是哪些？Fore 族研究支持了什么结论、又留下了什么争议？</li>
+        <li>用"调色盘"讲一遍 Plutchik 情绪轮：强度梯度和复合情绪各是什么？</li>
+        <li>"低路/高路"分别经过大脑哪里？为什么恐怖片明知道是假的还是怕？</li>
+        <li>什么是"情绪劫持"？"6 秒法则"的核查结论是什么？真正有效的暂停依据是什么？</li>
+        <li>Nummenmaa 的身体地图研究发现情绪的身体感觉有什么特点？这对写情绪日记有什么启发？</li>
+        <li>James-Lange、Cannon-Bard、Schachter 两因素、评价理论、建构论各用一句话概括。</li>
+        <li>"把紧张重评成兴奋"为什么有效？对应哪个理论？</li>
+        <li>焦虑、愤怒、悲伤、厌恶、嫉妒各自的进化功能是什么？</li>
+        <li>愧疚和羞耻的区别是什么？为什么这个区分对道歉至关重要？</li>
+        <li>什么是情绪粒度？高粒度者的实证优势有哪些？怎么训练？</li>
+        <li>affect labeling 实验的发现是什么？为什么"找朋友说说"有神经层面的道理？</li>
+        <li>什么是表现规则？中文文化的情绪表达有哪三个特点？</li>
+        <li>Gross & John（2003）发现习惯性抑制者的代价有哪些？"抑制≠调节""表达≠发泄"各指什么？</li>
+        <li>情绪感染、共情、同情三条线路的区别？为什么"陪伴不等于陪痛"？</li>
+        <li>"90秒法则"的核查结论是什么？反刍与解决问题式思考怎么区分？</li>
+        <li>什么是述情障碍？给低粒度者的三个补课练习是什么？</li>
+        <li>打枕头发泄愤怒的实验结论是什么？"所有情绪都欢迎，不是所有行为都放行"怎么理解？</li>
+        <li>焦虑到什么程度就该找专业帮助而不是自我调节？（提示：持续时间与功能受损，拨打 12356）</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>情绪＝主观体验＋生理反应＋表情＋行动倾向的四件套，是进化写进身体的快速决策程序；Ekman 六种基本情绪有跨文化证据也有争议，Plutchik 情绪轮是好用的词汇地图；大脑走"低路"（杏仁核，快而糙）与"高路"（皮层，慢而准），气头上智商掉线＝低路抢方向盘，正确动作是约定式暂停（生理淹没阈值，Gottman）；理论三浪潮——身体先行（James-Lange）→认知标签（Schachter；改变解读即改变情绪，重评是循证最强的调节策略）→建构论（Barrett：情绪是大脑的预测，词汇与身体预算决定体验）；每种负面情绪都有工作：焦虑=报警器、愤怒=边界卫兵（保留信号卸掉弹头）、悲伤=求助与修复、厌恶=防毒与道德直觉、嫉妒=价值信号、愧疚修复/羞耻躲藏；情绪粒度与 affect labeling 证明"命名即调节"——每天3分钟情绪日记是最便宜的练习；表达规则因文化而异，中文语境注意含蓄与躯体化；习惯性压抑代价高昂（Gross & John 2003），发泄愤怒反而增攻击（Bushman 2002），强制积极是情绪无效化——健康口径：所有情绪都欢迎，不是所有行为都放行；情绪问题持续两周以上伴功能受损→12356 或精神心理科。
+  </div>
+
+  <nav class="pager">
+    <a href="../00-intro/"><span class="dir">← 导论</span>为什么沟通与情商是人生必修课</a>
+    <a href="../02-ei/"><span class="dir">第2章 →</span>什么是情商：从科学模型到流行概念的真相</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生沟通必修课 · 第1章 · 依据 APA 心理学词典（英文）、Ekman（1972）、Plutchik（1980）、LeDoux（1996）、Schachter & Singer（1962）、Lazarus（1984）、Barrett（2017）、Nummenmaa 等（2014）、Lieberman 等（2007）、Gross & John（2003）、Bushman（2002）、Tangney 等（2007）及 WHO 中文实况报道整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供心理健康教育参考，不构成心理咨询或医疗建议 · 心理危机请拨打 12356 · 家庭暴力请拨打 12338 或 110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #7c3aed;border-radius:12px;background:#f5f3ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#5b21b6;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/eq/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#7c3aed;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#7c3aed;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f5f3ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为一段关系发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#5b21b6;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #7c3aed;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f5f3ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#7c3aed;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：道歉、谈判、冷战、青春期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/eq\/.*/,'/eq/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.EQ_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#7c3aed;border:1.5px solid #7c3aed;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f5f3ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

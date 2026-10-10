@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 房子：最大的资产与最大的负债 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:var(--accent-deep);border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 第10章 · 投资与增值</div>
+  <h1>房子：最大的资产与最大的负债</h1>
+  <p>住房的双重属性、"房住不炒"的政策脉络、买房的财务分析框架、两种还贷方式的手算对比、提前还贷的算术、租与买的决策工具，以及预售风险与二手房交易的坑</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../09-stock/">← 第9章：股票</a>
+    <a href="../11-insurance/">第11章：保险 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">双重属性</a>
+    <a class="anchor" href="#s2">买房分析框架</a>
+    <a class="anchor" href="#s3">两种还贷方式</a>
+    <a class="anchor" href="#s4">提前还贷与利率</a>
+    <a class="anchor" href="#s5">租还是买</a>
+    <a class="anchor" href="#s6">预售风险</a>
+    <a class="anchor" href="#s7">二手房的坑</a>
+    <a class="anchor" href="#s8">资产占比与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为金融与购房通识科普，仅供知识教育与参考，<strong>不构成购房建议或投资建议</strong>；文中利率、税费、比例等数字均为讲解原理的示例，以中国人民银行、税务总局、住建部门及各地现行官方规定为准。房地产政策因城施策、变化较快，重大决策前请查询当地最新政策，个案法律咨询执业律师。各节观点均标注官方来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①讲清房子"消费品+资产"的双重属性与"房住不炒"的政策脉络；②用房价收入比、月供收入比、机会成本三个工具给"买不买得起"算一笔明白账；③手算等额本息与等额本金的差别，看懂自己还款计划表里"前几年都在还利息"的真相；④用一套算术判断提前还贷划不划算；⑤把"租还是买"从立场之争变成财务对比框架；⑥识别预售烂尾风险的官方防护制度与自查动作；⑦避开二手房交易的网签、资金监管、户口、税费四大坑；⑧理解房产在家庭资产中的集中度问题。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>房子是多数家庭金额最大、期限最长的一笔财务决策，本章给的全部是<strong>决策工具而非结论</strong>——不劝你买，也不劝你不买。准备买房的家庭建议把第二、三、六、七节打印出来对照执行；已背房贷的家庭重点看第三、四节（还贷方式与提前还贷）；暂时不买房的也值得读第五节（租买框架）与第八节（家庭资产结构）。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、住房的双重属性：既是消费品，也是资产</h2>
+    <p class="chapter-sub">所有关于房子的争论，根源都是把这两个属性混在一起谈</p>
+
+    <article class="view">
+      <h3>房子首先是消费品：它提供"住"这项服务</h3>
+      <p class="ctx">从经济学看，住房首先是一种耐用消费品：它每年向你提供"居住服务"——遮风避雨、通勤便利、学区资源、社区环境、心理安定感。评估消费品的基本方法是<strong>性价比</strong>：为这些服务付出的代价（买房的月供+持有成本，或租房的租金）与获得的服务是否匹配你的收入与生活阶段。消费品的逻辑里不存在"晚买亏一年"，只存在"超出支付能力的消费会挤压其他人生选项"。</p>
+      <p class="ctx">房子的第二重属性是<strong>资产</strong>：它价值大、可抵押、可传承，价格随土地、人口、信贷环境波动。资产属性带来两个后果：一是它天然带杠杆（房贷让普通人用两三成首付撬动全额资产），价格涨跌都被同比例放大；二是它的流动性差——卖出周期以月计，交易税费高，急用钱时很难快速变现。<strong>把消费品当投资品买（为了"涨价"而超出能力买房），或把投资品当消费品估（只看住得舒服不看持有成本），是购房决策两类经典错误的根源。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：《金融学》（黄达等著，大学教材，住房资产属性章节） · <a href="https://www.stats.gov.cn/">国家统计局官网（70个大中城市商品住宅销售价格变动情况月度发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"房住不炒"的政策脉络：官方给市场定的锚</h3>
+      <p class="ctx">"房子是用来住的、不是用来炒的"最早在 2016 年中央经济工作会议提出，此后连年写入政府工作报告与重要会议文件，成为房地产政策的总基调；配套的官方表述还包括"加快建立多主体供给、多渠道保障、租购并举的住房制度"（党的十九大报告提出，二十大报告延续）。政策工具箱围绕这个基调展开：需求端有差别化住房信贷（首付比例与利率因城施策）、限购限贷（部分城市已根据形势调整优化）；供给端有保障性住房建设、城中村改造、"平急两用"公共基础设施（2023 年国务院常务会议部署的"三大工程"）。</p>
+      <p class="ctx">对普通家庭，读懂政策基调的实际意义有三层：①<strong>指望房价普涨暴富的时代在政策层面已被明确否定</strong>，"闭眼买房稳赚"的旧经验失效；②住房供给正在双轨化——商品住房满足改善性需求，保障性住房（配售型保障房、公租房、保租房）满足刚性居住需求，符合当地条件的家庭应主动了解申请渠道；③因城施策意味着<strong>各城市政策差异极大且动态调整</strong>，任何"全国统一结论"都不可靠，决策前必须查询当地住建与公积金部门的现行规定。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">中国政府网（历年中央经济工作会议通稿、《政府工作报告》房地产表述；"三大工程"部署）</a> · <a href="https://www.mohurd.gov.cn/">住房和城乡建设部官网（住房保障、租购并举政策专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、买房的财务分析框架：三道算术题</h2>
+    <p class="chapter-sub">买不买得起，不取决于售楼处的话术，取决于你自己的三张计算表</p>
+
+    <article class="view">
+      <h3>第一题：房价收入比与月供收入比——两条警戒线</h3>
+      <p class="ctx"><strong>房价收入比</strong>＝住房总价 ÷ 家庭年收入，衡量"几年工资买得起一套房"。国际上常引用世界银行等机构研究中 3-6 倍左右的参考区间，但必须说明：该指标受城市能级、首付制度、家庭结构影响极大，中国大城市长期显著高于这一区间，简单套用会得出"永远买不起"的结论——它的正确用法是<strong>同城纵向比较（现在贵还是历史上贵）与同类城市横向比较</strong>，判断自己是否在为泡沫接盘。<strong>月供收入比</strong>更实用：监管部门对商业银行个人住房贷款的要求是月供不得超过月收入的 50%（《商业银行房地产贷款风险管理指引》确立的审慎标准），而大量投教材料与理财实务建议把舒适线放在 30% 左右——留出收入波动、生育、失业、医疗的缓冲空间。</p>
+      <blockquote class="q">手算示例：家庭月收入 2 万元，按 30% 舒适线月供上限为 6000 元，按监管 50% 红线为 1 万元。以利率 4%、30 年期等额本息估算，月供 6000 元对应贷款额约 125 万元；若首付 30%，可支撑的总价约 180 万元。<strong>先算出这个数字，再去看房</strong>——顺序反了，就轮到销售替你做预算。<span class="qsrc">示例数字仅为讲解原理（利率、首付比例以当地现行政策与银行审批为准）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">原银监会《商业银行房地产贷款风险管理指引》（月供收入比不超过50%的审慎要求；中国政府网检索篇名）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（个人住房贷款政策与因城施策文件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第二题：总成本清单——房价只是首付，持有才是长期账单</h3>
+      <p class="ctx">买房的真实支出远超房款本身，签约前请把这张清单填满：<strong>交易环节</strong>——契税（税率按面积与家庭套数差别征收，以税务总局现行公告为准）、住宅专项维修资金、中介费（二手房，费率可谈判）、评估费与贷款相关费用；<strong>持有环节</strong>——月供利息（第三节会算这笔大头）、物业费、取暖费、未来的房屋维修与翻新；<strong>退出环节</strong>——增值税及附加（不满一定年限出售时征收）、个人所得税、中介费。税费政策各地执行细则不同且时有调整（如"满二""满五唯一"的免税口径），签约前务必向当地不动产登记与税务部门核实最新版本。</p>
+      <p class="ctx">还有一笔最容易漏算的<strong>机会成本</strong>：几十万首付如果不买房，配置在稳健资产里的年化收益是多少？假设首付 60 万、稳健年化 3%，每年的机会成本是 1.8 万，加上房贷利息，才是"住这套房"每年的完整财务代价——把它与"同地段租同样房子"的年租金对比，就是下一节租买框架的雏形。很多"买房一定划算"的结论，都是漏算了机会成本与持有成本之后得出的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（住房交易契税、增值税、个人所得税现行政策检索）</a> · <a href="https://www.mohurd.gov.cn/">住建部官网（住宅专项维修资金制度）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第三题：压力测试——收入下降三成，这套房子还养得起吗</h3>
+      <p class="ctx">房贷是 20-30 年的长期负债，期间换工作、行业波动、生育、家人生病都可能让收入中断或下降。签约前做三个压力测试：①<strong>收入冲击测试</strong>：家庭收入下降 30% 时，月供占比是否仍低于 50% 红线？②<strong>应急金测试</strong>：付完首付与税费后，是否仍保有覆盖 6 个月以上支出的应急资金（见<a href="../03-budget/">第3章</a>）？如果首付掏空了六个钱包还要借消费贷凑，说明这笔交易已经超出承受能力；③<strong>利率测试</strong>：浮动利率（LPR 加点）房贷在利率上行周期月供会增加，按现行合同的重定价规则测算加息 1 个百分点后的月供，确认仍在舒适区内。</p>
+      <p class="ctx">压力测试不是悲观主义，而是把"最坏情况"提前算清楚的乐观主义：能通过的方案才叫资产，通不过的方案叫赌注。监管部门近年多次风险提示"经营贷、消费贷违规流入楼市"——用短期高息杠杆资金凑首付，等于把两道警戒线同时踩穿，一旦抽贷即面临断供（断供的法律后果见第七节）。</p>
+      <div class="fig"><img src="../assets/img-10-1.png" alt="购房财务天平示意：一端是房屋与月供账单，另一端是收入、应急资金与机会成本砝码，天平处于校准平衡状态"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（"经营贷、消费贷违规流入房地产市场"风险提示）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（个人住房贷款政策文件）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、两种还贷方式：等额本息 vs 等额本金</h2>
+    <p class="chapter-sub">一个选择题，背后是几十万利息差——看懂机制再做选择</p>
+
+    <article class="view">
+      <h3>机制拆解：本息固定 vs 本金固定</h3>
+      <p class="ctx"><strong>等额本息</strong>：每月还款总额固定，其中利息与本金的比例逐月变化——前期利息占大头、本金还得少，后期反过来。它的本质是"把利息平摊进固定月供"，优点是月供压力可预期，适合收入稳定的工薪家庭。<strong>等额本金</strong>：每月归还的本金固定，利息按剩余本金计算逐月递减，因此月供"前高后低"。它的前期还款压力大，但总利息更少，适合前期现金流宽裕、希望省息的家庭。</p>
+      <p class="ctx">一个反直觉但重要的事实：<strong>"等额本息前期都在还利息"不是银行的黑幕，而是资金时间价值的体现</strong>——你前期占用的本金多，利息自然多；两种方式占用资金的"节奏"不同，总利息差就是节奏差的定价。真正需要警惕的不是还款方式本身，而是销售话术利用信息差制造焦虑（"选错方式多还几十万利息！"）——多还的利息对应的是前期少还的本金压力，是一体两面，不是被偷走的钱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（个人住房贷款利率政策）</a> · 《金融学》（黄达等著，大学教材，年金与贷款摊销章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>手算对比：100 万贷款 30 年，两种方式差多少</h3>
+      <blockquote class="q">手算示例（利率按 4% 年化，仅作原理演示）：<br>
+      <strong>等额本息</strong>：月供约 4777 元，30 年共还约 172.0 万元，其中利息约 <strong>72.0 万元</strong>；第 1 个月月供中利息约 3333 元、本金仅约 1443 元。<br>
+      <strong>等额本金</strong>：首月月供约 6111 元（本金 2778＋利息 3333），此后每月递减约 9 元，末月月供约 2787 元；30 年共还约 160.2 万元，其中利息约 <strong>60.2 万元</strong>。<br>
+      两者总利息相差约 <strong>11.8 万元</strong>；代价是等额本金前 10 年的月供始终高于等额本息（首月高出约 1334 元）。<span class="qsrc">示例数字仅为讲解原理，实际以贷款合同与银行还款计划表为准；利率为假设值</span></blockquote>
+      <p class="ctx">选择逻辑因此很清晰：<strong>现金流紧张、追求月供稳定 → 等额本息；前期宽裕、总利息敏感 → 等额本金</strong>。还有一个常被忽略的变量：如果你打算提前还款（下一节），等额本息"前期利息多"的劣势会被放大——因为前几年还掉的本金少，提前结清时剩余本金更大。签合同时向银行索要完整的还款计划表（每月本息拆分），是每个人的合法权利。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.investor.org.cn/">中国投资者网/金融机构官方投教材料（等额本息与等额本金对比）</a> · 《公司理财》（罗斯等著，大学教材，贷款摊销表章节）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、利率与提前还贷：一道比较收益的算术题</h2>
+    <p class="chapter-sub">LPR 加点怎么运作、存量房贷利率如何调整、提前还贷什么时候划算</p>
+
+    <article class="view">
+      <h3>LPR 加点机制：你的房贷利率是怎么定的、怎么变的</h3>
+      <p class="ctx">2019 年房贷利率改革后，新发个人住房贷款普遍采用"<strong>LPR＋加点</strong>"的浮动定价：LPR（贷款市场报价利率）由人民银行授权全国银行间同业拆借中心每月 20 日左右发布，其中 5 年期以上品种是房贷定价基准；"加点"由银行根据政策下限、城市因城施策要求与你的资信状况确定，<strong>合同期内固定不变</strong>。重定价日（通常每年 1 月 1 日或放款对应日）到来时，按最近一期 LPR 重算月供——LPR 下行周期里房贷族每年"自动降息"，上行周期则相反。</p>
+      <p class="ctx">对存量房贷（改革前签的合同），官方提供过两条路径：2020 年的存量浮动利率贷款定价基准转换（一次性选择转 LPR 或固定利率），以及 2023 年以来人民银行、金融监管总局推动的<strong>降低存量首套房贷利率</strong>安排——符合条件的借款人可申请下调加点幅度，商业银行分批集中调整。政策窗口与细则以人民银行和金融监管总局的现行文件为准；查询自己合同的重定价日与加点数，看贷款合同或手机银行"我的贷款"页面即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（LPR 改革公告、存量房贷利率调整政策文件；LPR 每月发布值见授权发布平台）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（商业银行落实存量房贷利率调整的通知）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>提前还贷划不划算：比较两个利率就够了</h3>
+      <p class="ctx">提前还贷的本质是一笔"确定性投资"：把闲钱拿去还贷款，等于获得了一笔<strong>等于贷款利率、无风险、免税</strong>的收益。所以判断标准只有一个比较：<strong>你的贷款利率 vs 你手中闲钱能获得的稳健收益率</strong>。房贷利率 4.5% 而稳健理财只有 2.5% → 提前还贷划算（省下 2 个点的确定性利差）；房贷利率 3.3% 而你有把握获得 4% 以上的稳健回报 → 不急着还。注意比较基准必须诚实：拿"股票可能翻倍"去对比房贷利率，是用不确定的预期收益美化风险，不符合"稳健收益"的定义。</p>
+      <p class="ctx">执行层面的三个细节：①<strong>选对方式</strong>——提前还款有"缩短期限"与"减少月供"两种，同等金额下缩短期限省的利息更多（本金占用时间更短），但若目的是缓解现金流压力则选减少月供；②<strong>看清合同</strong>——部分贷款合同约定了提前还款的预约流程与违约金条款（监管要求银行不得收取不合理费用，遇阻可投诉）；③<strong>别掏空安全垫</strong>——用应急资金提前还贷是本末倒置，一旦失业或生病，低息消费贷补不回来高息的窟窿。2022-2024 年出现的"提前还贷潮"，正是居民在理财收益下行与房贷利率倒挂环境下的理性选择——监管随后推动下调存量房贷利率，从源头缓解了这一倒挂。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（存量房贷利率下调相关公告与答记者问）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（个人贷款提前还款服务与收费规范的监管要求）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、租还是买：把立场之争变成财务对比</h2>
+    <p class="chapter-sub">没有标准答案，只有适合你所在城市、收入与人生阶段的账</p>
+
+    <article class="view">
+      <h3>租买对比的核心公式：每年的"住"分别花多少钱</h3>
+      <p class="ctx">租与买的财务对比，本质是比较<strong>获得同样居住服务的年成本</strong>。租房的年成本＝年租金＋搬家的摩擦成本（中介费、折腾）。买房的年成本＝房贷利息部分＋首付的机会成本＋税费物业维修等持有成本－房产的长期增值预期（这一项最不可靠，保守测算可先按 0 计）。"租售比"（月租金÷房价，或年租金÷房价的倒数形式）是常用的粗筛指标：年租金回报率越低，说明持有成本相对租金越贵，租房在纯财务上越占优。</p>
+      <blockquote class="q">手算示例：某房总价 300 万，首付三成 90 万，贷款 210 万、利率 4%、等额本息 30 年，月供约 10032 元，其中第一年利息合计约 8.2 万；首付 90 万按稳健年化 3% 计机会成本 2.7 万；物业等持有成本年约 0.6 万 → 第一年"住"的财务成本约 11.5 万元（未计增值）。同地段租同档房子年租金 8 万元 → 纯财务口径租房年省 3.5 万。若房价年均涨幅能持续超过约 3.8%（300万×3.8%≈11.5万），买房才开始反超——这个涨幅假设是否现实，请结合当地人口与供给数据自行判断。<span class="qsrc">示例数字仅为讲解原理，非任何真实城市与楼盘</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：《个人理财》（大学教材，住房租买决策章节） · <a href="https://www.stats.gov.cn/">国家统计局官网（商品房销售价格与租金相关数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>财务之外的四个变量：确定性、流动性、公共服务与人生阶段</h3>
+      <p class="ctx">纯财务账之外，四个变量常常才是真正的决定因素。①<strong>确定性</strong>：自有住房锁定居住权，租房面临涨租、解约、频繁搬家的不确定性——这在育儿与养老阶段权重急剧上升；②<strong>流动性</strong>：职业上升期可能跨城市迁移，房子卖起来以月计、还要交税费，租房的"说走就走"本身就是资产；③<strong>公共服务绑定</strong>：不少城市的落户、子女入学等公共服务与住房产权挂钩（各地政策不同且在改革中，"租购同权"是官方推进方向），这笔账必须按当地现行政策算；④<strong>人生阶段与心理账户</strong>：婚育计划、父母同住、通勤半径，都会改变"住"的需求函数。</p>
+      <p class="ctx">把结论说完整：<strong>"租房是帮房东还贷"是一句情绪话，不是财务分析</strong>——房东的租金收益里同样包含其资金成本与折旧；反过来，"买房稳赚"在人口流出、供给过剩的城市同样不成立。正确答案永远是：用第二节的三道算术题＋本节的对比公式，代入你自己的城市、收入与五年规划，算出属于你家的数字。政策层面，"租购并举"意味着保障性租赁住房供给在扩大（住建部官网可查各地筹集计划），符合条件的家庭多了一个低成本选项。</p>
+      <div class="fig"><img src="../assets/img-10-2.png" alt="租与买的双路径示意：一条路通向带钥匙的房屋图标（稳定但资金锁定），另一条路通向灵活的行李箱与租赁房屋图标（流动但需反复决策），两条路上各有砝码与算盘"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mohurd.gov.cn/">住建部官网（保障性租赁住房、租购并举政策专栏）</a> · <a href="https://www.gov.cn/">中国政府网（"租购同权"相关新型城镇化文件）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、预售与烂尾风险：把钱交给制度，不是交给运气</h2>
+    <p class="chapter-sub">商品房预售制度的官方防护网，以及购房人必做的自查动作</p>
+
+    <article class="view">
+      <h3>预售制度与资金监管：钱应该待在监管账户里</h3>
+      <p class="ctx">商品房预售制度允许开发商在竣工前售房回款，是过去几十年住房供应快速扩张的制度基础，也埋下了"钱被挪用、楼盖不完"的风险敞口。官方的防护机制是<strong>预售资金监管</strong>：2022 年住建部、人民银行、原银保监会联合发文规范商品房预售资金监管，要求购房人支付的定金、首付款、按揭贷款等<strong>全部直接存入监管账户</strong>，按工程节点拨付，优先用于本项目工程建设——这是"保交楼"的制度核心。2022 年以来"保交楼、稳民生"专项工作部署（国务院与住建部历年文件）推动大批逾期项目交付；部分城市已开展<strong>现房销售试点</strong>，从源头消除预售风险。</p>
+      <p class="ctx">购房人的自查动作因此非常具体：①付款前核对收款账户是否为<strong>该项目公示的预售资金监管账户</strong>（售楼处必须公示，账户名一般含"监管"字样），任何"打到公司一般账户优惠更多"的话术都是危险信号，直接拒绝并可向住建部门举报；②查询项目<strong>预售许可证</strong>（当地住建部门官网可查）与土地抵押、在建工程抵押状态；③关注开发商公开债务信息（债券违约、商票逾期有公开渠道可查）；④保留全部合同与付款凭证——一旦项目出问题，这些是进入"保交楼"处置程序与法律维权的依据。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mohurd.gov.cn/">住建部官网（《关于规范商品房预售资金监管的意见》；"保交楼"工作进展发布）</a> · <a href="https://www.gov.cn/">中国政府网（稳楼市与保交楼政策文件检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>断供的法律后果：不是"把房子还给银行"就两清</h3>
+      <p class="ctx">一个必须提前知道的常识：房贷是<strong>有追索权的债务</strong>。如果房价下跌、你断供，银行处置（司法拍卖）房产后所得不足以覆盖贷款余额时，<strong>差额部分你仍然欠银行的</strong>——"把钥匙还给银行就互不相欠"是对制度的常见误解。断供的连锁后果包括：逾期记录进入央行征信（影响后续一切信贷，见<a href="../05-credit/">第5章</a>）、罚息与复利累积、被起诉后资产被强制执行、列入失信被执行人名单（限制高消费）。这也是第二节压力测试如此重要的原因：<strong>买房的底线不是"会不会跌"，而是"跌了我也还得起"</strong>。</p>
+      <p class="ctx">如果已经出现还款困难，正确动作是<strong>在逾期前主动与银行协商</strong>：监管在特定时期（如疫情、灾情）出台过延期还本付息的政策安排，商业实践中也可协商调整还款计划；协商不成可向金融监管部门投诉（12378 热线）。最坏的选择是失联硬扛——罚息与法律程序只会让窟窿越来越大。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">《中华人民共和国民法典》合同编（借款合同违约责任；中国政府网检索）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（个人贷款纾困政策与 12378 投诉渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、二手房交易的四个坑：网签、资金监管、户口、税费</h2>
+    <p class="chapter-sub">每一笔都是几十万级别的学费，提前十分钟学完可以省下</p>
+
+    <article class="view">
+      <h3>坑一坑二：不走网签与资金监管，等于裸奔交易</h3>
+      <p class="ctx"><strong>网签</strong>：二手房买卖合同必须在当地不动产登记/住建部门的网签系统备案，网签是"一房二卖"的技术防火墙——同一套房无法同时网签两份合同。任何"先私下签协议、晚点再网签"的安排都在给卖方毁约留窗口。<strong>交易资金监管</strong>：各地普遍建立了存量房交易资金监管制度（住建部门主导，银行设专用账户），买方房款先存入监管账户，过户完成后再划给卖方——它同时防住两类经典骗局：买方付了钱卖方不过户（钱在监管账户可退），以及卖方过了户买方不付钱（过户前钱不出账）。</p>
+      <p class="ctx">此外必查<strong>房屋权利状态</strong>：到不动产登记中心调档，确认有无抵押（卖方的房贷未结清需先解押或用"带押过户"——2023 年起自然资源部与中国银保监会联合推广的便民制度，可免卖方先筹钱解押）、有无查封（涉诉房产碰不得）、产权人是否全体同意签字（夫妻共有房产单方出售可能无效）。中介费可以谈，但网签与资金监管这两道程序绝不能省。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mohurd.gov.cn/">住建部官网（存量房交易资金监管制度文件）</a> · <a href="https://www.gov.cn/">自然资源部、银保监会关于不动产"带押过户"的通知（中国政府网检索"带押过户"）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>坑三坑四：户口迁不走与税费算不清</h3>
+      <p class="ctx"><strong>户口问题</strong>：学区房买家尤其要警惕——原房主户口不迁出，可能影响你的落户与子女入学资格，而户口迁移不属于法院民事强制执行的常见标的，事后维权非常被动。正确做法：签约前到房屋所在地派出所查询户口登记情况，在合同中明确约定卖方户口迁出的期限与高额违约金，并留一部分尾款在户口迁出后支付。<strong>税费问题</strong>：二手房交易的增值税（与持有年限挂钩）、个人所得税（"满五唯一"等免税口径以税务总局现行规定为准）、契税（按套数与面积差别征收）由谁承担需在合同中写明——市场上"净得价"（卖方要求买方承担全部税费）报价方式会显著改变真实成本，比价时必须把所有税费还原到总价口径。</p>
+      <p class="ctx">最后两个通用防坑动作：①<strong>阴阳合同坚决不签</strong>——为避税做低网签价属于偷逃税款，面临补税、罚款乃至刑事责任，且做低的合同价在你日后出售或维权时会反噬你（赔偿基数、贷款额度都按低的那份算）；②<strong>交房清单逐项验收</strong>——水电燃气物业费结清凭证、户口迁出证明、约定的家具家电清单，全部落纸面后再付尾款。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（存量房交易税收政策与"满五唯一"口径检索）</a> · <a href="https://www.gov.cn/">《中华人民共和国税收征收管理法》与《刑法》逃税罪条款（中国政府网检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>定金、订金与合同必备条款：签字前的最后一道防线</h3>
+      <p class="ctx"><strong>"定金"与"订金"一字之差，法律后果完全不同</strong>：定金受《民法典》"定金罚则"约束——给付方（买方）违约，无权请求返还；收受方（卖方）违约，应当双倍返还。这意味着你交出去的定金，如果你反悔（比如没批贷就冲动签约后又不想买），法律上是要不回来的。"订金"则无此罚则，性质接近预付款，违约时一般可主张返还——但实践中卖方也常故意用"定金"字样锁定买方。三个纪律：①<strong>贷款没审批通过之前，不交任何名义的大额定金</strong>——在合同里明确写"若贷款未获批准，合同解除、定金全额返还"的解约条款；②定金金额受法定上限约束（《民法典》规定不得超过主合同标的额的 20%，超出部分不产生定金效力），大额"诚意金""茶水费"都不受保护且涉嫌违规；③任何款项只进<strong>资金监管账户或合同载明的卖方账户</strong>，不进中介或个人的私户。</p>
+      <p class="ctx"><strong>买卖合同（网签合同与补充协议）签字前逐项核对的必备要素</strong>：房屋坐落与产权证号（与不动产登记簿一致）、成交总价与付款节奏（每一笔款项的触发条件：签约、网签、批贷、过户、交房各付多少）、过户与交房的具体日期（写"某年某月某日前"而不是"尽快"）、户口迁出期限与违约金、房屋现状确认（租赁情况——"买卖不破租赁"，带租约的房子你可能收不到房；抵押情况——未解除抵押的过户路径）、税费承担方式、双方违约责任的对等条款、以及所有口头承诺落到书面（学位、车位、赠送家具家电，写进补充协议才有效力）。补充协议是双方自由约定的空间，也是纠纷高发区——对任何看不懂的条款，签字前咨询执业律师的成本远低于事后诉讼。以现行法律与地方交易规则为准，个案请咨询执业律师。</p>
+      <p class="ctx">把本节与前面的三道算术题连起来看，买房的完整流程其实是一条固定的决策链：先用月供承受力确定总价上限（第二节），再用租买对比确认"现在该不该买"（第五节），选定房屋后核查产权、抵押与租赁状态（第六、七节），谈判时守住定金纪律与合同五要素（本节），付款走资金监管账户，最后核对交房清单。链条上每一步都有官方制度托底，但制度只保护"按规则做的人"——跳过任何一步省下的时间，都可能变成日后诉讼里多花的一年。<strong>房产是多数家庭金额最大的一次交易，值得你用最慢的速度走完每一个环节。</strong>慢，在这个场景里不是效率损失，而是风险管理本身：市场不会因为你多核查一周就把房子卖给别人，但一个没核查的抵押状态可能让你钱房两空。宁可错过，不可做错——这句话对交易择时未必成立，对交易流程永远成立。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">《中华人民共和国民法典》合同编（定金罚则与定金上限、买卖不破租赁；中国政府网检索）</a> · <a href="https://www.mohurd.gov.cn/">住房和城乡建设部官网（房屋交易合同网签备案与交易资金监管制度文件）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、房产在家庭资产中的位置：集中度是最大的隐形风险</h2>
+    <p class="chapter-sub">谣言粉碎与本章自测</p>
+
+    <article class="view">
+      <h3>六成资产压在房子里：中国家庭的资产结构现状</h3>
+      <p class="ctx">中国人民银行 2019 年开展的城镇居民家庭资产负债情况调查（2020 年在官方媒体发布）显示：我国城镇居民家庭总资产中<strong>住房资产占比接近六成</strong>，显著高于美国等成熟市场约三成的水平；同时家庭负债以房贷为主。这个结构意味着两件事：①过去房价上涨周期里，多数家庭的财富增长主要由房产贡献——这是"买房信仰"的数据基础；②<strong>房价波动对整个家庭资产负债表的冲击被放大</strong>——房子既是最大资产，价格下行时也是最大的账面缩水来源，且流动性差、难以调仓。</p>
+      <p class="ctx">对家庭的启示是资产配置的一般原理（见<a href="../06-invest/">第6章</a>）在住房上的应用：<strong>单一资产占比过高，就是把全部鸡蛋放进一个搬不动的篮子</strong>。已经在高位重仓房产的家庭，增量储蓄应有意识地配置到流动性好的金融资产（存款、债券、基金等通类），逐步改善结构；准备买房的家庭则要把"买完后家庭资产还剩多少非房产部分"纳入第二节的全部测算。数据说明：该调查覆盖城镇家庭，口径与年份以人民银行发布为准，近年结构可能已有边际变化。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行《2019年中国城镇居民家庭资产负债情况调查》（官方发布，可经人民银行官网及官方媒体检索）</a> · <a href="https://www.stats.gov.cn/">国家统计局《中国统计年鉴》居民收入与消费章节</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于房子的五个流行说法</h3>
+      <p class="ctx"><strong>谣言一："房价永远涨，晚上车亏一辈子。"</strong>——"永远涨"违背资产定价常识：房价长期由人口流入、收入增长与土地供给决定，人口净流出城市的住房已出现价格阴跌与库存积压（统计局 70 城数据的分化清晰可见）。"房住不炒"的官方基调本身就否定了普涨预期。<br>
+      <strong>谣言二："租房是帮房东还贷，买房才是给自己存钱。"</strong>——第五节已完整拆解：买房的年财务成本（利息+机会成本+持有成本）常常高于同档租金；租房买到的流动性与确定性同样有价值。"给自己存钱"的前提是你存得起且存对了城市。<br>
+      <strong>谣言三："付了首付房子就是我的了。"</strong>——付清全款并办出不动产权证之前，你拥有的是合同债权；按揭未结清时房屋处于抵押状态，转让受限。网签、预告登记、资金监管这些程序的意义正在于把"你的权利"落到登记簿上。<br>
+      <strong>谣言四："提前还贷一定省利息，有多少还多少。"</strong>——省息是相对"不还"而言，但前提是闲钱没有更高收益的稳健去处、且不掏空应急资金；低利率存量房贷在降息周期里本身就是优质负债。先比较两个利率（第四节），再谈还不还。<br>
+      <strong>谣言五："买学区房稳赚，孩子用完还能涨价卖。"</strong>——各地正推进多校划片、教师轮岗、公民同招等教育均衡化改革（教育部官方部署），学区与房产的绑定关系在政策上被系统性弱化；为单一政策变量支付高溢价，是把家庭资产押在一条可能变化的规则上。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/">国家统计局 70 城房价月度数据（城市分化证据）</a> · <a href="http://www.moe.gov.cn/">教育部官网（义务教育招生入学与教育均衡化政策文件）</a> · <a href="https://www.mohurd.gov.cn/">住建部官网（"房住不炒"与住房保障政策）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 本章自测（对照自己的房贷或购房计划试试）</h4>
+      <ul>
+        <li>住房的"双重属性"是什么？两类经典购房错误分别混淆了哪个属性？</li>
+        <li>"房住不炒"最早在哪次会议提出？对你的购房决策有什么实际含义？</li>
+        <li>月供收入比的监管红线是多少？舒适线通常建议多少？</li>
+        <li>用月收入 2 万的家庭演示：30% 舒适线对应的贷款额与可支撑总价怎么算？</li>
+        <li>买房总成本清单里，交易、持有、退出三个环节各有哪些项目？最常被漏算的是哪一笔？</li>
+        <li>三个压力测试分别测什么？为什么"借消费贷凑首付"是同时踩穿两道警戒线？</li>
+        <li>等额本息与等额本金的机制区别是什么？为什么说"前期都在还利息"不是黑幕？</li>
+        <li>手算：100 万、30 年、4% 利率，两种方式的总利息差是多少？代价是什么？</li>
+        <li>LPR 加点机制里，什么在变、什么不变？重定价日怎么查？</li>
+        <li>提前还贷划算与否的比较标准是什么？为什么不能拿"股票可能翻倍"当比较基准？</li>
+        <li>租买对比公式里，买房的年成本由哪几项构成？最不可靠的是哪一项？</li>
+        <li>预售资金监管账户怎么核对？"打到一般账户给优惠"为什么必须拒绝？</li>
+        <li>断供后把房子交给银行就两清了吗？为什么？</li>
+        <li>二手房的"网签"和"资金监管"分别防住什么风险？</li>
+        <li>什么是"带押过户"？它解决了卖方的什么难题？</li>
+        <li>买学区房为什么要在合同里约定户口迁出违约金并留尾款？</li>
+        <li>央行调查显示城镇家庭住房资产占比约多少？这个数字对家庭资产配置意味着什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>房子＝消费品（居住服务）＋资产（杠杆大、流动性差），混谈两个属性是错误之源；"房住不炒"是政策总基调，普涨信仰已被官方与市场双重否定；买房先做三道算术题（月供≤收入50%红线/30%舒适线、总成本全清单、三压力测试）；等额本息稳、等额本金省，总利息差=资金节奏差的定价；提前还贷只比两个利率（房贷利率 vs 稳健收益率），别掏空应急金；租买之争的解法是把年成本算出来对比，立场不能替代算术；预售付款只认监管账户，断供是追索到底的债务；二手房四坑=网签、资金监管、户口、税费口径；城镇家庭住房资产占比近六成=集中度风险，增量储蓄要有意识分散。
+  </div>
+
+  <nav class="pager">
+    <a href="../09-stock/"><span class="dir">← 第9章</span>股票：买股票就是买公司的一部分</a>
+    <a href="../11-insurance/"><span class="dir">第11章 →</span>保险：用小钱转移大风险</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 第10章 · 依据《商业银行房地产贷款风险管理指引》、人民银行 LPR 改革与存量房贷利率调整文件、住建部预售资金监管与"保交楼"政策、税务总局现行住房交易税收规定、人民银行《2019年中国城镇居民家庭资产负债情况调查》及《金融学》《个人理财》教材整理 · 内容更新至 2026 年 10 月 · 本章不构成购房或投资建议</p>
+  <p>本站仅供金融知识教育参考 · 各地政策因城施策，决策前请查询当地现行规定 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 为什么金融素养是人生必修课 — 人生财富必修课</title>
+<style>
+  :root{--accent:#b45309;--accent-deep:#92400e;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fef3c7;color:var(--accent-deep);border:1px solid #fde68a;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  table.simple{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  table.simple th,table.simple td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  table.simple th{background:var(--bg-soft);color:var(--accent-deep);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">人生财富必修课 · 导论</div>
+  <h1>为什么金融素养是人生必修课</h1>
+  <p>金融素养的官方定义、我国居民金融素养现状与短板、这门课的四部分逻辑，以及怎么用它才最划算</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-money/">第1章：认识金钱 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">什么是金融素养</a>
+    <a class="anchor" href="#s2">为什么是必修课</a>
+    <a class="anchor" href="#s3">现状与短板</a>
+    <a class="anchor" href="#s4">国际经验</a>
+    <a class="anchor" href="#s5">本课怎么用</a>
+    <a class="anchor" href="#s6">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章及全站内容仅供金融知识教育与参考，<strong>不构成任何投资建议、产品推荐或买卖依据</strong>，本站不推荐任何具体产品、机构、股票、基金。投资有风险，决策需独立；牢记官方提示：<strong>高收益意味着高风险</strong>。遭遇诈骗请立即拨打 <strong>110</strong> 或反诈专线 <strong>96110</strong>。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用 OECD 与中国人民银行的官方口径讲清"金融素养"到底是什么（知识、行为、态度三个维度）；②说出金融决策为什么贯穿一生、决策失误的代价有多大（非法集资、电诈、养老缺口三个证据链）；③知道我国居民金融素养的现状与最薄弱的环节；④了解各国官方是怎么做金融教育的；⑤掌握本课程四部分的逻辑和三条贯穿全课的铁律；⑥分清"金融素养""投资理财""快速致富"三个完全不同的概念。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"总纲"，不涉及任何具体操作。第一次学习建议通读；之后每次犹豫"要不要买某个产品""要不要相信某个说法"时，回到本章第六节前的三条铁律对照一遍即可。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、什么是金融素养：官方定义先立住</h2>
+    <p class="chapter-sub">金融素养不是"会炒股"，官方定义说的是知识、行为、态度三件事</p>
+
+    <article class="view">
+      <h3>OECD 的权威定义：知识 + 行为 + 态度，目标是财务健康</h3>
+      <p class="ctx">经济合作与发展组织（OECD）下属的金融教育国际网络（INFE）给出的定义被各国官方广泛采用：<strong>金融素养是做出健全财务决策、最终实现个人财务福祉所必需的金融知识、行为与态度的组合</strong>（原文为英文："a combination of financial awareness, knowledge, skills, attitudes and behaviours needed to make sound financial decisions and ultimately achieve individual financial wellbeing"）。</p>
+      <p class="ctx">这个定义里有三个常被忽略的关键词。第一，<strong>它是"组合"</strong>：光知道复利公式（知识）不够，还得真的每月存钱（行为），并且在股市大涨时忍得住不梭哈（态度）。第二，<strong>落脚点是"决策"</strong>：金融素养不考核你背了多少名词，考核的是你在真实场景下——办不办这张信用卡、买不买这份保险、信不信这个"内部项目"——做出的选择质量。第三，<strong>目标是"财务福祉"</strong>：不是收益最大化，而是让你的钱配得上你想要的生活，睡得着觉。</p>
+      <p class="ctx">对照这个定义就能明白：一个能把 K 线图讲得头头是道、却管不住手追涨杀跌的人，按官方口径金融素养并不合格；反过来，一个不懂任何术语、但坚持记账、留足应急金、从不碰"保本高息"的人，恰恰是金融素养的优等生。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.oecd.org/en/topics/financial-education.html">OECD 金融教育专题页（Financial education，英文）</a> · <a href="https://www.oecd.org/en/about/programmes/infe.html">OECD/INFE 金融教育国际网络（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>中国人民银行的口径：金融知识、金融行为、金融技能与态度</h3>
+      <p class="ctx">中国人民银行自 2016 年起开展消费者金融素养调查，并定期发布<strong>《中国消费者金融素养调查报告》</strong>。央行调查把消费者金融素养拆成两大块：<strong>金融知识</strong>（对通胀、利率、复利、风险收益关系等基本概念的掌握）与<strong>金融行为</strong>（记账、储蓄、规划养老、阅读合同等实际做法），同时测量金融态度（如对"今朝有酒今朝醉"的认同度）。历次报告的总体结论方向一致：我国消费者金融素养<strong>呈稳步提升态势，但仍有明显短板</strong>——对基本金融知识的掌握在改善，而长期财务规划行为（尤其养老规划）和风险识别能力仍然薄弱。</p>
+      <p class="ctx">央行的这套口径有个值得注意的特点：它把"行为"看得和"知识"一样重。调查报告里反复出现的一个发现是——<strong>知道和做到之间隔着一条鸿沟</strong>：多数人认同"应该为养老储蓄"，但真正开始行动的比例低得多。这也是本课程每章都配"自查清单"和"行动方案"的原因：金融素养最终要在行为上兑现。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（"金融消费权益保护"栏目，含《中国消费者金融素养调查报告》发布记录）</a> · <a href="https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html">中国人民银行调查统计司（金融统计数据发布栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>先分清三个概念：金融素养 ≠ 投资理财 ≠ 快速致富</h3>
+      <p class="ctx">市面上大量"财商课"把这三件事混为一谈，第一步就得拆开。<strong>金融素养</strong>是官方定义的通识能力：看懂通胀、管好预算、认清风险、守住信用——它决定你不掉坑。<strong>投资理财</strong>是金融素养的一个应用领域：在懂原理的前提下配置资产——它决定你能不能跑赢通胀。<strong>快速致富</strong>则基本是一个营销话术：任何承诺"低门槛、高收益、快回本"的项目，官方口径早已给出定性——<strong>高收益意味着高风险</strong>，收益率离谱的"项目"绝大多数是非法集资或诈骗（详见<a href="../13-fraud/">第13章</a>）。</p>
+      <p class="ctx">这门课教的是前两者，并且会反复帮你识别第三者。一个直接的检验标准：<strong>凡是把"财务自由""躺赚""睡后收入"挂在嘴边的课程和项目，先按诈骗排查流程过一遍</strong>——这不是偏激，而是反诈官方宣传里反复出现的案例特征。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">中国政府网（国务院《防范和处置非法集资条例》，2021年5月1日施行，国务院令第737号）</a> · <a href="https://www.investor.org.cn/">中国投资者网（证监会系统投资者教育平台，风险警示专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么"态度"最难教也最值钱：行为金融学的证据</h3>
+      <p class="ctx">2002 年诺贝尔经济学奖得主丹尼尔·卡尼曼（Daniel Kahneman）与阿莫斯·特沃斯基（Amos Tversky）的<strong>前景理论</strong>证明：人在面对收益和损失时的决策系统性地偏离"理性人"假设——同样是一万元，丢失带来的痛苦约是获得带来快乐的两倍（损失厌恶）；人们为了"回本"愿意承担更大的风险（处置效应：急着卖出赚钱的、死拿亏钱的）。2017 年诺贝尔经济学奖得主理查德·塞勒（Richard Thaler）进一步把这些偏差用于解释真实的储蓄与投资行为：为什么人会"心理账户"分明地把年终奖挥霍掉、却舍不得动工资；为什么明明知道该养老储蓄却一直拖延（现时偏好）。</p>
+      <p class="ctx">这些研究的实际含义是：<strong>金融决策的敌人往往不是无知，而是大脑的出厂设置</strong>。所以本课程第四部分用整整一章讲认知偏差（<a href="../16-behavioral/">第16章</a>），并且每个偏差都配一个"反偏差动作"——用制度和流程对冲人性，而不是指望自己"下次忍住"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2002/summary/">诺贝尔奖官网：2002 年经济学奖（卡尼曼，前景理论）（英文）</a> · <a href="https://www.nobelprize.org/prizes/economic-sciences/2017/summary/">诺贝尔奖官网：2017 年经济学奖（塞勒，行为经济学）（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、为什么是必修课：金融决策贯穿一生</h2>
+    <p class="chapter-sub">从第一份工资到养老继承，每个节点的决策质量，几十年后会拉开巨大的差距</p>
+
+    <article class="view">
+      <h3>一生的金融决策时间轴：每个节点都在"考试"</h3>
+      <p class="ctx">把人生按金融决策排一遍，你会发现考试一场接一场，而且大多数<strong>没有补考</strong>：</p>
+      <table class="simple">
+        <tr><th>人生阶段</th><th>典型金融决策</th><th>决策失误的代价</th><th>对应章节</th></tr>
+        <tr><td>第一份工资</td><td>消费还是储蓄、办不办信用卡</td><td>月光习惯固化、首次逾期上征信</td><td><a href="../03-budget/">第3章</a>、<a href="../05-credit/">第5章</a></td></tr>
+        <tr><td>成家立业</td><td>彩礼嫁妆怎么谈、婚房买不买、贷款怎么还</td><td>高杠杆断供、婚前财产混同</td><td><a href="../10-house/">第10章</a>、<a href="../14-family/">第14章</a></td></tr>
+        <tr><td>生育养育</td><td>教育投入、保险配置、要不要为孩子"理财"</td><td>保障裸奔、教育金被挪用踩坑</td><td><a href="../11-insurance/">第11章</a>、<a href="../15-kids/">第15章</a></td></tr>
+        <tr><td>中年增收</td><td>投资配置、副业收入、父母养老资金安排</td><td>追涨杀跌亏损、被"高息项目"收割</td><td><a href="../06-invest/">第6章</a>、<a href="../13-fraud/">第13章</a></td></tr>
+        <tr><td>临退休与退休</td><td>养老金测算、个人养老金账户、资产变现节奏</td><td>缺口发现太晚、退休后被骗</td><td><a href="../12-retire/">第12章</a>、<a href="../15-kids/">第15章</a></td></tr>
+        <tr><td>传承</td><td>遗嘱、继承、财产安排</td><td>家庭纠纷、资产流失</td><td><a href="../14-family/">第14章</a></td></tr>
+      </table>
+      <p class="ctx">学校教了十几年数理化，却没有一节课教你怎么读征信报告、怎么看懂保险合同里的"等待期"、怎么算房贷的实际利息——而这每一个决定的金额，都远远超过你人生中大多数考试的分数所能影响的金额。<strong>这就是"必修课"三个字的含义：必修，因为躲不掉；课，因为它可以被系统地学会。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（金融消费权益保护栏目：金融知识普及读本项目）</a> · <a href="https://www.investor.org.cn/">中国投资者网（"投资者教育"分生命周期栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>证据链一：非法集资与电诈——不懂金融的代价直接是本金</h3>
+      <p class="ctx">金融素养缺失最惨烈的代价不是"少赚了"，而是"本金没了"。国务院 2021 年施行的<strong>《防范和处置非法集资条例》</strong>专门立法处置非法集资，官方宣传口径反复强调两条：非法集资是<strong>违法犯罪活动</strong>，以及"因参与非法集资受到的损失，<strong>由集资参与人自行承担</strong>"——换句话说，被骗的钱，法律不保证能追回来。2022 年 12 月起施行的<strong>《中华人民共和国反电信网络诈骗法》</strong>则把反诈上升为国家立法，公安部牵头的国家反诈中心持续通报：刷单返利、虚假投资理财、冒充公检法等类型常年高发，其中<strong>"虚假投资理财"类诈骗的单案损失金额最大</strong>——受害者往往正是被"稳赚不赔""内部渠道""大师带单"这类话术击穿了金融常识防线的人。</p>
+      <p class="ctx">这些骗局在技术上千变万化，但金融原理上永远是同一句话：<strong>承诺保本 + 高收益 = 违反金融规律的红旗</strong>。原银保监会主席郭树清在 2018 年陆家嘴论坛的著名警示至今仍是官方反诈宣传的标配："理财产品收益率超过 6% 就要打问号，超过 8% 就很危险，10% 以上就要准备损失全部本金。"记住这一句，就能挡掉市面上绝大多数骗局——这门课第13章会把整套排查流程教给你。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《防范和处置非法集资条例》《中华人民共和国反电信网络诈骗法》全文检索）</a> · <a href="https://www.mps.gov.cn/">公安部官网（国家反诈中心通报与预警宣传；反诈专线 96110）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（消费者权益保护局风险警示栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>证据链二：养老责任已经"三支柱"化，个人必须自己规划</h3>
+      <p class="ctx">我国养老保障体系是官方定义的"三支柱"结构：<strong>第一支柱</strong>是基本养老保险（单位和个人缴费，保基本）；<strong>第二支柱</strong>是企业年金和职业年金（只有部分单位有）；<strong>第三支柱</strong>是个人养老金和商业养老保险（完全自愿、自己出钱、自己决策）。2022 年国务院办公厅印发《关于推动个人养老金发展的意见》，建立个人养老金制度，参加人每年缴费上限 12000 元，享受税收优惠；<strong>2024 年 12 月起，个人养老金制度在全国范围全面实施</strong>。</p>
+      <p class="ctx">第三支柱的落地意味着一个根本变化：<strong>养老钱够不够，从"单位和国家的事"变成了"国家保基本 + 你自己规划"的组合题</strong>。要不要开个人养老金账户、买什么类别的产品、离退休还有多少年该配多少比例——这些决策全都要求参与者具备基本金融素养。而央行的金融素养调查恰恰显示，养老规划是我国居民财务行为中最薄弱的环节之一。第12章会带你把养老金缺口亲手算一遍：那道题的答案，取决于你今天开始行动的年份。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/content/2022-04/21/content_5686385.htm">中国政府网：国务院办公厅《关于推动个人养老金发展的意见》（国办发〔2022〕7号）</a> · <a href="http://www.mohrss.gov.cn/">人力资源和社会保障部官网（个人养老金制度全面实施部署，2024年12月）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>证据链三：家庭资产结构在变，"只会存钱"和"只会买房"都不够用</h3>
+      <p class="ctx">中国人民银行调查统计司发布的<strong>《2019 年中国城镇居民家庭资产负债情况调查》</strong>（发表于《中国金融》2020 年第 9 期）给出了一个标志性数据：城镇居民家庭资产中，<strong>实物资产占比约七成，其中住房占比接近六成（59.1%）</strong>；金融资产占比只有约两成。也就是说，中国家庭把大部分财富押在了房子上。而随着房地产市场进入官方定调的"房住不炒"与深度调整期，以及存款利率的持续下行，越来越多家庭开始面对一个新问题：<strong>除了房子和存款，钱还能往哪里放？</strong></p>
+      <p class="ctx">这个问题没有标准答案，但有标准错误答案——病急乱投医，把卖房款或毕生存款投进自己完全不懂的"高收益项目"。近年多起官方通报的非法集资大案，受害者主体正是手握一次性大额资金、急于"让钱生钱"却缺乏配置知识的家庭。<strong>资产结构转型期，金融素养就是安全气囊</strong>：它不会帮你暴富，但能防止你在从"存款时代"走向"配置时代"的路上把本金摔没。第6-8章会把风险收益、分散化、基金与理财这些"通类工具"的原理讲透。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（调查统计司《2019年中国城镇居民家庭资产负债情况调查》发布记录）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（70个大中城市房价与居民收支数据发布栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>证据链四：负债成了常态，"资产负债表"成了每个人的人生科目</h3>
+      <p class="ctx">资产端在变，负债端同样在变。同一份央行城镇家庭调查显示，城镇居民家庭<strong>负债参与率超过一半</strong>，其中房贷是绝对主力；而年轻一代的负债结构里，消费信贷（信用卡、线上分期）的占比明显上升。换句话说，中国家庭正在集体经历一场财务形态的升级：<strong>从"收入−支出＝储蓄"的单科目时代，进入"资产、负债、现金流"三科目并行的资产负债表时代</strong>。可现实是，绝大多数人从未系统学过怎么读自己的这张表——不知道自家负债率是多少、月供占收入比是否安全、资产的流动性分层是否合理。房贷要不要提前还（第10章）、信用卡分期到底贵不贵（第5章）、卖房款怎么安放（第6-8章），每一个都是资产负债表决策，每一个都有标准错误的做法。</p>
+      <p class="ctx">央行《中国金融稳定报告》连续多年把<strong>住户部门杠杆率</strong>作为监测指标——国家层面像管理一家大银行一样盯着全体家庭的负债健康度，个人层面却没有对应的"风控岗"。这门课要帮你补上的正是这个岗位：第二部分（第2-5章）教你搭建自己的三张表——收入表（第2章）、支出表（第3章）、资产负债表（第4章），并给出每一张的安全阈值；此后所有投资与大额决策章，都建立在这三张表之上。金融素养在负债时代的定义可以很朴素：<strong>知道自己欠多少、欠得多贵、还不还得起，并据此安排人生大事的顺序</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《2019年中国城镇居民家庭资产负债情况调查》与《中国金融稳定报告》住户部门杠杆率监测）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（消费金融风险提示专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>金融压力不是"矫情"：官方投诉数据里的普通人</h3>
+      <p class="ctx">金融素养还有一层常被忽视的意义：它直接关系心理健康与生活稳定。国家金融监督管理总局（及其前身银保监会）定期发布<strong>银行业保险业消费投诉情况通报</strong>，从公开的通报结构可以看到，投诉量常年集中在几个领域：信用卡（息费争议、催收）、贷款（还款安排、征信异议）、保险销售（销售误导、退保纠纷）、理财与代销（风险揭示不充分）。这些投诉的共同画像是：消费者在签约时没有理解自己买了什么、代价是什么，等到账单或亏损出现时，才发现"当时没说清楚"与"我没看懂"各占一半责任。</p>
+      <p class="ctx">国际金融素养研究同样把"财务压力"列为核心指标：英国法定机构 Money and Pensions Service 的财务健康调查、美国心理学会的年度压力调查（Stress in America，英文）都反复发现，<strong>钱是成年人最主要的压力源之一</strong>，且财务压力与睡眠问题、家庭冲突、工作效率下降显著相关。反过来，具备预算习惯与应急储备的人，财务压力水平系统性更低——这正是"行为"维度被官方定义纳入金融素养的原因。学会和钱相处，本质上是学会减少人生中最持久的那类焦虑。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（"银行业保险业消费投诉情况通报"发布栏目）</a> · <a href="https://www.moneyhelper.org.uk/">英国 Money and Pensions Service / MoneyHelper：财务健康与财务压力调查（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>复利的公平与残酷：早开始十年，结果差一倍</h3>
+      <p class="ctx">为什么金融素养要"趁早学"？因为金融世界最重要的变量是<strong>时间</strong>。用一个可手算的例子（示例数字，仅供理解原理）：假设年化收益率 5%，每月定投 2000 元——</p>
+      <blockquote class="q">
+        坚持 20 年：本金投入 48 万元，期末约 <strong>82.2 万元</strong>（投资收益约 34.2 万）；<br>
+        坚持 30 年：本金投入 72 万元，期末约 <strong>166.4 万元</strong>（投资收益约 94.4 万）。<br>
+        多坚持的 10 年只多投了 24 万本金，却多生出约 60 万收益——<strong>后十年的"钱生钱"接近前二十年的两倍</strong>。<span class="qsrc">计算口径：年金终值公式 FV = PMT ×[((1+r)ⁿ −1)/r]，月利率 5%÷12；示例，不构成收益承诺，实际收益有波动。</span>
+      </blockquote>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="滚雪球下坡图示：两个雪球从坡顶滚下，早出发十米的那个在坡底变得巨大，象征时间对复利的放大作用"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">这就是复利的时间结构：<strong>越到后期，收益的引擎越是"利滚利"而非本金</strong>。它同样适用于反面——债务的复利（信用卡分期、网贷）滚起来也是同一条曲线（见<a href="../05-credit/">第5章</a>）。金融素养"趁早学"的价值不在聪明，而在让时间站在你这边：第1章会用完整一节把复利和 72 法则讲透。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（"长期投资与复利"投教科普专栏）</a> · <a href="https://www.investor.gov/">美国证监会投资者教育站 Investor.gov：Compound Interest Calculator（英文，同类官方投教范例）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、我国居民金融素养：现状与最薄弱的三块板</h2>
+    <p class="chapter-sub">官方调查勾勒出的画像：知识在进步，行为在拖后腿，风险防线最薄弱</p>
+
+    <article class="view">
+      <h3>官方调查怎么说：稳步提升，但"知行差距"明显</h3>
+      <p class="ctx">中国人民银行自 2016 年起组织全国范围的消费者金融素养调查（覆盖 31 个省区市的成年居民），历次《中国消费者金融素养调查报告》的核心发现有明确的连续性：<strong>总分稳步上升</strong>，说明普及教育在起效；但分项看，短板高度集中——①<strong>长期规划行为不足</strong>：认同养老储蓄重要的人多，实际制定了养老财务计划的人少；②<strong>风险意识与收益预期不匹配</strong>：相当比例的受访者在问卷中表现出对"高收益必然伴随高风险"这一铁律的低估；③<strong>合同阅读习惯差</strong>：办理金融业务时"从头到尾读完合同"的比例不高，纠纷发生后"没看清条款"成为高频原因。</p>
+      <p class="ctx">换句话说，我国居民金融素养的画像不是"一无所知"，而是<strong>"知道碎片，缺少系统；有储蓄习惯，缺规划能力；想要收益，低估风险"</strong>。这正是本课程四部分结构直接对应的三块板：第一、二部分补系统知识与工具原理，第三部分补风险防线，第四部分补行为与态度。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国消费者金融素养调查报告》系列发布，2016年起）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（金融消费者权益保护宣传与调查栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>学术证据：金融素养是可以"标价"的能力</h3>
+      <p class="ctx">"学金融知识有什么用"在学术界不是修辞问句，而是被反复量化的实证问题。这一领域最有影响力的综述来自宾夕法尼亚大学沃顿商学院的 Olivia Mitchell 与乔治·华盛顿大学的 Annamaria Lusardi——两人主持了全球金融素养测量框架的设计，其发表于《经济学展望杂志》（Journal of Economic Perspectives, 2014）的综述《金融素养的经济重要性》（英文）系统汇总了各国证据，核心结论有三：<strong>其一，金融素养与退休财富积累显著正相关</strong>——在控制了收入、教育等因素后，金融知识测试得分高的人群，退休时的财富水平系统性更高；<strong>其二，这种相关在生命早期就埋下</strong>——年轻时表现出复利与风险分散知识的人，中年后的投资参与率和资产质量都更高，印证"时间是金融素养的放大器"；<strong>其三，金融文盲的代价具体可测</strong>——低金融素养群体更可能使用高成本的借贷方式（如仅还信用卡最低还款额）、更可能支付本可避免的手续费、也更可能成为投资欺诈的受害者。</p>
+      <p class="ctx">需要如实标注边界：这些证据以<strong>相关性研究</strong>为主（高素养人群往往同时拥有更好的教育与收入），干预实验的因果证据仍在积累中；但"复利知识→更早开始长期储蓄→更高退休财富"这条路径的机制是清晰的，也与我国央行调查发现的"知行差距"（认同养老重要却不做计划）互为印证。对本课程读者，这项研究最有用的启示是：<strong>金融素养的回报不是某一次"押中行情"，而是分布在几十年的千百个小决策里</strong>——不付高息、不踩骗局、早存钱、控费用。这也正是 OECD 定义把它归为"素养"（literacy）而非"技能"（skill）的原因：它更像识字，一旦具备，终身受益。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.aeaweb.org/articles?id=10.1257/jep.28.1.3">Lusardi, A. &amp; Mitchell, O. (2014) "The Economic Importance of Financial Literacy", Journal of Economic Perspectives（英文）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国消费者金融素养调查报告》：知识-行为-结果关联章节）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>最贵的一课在课堂外：受害者画像的官方观察</h3>
+      <p class="ctx">综合国家反诈中心与各地金融监管部门的公开通报，金融受害者有几个反直觉的共同点。第一，<strong>受害者并不都是"没文化的人"</strong>：虚假投资理财类诈骗中，相当比例受害者有稳定收入甚至专业背景——骗局针对的不是智商，而是信息差（不知道"稳赚不赔"违反资管新规）和心理弱点（从众、贪婪、恐惧、对"权威人设"的信任）。第二，<strong>老年人和大学生是两个官方重点关注的高危群体</strong>：前者面对的是养老项目、保健品理财、"以房养老"骗局，后者面对的是校园贷变种、刷单返利、游戏交易诈骗——第15章会分别给出家庭守护方案。第三，<strong>被骗后最致命的动作是"网上找追损"**strong>：所谓"黑客追回""维权代理"是官方通报的二次诈骗高发类型，正确动作只有一个：立即拨打 110 或 96110，走国家反诈中心的正规止付流程。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mps.gov.cn/">公安部官网（国家反诈中心：高发诈骗类型与预警通报栏目）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（"防范非法集资宣传月"与风险提示专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>数字时代的新变量：手机里的钱，和新形态的坑</h3>
+      <p class="ctx">我国居民金融素养调查还有一个鲜明的时代背景：<strong>数字金融的高度普及</strong>。移动支付、线上贷款、基金代销 App、直播带货式"理财科普"，让金融操作的门槛降到了"点两下屏幕"——便利的另一面是三类新风险。其一，<strong>支付便利弱化了"花钱的痛感"</strong>：行为经济学研究发现，非现金支付显著降低消费时的心理成本，更容易超支（这是第3章预算部分的科学依据之一）。其二，<strong>借贷触手可及</strong>：各类线上消费信贷的开通只需几分钟，而年轻用户对其真实年化成本（IRR 口径）普遍缺乏概念——第5章会教你亲手算清"日息万五"到底等于年化多少。其三，<strong>诈骗完成了数字化升级</strong>：从"猜猜我是谁"进化到屏幕共享、虚假投资 App、乃至利用 AI 换脸拟声冒充亲友——公安部与国家反诈中心的通报口径里，这类技术加持的精准诈骗正是近年打击重点（第13章详述）。</p>
+      <p class="ctx">结论不是"回到现金时代"，而是：<strong>工具越快，越需要慢知识</strong>。数字金融把决策频率提高了十倍，金融素养就是让决策质量不掉队的配重。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.mps.gov.cn/">公安部官网（国家反诈中心：AI 换脸拟声类诈骗预警）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国消费者金融素养调查报告》：数字金融行为与风险认知分项）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于金融素养的三个流行误解</h3>
+      <p class="ctx"><strong>误解一："钱少没必要学理财。"</strong>恰恰相反：金融素养的大头根本不是"投资"，而是预算、储蓄率、信用管理、防骗——这些对收入不高的家庭收益更大。一个月薪五千的家庭建立应急金、堵住网贷漏洞，财务改善立竿见影；而"等有钱再学"的结果往往是有钱时也用旧习惯处理新问题。<strong>误解二："财商课就是教你买基金炒股。"</strong>市面上不少付费"财商课"以教学为名行荐股导流之实，监管部门多次发布风险提示：凡是"上课"后引导你进群、开户、买"老师推荐标的"的，直接按诈骗排查流程处理（见<a href="../13-fraud/">第13章</a>）。本站不卖课、不导流、不推荐任何产品。<strong>误解三："金融知识上网查查就够了，不用系统学。"</strong>碎片查询的问题在于你只会查"你已经知道要问的问题"；而金融风险的可怕之处恰恰是<strong>你不知道自己不知道</strong>——征信怎么花的、保单等待期是什么、理财净值化的"净值"怎么波动，没系统过一遍的人连搜索关键词都想不出来。这门课的价值就是把"未知的未知"变成"已知的清单"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（风险提示：警惕以"财商教育"为名的非法金融活动）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（投资者保护与非法荐股打击专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、国际经验：金融教育是官方工程，不是民间生意</h2>
+    <p class="chapter-sub">主要经济体都把金融素养上升为国家战略——免费、官方、成体系</p>
+
+    <article class="view">
+      <h3>OECD/INFE：全球金融素养测量的"标准制定者"</h3>
+      <p class="ctx">2003 年 OECD 启动金融教育项目，2008 年金融危机后升级为国际网络 INFE（International Network on Financial Education），发布《金融素养核心能力框架》等标准文件，并开展跨国金融素养调查——它给出的核心能力清单（货币计算、通胀理解、风险分散、复利认知等）已成为各国设计金融教育课程的通用底稿。金融危机是明确的转折点：各国官方达成共识，<strong>金融产品日益复杂而销售适当性失灵时，居民金融素养就是最后一道防线</strong>。OECD 还推动"全球金融素养宣传周"（Global Money Week，现由 OECD 主办，每年春季），我国金融管理部门与多所高校连续多年参与。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.oecd.org/en/topics/financial-education.html">OECD 金融教育专题（含 INFE 框架文件与 Global Money Week，英文）</a> · <a href="https://www.oecd.org/en/topics/sub-issues/financial-consumer-protection.html">OECD 金融消费者保护专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>各国官方金融教育门户：免费、无广告、不卖产品</h3>
+      <p class="ctx">几个有代表性的官方模式：<strong>美国</strong>——联邦层面的 MyMoney.gov（财政部牵头的金融教育门户）与证监会 Investor.gov，每年 4 月为"金融素养月"；<strong>英国</strong>——法定机构 Money and Pensions Service（MaPS）运营 MoneyHelper 网站，提供从预算计算器到养老金规划的全套免费官方工具；<strong>澳大利亚</strong>——证券监管机构 ASIC 运营 Moneysmart.gov.au，以中立计算器（复利、房贷、保险对比）著称；<strong>日本</strong>——金融厅与金融公关中央委员会推动"金融经济教育"，学校与社区并重。共同点非常清晰：<strong>官方出钱、免费开放、只教育不销售</strong>——因为金融教育的公共品属性决定了它一旦商业化就必然失真。这也是本站坚持"不卖课、不带货、不接商业合作"的原因。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mymoney.gov/">美国 MyMoney.gov（英文）</a> · <a href="https://www.investor.gov/">美国证监会 Investor.gov（英文）</a> · <a href="https://www.moneyhelper.org.uk/">英国 MoneyHelper（Money and Pensions Service，英文）</a> · <a href="https://moneysmart.gov.au/">澳大利亚 Moneysmart（ASIC，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国内的官方体系：宣传月、教育基地与投教平台</h3>
+      <p class="ctx">我国官方金融教育近年快速成体系，这些免费资源值得收藏（第19章会做成完整导航）：①<strong>"金融教育宣传月"</strong>：每年 9 月，由中国人民银行、国家金融监督管理总局、中国证监会、国家网信办联合主办，全国集中开展金融知识普及活动；②<strong>全国金融素养教育基地</strong>：人民银行等部门分批认定的线下教育基地，面向公众免费开放；③<strong>官方投教平台</strong>：证监会系统的中国投资者网（investor.org.cn，覆盖股票基金债券期货知识）、央行的金融消费权益保护栏目、各监管局官网的风险提示专栏；④<strong>国家反诈中心</strong>：App 与 96110 预警专线，官方反诈知识的第一出口。本课程大量内容正是把这些分散在各部门的官方口径，按"人生决策顺序"重新组织了一遍。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（"金融教育宣传月"活动发布栏目）</a> · <a href="https://www.investor.org.cn/">中国投资者网（证监会投资者保护平台）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（投资者保护局专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、本课程的结构与使用方法</h2>
+    <p class="chapter-sub">四部分 20 章：看懂钱 → 管好钱 → 让钱工作 → 守住钱，最后升级认知</p>
+
+    <article class="view">
+      <h3>四部分的逻辑：一条完整的"钱的动线"</h3>
+      <p class="ctx"><strong>第一部分·金钱基础（第1-5章）</strong>解决"看懂钱"：货币与通胀、收入与个税、预算与消费、储蓄与存款保险、信用与负债——这五章是所有后续内容的地基，几乎不需要任何前置知识。<strong>第二部分·投资与增值（第6-12章）</strong>解决"让钱工作"：先用第6章建立风险收益与分散化的总原理，再逐个讲透理财/国债/货基、基金、股票、房子、保险、养老七类工具——每类工具都按"是什么→原理→怎么用→坑在哪"四步展开。<strong>第三部分·风险与守护（第13-15章）</strong>解决"守住钱"：防骗反诈、家庭财务、一老一小两代人的金融守护——这部分的紧迫性最高，建议优先阅读第13章。<strong>第四部分·认知升级（第16-20章）</strong>解决"管住心"：行为金融偏差、宏观经济常识、财富观与幸福、工具箱、四周行动方案——把知识落成可执行的系统。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="课程四部分结构图：看懂钱、管好钱、让钱工作、守住钱四个环节首尾相连的循环"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（金融知识普及读本框架参照）</a> · <a href="https://www.oecd.org/en/topics/financial-education.html">OECD 金融教育核心能力框架（课程结构设计参照，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>每章的固定体例：目标 → 讲解 → 手算示例 → 自查 → 谣言粉碎</h3>
+      <p class="ctx">全站 21 页统一体例，降低使用成本：开头黄框给出<strong>本章目标</strong>（学完你能做到什么）；正文按节展开，每节由若干卡片组成，卡片讲一个具体问题，<strong>末尾必附来源徽章与官方链接</strong>（🏛官方文件 / 📘权威手册 / 📋学术研究 / 🏷商业科普四级标注，商业来源明确标灰）；每章至少一个<strong>可手算示例</strong>（复利、等额本息、个税、养老缺口——都给出算式，你可以拿计算器跟着按）；倒数第二节是<strong>自查清单</strong>（对照自己的账户和保单逐项打勾）；每章至少一张<strong>谣言粉碎卡</strong>（逐条给证据）；页脚标注依据版本与整理日期。</p>
+      <p class="ctx">建议的使用顺序：第一次学习按章节顺序通读（全课约 8-10 小时）；之后当工具书用——办事之前查对应章节的自查清单（贷款前查第5、10章，买保险前查第11章，退休规划查第12章）；家里老人接到可疑电话时，直接翻第13章的排查流程。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（投教内容体例参照）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（金融消费权益保护知识栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>贯穿全课的三条铁律（值得抄在钱包里）</h3>
+      <p class="ctx"><strong>铁律一：高收益意味着高风险，"保本高息"四个字连在一起就是违法信号。</strong>资管新规后，官方语境里已不存在"保本理财"；任何产品若同时承诺保本和高收益，只有两种可能——违规，或诈骗。<strong>铁律二：不懂的东西不碰；"别人都赚了"不是懂。</strong>金融史上每一轮收割（非法集资、P2P、虚拟币炒作变种）的话术核心都是"简单、稳赚、别人已经赚了"；你的决策依据应该是自己能不能讲清它的盈利来源（第6章教你这个检验法）。<strong>铁律三：分散、长期、低成本，普通人的胜负手不是选股而是纪律。</strong>诺贝尔奖级别的学术共识（组合理论、有效市场研究）都指向同一结论：普通人战胜市场的概率很低，但通过分散化、长期持有、控制费用，可以稳稳拿到市场平均——而"市场平均"长期已经能跑赢大多数追涨杀跌的参与者。</p>
+      <blockquote class="q">
+        "高收益意味着高风险。收益率超过 6% 就要打问号，超过 8% 就很危险，10% 以上就要准备损失全部本金。"
+        <span class="qsrc">—— 时任中国银保监会主席郭树清，2018 年陆家嘴论坛演讲（官方警示口径，反诈宣传广泛引用）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（防范非法集资宣传：官方收益风险警示口径）</a> · <a href="https://www.nobelprize.org/prizes/economic-sciences/1990/summary/">诺贝尔奖官网：1990 年经济学奖（Markowitz 组合选择理论，英文）</a> · <a href="https://www.nobelprize.org/prizes/economic-sciences/2013/summary/">诺贝尔奖官网：2013 年经济学奖（Fama 有效市场与资产价格实证，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三条学习路径：按你的人生阶段读这门课</h3>
+      <p class="ctx">全课程 21 篇约 21 万字，从头读到尾大约需要 8-10 小时——但很少有人需要平均用力。按人生阶段给出三条建议路径。<strong>路径 A · 刚工作/学生（先立骨架）</strong>：第1-5章一口气读完（金钱原理、收入税务、预算、储蓄、信用），再做第13章防骗——年轻人最大的风险不是收益太低，而是被第一笔网贷、第一张信用卡、第一个"带单老师"击穿本金与征信；第6-8章在开始有结余时读，第19章尽早建自己的财务仪表盘。<strong>路径 B · 成家/上有老下有小（先补短板）</strong>：第2章（税务与专项附加扣除，直接省钱）、第3章（家庭预算）、第9-10章（保险与房贷两个大额决策）、第12章（教育金）、第14-15章（家庭法律与"一老一小"守护）优先；投资章（6-8、11）在应急金与保障就位后再系统读。<strong>路径 C · 临近或已退休（先守后攻）</strong>：第13章（养老骗局是当前电诈重灾区）、第12章（养老金三支柱与领取策略）、第15章（家庭守护与财产安排）、第11章（债券等稳健工具）优先；权益类章节只读原理、严控仓位预期。</p>
+      <p class="ctx">三条路径共同的第一章都是第1章，共同的最后一站都建议是第16章（行为偏差）与第20章（财务体检模板）——<strong>知识决定下限，行为决定上限</strong>。无论走哪条路径，都用同一个节奏：一次读一章，读完做章末自测，把"自查清单"里与自己相关的条目落到纸面（记账 App、日历提醒、家庭会议）；只读不做的金融知识，就是央行调查里那个"知行差距"本身。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国消费者金融素养调查报告》：分年龄段素养与行为差异数据）</a> · <a href="https://www.mps.gov.cn/">公安部官网（国家反诈中心：分群体高发诈骗类型通报）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>本站的边界：教育、不推荐、不带货</h3>
+      <p class="ctx">最后交代本站自己的定位，与免责条款呼应：①<strong>只做教育，不做推荐</strong>——全课程不出现任何具体产品、机构、股票、基金代码；讲工具时只用通类（"货币基金""宽基指数基金""定期存款"），讲机构时只提官方监管部门；②<strong>所有数字标注口径与年份</strong>——利率、税率、限额等会随政策调整，本站以写作时的现行官方版本为准并在页脚注明整理日期，办事前请以官方最新发布为准；③<strong>示例数字仅供理解原理</strong>——文中一切收益率、金额均为教学示例，不构成收益承诺；④<strong>涉及法律的章节</strong>（婚姻财产、继承、债务）注明"以现行法律与司法解释为准，个案请咨询执业律师"。做到这四条，是本站对"权威、系统、不误导"的承诺。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（金融营销宣传行为规范：监管对"荐股""带单"的禁止性规定）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（打击非法证券期货活动专栏）</a></div>
+    </article>
+    <article class="view">
+      <h3>为什么这门课教"工具类别"而不教"具体产品"</h3>
+      <p class="ctx">有读者会问：讲基金为什么不直接推荐几只？这恰恰是正规金融教育与营销的分水岭，理由有三层。<strong>第一，合规层面</strong>：推荐具体产品属于投资顾问业务，依法须经监管部门许可；无资质荐股荐基是证监会持续打击的非法证券活动类型，本站作为公益科普绝不越界。<strong>第二，原理层面</strong>：产品会清盘、会换基金经理、会调整费率，但"主动基金与被动指数的区别""债券久期与利率的关系"这些类别级原理十年不变——教你按类别理解，你面对任何新产品都能自己归类判断，这才是可持续的素养。<strong>第三，责任层面</strong>：任何脱离你的收入、负债、期限、风险承受能力的"推荐"都是耍流氓；同一只基金，对三年后要用钱的人是危险品，对三十年后才退休的人可能是合理选项——第19章的自查模板会教你把自己的"财务画像"画出来，再用类别知识对号入座。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（非法证券期货活动警示：无资质荐股的特征与案例）</a> · <a href="https://www.investor.org.cn/">中国投资者网（"认识基金"类别化投教专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、本章自查与自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给家人听试试）</h4>
+      <ul>
+        <li>OECD 定义的金融素养包含哪三个维度？为什么说"会背复利公式"不等于金融素养高？</li>
+        <li>金融素养、投资理财、快速致富三个概念的区别是什么？各自的典型话术长什么样？</li>
+        <li>前景理论说的"损失厌恶"是什么？它如何解释"急着卖赚钱的、死拿亏钱的"？</li>
+        <li>列出人生金融决策时间轴上你还没经历的三个节点，说出每个节点的典型失误代价。</li>
+        <li>"因参与非法集资受到的损失由集资参与人自行承担"出自哪部法规？这句话的现实含义是什么？</li>
+        <li>郭树清那句收益率警示的三个数字分别是多少？各对应什么动作（打问号/很危险/准备损失全部本金）？</li>
+        <li>养老金三支柱分别是什么？个人养老金制度的年度缴费上限是多少（以最新官方口径为准）？</li>
+        <li>央行 2019 年城镇居民家庭资产负债调查中，住房占家庭资产的比例大约是多少？这个结构意味着什么风险？</li>
+        <li>用年金终值公式口述：月投 2000、年化 5%，20 年和 30 年的期末金额差多少？差额的来源是什么？</li>
+        <li>央行金融素养调查反复发现的"知行差距"指什么？举两个例子。</li>
+        <li>为什么"被骗后上网找追损"是最致命的动作？正确动作是什么（两个号码）？</li>
+        <li>官方金融教育的共同特点是什么（三个关键词）？为什么说商业化财商课必然失真？</li>
+        <li>我国每年 9 月的"金融教育宣传月"由哪些部门联合主办？</li>
+        <li>本站的四条边界承诺是什么？</li>
+        <li>三条铁律分别是什么？各举一个生活场景。</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>📌 本章要点速览：</strong>金融素养＝知识+行为+态度的组合（OECD/INFE 定义），落脚点是决策质量与财务福祉，不是收益最大化；金融决策贯穿一生且大多没有补考，代价的三条证据链是非法集资（本金归零且损失自担）、养老第三支柱（规划责任落到个人）、家庭资产结构转型（存款和房产之外的配置焦虑）；我国居民金融素养稳步提升但短板集中在长期规划行为、风险收益认知、合同阅读习惯三处；国际经验证明金融教育是"官方出钱、免费开放、只教育不销售"的公共品；本课程四部分＝看懂钱→让钱工作→守住钱→管住心；三条铁律：高收益必然高风险、不懂不碰、分散长期低成本。下一章从最基础的问题开始：钱到底是什么，通胀怎么偷走你的存款。
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">← 课程首页</span>人生财富必修课 · 总目录</a>
+    <a href="../01-money/"><span class="dir">第1章 →</span>认识金钱：通胀、利率与复利</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>人生财富必修课 · 导论 · 依据 OECD/INFE 金融教育框架、中国人民银行《中国消费者金融素养调查报告》系列、《防范和处置非法集资条例》（国务院令第737号）、《中华人民共和国反电信网络诈骗法》、国务院办公厅《关于推动个人养老金发展的意见》（国办发〔2022〕7号）及央行《2019年中国城镇居民家庭资产负债情况调查》整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供金融知识教育参考，不构成投资建议 · 高收益意味着高风险 · 遭遇诈骗请拨打 110 或 96110 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b45309;border-radius:12px;background:#fffbeb;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#92400e;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/money/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b45309;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b45309;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fffbeb;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为钱发愁、或差点被理财坑，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#92400e;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b45309;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fffbeb;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b45309;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 工具 / 概念，如：征信、基金、房贷、养老、防骗…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/money\/.*/,'/money/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MONEY_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b45309;border:1.5px solid #b45309;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fffbeb;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
