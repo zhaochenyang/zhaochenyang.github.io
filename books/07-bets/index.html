@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7章 《对赌》安妮·杜克：概率化思维 — 认知提升读书课</title>
+<style>
+  :root{--accent:#475569;--accent-deep:#334155;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top::0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#e2e8f0;color:#334155;border:1px solid #cbd5e1;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">认知提升读书课 · 第7章 · 第二部分 · 决策与不确定性</div>
+  <h1>📚 《对赌》安妮·杜克：概率化思维</h1>
+  <p>结果=决策质量×运气——把这两笔账分开记，是不确定世界里最基础的自我诚实</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../06-antifragile/">← 第6章：《反脆弱》</a>
+    <a href="../08-gigerenzer/">第8章：《直觉》 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">这本书讲什么</a>
+    <a class="anchor" href="#s2">resulting</a>
+    <a class="anchor" href="#s3">概率化思考</a>
+    <a class="anchor" href="#s4">复盘制度</a>
+    <a class="anchor" href="#s5">升级点对照</a>
+    <a class="anchor" href="#s6">误读与谣言</a>
+    <a class="anchor" href="#s7">怎么读与练习</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本专栏为<strong>思想介绍与阅读方法参考</strong>，不构成投资、医疗、法律建议；书中观点不代表本站立场，凡有争议的观点文中如实注明批评意见。</li>
+      <li>本站尊重版权：每本书只做<strong>短引（不超过50字/句）加评析</strong>，不转载原文；<strong>不提供、不指向任何未经授权的复制渠道</strong>——对“盗版”与“电子书下载”类资源，本站只批判、不传播，请通过正规渠道购买或到图书馆借阅。</li>
+      <li>本站<strong>不推销图书</strong>：全文无购书链接、无版本排名、无“荐书返佣”类合作；提到中文版仅注明出版社事实信息。</li>
+      <li>认知提升是<strong>慢变量</strong>：读书不保证“逆袭”，本站不贩卖焦虑；对“速读班”类营销话术只批判、不传播。</li>
+      <li>本章涉及扑克与决策的类比仅为思想介绍，<strong>不构成任何赌博或投资建议</strong>；各节观点均标注来源，以来源原文为准。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①识别并命名 resulting（结果主义）：用结果好坏反推决策对错这个人类默认 bug；②解释「生活是扑克不是象棋」：不完全信息博弈与完全信息博弈对决策评价的含义差异；③把「我确定」改造成「我70%确信」：理解概率化语言为什么实质改变思考质量；④会用三个立刻上手的工具：10-10-10 时间视角、事前验尸（pre-mortem）、决策日记；⑤理解独自复盘为什么会被自利偏差劫持，以及「求真小组」的设计要点；⑥分清杜克的实践型权威与学术权威的区别，正确使用本书的证据等级。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是第二部分的「实操层」：第6章《反脆弱》给出结构哲学，本章给出日常动作。建议先读第五节对照表，再回头通读；第七节练习一「概率语言重写」今天就能做（15分钟），练习二「决策日记」从本周开始记。<strong>延伸阅读：<a href="../01-kahneman/">第1章《思考，快与慢》</a></strong>——resulting 的认知机制（系统1的因果饥渴）；<strong><a href="../06-antifragile/">第6章《反脆弱》</a></strong>——杜克与塔勒布在「如何面对不确定性」上的同题异构。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、这本书讲什么：从扑克桌带回来的决策科学</h2>
+    <p class="chapter-sub">一个认知心理学出身的世界级牌手，把牌桌纪律翻译成生活语言</p>
+
+    <article class="view">
+      <h3>作者的双重履历：为什么这本书值得单独一课</h3>
+      <p class="ctx">安妮·杜克（Annie Duke）的职业路径在决策类作者里独树一帜：她在宾夕法尼亚大学读认知心理学博士（研究方向正是人在不确定性下如何学习判断）， ABD（完成除论文外全部博士要求）之后离开学术圈，成为职业扑克选手，二十年间赢得过世界扑克系列赛（WSOP）金手链、世界扑克巡回赛（WPT）冠军头衔，是当时收入最高的女牌手之一，还拿过 NBC 全国单挑扑克锦标赛冠军——决赛桌上击败的正是传奇牌手 Phil Hellmuth。2012 年退役后，她把牌桌方法论带回商业世界：给对冲基金、律所、生物科技公司做决策咨询，创立非营利组织 AfterSchool Inc. 与决策教育平台。《对赌》（Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts）2018 年由 Portfolio/Penguin 出版；中文版《对赌》由中信出版社同年推出（译者李辉，版本信息以版权页为准）。</p>
+      <p class="ctx">这个履历的价值在于<strong>两种训练的罕见交集</strong>：认知心理学给了她「人类判断如何系统性出错」的学术地图；职业扑克给了她「在真金白银的不确定中活下来」的工程约束——牌桌上，resulting 的代价不是考试扣分而是立刻破产，概率化不是智力游戏而是生存技能。书中反复出现的牌局案例因此不是比喻装饰，而是作者付过学费的一手经验。需要如实说明的口径（第六节还会展开）：杜克未走完学术路线，本书属于<strong>高质量的实践型著作</strong>——观点挂靠的是决策科学研究共识（卡尼曼、泰特洛克、克莱因等人的工作）与作者的职业验证，而不是她本人的同行评审论文；引用时应把它放在 📘/🏷 级而非 📋 级。这个区分不降低书的价值，反而是正确使用它的说明书。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.annieduke.com/books/">安妮·杜克官网书页（英文）</a>——作者履历与本书官方介绍 · <a href="https://www.penguinrandomhouse.com/authors/228221/annie-duke/">Penguin Random House 作者页（英文）</a>——学术背景与扑克履历的出版社口径 · <a href="https://en.wikipedia.org/wiki/Annie_Duke">Annie Duke 条目（英文）</a>——战绩记录与退役后事业背景核对</div>
+    </article>
+
+    <article class="view">
+      <h3>全书的问题：在信息不全的世界里，怎么判断自己是对是错</h3>
+      <p class="ctx">《对赌》处理的问题比「怎么做决定」更根本：<strong>怎么评价一个已经做出的决定。</strong>杜克的出发点是扑克与生活的结构相似性——两者都是「不完全信息博弈」：你看不见对手的牌（隐藏信息）、发牌是随机的（运气）、对手会主动误导你（欺骗）、而你必须在下注截止前行动（时间压力）。象棋则相反：完全信息、无随机性、无欺骗——输了只能怪自己算得浅。绝大多数人从小被象棋式环境训练（考试：题目确定、答案唯一、分数直接归因于你），却要在扑克式世界里做决定（职业、投资、关系：信息残缺、运气占比巨大、反馈延迟且嘈杂）。<strong>把象棋式的评价习惯带进扑克式世界，就是大多数人决策学习系统失灵的原因。</strong></p>
+      <p class="ctx">书名 Thinking in Bets 的含义是：每个决定本质上是<strong>对未来某个版本的你下的注</strong>——选择一份工作，是押注「三年后的我会因此更好」；选择说某句话，是押注「对方会这样理解」。把决定理解为下注，立刻引出扑克玩家的两条铁律：第一，下注前区分「我能控制什么」（决策质量）与「我不能控制什么」（发牌）；第二，<strong>评价一手牌永远看决策时可得的信息与推理过程，不看这一手的结果</strong>——因为结果=决策质量×运气，单次结果无法反推任何一个因子。全书的其余内容都是这两条铁律在生活里的展开：怎么对抗用结果论英雄的默认习惯（第二节）、怎么把信念从「确定/不确定」升级成概率谱（第三节）、怎么建立能真正学习的复盘制度（第四节）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——全书主旨与结构的出版社口径 · <a href="https://en.wikipedia.org/wiki/Decision_quality">Decision quality 条目（英文）</a>——「决策质量与结果分离」的管理科学框架 · <a href="https://en.wikipedia.org/wiki/Outcome_bias">Outcome bias 条目（英文）</a>——resulting 对应的学术概念与经典实验</div>
+      <div class="fig"><img src="../assets/img-07-1.png" alt="一副象棋棋盘的一角被扑克牌替换的拼接画面，骰子与百分比气泡悬浮其上，象征从完全信息博弈到不完全信息博弈的世界切换" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、核心概念拆解（上）：resulting——最贵的默认 bug</h2>
+    <p class="chapter-sub">用结果反推决策：一个骗了人类几万年的思维捷径</p>
+
+    <article class="view">
+      <h3>什么是 resulting：橄榄球教练的著名冤案</h3>
+      <p class="ctx">杜克在全书开篇讲了一个被决策科学反复引用的案例：2015 年超级碗最后 26 秒，西雅图海鹰队落后 4 分、球在对方 1 码线，教练 Pete Carroll 选择传球而非让 Marshawn Lynch（当季最强跑卫）跑球——传球被抄截，海鹰输掉超级碗。赛后 Carroll 被全美唾骂，媒体定性为「史上最蠢决策」。但用扑克眼光复盘这手牌：<strong>传球被抄截的概率有多低？</strong>那个赛季全联盟 1 码线附近的传球抄截率约 2%——也就是说，Carroll 做了一个约 98% 会成功（或至少不致命）的决策，撞上了 2% 的坏结果。传球还有额外好处：消耗时间更少、避免 Lynch 被堵在门线后的平局风险。杜克的问题一针见血：<strong>如果那球接住了，同一个决策会被评价为「大胆而精妙」吗？</strong>答案是肯定的——这说明公众评价的变量根本不是决策质量，而是结果。这种「以结果论英雄」的系统性错误，扑克圈叫 resulting。</p>
+      <p class="ctx">resulting 的学术对应是<strong>结果偏差（outcome bias）</strong>：Baron & Hershey 1988 年的经典实验发现，人们在评价他人决策质量时，即使被明确告知决策过程的信息，仍会被结果显著左右——明知手术成功率、明知决策时的信息集，结果好就评「决策对」，结果差就评「决策错」。它的认知根源在第1章讲过：系统1是「因果解释机」，迫切需要一个故事把结果串起来，而「他做错了所以失败」是最省算力的故事——比「他做对了但运气不好」流畅得多。resulting 的代价是<strong>摧毁学习</strong>：好决策的坏结果让你放弃正确的策略（Carroll 之后再也没在关键档用过那个战术），坏决策的好结果让你保留自杀式习惯（醉驾到家没出事≠醉驾安全）。杜克的表述是：resulting 让人生变成「用错误的教材自学」。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Outcome_bias">Outcome bias 条目（英文）</a>——Baron &amp; Hershey (1988) 实验与结果偏差研究谱系 · <a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——Carroll 案例在书中的定位 · <a href="https://en.wikipedia.org/wiki/Decision_quality">Decision quality 条目（英文）</a>——决策评价与结果评价分离的框架口径</div>
+    </article>
+
+    <article class="view">
+      <h3>自利偏差：resulting 的双引擎</h3>
+      <p class="ctx">resulting 之所以顽固，是因为它搭载了第二个引擎：<strong>自利偏差（self-serving bias）</strong>——人把成功归因于自己（能力、判断），把失败归因于外部（运气、他人、环境）。两引擎合转的效果，杜克给了一个毒辣的总结：<strong>「好事是我牛，坏事是命差。」</strong>在这个记账体系里，你永远是对的：成功证明你的英明，失败证明世界的无常——于是你从任何经历里都学不到东西。扑克桌是唯一残酷拆穿这套体系的地方：长期数据不会撒谎，一个牌手可以把每次爆冷都归咎运气，但一整个赛季的盈亏曲线就是他的决策质量的诚实镜像。这也解释了为什么职业牌手对 resulting 的免疫是训练出来的：他们被迫在每一手牌后问「我的决策错了吗」而不是「我运气差吗」——因为前者可改进，后者只能认命。</p>
+      <p class="ctx">日常生活里怎么获得这种「诚实镜像」？杜克的答案是第四节的复盘制度，但第一步是一个更小的动作：<strong>把归因从二选一改成配比。</strong>任何结果都同时含有决策质量与运气两个成分，问题不是「怪谁」而是「各占几成」——项目黄了，是决策失误占七成还是市场突变占七成？升职了，是能力占六成还是老板换人占四成？配比思维无法精确，但它有两个决定性好处：其一，<strong>它让「失败」里可学习的部分显形</strong>（哪怕运气占九成，也有一成决策可以改进）；其二，它让「成功」里不可复制的部分显形（哪怕能力占九成，也有一成运气不该被写进方法论）。这一小步就是「以结果论英雄」到「以决策论英雄」的转折点。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Self-serving_bias">Self-serving bias 条目（英文）</a>——自利归因的实验证据 · <a href="https://en.wikipedia.org/wiki/Hindsight_bias">Hindsight bias 条目（英文）</a>——「事后诸葛」如何加固 resulting · <a href="https://www.annieduke.com/books/">杜克官网（英文）</a>——书中自利偏差与复盘框架的作者口径</div>
+    </article>
+
+    <article class="view">
+      <h3>重新定义对错：好决策的判据是决策时信息</h3>
+      <p class="ctx">把 resulting 反过来，就得到《对赌》的核心规范：<strong>一个决策的对错，由「做出决策那一刻可得的信息与推理质量」决定，与后来的结果无关。</strong>这在法律里早有对应（过失判定时看「当时一个合理的人会怎么做」，不看损害大小），在医学里也有（治疗决策看循证依据与适应症，不看个体转归），但日常生活几乎从不使用它。杜克建议把这个判据变成复盘的第一个固定问题：「回到那天、用我当时知道的信息重做一次，我还会这么做吗？」——会，则这是「好决策坏结果」（需要的是心理消化，不是策略修改）；不会，则无论结果多好，这都是「坏决策好结果」（需要的是策略修改，而且因为结果好，它是最危险的一类——运气正在给你发错误的奖状）。</p>
+      <p class="ctx">这个 2×2（决策对错 × 结果好坏）就是杜克全书的骨架表格，值得抄下来贴在书桌前：<strong>好决策好结果</strong>（应得，保持）；<strong>好决策坏结果</strong>（爆冷，安抚情绪、不改策略、检查是否有隐藏的可控损失上限问题——与第6章「永不出局」衔接）；<strong>坏决策好结果</strong>（最危险：运气在奖励错误，必须主动识别并纠正）；<strong>坏决策坏结果</strong>（学费，提取教训、写进清单）。大多数人只在第四格里学习（失败了才复盘），在第一格里自我表扬，而真正拉开长期差距的是第二、三格的处理质量——尤其是第三格：<strong>你能不能在自己赚钱、得意、被夸奖的时候，识别出那个决策其实是错的？</strong>这是概率化思维的最高难度动作，也是第六节谣言部分要保护它不被读歪的原因。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——2×2 框架的书中定位 · <a href="https://en.wikipedia.org/wiki/Decision_quality">Decision quality 条目（英文）</a>——决策质量六要素框架 · <a href="https://en.wikipedia.org/wiki/Outcome_bias">Outcome bias 条目（英文）</a>——反向操作的心理学依据</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、核心概念拆解（中）：概率化思考与置信度语言</h2>
+    <p class="chapter-sub">把信念从开关调成旋钮</p>
+
+    <article class="view">
+      <h3>「我确定」是语言的谎言</h3>
+      <p class="ctx">日常语言把信念压缩成两档：确定（我知道/我肯定/显然）与不确定（我不确定/可能吧）。杜克指出这种二值语言不是中性的传输工具，它<strong>反向塑造思考质量</strong>：一旦说出「我确定」，你就把后续所有相反证据自动归类为「噪音或敌意」——确认偏误（第1章）拿到了语言的通行证。概率化语言（我 70% 确信/大概率/可能性不到三成）强迫你在开口前完成一个动作：<strong>把模糊的「感觉有把握」翻译成一个可以错的数字。</strong>这个翻译动作本身就是思考——你会发现很多「我确定」翻译之后只有六成把握，而很多「我瞎猜的」翻译之后其实有八成。语言从「立场表态」变成「校准输出」。</p>
+      <p class="ctx">概率化还带来一个被低估的社交红利：<strong>它让「改变主意」从零成本变成正常操作。</strong>在二值语言里，从「我确定 A」到「A 是错的」是一次公开翻车，面子成本极高，所以人们死扛；在概率语言里，从「我 70% 确信 A」到「新证据来了，我降到 40%」只是一次正常的贝叶斯更新——没有人会嘲笑天气预报员把降水概率从 70% 调到 40%。杜克在书中把这一点与求真文化挂钩：一个团队若能自然地用概率说话，异议就不再是攻击而是校准信息。这与第12章《原则》的「可信度加权」直接衔接：达利欧制度化的，正是杜克语言化的东西。<strong>操作口径：</strong>不必追求伪精确（「我 63.7% 确信」是表演），粗颗粒分档（约五成/七成/九成）+ 敢于说出「我可能错的那三成在哪」就足够改变思考质量。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——概率化语言章节的官方摘要 · <a href="https://en.wikipedia.org/wiki/Calibration_(statistics)">Calibration 条目（英文）</a>——置信度校准的统计学定义 · <a href="https://en.wikipedia.org/wiki/Superforecasting">Superforecasting 条目（英文）</a>——概率化预测的实证研究（泰特洛克好判断项目）</div>
+    </article>
+
+    <article class="view">
+      <h3>校准：概率思维的健身指标</h3>
+      <p class="ctx">说「七成把握」不难，难的是<strong>长期说七成把握的事，恰好七成发生</strong>——这叫校准（calibration）。泰特洛克的「好判断项目」（Good Judgment Project，记录见第18章相关的预测研究谱系）发现：普通人对未来的判断校准度很差，而经过概率训练的「超级预测者」校准度显著更好，且这种优势可以跨领域迁移。杜克把校准作为普通人的可练技能给出日常练法：<strong>给重要判断留痕。</strong>判断不记录，校准就无从谈起——人对自己「说过什么、多确定」的记忆会被结果篡改（后见偏差，hindsight bias：事情发生后，你会真诚地记得「我早就知道会这样」）。所以决策日记的第一功能不是备忘，而是<strong>给未来的自己留下不可篡改的证据</strong>：日期、选项、我的概率、理由三行。</p>
+      <p class="ctx">留痕之后，校准练习变成一个温和的季度仪式：翻出上季度的判断记录，把「说七成的」归一堆，数一数实际发生了几成——偏高就系统性下调（你比自以为的更过度自信），偏低就上调。这个反馈循环之所以有效，正是因为它模拟了扑克牌手的训练环境：<strong>大量重复的判断+诚实记录的结果+定期的校准对照。</strong>生活中天然具备这种结构的活动其实不少（销售预测、项目工期估计、天气相关的出行决定、甚至对球赛的预判），杜克的建议是刻意选择一两个高频领域做校准练习场，让概率思维先在那里长出肌肉，再迁移到人生大事。这也呼应第8章《直觉》的核心判据：<strong>可靠的直觉只诞生于有规律、有反馈的环境</strong>——校准练习就是给自己人工制造这样一个环境。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Superforecasting">Superforecasting 条目（英文）</a>——好判断项目与校准训练的实证结果 · <a href="https://en.wikipedia.org/wiki/Calibration_(statistics)">Calibration 条目（英文）</a>——校准的统计口径 · <a href="https://en.wikipedia.org/wiki/Hindsight_bias">Hindsight bias 条目（英文）</a>——不留痕则记忆被结果篡改的机制</div>
+      <div class="fig"><img src="../assets/img-07-2.png" alt="扑克牌与骰子拼成的大脑轮廓，周围漂浮着大小不一的概率百分比气泡，抽象人形剪影在旁记录" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+
+    <article class="view">
+      <h3>10-10-10 与事前验尸：两个即插即用的时间工具</h3>
+      <p class="ctx"><strong>10-10-10</strong>（源自商业作家 Suzy Welch 的框架，杜克将其纳入下注视角）：做决定前分别问——10 分钟后我会怎么看这个决定？10 个月后呢？10 年后呢？它的机制是强制切换时间视角，把「此刻的情绪权重」调回正常：深夜下单的冲动在「10 个月后」的视角里自动褪色，而健身的痛苦在「10 年后」的视角里自动贬值。用对赌语言说：<strong>每个决定的受益人不是现在的你，而是未来某个版本的你——10-10-10 是让那个受益人提前发言的听证会。</strong><strong>事前验尸（pre-mortem）</strong>来自心理学家 Gary Klein（自然决策研究开创者，与卡尼曼合著过论文）：在项目启动前，让团队认真做一次思想实验——「假设一年后这个项目彻底失败了，写下讣告：它是怎么死的？」与常规的风险清单相比，事前验尸的妙处是<strong>解除了乐观压力</strong>：风险清单会议上没人愿意当乌鸦嘴，而「已经失败了」的假设让找死因变成合法甚至被鼓励的行为——研究显示该练习能显著提升团队识别关键风险的数量。</p>
+      <p class="ctx">两个工具的共同结构是杜克说的「时间旅行」（temporal landscape）：把决策时的自己与结果时的自己拉开距离，让评价标准从「现在感觉如何」换成「长期的我会怎么记账」。事前验尸还有一层对赌式的深意：它本质上是<strong>给自己的计划买入一张便宜的看跌期权</strong>——花 30 分钟想象失败，换来对致命缺陷的提前暴露；想象不出死因的项目未必安全，但能想出的死因每一个都值得在计划里加一道防线。这与第6章的选择权思维严丝合缝：成本封顶（半小时）、上行开放（避免一次灾难）。落地口径：10-10-10 用于日常中小决定（30 秒完成），事前验尸用于重大决定与团队项目（30-60 分钟，最好书面化）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Premortem">Premortem 条目（英文）</a>——Klein 的事前验尸方法与实验依据 · <a href="https://en.wikipedia.org/wiki/Gary_A._Klein">Gary A. Klein 条目（英文）</a>——自然决策研究开创者的学术背景 · <a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——时间视角工具在书中的章节定位</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、核心概念拆解（下）：复盘制度与求真小组</h2>
+    <p class="chapter-sub">一个人复盘会被自利偏差劫持——学习需要制度</p>
+
+    <article class="view">
+      <h3>为什么独自复盘会失败</h3>
+      <p class="ctx">「吾日三省吾身」听起来足以完成对赌式学习，但杜克用扑克经验指出独自复盘的结构性缺陷：<strong>复盘者与利益方是同一人。</strong>当复盘对象是自己的决策，自利偏差全程在场：成功被记为英明（我早说过），失败被记为倒霉（谁能想到）——你在给自己的卷子打分，而分数关系到你的自我形象。扑克桌的解法不是更诚实的自我反省，而是<strong>制度</strong>：牌手们赛后的常规动作是与同行逐手复盘，同行的价值在于他们既懂牌又没有你的面子包袱——「这手你打得不对， river 应该弃牌」这种话，只有不在乎你情绪的人才说得出口、也只有懂牌的人才说得对。杜克把这提炼为「求真小组」（truthseeking pod）的概念：两三个你信任的、允许对你直言的人，约定复盘规则——评判决策不评判人、用概率语言、鼓励异议。</p>
+      <p class="ctx">求真小组的设计要点有三条（书中散见，这里归拢）：<strong>其一，成员要有「说真话的许可」</strong>——明确约定「指出我的决策错误是帮我不是损我」，否则社交礼貌会自动过滤掉最有价值的反馈；<strong>其二，成员最好懂你的领域</strong>——外行的安慰与内行的复盘是两种服务，Carroll 的战术只有懂橄榄球概率的人才能公正评价；<strong>其三，复盘要基于决策时信息</strong>——小组规则第一条就是禁止事后诸葛（「你当时怎么不想到」是无效问题，有效问题是「当时的信息里有什么线索本可以提示你」）。对没有现成小组的读者，杜克的替代方案降低了门槛：<strong>书面复盘</strong>（写下来本身会暴露逻辑漏洞）+ <strong>与「未来的自己」复盘</strong>（决策日记让三个月后的你有据可查）+ 重要决策找一位「诚实朋友」做单次求真对话。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.annieduke.com/books/">杜克官网（英文）</a>——truthseeking pod 概念的作者口径 · <a href="https://en.wikipedia.org/wiki/Self-serving_bias">Self-serving bias 条目（英文）</a>——独自复盘失效的心理学机制 · <a href="https://en.wikipedia.org/wiki/Annie_Duke">Annie Duke 条目（英文）</a>——扑克生涯与复盘文化的背景记录</div>
+    </article>
+
+    <article class="view">
+      <h3>决策日记：给学习装上黑匣子</h3>
+      <p class="ctx">杜克体系里性价比最高的单件工具是<strong>决策日记</strong>（decision journal，投资圈亦有同传统，常追溯至巴菲特与德鲁克的实践）：在做出重要决定的当下，用五分钟写下四件事——<strong>①情境</strong>（我面临什么选择）；<strong>②我的决定与概率</strong>（我选了 A，我估计 A 达成目标的可能性约七成）；<strong>③理由</strong>（基于当时哪些信息与推理）；<strong>④我感觉如何</strong>（情绪状态存档：是兴奋、恐惧还是疲惫中做的决定）。四个字段各有一个防篡改功能：概率防后见偏差（「我早说过」在白纸黑字面前失效）、理由防记忆重构（三个月后你记不起当时真正依赖的证据）、情绪存档防归因错位（深夜冲动做的决定与深思熟虑的决定，评价标准应该不同）。</p>
+      <p class="ctx">日记的复盘节奏建议：<strong>小结果（周级）随手对账</strong>——这周说七成把握的三件事，发生了几件？<strong>大决定（季级）正式复盘</strong>——翻出日记，把当时的概率与理由摊开，用 2×2 表格归类（好决策好结果/好决策坏结果/坏决策好结果/坏决策坏结果），每类各写一行教训。坚持两个季度后，大多数人会得到两个发现：第一，自己的过度自信有稳定的方向（总是高估哪类事）；第二，<strong>「坏决策好结果」的格子里躺着最贵的学费</strong>——那些曾经让你暗自得意、从未被复盘过的运气。这正是本章练习二的完整设计。杜克对日记的总结很扑克：牌手不记录牌局就无法离开牌桌水平，人生同理——<strong>没有记录的人生，复盘只是重新讲述一个让自己舒服的故事。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——书中复盘工具章节定位 · <a href="https://en.wikipedia.org/wiki/Hindsight_bias">Hindsight bias 条目（英文）</a>——记录对抗后见偏差的机制依据 · <a href="https://en.wikipedia.org/wiki/Decision_quality">Decision quality 条目（英文）</a>——决策档案的管理科学传统</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、认知升级点：读前 vs 读后</h2>
+    <p class="chapter-sub">如果本章只带走一张表，就是这张</p>
+
+    <article class="view">
+      <h3>五个默认设置的更换</h3>
+      <table class="tb">
+        <tr><th>维度</th><th>读前常识</th><th>读后认知</th></tr>
+        <tr><td>评价决策</td><td>结果好=决策对（赚了就是牛，成了就是有眼光）</td><td>结果=决策质量×运气；评价只看决策时可得信息与推理——2×2 表里「坏决策好结果」最危险</td></tr>
+        <tr><td>信念表达</td><td>确定/不确定二值开关；「我不确定」是软弱</td><td>信念是概率谱；「我70%确信、可能错在三成」是精确而非示弱——语言校准反过来提升思考质量</td></tr>
+        <tr><td>失败归因</td><td>成功归自己、失败归环境（自利偏差默认开启）</td><td>任何结果都做「决策/运气」配比归因——失败里有可学的一成，成功里有不可复制的一成</td></tr>
+        <tr><td>复盘方式</td><td>脑内三省吾身即可；复盘=总结成败经验</td><td>独自复盘被自利偏差劫持；需要制度：决策日记留痕+求真小组+定期校准对照</td></tr>
+        <tr><td>世界观模型</td><td>生活是象棋：信息透明、输赢归因于算力</td><td>生活是扑克：信息残缺、运气占比大、对手会骗——象棋式评价习惯是决策学习失灵的根源</td></tr>
+      </table>
+      <p class="ctx">使用方法（导论第六节检索式阅读的应用）：合上本页，凭记忆复述五行；然后为第一行找一个你亲历的「坏决策好结果」案例——想不出来的人往往不是因为人生严谨，而是因为那类案例从未被记账。找到之后，本章对你才算完成安装。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——全书主题结构 · <a href="https://en.wikipedia.org/wiki/Outcome_bias">Outcome bias 条目（英文）</a>——第一行的学术口径</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、常见误读与谣言粉碎</h2>
+    <p class="chapter-sub">「对赌」两个字，劝退了一批人、也误读了一批人</p>
+
+    <article class="view">
+      <h3>误读批判：这本书与赌博无关，与伪精确无关</h3>
+      <p class="ctx"><strong>误读一：「对赌=鼓励冒险/赌博心态。」</strong>书名隐喻是「每个决定都是对未来的下注」——这个「赌」指的是<strong>结构属性</strong>（信息不全+运气在场+不可逆投入），不是行为建议。恰恰相反，全书教的是降低赌性：给下行封顶（与第6章杠铃的保守端同构）、用概率语言防止冲动确信、用复盘制度防止重复错误。杜克本人反复澄清：扑克高手的本质是对冲与止损的大师，是「在不确定中活下来」的专家，而不是「敢搏一把」的赌徒——牌桌上活得久的从来不是最敢押的人，而是最会算暴露的人。<strong>误读二：「概率思维=凡事算出精确数字。」</strong>把「我 68.5% 确信这顿饭会好吃」挂在嘴边是对本书的漫画化。杜克的实操口径是粗颗粒分档（五成/七成/九成足矣）+ 语言习惯化（敢把「确定」换成「大概率」）——重点在<strong>校准与可更新性</strong>，不在小数点。伪精确反而有害：它给直觉判断披上数学外衣，让人误以为概率数字本身有魔法，而数字的质量永远取决于背后信息与推理的质量。</p>
+      <p class="ctx"><strong>误读三：「杜克是世界冠军牌手，所以她的决策建议是学术定论。」</strong>需要两层澄清。第一层是权威的类别：杜克有认知心理学博士训练但未完成学术职业，本书属实践型著作——它的观点大多能在决策科学文献中找到对应（outcome bias、校准研究、pre-mortem 实验），引用时应挂靠原始研究而非个人战绩；「牌桌验证」是有价值的证据类型（高风险环境的自然实验），但与同行评审证据不同级。第二层更微妙：<strong>「她赢过所以她说得对」本身就是 resulting</strong>——用结果（冠军头衔）反推认知权威（建议质量），恰好是本书批判的思维错误。这不是贬低杜克（她的框架质量经得起独立检验，本专栏因此选它入课），而是示范本书精神的最彻底用法：<strong>对本书本身，也要评判决策质量而非光环。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.annieduke.com/books/">杜克官网（英文）</a>——作者对书名隐喻与扑克思维的官方阐述 · <a href="https://en.wikipedia.org/wiki/Annie_Duke">Annie Duke 条目（英文）</a>——战绩与学术背景的完整记录 · <a href="https://www.penguinrandomhouse.com/authors/228221/annie-duke/">PRH 作者页（英文）</a>——出版社口径的作者履历</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于概率思维的四句话</h3>
+      <p class="ctx"><strong>谣言一：「承认运气成分=给自己的失败找借口。」</strong>恰好相反。配比归因（决策几成、运气几成）比「全怪自己」更诚实也更有效：全怪自己的人看似严格，实际学到的是错误教训（把爆冷记成策略错误，下次放弃正确策略——这正是 resulting 的自罚版）；而拒绝运气成分的人也无法正确对待成功（把爆赚记成天赋，下次加大杠杆）。<strong>谣言二：「说『我不确定』会降低别人对你的信任。」</strong>分场景。对结果负责的场景（手术、飞行）需要果断执行，但决策讨论场景中，泰特洛克的实证发现相反：校准良好的概率表达者长期预测记录更好，而「什么都确定」的专家（电视评论员式）预测记录最接近掷硬币——<strong>精确的不确定比虚假的确定更值得信任</strong>，前提是你说的概率长期校准。<strong>谣言三：「复盘越多越好，所以要天天反省。」</strong>没有记录与外部视角的高频反省，只是自利偏差的日常重播——同一段失败记忆被反复加工成「我其实没错」的版本。复盘的质量变量是留痕（日记）、外部视角（求真小组）、对照（校准），不是频率与时长。<strong>谣言四：「事前验尸太消极，会影响团队士气。」</strong>Klein 的研究与后续管理实践给出的图景相反：「假设已经失败」的框架让成员敢于说真话（找死因是任务而非唱衰），实际效果是风险清单更长、团队对真实困难的准备更足——虚假士气靠回避维持，真实士气靠「我们知道最坏情况且已有预案」维持。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Superforecasting">Superforecasting 条目（英文）</a>——校准表达与预测记录关系的实证 · <a href="https://en.wikipedia.org/wiki/Premortem">Premortem 条目（英文）</a>——事前验尸对团队风险识别的实验效果 · <a href="https://en.wikipedia.org/wiki/Outcome_bias">Outcome bias 条目（英文）</a>——配比归因的心理学基础</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、怎么读、怎么练、怎么延伸</h2>
+    <p class="chapter-sub">阅读路线、两个练习、金句选讲与延伸书单</p>
+
+    <article class="view">
+      <h3>怎么读这本书：难度「入门」，路线如下</h3>
+      <p class="ctx"><strong>难度分级：入门。</strong>《对赌》是二十本里最「顺滑」的之一：牌局故事密度高、单章短、无公式、无学术包袱，两三个晚上即可通读——但要警惕这种顺滑本身：流畅性错觉（第16章会展开）会让你以为「都懂了」，而本书的价值全在「做到」。因此推荐<strong>「读一章、做一个动作」的节奏</strong>，宁可读两个月。<strong>预计耗时：通读约 6-8 小时；配套练习全做约 10 小时。</strong>读前预备知识：无硬性要求；若先读过本专栏<a href="../01-kahneman/">第1章</a>（系统1/2、确认偏误）与<a href="../06-antifragile/">第6章</a>（凸性、永不出局），本书的多数概念会直接挂到已有框架上，吸收效率翻倍。</p>
+      <p class="ctx"><strong>路线建议：</strong>①<strong>精读</strong>第一、二章（resulting 与自利偏差——全书地基，Carroll 案例在这）；②<strong>精读</strong>「概率化语言」与「校准」相关章节；③<strong>精读</strong>复盘制度章节（求真小组、决策日记的操作细节比本书其他部分更有增量）；④<strong>略读</strong>中段牌局案例集（已理解框架后，案例是佐证不是新知，快速翻阅即可）；⑤<strong>选读</strong>「时间旅行」章节的扩展讨论。读毕的验收动作只有一个：<strong>今晚就写下第一篇决策日记</strong>——挑一个你本周内要做的真实决定（不必是大事），四字段写完。写不出概率的人，重读第三节。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——全书目录与章节结构 · <a href="https://www.penguin.com.au/books/thinking-in-bets-9780735216372">Penguin AU 版本页（英文）</a>——Portfolio 2018 出版信息口径</div>
+    </article>
+
+    <article class="view">
+      <h3>落地练习一：概率语言重写（15分钟）</h3>
+      <blockquote class="q">
+        <strong>概率语言重写四步：</strong><br>
+        ① 写下你今天做出的 3 个判断（工作、生活各至少一个），用你当时的原话——大概率含有「肯定」「绝对」「不可能」；<br>
+        ② 把每个判断改写成「我 X 成确信……」的句式，X 只允许取 3/5/7/9 四档；<br>
+        ③ 对每个改写后的判断补一行：「我可能错的地方是……」（说不出错误可能性的，X 自动降一档）；<br>
+        ④ 挑一个本周会揭晓结果的判断，写进决策日记存档，一周后对账。
+        <span class="qsrc">—— 依据本章第三节概率化语言框架自编练习</span>
+      </blockquote>
+      <p class="ctx"><strong>三问检查表：</strong>一问——三个判断里有没有一个改写后 X 掉到了 5 以下？（有，说明原话的「肯定」大部分是情绪；没有，警惕你在表演自信。）二问——「我可能错的地方」是认真找的还是敷衍凑数的？（检验标准：这一行是否说出了具体的反面证据来源，而非「世事无绝对」式的万能话。）三问——存档的那个判断，揭晓时你打算怎么对账？（提前写下评价标准：达成/未达成之外，是否还要检查「理由」字段的哪些环节失灵。）<strong>示例（虚构）：</strong>原判断「这个项目下月肯定能上线」→ 改写「我七成确信下月能上线；可能错在第三方接口联调时间被我低估」→ 日记存档，下月对账时若延期，先查是七成标高了（校准问题）还是联调之外的新变量（信息问题）——两种诊断对应两种改进。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Calibration_(statistics)">Calibration 条目（英文）</a>——对账环节的统计学依据 · <a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——概率语言的书中口径</div>
+    </article>
+
+    <article class="view">
+      <h3>落地练习二：启动你的决策日记（15分钟建档，日常5分钟）</h3>
+      <blockquote class="q">
+        <strong>决策日记建档四步：</strong><br>
+        ① 选载体：纸质本或电子笔记均可，建一个四列模板——情境 / 决定与概率（3/5/7/9 档）/ 理由（当时依据的三条信息）/ 情绪状态；<br>
+        ② 今天写下第一条：挑本周要做的一个真实决定，五分钟内完成四列；<br>
+        ③ 定复盘节奏：每周日花 5 分钟对账本周揭晓的判断；每季度末花 30 分钟做一次 2×2 归类（好决策好结果/好决策坏结果/坏决策好结果/坏决策坏结果），每格写一行教训；<br>
+        ④ 找一个「求真伙伴」：约定每月互换一次日记里最重要的一条，对方只许问两类问题——「当时的信息里还有什么线索你没用？」与「如果重做一次，你会改哪里？」
+        <span class="qsrc">—— 依据本章第四节复盘制度自编练习 · 不构成投资建议</span>
+      </blockquote>
+      <p class="ctx"><strong>三问检查表：</strong>一问——模板里「理由」列是否写的是<strong>当时</strong>的理由？（事后补写的理由已被结果污染，等于没记。）二问——周对账有没有变成「只看结果好坏」？（正确动作是先盖住结果、重读当时的概率与理由，再揭开对账——顺序本身就是防 resulting 的装置。）三问——求真伙伴的提问是否越界成了评判？（约定里只允许问「信息」与「重做」两类问题，「你怎么会犯这种错」不在其中。）坚持一个月的可检验标志：你开始能在别人（和自己）的成功里闻到运气的味道，在失败里认出决策的成分——这就是 2×2 表格长进脑子的样子。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Hindsight_bias">Hindsight bias 条目（英文）</a>——「当时记录」必要性的实证依据 · <a href="https://en.wikipedia.org/wiki/Decision_quality">Decision quality 条目（英文）</a>——决策档案与复盘框架 · <a href="https://www.annieduke.com/books/">杜克官网（英文）</a>——决策日记工具的作者口径</div>
+    </article>
+
+    <article class="view">
+      <h3>金句选讲：三句短引</h3>
+      <blockquote class="q">转述口径：生活是扑克，不是象棋——最大的敌人是「用结果论英雄」。<span class="qsrc">——本章对全书主旨的转述（非原文直引）</span></blockquote>
+      <p class="ctx">评析：这句话的力量在「象棋」那半边。象棋代表了我们从小接受的评价训练：题目确定、答案唯一、分数直接归因——它教会我们把「结果」当成「能力」的镜子。而成年世界的重大决定几乎都是扑克局：信息残缺、运气在场、对手会骗。<strong>用象棋的镜子照扑克的局，你会把爆冷读成自己无能、把运气读成自己英明。</strong>换镜子，是整个决策学习系统重启的第一步。</p>
+      <blockquote class="q">转述口径：「我不确定」不是认输，是把信念放回它本来应该在的位置：一个概率上。<span class="qsrc">——本章对书中概率化语言思想的转述（非原文直引）</span></blockquote>
+      <p class="ctx">评析：注意「放回本来位置」这个说法——它暗示确定感是一种<strong>位置错误</strong>：信念天生就是概率性的（你的每个判断都有出错的可能），是语言把它硬压成了开关。说「我不确定」不是降低标准，而是提高诚实度；而且它有实际收益：位置正确之后，新证据来了你才有操作空间（从七成调到四成），位置焊死之后，任何反面信息都只能触发防御。<strong>可更新性，是概率语言送给思考者的最大红利。</strong></p>
+      <blockquote class="q">转述口径：没有记录的人生，复盘只是重新讲述一个让自己舒服的故事。<span class="qsrc">——本章对书中复盘制度思想的转述（非原文直引）</span></blockquote>
+      <p class="ctx">评析：故事与账本的区别，就是自传与会计的区别。记忆是重构性的（第1章系统1的叙事本能+后见偏差的双重加工），所以脑内复盘的原材料本身已被结果篡改——你以为在总结教训，其实在做自我形象维护。<strong>决策日记的本质不是备忘，是给未来的复盘留下不可篡改的一手证据。</strong>五分钟的成本，买的是学习系统的审计权。</p>
+      <p class="ctx" style="color:var(--muted);font-size:13px;">版权口径：以上均为明确标注的转述（不超过50字/句），仅用于评析；请通过正规渠道阅读原书。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/">PRH 官方书页（英文）</a>——原书文本出处 · <a href="https://www.annieduke.com/books/">杜克官网（英文）</a>——书中核心概念的作者自述版本</div>
+    </article>
+
+    <article class="view">
+      <h3>延伸书单：接下来读什么</h3>
+      <p class="ctx"><strong>①《放弃》Quit（安妮·杜克，2022）</strong>——本书的姊妹篇：如果说《对赌》讲怎么下注，Quit 讲怎么离桌——何时止损、为何「坚持」常是最高估的美德，与第6章「让选择权自然过期」直接呼应。<strong>②《超预测》Superforecasting（菲利普·泰特洛克，2015）</strong>——概率思维的实证版：好判断项目的大样本研究告诉你校准可以练、练了真的更准——把杜克的实践主张放上科学秤盘。<strong>③《思考，快与慢》（卡尼曼，即<a href="../01-kahneman/">第1章</a>）</strong>——resulting、自利偏差、后见偏差的认知机制层：知其然（本章）之后知其所以然。<strong>选读：《反脆弱》（塔勒布，<a href="../06-antifragile/">第6章</a>）</strong>——同为不确定性哲学，塔勒布走结构改造路线（让结果不重要），杜克走评价校准路线（让学习不被结果污染）；顺带可以看两人公开的相互批评——对读者而言，两位都不必站队，两套工具可以并用。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.annieduke.com/books/">杜克官网书页（英文）</a>——Quit 与 Thinking in Bets 的作者自述关联 · <a href="https://en.wikipedia.org/wiki/Superforecasting">Superforecasting 条目（英文）</a>——泰特洛克实证研究口径 · <a href="https://en.wikipedia.org/wiki/Annie_Duke">Annie Duke 条目（英文）</a>——著作列表与公开分歧记录</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>resulting 是什么？Carroll 超级碗案例里，公众评价的变量到底是决策质量还是结果？</li>
+        <li>结果偏差（outcome bias）的经典实验（Baron &amp; Hershey 1988）发现了什么？</li>
+        <li>「象棋世界」与「扑克世界」的四个结构差异是什么？为什么象棋式评价习惯在扑克世界里失灵？</li>
+        <li>自利偏差与 resulting 如何合转成「好事是我牛，坏事是命差」？这套记账为什么让人学不到东西？</li>
+        <li>「决策对错×结果好坏」2×2 表四格各叫什么？哪一格最危险、为什么？</li>
+        <li>评价决策的正确判据是什么？复盘的第一个固定问题应该怎么写？</li>
+        <li>「我确定」这种二值语言如何反向恶化思考质量？概率化语言的翻译动作本身为什么就是思考？</li>
+        <li>概率语言给「改变主意」带来了什么社交红利？它与第12章可信度加权有什么关系？</li>
+        <li>什么是校准？泰特洛克的好判断项目发现了什么？普通人练校准的「练习场」怎么选？</li>
+        <li>10-10-10 的三个视角各是什么？它通过什么机制纠正当下的情绪权重？</li>
+        <li>事前验尸（pre-mortem）的操作句式是什么？它为什么比常规风险清单更能听到真话？</li>
+        <li>独自复盘的结构性缺陷是什么？求真小组的三条设计要点分别防什么？</li>
+        <li>决策日记的四个字段是什么？「情绪状态」字段防的是哪类归因错误？</li>
+        <li>为什么说「她赢过所以她说得对」本身就是 resulting？实践型权威与学术权威的区别该怎么用？</li>
+        <li>概率语言重写的三问检查表里，「X 掉到 5 以下」说明什么？决策日记周对账时为什么要先盖住结果？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>《对赌》（Portfolio/Penguin 2018；中信 2018 中文版）作者安妮·杜克：认知心理学博士训练+二十年职业牌手的双重履历，本书属高质量实践型著作（📘/🏷级），观点挂靠决策科学共识。核心概念五件：①resulting（结果主义）——用结果反推决策对错的默认 bug，学术对应 outcome bias（Baron &amp; Hershey 1988），Carroll 超级碗案例（约2%抄截率）是标准教材；②扑克 vs 象棋——生活是不完全信息博弈，象棋式评价习惯是学习失灵的根源；③概率化语言——把「我确定」换成「我七成确信」，粗颗粒分档+校准可练（超级预测者实证）；④复盘制度——独自复盘被自利偏差劫持，需要决策日记（情境/决定与概率/理由/情绪四字段）+求真小组（说真话许可/懂行/基于决策时信息）+2×2 归类复盘，「坏决策好结果」格藏着最贵学费；⑤时间工具——10-10-10 切换时间视角，事前验尸（Klein）解除乐观压力。误读三拆：对赌≠鼓励赌博（教的是对冲与止损）、概率思维≠伪精确（粗档+可更新性）、冠军光环≠学术定论（用她的书批判对她的 resulting）。练习两个：概率语言重写（四步三问，今天可做）、决策日记建档（四步三问，本月见效）。下一章：<a href="../08-gigerenzer/">第8章·《直觉》</a>——直觉不总是敌人：仁泽与卡尼曼的三十年论战，谁给了直觉公正的审判？
+  </div>
+
+  <nav class="pager">
+    <a href="../06-antifragile/"><span class="dir">← 第6章</span>《反脆弱》塔勒布：从波动中获益</a>
+    <a href="../08-gigerenzer/"><span class="dir">第8章 →</span>《直觉》仁泽：直觉的另一面</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>认知提升读书课 · 第7章 · 依据《对赌》原书（Portfolio/Penguin 2018）、安妮·杜克官网、Penguin Random House 官方书页与作者页、Outcome bias / Premortem / Superforecasting 等学术条目及相关研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本专栏为思想介绍与阅读方法参考，不构成投资/医疗/法律建议 · 尊重版权：短引加评析、不转载原文、不提供任何下载渠道 · 无购书链接与返佣合作 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #475569;border-radius:12px;background:#f8fafc;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#334155;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/books/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#475569;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#475569;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f8fafc;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#334155;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #475569;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f8fafc;}
+.sr-item .sr-c{display:block;font-size:12px;color:#475569;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/books\/.*/,'/books/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.BOOKS_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f8fafc;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

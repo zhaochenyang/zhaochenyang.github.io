@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 《助推》塞勒：选择架构 — 认知提升读书课</title>
+<style>
+  :root{--accent:#475569;--accent-deep:#334155;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#e2e8f0;color:#334155;border:1px solid #cbd5e1;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">认知提升读书课 · 第9章 · 第二部分 · 决策与不确定性</div>
+  <h1>📚 《助推》塞勒：选择架构——谁在通过环境设计替你做决定</h1>
+  <p>默认选项、摆放顺序、表格设计：选项呈现的方式本身就在替你投票——看懂它，你才能既为自己设计，也识破别人给你设计的</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-gigerenzer/">← 第8章：《直觉》</a>
+    <a href="../10-influence/">第10章：《影响力》 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">这本书讲什么</a>
+    <a class="anchor" href="#s2">核心概念</a>
+    <a class="anchor" href="#s3">认知升级点</a>
+    <a class="anchor" href="#s4">常见误读</a>
+    <a class="anchor" href="#s5">怎么读</a>
+    <a class="anchor" href="#s6">落地练习</a>
+    <a class="anchor" href="#s7">金句与延伸</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本专栏为<strong>思想介绍与阅读方法参考</strong>，不构成投资、医疗、法律建议；书中观点不代表本站立场，凡有争议处（如助推对结构性问题的效力之争）文中如实注明批评意见。</li>
+      <li>本站尊重版权：只做<strong>短引（不超过50字/句）加评析</strong>，不转载原文；不提供、不指向任何未经授权的复制渠道，请通过正规渠道购买或到图书馆借阅。</li>
+      <li>本站<strong>不推销图书</strong>：全文无购书链接、无版本排名、无“荐书返佣”类合作；提到中文版仅注明出版社事实信息。</li>
+      <li>本章涉及公共政策与行为设计：助推只是政策工具箱之一，不能替代强制、价格与教育手段；文中不提供任何操纵他人的话术教学，立场是<strong>先防御、后善用</strong>。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清「选择架构」为什么不存在中性设计：任何呈现选项的方式都在影响选择；②用默认效应解释器官捐献参与率、养老金储蓄率的巨大国别差异；③讲明白「自由主义温和家长制」这个看似自相矛盾的词组到底主张什么、伦理边界在哪里；④分辨助推（nudge）与「淤泥」（sludge）、暗坑（dark patterns）的区别；⑤会做两个落地动作：审计自己生活里的默认设置、给自己设计一个「明天多存点」式的惰性杠杆；⑥平衡理解批评者的意见：助推解决不了结构性大问题。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是第二部分「决策与不确定性」的收官章。前几章（反脆弱、对赌、直觉）教你在不确定中<strong>自己做判断</strong>，本章换一个视角：很多时候你以为是自己在做判断，其实是<strong>环境替你预设了答案</strong>。读完本章请立刻做第六节的「默认设置审计」练习——它是全部二十章里见效最快的一个动作。读完本章下一站是<a href="../10-influence/">第10章《影响力》</a>：如果说助推是制度化的环境设计，影响力就是面对面说服的心理学机制，两章天然衔接。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、这本书讲什么：食堂管理员的权力</h2>
+    <p class="chapter-sub">从一场关于食物摆放的思想实验说起——这是全书的入口</p>
+
+    <article class="view">
+      <h3>卡罗琳的难题：摆盘顺序就是权力</h3>
+      <p class="ctx">《助推》全书用一个虚构的食堂管理员开场（示例）：卡罗琳管理一家公司食堂，某晚她突发奇想做了个实验——什么都不改变，只改变食物的<strong>摆放顺序</strong>。把甜点放在最显眼的位置那天，甜点消耗量上升；把水果放在入口第一排那天，水果消耗量上升。同样的食物、同样的价格、同样的顾客，仅仅因为动线和位置的差别，人们的「自由选择」结果发生了系统性偏移。卡罗琳意识到一个让人不安的事实：<strong>她无论如何摆放，都在影响顾客的饮食——把甜点放前排是影响，把水果放前排也是影响，世界上不存在「不影响任何人」的摆法。</strong>她唯一能做的选择是：影响的方向朝哪边。</p>
+      <div class="fig"><img src="../assets/img-09-2.png" alt="一颗小球沿着缓坡滑道自然滚向低处目标区域的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">这个思想实验是全书的浓缩：既然影响不可避免，那么<strong>「怎么呈现选项」本身就是一门值得认真对待的学问</strong>——塞勒和桑斯坦把它命名为「选择架构」（choice architecture），把有意识地设计选择架构、帮助人们做出更好决定（同时完全保留退出自由）的做法命名为「助推」（nudge）。注意定义里的两个硬条件：一是可预测地改变行为，二是<strong>不禁止任何选项、不显著改变经济激励</strong>——把水果摆到前排是助推，禁售甜点是强制，给水果降价补贴是经济手段，三者要严格区分。理解了这条边界，你就理解了这本书为什么在政策界引起巨大反响：它开辟了「不强制、不说教，只改设计」的第三条路。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://www.penguinrandomhouse.com/books/690485/nudge-by-richard-h-thaler-and-cass-r-sunstein/">《Nudge》企鹅兰登官方书页（英文）</a>——原书定义与内容概览 · <a href="https://en.wikipedia.org/wiki/Nudge_(book)">《Nudge》条目（英文）</a>——食堂思想实验与全书结构</div>
+    </article>
+
+    <article class="view">
+      <h3>两位作者：一位诺奖经济学家，一位哈佛法学家</h3>
+      <p class="ctx">理查德·塞勒（Richard H. Thaler）是芝加哥大学布斯商学院教授，2017 年诺贝尔经济学奖得主。诺贝尔奖委员会的官方授奖口径是：表彰他把心理学的洞见整合进经济分析——他研究的是「真实的人」如何决策，而不是教科书里全知全能的「经济人」。塞勒的代表性发现包括心理账户（人对同一笔钱在不同心理账户里的态度完全不同）、禀赋效应（拥有一件东西之后，你会自动高估它的价值）以及跨期选择中的自制力问题——这些构成了《助推》的全部理论地基。可以这样说：<strong>《助推》是塞勒几十年行为经济学研究的「应用篇」</strong>，理论细节在《思考，快与慢》（第1章）与塞勒自己的《“错误”的行为》里。</p>
+      <p class="ctx">卡斯·桑斯坦（Cass R. Sunstein）是哈佛法学院教授，美国行政法与规制研究的重要学者，曾在奥巴马政府担任信息与规制事务办公室（OIRA）主任——也就是说，<strong>他本人就是助推理论的政府实践者</strong>。一位研究人为什么犯错的经济学家，加一位研究政府怎么设计的法学家，这个组合决定了本书的双重身份：既是行为经济学科普，又是公共政策提案。2008 年首版由耶鲁大学出版社出版；2021 年推出《Nudge: The Final Edition》修订版，新增医保、气候变化、疫情应对等章节，并正面回应了十余年来对助推理论的批评——修订版本身就是「观点要经得起公开检验」的示范。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2017/thaler/facts/">诺贝尔奖官网：2017 年经济学奖塞勒专页（英文）</a>——授奖理由官方口径 · <a href="https://faculty.chicagobooth.edu/richard-thaler">芝加哥大学布斯商学院塞勒官方教职页（英文）</a> · <a href="https://hls.harvard.edu/faculty/cass-r-sunstein/">哈佛法学院桑斯坦官方教职页（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>版本信息与本书在认知书单里的位置</h3>
+      <p class="ctx">英文原版：《Nudge: Improving Decisions about Health, Wealth, and Happiness》，2008 年，耶鲁大学出版社；修订版《Nudge: The Final Edition》，2021 年，企鹅出版。中文版《助推》由中信出版社出版（2009 年初版；2021 年推出终极版）——中文版的出版社与译者信息以版权页为准。本书在行为经济学谱系里的位置很特殊：它不是理论书（理论在卡尼曼与塞勒的论文里），也不是纯政策书，而是<strong>把学术发现翻译成「任何组织、任何家庭、任何个人都能用的设计原则」的桥梁书</strong>。在本专栏的书单逻辑里，它是第二部分的收官：前五章解决「个人怎么在不确定中做判断」，本章解决「环境怎么在你不知道的时候替你做了判断」——两个视角合起来，才是完整的决策图景。</p>
+      <p class="ctx">还要补一个背景：本书出版后，「助推」从学术概念变成了全球政策实践。2010 年，英国政府成立了全世界第一个官方助推机构——行为洞察团队（Behavioural Insights Team，BIT），用随机对照实验检验各类助推政策的实际效果；此后各国政府、世界银行、经合组织纷纷设立类似单元，总数以百计。BIT 的官方网站公开了大量实验报告，这是「助推真的有用吗」这个问题最扎实的证据库——本书不是纸上谈兵，这一点在后文讨论批评意见时还会用到。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://sites.prh.com/nudgethefinaledition">《Nudge: The Final Edition》官方伴读站（英文）</a>——修订版新增章节说明 · <a href="https://www.bi.team/">英国行为洞察团队 BIT 官网（英文）</a>——全球首个政府助推单元，实验报告公开</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、核心概念拆解：五个关键词</h2>
+    <p class="chapter-sub">选择架构、默认选项、自由主义温和家长制、明天多存点、反馈与聪明披露</p>
+
+    <article class="view">
+      <h3>概念一：选择架构——没有中性的设计</h3>
+      <p class="ctx">「选择架构」指<strong>选项被呈现给你的一切方式</strong>：排列顺序、默认值、信息框架、表格格式、申请流程的步骤数、甚至选项出现的物理位置。塞勒与桑斯坦的核心论断是：<strong>选择架构师是不可避免的。</strong>填表的人要设计表格，食堂要摆放食物，App 要设计界面，政府要设计报名表——只要有人呈现选项，就有人在（有意或无意地）影响选择。既然中性设计不存在，那么真正的问题就不是「要不要影响」，而是「影响的方向是否对被影响者有利、过程是否透明」。</p>
+      <p class="ctx">这个概念的认知冲击力在于它推翻了一个默认假设。大多数人以为「只要给我充分信息，我就能做出对自己最好的选择」——这是教科书里「经济人」的世界观。但行为经济学的证据（第1章、第3章反复出现）表明：人脑处理信息的方式受呈现结构的强烈影响，同样的信息换一种呈现，选择结果会系统性偏移。信息是必要的，但<strong>信息的「结构」对行为的影响常常大于信息本身</strong>。这也是为什么本章第一节说：读完《助推》，你看超市货架、看 App 弹窗、看保险条款的眼光会永久改变——你会开始追问「这个呈现方式在把谁往哪个方向推」。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Nudge_theory">Nudge theory 条目（英文）</a>——选择架构的概念谱系 · <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow">《Thinking, Fast and Slow》条目（英文）</a>——框架效应与信息呈现的理论基础</div>
+    </article>
+
+    <article class="view">
+      <h3>概念二：默认选项的威力——不选择也是一种选择</h3>
+      <p class="ctx">默认选项（default）是选择架构里威力最大的单一工具，原因是人的惰性：改变默认值需要主动行动，而主动行动有认知成本——于是不管默认值是什么，大多数人都留在默认值上。书中最著名的证据是器官捐献的跨国对比：奥地利这类「默认同意捐献、想退出需主动登记」的国家，同意率高达九成以上；德国这类「默认不同意、想加入需主动登记」的国家，同意率只有一成多——两国文化相近、经济水平相当，差异主要来自表格上的默认方向。养老金领域同样：美国 401(k) 计划里，把「默认不参加、想参加要填表」改成「默认参加、想退出要填表」，参与率会跳升数十个百分点。</p>
+      <div class="fig"><img src="../assets/img-09-1.png" alt="食堂餐盘动线上默认位置放着一颗发光的苹果的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">默认效应揭示的认知真相是：<strong>「我没有做选择」是一个幻觉——当你不行动时，你实际上选择了「接受默认值」。</strong>而默认值是别人设的。这个视角转换非常锋利：你以为自己在「拖延决定」，其实你已经在执行别人预设的方案了。防御方法是把「检查默认值」变成条件反射——新办的每张卡、新装的每个 App、新签的每份合同，先问一句：默认设置是什么？谁设的？对我有利吗？第六节的落地练习一就是完整的默认值审计流程。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Default_effect">Default effect 条目（英文）</a>——默认效应的实验研究谱系 · <a href="https://en.wikipedia.org/wiki/Nudge_(book)">《Nudge》条目（英文）</a>——器官捐献与 401(k) 案例的原书口径</div>
+    </article>
+
+    <article class="view">
+      <h3>概念三：自由主义温和家长制——一个刻意矛盾的术语</h3>
+      <p class="ctx">塞勒与桑斯坦 2003 年在《美国经济评论》发表的论文提出了「libertarian paternalism」（自由主义温和家长制），两年后扩展成《助推》全书。「自由主义」（libertarian）意味着<strong>保留完全的退出自由</strong>：不禁选项、不强制、不显著改变经济代价——想拿甜点的人永远拿得到甜点。「家长制」（paternalism）意味着<strong>设计者承认自己在引导</strong>：引导方向是设计者判断的「对被引导者更好」——水果被摆在了前排。这两个词在传统政治光谱里几乎是反义词，作者偏偏把它们焊在一起，就是要制造一个理论卖点：<strong>「尊重自由」与「帮助选择」不是非此即彼，存在第三条路。</strong></p>
+      <p class="ctx">这条第三条路的伦理约束，书中给得很明确，也是理解助推与操纵区别的关键。塞勒主张的检验标准可概括为两条：<strong>第一，透明性——助推策略必须经得起公开，被助推者知道这个设计后不会觉得被骗</strong>（「阳光是最好的消毒剂」是他的著名表述）；<strong>第二，理性人同意——一个了解情况的理性人，是否会同意这个设计方向</strong>。把水果放前排：公开说出来没人反对，理性人希望自己多吃水果，通过。用倒计时和虚假库存逼你下单：一公开就穿帮，理性人不会同意自己被这样对待，不通过。这条伦理线是全书最重要的防线，也是后文区分助推与「暗坑」的判据——记住它，你在第四节和第八节会反复用到。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Libertarian_paternalism">Libertarian paternalism 条目（英文）</a>——Thaler &amp; Sunstein (2003) 论文与理论争议谱系 · <a href="https://www.nobelprize.org/prizes/economic-sciences/2017/thaler/facts/">诺贝尔奖官网塞勒专页（英文）</a>——行为经济学与公共政策的官方口径</div>
+    </article>
+
+    <article class="view">
+      <h3>概念四：明天多存点（Save More Tomorrow）——把人性缺陷变成杠杆</h3>
+      <p class="ctx">「Save More Tomorrow」（SMarT，明天多存点）是塞勒与经济学家本纳茨设计的养老金储蓄方案，是全书「利用缺陷做好事」思想的最佳样板。它针对的问题是：人人都知道该多存钱，但就是存不动。传统思路是教育（「你要为退休储蓄」）或强制（提高法定缴费率），前者效果微弱，后者政治阻力大。SMarT 的解法完全不同，它<strong>不要求你战胜人性，而是顺着人性的三个特点设计</strong>：①惰性——你一旦加入，方案自动运行，不需要每月重复决定；②损失厌恶——储蓄率提高安排在<strong>加薪之后</strong>，你的到手工资从不下降，「损失」从未发生；③短视——今天承诺未来的事，心理折扣很低，所以人们愿意答应「明年开始多存」。</p>
+      <p class="ctx">实证效果：塞勒与本纳茨 2004 年在《政治经济学杂志》发表的论文报告（DOI: 10.1086/380085，期刊页有访问限制，此处按学术惯例引 DOI 文本），首批参与企业的储蓄率在约四十个月内从 3.5% 升至 13.6%——接近翻了两番，而且几乎没有人退出。这个案例的认知升级点在于：<strong>自制力不足、拖延、损失厌恶这些「缺陷」，换一个设计视角就全部变成可用的杠杆。</strong>与缺陷对抗（靠意志力硬撑）几乎总是失败；与缺陷合作（让正确的行为变成默认、变成不需要意志力的路径）胜率高得多。这个方法论不只适用于存钱——第五节的阅读路线、第六节的两个练习，全部建立在「与惰性合作」这一条上。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Thaler &amp; Benartzi (2004) "Save More Tomorrow: Using Behavioral Economics to Increase Employee Saving"，<em>Journal of Political Economy</em> 112(S1)，DOI: 10.1086/380085（英文，期刊页反爬，按 DOI 文本引用） · <a href="https://en.wikipedia.org/wiki/Richard_Thaler">Richard Thaler 条目（英文）</a>——SMarT 方案的研究脉络</div>
+    </article>
+
+    <article class="view">
+      <h3>概念五：反馈与聪明披露——让后果可见</h3>
+      <p class="ctx">人做不好长期决策的一个根本原因是<strong>反馈缺失或延迟</strong>：用电的环保后果看不见，储蓄不足的退休后果在四十年后，健身的中断没有即时惩罚。助推工具箱里的第二类重要工具就是<strong>人为制造反馈</strong>：电费单上印一句「你上个月的用电量比邻居高 20%」，用电行为立刻改变（这是被 BIT 和多家电力公司反复实验验证过的著名案例）；导航软件实时显示预计到达时间，你的路线选择就有了即时参照。反馈的原则是：<strong>及时、具体、可比。</strong>「本月用电 300 度」没有行为意义，「比同类家庭高 20%」才有。</p>
+      <p class="ctx">与反馈配套的是「聪明披露」（smart disclosure）：把关键信息以机器可读、易于比较的格式公开，让第三方工具能替你加工。书里的例子是把信用卡账单的完整数据（利率、费用、你的实际使用模式）以标准格式提供给消费者，比价工具就能算出「以你的消费习惯，换哪家卡一年省多少钱」。这个思想后来发展为各国的开放数据运动。对个人读者的启示很直接：<strong>你为自己设计助推时，第一步往往是先让后果可见</strong>——想少喝饮料，先把每周饮料支出算出来贴在冰箱上；想多读书，把读完的书列成清单。不可见的东西无法被管理，这是反馈工具的第一性原理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.bi.team/">英国行为洞察团队 BIT 官网（英文）</a>——社会规范反馈类助推的公开实验报告库 · <a href="https://sites.prh.com/nudgethefinaledition">《Nudge: The Final Edition》官方伴读站（英文）</a>——修订版对披露与反馈工具的更新说明</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、认知升级点：读前 vs 读后</h2>
+    <p class="chapter-sub">这张表是全章最浓缩的价值声明——只记一样东西，就记它</p>
+
+    <article class="view">
+      <h3>四条对照：从「信息足够我就选对」到「结构决定选择」</h3>
+      <table class="tb">
+        <tr><th>场景</th><th>读前的默认认知</th><th>读后的升级认知</th><th>证据支点</th></tr>
+        <tr><td>做选择</td><td>给我充分信息，我就能做对自己最好的选择</td><td>信息的<strong>呈现结构</strong>（默认值、顺序、框架）对行为的影响常常大于信息本身；「自由选择」从来都发生在别人搭好的货架前</td><td>器官捐献同意率的巨大国别差异（奥地利九成 vs 德国一成多），文化与经济水平相近</td></tr>
+        <tr><td>帮助别人改行为</td><td>只有两条路：强制（禁售、罚款）或说教（宣传、教育）</td><td>存在第三条路——改环境设计，保留全部选择自由；且这条路可实验、可量化、可退出</td><td>英国 BIT 将助推政策化并用随机对照实验检验，全球数百个政府单元效仿</td></tr>
+        <tr><td>面对自己的拖延与自制力不足</td><td>储蓄不足、锻炼中断是自制力问题，要靠意志力硬扛</td><td>与缺陷对抗胜率低；SMarT 式「利用惰性做好事」的设计，让缺陷变成杠杆——正确行为应当是<strong>不需要意志力</strong>的路径</td><td>SMarT 计划约四十个月储蓄率 3.5%→13.6%（Thaler &amp; Benartzi 2004）</td></tr>
+        <tr><td>看待商业设计</td><td>界面、货架、弹窗只是「呈现方式」，中性无害</td><td>呈现方式分三类：透明且对你有利的助推、一公开就穿帮的「暗坑」、以及故意增加退出成本的「淤泥」——识别判据是<strong>透明性+理性人同意</strong></td><td>塞勒的伦理检验标准；他后期专门撰文批判 sludge（淤泥）式设计</td></tr>
+      </table>
+      <p class="ctx">这张表的使用方法：对照第四行做一次自查——过去一个月里，你有没有在某个 App、某张表格、某个货架前「自愿」做了一个如果换个呈现方式你就不会做的决定？如果想得起来，你就已经亲身验证过选择架构的存在了；想不起来也没关系，第六节的审计练习会帮你把它们找出来。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://en.wikipedia.org/wiki/Default_effect">Default effect 条目（英文）</a> · <a href="https://www.bi.team/">BIT 官网（英文）</a> · <a href="https://en.wikipedia.org/wiki/Nudge_(book)">《Nudge》条目（英文）</a>——对照表证据支点的汇总口径</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、常见误读：两条最需要澄清的</h2>
+    <p class="chapter-sub">「助推=操纵」与「助推万能」——两个方向相反的误读，都要拆</p>
+
+    <article class="view">
+      <h3>误读一：「助推就是操纵的美化说法」</h3>
+      <p class="ctx">这是对本书最常见的批评式误读，需要认真对待而不是轻轻驳回。批评的逻辑是：既然助推利用的是人的非理性（惰性、损失厌恶、框架效应），那它和广告商利用弱点卖货有什么本质区别？回答分三层。<strong>第一层：定义上，助推有硬边界。</strong>助推不禁止选项、不显著改变经济激励、必须透明可公开辩护——用倒计时压迫下单、把取消按钮藏进五级菜单，这些不满足定义，它们有专门的名字：「暗坑」（dark patterns，用户界面研究领域的术语，指刻意误导用户的设计）与「淤泥」（sludge，塞勒后期专门批判的概念，指用繁琐流程阻挠人们获得本应属于自己的东西，如难退的订金、领不出去的补助）。<strong>助推与暗坑不是程度差异，是方向差异：前者朝被助推者的利益推，后者朝设计者的利益推。</strong></p>
+      <p class="ctx"><strong>第二层：不助推不等于不影响。</strong>反对者常说「应该让人自由选择」，但第一节已经论证：呈现方式必然影响选择，「自由放任」的界面其实也是一种选择架构（往往是未经审视、被商业利益塑造的那一种）。真正的问题从来不是「影响与否」，而是「谁影响、朝哪个方向、透不透明」。<strong>第三层：诚实面对残留的争议。</strong>即便如此，「谁来判断什么对你更好」仍是政治哲学上的真问题——批评者（如牛津大学学者 Reiss）指出，助推预设了设计者的判断优于当事人，这在价值多元的社会里需要更充分的民主辩护；桑斯坦的回应是「理性人同意」标准加上公开透明的程序约束。这个争论没有终结，本书的立场是可辩护的立场之一，而非唯一真理——把它当作「设计伦理」的入门框架来用，是恰当的分寸。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Dark_pattern">Dark pattern 条目（英文）</a>——暗坑设计的分类与研究 · <a href="https://en.wikipedia.org/wiki/Libertarian_paternalism">Libertarian paternalism 条目（英文）</a>——含伦理批评与回应的争议谱系 · <a href="https://en.wikipedia.org/wiki/Nudge_theory">Nudge theory 条目（英文）</a>——sludge 与助推的区分口径</div>
+    </article>
+
+    <article class="view">
+      <h3>误读二：「助推能解决大问题」</h3>
+      <p class="ctx">另一个方向的误读来自助推的拥护者：既然改改默认值就能让储蓄率翻倍，那是不是气候变暖、医疗改革、贫富差距都可以靠助推解决？<strong>不能，而且原书作者自己就反复否认这一点。</strong>批评者中最有力的一类意见指出：助推擅长处理「个人层面的可逆小决策」（存多少钱、吃什么、要不要预约体检），但对「结构性大问题」效力有限——气候变化的根源是排放的价格没有反映社会成本，这需要碳税与强制标准，把电费单印得更漂亮无法替代。桑斯坦本人在后续著作中明确承认：助推是工具箱里的<strong>一件</strong>工具，当问题涉及外部性、集体行动困境、既得利益时，需要价格、规制、法律这些「重工具」上场。</p>
+      <p class="ctx">《Final Edition》新增章节的方式也印证了这个分寸：谈医保时，助推解决的是「符合条件却没参保的人怎么被提醒和简化流程」，而不是医保制度本身怎么设计；谈疫情时，助推处理的是洗手提示、疫苗预约的默认安排，而不是防疫政策的方向。给个人读者的推论同样重要：<strong>助推是「低垂的果实」——它用极低成本撬动那些「本来就想做但被摩擦挡住」的行为</strong>；如果你面对的问题需要的是能力、资源或制度变革（比如收入太低存不下钱），助推帮不了你，别用「改造自己的默认值」来替代「解决真正的问题」。分清这两类问题，是对这本书最成熟的使用方式。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://sites.prh.com/nudgethefinaledition">《Nudge: The Final Edition》官方伴读站（英文）</a>——修订版对批评的正面回应 · <a href="https://hls.harvard.edu/faculty/cass-r-sunstein/">哈佛法学院桑斯坦官方教职页（英文）</a>——其规制研究谱系 · <a href="https://en.wikipedia.org/wiki/Nudge_(book)">《Nudge》条目（英文）</a>——学界批评意见汇总</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、怎么读这本书</h2>
+    <p class="chapter-sub">阅读路线、预计耗时、难度分级与读前预备知识</p>
+
+    <article class="view">
+      <h3>阅读路线：三段式，总耗时约 10-12 小时</h3>
+      <blockquote class="q">
+        <strong>《助推》阅读路线（可直接套用）：</strong><br>
+        ① <strong>难度分级：入门。</strong>全书是科普笔法，案例密集，无公式；建议读 2021 年《Final Edition》（或中文终极版），它新增的章节和「对批评的回应」部分正是本专栏第四节内容的原文出处；<br>
+        ② <strong>精读（约4小时）：第一部分「人类与理性经济人」＋第二部分「选择架构工具」。</strong>第一部分是理论地基（为什么人会系统性犯错：惰性、损失厌恶、框架效应），第二部分是全书干货（默认、反馈、结构化复杂选择等工具，逐个配案例）；<br>
+        ③ <strong>选读（约3小时）：第三部分「助推的应用」。</strong>挑与你相关的领域读（个人财务、医保、教育任选其一即可），其余浏览小标题；<br>
+        ④ <strong>务必读（约2小时）：「反对意见」相关章节与 Final Edition 新增的回应部分。</strong>这是本书区别于一般畅销书的地方——作者主动把批评请进门；跳过它，你读到的只是半个《助推》；<br>
+        ⑤ <strong>读前预备知识：</strong>系统1/系统2与损失厌恶（<a href="../01-kahneman/">第1章《思考，快与慢》</a>）、锚定与相对性（<a href="../03-ariely/">第3章《怪诞行为学》</a>）——有了这两章的词汇，本书第一部分可以快速通过；<br>
+        ⑥ <strong>读完动作：</strong>一周内完成本章第六节的两个练习，并在认知阅读日志里写下你审计出的三个「对我最不利的默认值」。
+        <span class="qsrc">——本专栏统一读法，依据 Dunlosky (2013) 检索与间隔练习证据设计</span>
+      </blockquote>
+      <p class="ctx">一个阅读提示：本书案例有强烈的美国制度背景（401(k)、Medicare 处方药计划、择校制度），中国读者不必纠结制度细节，<strong>要提取的是每个案例背后的设计模式</strong>——「默认+惰性」「反馈+比较」「简化+提醒」这三个模式在一切制度环境下都通用。读案例时不妨自问：这个模式移植到我自己的生活/工作场景，对应物是什么？这个问题会让你的阅读速度变慢，但收获翻倍。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.penguinrandomhouse.com/books/690485/nudge-by-richard-h-thaler-and-cass-r-sunstein/">《Nudge》企鹅兰登官方书页（英文）</a>——全书目录结构 · <a href="https://doi.org/10.1177/1529100612453266">Dunlosky et al. (2013)（DOI 直达，英文）</a>——配套读法的证据基础</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、落地练习：把选择架构装进自己的生活</h2>
+    <p class="chapter-sub">两个练习，各不超过 15 分钟——第一个今天就能做完</p>
+
+    <article class="view">
+      <h3>练习一：默认设置审计（15 分钟，见效最快）</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①拿出手机和钱包，列出五个对象：一个视频/音乐 App、一个网购 App、一张信用卡或支付工具、一份保险或会员订阅、一个工作常用系统；②逐个打开设置页，只找一样东西——<strong>默认值</strong>：自动续费是否默认开启？推送是否默认全开？还款是否默认最低还款额？会员是否默认升级？隐私选项默认对谁可见？③对每个默认值回答三问（写在纸上）：这个默认值对<strong>谁</strong>有利？如果换成对<strong>我</strong>有利的方向，需要我主动做什么？我现在就做还是本周内做？④把「现在就做」的项目当场改掉，「本周内做」的写进日程并设提醒；⑤在认知阅读日志里记录：我审计出的最意外的一个默认值是什么。<br><br>
+        <strong>检查表（三问）：</strong>我改掉的设置里，有没有哪个是「我以为自己选过、其实是默认替我选的」？改完后的新状态，是不是<strong>不需要意志力维持</strong>的（一次性设置）？五个对象里有没有我根本想不起自己订过的服务（这就是「淤泥」的信号，值得走取消流程）？
+      </blockquote>
+      <p class="ctx">这个练习的设计意图：它不教你任何新知识，而是把第二节的「默认选项威力」变成一次<strong>亲身取证</strong>。绝大多数人做完会发现至少两处「自己从未选择过的选择」——这种轻微的失控感正是认知升级发生的时刻：从此你看设置页的眼光不一样了。审计要一次做完而不是「有空再看」，因为惰性同样作用于你自己——这就是 SMarT 的教训反过来用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Default_effect">Default effect 条目（英文）</a>——默认值审计的学理依据 · <a href="https://en.wikipedia.org/wiki/Nudge_theory">Nudge theory 条目（英文）</a>——sludge 与退出成本的识别口径</div>
+    </article>
+
+    <article class="view">
+      <h3>练习二：给自己设计一个「明天多存点」（15 分钟）</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①选一个你「一直想做但总没做到」的小目标：每月存钱、每周锻炼、每天读书 20 分钟、少喝含糖饮料（只选一个）；②按 SMarT 三要素设计你的方案：<strong>起点自动</strong>——把它设成默认发生，而不是每次重新决定（工资到账当天自动转一笔固定金额到独立账户；锻炼服装前一晚放在门口；书放在枕头上）；<strong>无痛爬坡</strong>——起步量小到不可能失败（存 100 元、读 5 分钟），并预设好升级规则（「每次加薪/每个季度初，自动加一档」）；<strong>反馈可见</strong>——设计一个即时反馈（记账 App 的月度曲线、日历上打勾的连续天数），让后果在第 1 天就看得见；③把方案写成三行字贴在目标发生的位置（冰箱、书桌、手机备忘录置顶）；④一周后检查：方案运行了几次？摩擦点在哪？改哪里？<br><br>
+        <strong>检查表（三问）：</strong>我的方案里，正确行为是不是<strong>不需要每天重新决定</strong>（决定一次，之后自动运行）？起步量是不是小到「今天状态最差也能完成」？我有没有把「升级规则」提前写死（防止未来的自己讨价还价）？
+      </blockquote>
+      <p class="ctx">这个练习是把全书最精华的思想（与惰性合作、把缺陷变杠杆）安装到你自己的一个真实目标上。特别提醒最常见的失败模式：起步量贪大（每天读书一小时）、依赖提醒而非默认（提醒会被划掉，默认不会）、没有反馈（不可见则不可维持）。设计完成后不要告诉别人「我要开始自律了」——这个方案的卖点恰恰是<strong>它不需要自律</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方</span>来源：Thaler &amp; Benartzi (2004)，<em>JPE</em> 112(S1)，DOI: 10.1086/380085（英文，SMarT 三要素的原始设计） · <a href="https://www.bi.team/">BIT 官网（英文）</a>——反馈类工具的公开实验证据</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、金句选讲与延伸书单</h2>
+    <p class="chapter-sub">短引加评析：引文为路标，评析才是增量（版权口径见章首免责）</p>
+
+    <article class="view">
+      <h3>金句选讲：两句定义性的话</h3>
+      <blockquote class="q">
+        「助推……以可预测的方式改变人们的行为，同时不禁止任何选项，也不显著改变经济激励。」
+        <span class="qsrc">——《Nudge》对 nudge 的定义句（中译文为大意翻译），全书被引用最多的一句</span>
+      </blockquote>
+      <p class="ctx">评析：这句定义的每个从句都是防线。「可预测」把它和随机干预分开——助推是可实验、可量化的；「不禁止任何选项」把它和强制分开——退出自由始终在；「不显著改变经济激励」把它和补贴罚款分开——它作用于呈现方式而非价格。三条防线合起来，助推才被精确定位在「强制」与「放任」之间的窄带上。读定义要读排除项：一个概念的力量在于它拒绝了什么。</p>
+      <blockquote class="q">
+        「没有中性的选择架构——你总得把食物摆在某个位置。」
+        <span class="qsrc">——本书选择架构章节主旨的转述（非逐字原文）</span>
+      </blockquote>
+      <p class="ctx">评析：这句话的锋利之处在于它取消了「不作为」这个选项。管理者常说「我们不干预，让用户自己选」，但只要界面存在、货架存在、表格存在，呈现方式就已经在起作用——所谓不干预，往往是默认沿用了对设计者最有利（或最省事）的那种影响。承认影响不可避免，才谈得上对影响负责。这也是全书伦理讨论的起点：既然你横竖都在推，那就朝对别人好的方向推，并且敢把推法公开。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://www.penguinrandomhouse.com/books/690485/nudge-by-richard-h-thaler-and-cass-r-sunstein/">《Nudge》企鹅兰登官方书页（英文）</a>——定义句原文口径 · <a href="https://en.wikipedia.org/wiki/Nudge_theory">Nudge theory 条目（英文）</a>——「no neutral design」论述的学术谱系</div>
+    </article>
+
+    <article class="view">
+      <h3>延伸书单：三本接着读</h3>
+      <p class="ctx"><strong>①《“错误”的行为》（Misbehaving，理查德·塞勒）</strong>——塞勒的自传体行为经济学史：助推的所有理论零件（心理账户、禀赋效应、公平偏好）是怎么在几十年里被一个个发现和辩护出来的；想理解「经济人假设是如何松动的」，这本是最好的叙事入口。<strong>②《噪声》（Noise，卡尼曼、西博尼、桑斯坦合著）</strong>——与助推互补的另一类误差：助推处理的是系统性偏差（bias），噪声处理的是同类判断之间的随机离散；两位作者在此再度合作，桑斯坦是连接两本书的桥梁。<strong>③ 本专栏<a href="../10-influence/">第10章《影响力》</a></strong>——下一章就是天然衔接：助推是「制度化的环境设计」，影响力是「面对面的说服机制」，两者共享同一个前提——人的很多决定发生在自动化反应层。先读完本章再进第10章，你会发现西奥迪尼的六大武器本质上都是微观层面的选择架构。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://en.wikipedia.org/wiki/Misbehaving_(book)">《Misbehaving》条目（英文）</a>——塞勒自传体学术史的内容概览 · <a href="https://en.wikipedia.org/wiki/Cass_Sunstein">Cass Sunstein 条目（英文）</a>——《噪声》合著背景与桑斯坦著作谱系</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与助推识别地图</h2>
+    <p class="chapter-sub">三条流行说法逐一拆，再给你一张日常识别用的对照表</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于助推的三条流行说法</h3>
+      <p class="ctx"><strong>谣言一：「助推是政府和大公司联手控制人的阴谋。」</strong>不成立。第一，助推的定义要求透明可公开辩护——阴谋需要隐蔽，助推恰恰经得起（并且要求）被写进新闻稿；第二，全球助推机构（如英国 BIT）的实验报告是公开的，效果数据接受同行检验，无效与负面结果的助推会被废止；第三，这个说法混淆了「所有影响」与「助推」：真正需要警惕的隐蔽操纵（暗坑、淤泥）恰恰<strong>不满足</strong>助推定义，把它们统称为助推反而放过了坏东西。<strong>谣言二：「知道了助推的原理，我就不会再被助推了。」</strong>不成立，而且是最值得警惕的过度自信。默认效应作用于惰性——惰性不会因为你知道它就消失；知道「水果在前排是设计」的人，拿水果的比例依然会高于水果在后排的时候（这正是助推有效的证明）。知识给你的是<strong>审计能力与关键决策上的警觉</strong>（第六节练习一），不是免疫。第1章已经论证过：知道偏误清单不能自动免疫偏误，助推同理。<strong>谣言三：「暗坑也是助推，都是行为科学。」</strong>概念混淆。暗坑（dark patterns）与淤泥（sludge）是行为科学知识的<strong>反向应用</strong>——朝设计者利益推、经不起公开、增加退出成本；塞勒本人后期专门写文章批判淤泥并呼吁「为善而设计」（sludge audit）。把两者混为一谈，会让「助推」这个词同时背上工具与滥用的骂名，也让真正该被批判的对象溜走。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.bi.team/">BIT 官网（英文）</a>——公开实验报告与政策废止机制 · <a href="https://en.wikipedia.org/wiki/Dark_pattern">Dark pattern 条目（英文）</a>——暗坑的分类学研究 · <a href="https://en.wikipedia.org/wiki/Nudge_theory">Nudge theory 条目（英文）</a>——sludge audit 的口径</div>
+    </article>
+
+    <article class="view">
+      <h3>助推识别地图：一张日常对照表</h3>
+      <table class="tb">
+        <tr><th>你遇到的设计</th><th>它属于哪类</th><th>判断依据</th><th>你的动作</th></tr>
+        <tr><td>工资到账日自动转存一笔你预设的钱</td><td>助推（朝你的利益）</td><td>你主动设置、随时可退出、公开无争议</td><td>感谢自己，保持默认</td></tr>
+        <tr><td>食堂把水果和沙拉放在动线入口</td><td>助推（朝你的利益）</td><td>不禁甜点、价格不变、摆法可公开辩护</td><td>知道即可，无需抗拒</td></tr>
+        <tr><td>订阅一键开通，取消要打电话+挽留三轮</td><td>淤泥（sludge）</td><td>退出成本被刻意抬高，方向朝平台利润</td><td>记入审计清单，走取消流程或设置续费提醒</td></tr>
+        <tr><td>「仅剩2件」倒计时弹窗，库存其实充足</td><td>暗坑（dark pattern）</td><td>伪造稀缺、经不起公开，利用损失厌恶施压</td><td>识别即免疫一半：把倒计时当作「该离开」的信号</td></tr>
+        <tr><td>电费单显示你与邻居的用电量对比</td><td>助推（反馈工具）</td><td>信息真实、可比、朝节能双赢方向</td><td>用它——社会比较反馈被大量实验证明有效</td></tr>
+      </table>
+      <p class="ctx">使用这张表的关键判据只有两条（第二节概念三的伦理线）：<strong>①方向——朝谁的利益推？②透明——敢不敢把设计逻辑公开写在首页？</strong>两条都过关的是助推，方向反了的是暗坑，抬高退出成本的是淤泥。把这张表存进认知阅读日志，下次遇到任何「让你不知不觉就答应了」的设计，先过一遍两条判据——这就是本章要装进你操作系统的那个「默认值检查器」。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Dark_pattern">Dark pattern 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Libertarian_paternalism">Libertarian paternalism 条目（英文）</a>——透明性与理性人同意判据 · <a href="https://www.bi.team/">BIT 官网（英文）</a>——社会规范反馈的实验证据</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了——建议一周后回来再做一遍（间隔检索）</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>食堂管理员卡罗琳的思想实验说明了什么？为什么「不摆放」不是一个选项？</li>
+        <li>助推定义里的两个硬条件是什么？把水果放前排、禁售甜点、给水果降价，三者各属于什么手段？</li>
+        <li>塞勒的诺奖授奖理由是什么？《助推》与他几十年研究的关系（理论篇 vs 应用篇）？</li>
+        <li>桑斯坦的政府任职经历为什么让本书具有「实践者身份」？《Final Edition》相比首版多了什么？</li>
+        <li>什么是选择架构？「选择架构师不可避免」这个论断的推理链条是什么？</li>
+        <li>默认效应为什么威力巨大（惰性+认知成本）？器官捐献与 401(k) 两个案例各说明什么？</li>
+        <li>「我没有做选择」为什么是幻觉？不行动实际上等于选择了什么？</li>
+        <li>「自由主义温和家长制」两个成分各自保证什么？为什么说这个术语是刻意矛盾的？</li>
+        <li>助推的两条伦理检验标准是什么（透明性+理性人同意）？各举一个通过与不通过的例子。</li>
+        <li>SMarT 方案利用了人性的哪三个特点？「不要求你战胜人性，而是顺着人性设计」是什么意思？首批企业的储蓄率变化数据是多少？</li>
+        <li>有效反馈的三个原则是什么？为什么「比邻居高 20%」比「用了 300 度」更有行为意义？</li>
+        <li>聪明披露的核心思想是什么？它后来发展成了什么运动？</li>
+        <li>「助推=操纵」这个批评的三层回应分别是什么？暗坑与助推是程度差异还是方向差异？</li>
+        <li>为什么说助推解决不了气候变化这类结构性问题？「低垂的果实」这个定位对个人使用有什么指导意义？</li>
+        <li>助推识别地图的两条判据是什么？「仅剩2件」倒计时和「取消要打电话」各属于哪一类？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>《助推》（塞勒 &amp; 桑斯坦，2008/2021 修订版）的核心论断：呈现选项的方式必然影响选择，<strong>没有中性的选择架构</strong>——问题不是「要不要影响」而是「朝哪推、透不透明」。五个关键词：选择架构（呈现方式即权力）、默认选项（不行动=接受别人预设，器官捐献与 401(k) 是铁证）、自由主义温和家长制（保留退出自由+承认引导，伦理线=透明性+理性人同意）、Save More Tomorrow（顺着惰性、损失厌恶、短视设计，储蓄率 3.5%→13.6%——缺陷可以变杠杆）、反馈与聪明披露（及时、具体、可比，让后果可见）。两条大误读已拆：助推≠操纵（暗坑与淤泥是反向应用，方向朝设计者利润）；助推≠万能（结构性问题需要价格与规制重工具，作者自己承认）。认知升级四条：结构的影响常大于信息本身；帮助人存在「改设计」第三条路；与缺陷合作胜过高对抗；商业设计分助推/暗坑/淤泥三类。今天可做：15 分钟默认设置审计（全专栏见效最快的练习）；本周可做：给自己设计一个 SMarT 式方案。下一章：<a href="../10-influence/">第10章·《影响力》</a>——环境设计之外，面对面的说服还在用六大武器作用于你的自动化反应层：互惠、承诺一致、社会认同、喜好、权威、稀缺，认出来才防得住。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-gigerenzer/"><span class="dir">← 第8章</span>《直觉》仁泽：直觉的另一面</a>
+    <a href="../10-influence/"><span class="dir">第10章 →</span>《影响力》西奥迪尼：识别说服与决策防御</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>认知提升读书课 · 第9章 · 依据《Nudge》原书（2008/2021 Final Edition）与企鹅兰登官方书页、官方伴读站、诺贝尔奖官网塞勒专页、芝加哥大学布斯商学院与哈佛法学院官方教职页、英国行为洞察团队（BIT）公开实验报告、Thaler &amp; Benartzi (2004, JPE, DOI: 10.1086/380085) 及相关维基条目整理 · 内容更新至 2026 年 10 月</p>
+  <p>本专栏为思想介绍与阅读方法参考，不构成投资/医疗/法律建议 · 尊重版权：短引加评析、不转载原文、不提供任何下载渠道 · 无购书链接与返佣合作 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #475569;border-radius:12px;background:#f8fafc;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#334155;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/books/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#475569;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#475569;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f8fafc;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#334155;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #475569;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f8fafc;}
+.sr-item .sr-c{display:block;font-size:12px;color:#475569;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/books\/.*/,'/books/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.BOOKS_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f8fafc;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

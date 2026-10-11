@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 为什么读书能升级认知——本书单的设计逻辑与使用方法 — 认知提升读书课</title>
+<style>
+  :root{--accent:#475569;--accent-deep:#334155;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#e2e8f0;color:#334155;border:1px solid #cbd5e1;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">认知提升读书课 · 导论 · 专栏说明</div>
+  <h1>📚 为什么读书能升级认知——本书单的设计逻辑与使用方法</h1>
+  <p>读书不是为了记住更多结论，而是为了更换处理信息的操作系统——本专栏把这件事拆成 20 堂可执行的课</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-kahneman/">第1章：《思考，快与慢》 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">读书悖论</a>
+    <a class="anchor" href="#s2">认知升级什么</a>
+    <a class="anchor" href="#s3">科学依据</a>
+    <a class="anchor" href="#s4">书单逻辑</a>
+    <a class="anchor" href="#s5">章节结构</a>
+    <a class="anchor" href="#s6">配套读法</a>
+    <a class="anchor" href="#s7">底线与版权</a>
+    <a class="anchor" href="#s8">谣言与地图</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本专栏为<strong>思想介绍与阅读方法参考</strong>，不构成投资、医疗、法律建议；书中观点不代表本站立场，凡有争议的观点（如成长型思维的效应量之争）文中如实注明批评意见。</li>
+      <li>本站尊重版权：每本书只做<strong>短引（不超过50字/句）加评析</strong>，不转载原文；<strong>不提供、不指向任何未经授权的复制渠道</strong>——对“盗版”与“电子书下载”类资源，本站只批判、不传播，请通过正规渠道购买或到图书馆借阅。</li>
+      <li>本站<strong>不推销图书</strong>：全文无购书链接、无版本排名、无“荐书返佣”类合作；提到中文版仅注明出版社事实信息。</li>
+      <li>认知提升是<strong>慢变量</strong>：读书不保证“逆袭”，本站不贩卖焦虑；对“速读班”类营销话术只批判、不传播。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正（如部分心理学效应的复制危机），文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清「读了很多书，判断却没变」这个悖论的成因：知识囤积与认知升级的区别；②理解认知升级到底升级的是什么：图式、心智模型、元认知三个关键词；③掌握读书改变大脑的科学依据：深度阅读、检索练习与间隔效应（Dunlosky 2013 综述口径）；④看懂本书单四部分二十本的递进逻辑与选书标准；⑤学会本专栏每章的固定七件套结构（核心概念/认知升级点/常见误读/怎么读/落地练习/金句/延伸书单）怎么用；⑥用「检索式阅读三步法」把任何一本书从「读过」变成「会用」。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全专栏的「总纲」。第一次学习建议通读，然后直接做第六节的「认知阅读日志」练习；如果你只想快点开始读书，读完第四节书单逻辑后即可进入<a href="../01-kahneman/">第1章《思考，快与慢》</a>。第七节「底线与版权」请务必读完——它决定了你能不能躲开知识付费市场里最贵的几个坑。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、读书悖论：为什么读了很多书，判断却没有变</h2>
+    <p class="chapter-sub">先从大多数人真实的阅读困境说起——这是全专栏要解决的核心问题</p>
+
+    <article class="view">
+      <h3>合上书的那一刻，什么都没发生</h3>
+      <p class="ctx">请回忆一下你最近读完的一本书。你大概率记得书里有一两个让你「当时觉得很有道理」的句子，可能还记得几个案例的大概轮廓。但现在问自己三个问题：<strong>第一，这本书改变过你的哪一个具体判断？</strong>比如读完一本决策类的书之后，你在下一次购物、跳槽选择、与人争执时，处理方式真的和读之前不一样了吗？<strong>第二，你能不看笔记，把这本书的核心论证讲给朋友听吗？</strong>不是复述金句，而是讲清「作者提出了什么问题、给了什么证据、得出了什么结论、这个结论有什么边界」。<strong>第三，这本书和你已经读过的书之间，发生了什么连接？</strong>它是印证了你原有的某个想法，还是推翻了一个，还是补上了一块空缺？</p>
+      <p class="ctx">如果三个问题都答不上来，你不是一个人——这是绝大多数成年读者的常态。我们把这种状态叫做<strong>「读书悖论」</strong>：投入的时间和金钱都真实发生了，书架越来越满，笔记软件里的摘录越来越多，但面对真实世界的判断质量、决策方式、情绪反应，却几乎看不到变化。悖论的诡异之处在于：「读书使人进步」这个命题本身并没有错——认知科学、教育心理学有大量证据证明深度阅读对思维的塑造作用；错的是大多数人执行「读书」这个动作的方式：<strong>把阅读当成了信息的搬运（从书页搬进笔记软件），而不是思维的加工（把作者的论证拆开、检验、再装回自己的判断流程）。</strong>搬运只会增加库存，加工才会改变系统。本专栏二十章的全部内容，就是把「加工」这个动作拆成可以照着做的步骤。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Mental_model">Mental model 心智模型条目（英文）</a>——人依赖内部模型而非信息库存来做判断 · <a href="https://dictionary.apa.org/schema">APA 心理学词典 Schema 图式词条（英文）</a>——新信息必须经同化或顺应进入既有图式才会改变认知</div>
+    </article>
+
+    <article class="view">
+      <h3>知识囤积与认知升级：两种完全不同的「收获」</h3>
+      <p class="ctx">把「读书的收获」拆成两种，悖论立刻清楚。<strong>第一种是知识囤积</strong>：记住了更多的结论、名词、案例——「卡尼曼得过诺贝尔奖」「芒格说要多元思维」「人类简史讲认知革命」。这种收获的特点是：来得快（划线摘录即可）、可展示（聊天时能引用）、但<strong>不改变你处理新问题的方式</strong>。它像硬盘扩容，硬盘再大，操作系统还是原来那个。<strong>第二种是认知升级</strong>：你处理信息、做判断、看问题的<strong>默认流程</strong>发生了变化——遇到重大决定时会下意识问「这个判断的置信度有多少」，看到热点文章时会先找「作者的论据能不能推出这个结论」，遭遇挫折时会区分「运气差」和「决策错」。这种收获的特点是：来得慢（需要反复练习）、难展示（发生在脑子里）、但<strong>在你没意识到它的时候持续起作用</strong>。</p>
+      <p class="ctx">绝大多数人的阅读停留在第一种，而读书专栏、拆书稿、金句卡片这些产品形态，本质上也在加速第一种——这就是为什么「越读越焦虑、越焦虑越读」的循环如此普遍：囤积的边际快感递减很快，升级的门槛却一直没被跨过。本专栏的立场很明确：<strong>只服务第二种收获。</strong>所以每章都不是「一本书的内容摘要」（那会助长囤积，甚至让你觉得不必读原书），而是「一次认知升级的手术记录」：这本书要动你脑子里的哪个默认流程、用什么证据动、动完之后你怎么验证它真的变了。摘要可以被消费，升级只能被练习——这也是每章都配「落地练习」的原因。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/schema">APA 心理学词典 Schema 词条（英文）</a>——图式是「组织知识并指导对新信息加工」的认知结构 · <a href="https://en.wikipedia.org/wiki/Metacognition">Metacognition 元认知条目（英文）</a>——对自身思维过程的觉察与调节，是「升级」区别于「囤积」的关键机制</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、认知升级到底升级什么：三个关键词</h2>
+    <p class="chapter-sub">图式、心智模型、元认知——本专栏所有「升级点」都落在这三层上</p>
+
+    <article class="view">
+      <h3>图式：你脑中的档案柜决定了你「看见」什么</h3>
+      <p class="ctx">「图式」（schema）是认知心理学的 foundational 概念，最早由 Bartlett 在 1932 年的记忆实验中系统提出：人回忆一个故事时，不是像录像带一样回放，而是<strong>按照自己已有的知识结构重建</strong>——不熟悉的细节被自动改写成熟悉的样子。美国心理学会（APA）的心理学词典给图式的定义是：组织知识、并指导对新信息进行加工的认知结构。通俗地说，图式是你脑中的档案柜：新信息进来，先被分拣到已有的格子里；柜子里没有对应格子的信息，要么被忽略，要么被硬塞进最像的格子（这就是偏见的认知基础）。</p>
+      <p class="ctx">图式理论解释了读书悖论的第一层：<strong>阅读时你「看见」的从来不是书页上的全部文字，而是你的档案柜允许你看见的部分。</strong>一个只有「成功学」格子的人读《原则》，只会摘录出「要极度求真」这类励志结论，而完全看不见可信度加权决策的操作细节。认知升级的第一个含义因此是：<strong>增加格子、修正格子、发现格子的边界。</strong>这正是本专栏「核心概念拆解」板块的任务——每章把一本书里最重要的三到五个概念，作为新格子明确地立起来；而「常见误读」板块的任务，是检查你原有的格子里装错了什么。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/schema">APA 心理学词典 Schema 词条（英文）</a>——图式的标准定义与 Bartlett (1932) 溯源 · <a href="https://en.wikipedia.org/wiki/Schema_(psychology)">Schema (psychology) 条目（英文）</a>——图式理论在记忆、知觉与社会认知中的研究谱系</div>
+    </article>
+
+    <article class="view">
+      <h3>心智模型与元认知：从「有格子」到「会调度」</h3>
+      <p class="ctx">图式之上还有两层。<strong>第二层：心智模型（mental model）。</strong>心智模型是你脑中对「某类事物如何运作」的简化模拟——对「市场如何运作」「组织如何运作」「习惯如何形成」的内部模型。认知科学家 Kenneth Craik 在 1943 年提出：人靠构建现实的「小规模模型」来预测和行动。心智模型和单个概念的区别在于<strong>可运行</strong>：概念是名词，模型是能推演的机器。查理·芒格「多元思维模型」的主张（第11章展开）正建立在这一层：单一模型的人拿锤子看什么都像钉子，拥有模型库的人才会根据问题换工具。<strong>第三层：元认知（metacognition）</strong>——对自身思维过程的觉察与调节，通俗说是「对思考的思考」。元认知强的人会在争论到一半时意识到「我现在是在求真，还是在保全面子」；会在做完决定后回头检查「我刚才的判断受锚定效应影响了吗」。</p>
+      <p class="ctx">这三层构成本专栏的完整升级地图：<strong>第一部分（01-05章）主要在修正图式层</strong>——你对「自己如何思考」的默认认知（理性、意志力、天赋）几乎每处都有系统性偏差；<strong>第二、三部分（06-15章）主要在心智模型层安装新模型</strong>——概率模型、反脆弱模型、系统模型、结构化表达模型；<strong>第四部分（16-20章）落在元认知层</strong>——学习如何学习（认知天性、刻意练习）、如何检验论证（学会提问）、如何读（如何阅读一本书）。每章「认知升级点」对照表里的每一条，你都可以对照这三层问自己：这是在给我装一个新格子、一台新模型，还是一个新的自我监测器？分层清楚，读二十本书才不会互相打架——这也是第四节书单递进逻辑的心理学基础。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Mental_model">Mental model 条目（英文）</a>——Craik (1943) 溯源与心智模型研究谱系 · <a href="https://en.wikipedia.org/wiki/Metacognition">Metacognition 条目（英文）</a>——元认知的定义、成分（元认知知识/监测/控制）与训练研究 · <a href="https://fs.blog/mental-models/">Farnam Street 心智模型总览（英文，🏷商业科普）</a>——「模型库」实践口径</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、为什么是读书：科学依据与选书标准</h2>
+    <p class="chapter-sub">深度阅读、检索练习、经典的时间检验——三个依据决定了本专栏的形态</p>
+
+    <article class="view">
+      <h3>深度阅读是系统2的负重训练</h3>
+      <p class="ctx">卡尼曼在《思考，快与慢》里把认知分为快而自动的系统1与慢而费力的系统2（第1章展开）。用这个框架看，<strong>刷短视频、看金句卡片是系统1的顺滑滑行，而读一本有论证结构的书是系统2的负重训练</strong>。区别不在于内容深浅，而在于认知动作：一本严肃的书要求你在工作记忆里同时保持「作者的问题—证据—结论—反例」多个组件，要求你在读到第五章时还记得第二章埋下的前提，要求你在作者论证薄弱处产生「等一下，这里推不出来」的阻滞感——这些正是系统2的核心功能（持续注意、工作记忆整合、抑制自动反应）。2002 年诺贝尔经济学奖委员会授予卡尼曼奖状的理由，就是把心理学的洞见整合进经济科学——尤其关于人类在不确定条件下如何判断与决策；这份「整合」本身就是深度阅读的产物：卡尼曼的学术生涯建立在逐篇消化、批判、重构前人研究之上。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="一位抽象无脸人物坐在一面由大脑轮廓与层叠书籍组成的书墙前阅读的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">这也回答了「碎片化时代为什么还要读整本书」：碎片信息的问题不是「碎」，而是<strong>它只给你结论、不给你论证过程</strong>——你接收的是别人系统2的加工成品，自己的系统2从未上场。认知升级发生在系统2上场的时刻，就像肌肉生长在负重的时刻。需要说明边界：深度阅读的训练效果依赖「加工」而非「时长」——盯着书页走神两小时不算数，这也是第六节配套读法要解决的问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/">诺贝尔奖官网：2002 年经济学奖卡尼曼专页（英文）</a> · <a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow">《Thinking, Fast and Slow》条目（英文）</a>——系统1/系统2框架的原书概览</div>
+    </article>
+
+    <article class="view">
+      <h3>「读了就忘」的科学解释：遗忘不是失败，是设计的起点</h3>
+      <p class="ctx">「读了就忘」是读书悖论里最劝退人的部分，但认知科学对它的解释恰恰是好消息。第一，遗忘是大脑的默认行为：艾宾浩斯 1885 年的遗忘曲线实验表明，无复习的材料在数天内遗忘大半——这不是你记性差，是人类记忆的生理设定。第二，也是更关键的：<strong>对抗遗忘的有效手段不是「再读一遍」（重读），而是「不看书画一遍」（检索）。</strong>2013 年 Dunlosky 等人在《Psychological Science in the Public Interest》发表了覆盖十种学习技术的大规模证据综述，结论明确：划重点、重读这类最流行的方法效用最低；<strong>检索练习（practice testing）与间隔练习（distributed practice）是证据等级最高的两种技术</strong>。检索之所以有效，是因为「费力提取」这个动作本身在强化记忆痕迹并暴露知识缺口——流畅的重读只会制造「我会了」的错觉（流畅性错觉）。</p>
+      <p class="ctx">把这两条结论应用到读书上，本专栏的设计就成立了：每章末的自查清单不是装饰，是<strong>检索练习的载体</strong>；「认知升级点对照表」是把书中概念与你原有认知强制碰撞的检索动作；第六节的「讲给朋友听」是最高强度的检索（讲不出来=没学会）。所以正确的阅读预期应当是：<strong>第一遍读完后忘掉大半是正常的，专栏的练习环节负责把关键的三到五个概念通过检索刻进长期记忆。</strong>读书的产出不是「记住全书」，而是「装进几个真正改变了默认反应的模型」——贪多是囤积思维，少而深才是升级思维。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://doi.org/10.1177/1529100612453266">Dunlosky et al. (2013) "Improving Students' Learning With Effective Learning Techniques"（DOI 直达，英文）</a>——十种学习技术的证据分级综述 · <a href="https://en.wikipedia.org/wiki/Testing_effect">Testing effect 检索练习效应条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Forgetting_curve">Forgetting curve 遗忘曲线条目（英文）</a>——Ebbinghaus (1885) 实验口径</div>
+    </article>
+
+    <article class="view">
+      <h3>选书标准：为什么是这二十本经典</h3>
+      <p class="ctx">市面上的「认知书单」多如牛毛，本专栏的二十本按四条硬标准筛出。<strong>标准一：经过时间检验。</strong>入选书的英文原版首版最早的在 1940 年（《如何阅读一本书》），最晚的在 2018 年（《模型思维》），绝大多数出版超过十年仍在被严肃讨论——畅销榜可以营销，时间不能。<strong>标准二：有可核查的学术根基。</strong>卡尼曼与塞勒是诺贝尔经济学奖得主，斯坦诺维奇、德韦克、仁泽、艾利克森是一流大学的在职研究者，其主张大多能追溯到同行评审论文而非个人体悟——这保证每章的「核心概念」有 📋 学术研究级来源可标注。<strong>标准三：有公开的批评者。</strong>只选「无可争议」的书是危险的信号；本专栏刻意保留了争议（塔勒布的论证风格、成长型思维的复制危机、《人类简史》的学术批评），每章「常见误读」板块都会平衡呈现反对意见——<strong>经得起批评的书才配进入你的操作系统。</strong><strong>标准四：可落地。</strong>每本书的核心思想都能转译成一周内可执行的练习（概率语言改写判断、决策前检查清单、检索式重读），拒绝「读完只能感叹深刻」的书。</p>
+      <p class="ctx">四条标准也解释了为什么某些热门书没入选：纯粹的成功学回忆录不满足标准二；只在专业圈流通的学术专著不满足标准四；靠营销冲榜的新书未经受标准一的检验。艾德勒在《如何阅读一本书》里说，读书的目标层次决定方法层次——本专栏选的是「为了增进理解而读」的那一类书，这也是第20章收官时你会重新理解的一句话。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://en.wikipedia.org/wiki/How_to_Read_a_Book">《How to Read a Book》条目（英文）</a>——Adler「为获得资讯而读 / 为增进理解而读」的层次区分 · <a href="https://www.nobelprize.org/prizes/economic-sciences/2017/thaler/facts/">诺贝尔奖官网：2017 年经济学奖塞勒专页（英文）</a>——书单学术根基的代表性佐证</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、书单设计逻辑：四部分递进，一本书一课</h2>
+    <p class="chapter-sub">先认识思维本身，再学在不确定中决策，然后建立模型库，最后掌握学习与阅读的方法</p>
+
+    <article class="view">
+      <h3>第一部分 · 大脑的操作系统（01-05）：认识你的思维本身</h3>
+      <p class="ctx">升级认知的第一步不是学新工具，而是<strong>搞清现在这台机器是怎么运转的、有哪些出厂缺陷</strong>。五本书从五个角度做「系统自检」：<strong>第1章《思考，快与慢》</strong>（卡尼曼）给出总框架——系统1与系统2的分工，以及损失厌恶、锚定、可得性等一整套认知偏误清单；这本书是全部二十章的地基，偏误词汇会在后面各章反复被调用。<strong>第2章《超越智商》</strong>（斯坦诺维奇）补上关键一块：智商测试测不出理性，聪明人一样会做蠢决定——理性是可训练的独立技能，这个论断给全专栏「可落地」的立场提供了心理学依据。<strong>第3章《怪诞行为学》</strong>（艾瑞里）是卡尼曼理论版的行为实验演示版：相对性陷阱、免费的代价、预期效应，每个偏误都有可复现的实验场景。<strong>第4章《心流》</strong>（契克森米哈赖）转向注意力：认知资源的分配质量决定思维质量，心流是注意力完全有序时的最优体验。<strong>第5章《终身成长》</strong>（德韦克）处理底层信念：把能力看作固定还是可发展，决定了你面对「我不擅长这个」时的全部后续行为。五章读完，你至少获得三样东西：一套偏误词汇表、一个「理性可练」的信念、以及对自身注意力与信念系统的觉察入口。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/lecture/">诺贝尔奖官网：卡尼曼 2002 年演讲《Maps of Bounded Rationality》（英文）</a>——有限理性研究的官方口径 · <a href="https://en.wikipedia.org/wiki/Mindset">Mindset 条目（英文）</a>——固定型/成长型思维框架 · <a href="https://en.wikipedia.org/wiki/Flow_(psychology)">Flow (psychology) 条目（英文）</a>——心流研究谱系</div>
+    </article>
+
+    <article class="view">
+      <h3>第二、三部分 · 决策与不确定性（06-10）＋ 心智模型与系统（11-15）</h3>
+      <p class="ctx">认识了机器，接下来<strong>装模型</strong>。第二部分五本处理同一个大问题：<strong>在信息不全、结果随机的世界里怎么做判断。</strong>《反脆弱》（塔勒布）教你把「波动」从敌人变成资源——脆弱/强韧/反脆弱三分法与杠铃策略；《对赌》（安妮·杜克）把扑克手的概率思维日常化——决策质量不等于结果好坏；《直觉》（仁泽）提供直觉的另一面——启发式在生态理性下可以又快又准，与第1章卡尼曼的「偏误」叙事构成著名的学术对峙，两章对照读收益翻倍；《助推》（塞勒）讲选择架构——默认选项如何不动声色地替你做了决定；《影响力》（西奥迪尼）是防御手册——互惠、承诺一致、社会认同、权威、喜好、稀缺六大说服武器，认出来才防得住。</p>
+      <p class="ctx">第三部分五本把「单个模型」升级成「模型库与系统观」。《穷查理宝典》（芒格）是模型思维的宣言：跨学科的格栅理论、lollapalooza 效应、误用心理学清单；《原则》（达利欧）演示如何把个人决策沉淀成可复用、可迭代的规则系统，并引入可信度加权；《模型思维》（佩奇）是学院派的模型工具箱——正态分布、幂律、网络、博弈论等数十个模型各自的适用边界；《系统之美》（梅多斯）给出看世界的动态语言——存量、流量、反馈回路、杠杆点；《金字塔原理》（明托）负责输出端——结论先行、以上统下、MECE，让你想清楚之后还能讲清楚。十本读完，你面对复杂问题时不再是「一种直觉打天下」，而是能问：这是个概率问题、系统问题、还是表达问题？该调哪个模型？</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://en.wikipedia.org/wiki/Antifragility">Antifragility 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Nudge_(book)">《Nudge》条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Influence:_Science_and_Practice">《Influence: Science and Practice》条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Gerd_Gigerenzer">Gerd Gigerenzer 条目（英文）</a>——生态理性学派 · <a href="https://www.berkshirehathaway.com/letters/letters.html">Berkshire Hathaway 股东信原文库（英文）</a>——芒格与巴菲特思想的 🏛 一手来源 · <a href="https://www.principles.com/">Principles 官方网站（英文）</a> · <a href="https://www.barbaraminto.com/">芭芭拉·明托官方网站（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第四部分 · 学习法与大历史观（16-20）：会学习，看得远</h3>
+      <p class="ctx">最后一部分解决两个元问题：<strong>怎么让升级持续发生（学习法），以及把升级放进多大的坐标系（大历史观）。</strong>《认知天性》把第三节讲过的检索练习、间隔、交错三大支柱系统化——这本书的方法直接构成本专栏配套读法的科学基础；《刻意练习》（艾利克森）讲专家级能力的形成机制：心理表征与有目的的练习，本章同时承担一个重要澄清任务——流行的「一万小时定律」是对艾利克森研究的误传，本人有公开澄清；《学会提问》（布朗）给出批判性思维的操作清单：论题、结论、理由、假设、证据质量、对立原因——读完它，你再看任何一篇说服性文章都有了拆弹流程；《人类简史》（赫拉利）把镜头拉到十万年尺度：虚构故事如何让陌生人大规模协作，金钱、帝国、宗教作为认知基础设施的运作——本章同时平衡呈现学界对该书简化叙事的批评；《如何阅读一本书》（艾德勒）收官：四层阅读法（基础/检视/分析/主题）与主题阅读，正好把本专栏二十本书串成一个可以自己设计的主题阅读项目——<strong>用一本讲读书的书结束读书专栏，是刻意的首尾呼应。</strong></p>
+      <p class="ctx">二十本书之间还有多组「暗线」值得对照着读：01与08是同一场直觉之争的两方；11与13是模型思维的实践版与学院版；16与17是学习科学的记忆侧与技能侧；05与17共同回答「能力到底能不能练」。各章正文会互相指路，你也可以按暗线组合跳读。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Deliberate_practice">Deliberate practice 刻意练习条目（英文）</a>——Ericsson 研究谱系与「一万小时」误传的澄清脉络 · <a href="https://en.wikipedia.org/wiki/Peak:_Secrets_from_the_New_Science_of_Expertise">《Peak》条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/Sapiens:_A_Brief_History_of_Humankind">《Sapiens》条目（英文）</a>——含学术批评的平衡介绍 · <a href="https://en.wikipedia.org/wiki/Mortimer_Adler">Mortimer Adler 条目（英文）</a>——《如何阅读一本书》作者与百科全书编纂背景</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、每章固定七件套：结构拆解与使用方法</h2>
+    <p class="chapter-sub">二十章同一个骨架，读到第三章你就会自动知道去哪找什么</p>
+
+    <article class="view">
+      <h3>七件套逐一说明</h3>
+      <p class="ctx">每章（每本书）都按固定七个板块展开，各自承担一个明确的认知任务。<strong>①核心概念拆解</strong>：把全书提炼成三到五个关键概念，每个概念给一句话定义加书中的应用场景——这是给你「装新格子」的环节，对应第二节的图式层。<strong>②认知升级点对照</strong>：一张「读前常识 vs 读后认知」的对照表，至少三条——这是全章最浓缩的价值声明：如果读完这章你只记住一样东西，应该记住这张表。<strong>③常见误读批判</strong>：大众对这本书的两三个典型误解加证据澄清（如「心流=快乐」「反脆弱=坚强」「一万小时定律」），其中至少一条进入谣言粉碎卡——防止你把书读歪，歪读比不读更糟。<strong>④怎么读这本书</strong>：阅读路线（哪些章精读、哪些略读）、预计耗时、难度分级（入门/进阶/挑战）、读前预备知识——把「去读原书」这个动作的成本降到可执行。<strong>⑤落地练习</strong>：至少两个带编号步骤和三问检查表的练习，单个不超过十五分钟，目标是一周内把概念变成行动。<strong>⑥金句选讲</strong>：不超过三句短引（每句五十字以内）加每句百字以上评析——短引是路标不是替代品，评析才是本专栏的增量。<strong>⑦延伸书单</strong>：两到三本进阶或对照书，各一句话说明为什么接着读，只有书名作者、没有任何购买渠道。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Testing_effect">Testing effect 条目（英文）</a>——自查清单与检索环节的设据 · <a href="https://en.wikipedia.org/wiki/Metacognition">Metacognition 条目（英文）</a>——「认知升级点对照」本质是强制元认知监测</div>
+    </article>
+
+    <article class="view">
+      <h3>方法拆解框：一章的标准读法（25+15 分钟）</h3>
+      <blockquote class="q">
+        <strong>本章阅读路线（可直接套用）：</strong><br>
+        ① <strong>先读「认知升级点对照表」（3分钟）</strong>——带着「它将修正我哪三个默认认知」的问题进入全章；<br>
+        ② <strong>通读核心概念拆解（15分钟）</strong>——每读完一个概念，合上页面用自己的话复述一遍（复述不出来就重读这一段，不要往下滑）；<br>
+        ③ <strong>读常见误读与谣言粉碎（5分钟）</strong>——检查自己是否曾经就是这样误读的；<br>
+        ④ <strong>记录「怎么读这本书」板块给出的路线（2分钟）</strong>——决定这本书你买纸质版精读、图书馆借阅、还是只读关键章；<br>
+        ⑤ <strong>当天完成第一个落地练习（≤15分钟）</strong>——练习没做，这一章等于没读；第二个练习放进本周日程；<br>
+        ⑥ <strong>一周后回来做章末自查清单</strong>——这是间隔检索：一周后还记得并能讲出来的，才真正进了长期记忆。
+        <span class="qsrc">——本专栏统一读法，依据 Dunlosky (2013) 检索与间隔练习证据设计</span>
+      </blockquote>
+      <p class="ctx">这个路线的两个设计细节值得说明：<strong>第一，对照表放在最前读</strong>，利用的是「先行组织者」原理——先有框架再填细节，记忆保持显著更好；<strong>第二，一周后回做自查清单</strong>，利用的是间隔效应——同样十五分钟，隔一周做一次远胜当天连做两次。二十章都按这个路线走完，总投入约十四小时，外加二十个一周后的十五分钟检索——按任何学习科学的口径，这都是性价比极高的认知投资。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://doi.org/10.1177/1529100612453266">Dunlosky et al. (2013)（DOI 直达，英文）</a>——检索练习与间隔练习的高效用评级 · <a href="https://en.wikipedia.org/wiki/Spacing_effect">Spacing effect 间隔效应条目（英文）</a>——Ebbinghaus 以来的间隔学习研究谱系</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、专栏配套读法：把「读过」变成「会用」</h2>
+    <p class="chapter-sub">检索式阅读三步法与认知阅读日志——本专栏唯一需要你长期执行的两个工具</p>
+
+    <article class="view">
+      <h3>检索式阅读三步法：回忆、讲述、使用</h3>
+      <p class="ctx">把第三节和第五节的科学依据压缩成一个通用读法，适用于本专栏每一本书，也适用于你今后读的任何书。<strong>第一步：回忆（每读完一章书就做）。</strong>合上书，在纸上或备忘录里写出这一章的三个要点——不许翻书，写不出来的地方画个问号，之后只重读画问号的部分。这个「费力提取」动作就是检索练习本体，五分钟的回忆对记忆保持的贡献超过一小时的重读。<strong>第二步：讲述（每读完一本书做一次）。</strong>把这本书讲给一个真实的人听，十分钟以内，标准是对方能听懂并复述出核心论点——这就是流传甚广的「费曼技巧」的实质：讲述暴露理解的漏洞，听众的困惑指出你自以为懂的地方。没有合适的听众时，对着手机录音讲也算数，回听时你会惊讶地发现自己卡壳的频率。<strong>第三步：使用（读完两周内）。</strong>从书里挑一个概念，设计一个真实生活里的小实验：读完《对赌》就用概率语言重写今天的三个判断（「我八成会迟到」而不是「我肯定迟到」）；读完《助推》就改造自己手机的一个默认设置；读完《金字塔原理》就用结论先行的结构重写下一封工作邮件。<strong>使用是最高强度的编码</strong>——概念只有参与过真实决策，才会从「知识」变成「认知」。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Testing_effect">Testing effect 条目（英文）</a>——回忆步骤的证据基础 · <a href="https://doi.org/10.1177/1529100612453266">Dunlosky et al. (2013)（DOI 直达，英文）</a> · <a href="https://en.wikipedia.org/wiki/Metacognition">Metacognition 条目（英文）</a>——讲述与回听属于元认知监测训练</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务：建立你的「认知阅读日志」（约15分钟，之后长期生效）</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①找一个笔记本或新建一个笔记文件，标题写「认知阅读日志」加今天日期；②画一个四列表格：日期／书名与章节／回忆三要点（合上书写的）／一个使用计划（两周内要做的真实小实验）；③把本专栏的二十章当作前二十行填入计划——每读完一章填一行；④在日志第一页写下你读这个专栏最想解决的一个真实问题（例如「我总是冲动消费」「我开会不敢表达观点」「我读什么都记不住」），只写一个。<br><br>
+        <strong>检查表（三问）：</strong>三要点是不是合上书之后写的（翻书抄的不算）？使用计划是不是具体到「什么时候、对什么事、做什么动作」？第一页的问题是不是你自己的真实问题（而不是「提升认知」这种空话）？<br>
+        <strong>使用方式：</strong>每章读完当天填一行；每月末回看一次「使用计划」的完成情况；二十章走完后，重读第一页那个问题——它被哪些章的哪些模型回答过，写一段两百字的总结。这段总结就是你这个专栏的最终产出。
+      </blockquote>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="一本摊开的书中生长出四级上升的台阶，台阶顶端有一个发光的灯泡轮廓的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">为什么要花十五分钟建一个日志？因为它同时执行了三条科学原则：<strong>合书回忆</strong>是检索练习，<strong>每月回看</strong>是间隔复习，<strong>使用计划</strong>强制知识落地。更重要的是第四行那个「只写一个问题」的设计：带着真实问题读书的人，和「为了读书而读书」的人，加工深度完全不同——问题会让你的注意力自动聚焦在相关章节，这正是图式理论说的「档案柜决定你看见什么」的正向运用：先建一个「我的问题」格子，新知识才有地方可去。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://en.wikipedia.org/wiki/Spacing_effect">Spacing effect 条目（英文）</a>——间隔复习的证据谱系 · <a href="https://dictionary.apa.org/schema">APA 心理学词典 Schema 词条（英文）</a>——「先建格子再装知识」的图式口径</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、版权立场与三条底线</h2>
+    <p class="chapter-sub">这个专栏不做什么，和它做什么同样重要</p>
+
+    <article class="view">
+      <h3>版权立场：短引加评析，鼓励读原书</h3>
+      <p class="ctx">本专栏涉及二十本仍在版权保护期内的著作，立场一次说清。<strong>第一，只做短引加评析。</strong>每章引用的原文不超过三句、每句不超过五十字，且每句引文都配有百字以上的独立评析——这符合各国版权法中为介绍、评论目的适当引用的通行原则（如美国版权法的合理使用四要素：使用目的与性质、作品性质、引用数量与实质性、对市场的影响）。<strong>第二，不转载、不缩写成「读完不用读原书」。</strong>本专栏定位是导读与思想拆解，每章「怎么读这本书」板块存在的意义恰恰是把你送回原书——拆书稿行业最大的问题就是把书压缩到读者以为可以不读了，压缩掉的论证过程正是认知升级发生的地方。<strong>第三，不提供、不指向任何未经授权的复制渠道。</strong>对“盗版”资源与“电子书下载”站点，本站的态度是只批判不传播：它们损害的不只是作者收益，更是「严肃写作可持续」这个生态——你今天免费拿走的每一本书，都在降低下一个卡尼曼写作的概率。请通过正规渠道购买，或到公共图书馆借阅（这是被严重低估的免费合法渠道）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Fair_use">Fair use 合理使用条目（英文）</a>——合理使用四要素的通行框架 · <a href="https://en.wikipedia.org/wiki/How_to_Read_a_Book">《How to Read a Book》条目（英文）</a>——Adler 论「导读不能替代原书」的层次阅读观</div>
+    </article>
+
+    <article class="view">
+      <h3>三条底线：不承诺逆袭、不推销图书、争议平衡呈现</h3>
+      <p class="ctx"><strong>底线一：不承诺「读完就逆袭」。</strong>认知升级是慢变量，依赖练习与真实反馈的循环（第六节的使用环节），没有任何书单能替你完成这个过程。凡是把「三十天读完一百本」「听完这个专栏人生开挂」当卖点的产品，其商业模式建立在焦虑之上——包括对“速读班”式营销的模仿者，本专栏只在批判语境提及它们。<strong>底线二：不推销。</strong>全文没有购书链接、没有「哪个译本最好」的带货式排名、没有“荐书返佣”类合作；提到中文版仅注明出版社事实信息，方便你去图书馆检索。<strong>底线三：争议平衡呈现。</strong>二十本书里至少五本存在实质性的学术或公共争议：《终身成长》的效应量在复制研究中缩水、德韦克本人批评过市面上流行的「假成长型思维」；《反脆弱》的论证风格被批评为重复与傲慢；《原则》的「极度透明」在企业界的适用性争议很大；《刻意练习》衍生的「一万小时定律」被艾利克森本人澄清为误传；《人类简史》被历史学界批评为过度简化。<strong>本专栏对每一处争议都如实标注批评意见</strong>——一个只呈现优点的书单是广告，呈现了批评的书单才是教育。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Mindset">Mindset 条目（英文）</a>——含成长型思维效应量争议与复制研究现状 · <a href="https://en.wikipedia.org/wiki/Deliberate_practice">Deliberate practice 条目（英文）</a>——「一万小时」误传的澄清脉络 · <a href="https://en.wikipedia.org/wiki/Principles:_Life_and_Work">《Principles》条目（英文）</a>——含对「极度透明」的公开讨论与批评</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、开课先拆四个谣言，再给你一张地图</h2>
+    <p class="chapter-sub">知识付费市场最贵的四个坑，和二十章的速查表</p>
+
+    <article class="view">
+      <h3>谣言粉碎：四句最贵的阅读谣言</h3>
+      <p class="ctx"><strong>谣言一：「读书多=认知高。」</strong>不成立。第一节已经论证：囤积式阅读只增加知识库存，不改变处理流程；一个从不读书但持续从真实决策反馈中修正模型的人，判断力可能胜过囤了五百本笔记的读书人——读书是升级认知的高效途径之一，不是唯一途径，更不是自动途径。决定变量是加工深度（检索、讲述、使用），不是册数。<strong>谣言二：「速读训练能让你一目十行、效率翻十倍。」</strong>不成立。眼动研究的基本结论是：阅读速度与理解深度存在此消彼长的关系，所谓一目十行的「速读」牺牲的正是论证跟踪——而论证恰恰是认知类书籍的全部价值所在；宣称能同时保住速度与理解的“速读班”营销，至今拿不出经得起同行评审的证据。检视阅读（快速判断一本书值不值得读、哪几章要精读）是正当技术，第20章会教，但它和「十倍速读完整本书」是两回事。<strong>谣言三：「听书等于读书。」</strong>半句对半句错。听觉通道的信息处理速度受限于语速，且无法像文字那样随时回跳、批注、暂停思考——对论证密集的认知类书籍，这些动作正是深加工的载体；听书适合叙事类内容与复习已读过的书，不适合首次啃硬书。<strong>谣言四：「经典都过时了，读新书新文章就够了。」</strong>不成立。信息会过时，但「人类判断如何出错」「专家能力如何形成」「系统如何反馈」这类关于认知本身的规律，恰恰是被时间反复检验后才配称经典；本专栏二十本书里最早的出版于 1940 年，其四层阅读法至今没有被任何「新方法」实质性取代——过时焦虑本身，就是营销制造出来的囤积动力。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Testing_effect">Testing effect 条目（英文）</a>——加工深度决定保持，而非接触时长 · <a href="https://doi.org/10.1177/1529100612453266">Dunlosky et al. (2013)（DOI 直达，英文）</a>——重读类低效用技术的证据评级 · <a href="https://en.wikipedia.org/wiki/How_to_Read_a_Book">《How to Read a Book》条目（英文）</a>——检视阅读的正当定位</div>
+    </article>
+
+    <article class="view">
+      <h3>二十章速查表：按你的问题直达对应书</h3>
+      <table class="tb">
+        <tr><th>部分</th><th>章节</th><th>这本书回答什么问题</th><th>难度</th></tr>
+        <tr><td rowspan="5">一·大脑的操作系统</td><td><a href="../01-kahneman/">01 《思考，快与慢》</a></td><td>我的判断为什么总出错：偏误总图谱</td><td>挑战</td></tr>
+        <tr><td><a href="../02-stanovich/">02 《超越智商》</a></td><td>聪明人为什么也做蠢决定</td><td>进阶</td></tr>
+        <tr><td><a href="../03-ariely/">03 《怪诞行为学》</a></td><td>我的「不理性」有没有规律可循</td><td>入门</td></tr>
+        <tr><td><a href="../04-flow/">04 《心流》</a></td><td>注意力怎么分配，体验才最优</td><td>入门</td></tr>
+        <tr><td><a href="../05-mindset/">05 《终身成长》</a></td><td>「我不擅长」这个念头本身对不对</td><td>入门</td></tr>
+        <tr><td rowspan="5">二·决策与不确定性</td><td><a href="../06-antifragile/">06 《反脆弱》</a></td><td>怎么让波动和意外为我所用</td><td>挑战</td></tr>
+        <tr><td><a href="../07-bets/">07 《对赌》</a></td><td>结果不好，是决策错还是运气差</td><td>入门</td></tr>
+        <tr><td><a href="../08-gigerenzer/">08 《直觉》</a></td><td>直觉什么时候可信、什么时候不可信</td><td>进阶</td></tr>
+        <tr><td><a href="../09-nudge/">09 《助推》</a></td><td>谁在通过环境设计替我做决定</td><td>入门</td></tr>
+        <tr><td><a href="../10-influence/">10 《影响力》</a></td><td>销售、广告、说服的话术怎么防</td><td>入门</td></tr>
+        <tr><td rowspan="5">三·心智模型与系统</td><td><a href="../11-munger/">11 《穷查理宝典》</a></td><td>怎么建立跨学科的模型库</td><td>进阶</td></tr>
+        <tr><td><a href="../12-principles/">12 《原则》</a></td><td>怎么把决策沉淀成可复用的规则</td><td>进阶</td></tr>
+        <tr><td><a href="../13-model-thinker/">13 《模型思维》</a></td><td>什么场景该换什么模型</td><td>挑战</td></tr>
+        <tr><td><a href="../14-systems/">14 《系统之美》</a></td><td>为什么好意干预总带来意外后果</td><td>进阶</td></tr>
+        <tr><td><a href="../15-pyramid/">15 《金字塔原理》</a></td><td>想清楚了怎么说清楚</td><td>入门</td></tr>
+        <tr><td rowspan="5">四·学习法与大历史观</td><td><a href="../16-make-it-stick/">16 《认知天性》</a></td><td>为什么努力学了却记不住</td><td>入门</td></tr>
+        <tr><td><a href="../17-peak/">17 《刻意练习》</a></td><td>专家能力到底怎么练出来</td><td>入门</td></tr>
+        <tr><td><a href="../18-asking/">18 《学会提问》</a></td><td>怎么拆穿一篇看似有理的文章</td><td>入门</td></tr>
+        <tr><td><a href="../19-sapiens/">19 《人类简史》</a></td><td>人类靠什么统治地球：故事的力量</td><td>入门</td></tr>
+        <tr><td><a href="../20-how-to-read/">20 《如何阅读一本书》</a></td><td>读书这件事本身的方法论（收官）</td><td>进阶</td></tr>
+      </table>
+      <p class="ctx">三种用法：<strong>按顺序读</strong>——首次系统学习，从第1章到第20章，配合第六节日志，每天一章加一个练习；<strong>按问题查</strong>——用上表直达病灶章，读完先做练习，一周后回来补自查清单；<strong>按暗线组合读</strong>——01与08（直觉之争）、11与13（模型思维）、16与17（学习科学）、05与17（能力可练吗）成对读，每对读完写一段两百字的「两本书吵了什么、我站谁、为什么」，这是主题阅读的入门练习（第20章展开）。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-v">🏛 官方</span>来源：<a href="https://fs.blog/mental-models/">Farnam Street 心智模型总览（英文，明确标注商业科普）</a>——模型库实践路径 · <a href="https://www.berkshirehathaway.com/letters/letters.html">Berkshire Hathaway 股东信原文库（英文）</a>——芒格思想的一手来源，全部免费公开</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「读书悖论」指的是什么？为什么信息搬运不产生认知升级？</li>
+        <li>知识囤积与认知升级的区别是什么？各自的特点（速度、可展示性、作用方式）？</li>
+        <li>图式、心智模型、元认知三层分别是什么？本专栏四个部分各落在哪一层？</li>
+        <li>Bartlett 的记忆重建实验说明了图式的什么性质？「档案柜决定你看见什么」是什么意思？</li>
+        <li>为什么说深度阅读是系统2的负重训练？碎片信息的问题到底出在哪？</li>
+        <li>Dunlosky 2013 综述里效用最高和最低的两种学习技术分别是什么？「流畅性错觉」怎么理解？</li>
+        <li>本专栏选书的四条硬标准是什么？为什么刻意保留有争议的书？</li>
+        <li>四部分书单的递进逻辑：每一部分各解决什么大问题？说出每部分的至少两本书及其一句话定位。</li>
+        <li>二十本书之间的四组「暗线」对照是哪些？</li>
+        <li>每章七件套各承担什么认知任务？「认知升级点对照表」为什么建议最先读？</li>
+        <li>检索式阅读三步法是哪三步？「使用」为什么是最高强度的编码？</li>
+        <li>认知阅读日志的四列是什么？「只写一个真实问题」的设计依据是什么？</li>
+        <li>本专栏的版权立场三条是什么？合理使用的四要素大致指什么？</li>
+        <li>三条底线（不承诺逆袭/不推销/争议平衡）各自的理由是什么？被点名批评的五本书的争议分别是什么？</li>
+        <li>四个阅读谣言（读书多=认知高/速读十倍/听书等于读书/经典过时）各自的批驳依据是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>读书悖论的根源是信息搬运（囤积）与思维加工（升级）的混淆——认知升级发生在三层：图式（装新格子、修错格子）、心智模型（装可推演的机器）、元认知（装自我监测器）。科学依据三条：深度阅读是系统2的负重训练；遗忘是默认设定，检索练习与间隔练习是证据等级最高的对抗手段（Dunlosky 2013）；经典经过时间与批评的双重检验。书单四部分递进：大脑操作系统（01-05，认识思维本身）→决策与不确定性（06-10，装判断模型）→心智模型与系统（11-15，建模型库）→学习法与大历史观（16-20，让升级持续）；暗线对照：01↔08、11↔13、16↔17、05↔17。每章七件套：核心概念拆解/认知升级点对照/常见误读批判/怎么读这本书/落地练习/金句选讲/延伸书单；标准读法=25分钟通读+15分钟练习+一周后自查。配套工具两个：检索式阅读三步法（回忆/讲述/使用）与认知阅读日志（合书回忆+使用计划+一个真实问题）。版权立场：短引≤50字/句加评析、不转载、不提供渠道、鼓励读原书；三条底线：不承诺逆袭、不推销图书、争议平衡呈现；四谣言已拆。今天可做的练习：花十五分钟建立你的认知阅读日志，第一页写下你唯一想解决的真实问题。下一章：<a href="../01-kahneman/">第1章·《思考，快与慢》</a>——给全专栏打地基的那本书：你的判断系统出厂设置里有多少 bug。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>认知提升读书课 · 全部目录</a>
+    <a href="../01-kahneman/"><span class="dir">第1章 →</span>《思考，快与慢》：双系统与认知偏误</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>认知提升读书课 · 导论 · 依据诺贝尔奖官网（Kahneman 2002、Thaler 2017）、APA 心理学词典、Dunlosky et al. (2013) 学习技术证据综述、Berkshire Hathaway 股东信原文库、Principles.com、芭芭拉·明托官网、尤瓦尔·赫拉利官网（ynharari.com）、Farnam Street、以及《思考，快与慢》《超越智商》《怪诞行为学》《心流》《终身成长》《反脆弱》《对赌》《直觉》《助推》《影响力》《穷查理宝典》《原则》《模型思维》《系统之美》《金字塔原理》《认知天性》《刻意练习》《学会提问》《人类简史》《如何阅读一本书》二十本原书与相关同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本专栏为思想介绍与阅读方法参考，不构成投资/医疗/法律建议 · 尊重版权：短引加评析、不转载原文、不提供任何下载渠道 · 无购书链接与返佣合作 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #475569;border-radius:12px;background:#f8fafc;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#334155;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/books/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#475569;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#475569;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f8fafc;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#334155;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #475569;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f8fafc;}
+.sr-item .sr-c{display:block;font-size:12px;color:#475569;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/books\/.*/,'/books/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.BOOKS_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#475569;border:1.5px solid #475569;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f8fafc;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
