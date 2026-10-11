@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>让浏览器替你上班：普通人也能看懂的自动化指南</title>
+<meta name="description" content="任务流自动化系列第一篇：从定时脚本、RPA 到 AI Agent，普通人如何让浏览器替自己上班。">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--paper:#faf9f7;--ink:#2d3142;--muted:#4f5d75;--soft:#5a6580;--accent:#bf4520;
+--sans:'Geist','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--serif:'Instrument Serif','Noto Serif SC','Songti SC',serif;
+--mono:'Geist Mono',ui-monospace,'SF Mono',monospace}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.wrap{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.18em;color:var(--muted)}
+.kicker b{color:var(--accent);font-weight:600}
+h1{font-size:34px;line-height:1.35;font-weight:700;margin:14px 0 10px;color:var(--ink)}
+.meta{font-size:13px;color:var(--soft);margin-bottom:8px}
+.rule{height:4px;width:52px;background:var(--accent);margin:18px 0 30px}
+blockquote{border-left:3px solid var(--accent);background:rgba(191,69,32,.05);padding:14px 18px;border-radius:0 8px 8px 0;margin:0 0 26px;font-size:15px;color:var(--muted)}
+blockquote p{margin:0}
+h2{font-size:22px;font-weight:700;margin:40px 0 14px;padding-left:12px;border-left:4px solid var(--accent);line-height:1.5}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px 22px}
+li{margin-bottom:8px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(191,69,32,.35)}
+strong{font-weight:700;color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:6px 0 22px;font-size:14.5px}
+th,td{border:1px solid #ddd8d2;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f0eeea;font-weight:700}
+figure{margin:26px 0}
+figure img{width:100%;border:1px solid #e5e1db;border-radius:10px;display:block}
+figcaption{text-align:center;font-size:13px;color:var(--soft);margin-top:10px}
+pre{background:#f4f2ef;border:1px solid #e5e1db;border-radius:8px;padding:14px 16px;font-family:var(--mono);font-size:13.5px;line-height:1.8;overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin:0 0 20px}
+hr{border:none;border-top:1px solid #e5e1db;margin:36px 0}
+.foot{margin-top:52px;padding-top:22px;border-top:1px solid #e5e1db;font-size:14px;color:var(--soft)}
+.foot a{font-weight:600}
+.nav{display:flex;gap:14px;margin-top:18px}
+.nav a{flex:1;border:1px solid #e5e1db;border-radius:10px;padding:12px 16px;font-size:14px;color:var(--ink);border-bottom:1px solid #e5e1db}
+.nav a small{display:block;color:var(--soft);font-size:12px;margin-bottom:2px}
+.nav a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker">TASK AUTOMATION · <b>VOL.1</b> · 任务流自动化系列</div>
+<h1>让浏览器替你上班：普通人也能看懂的自动化指南</h1>
+<div class="meta">2026-10-11 · 系列第 1 篇</div>
+<div class="rule"></div>
+<blockquote><p>这是「任务流自动化」系列的第一篇，写给所有人。技术原理和架构细节在第二篇《AI 浏览器自动化技术拆解》，两篇互相呼应：这篇讲&quot;它能帮你做什么、怎么用&quot;，那篇讲&quot;它到底是怎么做到的&quot;。</p></blockquote><h2>一、你每天有多少时间在&quot;搬砖&quot;？</h2><p>想一想这些场景：</p><ul><li>每周一，登录后台 → 导出上周数据 → 粘贴到表格 → 发给群里</li><li>在 20 个网站查同一种商品的报价，把结果抄进一张对比表</li><li>每天早上打开邮箱、日历、三个内部系统，把今天要做的事汇总成一条备忘</li><li>客户填了表单，你要去另一个系统里手工录入一遍</li></ul><p>这些事情有个共同点：<strong>步骤固定、重复、不需要动脑子，但很花时间</strong>。这就是&quot;任务流自动化&quot;要解决的问题——把这些活儿交给机器。</p><h2>二、自动化的三代进化</h2><p><strong>第一代：定时提醒 + 复制粘贴脚本。</strong> 最早人们用 Excel 宏、按键精灵这类工具，录制一遍操作，之后机器照着回放。能用，但特别脆：网页改个按钮位置，脚本就废了。</p><p><strong>第二代：RPA（机器人流程自动化）。</strong> UiPath、影刀、Power Automate 这类产品把操作抽象成&quot;流程图&quot;：打开这个网页 → 点这个按钮 → 把这里的内容填进去。不用写代码，拖拖拽拽就能搭流程。企业用它处理大量标准化业务，比如发票录入、批量对账。但它的短板和第一代一样——<strong>机器只会死记硬背</strong>。页面一改版、流程里出现一个没预料到的弹窗，整个流程就卡死，还得人回来修。</p><p><strong>第三代：AI Agent 操纵浏览器。</strong> 大语言模型出现后，事情变了。现在的自动化不再是&quot;背步骤&quot;，而是&quot;听懂目标&quot;：你只说&quot;帮我把这周没回复的邮件整理个清单发给老板&quot;，AI 自己看页面、理解内容、决定点哪里、填什么。页面改版了？没关系，它认识。</p><p>本篇的主角 <strong>Ego Lite</strong>，就是第三代的代表产品。</p><p><figure><img src="assets/d1_three_generations.png" alt="任务流自动化的三代进化：定时脚本 → RPA → AI Agent 操纵浏览器" loading="lazy"><figcaption>任务流自动化的三代进化：定时脚本 → RPA → AI Agent 操纵浏览器</figcaption></figure></p><h2>三、Ego Lite：人和 AI 共用一个浏览器</h2><p><a href="https://github.com/">ego lite</a> 是一款开源（免费使用）的浏览器，上线不久就拿了约 8000 颗 star。它最特别的一点是：<strong>它是你日常用的浏览器，同时也是 AI 能直接操作的浏览器。</strong></p><p>以前的做法是两套系统：人用一个 Chrome，AI 自动化跑在另一个看不见的&quot;无头浏览器&quot;里。问题是 AI 看不到你登录过的网站，摸不到你的书签和插件，每次都要重新登录、重新配置。</p><p>Ego Lite 的思路是反过来的：它基于 Chromium（和 Chrome 同内核），你平时怎么用 Chrome 就怎么用它——插件、登录状态、浏览记录全都在。当 AI 需要干活时，它在这个浏览器里<strong>开一个自己的独立工作区（Space）</strong>，在别的标签页里操作，和你正在看的页面互不干扰。因为它继承了你的登录状态，AI 一上来就能进你的后台系统干活，不用你再输一遍密码。</p><p><figure><img src="assets/d2_shared_browser.png" alt="从两套系统到人机共用一个浏览器（Ego Lite）" loading="lazy"><figcaption>从两套系统到人机共用一个浏览器（Ego Lite）</figcaption></figure></p><p>它能干什么？举几个真实使用方式的例子：</p><ul><li><strong>&quot;帮我把这个商品在三个网站的价格查一遍，做成对比表&quot;</strong> —— AI 开三个标签页，自己搜索、翻页、抄价格，最后给你表格。</li><li><strong>&quot;把后台这 50 个待审核项按规则预审一遍&quot;</strong> —— AI 逐条打开、判断、标注，遇到没把握的留给你。</li><li><strong>&quot;盯着这个页面，降价了告诉我&quot;</strong> —— 定时任务，AI 定期去看一眼。</li></ul><p>遇到 AI 搞不定的事——比如要扫人脸、输验证码——它会把浏览器交还给你，你操作完它再接着干。这个&quot;人机接力&quot;的设计很关键：自动化不是全有或全无，而是 <strong>AI 干 90%，人补关键的 10%</strong>。</p><h2>四、同类产品长什么样？</h2><table border="1" cellpadding="6" cellspacing="0"><thead><tr><th>产品</th><th>一句话定位</th><th>适合谁</th></tr></thead><tbody><tr><td><strong>Ego Lite</strong></td><td>人和 AI 共用的浏览器，可被 Claude Code、Cursor 等 AI 工具直接驱动</td><td>想让 AI 在&quot;自己真实环境&quot;里干活的个人和团队</td></tr><tr><td><strong>Browser Use</strong></td><td>开源的 AI 操作浏览器框架，开发者用它给自己的 AI 加&quot;手&quot;</td><td>开发者</td></tr><tr><td><strong>OpenAI Operator / Claude 的电脑操作</strong></td><td>大厂官方的 AI 上网能力，聊天式下达任务</td><td>普通用户，开箱即用</td></tr><tr><td><strong>影刀 RPA / UiPath</strong></td><td>拖拽式流程编排，稳定可审计</td><td>企业批量业务流程</td></tr><tr><td><strong>Zapier / n8n</strong></td><td>应用之间的&quot;数据管道&quot;，A 发生就触发 B</td><td>不碰网页界面、只做软件间联动的场景</td></tr></tbody></table><p>简单记法：<strong>Zapier 管软件和软件之间，RPA 管固定流程，AI Agent 管说不清楚、但目标明确的活儿</strong>。三者正在融合——影刀在加 AI 节点，AI Agent 也在学会调用固定接口。</p><h2>五、未来：自动化会变成什么样？</h2><p><strong>1. 说目标，不说步骤。</strong> 以后你描述的不再是&quot;先点 A 再点 B&quot;，而是&quot;每周五把本周销售数据发给老板&quot;。至于中间是开网页、调接口还是写邮件，AI 自己决定。</p><p><strong>2. 一个人带一个&quot;AI 团队&quot;。</strong> 你会有多个 AI 并行工作：一个盯数据、一个回邮件、一个整理文档。Ego Lite 的多工作区设计就是为此准备的——每个 AI 各占一个空间，互不打架。</p><p><strong>3. 人只做&quot;签字&quot;和&quot;兜底&quot;。</strong> 关键决策（付款、发送、删除）仍由人确认，AI 负责把 99% 的准备工作做完。你的角色从操作员变成审批者。</p><p><strong>4. 自动化民主化。</strong> 过去搭一套 RPA 要顾问进场花几十万；现在会打中文，就能让 AI 帮你干活。这是继&quot;会用搜索引擎&quot;之后，普通人效率的又一次代际跃迁。</p><h2>六、今天就能开始的三步</h2><p>1. <strong>挑一个&quot;高频 + 低风险 + 步骤烦&quot;的活儿</strong>：比如每周数据导出、批量查价。别一开始就选付款这种高风险操作。</p><p>2. <strong>用大白话把目标说清楚</strong>：&quot;打开 XX 后台，导出上周订单表，把金额汇总发我。&quot; 现在的 AI 工具（包括 Claude Code 配合 Ego Lite）已经能直接听懂这种话。</p><p>3. <strong>第一次全程盯着，之后放手。</strong> 看一遍 AI 怎么做，纠正它理解错的地方；跑顺两次之后，就可以让它定时自己干了。</p><p>自动化不是让机器取代你，而是把你从&quot;人肉中间件&quot;的位置上换下来——去干那些真正需要人的事。</p><hr/><p><em>想深入了解这些工具背后的原理——AI 是怎么&quot;看见&quot;网页、怎么决定点哪里的？请看系列第二篇：《AI 浏览器自动化技术拆解》。</em></p>
+<div class="foot">
+<p>本文属于「任务流自动化」系列，系列目录见 <a href="index.html">zhaochenyang.github.io/automation</a>。转载请注明出处。</p>
+<div class="nav"><a href="technical-automation-deep-dive.html"><small>下一篇 · VOL.2</small>AI 浏览器自动化技术拆解</a></div>
+</div>
+</div>
+</body>
+</html>
