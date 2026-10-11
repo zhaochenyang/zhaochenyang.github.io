@@ -398,8 +398,17 @@
   for(var i=0;i<items.length;i++){
     items[i].addEventListener('click',function(){
       var m=this.getAttribute('data-m'); track(m);
-      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
-      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      if(m==='wechat'){
+        var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent);
+        var fallback=function(){ copyLink(); showTip('当前浏览器不支持直接唤起微信，链接已复制——粘贴到微信聊天框即可'); };
+        function copyLink(){ if(navigator.clipboard){ return navigator.clipboard.writeText(location.href).catch(function(){}); } var ta=document.createElement('textarea'); ta.value=location.href; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); return Promise.resolve(); }
+        // 手机：走系统分享面板（iOS Safari / Android Chrome 里含微信）；只传 title+url，
+        // 早期版本把 title 同时塞进 text 会让微信那一栏静默失败，表现为「选到人就没了」。
+        if(isMobile&&navigator.share){ navigator.share({title:document.title,url:location.href}).catch(function(err){ if(err&&err.name==='AbortError'){return;} fallback(); }); }
+        else if(isMobile){ fallback(); }
+        else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); }
+      }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }).catch(function(){ showTip(location.href); }); } else { showTip(location.href); } }
       else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
     });
   }

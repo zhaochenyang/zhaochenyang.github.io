@@ -410,31 +410,31 @@
       <table class="tb">
         <tr><th>接法·原子</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
         <tr>
-          <td><strong>一 · 时间扣</strong>：<br>等我回过神，雨已经停了；<br>他刚坐下，门就开了。</td>
+          <td><strong>一 · 时间扣</strong>：<br>等我回过神，雨已经停了，<br>只有檐下那一行还在滴；<br>他刚坐下，门就开了。</td>
           <td>然后雨停了。然后门开了。</td>
           <td>"然后"是<strong>告知</strong>——读者读到的是过渡词，不是事件。<strong>"等我回过神／他刚坐下"</strong>先用<strong>人</strong>动作，再接<strong>客观</strong>事件，读者就被带进去。</td>
           <td>最安全的接法。一篇里用一次就够了；用两次以上读着像清单。</td>
         </tr>
         <tr>
-          <td><strong>二 · 因果扣</strong>：<br>笔杆太滑，我换了两次握法；<br>他嗓门大，我就没再问。</td>
+          <td><strong>二 · 因果扣</strong>：<br>笔杆太滑，我换了两次握法；<br>他嗓门大，我就没再问；<br>雨太大，那条巷子没去成。</td>
           <td>因为笔杆滑，所以……</td>
           <td>"因为……所以"是<strong>课堂句式</strong>。换成<strong>两句分别陈述（事实＋反应）</strong>——读者自己连上因果，比连词更强。</td>
           <td>把一个反应解释清楚的时候用——但本片如果与时间扣混用，会变说明文。</td>
         </tr>
         <tr>
-          <td><strong>三 · 同物件扣</strong>：<br>那支笔一直握在我手里；<br>她回来时，钥匙又挂上了；<br>那碗面，我没让它凉。</td>
+          <td><strong>三 · 同物件扣</strong>：<br>那支笔一直握在我手里；<br>她回来时，钥匙又挂上了；<br>那碗面，我没让它凉；<br>那盏灯，我走了一夜也没关。</td>
           <td>（两句之间什么都没写）</td>
           <td>两句没有连词，却共享<strong>同一个物件</strong>。读者看见同一物件在两个位置出现，自己接上时间线。这是<strong>本库最省字的衔接</strong>。</td>
           <td>几乎所有段落结尾用得到——尤其<a href="../15-openend/">写作习作课第15章</a>讲的"物件做锚"位置。</td>
         </tr>
         <tr>
-          <td><strong>四 · 反差扣</strong>：<br>教室很安静，<br>安静到能听见风扇；<br>她笑得最大声，眼圈最红。</td>
+          <td><strong>四 · 反差扣</strong>：<br>教室很安静，<br>安静到能听见风扇；<br>她笑得最大声，眼圈最红；<br>他一句没骂，第二遍才动手。</td>
           <td>教室里非常安静，气氛很紧张。</td>
           <td>"反差"是<strong>用一个相反的现象让读者察觉前面的话不到位</strong>。两句方向相反，读者被拍一下，份量就上来了。</td>
           <td>写情绪段、写紧张、写亲情的克制——一篇用一次，多则刻意。</td>
         </tr>
         <tr>
-          <td><strong>五 · 重复扣</strong>：<br>一遍，两遍，<br>还是没读进去；<br>他一次、又一次地拉门；<br>我推一下，她推一下。</td>
+          <td><strong>五 · 重复扣</strong>：<br>一遍，两遍，<br>还是没读进去；<br>他拽了三下，门扣没松；<br>我推一下，她推一下。</td>
           <td>他反复地拉门，我反复地推。</td>
           <td>"反复地""不断地"是<strong>空动词</strong>。换成<strong>"一遍、两遍；一次、又一次；推一下"</strong>——读者听见<strong>数</strong>，紧张感就立住了。</td>
           <td>写紧张、写犹豫、写无可奈何时——重复的数比重复的词强十倍。</td>
@@ -551,8 +551,17 @@
   for(var i=0;i<items.length;i++){
     items[i].addEventListener('click',function(){
       var m=this.getAttribute('data-m'); track(m);
-      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
-      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      if(m==='wechat'){
+        var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent);
+        var fallback=function(){ copyLink(); showTip('当前浏览器不支持直接唤起微信，链接已复制——粘贴到微信聊天框即可'); };
+        function copyLink(){ if(navigator.clipboard){ return navigator.clipboard.writeText(location.href).catch(function(){}); } var ta=document.createElement('textarea'); ta.value=location.href; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); return Promise.resolve(); }
+        // 手机：走系统分享面板（iOS Safari / Android Chrome 里含微信）；只传 title+url，
+        // 早期版本把 title 同时塞进 text 会让微信那一栏静默失败，表现为「选到人就没了」。
+        if(isMobile&&navigator.share){ navigator.share({title:document.title,url:location.href}).catch(function(err){ if(err&&err.name==='AbortError'){return;} fallback(); }); }
+        else if(isMobile){ fallback(); }
+        else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); }
+      }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }).catch(function(){ showTip(location.href); }); } else { showTip(location.href); } }
       else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
     });
   }

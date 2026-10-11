@@ -103,13 +103,13 @@
       <table class="tb">
         <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
         <tr>
-          <td>第一拍：手指搭上杯沿；<br>第二拍：指节一节扣紧；<br>第三拍：杯底离桌面一寸。</td>
+          <td>第一拍：拇指先碰杯沿；<br>第二拍：四指扣紧，指节发白；<br>第三拍：杯底离桌面一寸；<br>第四拍：杯里水面轻轻晃一下。</td>
           <td>过了一会儿，他端起水喝了一口。</td>
-          <td>"过了一会儿喝一口"是<strong>结果</strong>。四个原子装的是<strong>端杯的整段力学</strong>——搭（试探）、扣（用力）、离（位移）、碰（落点）。读者跟着一只手<strong>慢慢做完端杯</strong>，端杯才有了<strong>节拍</strong>。</td>
+          <td>"过了一会儿喝一口"是<strong>结果</strong>。四个原子装的是<strong>端杯的整段力学</strong>——碰（试探）、扣（用力）、离（位移）、晃（响应）。读者跟着一只手<strong>慢慢做完端杯</strong>，端杯才有了<strong>节拍</strong>。</td>
           <td>端水、拿笔、推门、放东西——所有一秒以内的事。<strong>技巧</strong>：每一拍必须<strong>换一个动词</strong>，不能只是位置平移。</td>
         </tr>
         <tr>
-          <td>第一拍：拇指食指捏住书角；<br>第二拍：书页被拱起一个小弯；<br>第三拍：纸面在指尖翻半圈。</td>
+          <td>第一拍：拇指食指捏住书角；<br>第二拍：书页被拱起一道弯；<br>第三拍：纸面在指尖翻过半；<br>第四拍：纸在掌心落定，响了一下。</td>
           <td>我翻过一页继续看。</td>
           <td>"翻过一页"是<strong>告知</strong>。四拍原子把<strong>翻页拆成纸的一段运动</strong>：捏（力度）、拱（变形）、翻（位移）、响（声音）。读者读到<strong>纸在指尖走完的一厘米</strong>，翻页才有<strong>形状</strong>。</td>
           <td>翻书、推窗、开门、系扣、撕糖纸。<strong>技巧</strong>：第三拍要有一处<strong>变形的细节</strong>（拱起的小弯、纸面的翻），第四拍要有一个<strong>落点</strong>（响、停在、撞上）。</td>
@@ -201,9 +201,9 @@
           <td>写错过、写安静、写决定瞬间。<strong>技巧</strong>：静止的瞬间<strong>必须有时间词</strong>（一秒、那一刻、忽然）。</td>
         </tr>
         <tr>
-          <td>一秒里他似乎想了一辈子的事；<br>她那张脸定在那一秒，没换表情；<br>灯亮着，没闪，只是亮着。</td>
+          <td>一秒里他眼眶红了又退；<br>她那张脸定在那一秒，没换表情；<br>灯亮着，灯绳自己轻轻晃；<br>风停了一拍，又起了一拍。</td>
           <td>他心里慢慢平静下来了。</td>
-          <td>"慢慢平静"是<strong>形容词＋动词</strong>。四句原子是<strong>静止里的"继续"</strong>：一秒=一辈子、脸定住、风停一拍拍又起、灯亮着不闪。<strong>静止里仍然有一处继续</strong>，读者拿到的是<strong>静止的形状</strong>。</td>
+          <td>"慢慢平静"是<strong>形容词＋动词</strong>。四句原子是<strong>静止里的"继续"</strong>：一秒里红了又退、脸定住、风停一拍又起、灯绳晃。<strong>静止里仍然有一处继续</strong>，读者拿到的是<strong>静止的形状</strong>。</td>
           <td>写情绪的定格、写独自等待的瞬间。<strong>技巧</strong>：静止瞬间<strong>必须有"还在"的细节</strong>，否则没区别于停机。</td>
         </tr>
       </table>
@@ -359,8 +359,17 @@
   for(var i=0;i<items.length;i++){
     items[i].addEventListener('click',function(){
       var m=this.getAttribute('data-m'); track(m);
-      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
-      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      if(m==='wechat'){
+        var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent);
+        var fallback=function(){ copyLink(); showTip('当前浏览器不支持直接唤起微信，链接已复制——粘贴到微信聊天框即可'); };
+        function copyLink(){ if(navigator.clipboard){ return navigator.clipboard.writeText(location.href).catch(function(){}); } var ta=document.createElement('textarea'); ta.value=location.href; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); return Promise.resolve(); }
+        // 手机：走系统分享面板（iOS Safari / Android Chrome 里含微信）；只传 title+url，
+        // 早期版本把 title 同时塞进 text 会让微信那一栏静默失败，表现为「选到人就没了」。
+        if(isMobile&&navigator.share){ navigator.share({title:document.title,url:location.href}).catch(function(err){ if(err&&err.name==='AbortError'){return;} fallback(); }); }
+        else if(isMobile){ fallback(); }
+        else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); }
+      }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }).catch(function(){ showTip(location.href); }); } else { showTip(location.href); } }
       else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
     });
   }
