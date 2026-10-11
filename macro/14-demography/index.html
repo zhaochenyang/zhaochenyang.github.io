@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14章 人口结构与经济 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第14章 · 国际与结构</div>
+  <h1>人口结构与经济</h1>
+  <p>生育率、老龄化、人口红利与养老金——人口是最慢的宏观变量，也是最确定的那一个</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../13-growth/">← 第13章：经济增长与发展</a>
+    <a href="../15-newtech/">第15章：新经济：科技、AI与数字化 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">人口三要素</a>
+    <a class="anchor" href="#s2">人口转型理论</a>
+    <a class="anchor" href="#s3">中国人口现状</a>
+    <a class="anchor" href="#s4">全球视野</a>
+    <a class="anchor" href="#s5">人口与增长</a>
+    <a class="anchor" href="#s6">老龄化的后果</a>
+    <a class="anchor" href="#s7">生育支持国际经验</a>
+    <a class="anchor" href="#s8">人口与你</a>
+    <a class="anchor" href="#s9">谣言粉碎</a>
+    <a class="anchor" href="#s10">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章为大众向经济学科普，仅供经济教育与参考，不构成投资建议、政策预测或任何人生规划的具体指导。人口话题极易被恐慌营销利用——本章<strong>只讲机制与数据，不做"养老金刚耗尽""楼市必崩"式的断言</strong>；此类说法只出现在谣言粉碎语境。数据以国家统计局（普查与年度公报）、联合国《世界人口展望》、OECD 等官方口径为准并注明时点；各国生育政策的效果评估存在学术争议，如实并列。生育与养老是个人选择，本站不贩卖焦虑、不施加道德压力。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①读懂人口数据的三个基本指标：出生率、总和生育率（TFR）与更替水平 2.1 的含义；②用"人口转型四阶段"框架理解为什么所有工业化国家都经历了生育率下降；③看懂中国人口的现状数据（普查口径与年度公报口径）与老龄化速度；④理解"人口红利"的机制、它为什么在减弱，以及官方"人才红利"表述的含义；⑤搞清养老金的现收现付逻辑与参数改革方向，能识别并粉碎两类极端话术（"养老金必然穿底"与"完全没问题"）。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>人口是所有宏观变量里最"慢"也最"硬"的一个——未来二十年的劳动年龄人口今天已经出生了，几乎无法改变。正因为慢，它适合做长线思考的锚：读这章不是为了焦虑，而是为了在职业选择、城市选择、养老规划上多一份结构化的背景知识（第 17 章家庭资产与 work-course 职业课都会用到）。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、人口三要素：出生、死亡与迁移</h2>
+    <p class="chapter-sub">看懂新闻里的人口数字，先分清三个指标各在说什么</p>
+
+    <article class="view">
+      <h3>出生率、生育率、总和生育率：三个最容易混淆的词</h3>
+      <p class="ctx"><strong>出生率</strong>（粗出生率）= 当年出生人数 ÷ 年平均人口 ×1000‰，衡量"每千人里出生了几个"；它受人口年龄结构影响——育龄妇女占比高的社会，即使每家生的不多，出生率也可能不低。<strong>总和生育率（TFR）</strong>= 假设一位女性按当年各年龄生育率度过一生，她平均会生育的孩子数；它剔除了年龄结构的干扰，是衡量"生育意愿水平"的核心指标。<strong>更替水平约为 2.1</strong>——平均每位女性生育 2.1 个孩子，人口总量才能长期不增不减（多出的 0.1 用于抵消夭折与男女性别比，具体数值随死亡率结构略有差异；口径见联合国与教科书）。</p>
+      <p class="ctx">为什么 2.1 是道坎？TFR 长期低于更替水平，意味着每一代人比上一代少约四分之一到三分之一（TFR=1.5 时每代约为上代的 73%，TFR=1.0 时约为一半），人口总量在无移民补充时终将收缩。但要避免一个常见误读：<strong>TFR 低于 2.1 不等于人口立刻负增长</strong>——由于人口惯性（庞大的育龄人群基数），从生育率跌破更替水平到总人口见顶，通常有几十年的时滞。中国 TFR 在 1990 年代初已降到更替水平以下（普查与抽样调查口径，学界对具体数值有修正讨论），总人口却在 2021 年前后见顶——时滞正是这三十年。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://population.un.org/wpp/">联合国《世界人口展望》WPP 官方页（TFR 与更替水平的方法说明与全球数据，英文，实测可达）</a> · 曼昆《宏观经济学》"经济增长"章人口部分（📘教科书口径：更替水平与人口惯性）</div>
+    </article>
+
+    <article class="view">
+      <h3>死亡率、预期寿命与迁移：另外两块拼图</h3>
+      <p class="ctx"><strong>死亡率与预期寿命</strong>：预期寿命是"当年出生婴儿按现行死亡率平均能活的年数"——注意它是对当下死亡水平的汇总，不是对某个具体婴儿的预言。中国居民人均预期寿命已从 1981 年的约 67.8 岁提高到 2024 年的 79 岁（国家卫健委《我国卫生健康事业发展统计公报》历年口径）；预期寿命延长叠加低生育率，是老龄化的双重引擎。<strong>迁移</strong>：国际移民可以部分对冲一国的人口收缩（发达国家普遍如此，联合国 WPP 有分国别净迁移数据）；国内迁移（乡→城、内陆→沿海）不改变全国总量，但深刻改变<strong>区域</strong>人口结构——人口流出地的老龄化比全国平均更陡，流入地则相对年轻，这是理解楼市与公共服务区域分化的第一把钥匙（第八节展开）。中国户籍人口城镇化率与常住人口的差额（统计局年度公报两个口径并列发布）本身就记录了国内迁移的规模。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布栏目（年度统计公报：户籍与常住人口城镇化率并列口径）</a> · 国家卫健委《我国卫生健康事业发展统计公报》（预期寿命官方口径，nhc.gov.cn 站内检索）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、人口转型理论：所有工业化社会走过的同一条路</h2>
+    <p class="chapter-sub">生育率下降不是哪个国家的"道德滑坡"，而是发展本身的规律性后果</p>
+
+    <article class="view">
+      <h3>四阶段模型：从高出生高死亡到低出生低死亡</h3>
+      <p class="ctx">人口学用"人口转型"（demographic transition）描述一个几乎在所有工业化社会重复出现的模式，教科书通行版本分四阶段：<strong>阶段一（前工业社会）</strong>：高出生率+高死亡率，人口增长近乎停滞——多生是对冲高夭折的策略；<strong>阶段二（转型早期）</strong>：公共卫生、营养与医疗改善使死亡率率先大幅下降，出生率尚未跟上，人口爆炸式增长——今天多数低收入国家处于此阶段（联合国 WPP：全球人口仍在增长但增速持续放缓）；<strong>阶段三（转型后期）</strong>：城镇化、女性教育与就业、养育成本上升、儿童从"劳动力资产"变为"长期投资品"，出生率显著下降，人口增速回落；<strong>阶段四（低水平均衡）</strong>：低出生+低死亡，人口趋稳甚至收缩——几乎所有高收入经济体都在此阶段，且<strong>没有任何一个发达经济体把 TFR 稳定拉回 2.1 以上</strong>（WPP 与 OECD 数据口径）。</p>
+      <blockquote class="q">看懂转型的关键机制：死亡率下降靠技术（疫苗、抗生素、清洁水），可以很快；生育率下降靠制度与观念的重构（教育年限拉长、婚育推迟、机会成本上升、社保替代"养儿防老"），只能慢慢发生——两者的时间差，决定了阶段二的人口爆炸与阶段四的人口收缩。<span class="qsrc">——依据人口转型理论的通行教科书框架整理（Notestein 1945 经典表述，英文，文字引用）</span></blockquote>
+      <div class="fig"><img src="../assets/img-14-1.png" alt="抽象人口转型曲线示意：两条发光曲线——死亡率线先降、出生率线后降，围成的几何区域被分成四个渐变阶段，橄榄绿色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：Notestein, F. (1945). Population—The Long View（人口转型理论经典表述，英文，文字引用） · <a href="https://population.un.org/wpp/">联合国《世界人口展望》（全球生育率转型数据，英文，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>生育率为什么降：机会成本、观念与"低生育率陷阱"假说</h3>
+      <p class="ctx">经济学对生育率下降的标准解释来自贝克尔（Gary Becker，1992 年诺贝尔经济学奖）的家庭经济学：孩子可以看作"耐用消费品+长期投资品"的混合，当<strong>数量与质量之间出现替代</strong>——教育回报率上升使父母倾向"少生精养"；当<strong>女性的时间机会成本上升</strong>——教育与就业使生育的隐性代价（职业中断、收入损失）大幅提高；当<strong>社会保障替代家庭养老</strong>——"养儿防老"的经济动机减弱——生育率下降就是理性选择的汇总（📘学术框架标注）。东亚社会的额外因素还包括：高密度的教育竞争推高养育成本、住房价格与婚育推迟互相强化、家庭观念中"对孩子负责"的高标准（学界讨论口径，各家权重不同）。</p>
+      <p class="ctx">还有一个值得知道但证据较弱的假说：<strong>"低生育率陷阱"（low fertility trap）</strong>——Lutz 等学者提出，TFR 降到 1.5 以下后可能因人口结构、社会学规范与经济学预期三重机制自我强化而难以回升（Lutz & Skirbekk 2005，英文）。这个假说的政策含义（越早干预越好）被广泛引用，但其"不可逆"部分存在学术争议——瑞典等国在 1.5-2.0 区间有过回升波动的记录。本站立场：把它当作风险提示而非物理定律，与第五、七节的政策讨论对照阅读。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Becker, G. (1981/1991). <em>A Treatise on the Family</em>（家庭经济学框架，📘经典著作标注） · Lutz, W. & Skirbekk, V. (2005). Policies Addressing the Tempo Effect in Low-Fertility Contexts. <em>PNAS</em> 102(44)（英文，"低生育率陷阱"假说代表文献，DOI 10.1073/pnas.0507756102，浏览器可达）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、中国人口现状：普查口径与年度公报口径</h2>
+    <p class="chapter-sub">两套官方数据各司其职：普查十年一次定基准，公报每年更新看变化</p>
+
+    <article class="view">
+      <h3>七普（2020）：官方基准数据的要点</h3>
+      <p class="ctx">第七次全国人口普查（标准时点 2020 年 11 月 1 日零时，公报于 2021 年 5 月 11 日发布；国家统计局官网检索"第七次全国人口普查公报"可查第 1-7 号公报全文）给出的基准画面：<strong>总人口 141178 万人</strong>，2010-2020 年年均增长 0.53%，比上一个十年的 0.57% 进一步放缓；<strong>年龄结构</strong>：0-14 岁占 17.95%，15-59 岁占 63.35%，60 岁及以上占 18.70%（其中 65 岁及以上占 13.50%）；<strong>家庭户均人口 2.62 人</strong>，比 2010 年减少 0.48 人——家庭小型化本身就是重要的社会经济信号；<strong>人口流动</strong>：人户分离人口约 4.93 亿，其中流动人口约 3.76 亿，向东部与城市群集聚；<strong>受教育程度</strong>：15 岁及以上人口平均受教育年限升至 9.08 年，文盲率降至 2.67%。普查还报告了 2020 年总和生育率为 1.3（普查口径，处于国际上的极低生育率区间；普查年份受出生漏报与疫情扰动，学界对该数值的代表性有讨论——如实标注争议）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局（第七次全国人口普查公报第 1-7 号，2021-05-11 发布；官网检索口径，实测可达）</a> · <a href="https://www.gov.cn/zhengce/">中国政府网（七普主要数据情况新闻发布会实录，站内检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>年度公报：总人口拐点与老龄化加速的最新画面</h3>
+      <p class="ctx">普查之间的年份，看国家统计局每年 2 月前后发布的年度统计公报（stats.gov.cn 数据发布栏目）。几个已确认的节点（均为公报口径）：<strong>2022 年末全国人口比上年末减少 85 万人</strong>——这是官方口径下总人口数十年来首次负增长，媒体称"人口拐点"；<strong>2023 年末减少 208 万人</strong>；<strong>2024 年末全国人口 140828 万人，比上年末减少 139 万人</strong>，当年出生人口 954 万人（出生率 6.77‰），出生人口比上年有所回升——部分研究将其与龙年生育偏好及疫情后婚育补偿效应相联系（📋研究口径，如实标注为解释性观点）。<strong>老龄化速度</strong>：2024 年末 65 岁及以上人口 22023 万人，占总人口 15.6%（公报口径）——按联合国通行标准，65 岁以上占比超 14% 为"老龄社会"、超 21% 为"超老龄社会"，中国正处在从前者向后者过渡的区间，且速度快于多数先行国家（从 7% 到 14%，法国用了约 126 年、美国约 69 年、日本约 24 年，各国进程数据见联合国 WPP 与世卫组织报告口径，英文）。</p>
+      <table class="cmp">
+        <tr><th>指标（国家统计局公报口径）</th><th>2020（七普）</th><th>2023</th><th>2024</th></tr>
+        <tr><td>年末总人口（万人）</td><td>141178</td><td>140967</td><td>140828</td></tr>
+        <tr><td>人口增量（万人/年）</td><td>—</td><td>-208</td><td>-139</td></tr>
+        <tr><td>65 岁及以上占比</td><td>13.50%</td><td>15.4%</td><td>15.6%</td></tr>
+        <tr><td>出生人口（万人）</td><td>1200（普查年）</td><td>902</td><td>954</td></tr>
+      </table>
+      <p class="ctx" style="font-size:13px;color:var(--muted);">表内数据以国家统计局历年公报与七普公报为准；2023 年部分指标为公报发布值，四舍五入与后续修订可能带来微小出入。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局（2023、2024 年国民经济和社会发展统计公报，年末人口与年龄结构官方数据）</a> · <a href="https://population.un.org/wpp/">联合国《世界人口展望》（各国老龄化进程速度的国际比较数据，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、全球视野：世界人口的下一百年</h2>
+    <p class="chapter-sub">非洲年轻化与东亚老龄化——同一个星球上的两种人口时区</p>
+
+    <article class="view">
+      <h3>联合国 WPP：全球人口见顶的官方情景</h3>
+      <p class="ctx">联合国《世界人口展望》（World Population Prospects，每两年修订，最新为 WPP 2024，population.un.org 可查）是目前全球人口预测最权威的官方来源。其中性情景的要点（引用时须注明"情景≠预言"）：<strong>世界人口已于 2022 年 11 月突破 80 亿</strong>（联合国宣布口径）；印度已在 2023 年前后超过中国成为第一人口大国；全球人口增速持续放缓，<strong>预计在本世纪 80 年代中期前后见顶于约 103 亿</strong>，随后开始缓慢回落——这是 WPP 2024 版相较早前版本的新判断；到 2100 年，全球 65 岁以上人口占比预计从现在的约 10% 升至 25% 左右。同时，全球生育率已大幅下降：超过一半的国家和地区 TFR 低于 2.1（WPP 2024 口径）。这些数字的正确用法是理解"世界人口版图正在重构"这个方向，而不是把 2100 年的点估计当成事实——长期人口预测的误差区间随时间迅速放大，联合国自己也以高/中/低多情景并列发布。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://population.un.org/wpp/">联合国《世界人口展望》WPP 2024 官方页（全球人口见顶情景、生育率分布数据，英文，实测可达）</a> · <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">世界银行人口总量指标页（Total population, SP.POP.TOTL，英文，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>两种时区：撒哈拉以南非洲的年轻化与东亚欧洲的老龄化</h3>
+      <p class="ctx">把 WPP 的分区域数据并排放，会看到"同一个地球、两种人口时区"：<strong>撒哈拉以南非洲</strong>仍处转型阶段二到三之间——TFR 虽从 1950 年代的 6 以上降至 2020 年代的 4 左右，但远高于更替水平，人口预计将持续增长到本世纪末，贡献全球人口增量的一半以上（WPP 2024 口径）；<strong>东亚与南欧</strong>则处在人类历史上从未有过的极低生育率区间——韩国 TFR 一度降至 0.7 左右（韩国统计厅口径，2024 年有所回升的报道以官方发布为准）、日本长期在 1.2-1.3 徘徊、意大利西班牙类似，人口收缩与深度老龄化已成定局。<strong>欧洲的应对变量是移民</strong>：多数欧洲国家依靠净移民部分缓冲了人口收缩（WPP 分国别净迁移数据），但也引发持续的社会政治争论（如实记录，不站队）。对中国的含义：外部世界的"年轻劳动力池"（东南亚、南亚、非洲）与"深度老龄化市场"（日韩欧）将长期并存——这是理解未来产业转移、外贸结构与"银发经济"话题的全球底图。</p>
+      <div class="fig"><img src="../assets/img-14-2.png" alt="抽象几何地球示意：球体一侧由密集的小圆点人群图案与上升曲线构成年轻化区域，另一侧由稀疏圆点与倒置年龄金字塔构成老龄化区域，橄榄绿与琥珀双色对照" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://population.un.org/wpp/">联合国 WPP 2024（分区域生育率与人口情景，英文）</a> · <a href="https://datatopics.worldbank.org/world-development-indicators/">世界银行 WDI（跨国人口结构指标开放数据，英文，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、人口与增长：人口红利及其接续</h2>
+    <p class="chapter-sub">"红利"不是人多本身，而是一个特定的年龄结构窗口——它会关，也有办法接</p>
+
+    <article class="view">
+      <h3>人口红利的机制：抚养比与储蓄率</h3>
+      <p class="ctx">"人口红利"（demographic dividend）指人口转型过程中出现的一个特定窗口：<strong>生育率下降使少儿抚养负担快速减轻，而几十年前出生高峰的人群正处劳动年龄，形成"干活的人多、吃饭的人少"的年龄结构</strong>。经典研究（Bloom & Williamson 1998, <em>World Bank Economic Review</em>，英文）测算，这一结构对 1965-1990 年东亚"经济奇迹"增长的贡献可达三分之一左右——机制有二：①劳动供给充足压低工资成本，制造业竞争力强（配合出口导向战略）；②劳动年龄人口占比高推高国民储蓄率（干活的人为养老存钱），储蓄转化为投资，资本快速积累。<strong>总抚养比</strong>（少儿+老年人口 ÷ 劳动年龄人口）是常用刻度：中国总抚养比在 2010 年前后达到历史低点约 34%（统计局与联合国口径），此后因老龄化回升。必须强调：红利是<strong>机会</strong>不是自动兑现——没有就业吸纳、教育匹配与开放的市场，"干活的人多"只会变成"失业的人多"（Bloom 等原文的限定条件）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Bloom, D. & Williamson, J. (1998). Demographic Transitions and Economic Miracles in Emerging Asia. <em>World Bank Economic Review</em> 12(3)（英文，人口红利经典研究，DOI 10.1093/wber/12.3.419，官方真实、对抓取工具反爬，浏览器可达） · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局（历年人口年龄结构与抚养比数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>窗口收窄之后："人才红利"的官方表述与学术逻辑</h3>
+      <p class="ctx">中国的劳动年龄人口（16-59 岁）在 2011 年前后见顶（统计局与联合国口径），此后逐年减少——"人口红利减弱"是官方文件也不再回避的表述。与之接续的官方话语是<strong>"人才红利"</strong>：从"数量型红利"转向"质量型红利"——依据是人力资本存量的快速积累：七普显示 15 岁以上人口平均受教育年限 9.08 年、每 10 万人中大学文化程度者升至 15467 人（七普公报口径）；高等教育毛入学率从 2000 年的约 12% 升至 2024 年的 60.8%（教育部年度公报口径）；每年千万级的高校毕业生规模全球第一（教育部口径）。学术逻辑正是第 13 章的内生增长框架：<strong>当劳动数量下降，人均人力资本与全要素生产率必须上升，增长才能维持</strong>——这也是官方把"教育科技人才一体化部署"写入改革文件的原因（二十届三中全会《决定》表述，中国政府网可检索）。当然，人才红利同样不是自动兑现：教育与岗位需求的匹配、青年就业（第 9 章详述）、创新环境都是约束条件——学界对"人才红利能否完全对冲数量下降"存在量化争论（不同模型结论差异大，如实标注：没有共识数值）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（二十届三中全会《决定》"统筹推进教育科技人才体制机制一体改革"官方表述；历年《政府工作报告》"人才红利"提法，站内检索）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局（七普受教育程度数据与劳动年龄人口变化）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、老龄化的经济后果：养老金、医疗与储蓄</h2>
+    <p class="chapter-sub">机制讲清楚，恐慌就不必要——但"机制自动运转、无需改革"同样是想当然</p>
+
+    <article class="view">
+      <h3>现收现付的养老金：一场代际接力，不是一个存钱罐</h3>
+      <p class="ctx">理解养老金焦虑的钥匙，是先弄清制度类型。世界主流有两种：<strong>现收现付制</strong>（pay-as-you-go）——在职者缴的费，直接付给当期退休者，本质是代际转移，账户里的"钱"更多是权益记录而非资金池；<strong>基金积累制</strong>——个人缴费进入自己账户投资积累，退休后领自己的本息。中国城镇职工基本养老保险是<strong>现收现付为主+个人账户</strong>的混合模式（《社会保险法》与国务院相关决定框架，官方文本见 flk.npc.gov.cn 与 gov.cn 检索），城乡居民养老保险则财政补贴占大头。现收现付制的数学很直白：<strong>每位退休者能领多少，取决于多少在职者供养、缴费率多高、替代率定多少</strong>——抚养结构恶化（缴费的人变少、领钱的人变多）时，制度必然面临参数调整压力。这就是老龄化对养老金的全部冲击机制：不是"钱被谁拿走了"，而是接力赛的接棒人数变了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国社会保险法》全文检索，实测可达）</a> · <a href="https://www.gov.cn/zhengce/">中国政府网（城镇职工基本养老保险制度相关国务院文件，站内检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>参数工具箱：延迟退休、多支柱与国有资本划转</h3>
+      <p class="ctx">面对结构压力，各国的通用工具箱有四类，中国近年已陆续启用（全部为官方公开政策，以正式文本为准）：①<strong>参数改革</strong>：2024 年 9 月全国人大常委会通过《关于实施渐进式延迟法定退休年龄的决定》，自 2025 年起用 15 年时间渐进式将男职工法定退休年龄逐步延至 63 周岁、女职工分别逐步延至 58/55 周岁，同时提高最低缴费年限（决定全文见 gov.cn 与 flk.npc.gov.cn）——"渐进式"与"自愿弹性"是官方明确的实施原则；②<strong>多支柱建设</strong>：第一支柱基本养老之外，2022 年起个人养老金制度（第三支柱）试点并于 2024 年推广至全国（人社部等部门公告口径，参加者可享税收优惠，具体规则以官方发布为准）；③<strong>资金充实</strong>：国有资本划转社保基金（2017 年起国务院方案，划转比例 10%）、全国社会保障基金作为战略储备、2022 年起实施企业职工基本养老保险全国统筹（调剂地区间抚养比差异——年轻省份的结余支援老龄化深的省份）；④<strong>支出侧管理</strong>：医保支付方式改革、长期护理保险试点扩围（国家医保局与卫健委口径）。<strong>本站立场</strong>：这些改革的方向与节奏存在真实的公共讨论空间（替代率高低、代际公平、体力劳动者处境），但"制度必然崩溃"与"完全高枕无忧"两种断言都与事实不符——养老金是<strong>可持续性问题</strong>（参数可调、结构可改），不是<strong>偿付能力悬崖</strong>（见第九节谣言粉碎）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（《关于实施渐进式延迟法定退休年龄的决定》2024 官方文本；个人养老金制度实施文件，站内检索）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（全国人大常委会相关决定全文，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>医疗、储蓄与"银发经济"：老龄化的另外三面</h3>
+      <p class="ctx"><strong>医疗与照护</strong>：年龄是医疗支出最强的预测变量之一，老龄化直接推高医保基金压力（国家医保局年度统计快报口径）；失能老人的长期照护需求催生长期护理保险试点（2016 年起人社部试点、后续扩围，官方文件口径）与照护人力缺口问题（民政与卫健部门均有政策部署）。<strong>储蓄与资产价格</strong>：生命周期理论（莫迪利亚尼，1985 年诺贝尔奖）预言人在退休前后从储蓄转向消耗，大规模人群进入退休期理论上会降低国民储蓄率、并可能影响资产需求结构——但跨国实证对此争论很大（日本经验部分支持、部分反驳；📋学术争论如实标注），本站不给出方向性结论。<strong>银发经济</strong>：官方文件已将老年用品、康养服务、适老化改造等列为新的产业方向（2024 年国务院办公厅《关于发展银发经济增进老年人福祉的意见》，gov.cn 可检索全文）——老龄化同时是压力与需求结构变化的信号，产业含义中性而真实。理解这三面的共同方法：<strong>看机制、看官方政策动作、拒绝单线宿命论</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（国办《关于发展银发经济增进老年人福祉的意见》2024 官方文本，站内检索）</a> · Modigliani, F. (1986). Life Cycle, Individual Thrift, and the Wealth of Nations. <em>American Economic Review</em> 76(3)（英文，生命周期理论诺奖演讲，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、生育支持政策的国际经验：效果与争议</h2>
+    <p class="chapter-sub">钱、时间、服务三件套——各国都试了，答案并不一致，如实呈现</p>
+
+    <article class="view">
+      <h3>政策三件套：现金补贴、时间支持与服务供给</h3>
+      <p class="ctx">OECD 家庭数据库（Family Database，英文；官网页面对抓取工具反爬，浏览器可达）系统收录了各国的生育支持政策，可归纳为三类：<strong>①现金支持</strong>——生育津贴、儿童津贴、税收减免（法国、德国、北欧力度较大，家庭公共支出占 GDP 比例长期在 3% 以上，OECD 口径）；<strong>②时间支持</strong>——产假、陪产假、育儿假（瑞典父母共享 480 天带薪育儿假、其中设有"父亲专属月"以推动男性参与，官方制度口径）；<strong>③服务支持</strong>——普惠托育（法国 0-3 岁托育覆盖率约 60%、北欧更高，OECD 口径；中国"十四五"规划提出托位目标并推进普惠托育体系建设，官方规划文本口径）。<strong>效果的证据并不整齐</strong>：跨国研究显示，慷慨的"三件套"与更高的 TFR 存在相关（法国、北欧 TFR 长期高于东亚，约 1.5-1.8 区间，OECD/WPP 口径），但因果识别困难——政策之外还有性别平等程度、非婚生育的文化接受度、住房与就业稳定性等混淆因素；且<strong>没有任何高成本政策组合把发达国家的 TFR 稳定拉回 2.1 以上</strong>。学界的温和共识是：政策能减缓下降、改善家庭福祉（本身即目标），但难以单独逆转趋势（各研究结论差异大，如实标注）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.oecd.org/social/family/database.htm">OECD Family Database（家庭政策跨国比较权威数据，英文；官方真实页对抓取工具反爬 403，浏览器可达）</a> · <a href="https://population.un.org/wpp/">联合国 WPP（各国 TFR 序列，英文，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>东亚经验：日韩的教训与中国政策框架</h3>
+      <p class="ctx">东亚是最值得中国参照的样本，因为文化底色与竞争结构相似：<strong>日本</strong>自 1990 年"1.57 冲击"后三十余年持续加码（天使计划、儿童家庭厅 2023 年设立、每年数万亿日元规模的儿童未来战略基金），TFR 仍在 1.2 附近徘徊（日本厚生劳动省口径）；<strong>韩国</strong>生育支持支出占 GDP 比例已居 OECD 前列，TFR 却一度跌至 0.7 左右（韩国统计厅口径），成为全球最低——两国经验共同指向：<strong>现金补贴的边际效果有限，教育竞争、工时文化、住房成本与性别分工这些"结构性大山"不动，政策效果就打折</strong>（学界对东亚低生育率成因的主流讨论口径）。中国 2021 年起实施三孩政策并配套"双减"、生育支持措施（《关于优化生育政策促进人口长期均衡发展的决定》，gov.cn 可检索全文）；2024-2025 年国办与多部门陆续发布生育支持一揽子措施，包括逐步推行免费学前教育、生育补贴制度（以官方发布文本为准，政策仍在动态出台中——本章不罗列未定稿细则）。本站提醒：生育是个人与家庭的选择，公共政策的正当目标是<strong>降低"想生而不敢生"的现实约束</strong>，而非对个体施加道德压力——这也是本站不贩卖生育焦虑的立场声明。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（《关于优化生育政策促进人口长期均衡发展的决定》2021 及历年生育支持文件，站内检索）</a> · <a href="https://www.oecd.org/social/family/database.htm">OECD Family Database（日韩家庭政策与生育率数据，英文；浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、人口与你：慢变量如何进入个人决策</h2>
+    <p class="chapter-sub">只讲机制不讲预测——人口结构是你决策的背景板，不是判决书</p>
+
+    <article class="view">
+      <h3>三条传导机制：城市选择、职业结构与养老规划</h3>
+      <p class="ctx"><strong>机制一：人口流动重塑城市基本面</strong>——人口持续流入的城市群，住房需求、公共服务、商业活力有基本面支撑；人口流出的收缩型城市（学界与住建部相关研究已有"收缩城市"识别口径），房产的流动性与增值逻辑趋于弱化。这不构成"哪里房价涨"的预测，而是提醒：买房、择城时把"这座城市的人口是流入还是流出"（查统计局分地区人口数据与各地统计公报）纳入决策清单。<strong>机制二：年龄结构改变职业需求版图</strong>——老龄化直接扩张医疗、康复、照护、老年金融的需求（卫健与民政部门的人力缺口测算口径），少子化则重构教育、母婴行业的供需（第 15 章与 work-course 从技术侧讲同一件事）；职业选择看"需求曲线的长期位移"，人口结构是其中最可测算的一个。<strong>机制三：养老责任的三支柱分担</strong>——第一支柱保基本（替代率有限，官方口径的"保基本"定位），第二支柱（企业年金/职业年金）覆盖面有限，第三支柱（个人养老金）与个人储蓄投资的责任在上升；年轻时理解这个结构，比退休时才发现"只靠第一支柱不够"主动得多（此为制度事实陈述，具体产品选择见 stock-course，本站不构成投资建议）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局（分地区人口数据与七普分省资料，人口流入流出的官方口径）</a> · <a href="https://www.gov.cn/zhengce/">中国政府网（个人养老金制度文件与国家养老服务体系规划，站内检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>读人口新闻的三问：口径、结构、时滞</h3>
+      <p class="ctx">人口新闻标题党密度极高，三问可以过滤绝大多数噪音。<strong>一问口径</strong>：说的是出生率还是 TFR？60 岁还是 65 岁标准？常住人口还是户籍人口？"老龄化率"用不同年龄线能差出好几个百分点，标题里没写的，正文里找。<strong>二问结构</strong>：总量数字背后，年龄结构、区域分布、城乡分布的变化往往信息量更大——"人口减少 X 万"远不如"哪些省在减少、哪些在增加"有决策价值（分省数据在统计局与各省公报可查）。<strong>三问时滞</strong>：人口变量影响经济要经过很长的传导时间——今天的出生人口二十年后才进入劳动力市场，今天的退休潮是四十年前的出生决定的；把慢变量当成下季度的行情催化剂来解读，是财经自媒体最常见的操作。反过来，正因为时滞长，人口数据对<strong>十年以上尺度</strong>的判断（教育、养老、医疗、特定城市的基本面）又异常可靠——它不适合炒股，适合规划人生。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布栏目（人口数据的口径说明与分省资料）</a> · <a href="https://population.un.org/wpp/">联合国 WPP（人口指标的国际标准定义与方法文档，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、谣言粉碎：人口话题里的五个流行说法</h2>
+    <p class="chapter-sub">人口是恐慌营销的重灾区——因为人人都关心，多数人不算账</p>
+
+    <article class="view">
+      <h3>谣言粉碎：五个经不起追问的人口说法</h3>
+      <p class="ctx"><strong>谣言一："养老金到 2035 年就要耗尽了，80 后注定老无所依。"</strong>——这是被官方正面澄清过的著名谣言。2019 年某研究机构报告提及"城镇职工养老金累计结余可能在 2035 年前后耗尽"的情景测算（且前提是"现行制度参数完全不变"），随即被部分自媒体加工成"养老金要没了"；人社部当年即公开回应：该说法曲解了研究报告，养老保险基金运行总体平稳，且国家有全国社保基金战略储备、国有资本划转、财政补贴与参数改革等完整工具箱（人社部 2019 年新闻发布会口径，官方实录可检索）。第 6 节讲过：现收现付制度的"可持续性"靠参数调整实现，历史上没有任何一个大国的公共养老金在制度存续中"清零"——它可能替代率下降、领取年龄推迟，这与"耗尽"是两回事。</p>
+      <p class="ctx"><strong>谣言二："人口负增长了，中国要衰落了/房子全是负资产了。"</strong>——两个跳步：①人口总量见顶≠人均生活水平见顶（第 13 章：人均产出由资本与 TFP 共同驱动，日本人口 2008 年见顶后人均 GDP 仍继续增长了十余年）；②人口总量变化≠所有资产同涨同跌——真正有意义的是<strong>区域与结构分化</strong>（人口流入地与流出地走向不同，第八节），"全国房子一律如何"的断言恰恰忽略了人口数据里最有信息量的部分。</p>
+      <p class="ctx"><strong>谣言三："现在生育率这么低，是因为年轻人自私、不负责任。"</strong>——把结构问题道德化。第 2 节讲过：生育率下降是机会成本、养育成本、住房与就业预期的函数，是全球所有工业化社会的共同现象（没有任何发达经济体 TFR 稳定高于 2.1）——用"自私"解释一个跨越几十个国家、几十年、不同文化的一致的现象，解释力为零。道德指责不仅错误，还反过来加剧婚育焦虑。</p>
+      <p class="ctx"><strong>谣言四："老龄化社会没有机会了，年轻人赶紧润。"</strong>——把年龄结构当成了机会的全部。日本在深度老龄化阶段仍产生了大量新产业与新企业（照护科技、银发消费、自动化——全球工业机器人密度最高的国家恰是老龄化最深的国家，IFR 与各国统计口径）；老龄化改变的是机会的<strong>分布</strong>（哪些行业扩张、哪些收缩），不是机会的<strong>有无</strong>。至于个体迁移决策，它涉及职业、家庭、生活方式的复杂权衡，任何"因为宏观数据所以必须如何"的单一推论都值得警惕。</p>
+      <p class="ctx"><strong>谣言五："官方不敢公布真实人口数据，真实情况比公布的糟糕得多。"</strong>——人口数据的特殊性在于可交叉验证性极强：出生人口可与医院分娩记录、疫苗接种、入学规模互校，死亡可与火化数据互校，学界对中国人口数据质量的研究（包括用教育登记等独立来源校验普查）总体认为官方数据的偏差在统计学正常范围内，且普查后修订透明发布（📋学术研究口径，不同研究估计有差异，如实标注）。健康的姿态是第 16 章教的：知道数据有误差、懂口径、会交叉验证——而不是用"都是假的"关闭一切认知通道，那恰恰会让你只剩下最耸动的谣言可听。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（人社部 2019 年回应"养老金 2035 耗尽"说的新闻发布会实录报道，站内检索）</a> · <a href="https://population.un.org/wpp/">联合国 WPP（各国人口见顶时间与人均收入关系的国际比较数据，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s10">
+    <h2 class="chapter-title">十、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>出生率与总和生育率的区别是什么？更替水平为什么是 2.1 左右？</li>
+        <li>TFR 低于 2.1 为什么不会让人口立刻负增长？"人口惯性"和中国的三十年时滞怎么讲？</li>
+        <li>预期寿命这个指标为什么不是对某个具体人的预言？</li>
+        <li>国内迁移不改变全国人口，为什么仍然重要？户籍与常住人口城镇化率之差说明了什么？</li>
+        <li>人口转型四阶段各自的特征是什么？为什么死亡率先降、生育率后降？</li>
+        <li>贝克尔框架解释生育率下降的三条机制（数量质量替代、机会成本、社保替代养儿防老）分别是什么？</li>
+        <li>"低生育率陷阱"假说的三重机制是什么？本站为什么把它当风险提示而非定律？</li>
+        <li>七普公报的五个关键数字（总人口、年龄结构、户均人口、流动人口、受教育年限）能说出几个？</li>
+        <li>中国总人口哪一年首次负增长？2024 年出生人口回升的解释性观点是什么？</li>
+        <li>联合国 WPP 2024 对全球人口见顶的时间与峰值判断是什么？为什么"情景≠预言"？</li>
+        <li>人口红利的两条机制（劳动供给、储蓄率）是什么？为什么说它是机会不是自动兑现？</li>
+        <li>"人才红利"的官方依据（受教育年限、高等教育毛入学率、毕业生规模）有哪些？兑现的约束条件是什么？</li>
+        <li>现收现付制与基金积累制的区别是什么？为什么老龄化冲击前者是"接棒人数"问题？</li>
+        <li>中国养老金参数工具箱的四类工具（延迟退休、多支柱、资金充实、支出管理）各举一例。</li>
+        <li>生育支持"三件套"是什么？为什么现金补贴的边际效果在东亚显得有限？</li>
+        <li>人口结构影响个人决策的三条机制（城市、职业、养老）分别怎么用？</li>
+        <li>"养老金 2035 耗尽"谣言的原始出处和被扭曲的过程是什么？人社部怎么回应的？</li>
+        <li>为什么"人口数据都是假的"这类说法站不住脚？人口数据的可交叉验证性体现在哪里？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张结构图带走）：</strong>三个基本指标=出生率（受年龄结构影响）、TFR（核心意愿指标）、更替水平 2.1；人口惯性=TFR 跌破更替到总量见顶有几十年时滞；人口转型四阶段=所有工业化社会的共同路径，没有发达经济体 TFR 稳定回到 2.1 以上；中国基准=七普（2020）：141178 万、60+占 18.7%、户均 2.62 人、TFR 1.3（有争议标注）；年度节点=2022 首次负增长、2024 末 140828 万、65+占 15.6%、出生 954 万小幅回升；全球=WPP 2024 预计本世纪 80 年代中期见顶约 103 亿（情景≠预言），非洲年轻 vs 东亚老龄两种时区；人口红利=抚养比低+储蓄率高的窗口（Bloom-Williamson：东亚贡献可达三分之一），窗口已收窄，接续靠"人才红利"（人力资本：平均受教育年限 9.08 年、毛入学率 60.8%）；养老金=现收现付的代际接力，老龄化是可持续性参数问题而非"穿底悬崖"，工具箱四类已启用（渐进式延迟退休 2025 起、个人养老金全国推开、国有资本划转+全国统筹、医保支付改革）；生育支持=现金+时间+服务三件套，东亚经验：结构大山不动、补贴边际有限；个人层面=看人口流入流出选城市、看年龄结构看职业需求、按三支柱做养老规划；谣言粉碎=「2035 耗尽」（人社部已辟谣）、「负增长=衰落」、「自私论」、「没机会论」、「数据全假论」——恐慌与躺平都不是数据支持的结论。
+  </div>
+
+  <nav class="pager">
+    <a href="../13-growth/"><span class="dir">← 第13章</span>经济增长与发展：国家为何贫富</a>
+    <a href="../15-newtech/"><span class="dir">第15章 →</span>新经济：科技、AI与数字化</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第14章 · 依据国家统计局第七次全国人口普查公报（2021）与历年统计公报、联合国《世界人口展望》WPP 2024、OECD Family Database、国家卫健委卫生健康事业发展统计公报、人社部 2019 年新闻发布会实录、《关于实施渐进式延迟法定退休年龄的决定》（2024）、Bloom & Williamson (1998)、Lutz & Skirbekk (2005)、Becker 家庭经济学与曼昆经典教科书整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

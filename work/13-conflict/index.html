@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 职场冲突处理 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第13章 · 关系与权益</div>
+  <h1>职场冲突处理</h1>
+  <p>冲突不是事故，是协作的常态成本——会处理冲突的人，反而赢得更快的信任</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../12-peer/">← 第12章：同事相处与协作</a>
+    <a href="../14-boundary/">第14章：界限与维权 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">冲突是常态</a>
+    <a class="anchor" href="#s2">五种模式</a>
+    <a class="anchor" href="#s3">分歧谈话四步</a>
+    <a class="anchor" href="#s4">甩锅现场</a>
+    <a class="anchor" href="#s5">道歉与修复</a>
+    <a class="anchor" href="#s6">冲突之后</a>
+    <a class="anchor" href="#s7">调解与升级</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供职业发展教育与参考，不构成法律意见；涉及劳动争议、骚扰与侵权的问题，以《劳动法》《劳动合同法》《劳动争议调解仲裁法》等现行法律法规为准，通过劳动仲裁、劳动监察、工会与司法途径等官方渠道解决（流程见<a href="../14-boundary/">第14章</a>）。若冲突伴随持续的贬低、威胁或骚扰，请优先保护自己并寻求工会（12351）、妇联（12338）或法律帮助；心理困扰严重请拨打 12356 心理援助热线。本章不教授任何形式的权术斗争与报复手段。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①理解冲突是组织协作的常态而非事故，说出它可能带来的三种正面价值；②用 Thomas-Kilmann 五模式（竞争/合作/妥协/回避/迁就）给自己的默认冲突风格定位；③按"议题重要性 × 关系重要性"两把尺子选模式，知道什么时候回避是对的；④掌握分歧谈话四步（事实-影响-需要-请求），把"对人"的争执拉回"对事"；⑤被甩锅时不情绪化反击，用留痕与流程稳住现场，把握升级的时机；⑥做出结构完整的职场道歉，也知道接受道歉的边界在哪；⑦分清什么时候该找 HR、工会、调解组织或劳动仲裁，冲突结束后如何重建工作关系。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章主线是 Thomas-Kilmann 冲突模式模型（TKI，权威口径见官网）与非暴力沟通框架的职场化改写，辅以最高法与人社部的官方争议处理渠道。第一次读建议通读；真遇到具体冲突（方案对立、被甩锅、要不要升级）时，回来翻第二节的选模式速查、第三节的四步话术和第七节的升级路径，照着准备一遍再开口。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、冲突是常态，不是事故</h2>
+    <p class="chapter-sub">两个专业的人认真做事，分歧几乎必然发生——问题从来不是"有没有冲突"，而是"怎么处理"</p>
+
+    <article class="view">
+      <h3>为什么认真的组织一定有冲突</h3>
+      <p class="ctx">先把一个隐含假设翻出来：很多人默认"好团队=没有冲突"，于是每次分歧都当成关系出了事故。组织行为学的研究给出的图景恰恰相反——<strong>冲突是组织生活的常态变量</strong>：不同部门背着不同的 KPI（销售要快、风控要稳、技术要质量），资源永远有限（预算、人手、排期），信息天然不对称（你知道的你以为对方知道）。只要一群人认真做事，分歧就会以稳定的频率出现；一个"完全没有冲突"的团队，更可能的解释不是和谐，而是没人在乎、没人敢说，或者冲突全部转入了地下。</p>
+      <p class="ctx">研究还区分了两种性质完全不同的冲突：<strong>任务冲突</strong>（对方案、优先级、资源分配的分歧）在中等强度下对决策质量是正面的——它逼出被忽略的风险、防止群体思维；<strong>关系冲突</strong>（对人的敌意、贬低、站队）则几乎在任何强度下都有害。冲突处理的核心目标因此可以说得非常精确：<strong>把任务冲突保持在任务层面解决掉，防止它发酵成关系冲突</strong>。本章后面所有技术——四步谈话、留痕、升级路径——本质上都在做这一件事。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：De Dreu &amp; Weingart, Task Versus Relationship Conflict and Team Performance, Journal of Applied Psychology, 2003（任务冲突与关系冲突元分析，英文，文字引用） · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>处理得当的冲突，反而是信任加速器</h3>
+      <p class="ctx">职场里有个被反复验证的现象：两个人经历一次处理得当的分歧之后，信任常常不降反升。机制不难理解——冲突是少数能同时展示三样东西的场合：<strong>你的专业能力</strong>（你坚持的点是否真有依据）、<strong>你的可靠性</strong>（争论归争论，说好的事照做）、<strong>你的善意</strong>（赢了道理之后是否给对方留了台阶）。平时按部就班的协作里，这三样东西很难被观察到；而一次"对事激烈、对人尊重"的分歧，等于给对方做了一次高密度的信用展示。这也是<a href="../12-peer/">第12章</a>信用账户模型在冲突场景的延伸。</p>
+      <p class="ctx">反过来，回避一切冲突的代价也很具体：小分歧积压成大怨气、坏方案没人拦直接上线、你在组织里逐渐被贴上"没观点"或"好欺负"的标签。所以本章的立场从第一句话就明确了：<strong>不要把目标设为"避免冲突"，要设为"低成本、高质量地处理冲突"</strong>——这是一个可以练习的技能，而不是一种天赋性格。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · Edmondson 心理安全研究（1999，Administrative Science Quarterly，英文，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、五种冲突模式：TKI 模型与选择框架</h2>
+    <p class="chapter-sub">竞争、合作、妥协、回避、迁就——没有最好的模式，只有匹配情境的模式</p>
+
+    <article class="view">
+      <h3>TKI 五模式：两把尺子量出五种策略</h3>
+      <p class="ctx">Thomas-Kilmann 冲突模式模型（TKI，Thomas &amp; Kilmann 1974 提出，现由 Kilmann Diagnostics 维护，官网有权威说明）用两个维度给冲突应对策略定位：<strong>坚持自己</strong>（assertiveness，你多大程度上要满足自己的诉求）与<strong>顾及他人</strong>（cooperativeness，你多大程度上要满足对方的诉求）。两维交叉出五种模式：<strong>竞争</strong>（高坚持、低顾及——我要赢）、<strong>合作</strong>（高坚持、高顾及——找到同时满足双方的方案）、<strong>妥协</strong>（中等坚持、中等顾及——各让一步快速了结）、<strong>回避</strong>（低坚持、低顾及——先不处理）、<strong>迁就</strong>（低坚持、高顾及——这次听你的）。</p>
+      <p class="ctx">TKI 的关键洞见不是"合作最高级"，而是<strong>五种模式各有其最优使用场景，错配才是问题</strong>：习惯竞争的人在需要合作的议题上树敌，习惯迁就的人在原则问题上失守，习惯回避的人让小火苗烧成大火。大多数人有一到两种"默认模式"（压力下自动切换到的那种），认识自己的默认模式，是冲突管理的第一步——因为改进不靠换性格，靠在关键场景里有意识地切换策略。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · Thomas-Kilmann 冲突模式官方说明（英文）</a> · Thomas &amp; Kilmann, Conflict Management（1974，原始文献文字引用）</div>
+      <div class="fig"><img src="../assets/img-13-1.png" alt="一个由两条坐标轴构成的抽象几何图示，五个发光的几何节点分布在坐标平面的不同位置，一个抽象无脸人物站在中央观察这些节点，象征五种冲突模式的选择" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+
+    <article class="view">
+      <h3>选模式看两件事：议题重要性 × 关系重要性</h3>
+      <blockquote class="q">冲突模式选择速查（示例）：①<strong>议题重大＋关系长期</strong> → 合作：花时间找双赢，值得投入（方案路线之争、长期合作分工）；②<strong>议题重大＋关系短暂</strong> → 竞争＋程序：坚持立场，但把裁决交给规则（评审、招标、老板拍板）；③<strong>议题中等＋需要速度</strong> → 妥协：各让一步、快速落袋（排期折中、预算对半）；④<strong>议题很小＋关系重要</strong> → 迁就：这次听你的，攒下的人情以后用（会议室之争、命名之争）；⑤<strong>议题小或时机不对＋情绪已高</strong> → 回避：先降温、择机再谈（对方正在气头上、你还没拿到完整信息）。<span class="qsrc">速查框 · 依据 TKI 五模式的情境化整理（Kilmann Diagnostics 官方口径）</span></blockquote>
+      <p class="ctx">两个常见的选择误区值得点名。<strong>误区一：把回避等同于懦弱</strong>——TKI 口径下，回避是正当策略：议题价值低、时机不成熟、情绪峰值未过、或你根本没有决策权时，"现在不谈"是最优解；回避的错误用法是<strong>对重要议题的永久拖延</strong>。<strong>误区二：把迁就等同于没原则</strong>——在小议题上有策略地让步，是大议题上争取支持的储备金；迁就的错误用法是<strong>在原则与权益问题上习惯性退让</strong>（加班安排、署名归属、薪酬谈判——这些场景请切换到合作或竞争，必要时走<a href="../14-boundary/">第14章</a>的正式渠道）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（英文）</a> · <a href="https://www.pon.harvard.edu/">哈佛谈判项目（Program on Negotiation，冲突策略资料，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>合作模式为什么难：它贵在成本，不贵在道理</h3>
+      <p class="ctx">五种模式里，合作（collaborating）产出最优解，却是使用率最低的一种，原因很务实：<strong>它贵</strong>。合作要求双方摊开真实诉求、共同发明新方案，需要时间（一场认真的双赢谈判常以小时计）、需要技能（倾听、提问、方案创造力）、更需要心理安全（敢说"我其实担心的是……"而不被嘲笑）。多数组织默认用妥协替代合作，就是因为妥协便宜——各砍一半、快速签字，只是把"可能的最优解"让渡给了"可接受的次优解"。</p>
+      <p class="ctx">实践建议是<strong>分级投入</strong>：先花三十秒判断议题的"重复成本"——这个分歧是一次性的（用妥协或迁就快速了结），还是会反复出现、影响长期协作的（值得投入合作）？反复出现的议题（分工边界、流程接口、资源规则）用妥协糊弄过去，等于同意未来为同一件事反复付利息。识别出"值得合作"的议题后，合作的入口是第三节要讲的四步谈话：先把双方的事实与需要完整摊开，方案往往自己浮现。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（英文）</a> · <a href="https://www.pon.harvard.edu/">哈佛谈判项目（principled negotiation / 利益而非立场，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、分歧谈话四步：事实-影响-需要-请求</h2>
+    <p class="chapter-sub">非暴力沟通框架的职场化改写：把"对人"的争执拉回"对事"的轨道</p>
+
+    <article class="view">
+      <h3>四步框架：每一句都有明确的语法</h3>
+      <p class="ctx">分歧谈话的主体框架借自非暴力沟通（Nonviolent Communication，Marshall Rosenberg 提出，CNVC 官网有系统说明），做职场化改写后是四步：<strong>事实 → 影响 → 需要 → 请求</strong>。第一步说<strong>可核查的事实</strong>，像监控录像能拍到的那样："这个月的三次周会，方案评审都排到了最后，前两次没轮到就散会了"——不说"你总是把我的事往后排"（"总是"是判断，不是事实，对方第一反应必然是反驳判断而不是听内容）。第二步说<strong>事实造成的具体影响</strong>："评审拖后，开发排期整体后移一周，客户那边我已经在改第二次交付日期了。"第三步说<strong>你的需要</strong>："我需要一个能落地的评审时间点，好对客户守住承诺。"第四步提出<strong>具体、可执行、可拒绝的请求</strong>："下次周会能不能把我们的评审放在第一项？或者你指定一位能拍板的同事提前书面评审？"</p>
+      <p class="ctx">这个结构的妙处在于<strong>每一句都让对方难以防御</strong>：事实可核查，影响是客观陈述，需要是自我暴露（不指责），请求给了明确的行动选项。对照大多数冲突现场的失败版本——"你这人怎么回事"（评判）＋"你知道耽误了多少事吗"（反问式指责）＋"你自己看着办吧"（赌气式放弃）——四步框架几乎是逐句解毒。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.nonviolentcommunication.com/">CNVC 非暴力沟通中心官网（四要素框架，英文）</a> · Rosenberg《非暴力沟通》（华夏出版社中文版，经典著作，标注版本） · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谈话前的三个准备动作</h3>
+      <blockquote class="q">分歧谈话准备清单（十分钟内完成）：①<strong>写下事实清单</strong>——只写监控能拍到的行为与数据，每条自问"这是事实还是我的解读？"；②<strong>预设对方的事实版本</strong>——ta 眼里的同一件事是什么样？ta 的约束是什么（KPI、资源、上级压力）？写出至少两条"对方可能有理"的地方；③<strong>想清楚你的底线与弹性区间</strong>——哪些必须守住（交付日期、署名、原则），哪些可以让（具体方式、顺序、资源形式），以及如果谈不成，你的下一步是什么（升级？接受？绕行？）。<span class="qsrc">清单 · 综合 TKI 情境评估与谈判准备实践整理</span></blockquote>
+      <p class="ctx">第②条最容易被跳过，也最决定成败。冲突谈话的经典失败模式是"准备了一整套自己的道理，没准备接住对方的道理"——结果对方一开口解释，你要么打断（"这不是理由"），要么卡壳（从没想过这个角度）。<strong>预设对方的版本不是替对方找借口，而是让你的第一反应从反驳变成校准</strong>："原来你那边是排期冲突，那我们把问题缩小成'评审怎么插进你的日历'，这个好办。"哈佛谈判项目把这一步概括为"理解利益而非纠缠立场"：立场是"评审必须排第一"对"排期动不了"，利益是"我要守住客户承诺"对"我不能让另外两个项目开天窗"——立场相撞，利益常常可以共存。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pon.harvard.edu/">哈佛谈判项目（interests vs. positions，Getting to Yes 框架，英文）</a> · <a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谈话现场：降温的三个技术动作</h3>
+      <p class="ctx">再充分的准备也挡不住现场升温，三个技术动作随身带。<strong>其一，降调替换</strong>：把全称判断换成具体行为（"你从来不配合"→"这三次评审都没排上"），把人格评价换成事件描述（"你这人没责任心"→"这个交付晚了一天，没收到提醒"），把反问句换成直陈句（"你不知道这样会耽误事吗？"→"这样排期，我这边会耽误客户交付"）。<strong>其二，暂停协议</strong>：感到自己或对方进入情绪峰值（语速变快、开始翻旧账、声音发紧），主动提议暂停——"这个问题重要，我们别在气头上定，下午三点再谈十分钟可以吗？"暂停要有理由、有时限、有恢复承诺，这三样齐了就是专业的流程控制，缺了就是冷战。<strong>其三，实时确认</strong>：对方陈述后，先复述再回应——"我确认下我听懂了：你的意思是排期动不了，但可以指定一位同事提前评审，对吗？"复述有三个作用：确保没有误解、让对方感到被听见（被听见的人防御性显著下降）、给你自己争取十秒钟组织语言。</p>
+      <p class="ctx">一条硬纪律：<strong>文字谈不拢，立刻换信道</strong>。即时消息里的分歧特别容易升级——没有语气与表情，中性措辞被自动读成敌意，而且每句话都留下了可以被反复回味的"证据"。感觉文字开始"上头"（回复越来越快、句子越来越短、出现感叹号与反问句），马上提议："这个打字说不清，我们打个电话/当面聊十分钟。"换信道不是退让，是给冲突降维。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://www.nonviolentcommunication.com/">CNVC 非暴力沟通中心官网（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、甩锅现场应对：留痕、归位、升级</h2>
+    <p class="chapter-sub">被推卸责任时，赢的方式不是音量，而是记录与流程</p>
+
+    <article class="view">
+      <h3>甩锅的三种形态与现场第一反应</h3>
+      <p class="ctx">职场甩锅大体三种形态：<strong>事前无痕型</strong>——口头布置、从不落字，出事时"我没说过这个要求"；<strong>会上一刀型</strong>——评审会、复盘会上当众把责任推给你，趁你措手不及；<strong>缓慢改写型</strong>——在一次次汇报中逐步改写叙事，把你的贡献说成 ta 的把关，把你的失误放大成主因。三种形态的共同解药只有一个词：<strong>留痕</strong>——这正是<a href="../12-peer/">第12章</a>自保三原则的第一条在冲突场景的应用。</p>
+      <p class="ctx">现场第一反应决定走向。被当众甩锅时，最差反应是情绪化反击（"明明是你……"式的互相指控，旁观者只会记住两个人都失态）；<strong>正确反应是冷静的事实归位</strong>，句式是"我补充一下时间线"而不是"你说得不对"："我把过程记录同步给大家：这个需求的变更发生在 X 日（邮件/文档在此），我当天提出了 Y 风险并抄送了相关方，最终按 Z 决定执行——如果现在要复盘，我建议我们从 Z 决定开始看。"三个要点：只说可核查的事实、给出证据的位置、把讨论拉回流程与决策点。<strong>不攻击对方的人品，甚至不评价对方的动机</strong>——你不需要证明"ta 在甩锅"，你只需要让完整的时间线出现在所有人面前，结论大家自己会下。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://www.pon.harvard.edu/">哈佛谈判项目（对事不对人原则，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>留痕的正确姿势：记录是给流程用的，不是给斗争用的</h3>
+      <p class="ctx">留痕有两个层次。<strong>日常层</strong>（防患于未然）：重要决定会后十分钟内发一封纪要邮件（"确认今天对齐的三件事：……如有出入请指出"）；需求变更走文档或工单，不接受纯口头改需求；关键沟通后补一条消息复述要点。这些动作在正常协作里毫无违和感，甚至显得专业——它们的防御价值只在出事时显现。<strong>争议层</strong>（已经发生冲突）：按时间线整理事实清单（日期、事件、证据位置、在场人），保存原始载体（邮件原文、文档历史版本、聊天记录），注意<strong>只留存与你工作相关的记录</strong>，不越界获取他人隐私或公司机密——留痕是自我保护，不是收集弹药，手段本身必须干净（证据的合法性边界见<a href="../14-boundary/">第14章</a>）。</p>
+      <p class="ctx">还有一个心态校准：留痕的目的<strong>不是打赢每一场锅战</strong>，而是让甩锅在你这里失去性价比——当对方知道"跟这个人有关的任何叙事都有据可查"，多数机会主义的推卸根本不会发生。这是威慑逻辑，成本几乎为零：你不需要真的动用记录，记录存在本身就改变了博弈。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《劳动争议调解仲裁法》举证责任相关条文检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>什么时候升级、怎么升级</h3>
+      <p class="ctx">不是所有冲突都值得升级，升级也有正确的姿势。先说<strong>该升级的信号</strong>：①同一问题按四步谈过两轮以上，对方拒绝进入事实层面（只重复立场或持续人身指向）；②分歧的决策权本来就不在你们两人手里（需要上级或流程裁决）；③涉及原则与权益问题——责任认定影响绩效与去留、或出现第14章定义的违规情形（超时加班强压、骚扰、强迫签不合理协议）；④对方的行为已经构成对你工作成果的持续侵占或诋毁。<strong>不该升级</strong>的情况同样清楚：一次性的方式分歧、你还没做过认真的双边谈话、议题本身价值低——跳过双边沟通直接找老板告状，在组织里通常被记为你的减分项。</p>
+      <p class="ctx">升级的操作要点：<strong>对事开卷、对人留门</strong>。开卷指升级前先告知对方（"这个问题我们两轮没对齐，我打算请老板帮我们做个裁决，你看要不要一起同步？"）——偷偷升级是关系核弹，公开升级是正常流程；很多情况下"我要升级了"这句话本身就能推动对方回到谈判桌。留门指升级的表述聚焦决策而非人品：给上级的版本是"两个方案各有依据，需要您拍板"，而不是"这个人有问题"。<strong>把裁决权交出去，把体面留给双方</strong>——裁决结果出来后，无论偏向谁，都要第一时间回到执行姿态，这是下一节"冲突之后"的主题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（竞争与升级情境，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、道歉与修复：把裂缝变成接缝</h2>
+    <p class="chapter-sub">职场道歉是一种专业能力——承认事实、说明补救、承诺边界</p>
+
+    <article class="view">
+      <h3>一个结构完整的职场道歉长什么样</h3>
+      <p class="ctx">道歉在职场里被系统性低估了：很多人宁可拖着、绕着、找补着，也不肯说出那句"这件事是我做错了"。而研究表明，<strong>结构完整的道歉是修复信任最快的单一动作</strong>——前提是它完整。拆开看，有效的职场道歉有四个部件：<strong>①承认具体事实</strong>（"我在评审会上没核实数据就质疑了你的结论，这是我的错"——错误要具体到行为，"如果让你不舒服了我道歉"这种条件句道歉等于没道歉，它把责任推给了对方的感受）；<strong>②承认影响</strong>（"这让你在会上很难堪，也可能让团队对我的判断打了折扣"）；<strong>③补救行动</strong>（"我会在今天的群里更正数据并说明是我的失误；后面两轮评审我先书面核对再发言"）；<strong>④不复再犯的边界承诺</strong>（"再遇到存疑的数据，我会先私下和你核对"）。</p>
+      <p class="ctx">四个部件里最容易被省略的是③和④——只说"对不起"而不给补救和边界，对方听到的是情绪安抚，不是行为改变，信任修复度有限。还有一个高频误区要避开：<strong>道歉里不夹带"但是"</strong>。"我承认语气不好，但是你当时也……"——"但是"之后的内容会瞬间作废之前的道歉，因为它在事实上是辩解。如果你确实认为对方也有责任，正确顺序是：<strong>先把自己的部分道歉道完整，对方的部分留给另一次谈话或第三方裁决</strong>——一次谈话只清理一边的账，混在一起两笔都清不掉。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Lewicki 等，道歉成分与有效性研究（2016，Negotiation and Conflict Management Research，英文，文字引用） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，apology &amp; forgiveness 研究栏目，英文）</a> · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>接受道歉的边界：修复关系不等于放弃权益</h3>
+      <p class="ctx">硬币的另一面同样重要：当对方道歉时，你怎么办？三个层次分清楚。<strong>第一层，事实澄清可以随道歉完成</strong>——对方承认了错误行为并补救，你可以在工作层面翻篇："谢谢你说清楚，数据我更正了，这事我们继续往前推。"<strong>第二层，关系温度由你自主决定</strong>——接受道歉不等于必须恢复从前的信任额度；信用账户模型下，一次道歉是一笔存款，余额恢复到什么水平，由后续履约决定，你可以专业合作但保持观察，这完全正当，不需要愧疚。<strong>第三层，权益问题不因道歉而豁免</strong>——如果对方的行为已经造成实际损害（影响了你的绩效认定、构成骚扰或侵权、涉及应得的补偿），道歉与追责是两条并行的线："我接受你的道歉"和"这件事造成的影响，我仍然需要通过正式渠道认定"可以同时成立。把这三层混为一谈——"人家都道歉了你还想怎样"——是职场里最常见的道德绑架句式之一，识别它，温和而不退让地拆开它。</p>
+      <p class="ctx">最后一个实操提醒：<strong>反复道歉但行为不变的人，道歉已经变成了工具</strong>。同样的错误发生第三次时，评估的重点不再是"这次道歉是否真诚"，而是"这个模式会不会改变"——模式不会因道歉而改变，只会因边界而改变：明确说出"再发生一次，我会走正式流程"，然后真的执行。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，forgiveness 研究栏目，英文）</a> · Mayer 等组织信任模型（1995，英文，文字引用） · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、冲突之后：重建工作关系</h2>
+    <p class="chapter-sub">冲突结束不等于关系自动复原——复原是一个有动作的过程</p>
+
+    <article class="view">
+      <h3>冲突后的三个修复动作</h3>
+      <p class="ctx">很多人在激烈分歧后选择"当无事发生"，指望时间冲淡尴尬——时间确实会冲淡情绪，但冲不掉记忆，尴尬会以更隐蔽的方式留下：会上不再反驳你、有事不再找你、合作时公事公办到冷淡。主动修复只需三个低成本动作。<strong>其一，四十八小时内的一次正常接触</strong>：冲突结束后主动找一件正常工作事务对接（不是重提冲突，是展示"工作关系如常"的信号），时机越早越好——拖得越久，"破冰"的成本越高。<strong>其二，如实执行冲突中达成的共识</strong>：无论裁决结果偏向谁，说好的动作照做、时间守住——这是最有力的修复，它向对方和旁观者证明你"对事激烈、对约可靠"。<strong>其三，一次轻量的关系确认</strong>（视关系基础选用）：一句"上次我们争得挺凶，不过那个问题确实该吵清楚——后面继续"，把冲突重新定义为"我们一起解决了一个难题"，而不是"我们俩打了一架"。</p>
+      <p class="ctx">修复动作的底层逻辑还是叙事：冲突在双方记忆里各有一个版本，你不主动提供"对事不对人"的版本，记忆里留下的就是敌意版本。当然，修复有前提——<strong>对方也在正常规则内行事</strong>。如果冲突后对方持续排挤、诋毁或报复，那就不是关系修复问题，而是进入了需要正式渠道的领域（第七节与<a href="../14-boundary/">第14章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，repairing trust 主题，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>复盘：把这次冲突变成下次的免疫力</h3>
+      <p class="ctx">冲突平息后，给自己做一次十分钟的私人复盘（不需要和对方一起），四个问题：<strong>①触发点是什么？</strong>是资源、流程、信息差，还是价值观？——多数职场冲突的根因是结构性的（流程接口没定义清楚），找到结构原因就能推动机制修复，让同类冲突不再需要"处理"。<strong>②我的默认模式暴露了什么？</strong>压力之下我滑向了哪种 TKI 模式（攻击？僵住？讨好？）？下次想在哪个节点切换到别的模式？<strong>③哪句话或哪个动作是转折点？</strong>无论是好的（一句复述让对方软下来）还是坏的（一个反问引爆全场），转折点值得逐字记住——它们是下次冲突里你的第一反应素材。<strong>④关系账户现在是盈余还是赤字？</strong>赤字的话，修复动作排进本周日程。</p>
+      <p class="ctx">坚持复盘的人会经历一个明显的变化曲线：最初几次冲突靠临场硬扛，半年后开始在冲突发生的<strong>前十秒</strong>就能识别模式（"这是任务冲突正在滑向关系冲突的信号"），一年后多数冲突在萌芽期就被一句得体的话化解——不是脾气变好了，是<strong>识别与切换变成了自动化的技能</strong>。这正是本章开头说的：冲突处理是可练习的技能，不是天赋性格。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（模式觉察，英文）</a> · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>特殊僵局：冷战怎么破</h3>
+      <p class="ctx">最难的冲突形态不是吵起来的，而是吵不起来的——冷战：冲突发生后双方停止实质沟通，见面点头、工作绕行、消息只回必要字数。冷战的代价比热冲突更隐蔽也更昂贵：协作效率持续流血（每件事都要绕道）、第三方被迫选边（团队被撕成两半）、且它不会自愈——没有人先开口，僵局就以月为单位延续。破冷战不需要"和解仪式"，只需要一个<strong>低门槛的事务性接触</strong>：找一件本来就该协作的正常小事（对齐一个排期、确认一个数据），用完全职业化的语气发起——不问"你还在生气吗"，不提上次冲突，就是正常工作。这个动作同时传递两个信号："工作关系可以继续"和"我先迈了第一步但不低头认输"。多数情况下，对方会顺着这个台阶回到正常交互；如果连续三次事务性接触都被拒绝或敷衍，说明对方无意修复，此时该做的不是继续热脸贴冷，而是把协作方式正式化（一切走邮件与流程、抄送共同上级），让工作可以绕开关系运转，同时评估这段关系的真实必要性（参照<a href="../12-peer/">第12章</a>有毒环境评估卡）。</p>
+      <p class="ctx">还有一条自我提醒：冷战里最消耗人的不是对方的沉默，而是<strong>你脑子里循环播放的内心戏</strong>——"ta 肯定在到处说我坏话""这梁子算结下了"。这些想象绝大多数不会成真，却在持续抽取你的情绪能量。处理方式是把想象拉回事实：ta 实际做了什么（可观察的行为）？我实际需要什么（工作能推进）？两个问题之外的一切，都不值得投入。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，关系修复主题，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、调解与升级路径：内部到外部的完整地图</h2>
+    <p class="chapter-sub">双边谈不动时，按顺序动用正式机制——每一步都有官方渠道</p>
+
+    <article class="view">
+      <h3>内部渠道：上级、HR、工会的正确打开方式</h3>
+      <p class="ctx">双边谈判失效后，第一层是组织内部机制，三个入口各有适用场景。<strong>共同上级</strong>：适合任务冲突的裁决——方案二选一、资源怎么分、优先级谁先；找上级的正确姿势如第四节所说，请 ta 做"决策者"而不是"裁判官"，材料给双方的方案与依据，不给人品评价。<strong>HR</strong>：适合涉及制度与权益的问题——绩效认定争议、分工安排明显不公、骚扰投诉的受理；对 HR 要有清醒的角色认知：HR 是组织的职能部门，职责是合规与风险控制，不是你的代理人——向 HR 陈述时，事实、证据、诉求三样都要清晰具体（"依据员工手册第几条，我请求什么处理"），情绪化控诉反而降低受理效率。<strong>工会</strong>：适合集体性权益问题与需要第三方背书的个案；依据《工会法》，工会的基本职责是维护职工合法权益，遇到劳动争议可以请工会出面协调（全国职工服务热线 12351）。</p>
+      <p class="ctx">使用内部渠道的两条纪律：<strong>先双边、后三方</strong>——跳过当事人直接找组织，即使你占理，也会被解读为不会处理工作关系（除非涉及骚扰等必须直接正式投诉的情形）；<strong>全程留痕</strong>——投诉与申诉走书面（邮件、OA 流程、签收记录），口头受理 afterward 补一条书面确认。内部渠道全部失效或问题本身超出组织范围时，进入外部机制。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国工会法》全文检索）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（劳动关系与争议处理政策口径）</a> · 12351 职工服务热线（官方号码，文字口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>外部渠道：调解、仲裁、监察与诉讼的先后顺序</h3>
+      <p class="ctx">外部机制是一张有顺序的地图。<strong>劳动争议调解</strong>：可以向企业劳动争议调解委员会、依法设立的基层人民调解组织或乡镇街道调解组织申请调解，免费、灵活，达成协议可申请仲裁审查赋予效力（依据《劳动争议调解仲裁法》）。<strong>劳动仲裁</strong>：调解不成或直接申请均可——劳动争议申请仲裁的时效期间为一年（自知道或应当知道权利被侵害之日起算），仲裁不收费，是多数劳动争议进入司法程序前的必经环节（除法律另有规定外，对仲裁裁决不服才能向法院起诉）。<strong>劳动保障监察</strong>：针对用人单位违法行为（拖欠工资、超时加班、不缴社保），可以向人社部门投诉举报，由行政机关责令改正——监察与仲裁的区别简单说：监察是"政府查单位"，仲裁是"你和单位打官司"，可以并行。<strong>诉讼</strong>：对仲裁结果不服的，在法定期限内向人民法院起诉。<strong>特殊情形直连司法</strong>：涉及骚扰、人身损害的，可以直接报警或向法院提起侵权诉讼（法律界定与操作见<a href="../14-boundary/">第14章</a>）。</p>
+      <p class="ctx">两条通用提醒：<strong>咨询先行</strong>——动手前拨打 12333（人社咨询热线）或 12348（公共法律服务热线）问清路径与材料，成本为零；<strong>时效意识</strong>——一年的仲裁时效是硬约束，"再等等看"是维权最大的敌人，拿不准要不要申请时，先把材料交上去占住时效，后续可以撤回。本章给出的是路径地图，每一步的具体流程、证据要求与文书模板，第14章整章展开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国劳动争议调解仲裁法》全文检索）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（劳动人事争议仲裁与监察口径）</a> · 12333 / 12348 官方热线（文字口径）</div>
+      <div class="fig"><img src="../assets/img-13-2.png" alt="一条由低到高的抽象阶梯路径，从两个几何人物面对面交谈开始，经过一个中立第三方节点，通向一个天平形状的正式机构图形，象征冲突处理从双边谈判到调解仲裁的升级路径" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎</h2>
+    <p class="chapter-sub">关于职场冲突的四个流行说法，逐条对照证据</p>
+
+    <article class="view">
+      <h3>谣言粉碎：冲突就是不专业？忍一忍就过去了？</h3>
+      <p class="ctx"><strong>谣言一："有冲突就是不专业，成熟的职场人不制造矛盾。"</strong>粉碎：研究口径恰恰相反——任务冲突在中等强度下提升决策质量（De Dreu &amp; Weingart 2003 的元分析），心理安全研究（Edmondson 1999）发现高绩效团队的特征是"敢分歧"而不是"没分歧"；真正的专业性体现在冲突的<strong>处理方式</strong>（对事、留痕、走流程），而不是冲突的<strong>有无</strong>。把"无冲突"当专业标准，组织收获的是群体思维和地下矛盾。<strong>谣言二："忍一忍就过去了，职场上认真你就输了。"</strong>粉碎：忍让对一次性小事有效（TKI 的迁就策略），对重复性侵害无效——第12章的边界逻辑在此同样成立：没有执行力的忍耐不叫修养，叫纵容，对方收到的信号是"这样做没有成本"，行为只会升级；且积压的委屈最终以更失控的方式爆发，或转化为倦怠（见<a href="../19-balance/">第19章</a>）。正确姿势是小摩擦48小时内当面清账，原则问题按本章路径升级。<strong>谣言三："赢了争论，输了关系，不划算。"</strong>粉碎：这个说法把"赢"默认成了压服对方——四步谈话与 TKI 合作模式下的"赢"是双赢方案落地，关系反而因高质量分歧而加深（第一节）；真正伤关系的是赢的方式（羞辱、穷追、翻旧账），不是赢本身。该赢的议题上放弃立场，换不来尊重，只换来得寸进尺。<strong>谣言四："找 HR、走仲裁就是撕破脸，以后没法在这行混。"</strong>粉碎：依法维权是法律赋予的权利，《劳动争议调解仲裁法》明确仲裁免费且保护劳动者申请权利；背调的合规口径关注的是你的履约与诚信记录，不是"是否主张过合法权益"——相反，遇到超时加班、欠薪、骚扰时依法处理，在多数规范企业眼中是"有边界感的职业人"信号；真正影响行业口碑的，是造假、失信与诋毁前雇主（<a href="../14-boundary/">第14章</a>展开）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：De Dreu &amp; Weingart 2003（Journal of Applied Psychology，英文，文字引用） · Edmondson 1999（Administrative Science Quarterly，英文，文字引用） · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《劳动争议调解仲裁法》全文检索）</a> · <a href="https://www.kilmanndiagnostics.com/">Kilmann Diagnostics · TKI 官方说明（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>为什么"完全没有冲突的团队"反而值得警惕？任务冲突与关系冲突的区别是什么？</li>
+        <li>处理得当的冲突为什么能加速信任？它同时展示了哪三样东西？</li>
+        <li>TKI 的两个维度是什么？五种模式分别落在什么位置？</li>
+        <li>按"议题重要性 × 关系重要性"，五种场景各选什么模式？</li>
+        <li>回避在什么情况下是正当策略？它的错误用法是什么？</li>
+        <li>合作模式"贵"在哪里？什么问题值得投入合作的成本（重复成本判断）？</li>
+        <li>四步谈话是哪四步？每一步的语法要求是什么？为什么"总是"开头必翻车？</li>
+        <li>谈话前三个准备动作是什么？为什么"预设对方的事实版本"最容易被跳过也最关键？</li>
+        <li>立场与利益的区别是什么？举一个把立场之争转成利益共存的例子。</li>
+        <li>降温三动作（降调替换、暂停协议、实时确认）各自的要点是什么？暂停协议与冷战怎么区分？</li>
+        <li>甩锅的三种形态是什么？被当众甩锅时的正确第一反应与句式是什么？</li>
+        <li>留痕的日常层与争议层分别做什么？为什么"记录存在本身"就能改变博弈？</li>
+        <li>该升级的四个信号是什么？升级前为什么要先告知对方？</li>
+        <li>完整职场道歉的四个部件是什么？为什么"但是"会作废道歉？</li>
+        <li>接受道歉的三个层次怎么区分？"反复道歉行为不变"的人怎么应对？</li>
+        <li>冲突后的三个修复动作是什么？四十八小时为什么是关键窗口？</li>
+        <li>私人复盘的四个问题是什么？坚持复盘的人经历怎样的变化曲线？</li>
+        <li>内部三渠道（上级/HR/工会）各适合什么问题？对 HR 的角色认知为什么重要？</li>
+        <li>外部机制的顺序是什么？仲裁时效多久？监察与仲裁的区别用一句话怎么说？</li>
+        <li>四个流行谣言各自的粉碎依据是什么？你能用 TKI 语言解释"忍一忍"为什么对重复侵害无效吗？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>冲突=组织常态，任务冲突（对事）有益、关系冲突（对人）有害，目标是把前者停在任务层；TKI 五模式=竞争/合作/妥协/回避/迁就，两维度=坚持自己×顾及他人，选择看"议题重要性×关系重要性"，没有最好只有匹配；值得合作=会重复发生的议题；四步谈话=事实（监控可拍）→影响（具体代价）→需要（自我暴露）→请求（可执行可拒绝）；谈话前=事实清单+预设对方版本+底线与弹性区间；降温三动作=降调替换、暂停协议（有理由有时限有恢复承诺）、实时确认（先复述再回应）；文字上头换信道；甩锅解药=留痕+冷静时间线归位（"我补充一下时间线"），不评人品；升级四信号=两轮无效/决策权不在场/涉原则权益/持续侵占诋毁，升级要开卷（先告知）聚焦决策；道歉四部件=承认具体事实+承认影响+补救行动+边界承诺，不夹带"但是"；接受道歉三层=事实可翻篇/关系温度自定/权益不豁免；冲突后=48小时内正常接触+执行共识+轻量关系确认；渠道地图=共同上级（裁决）→HR（制度权益）→工会12351→调解→劳动仲裁（时效1年、免费）→监察12333（政府查单位）→诉讼；咨询12333/12348先行；谣言粉碎=冲突不专业✗、忍忍就过去✗、赢了争论输关系✗、走仲裁毁前程✗。
+  </div>
+
+  <nav class="pager">
+    <a href="../12-peer/"><span class="dir">← 第12章</span>同事相处与协作</a>
+    <a href="../14-boundary/"><span class="dir">第14章 →</span>界限与维权：加班、骚扰与劳动法</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第13章 · 依据 Thomas-Kilmann 冲突模式模型（Kilmann Diagnostics 官方口径）、非暴力沟通框架（CNVC）、De Dreu &amp; Weingart（2003）与 Edmondson（1999）等组织行为学研究、Harvard Business Review 高难度对话栏目、《劳动争议调解仲裁法》《工会法》现行文本及人社部官方口径整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业发展教育参考，不构成法律建议 · 劳动维权以《劳动法》《劳动合同法》与官方渠道为准 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

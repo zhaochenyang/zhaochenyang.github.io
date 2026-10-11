@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1章 GDP：衡量一国的财富 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第1章 · 基础概念</div>
+  <h1>GDP：衡量一国的财富</h1>
+  <p>新闻里最重要的那个数字到底在算什么：三种算法为什么结果一样、名义与实际的区别、人均 GDP 怎么读、GDP 不衡量的东西，以及一套读 GDP 新闻的自查问题</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../00-intro/">← 导论</a>
+    <a href="../02-inflation/">第2章：通胀与紧缩 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">GDP是什么</a>
+    <a class="anchor" href="#s2">三种算法</a>
+    <a class="anchor" href="#s3">名义vs实际</a>
+    <a class="anchor" href="#s4">人均与国际比较</a>
+    <a class="anchor" href="#s5">GDP的局限</a>
+    <a class="anchor" href="#s6">数据怎么产生</a>
+    <a class="anchor" href="#s7">读新闻五问</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为经济学科普，仅供经济教育与参考，不构成投资建议或政策预测。本章<strong>不预测</strong>任何经济走势，所有数据以国家统计局等官方统计口径为准并注明统计时点；文中涉及的具体数字请以<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布</a>为准。不传播未经证实的"内幕政策消息"；"崩溃""造假"类说法只出现在谣言粉碎的批判语境中。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用"地域、最终产品、市场价值"三要素说清 GDP 到底在算什么；②讲出生产法、收入法、支出法三种算法为什么殊途同归（一块钱的循环之旅）；③区分名义 GDP 与实际 GDP，解释为什么"数字涨了"不一定是"真涨了"；④读懂人均 GDP 与国际比较中的口径陷阱；⑤说出 GDP 不衡量的四样东西（家务、地下经济、环境、幸福感）；⑥掌握一套"读 GDP 新闻的五个自查问题"，从此看财经新闻不再被标题牵着走。这是全课程五个核心变量的第一个，后面<a href="../02-inflation/">第2章</a>的通胀、<a href="../03-interest/">第3章</a>的利率都建立在它之上。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>不必背任何数字，重点记两样东西：一个比喻（一块钱的循环之旅）和一套动作（读新闻五问，见第七节）。第一次通读；以后每次看到"GDP 增速"上热搜，回来对照第七节的自查清单走一遍。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、GDP 是什么：一个被误解最深的国民指标</h2>
+    <p class="chapter-sub">先拆词：国内（Geographic）、生产（Production）、总值（Total Value）——三个词各管一件事</p>
+
+    <article class="view">
+      <h3>开场场景：新闻里的"134.9 万亿"跟你有什么关系</h3>
+      <p class="ctx">每年年初，国家统计局会发布上一年度的国民经济运行情况。以 2025 年 1 月发布的初步核算数据为例：2024 年国内生产总值（GDP）为 134.9 万亿元，按不变价格计算比上年增长 5.0%（来源：国家统计局 2025 年 1 月发布，具体数字以<a href="https://www.stats.gov.cn/sj/zxfb/">官方最新发布</a>与<a href="https://www.stats.gov.cn/sj/ndsj/">统计年鉴最终核实数</a>为准）。这个数字会立刻出现在所有新闻标题里，评论区分成两派：一派说"形势大好"，一派说"与我无关，我工资没涨"。</p>
+      <p class="ctx">两派其实都没说到点子上。GDP 既不是"国家赚到的钱"，也不是"老百姓的日子"，它是一个<strong>特定口径下的生产总量统计</strong>——就像体温计测的是体温而不是健康本身。体温计读数升高可能意味着发烧，也可能意味着刚跑完步；同理，GDP 增长可能来自效率提升，也可能来自灾后重建的大规模施工。<strong>学宏观的第一步，是把"数字"和"数字背后的含义"分开</strong>：先搞清这个指标在技术上怎么定义、怎么算、测不到什么，再谈它说明了什么。这正是本章要做的事。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（年度 GDP 初步核算）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（指标口径说明）</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章"国民收入的衡量"（北京大学出版社中译本）</div>
+    </article>
+
+    <article class="view">
+      <h3>三要素拆解：地域、最终产品、市场价值</h3>
+      <p class="ctx">GDP 的教科书定义是：<strong>在某一既定时期，一个国家（地区）境内生产的所有最终物品与服务的市场价值</strong>（曼昆《经济学原理》第10章的表述）。这个定义里的每个词都在干活，拆开看：</p>
+      <p class="ctx">①<strong>"境内"——地域概念</strong>。GDP 里的 G 是 Geographic（地域），不是 National（国民）。凡是在中国境内发生的生产都算中国的 GDP，无论生产者是谁：一家美资工厂在上海的产出计入中国 GDP；反过来，中国企业在海外工厂的产出计入当地 GDP，不计入中国 GDP。与它对应的是 GNP/GNI（国民总收入），按"国民"归属统计——中国人在全球范围内挣的收入。新闻里偶尔出现的"我国 GNI 与 GDP 的差异"，说的就是这笔境内外净收入的差。</p>
+      <p class="ctx">②<strong>"最终产品"——不重复计算</strong>。面粉厂卖给面包厂的面粉不计入 GDP，面包厂卖给你的面包才计入——因为面包的售价里已经包含了面粉的价值。GDP 只统计"最终产品和服务"，把中间投入剔掉，否则一块面包会被算好几遍。这也解释了一个常见疑惑：为什么二手车交易本身不计入当年 GDP（那辆车在出厂当年已经算过了），但二手车中介收取的服务费计入（那是当年新生产的服务）。</p>
+      <p class="ctx">③<strong>"市场价值"——用价格加总</strong>。汽车、理发、门诊、教育……这些东西单位各不相同，怎么加总？用市场价格当"公分母"：一辆车 15 万元、一次理发 50 元，都折算成货币价值再相加。这带来一个深刻后果——<strong>没有市场价格的生产活动，GDP 天然测不到</strong>（第五节详谈家务劳动等问题）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章 · 萨缪尔森、诺德豪斯《经济学》第19版 宏观部分"产出与收入的循环流动" · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（GDP 核算口径官方说明入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"时期"二字很关键：流量不是存量</h3>
+      <p class="ctx">GDP 是一个<strong>流量</strong>（flow）概念：它衡量的是"一段时间内新生产了多少"，通常按季度和年度统计；而不是"截至某一刻总共拥有多少"（那是<strong>存量</strong>，stock）。一个容易混淆的对比：国家的"财富"更接近存量概念（积累下来的资产总和），GDP 是流量（一年内的生产活动总量）。好比一个人的"身价"是存量，"年薪"是流量。</p>
+      <p class="ctx">这个区分能澄清很多误读。比如"卖地收入算不算 GDP"：土地本身是自然资源存量，其转让不直接创造新价值，但房地产开发活动（盖楼）、土地交易中的中介服务是当年的生产活动，按核算规则计入相应部分——细节以国家统计局核算口径为准。再比如"股市大涨算不算 GDP"：买卖已发行股票是资产换手，不是新生产，不计入；但券商提供的交易服务（佣金对应的服务产出）计入。记住一句话：<strong>GDP 只认"当年新生产的最终产品与服务"，不认资产价格的涨跌</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章（流量与存量、投资与资本存量） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（核算范围官方说明入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、一块钱的循环之旅：三种算法为什么结果一样</h2>
+    <p class="chapter-sub">生产法、收入法、支出法——从三个门进入同一间屋子</p>
+
+    <article class="view">
+      <h3>经济是一个循环：你的支出就是别人的收入</h3>
+      <p class="ctx">宏观经济学的第一课是一个朴素到近乎不言自明的恒等式：<strong>对整个经济而言，收入等于支出，也等于产出</strong>。为什么？因为每笔交易都有两面——你花 30 元买一碗面，你的支出 30 元就是面馆的收入 30 元；面馆的收入再拆成面粉成本（上游厂商的收入）、房租（房东的收入）、工资（员工的收入）和利润（老板的收入）。钱在经济体里转圈，从任何一个断面切下去，"生产出来的价值""分配出去的收入""花出去的支出"三者必然相等。</p>
+      <p class="ctx">这就是 GDP 三种算法的理论基础：<strong>生产法</strong>从"生产"断面切——把各行业创造的增加值（总产出减中间投入）加总；<strong>收入法</strong>从"分配"断面切——把劳动者报酬、生产税净额、固定资产折旧、营业盈余加总；<strong>支出法</strong>从"使用"断面切——把最终消费、资本形成总额（投资）、货物和服务净出口加总。三把刀切同一块蛋糕，结果理论上完全一致，实践中的微小差异叫"统计误差"。</p>
+      <div class="fig"><img src="../assets/img-01-1.png" alt="GDP 三面核算示意：经济体中央一个发光的循环环，环上三个方向的箭头分别连着工厂齿轮（生产面）、钱袋与分配天平（收入面）、购物车与货运集装箱（支出面），三个箭头汇聚到中央同一个数字方块，周围有细小的货币光点沿环路流动" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章"收入与支出的循环流动" · 萨缪尔森、诺德豪斯《经济学》第19版 · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（三种核算方法官方介绍入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>支出法四驾马车：消费、投资、政府、净出口</h3>
+      <p class="ctx">新闻里最常引用的其实是支出法的分解，俗称"三驾马车"（把政府消费并入消费口径时说三驾，分开列时说四项）：</p>
+      <table class="cmp">
+        <tr><th>支出项</th><th>包含什么</th><th>常见误读</th></tr>
+        <tr><td><strong>最终消费</strong></td><td>居民消费（吃穿住行、教育医疗、文娱）+ 政府消费（公共服务支出）</td><td>买房<strong>不算</strong>消费，算投资（住房被视作能长期提供居住服务的资本品）</td></tr>
+        <tr><td><strong>资本形成总额</strong></td><td>固定资本形成（厂房、设备、基础设施、住宅、研发支出）+ 存货变动</td><td>买股票、买二手房<strong>不算</strong>投资——那是资产换手；GDP 里的"投资"专指新创造出来的资本品</td></tr>
+        <tr><td><strong>货物和服务净出口</strong></td><td>出口减进口的差额</td><td>"贸易顺差越大 GDP 越高"是错的：进口是减项，顺差只是净贡献；而且顺差本身不是政策目标（见<a href="../11-trade/">第11章</a>）</td></tr>
+      </table>
+      <p class="ctx">统计局每年会公布三大需求对 GDP 增长的<strong>贡献率与拉动百分点</strong>（例如"最终消费支出拉动 GDP 增长 X 个百分点"），从<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>或<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>页可查当期数字。读这类新闻时注意：贡献率是"增长中各部分占多少"的结构描述，不是"哪个马车更好"的价值判断。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（三大需求贡献率数据入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章</div>
+    </article>
+
+    <article class="view">
+      <h3>中国以生产法为主：口径差异的第一课</h3>
+      <p class="ctx">一个很多人不知道的事实：各国季度 GDP 核算的主方法并不相同。美国以<strong>支出法</strong>为主发布季度数据；中国季度 GDP 以<strong>生产法</strong>为主（国家统计局官方口径，见<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>栏目对核算方法的说明），年度则三种方法都做、相互校验。生产法从行业增加值切入，好处是能同时看到产业结构（农业/工业/服务业各占多少），这也是中国统计发布中"第一产业、第二产业、第三产业增加值"数据的由来。</p>
+      <p class="ctx">这带来一条重要的读新闻纪律：<strong>拿中国的 GDP 结构数据与美国的直接对比时，先想一步口径</strong>。两国核算方法、价格处理、甚至"研发支出计入投资"的时间点都有差异（中国 2016 年起实施研发支出核算改革，将能为所有者带来经济利益的研发支出计为固定资本形成——国家统计局有专门解读）。跨国比较优先用世界银行等机构的可比口径数据库，并保留"口径可能有别"的警惕。这是本课程反复强调的"数据三要素"（数值+机构+时点）之外隐藏的第四要素：<strong>口径</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（季度核算方法与研发支出改革说明入口）</a> · <a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD">世界银行·GDP 指标数据库（英文，跨国可比口径）</a> · 《中国统计年鉴》历年卷（<a href="https://www.stats.gov.cn/sj/ndsj/">在线版</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>流程框：跟着 30 元面条钱走一圈</h3>
+      <blockquote class="q">
+        <strong>一块钱的循环之旅（支出=收入=产出的现场演示）：</strong><br>
+        第 1 步：你花 30 元吃面 → 计入"最终消费"（支出法 +30 元）；<br>
+        第 2 步：面馆这 30 元收入拆成：面粉调料 12 元（中间投入，不重复计入）、员工工资 8 元、房租 4 元、老板利润 6 元 → 工资+利润+折旧等构成"增加值"（收入法计入 18 元，面粉那 12 元会在面粉厂的增加值里体现）；<br>
+        第 3 步：面馆做的这碗面价值 30 元、中间投入 12 元、增加值 18 元 → 生产法计入 18 元；面粉厂自己的增加值 12 元也计入，合计仍是 30 元；<br>
+        第 4 步：员工拿 8 元工资去买菜、房东拿 4 元房租去交电费……循环继续，但 GDP 只记"这一轮新生产的价值"，不记钱转手的次数。<br>
+        <span class="qsrc">结论：同一碗面，三种算法各得 30 元——生产面、收入面、支出面是同一枚硬币的三个侧面。（示意性演示，简化了税收与折旧细节）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章（循环流量图） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（增加值核算口径说明入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、名义与实际：为什么"涨了"不一定是真涨了</h2>
+    <p class="chapter-sub">剔除价格因素，是读懂一切增长数字的钥匙</p>
+
+    <article class="view">
+      <h3>名义 GDP 与实际 GDP：同一份产量、两套价格</h3>
+      <p class="ctx"><strong>名义 GDP</strong>用"当年的价格"计算产出价值；<strong>实际 GDP</strong>用"某个基期的不变价格"计算。举个极简例子（示例，便于理解）：某国只生产大米，去年产 100 斤、每斤 3 元，今年产 100 斤、每斤 4 元——名义 GDP 从 300 元"增长"到 400 元，涨了 33%；但实际产量一斤没多，按不变价格算实际 GDP 零增长。那 33% 全是价格上涨。</p>
+      <p class="ctx">这就是为什么新闻里说"GDP 增长 5.0%"时，统计局一定会跟一句<strong>"按不变价格计算"</strong>——增长率的官方口径默认是实际增速（剔除价格因素），而"GDP 总量 134.9 万亿元"这类绝对数通常是现价（名义）口径（国家统计局发布惯例，见<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>中的表述）。<strong>总量看名义、增速看实际</strong>，两个数字用的价格基准不同，不能直接互相推算——这是普通人读数据最常踩的坑之一。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章"GDP 平减指数" · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（"按不变价格计算"官方表述）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a></div>
+    </article>
+
+    <article class="view">
+      <h3>GDP 平减指数：藏在增长新闻里的第三个物价指标</h3>
+      <p class="ctx">名义 GDP 与实际 GDP 之间的比值，就是 <strong>GDP 平减指数</strong>（deflator）：它衡量"经济体生产的所有最终产品"的整体价格变化。你可能已经知道 CPI（消费者物价指数，<a href="../02-inflation/">第2章</a>主角），两者的区别在于覆盖范围：CPI 只看<strong>消费者买的篮子</strong>（且在中国口径下不包含商品房购置价格），平减指数覆盖<strong>所有国内生产的最终产品</strong>（包括投资品、政府服务、出口商品）。所以会出现"CPI 温和、平减指数为负"的组合——那通常意味着投资品或工业品价格在跌。</p>
+      <p class="ctx">对普通读者的实用意义：当新闻说"名义增速低于实际增速"时，等价于说平减指数为负（整体物价水平在下降），这是观察经济冷热的重要角度之一；但请注意，<strong>这只是一个描述性信号，本站不对后续走势做任何预测</strong>——宏观数据的解读存在多种学派观点，第8章经济周期会展开讲。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章 · 萨缪尔森、诺德豪斯《经济学》第19版 · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（价格指数体系说明入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对照表：四个最容易混的增长数字</h3>
+      <table class="cmp">
+        <tr><th>说法</th><th>实际含义</th><th>陷阱</th></tr>
+        <tr><td>"GDP 总量 XX 万亿元"</td><td>名义（现价）总量</td><td>不能拿它除以去年总量算增速——那是名义增速，混入了物价</td></tr>
+        <tr><td>"GDP 同比增长 X%"</td><td>实际增速（不变价）</td><td>官方新闻里的增速默认实际口径，看原文"按不变价格计算"字样确认</td></tr>
+        <tr><td>"环比增长 X%"</td><td>与上一季度比（通常经季节调整、折年率与否要注明）</td><td>环比受季节与基数影响大；中美环比折年率口径不同，不能直接比</td></tr>
+        <tr><td>"两年平均增长 X%"</td><td>几何平均，抹平单年波动</td><td>是统计局在特殊年份使用的补充口径，看到时确认基期是哪年</td></tr>
+      </table>
+      <p class="ctx">一句话总结：<strong>先问"哪个价格基准、哪个时间基准"，再谈数字大小。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（同比/环比/平均增速口径说明入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、人均 GDP 与国际比较：排名的正确打开方式</h2>
+    <p class="chapter-sub">总量大国与人均中等生可以同时成立；汇率折算与购买力平价是两把不同的尺子</p>
+
+    <article class="view">
+      <h3>人均 GDP：把"大"换算成"富"的第一步</h3>
+      <p class="ctx">GDP 总量衡量"经济体的块头"，人均 GDP（总量÷常住人口）才开始接近"平均每人创造的产出"。中国是典型的"总量靠前、人均居中"：按世界银行数据库（<a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD">现价 GDP 指标页</a>，英文）的口径，中国 GDP 总量长期位居世界第二（美国第一）；但人均 GDP 在全球约排在六十多位（世界银行数据，具体名次随年份与口径浮动，查询以<a href="https://data.worldbank.org/">世界银行数据平台</a>当期为准）。</p>
+      <p class="ctx">"总量第二"和"人均第六十多名"同时为真，这不是矛盾，而是<strong>14 亿人口这个分母的力量</strong>。理解这一点，很多争论就能降温：说"我们已经很强了"的人引用总量，说"我们还很穷"的人引用人均——两边引用的都是真数据，错的是把单指标当全貌。此外，人均 GDP 是"平均数"不是"中位数"，也不反映分配状况（收入差距见<a href="../09-employment/">第9章</a>工资部分）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD">世界银行·现价 GDP 数据库（英文）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">《中国统计年鉴》（人均 GDP 官方序列）</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章</div>
+    </article>
+
+    <article class="view">
+      <h3>汇率法与购买力平价：两把尺子量出两个世界</h3>
+      <p class="ctx">跨国比较 GDP 要先把各国货币换算成同一单位，主流有两把尺子：<strong>①汇率法</strong>——按市场汇率折算（世界银行 <a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD">NY.GDP.MKTP.CD</a> 指标即现价美元口径）。优点是简单、反映国际购买力；缺点是汇率短期波动大，且发展中国家的非贸易品（理发、餐饮、房租）价格普遍偏低，会"低估"其实际生活水平。<strong>②购买力平价（PPP）</strong>——按"同样一篮子商品在各国花多少钱"折算，著名科普版是《经济学人》的巨无霸指数（商业媒体趣味指标，仅作直觉入门）。</p>
+      <p class="ctx">两把尺子结论可以差很多：按 PPP 口径，中国经济总量在 2010 年代中期已超过美国居世界第一（IMF 与世行 PPP 数据库口径；按汇率法则美国第一）。<strong>哪个"对"？都对各的一半</strong>：比较国际购买力（进口、对外投资能力）汇率法更贴切，比较国内实际生活水准与生产规模 PPP 更贴切。看到"中国已是世界第一大经济体"或"还不到美国七成"的标题时，先找一句：按什么口径算的？——这一个问题就能过滤掉大量误导。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://data.worldbank.org/">世界银行数据平台（PPP 换算指标入口，英文）</a> · IMF《世界经济展望》数据库（<a href="https://www.imf.org/en/Publications/WEO">官网入口</a>，英文，每年 4 月/10 月更新，具体页面以官网为准） · 《经济学人》巨无霸指数（商业媒体趣味指标，标注）</div>
+    </article>
+
+    <article class="view">
+      <h3>"中等发达国家水平"这类说法怎么理解</h3>
+      <p class="ctx">新闻里常出现"到 2035 年人均国内生产总值达到中等发达国家水平"这类目标表述（出自官方文件，如"十四五"规划与 2035 年远景目标纲要的公开表述，原文见<a href="https://www.gov.cn/">中国政府网</a>政策文件库）。怎么读懂它？三点：</p>
+      <p class="ctx">①"中等发达国家水平"没有唯一官方定义，学界与媒体常用参照系是届时发达国家人均 GDP 的中间档位（一个动态移动的目标，而非固定数字）；②目标是<strong>方向性表述</strong>，官方从未承诺具体汇率折算数字，把"达到 X 万美元"写成确定预言的自媒体是在替官方"加戏"；③人均 GDP 达到某水平不等于居民收入、公共服务同步达到——GDP 分配结构（居民收入占比、政府与企业占比）是另一个重要话题，感兴趣的读者可查<a href="https://www.stats.gov.cn/sj/ndsj/">统计年鉴</a>中资金流量表部分。本站不对目标能否实现做预测——那超出科普范围，也违反本课程"不预测"的纪律。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">中国政府网（"十四五"规划和 2035 年远景目标纲要原文检索入口）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">《中国统计年鉴》（资金流量表）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、GDP 不衡量的东西：体温计的盲区</h2>
+    <p class="chapter-sub">家务、地下经济、环境代价、幸福感——以及"唯 GDP 论"为什么被官方自己也反对</p>
+
+    <article class="view">
+      <h3>家务与志愿劳动：最大的统计盲区</h3>
+      <p class="ctx">如果你雇保姆做饭，这笔服务计入 GDP；如果你自己做饭给全家吃，同样的劳动<strong>一分不计</strong>。这就是 GDP 的"市场价值"要件造成的系统性盲区：无酬家务劳动、育儿、照护老人、社区志愿服务都不进统计。有研究尝试给家务劳动估值（各国统计局做过"无酬劳动核算"卫星账户研究，中国统计系统也有相关学术讨论；此为研究性估算而非官方常规发布），普遍结论是：家务劳动若按市场价格折算，规模相当于 GDP 的一到三成不等（不同国家、不同估算方法差异很大，此处只给量级直觉，具体研究以学术文献为准）。</p>
+      <p class="ctx">这个盲区的现实意义：①它系统性地"看不见"以女性为主的无酬劳动，性别经济学对此有大量批评（学术文献，英文）；②它会造成荒诞的国际对比——同样的生活方式，市场化程度高的国家 GDP 更高（点外卖计入、在家做饭不计入）；③它提醒我们：<strong>GDP 测的是市场活动的规模，不是福祉的规模</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章"GDP 是衡量经济福利的好指标吗" · 萨缪尔森、诺德豪斯《经济学》第19版 · 无酬劳动卫星账户相关研究（各国统计机构研究性核算，学术文献）</div>
+    </article>
+
+    <article class="view">
+      <h3>地下经济与环境代价：漏算与错算</h3>
+      <p class="ctx"><strong>地下经济被漏算</strong>：现金交易的小摊贩、未登记的零工、灰色收入，都不进（或难以完整进入）统计。各国地下经济规模占 GDP 比重估计从个位数到百分之几十不等（学术研究口径差异极大，国际货币基金组织等机构有专题研究，英文）——这也意味着各国 GDP 的"完整度"并不一样。</p>
+      <p class="ctx"><strong>环境代价被错算</strong>：更严重的是方向性问题——污染密集型生产推高 GDP，治理污染的支出<strong>再次推高</strong> GDP，而被破坏的生态本身没有账户扣减。这就是"破窗谬误"的宏观版：砸碎玻璃让玻璃厂有活干，看似创造了经济活动，实际是社会财富的净损失。针对这一缺陷，学界与统计界提出过绿色 GDP、GPI（真实进步指标）、联合国"生态系统核算体系（SEEA）"等替代或补充方案（学术与官方统计研究，英文），中国也曾在部分省市试点绿色 GDP 核算（研究性工作，未成为常规发布口径）。这些方案的共同困境：环境价值如何定价争议极大，至今没有一个像 GDP 那样全球统一、可逐月发布的成熟替代指标。<strong>如实的结论是：GDP 有公认缺陷，但目前仍没有公认的替代品——所以正确姿势是"用它的长处、防它的短处"，而不是全盘抛弃或全盘迷信。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章 · 萨缪尔森、诺德豪斯《经济学》第19版（环境外部性与核算） · 联合国 SEEA 环境经济核算体系（官方统计框架，英文） · 地下经济规模估计相关学术研究（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>"唯 GDP 论"连官方都在反对</h3>
+      <p class="ctx">很多人以为"地方官员只看 GDP"是统计指标的锅，其实中国官方政策话语早已多次明确纠偏：从"不再简单以国内生产总值增长率论英雄"（2013 年前后中央组织工作会议等官方表述，见<a href="https://www.gov.cn/">中国政府网</a>新闻检索），到高质量发展成为政策主题词，GDP 在官方考核体系中的权重已被就业、环保、民生、债务风险等多维指标稀释。统计部门自己的定位也很清楚：GDP 是<strong>经济活动的总量指标</strong>，从来不是福祉指标、不是政绩的唯一标准。</p>
+      <p class="ctx">对普通读者的启示：当自媒体用"GDP 增速下滑=药丸"或"GDP 增速回升=躺赢"的句式时，它同时犯了两个错——把流量指标当福祉指标，把描述性数据当预测性结论。本课程的态度贯穿始终：<strong>数据用来理解世界，不用来吓唬自己</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/">中国政府网（"不简单以 GDP 论英雄"官方表述新闻检索入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、中国 GDP 数据是怎么产生的：流程、修订与"数据打架"</h2>
+    <p class="chapter-sub">初步核算→最终核实→历史修订：数字会变，是因为统计在进步</p>
+
+    <article class="view">
+      <h3>发布节奏：一张官方时间表</h3>
+      <p class="ctx">中国 GDP 数据的生产流水线（以国家统计局公开核算制度为准，制度文件可从<a href="https://www.stats.gov.cn/">统计局官网</a>统计法规与核算方法栏目检索）大致是：<strong>季度数据</strong>——季后 15 天左右发布初步核算数（一季度与上年四季度数据在 1 月中旬一起发布）；<strong>年度数据</strong>——次年 2 月末发布《国民经济和社会发展统计公报》（全景式年度数据，从<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>列表页可查历年公报），之后还有统计年鉴的最终核实数；<strong>经济普查年份</strong>——每五年一次全国经济普查（逢 3、逢 8 年份开展，如 2023 年第五次），普查后会对历史 GDP 数据进行系统修订。</p>
+      <p class="ctx">记住这张时间表的实用价值：看到"XX 年 GDP 数据"先确认是初步核算数还是最终核实数——两者有差异是正常的制度安排，不是"数字被改了"。历年数据请以<a href="https://www.stats.gov.cn/sj/ndsj/">《中国统计年鉴》在线版</a>为准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（季度数据与年度公报入口）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">《中国统计年鉴》在线版（最终核实数据）</a> · <a href="https://www.gov.cn/shuju/">中国政府网·数据频道（宏观数据聚合）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么数字会修订：普查、口径与方法进步</h3>
+      <p class="ctx">"GDP 数据后来被上调/下调了"常被解读出阴谋论味道，但修订的原因其实是技术性的：①<strong>经济普查补漏</strong>——普查能把常规报表覆盖不到的小微企业、个体户、新兴行业摸出来，历次普查后 GDP 总量普遍上调（如第四次经济普查后 2018 年 GDP 修订增加约 2.1%，国家统计局当年有专门解读，见<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>栏目检索）；②<strong>核算方法升级</strong>——研发支出计入投资、数字经济活动核算改进等；③<strong>基础数据修正</strong>——价格指数、行业权重的更新。</p>
+      <p class="ctx">国际通行做法同样如此：美国 BEA 每年对季度数做多次修订是公开制度，IMF 的数据质量评估（如对华 Article IV 磋商与数据倡议，<a href="https://www.imf.org/en/Countries/CHN">IMF 中国国别页</a>，英文，具体评估内容以官网为准）也对中国统计体系的改进有过正面记录。<strong>会修订恰恰是统计成熟的标志</strong>——从不修订的统计数据才值得警惕。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（经济普查修订官方解读入口）</a> · <a href="https://www.imf.org/en/Countries/CHN">IMF 中国国别页（英文，以官网发布为准）</a> · 《中国统计年鉴》历年卷（修订后序列）</div>
+    </article>
+
+    <article class="view">
+      <h3>"地方加总大于全国"是怎么回事</h3>
+      <p class="ctx">过去很多年，各省 GDP 加总起来大于全国 GDP，差额一度引发大量猜测。原因主要是技术性重复计算（跨地区经营的企业两地都记了一部分）与统计基础差异，而非简单的"地方注水"能概括。对此的官方解决方案是<strong>地区生产总值统一核算改革</strong>：2020 年起各省 GDP 由国家统计局统一核算、统一发布（国家统计局官方改革，见<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>与<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>栏目的改革说明），从制度上消除了"各省自报、加总打架"的空间。</p>
+      <p class="ctx">这段历史对普通读者的两点启示：①统计制度的缺陷可以用制度改革解决，识别问题与解决问题是两回事；②看到"数据打架"类爆料文章，先查它引用的是改革前还是改革后的数据、是初步核算还是最终核实——很多"实锤"只是时间错位的旧数据。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（地区生产总值统一核算改革说明入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · <a href="https://www.gov.cn/shuju/">中国政府网·数据（改革新闻检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、读 GDP 新闻的五个自查问题</h2>
+    <p class="chapter-sub">一套可以直接套用的动作：拿到任何一条 GDP 新闻，按顺序问五个问题</p>
+
+    <article class="view">
+      <h3>流程框：五问过滤法</h3>
+      <blockquote class="q">
+        <strong>看到"GDP"上热搜，依次问自己五个问题：</strong><br>
+        第 1 问：<strong>名义还是实际？</strong>——总量类数字（XX 万亿）是现价名义口径，增速类数字（增长 X%）默认实际口径；两者不能互相换算。<br>
+        第 2 问：<strong>同比还是环比？</strong>——同比对着去年同季（消除季节因素），环比对着上一季（通常经季节调整）；"环比折年率"是美国口径，中国季度环比不折年。<br>
+        第 3 问：<strong>初步核算还是最终核实？</strong>——季度数是初步核算，年度以次年 2 月统计公报、最终以统计年鉴为准；普查年后还有历史修订。<br>
+        第 4 问：<strong>全国还是地方？哪个口径？</strong>——2020 年起省级 GDP 由国家统计局统一核算；跨国比较先问汇率法还是 PPP。<br>
+        第 5 问：<strong>这个数字想说明什么、说明不了什么？</strong>——GDP 是生产流量，不衡量分配、家务、环境、幸福感，更不是行情预测；标题党的"崩溃""暴富"叙事都不在这个指标的职责范围内。<br>
+        <span class="qsrc">五问走完，90% 的 GDP 标题党自动失效。（本课程方法论，依据国家统计局核算制度与曼昆《经济学原理》第10章框架整理）</span>
+      </blockquote>
+      <div class="fig"><img src="../assets/img-01-2.png" alt="一个无脸人物站在发光放大镜后审视一块悬浮的新闻标题石板，石板周围漂浮五个几何问题图标（天平、时钟、印章、地图、问号），人物手中的 checklist 光板逐一亮起勾选标记，橄榄绿主色调配琥珀色光点" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（各口径官方说明入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章</div>
+    </article>
+
+    <article class="view">
+      <h3>演练一：一条真实的新闻标题怎么拆</h3>
+      <p class="ctx">示例标题（虚构格式、真实常见句式）："去年 GDP 突破 XX 万亿大关，增速全球领先！"用五问拆：①"突破 XX 万亿"是名义总量，价格因素含在内，不代表实际产出多了这么多；②"增速"是实际口径，与总量不是同一把尺子；③年度初步核算数，2 月公报与年鉴还会有核实修订；④"全球领先"——跟谁比？发达国家增速普遍更低是发展阶段差异（追赶经济体增速更高是经济学的收敛假说范畴，学术文献，英文），跟体量相近的发展中大国比才有信息量；⑤这句话想让你觉得"形势一片大好"，但一个总量+一个增速说明不了分配、就业质量、居民收入占比——想全面理解，需要把本章与<a href="../09-employment/">第9章</a>就业、<a href="../02-inflation/">第2章</a>物价放在一起看。</p>
+      <p class="ctx">再演练一条反向标题："GDP 增速创新低，经济要硬着陆？"同样五问：增速口径没问题（实际同比），但"新低"要跟历史基数比（疫情等特殊年份的基数效应会放大波动，第16章专门讲基数陷阱）；"硬着陆"是预测性断言——本站不预测，且此类词汇通常出现在需要流量而非需要准确的场合。<strong>两条标题用的是同一组数据，情绪完全相反——这就是为什么"读法"比"数字"更重要。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（增长与收敛的讨论见长期增长章节） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（基数效应与口径说明入口）</a> · 增长收敛假说相关学术文献（英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>去哪里查原始数据：三个官方入口</h3>
+      <p class="ctx">本课程反复强调"回到原始出处"，GDP 数据的三个官方入口（全部免费）：①<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a>——季度数据新闻稿与年度统计公报都在这里，注意看新闻稿附带的"解读稿"链接；②<a href="https://data.stats.gov.cn/">国家数据（stats.gov.cn 数据查询平台）</a>——可自定义查询年度/季度/月度序列并下载，写文章查数据首选；③<a href="https://www.gov.cn/shuju/">中国政府网·数据频道</a>——国务院门户的数据聚合页，适合速查。跨国数据加两个：<a href="https://data.worldbank.org/">世界银行数据平台</a>（英文）与 IMF WEO 数据库（英文，每年 4 月/10 月更新）。</p>
+      <p class="ctx">一个小技巧：统计局季度新闻稿的结构非常固定（总量与增速→三次产业→三大需求→价格与就业），读完几遍你会发现自己能"预判"新闻稿段落顺序——这就是数据素养带来的从容感。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · <a href="https://data.stats.gov.cn/">国家数据查询平台</a> · <a href="https://www.gov.cn/shuju/">中国政府网·数据</a> · <a href="https://data.worldbank.org/">世界银行数据平台（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于 GDP 的三大误区</h2>
+    <p class="chapter-sub">每条都流传极广，每条都经不起核算制度的检验</p>
+
+    <article class="view">
+      <h3>谣言粉碎：GDP 篇三连</h3>
+      <p class="ctx"><strong>误区一："GDP 增长就是国家赚了钱、老百姓就有钱了。"</strong>GDP 是生产流量，不是收入到账：它衡量境内新创造的增加值总量，其中包含折旧（机器设备的损耗补偿）、企业留存利润、政府税收，居民实际拿到的可支配收入只是其中一部分。统计局同时发布"居民人均可支配收入"序列（见<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>），两者增速可以不同步——"GDP 涨了但我的工资没涨"在统计上完全可能，因为分配结构在变化。用 GDP 增速直接推断个人收入，是把总量指标误用成了个体指标。</p>
+      <p class="ctx"><strong>误区二："GDP 都是投资堆出来的、是无效增长。"</strong>投资（资本形成）确实是增长的重要来源，尤其在后发追赶阶段（增长核算的经典结论：劳动、资本、全要素生产率三大来源，见<a href="../13-growth/">第13章</a>）；但"投资=无效"不成立——修的路、建的厂、装的光纤、投入的研发都在形成未来生产能力的资本存量。真正需要讨论的是<strong>投资的边际回报</strong>：同样一块钱投在不同领域、不同阶段，回报差异巨大，这是学术界与政策界持续研究的话题（学术文献，英文），也是"高质量发展"政策叙事的经济学背景。把复杂的效率问题简化成"投资都是浪费"，与"投资越多越好"一样是懒惰的口号。</p>
+      <p class="ctx"><strong>误区三："中国的 GDP 数字不可信。"</strong>这是最需要拆开说的谣言。合理的质疑（数据质量、修订透明度）与全称否定（"数字全是编的"）是两回事：①中国统计体系存在过真实缺陷——地方加总打架、小微经济漏统，而官方用统一核算改革、经济普查修订解决了大部分（第六节）；②IMF 作为国际机构定期对中国数据做技术评估与磋商（<a href="https://www.imf.org/en/Countries/CHN">IMF 中国国别页</a>，英文，具体结论以官网为准），评估框架是公开的技术流程而非背书仪式；③GDP 增速只是众多指标之一，用电量、货运量、税收、居民收入等独立序列可与它交叉验证（第16章教方法）。<strong>正确姿势：对任何国家的统计数据都保持"来源+口径+交叉验证"的习惯性警惕，但不需要用阴谋论替代核查。</strong>顺便提醒：编造、传播虚假经济信息本身是违法行为，本课程红线明确——"编造传播"只应出现在批判语境中。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（居民可支配收入序列入口）</a> · <a href="https://www.imf.org/en/Countries/CHN">IMF 中国国别页（英文）</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章 · 增长核算框架（Solow 增长核算，学术文献，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>GDP 定义的三要素是什么？"国内"的"内"指的是什么边界？</li>
+        <li>GDP 与 GNP/GNI 的区别一句话说清。</li>
+        <li>为什么 GDP 只算"最终产品"？二手车交易为什么不计入当年 GDP，而中介费计入？</li>
+        <li>流量与存量的区别？"国家财富"和 GDP 分别属于哪个？</li>
+        <li>用 30 元面条钱讲一遍"支出=收入=产出"的循环之旅。</li>
+        <li>支出法四大项是什么？买房算消费还是投资？买股票算不算 GDP 里的投资？</li>
+        <li>中国季度 GDP 以哪种核算方法为主？这与美国有什么不同？</li>
+        <li>名义 GDP 与实际 GDP 的区别？为什么新闻里"总量"和"增速"用的价格基准不同？</li>
+        <li>GDP 平减指数与 CPI 覆盖范围有什么不同？"名义增速低于实际增速"意味着什么？</li>
+        <li>"总量第二、人均六十多名"为什么不矛盾？人均 GDP 有什么局限？</li>
+        <li>汇率法与 PPP 两把尺子各适合比什么？巨无霸指数是什么性质的指标？</li>
+        <li>GDP 测不到的四样东西是什么？家务劳动盲区有什么现实意义？</li>
+        <li>用"破窗谬误"解释为什么污染治理支出推高 GDP 反而是核算缺陷。</li>
+        <li>绿色 GDP、GPI 这些替代方案为什么至今没取代 GDP？</li>
+        <li>中国 GDP 数据的发布节奏：季度初步核算、年度公报、统计年鉴、经济普查修订各在什么时候？</li>
+        <li>数据修订的三个技术性原因是什么？为什么说"会修订是统计成熟的标志"？</li>
+        <li>"地方加总大于全国"的成因与 2020 年起的制度解决方案是什么？</li>
+        <li>默写"读 GDP 新闻五问"，并用它拆解一条你最近看到的 GDP 标题。</li>
+        <li>三个免费官方数据入口是哪三个？跨国比较再加哪两个？</li>
+        <li>"GDP 涨了但我没涨"在统计上为什么可能？该看哪个配套指标？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>GDP＝一定时期内一国<strong>境内</strong>生产的<strong>最终</strong>产品与服务的<strong>市场价值</strong>，是流量不是存量；生产法、收入法、支出法三面核算殊途同归（一块钱的循环之旅），中国季度以生产法为主、美国以支出法为主；名义看总量、实际看增速，GDP 平减指数＝两者之比；人均 GDP 把"大"换算成"富"，跨国比较有汇率法与 PPP 两把尺子（结论可以相反，先问口径）；GDP 测不到家务劳动、地下经济，测不准环境代价与幸福感，"唯 GDP 论"官方也反对，但目前没有公认替代品——用其长处、防其短处；中国数据流程＝季度初步核算→年度公报→年鉴最终核实→普查年修订，2020 年起省级 GDP 统一核算；读新闻五问：名义还是实际？同比还是环比？初核还是核实？全国还是地方、什么口径？它能说明什么、说明不了什么？GDP 是理解经济的起点而不是终点——它不衡量分配、不预测行情，本站也不做任何预测。
+  </div>
+
+  <nav class="pager">
+    <a href="../00-intro/"><span class="dir">← 导论</span>普通人为什么要懂宏观经济</a>
+    <a href="../02-inflation/"><span class="dir">第2章 →</span>通货膨胀与紧缩：钱为什么变毛</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第1章 · 依据国家统计局官方核算制度与数据解读、《中国统计年鉴》、世界银行数据库、IMF 国别评估框架、曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版及相关学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

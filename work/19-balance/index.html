@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第19章 工作生活平衡与倦怠 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:var(--accent-deep);border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第19章 · 变化与长线</div>
+  <h1>工作生活平衡与倦怠</h1>
+  <p>WHO 的官方定义、六个组织诱因、三类边界、恢复的科学、自救三步与求助时机——这一章把"累"从性格问题还原成可以测量、可以干预的系统问题</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../18-side/">← 第18章：副业与第二曲线</a>
+    <a href="../20-future/">第20章：AI时代的职业未来 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">下不了班的人</a>
+    <a class="anchor" href="#s2">官方定义</a>
+    <a class="anchor" href="#s3">六个诱因</a>
+    <a class="anchor" href="#s4">边界管理</a>
+    <a class="anchor" href="#s5">恢复的科学</a>
+    <a class="anchor" href="#s6">工时与健康</a>
+    <a class="anchor" href="#s7">自救与求助</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为职业健康教育科普，仅供识别与自助参考，不构成医学诊断或心理治疗建议。职业倦怠是 WHO 界定的"职业现象"，不是疾病，但长期倦怠与抑郁焦虑高度相关；如果你已出现持续两周以上的情绪低落、兴趣丧失、失眠或自伤念头，请尽快前往医院精神心理科或拨打 <strong>12356 心理援助热线</strong>（24 小时，国家卫健委 2024 年公布的全国统一号码，官方检索口径）。紧急情况请直接拨打 <strong>120</strong>。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用 WHO 的三维度官方定义判断自己是不是职业倦怠，并分清它和"压力大""抑郁症"的区别；②说出倦怠的六个组织诱因，明白"倦怠主要是管理问题，不是员工脆弱"；③建立物理、时间、数字三类边界，改掉"随时在线"的习惯；④用科学方法恢复：休假怎么用才有效、微恢复怎么安排、睡眠为什么排第一；⑤走完自救三步：自评→减负谈判→专业求助，记住 EAP 和 12356 两个入口；⑥识破"倦怠就是矫情""辞职才能解决""年轻人就该拼"三个谣言。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>如果你现在正处于"累到麻木"的状态，先读 s2 确认性质，再直接跳到 s7 的自救三步——其余部分可以等有力气了再读。s4 的边界脚本和 s5 的恢复清单适合截图保存，在你想"再回一封邮件就睡"的时刻用得上。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、下不了班的人</h2>
+    <p class="chapter-sub">"累"不是性格缺陷，是有官方定义、有测量工具、有干预路径的系统问题</p>
+
+    <article class="view">
+      <h3>晚上十一点的群消息（示例）</h3>
+      <p class="ctx">晚上十点五十七分，阿哲洗完澡瘫在床上，工作群弹出一条消息："明早的客户方案再改一版，辛苦。"他盯着屏幕看了十秒钟，感到一阵熟悉的、混合着烦躁和麻木的东西从胸口升起——不是愤怒，愤怒需要能量；更像是一种"又来了，无所谓了"的钝感。他机械地打开电脑。这已经是他这个月第十一次在深夜处理"明早要"的需求。奇怪的是，他不觉得自己忙——事情做完就忘，没有成就感，也没有痛苦感，只是空。周末朋友约爬山，他推了；不是没时间，是"想到要说话就累"。（示例为虚构场景，人物为合成形象。）</p>
+      <p class="ctx">阿哲的状态，用一个流行的词概括叫"班味很重"，用职业心理学的准确术语说，是<strong>职业倦怠（burnout）的典型三件套</strong>：能量耗竭（累到麻木）、心理疏离（对工作和同事产生消极、冷漠、愤世的态度）、效能感下降（做了也没感觉，"空"）。这三个词不是文学修辞——它们是世界卫生组织在《国际疾病分类》第十一版（ICD-11）中给出的官方定义维度。换句话说，"累到麻木"不是你矫情、不是你抗压能力差，而是一个被国际公共卫生体系正式命名、有明确成因结构的现象。这一章的任务，就是把它从模糊的"难受"变成可以定位、可以干预的具体问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO：Burn-out an "occupational phenomenon" in the ICD-11（英文，职业倦怠官方定义三维度）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，工作压力与倦怠研究入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么"平衡"这个词总让人心虚</h3>
+      <p class="ctx">"工作生活平衡"（work-life balance）是个被说滥的词，滥到让人心虚：说出它，好像就承认自己不够拼；追求它，好像就配不上"优秀"。但把情绪化的词剥掉，它指向的是一个朴素的可持续性问题——<strong>人不是可以无限透支的资产</strong>。经济合作与发展组织（OECD）的"美好生活指数"把工作生活平衡列为 eleven 个生活质量维度之一，用"长工时雇员比例"和"休闲与个人照料时间"两个指标来测量；其跨国数据反复显示，长工时占比高的社会，主观幸福感与健康指标并不更好。</p>
+      <p class="ctx">更实际的证据来自健康侧：WHO 与国际劳工组织联合发表的全球疾病负担研究显示，每周工作 55 小时以上与中风、缺血性心脏病的风险显著上升相关——这是把"过劳"从感受变成了可测量的疾病负担。所以这一章不用"平衡"这个道德化的词，而用两个更中性的概念：<strong>可持续性</strong>（这份工作你能干多久）和<strong>恢复</strong>（消耗之后怎么补回来）。平衡不是五五开的时间分配，而是消耗与恢复的动态匹配。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.oecdbetterlifeindex.org/topics/work-life-balance/">OECD Better Life Index·Work-Life Balance（英文，长工时与休闲时间测量口径）</a> · <a href="https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo">WHO/ILO 联合研究：长工时与心血管疾病死亡负担（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、官方定义：倦怠是什么、不是什么</h2>
+    <p class="chapter-sub">WHO 三维度、"职业现象"的准确含义、与压力和抑郁的分界</p>
+
+    <figure class="fig"><img src="../assets/img-19-1.png" alt="抽象插画：一块电量见底的电池被放在检测台上，三盏指示灯分别标注耗竭、疏离、效能三个维度，旁边一位检查员拿着放大镜对照手册读数，象征倦怠的三维度识别" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>WHO 的三维度定义</h3>
+      <p class="ctx">2019 年，WHO 在 ICD-11 中更新了职业倦怠的定义，它由三个维度构成：<strong>①能量耗竭感</strong>（feelings of energy depletion or exhaustion）——不是睡一觉能缓过来的累，而是持续性的、深入骨髓的疲惫；<strong>②心理距离增加，或对工作产生消极、愤世的情绪</strong>（increased mental distance from one's job, or feelings of negativism or cynicism related to one's job）——曾经在意的事变得无所谓，曾经喜欢的同事变得面目可憎；<strong>③职业效能感下降</strong>（reduced professional efficacy）——觉得自己做什么都没用、做不好，产出质量与自我评价同步滑坡。</p>
+      <p class="ctx">三个维度要一起看：只有"累"而没有"冷"和"空"，更可能是短期压力；三个都齐了、且<strong>持续存在数周到数月</strong>，就符合倦怠的典型画像。注意定义里的两个限定词："related to one's job"——倦怠特指<strong>工作情境中</strong>的现象，生活中的普遍疲惫感不归它管；"chronic workplace stress that has not been successfully managed"——它是<strong>慢性</strong>压力管理失败的结果，不是一两次加班的直接产物。这决定了它的解法：单靠"休息一下"往往不够，要动的是压力源的结构。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO：Burn-out an "occupational phenomenon" in the ICD-11（英文，三维度定义原文）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，倦怠测量研究）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"职业现象"不是"疾病"——这个区分为什么重要</h3>
+      <p class="ctx">WHO 在 ICD-11 中把倦怠归类为"影响健康状态的与就业相关的因素"（factors influencing health status），明确它<strong>不是医学疾病</strong>（not classified as a medical condition），而是"职业现象"（occupational phenomenon）。当年新闻标题党写成"WHO 把倦怠列为疾病"，是误读。这个区分的实际意义有三层：<strong>第一</strong>，你不需要"确诊"——倦怠没有处方药，它不是去医院挂号开药能解决的问题，别被卖"抗倦怠保健品"的收割；<strong>第二</strong>，责任主体被明确了——"职业现象"这个定位把矛头指向工作情境与管理方式，而不是个人体质，这正是 s3 要讲的六诱因框架的立论基础；<strong>第三</strong>，它是预警信号而非终点——倦怠不被处理，向抑郁、焦虑、躯体化症状演变的概率显著上升，"现象"与"疾病"之间隔着的是干预时间窗。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO ICD-11 职业倦怠条目说明（英文，"occupational phenomenon"定位原文）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（心理健康促进行动口径，检索路径：首页→健康中国行动）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>倦怠、压力、抑郁：三张不同的脸</h3>
+      <table class="cmp">
+        <tr><th>维度</th><th>工作压力</th><th>职业倦怠</th><th>抑郁障碍（需专业诊断）</th></tr>
+        <tr><td><strong>情绪基调</strong></td><td>过度投入、焦虑、紧迫感——"太多事压着我"</td><td>耗竭、冷漠、麻木——"跟我没关系了"</td><td>持续低落、兴趣丧失、无价值感——弥漫到生活全部领域</td></tr>
+        <tr><td><strong>范围</strong></td><td>限于工作情境</td><td>限于工作情境（WHO 定义）</td><td>不分场合，工作之外同样如此</td></tr>
+        <tr><td><strong>时间性</strong></td><td>急性、事件驱动，事过缓解</td><td>慢性、累积性，休息只能部分缓解</td><td>持续两周以上是病程警戒线</td></tr>
+        <tr><td><strong>主要解法</strong></td><td>任务管理、优先级、短期恢复</td><td>压力源结构干预（s3、s7）+恢复</td><td>精神科诊断与治疗，不可硬扛</td></tr>
+      </table>
+      <p class="ctx">对照表最重要的用法是最后一行：<strong>如果你分不清自己是倦怠还是抑郁，按抑郁的路径处理——找专业评估</strong>。两者高度共病，自我判断的错误成本不对称：把抑郁当倦怠，代价是拖延治疗；把倦怠当抑郁去就医，代价只是一次门诊咨询。另外提醒一句：倦怠的"冷漠"维度很容易误伤亲密关系——对家人也提不起劲、易怒、疏离，这时候请让家人读一读这一章，让他们知道这是现象不是变心。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO ICD-11 倦怠条目（英文）</a> · <a href="https://www.who.int/zh/news-room/fact-sheets/detail/depression">WHO 中文《抑郁障碍》实况报道（两周病程标准与求助指引）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、倦怠从哪来：六个组织诱因</h2>
+    <p class="chapter-sub">Maslach 研究脉络的核心结论——倦怠主要是工作设计的问题，不是员工意志力的问题</p>
+
+    <article class="view">
+      <h3>六个诱因：工作量、控制感、回报、社群、公平、价值观</h3>
+      <p class="ctx">职业倦怠研究最重要的学者 Christina Maslach（MBI 倦怠量表的开发者）与 Michael Leiter 在系统综述中提出：倦怠源于个人与工作环境在六个领域的<strong>长期不匹配</strong>——①<strong>工作量</strong>（workload）：超出恢复能力的持续负荷；②<strong>控制感</strong>（control）：对工作方式、节奏、决策缺乏自主权；③<strong>回报</strong>（reward）：物质、社会或内在回报不足；④<strong>社群</strong>（community）：人际支持瓦解、冲突频发、孤立无援；⑤<strong>公平</strong>（fairness）：分配与程序不公、偏袒、双标；⑥<strong>价值观</strong>（values）：组织要求与你信奉的原则冲突。</p>
+      <p class="ctx">这个框架最有力的地方在于它的归因方向：六个诱因<strong>全部是组织侧变量</strong>。研究发现，倦怠与这六个领域错配的数目和深度成正比——错配越多越深，倦怠越重；反过来，改善任一领域都能带来缓解。也就是说，"为什么我这么累"的答案，大概率不在"我为什么这么弱"里。自查方法：拿六项逐一对照自己的工作，写下错配最严重的前两项——它们就是你的干预靶点，s7 的减负谈判要谈的就是这两项。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Maslach &amp; Leiter, Understanding the burnout experience: recent research and its implications for psychiatry, World Psychiatry 2016（英文，DOI: 10.1002/wps.20311，六诱因框架） · <a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO ICD-11 倦怠条目（英文，"chronic workplace stress"成因定位）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>个人对策与组织对策：两张清单分开开</h3>
+      <p class="ctx">面对六诱因，干预手段分两类，混在一起谈就会变成"公司生病、员工吃药"。先说清楚：<strong>组织对策才是治本的</strong>——合理排班与工作量核算（工作量）、授权与参与决策（控制感）、薪酬与认可体系（回报）、团队建设与支持小组（社群）、透明的规则与申诉渠道（公平）、使命共识与不当任务拒绝机制（价值观）。这些只有管理者能做，s8 会写给未来当管理者的你。</p>
+      <p class="ctx"><strong>个人对策</strong>能做的三件事：①<strong>降低暴露</strong>——边界管理（s4）控制消耗速度；②<strong>提升恢复</strong>——科学恢复（s5）提高回血效率；③<strong>改变情境</strong>——减负谈判（用<a href="../11-boss/">第11章</a>的向上管理方法，把六诱因里的错配项变成具体议题）、内部调岗、必要时换工作（用<a href="../16-change/">第16章</a>的决策框架）。注意个人对策的天花板：如果六个领域错配了四五个且组织毫无改善意愿，个人策略只能延缓不能逆转——这时候诚实的答案在第16章，不在本章。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Maslach &amp; Leiter 2016（英文，个人-组织干预分层） · <a href="https://www.oecdbetterlifeindex.org/topics/work-life-balance/">OECD Better Life Index·Work-Life Balance（英文，组织侧工时制度对照数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"情绪劳动"：看不见的第四份工</h3>
+      <p class="ctx">六诱因之外，有一类消耗特别容易被低估：<strong>情绪劳动</strong>（emotional labor）——岗位要求的表情管理、情绪表演与冲突吸收。客服要永远耐心，销售要永远热情，管理者要永远稳定，医护要永远共情；这些"永远"都是有成本的。社会学家 Hochschild 最早提出这个概念：当工作不仅要求你做事，还要求你<strong>表演特定感受</strong>时，表层扮演（心里烦但脸上笑）与深层耗竭显著相关。情绪劳动密集岗位的倦怠率长期高于同工时的一般岗位。</p>
+      <p class="ctx">如果你处在情绪劳动密集的岗位，三个针对性做法：①<strong>给表演留后台</strong>——每段高强度情绪表演后安排几分钟"卸装时间"（独处、走动、喝水），不要连续接敌；②<strong>区分角色与自我</strong>——被投诉骂的是"客服这个角色"，不是你这个人，这个心理区隔需要刻意练习；③<strong>争取组织支持</strong>——情绪劳动岗位更需要 s3 讲的社群因素：同事间的相互疏导、主管对无理投诉的挡箭，这些是可以正当地向管理方提出的工作设计诉求。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hochschild, The Managed Heart（1983，情绪劳动概念原著，英文，书籍文字引用） · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，情绪要求与工作压力研究）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、边界管理：物理、时间、数字三道闸</h2>
+    <p class="chapter-sub">"随时在线"不是敬业，是用恢复时间补贴工作——而且补贴得毫无议价</p>
+
+    <figure class="fig"><img src="../assets/img-19-2.png" alt="抽象插画：一道发光的门分隔左右两个空间，左侧是堆满任务符号的工作台，右侧是沙发、书本和一杯茶的休憩角落，门上有时钟与手机的图标，象征工作与生活的三道边界闸" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>物理边界与时间边界：给工作画一个"场地"和"钟点"</h3>
+      <p class="ctx">远程与混合办公模糊了工作对生活的侵蚀路径，重建边界要先从物理和时间两个维度动手。<strong>物理边界</strong>：在家办公设固定工作角——哪怕只是餐桌的一角加一盏灯，"坐下=工作，离开=下班"，让身体建立场地条件反射；最要避免的是在床上工作，床一旦和工作绑定，失眠就有了物理锚点。<strong>时间边界</strong>：设定明确的"关闸时刻"并仪式化——关掉工作电脑、整理明日清单、换衣服、散步十分钟，用固定动作给大脑发"今天结束了"的信号；研究显示，下班后的"心理脱离"（psychological detachment，彻底不想工作）是预测恢复质量的最强变量之一，而模糊的边界让脱离永远不会发生。</p>
+      <p class="ctx">时间边界还有一条容易被忽略的：<strong>通勤的消失不是福利</strong>。传统通勤虽然烦人，但它是天然的缓冲区——强制的"角色切换时间"。远程办公需要自己造缓冲：下班后二十分钟的散步、一段播客、一次洗澡，功能等同于通勤。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Sonnentag &amp; Fritz, Recovery from job stress: psychological detachment 研究脉络（英文，Psychological detachment 概念，文字引用） · <a href="https://www.oecdbetterlifeindex.org/topics/work-life-balance/">OECD Better Life Index·Work-Life Balance（英文，远程工作与工时边界讨论）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>数字边界：通知管理与"离线权"</h3>
+      <p class="ctx">数字设备把办公室装进了口袋，也把工作日的实际长度拉长了。法国等国家已立法确立"离线权"（right to disconnect，超过一定规模的企业须与员工协商下班后不回复电子通讯的规则）；我国虽无同名立法，但司法实践已经在向这个方向走——"隐形加班"相关案件中，法院对劳动者下班后利用社交媒体持续处理工作、付出实质性劳动的情形，认可了加班费请求（相关案例被写入最高法与人社部联合发布的典型案例口径）。这意味着：<strong>"下班后回消息不算工作"的说法，在法律上已经站不住了</strong>。</p>
+      <p class="ctx">个人层面的数字边界三件套：①<strong>通知分级</strong>——只有直属上级与关键项目群保留即时提醒，其余一律静音定时查看；把"所有通知都即时"当成默认设置，等于把工作节奏的遥控器交给别人；②<strong>响应预期管理</strong>——主动告知协作方自己的响应窗口（"晚8点后消息次日9点回复，急事打电话"），并说到做到；预期是你建立的，不是别人强加的；③<strong>设备分区</strong>——条件允许的话工作与生活分开设备或账号，物理隔离永远比意志力可靠。至于要不要回深夜消息：真急事会打电话，发消息的"急"多数是对方的焦虑不是事实的火情。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.court.gov.cn/zixun/xiangqing/319161.html">最高人民法院、人社部超时加班劳动人事争议典型案例（工时红线官方口径）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动法》第41条、第44条（加班时长上限与加班费）</a>（"隐形加班"司法动态为公开报道口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>边界话术：三句可以直接用的话</h3>
+      <blockquote class="q">建立边界的三句脚本（按需取用，语气平静、不解释过多）：<br>① <strong>承接量谈判</strong>："我可以接这个任务。目前手上有 A 和 B，如果 C 优先，A 和 B 哪个可以往后排？"（把"做不完"转化为"请排序"，让分配决策回到有权做的人手里）<br>② <strong>非工作时间</strong>："收到，我现在在外面/已下班，明早九点第一件事处理。如果是紧急情况请打电话给我。"（给出确定的替代时间+真正的紧急通道，既不失控也不失责）<br>③ <strong>情绪劳动止损</strong>："这个问题我需要先核实情况，十分钟后答复您。"（面对指责性沟通时的暂停键——不接情绪，只接事实）<span class="qsrc">—— 综合向上管理与冲突处理框架整理的沟通脚本（教学整理，配合第11、13章使用）</span></blockquote>
+      <p class="ctx">三句话的共同设计：<strong>不对抗、不解释、给替代方案</strong>。边界不是墙，是门——门的意义是你决定什么时候开，而不是谁都能推。第一次使用会有强烈的心虚感，这是正常的：边界话术的效果取决于一致性，说了三次之后，别人对你的预期就重建了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/2005/01/managing-your-boss">HBR《Managing Your Boss》Gabarro &amp; Kotter（英文，承接量与预期管理的经典框架）</a> · <a href="https://hbr.org/2019/03/the-feedback-fallacy">HBR《The Feedback Fallacy》Buckingham &amp; Goodall（英文，高压沟通中的事实-解读分离）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、恢复的科学：休假、微恢复与睡眠</h2>
+    <p class="chapter-sub">恢复不是"不工作"，是一套有讲究的主动行为</p>
+
+    <article class="view">
+      <h3>休假的正确打开方式</h3>
+      <p class="ctx">年假是法定权利——《职工带薪年休假条例》规定累计工作满 1 年不满 10 年的年休假 5 天、满 10 年不满 20 天的 10 天、满 20 天的 15 天，单位确因工作需要不能安排的，应按日工资收入的 300% 支付未休年假报酬。但很多人"有假不会休"：攒到年底被迫连休、休假期间持续处理消息、休完感觉更累。恢复研究给出的三个要点：<strong>①频率优于时长</strong>——多次短假（三四天）的恢复效果不输一次长假，且避免了长假前后的工作堆积焦虑；<strong>②脱离要彻底</strong>——休假时查邮件会让恢复效果大打折扣，出发前做好交接与自动回复，把"找不到你"设计成默认状态；<strong>③内容要主动</strong>——躺着刷手机的"被动休闲"恢复效率低，运动、自然、社交、爱好这类"主动休闲"才是有效的心理脱离。</p>
+      <p class="ctx">顺带破除一个职场潜规则的迷思："休年假会被视为不敬业"。法律立场恰好相反：安排职工休年假是单位的法定义务，不安排又不付报酬是违法的。把年假当作绩效的敌人，是把管理失败转译成了员工的自我剥削。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《职工带薪年休假条例》（年假天数与300%报酬条款）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，休假与恢复研究）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>微恢复：工作日内的回血技术</h3>
+      <p class="ctx">年假一年就那么几天，真正决定消耗-恢复平衡的是<strong>工作日内的微恢复</strong>（micro-recovery）。经过验证的几种：<strong>①微休息</strong>——每工作 50-90 分钟起身活动 5 分钟（接水、远眺、爬一层楼梯），注意力研究的共识是持续专注有生理节律，硬撑的边际产出趋近于零；<strong>②午间小憩</strong>——20 分钟以内的午睡能显著改善下午的警觉与情绪，超过 30 分钟反而昏沉；<strong>③自然接触</strong>——在绿化环境里走 10 分钟，压力生理指标的下降快于室内同等时长的休息；<strong>④社交零食</strong>——与同事的非工作闲聊、给朋友发条消息，微小的正性社交互动是情绪的快速补给；<strong>⑤运动</strong>——每周 150 分钟中等强度有氧是 WHO 的身体活动建议量，对情绪与睡眠的改善有大量证据支持，下班后的运动同时也是最强的"角色切换仪式"。</p>
+      <p class="ctx">微恢复的关键不是项目多高级，而是<strong>规律</strong>：把它绑定在既有习惯上（午饭后必散步、会议间隙必起身），比"有空再放松"的 intentions 有效一个数量级。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/zh/news-room/fact-sheets/detail/physical-activity">WHO 中文《身体活动和久坐行为》实况报道（每周150分钟建议量）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，工间恢复研究入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>睡眠：所有恢复手段的地基</h3>
+      <p class="ctx">如果只能改一件事，改睡眠。睡眠科学的基本结论对职场人足够扎心：长期睡眠不足首先损害的不是体力，而是<strong>前额叶功能</strong>——情绪调节、冲动控制、复杂决策、工作记忆全线降级。换句话说，缺觉的你不是"效率低一点的正常你"，而是一个情绪更脆、判断更差、更容易和人冲突的降级版本；而被工作侵占的睡眠，恰恰需要用更好的情绪与判断去应对工作——这是个自我锁死的循环。WHO 及各国睡眠机构的通行建议是成年人规律睡足 7 小时以上。</p>
+      <p class="ctx">职场场景的睡眠卫生四条：①<strong>固定的起床时间</strong>比固定的入睡时间更重要——周末补觉别超过平时起床后两小时，否则周日晚上必然失眠（社交时差）；②<strong>睡前一小时离开工牌</strong>——邮件与群消息是最强的觉醒剂，把"最后看一眼"的时间点前移到睡前一小时之外；③<strong>床只用于睡觉</strong>——不在床上工作、刷手机，保住"床=睡眠"的条件反射；④<strong>躺下20分钟睡不着就起来</strong>——到昏暗环境里做点无聊的事，有困意再回床；在床上翻烙饼是在训练"床=清醒焦虑"。持续一个月以上的入睡困难、早醒或白天嗜睡，属于需要就医评估的睡眠问题，别硬扛。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/zh/health-topics/noncommunicable-diseases">WHO 中文健康专题（睡眠与健康关联的官方口径入口）</a> · <a href="http://www.nhc.gov.cn/">国家卫健委官网（《健康中国行动》心理健康与睡眠健康促进行动，检索口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、工时与健康：法律红线与国际对照</h2>
+    <p class="chapter-sub">"996 是福报"不是观点问题，是法律问题——官方早已给出答案</p>
+
+    <article class="view">
+      <h3>中国工时制度的官方红线</h3>
+      <p class="ctx">先把法律口径钉死：《劳动法》规定国家实行劳动者<strong>每日工作时间不超过八小时、平均每周工作时间不超过四十四小时</strong>的工时制度（国务院相关规定进一步明确每周 40 小时标准工时）；因特殊原因延长工作时间，<strong>每月不得超过三十六小时</strong>，且一般每日加班不超过一小时、特殊原因下每日不超过三小时；加班费标准为工作日 150%、休息日 200%（不能补休时）、法定节假日 300%。2021 年，最高人民法院与人社部联合发布超时加班典型案例，其中明确：<strong>"996"（工作日早9点至晚9点、每周6天）严重违反法律关于延长工作时间上限的规定，应认定为无效</strong>——即便写进了规章制度、即便员工签了"自愿奋斗"协议，也无效。</p>
+      <p class="ctx">这意味着两件事：第一，拒绝违法超时加班是法定权利，不是"态度问题"；第二，如果你正处在系统性超时的工作里，你面对的不是"要不要拼"的价值观选择题，而是"权利如何主张"的操作题——协商、工会、劳动监察（12333）、仲裁（第14章有完整流程）都是合法通道。用健康为违法工时买单，还倒贴"福报"的赞美诗，是双重亏损。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.court.gov.cn/zixun/xiangqing/319161.html">最高人民法院、人社部超时加班劳动人事争议典型案例（"996 严重违法"官方口径）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动法》第36条、第41条、第44条</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国际对照：长工时的剂量-反应关系</h3>
+      <p class="ctx">WHO 与国际劳工组织（ILO）2021 年联合发布的全球疾病负担研究，是迄今长工时健康风险最系统的量化：与每周工作 35-40 小时相比，<strong>每周工作 55 小时以上</strong>与中风风险上升约 35%、缺血性心脏病风险上升约 17% 相关；研究估算 2016 年约有 74.5 万人死于长工时相关的心脑血管疾病负担，且男性与中老年劳动者占比更高。这是"过劳死"从新闻词汇变成流行病学结论的时刻——长工时与健康损害之间是剂量-反应关系，不是个别体质的意外。</p>
+      <p class="ctx">OECD 的工时统计提供了另一个参照系：其成员国年平均工时大多在 1400-1900 小时区间，而"每周 50 小时以上雇员占比"被美好生活指数列为工作生活平衡的核心负向指标——多数发达国家把这个比例压在 10% 以下并持续下降。这些数据不是"外国月亮圆"的论据，而是一个提醒：<strong>把长工时美化为奋斗文化，在全球公共卫生视角下已被定性为健康风险因素</strong>。个人层面能做的，是把自己每周的实际工时（含隐形加班）如实算一次——很多人第一次算完的结果，比自己以为的多出十小时。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo">WHO/ILO 长工时与死亡负担联合研究（英文，55小时+风险量化）</a> · <a href="https://www.oecdbetterlifeindex.org/topics/work-life-balance/">OECD Better Life Index·Work-Life Balance（英文，周50小时以上雇员占比指标）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、自救三步与求助时机</h2>
+    <p class="chapter-sub">自评→减负谈判→专业求助：每一步都有明确的升级条件</p>
+
+    <article class="view">
+      <h3>第一步：自评——把"难受"变成数据</h3>
+      <blockquote class="q">倦怠自评四问（每月一次，用 1-5 分打分并记录趋势）：<br>① <strong>耗竭</strong>：周日晚上/周一早上，想到工作的疲惫感有几分？<br>② <strong>疏离</strong>：这个月我有多少次"无所谓、爱咋咋地"的麻木时刻？<br>③ <strong>效能</strong>：我觉得自己的产出质量与三个月前相比是升是降？<br>④ <strong>外溢</strong>：工作的负面情绪有没有带到家庭与睡眠里？<br>判读：单项≥4 或总分≥12 持续两个月 → 启动第二步减负谈判；伴随持续低落、失眠、兴趣丧失超过两周 → 直接跳第三步专业评估。<span class="qsrc">—— 依据 WHO 三维度定义整理的自评框架（教学整理，非诊断工具；正式测量请使用 MBI 等专业量表并由专业人员施测）</span></blockquote>
+      <p class="ctx">自评的意义不是给自己贴标签，而是<strong>建立基线与趋势</strong>：倦怠是慢性过程，单点感受骗人，三个月的曲线不骗人。记录本身也有干预效果——把模糊的痛苦写成数字与事件，控制感就回来了一点，而控制感恰恰是六诱因之一。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO ICD-11 倦怠三维度（英文，自评框架依据）</a> · Maslach Burnout Inventory（MBI）量表体系（英文，专业测量工具，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>第二步：减负谈判——把倦怠议题变成工作设计议题</h3>
+      <p class="ctx">自评发现问题后，下一步不是辞职，也不是硬扛，而是<strong>带着数据去谈判</strong>。用第11章向上管理的方法，把六诱因里你的错配项翻译成三个具体请求：工作量错配→"我手上同时有五个项目，请帮我排序，或把 X 移交给其他人"；控制感错配→"这个流程我希望在方案确定前有一次确认节点"；回报错配→"我想聊聊这个季度的贡献与调薪/晋升路径的对应关系"。三个谈判纪律：①<strong>谈结构不谈情绪</strong>——"我需要调整任务分配"优于"我快撑不住了"，后者容易被安慰两句打发；②<strong>带着方案谈</strong>——每个请求配一个对方容易说 yes 的具体选项；③<strong>留书面记录</strong>——谈完用邮件或消息复述结论，这既是执行依据，也是万一走到仲裁时的证据。</p>
+      <p class="ctx">给谈判设一个期限与检验点（比如三个月）：期满回看自评曲线，改善→继续经营；无改善且组织无意愿→说明错配在组织侧不可修复，切换到第16章的去留决策。谈判的价值不止于结果——它让你从"受害者"位置回到"经营者"位置，这本身就是对效能感维度的修复。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/2005/01/managing-your-boss">HBR《Managing Your Boss》Gabarro &amp; Kotter（英文，谈判与预期管理框架）</a> · Maslach &amp; Leiter 2016（英文，六诱因作为干预靶点）</div>
+    </article>
+
+    <article class="view">
+      <h3>第三步：专业求助——EAP、12356 与精神科</h3>
+      <p class="ctx">什么时候必须升级到专业帮助？三条硬标准，满足任何一条就别再自助：<strong>①症状越界</strong>——出现持续两周以上的情绪低落、兴趣丧失、显著失眠或嗜睡、食欲体重明显变化，或任何自伤念头（有自伤念头请立即求助，不要等）；<strong>②功能受损</strong>——无法维持正常工作、社交退缩到影响基本生活；<strong>③自助失效</strong>——认真执行了 s4、s5 的边界与恢复方案一个月以上，自评曲线仍无改善。</p>
+      <p class="ctx">求助渠道按成本从低到高排：<strong>EAP</strong>（Employee Assistance Program，员工帮助计划）——很多公司为员工购买的外部心理支持服务，通常免费、保密（服务方不向公司披露个人内容），先查你的员工手册或问 HR 有没有这个福利；<strong>12356 心理援助热线</strong>——国家卫健委 2024 年公布的全国统一心理援助热线号码，24 小时免费（官方检索口径）；<strong>医院精神心理科</strong>——怀疑达到抑郁焦虑障碍程度时的正解，诊断与药物治疗只有医疗机构能做；<strong>社会心理咨询</strong>——发展性议题的持续支持，选择时核验受训背景与伦理规范。记住求助的性质：它不是软弱，是和牙疼去看牙一样的健康管理动作。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.nhc.gov.cn/">国家卫健委官网（12356 心理援助热线，官方检索口径）</a> · <a href="https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases">WHO ICD-11 倦怠条目（英文，倦怠与疾病分界的官方说明）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，EAP 与工作场所心理支持）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>写给未来当管理者的你：倦怠是管理问题</h3>
+      <p class="ctx">本课程的大部分读者终将成为或已经是管理者。请把本章的核心结论带进你的管理实践：<strong>团队的倦怠水平是你的管理仪表盘，不是员工的意志力测验</strong>。六诱因框架给了你六块仪表盘：工作量——排期时算的是"人·天"还是"愿望"？控制感——你授权到任务还是授权到方法？回报——干得好的人多久没被具体地认可过了？社群——团队里有没有人正在被孤立或围攻？公平——同样的错，你对待绩优者和边缘者一样吗？价值观——你有没有让下属执行过连你自己都不信的事？</p>
+      <p class="ctx">管理侧的三个低成本动作：①<strong>把恢复制度化</strong>——不表扬深夜秒回消息的人，表扬白天高效交付的人；休假交接模板化，让"敢休假"不依赖个人勇气；②<strong>例会加一问</strong>——一对一沟通时问"最近哪件事最消耗你"，并且真的据此调整分配；③<strong>自己先示范</strong>——管理者自己的下班消息就是团队的隐形加班令，你的边界就是团队的上限。员工倦怠到离职，替换成本通常是其年薪的一倍以上；相比之下，所有预防性管理动作都是便宜的。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Maslach &amp; Leiter 2016（英文，组织侧干预框架） · <a href="https://hbr.org/2005/01/managing-your-boss">HBR《Managing Your Boss》（英文，上下级相互责任的双向视角）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于"累"的三个谎言</h2>
+    <p class="chapter-sub">每个谎言都在劝你放弃正当权利、延迟正当求助</p>
+
+    <article class="view">
+      <h3>谣言粉碎：倦怠问题上的三个谎言</h3>
+      <p class="ctx"><strong>谎言一："倦怠就是矫情，我们当年更苦。"</strong>错在两处。其一，倦怠是被 WHO 正式界定的职业现象，有明确三维度与大量实证研究，把它说成性格问题，等于把糖尿病说成"嘴馋"；其二，Maslach 的研究反复表明倦怠的主因是六类组织错配——同样"能吃苦"的人，在错配严重的环境里倦怠率一样高。"当年更苦"既不改变今天问题的性质，也不构成今天不处理的理由：当年的苦很多也是违法工时，只是没人主张权利。</p>
+      <p class="ctx"><strong>谎言二："撑不下去就辞职，一走了之全解决。"</strong>辞职有时是正解（s7 讲了判断条件），但"只能靠辞职"是错的。六诱因中至少工作量、控制感、回报三项可以通过谈判与调岗在当前组织内改善；更重要的是，不做归因分析就裸辞的人，大概率把同样的错配模式带进下一份工作——换个地方继续倦怠。正确顺序永远是：先自评定位错配项→谈判或调岗→无效再评估去留（第16章的框架），辞职是流程的最后一步，不是情绪的第一步。</p>
+      <p class="ctx"><strong>谎言三："年轻人就该拼，谈平衡是中年人的借口。"</strong>这句话把长工时美化为成长捷径，与官方口径直接冲突：最高法与人社部联合典型案例明确"996 严重违法"；WHO/ILO 研究显示长工时的健康损害是剂量-反应关系，年轻不是豁免证——55 小时以上工时的风险在中青年群体中同样显著。更实际的反驳是：拼的定义应该是<strong>单位时间内的刻意练习密度</strong>，而不是在线时长；疲劳状态下的"拼"，拼的是低质量重复，成长效率反而最低。真正的职业长跑选手，都把恢复当作训练计划的一部分。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.court.gov.cn/zixun/xiangqing/319161.html">最高人民法院、人社部超时加班典型案例（"996 严重违法"）</a> · <a href="https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo">WHO/ILO 长工时研究（英文）</a> · Maslach &amp; Leiter 2016（英文，组织归因证据）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能给朋友讲清楚，才算真的学会了</p>
+
+    <div class="checklist">
+      <h4>📋 平衡与倦怠自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>WHO 对职业倦怠的三维度定义是什么？各自对应什么感受？</li>
+        <li>为什么 WHO 说倦怠是"职业现象"而不是"疾病"？这个区分的三层实际意义是什么？</li>
+        <li>倦怠、工作压力、抑郁障碍在情绪基调、范围、时间性上怎么区分？分不清时按哪个处理？</li>
+        <li>Maslach 六诱因是哪六个？为什么说它们全是"组织侧变量"？</li>
+        <li>个人对策的三件事是什么？它的天花板在哪里？</li>
+        <li>什么是情绪劳动？表层扮演为什么耗人？三个针对性做法是什么？</li>
+        <li>物理边界里的"场地条件反射"怎么建立？为什么不能在床上工作？</li>
+        <li>"心理脱离"是什么？为什么通勤消失后需要自造缓冲区？</li>
+        <li>数字边界三件套是什么？"离线权"在国外的立法实践和我国的司法动态各是什么？</li>
+        <li>三句边界脚本分别用在什么场合？它们的共同设计原则是什么？</li>
+        <li>年假的法定天数分几档？未休年假的报酬标准是多少？"休假不敬业"的说法为什么站不住？</li>
+        <li>微恢复的五种方式是什么？哪一种同时是"角色切换仪式"？</li>
+        <li>睡眠不足首先损害的是什么功能？睡眠卫生四条分别是什么？</li>
+        <li>中国工时制度的每日、每周上限和每月加班上限分别是多少？"996"的官方定性是什么？</li>
+        <li>WHO/ILO 研究中，每周 55 小时以上工时与哪些疾病风险显著相关？</li>
+        <li>倦怠自评四问分别测什么维度？什么分数该启动减负谈判、什么情况直接找专业帮助？</li>
+        <li>减负谈判的三个纪律是什么？为什么"谈结构不谈情绪"？</li>
+        <li>专业求助的三条硬标准是什么？EAP、12356、精神科、社会咨询四个渠道怎么排序使用？</li>
+        <li>作为管理者，六块仪表盘分别问什么？三个低成本动作是什么？</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>📌 本章要点速览：</strong>倦怠=WHO 三维度（耗竭/疏离/效能下降），是慢性职场压力管理失败的"职业现象"而非疾病，与抑郁分不清时按抑郁路径找专业评估；六诱因（工作量/控制感/回报/社群/公平/价值观）全是组织侧变量——倦怠主要是管理问题；个人对策三件事：降暴露（边界）、提恢复（科学休息）、改情境（谈判/调岗/离职），天花板是组织无改善意愿；边界三道闸：物理（工作角+关闸仪式）、时间（脱离+自造缓冲）、数字（通知分级+响应预期+设备分区），三句脚本"不对抗不解释给替代"；恢复讲科学：短假多次+彻底脱离+主动休闲，微恢复绑定既有习惯，睡眠是地基（固定起床时间+睡前一小时离线）；工时红线：每日≤8小时、每月加班≤36小时、加班费150/200/300%，"996 严重违法"是两部门典型案例口径；WHO/ILO：周55小时+与中风、心脏病风险显著相关；自救三步：四问自评记趋势→带数据减负谈判（三个月检验点）→三条硬标准升级专业求助（EAP/12356/精神科）；管理者把六诱因当仪表盘，员工倦怠的替换成本远高于预防成本；三个谎言（矫情论/一走了之论/年轻人该拼论）都经不起官方口径与研究证据的检验。
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../18-side/"><span class="dir">← 第18章</span>副业与第二曲线</a>
+    <a href="../20-future/"><span class="dir">第20章 →</span>AI时代的职业未来：十年规划</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第19章 · 依据 WHO ICD-11 职业倦怠条目、WHO/ILO 长工时研究、Maslach &amp; Leiter（World Psychiatry 2016）、《劳动法》《职工带薪年休假条例》、最高人民法院与人社部超时加班典型案例、OECD Better Life Index 及 APA 健康职场资料整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业健康教育参考，不构成医学诊断或心理治疗建议 · 心理援助请拨打 12356 · 紧急情况请拨打 120 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 投资策略：一次性投入与定投 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第9章 · 估值与实操工具</div>
+  <h1>投资策略：一次性投入与定投</h1>
+  <p>"怎么买"和"买什么"同样重要——本章讲清一次性投入与定投的原理、适用条件、实操细节与卖出纪律</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-account/">← 第8章：开户与交易规则</a>
+    <a href="../10-tax/">第10章：费用与税 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">策略先于选股</a>
+    <a class="anchor" href="#s2">一次性投入</a>
+    <a class="anchor" href="#s3">定投原理</a>
+    <a class="anchor" href="#s4">定投实操</a>
+    <a class="anchor" href="#s5">仓位管理</a>
+    <a class="anchor" href="#s6">再平衡</a>
+    <a class="anchor" href="#s7">卖出纪律</a>
+    <a class="anchor" href="#s8">不推荐的策略</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①说清"投资策略"解决的是什么问题（资金投入的节奏与纪律），以及它为什么比"选到牛股"更决定普通人的最终收益；②复述一次性投入与定投各自的逻辑、研究证据与适用条件，不再纠结"现在是不是好时机"；③独立设计一份适合自己的定投方案：频率、金额、标的、止盈与暂停规则一次写清；④理解仓位管理与再平衡的机制，会用"阈值法"或"日历法"给组合做定期体检；⑤列出卖出的正当理由与危险信号，把卖出从情绪决定变成规则决定；⑥说出至少三种不适合普通人的策略及其背后的成本与行为学原因，并对照自己的性格与现金流选出"拿得住"的方案。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>如果你手里有一笔闲钱正在纠结"一把买还是分批买"，直接看第二、三节的对照表和第四节实操清单；如果你已经在定投但总是拿不住，看第四节的纪律五则和第七节的卖出纪律；如果你是第一次接触"再平衡"这个词，第六节会用一个教学示例把它讲透。全章所有数字均为教学示例，不构成投资建议。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、策略先于选股："怎么买"决定了一半的成败</h2>
+    <p class="chapter-sub">同样的标的、同样的市场，不同的买入方式与持有纪律，结果可能天差地别</p>
+
+    <article class="view">
+      <h3>策略解决的是"节奏与纪律"，不是"预测"</h3>
+      <p class="ctx">很多人以为"投资策略"就是"低买高卖的窍门"，于是四处寻找"最佳买点"。这是对策略最常见的误解。本章讲的策略，回答的是三个非常朴素的问题：<strong>一笔钱应该一次投进去还是分批投进去？每一批投多少、隔多久投一次？什么情况下继续、什么情况下暂停或退出？</strong>注意，这三个问题没有一个需要预测市场涨跌——恰恰相反，好的策略之所以对普通人有效，正是因为它<strong>承认我们无法预测短期走势</strong>，转而用规则和节奏把"预测"从决策中剔除出去。马尔基尔在《漫步华尔街》中反复强调的核心观点之一就是：既然连专业机构都难以持续战胜市场（<a href="../05-index/">第5章</a>讲过 SPIVA 记分卡的长期结论），普通人最理性的做法不是寻找圣杯，而是建立一套"不依赖预测也能长期执行"的投入方案。</p>
+      <p class="ctx">为什么策略如此重要？因为对最终收益的影响链条是这样的：<strong>资产配置决定组合的大致风险收益特征，投入节奏决定你的平均成本，持有纪律决定你能不能把这些"纸面收益"真正拿到手</strong>。基金业协会的投教材料和中国证监会的投资者教育内容里都反复出现一个现象：不少基金的持有人实际收益远低于基金本身的净值涨幅，原因不是基金不行，而是投资者在净值高点蜂拥申购、在低点恐慌赎回——同一只基金，不同的买卖节奏，结果完全不同。策略，就是把"节奏"从随情绪摇摆的变量，变成事先写好的常量。这一章之后，你在<a href="../08-account/">第8章</a>开好账户里的每一笔钱，都应该按一份写好的策略执行，而不是按当天的心情执行。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：马尔基尔《漫步华尔街》（经典教材，书籍引用，注明版本：机械工业出版社中译本） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（投资者教育栏目，"基金赚钱基民不赚钱"现象的官方投教口径）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（投资理念与风险提示栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>一次性还是定投：本质是一道"择时题"的两种答法</h3>
+      <p class="ctx">"手里有 10 万元（教学示例），该一次买入还是分成 12 个月每月买入？"这是每个新手都会遇到的问题。先看清它的本质：一次性投入，等于<strong>押注"现在的价格不算贵"</strong>；分批投入（定投），等于<strong>放弃对"现在是不是低点"的判断，用时间把成本摊成一段区间的平均值</strong>。所以这道题的真正题面是：你如何看待"择时"这件几乎所有人都做不好的事？<a href="../04-behavior/">第4章</a>讲过行为金融学的结论——过度自信是人类最顽固的偏差之一，"这次不一样、我看得出高低点"的想法，正是亏损的常见起点。</p>
+      <p class="ctx">有意思的是，研究证据和大众直觉相反：多项针对美股等市场的回溯研究显示，在足够长的时间维度里，<strong>一次性投入的期望收益平均而言高于分批投入</strong>——因为市场长期向上，越早全额进场，暴露在市场里的时间越长。先锋集团（Vanguard）等机构公开的成本平均法研究也给出过类似结论：约三分之二的情境下一次性投入跑赢分批。但请注意这个结论的两个前提：<strong>其一，它说的是"平均而言"和"期望值"，不是"每一次"</strong>——如果买在阶段高点，一次性投入的回撤也会最深，而深回撤恰恰是普通人恐慌割肉的导火索；<strong>其二，它假设你已经有了明确的资产配置方案</strong>，比较的只是执行节奏。所以对普通人的真实答案往往不是二选一，而是下一节要讲的：用数据理解一次性投入，用心理与现金流现实决定你实际怎么执行。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Vanguard 关于成本平均法（DCA）与一次性投入的研究综述（英文，机构公开研究，检索口径：vanguard.com 研究栏目） · <a href="https://www.csindex.com.cn/">中证指数有限公司（指数长期走势的官方数据渠道，用于理解"市场长期向上"的前提假设）</a> · 马尔基尔《漫步华尔街》关于择时无效性的论述（书籍引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、一次性投入：逻辑、证据与适用条件</h2>
+    <p class="chapter-sub">数据站在一次性这边，但你的睡眠质量和现金流也要参与投票</p>
+
+    <article class="view">
+      <h3>一次性投入为什么"平均而言"更优</h3>
+      <p class="ctx">一次性投入（lump-sum investing）的逻辑可以压缩成一句话：<strong>市场的长期风险溢价为正，钱在市场里的时间越长，获得这份溢价的概率越大</strong>。分批投入意味着有一部分钱在等待期内闲置，如果市场在这段等待期上涨，你就永久性地损失了这部分涨幅。用教学示例说明：假设 12 万元分 12 个月定投，第 1 个月投入的 1 万元吃到了全年的涨幅，第 12 个月投入的 1 万元几乎没吃到——平均下来，你的钱只有约一半的"在场时间"。而一次性投入的 12 万元全年都在场。在长期向上的市场里，"在场时间"就是收益的来源，这也是"Time in the market beats timing the market"（在市场里的时间胜过择时）这句投资谚语的数学含义。</p>
+      <p class="ctx">但这个结论有严格的适用边界，必须一条条看清。<strong>边界一：标的必须是长期向上且分散化的资产</strong>，比如宽基指数所代表的整体市场，而不是单一个股——单一个股完全可能长期归零，一次性重仓个股不叫投资叫押注（<a href="../02-risk/">第2章</a>讲过非系统性风险）。<strong>边界二：这笔钱必须是长期闲钱</strong>，三五年内不会动用；如果明年要付首付的钱一次性投入，任何一次正常回撤都可能让你在最低点被迫卖出。<strong>边界三：你必须能承受一次性投入的最大心理冲击</strong>——买入后立刻下跌 20% 时，你是能按既定计划继续持有，还是会夜不能寐、割肉离场？第三个边界最容易被低估，却最常成为实际的胜负手。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：博格《共同基金常识》关于"长期持有与市场暴露"的论述（书籍引用） · Fama & French (1993)（英文） <a href="https://doi.org/10.1016/0304-405X(93)90023-5">https://doi.org/10.1016/0304-405X(93)90023-5</a>（风险与收益关系的基础研究） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（长期投资理念栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>什么时候应该坚决避免一次性满仓</h3>
+      <p class="ctx">反过来，有几类情形下，即使研究显示一次性投入期望更优，也应该坚决分批甚至暂缓。第一类：<strong>这笔钱有明确的近期用途</strong>——购房首付、学费、医疗备用金。这类钱连市场都不该进，该去的是存款、货基等现金管理工具（<a href="../16-plan/">第16章</a>讲应急金时细说）。第二类：<strong>你正处于情绪高点</strong>——牛市气氛最热烈、身边人都在谈论收益、你因为"怕踏空"而心急如焚的时候。"怕踏空"（FOMO）本身就是危险信号：它说明你的决策动力来自情绪而非计划，此时一次性满仓，大概率买在情绪顶附近。第三类：<strong>你对所选资产的理解还很浅</strong>——如果说不清"这个组合为什么跌 30% 我还能拿住"，那就先用小金额开始，理解与仓位同步成长。</p>
+      <p class="ctx">还有一类容易被忽视的情形：<strong>估值极端</strong>。虽然没有人能精确判断顶底，但<a href="../06-valuation/">第6章</a>讲过的估值指标（如市盈率、市净率所处的历史分位）可以提供"贵不贵"的粗颗粒参照。当整体估值处于历史极高区域时，把一次性投入改为拉长周期的分批投入，是一种"承认自己不知道顶在哪，但也不想在全场最贵时满仓"的稳健姿态。注意分寸：这不是择时，不是"等跌下来再买"——而是<strong>把投入周期从 1 天拉长到 1-2 年</strong>，期间无论涨跌都按计划执行。分批的意义不在于买得更低，而在于让你在任何走势下都不会做出"一把梭在山顶"这种最痛的决定。</p>
+      <table class="cmp">
+        <tr><th>对比维度</th><th>一次性投入</th><th>分批投入（定投）</th></tr>
+        <tr><td>长期期望收益（研究口径）</td><td>平均更高（约2/3情境跑赢，Vanguard 等研究）</td><td>平均略低，牺牲部分"在场时间"</td></tr>
+        <tr><td>最差情形回撤</td><td>买在高点则回撤最深、恢复期最长</td><td>成本被摊平，回撤通常更浅</td></tr>
+        <tr><td>心理负担</td><td>高：一次决定，涨跌都归你</td><td>低：小步走，无需判断时点</td></tr>
+        <tr><td>适合的资金</td><td>长期闲钱+已有成熟配置方案+估值不极端</td><td>工资结余、初次入场资金、估值偏高期的存量资金</td></tr>
+        <tr><td>对纪律的要求</td><td>买入后"拿住"的纪律</td><td>下跌时"不停扣"的纪律</td></tr>
+        <tr><td>主要风险</td><td>时点风险集中</td><td>上涨市中资金利用率低；中途手痒改规则</td></tr>
+      </table>
+      <p class="ctx">（表中研究数字为公开研究的概括口径，教学示例，非投资建议；具体投资决策请结合自身情况并咨询持牌专业人士。）</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Vanguard 成本平均法研究综述（英文，机构公开研究） · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（理性投资与风险提示栏目）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（估值与长期投资相关投教材料）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、定投：原理、证据与三个真相</h2>
+    <p class="chapter-sub">定投不是魔法，它是一种"承认无知"之后的工程化解法</p>
+
+    <article class="view">
+      <h3>定投的数学本质：用固定金额买到"平均成本偏低"</h3>
+      <p class="ctx">定投（定期定额投资，学术名称 dollar-cost averaging，成本平均法）的机制极其简单：<strong>固定时间、固定金额、买入同一标的，不判断涨跌</strong>。它的数学效果值得亲手算一遍。教学示例：假设某指数基金净值连续四个月为 1.0 元、0.8 元、0.6 元、1.2 元，每月定投 1000 元，则四个月共投入 4000 元，买到的份额为 1000+1250+1667+833≈4750 份，平均成本约 0.842 元/份——<strong>低于四个月净值的简单算术平均（0.9 元）</strong>。原因不难理解：固定金额意味着"贵时买得少、便宜时买得多"，低价期自动获得了更大的份额权重，把平均成本拉向低位。这就是"微笑曲线"的由来：如果净值先跌后涨回到原点，定投的总份额价值已经高于投入本金——下跌段积累的低成本份额，在回升段变成了收益。</p>
+      <p class="ctx">但必须立刻给出三个真相，否则定投就会被神话。<strong>真相一：微笑曲线也会倒过来哭。</strong>如果净值先涨后跌回到原点，定投的成本高于起点，反而亏损——定投不消灭风险，它只是把"时点风险"换成了"路径风险"，长期能否盈利，最终仍取决于标的资产的长期回报。<strong>真相二：定投的期望收益低于一次性投入。</strong>上一节已经讲过，因为部分资金在等待期闲置。定投买到的不是更高收益，而是<strong>更平滑的成本曲线和更强的可执行性</strong>——对拿不住一次性投入的人，能执行完的方案才是好方案。<strong>真相三：定投对标的极度挑剔。</strong>它只在"长期向上、不会归零"的资产上成立：宽基指数基金是天然适配（指数会新陈代谢、整体经济长期增长）；单一行业基金波动巨大且可能长期低迷；单一个股则可能退市归零——对可能归零的资产，"越跌越买"等于持续加注错误，这是定投最危险的误用。</p>
+      <div class="fig"><img src="../assets/img-09-1.png" alt="定投微笑曲线示意图：一条先下降后回升的净值曲线上，标注四个等间隔的买入点，低位买入点获得更多份额，右侧显示平均成本线低于算术平均线，深蓝 #1d4ed8 扁平几何风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：博格《共同基金常识》关于成本平均法的章节（书籍引用） · Vanguard DCA 研究综述（英文） · <a href="https://www.csindex.com.cn/">中证指数有限公司（宽基指数长期走势官方数据，理解"标的长期向上"前提）</a> · 本章数字均为教学示例</div>
+    </article>
+
+    <article class="view">
+      <h3>定投适合谁：工资族、新手与"管不住手"的人</h3>
+      <p class="ctx">定投的第一个天然适配人群是<strong>有稳定现金流的工薪族</strong>：每月发薪日之后固定划出一笔钱投入，金额与工资节奏天然同步，不需要存量资金，也不需要任何择时判断。这其实还原了投资的本来面目——投资不是一次性的"大事件"，而是<strong>把每月储蓄自动转化为长期资产</strong>的管道。第二个适配人群是<strong>初次入场的新手</strong>：先用小额定投建立对市场波动的真实体感（账户浮亏 10% 是什么感受，只有真金白银才能教会你），理解与仓位同步成长，比先满仓再学习要安全得多。第三类人群最有意思：<strong>明知自己管不住手的人</strong>。如果你在<a href="../04-behavior/">第4章</a>的行为偏差自测里发现自己追涨杀跌的倾向明显，那么定投的价值恰恰在于它把决策次数降到最低——每月只发生一次、且完全不需要判断的执行，是对"手痒"最好的物理约束。</p>
+      <p class="ctx">与之相对，有几类人定投价值有限：已有一大笔长期闲钱且配置方案成熟的人（研究口径下一次性投入期望更高，或"一次性+估值极端时分批"的混合方案更合理）；现金流不稳定、可能随时需要动用这笔钱的人（定投中途断供虽然不算失败，但频繁中断会削弱纪律的意义）；以及<strong>把定投当短线工具的人</strong>——定投以年为单位才有意义，打算"定投三个月赚个红包就跑"完全误解了它的机制。最后强调一句容易被忽略的话：<strong>定投不是"稳赚不赔"，任何这样宣传定投的产品或平台，请立即对照<a href="../11-scam/">第11章</a>的防骗清单核查</strong>。定投会亏钱，会长期浮亏，它的承诺只是"摊平成本、降低择时依赖"，仅此而已——把话说满的，不是投教，是话术。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（证监会批准的投资者保护平台，定投与长期投资投教栏目）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（基金定投相关投教材料）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金销售与定投业务规范口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>智能定投、价值平均：变种值得用吗</h3>
+      <p class="ctx">普通定投之外，市面上还有两类常见变种。<strong>智能定投</strong>：按估值或均线偏离动态调整每期金额，"低估多买、高估少买"。多数基金销售平台都提供此类功能，通常以市盈率分位或均线乖离作为调节依据。<strong>价值平均法</strong>（value averaging）：不按固定金额投入，而是让"账户市值按计划路径增长"——某月市值增长超过计划就多买少买甚至卖出，不足则加大投入。学术研究显示价值平均法在回溯测试中收益通常略优于普通定投，但它的代价是：<strong>每期金额波动巨大</strong>（深度下跌时单期可能需要投入数倍金额），对现金流的要求高得多，而且它包含了卖出操作，把简单的储蓄管道变成了需要持续管理的策略。</p>
+      <p class="ctx">给普通人的建议可以很朴素：<strong>先把普通定投执行满三年，再考虑变种</strong>。原因有三：其一，智能定投的调节依据（估值分位、均线）本质上仍是"半择时"，其超额收益在学术回测里存在、在实际执行中却常被费用与规则改动吃掉；其二，价值平均法要求你在暴跌时拿出数倍现金，多数人做不到，做不到就会中途改规则——改过一次的规则就不再是规则；其三，也是最根本的：<strong>策略的复杂度必须与你的执行力匹配</strong>。一个你能雷打不动执行五年的笨办法，胜过一个你执行五个月就放弃的聪明办法。如果确实想用智能定投，请只用"低估多买"方向的温和变体（金额上下浮动不超过一倍），并把它当作普通定投的增强，而不是另一个需要盯盘的新任务。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Edleson 关于价值平均法（value averaging）的经典研究脉络（英文，书籍《Value Averaging》引用） · <a href="https://www.investor.org.cn/">中国投资者网（基金定投方式与风险的投教口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金销售机构定投服务规范）</a>（商业服务功能仅作客观介绍，不构成推荐）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、定投实操手册：把方案一次写清</h2>
+    <p class="chapter-sub">频率、金额、标的、止盈、暂停——五个参数写下来，剩下的交给时间</p>
+
+    <article class="view">
+      <h3>五个参数：频率、金额、标的、止盈、暂停规则</h3>
+      <p class="ctx"><strong>参数一：频率。</strong>月定投是最常见的选择，与工资节奏同步；周定投的摊平效果与月定投差异极小（研究回测中长期收益差距通常不足一个百分点），不必纠结。原则只有一个：<strong>频率一旦选定，不要为了"抓低点"临时加密</strong>——临时加码的冲动来自择时幻觉。<strong>参数二：金额。</strong>用"结余法"倒推：月收入−必要开支−应急金补足−保险保费之后结余的 30%-50% 可作为定投预算（教学示例比例，非建议），并确保<strong>即使失业六个月，定投也不会被迫中断或动用</strong>。金额宁可从小开始：定投最怕的不是金额小，而是"金额大到下跌时心疼得停扣"。<strong>参数三：标的。</strong>默认答案是宽基指数基金（理由见第三节真相三与<a href="../05-index/">第5章</a>），可以是一两只不同宽基的搭配；行业主题基金只适合作为小比例卫星仓，且需要你对该行业有独立认知；<strong>单一个股不适合作为定投标的</strong>。</p>
+      <p class="ctx"><strong>参数四：止盈规则。</strong>定投界流传"止盈不止损"，这句话对了一半，需要拆开说。"不止损"的准确含义是：<strong>对长期向上的宽基指数，下跌不是卖出的理由，反而降低了后续买入成本</strong>——但如果标的基本面逻辑破坏（如行业主题长期恶化），止损离场完全正当（见第七节）。"止盈"则是提醒人们定投需要退出机制：常见做法包括目标收益率法（如累计收益达到 30%-50% 分批止盈，数字为教学示例）、估值法（指数估值进入历史高分位后分批退出）、最大回撤法（从高点回撤一定比例触发部分止盈）。<strong>参数五：暂停与恢复规则。</strong>事先写清什么情况下可以暂停（如失业、大额医疗支出），什么情况下绝不允许暂停（如"这个月感觉要跌"——这不是理由，是情绪）。五个参数写在纸上或备忘录里，构成你的"一页纸定投方案"，它的意义等同于飞行员的检查单：<strong>起飞前写好，飞行中照做，不允许在空中即兴修改</strong>。</p>
+      <blockquote class="q">定投纪律五则：①先写方案再投钱——频率、金额、标的、止盈、暂停五项一次写清；②扣款日自动执行，当天不看账户；③下跌不停扣——便宜份额是定投者的朋友，停扣等于自废武功；④不临时加码、不临时改期，任何修改只能在"年度检视"时进行并写明理由；⑤止盈规则事先定好，触发后分批执行，不因为"可能还涨"而推翻自己的规则。<span class="qsrc">—— 依据交易所与基金业协会投教材料中"纪律投资、长期投资"的通行原则整理（教学总结，非投资建议）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（基金定投实务投教材料）</a> · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（定投风险提示口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（定投策略与常见误区栏目）</a> · 博格《共同基金常识》（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>定投中途的三个大坑：停扣、换车、提前收割</h3>
+      <p class="ctx"><strong>大坑一：深跌时停扣。</strong>这是定投失败的第一大原因，而且它伪装得极其合理——"跌成这样，先停一停等企稳"。请回想微笑曲线的原理：定投的超额份额恰恰来自下跌段，<strong>净值最低的那几个月是定投者性价比最高的买入窗口</strong>，停扣等于在打折最狠时走出商店。真正应该停扣的只有两种情况：现金流真的出了问题（失业、疾病），或标的的长期逻辑真的被破坏——"最近跌得心里发慌"不属于任何一种。<strong>大坑二：频繁换标的。</strong>看到别人的行业基金涨得快就换车追过去，本质是"用定投的壳做追涨的实"。每换一次车，你就把新标的的历史重新走一遍，还多付一轮申赎费用（<a href="../10-tax/">第10章</a>会算这笔账）。事先定好标的池，年度检视之外不换。</p>
+      <p class="ctx"><strong>大坑三：涨一点就收割。</strong>与"跌时停扣"镜像对称的错误，是"涨 10% 就落袋为安"。如果止盈线是事先写好的 30%，那么 10% 就卖等于亲手撕毁方案——而且这个动作的隐性代价极大：卖出之后钱回到手上，你会开始等待"更好的买点"再投回来，而定投方案就此解体，你从"规则执行者"退回了"择时赌徒"。前景理论（Kahneman & Tversky, 1979）解释了为什么这两个坑如此难躲：<strong>损失的痛苦约是等额收益快乐的两倍</strong>，所以人在浮亏时急于停止痛苦（停扣）、在浮盈时急于锁定快乐（提前收割）——两个动作方向相反，根源却是同一种偏差。对策也只有一个：把决策权在冷静时交给写好的规则，在波动时只保留"执行"这一个动作。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Kahneman & Tversky (1979)（英文） <a href="https://doi.org/10.2307/1914185">https://doi.org/10.2307/1914185</a>（前景理论：损失厌恶的奠基研究） · <a href="https://www.investor.org.cn/">中国投资者网（定投常见误区投教栏目）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（长期持有与频繁操作对比的投教口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、仓位管理：永远给自己留余地</h2>
+    <p class="chapter-sub">仓位不是胆量问题，是生存问题——先保证留在牌桌上，再谈赢</p>
+
+    <article class="view">
+      <h3>仓位三原则：闲钱、分散、留现金垫</h3>
+      <p class="ctx"><strong>原则一：只用闲钱，且闲钱的定义要苛刻。</strong>"闲钱"指扣除应急金（3-6 个月家庭开支，存放于货基或存款）、保险保费、三年内确定用途资金之后的结余。判断标准不是"现在用不到"，而是"即使这笔钱浮亏 50%、且两年不能动，我的生活与心态也不受影响"。<strong>原则二：单一标的设上限。</strong>无论多看好一只股票或一个行业，教学上常用的纪律是给单一标的设占比上限（如组合的 5%-10%，示例数字），防止"研究越深越重仓"的过度自信螺旋——<a href="../04-behavior/">第4章</a>讲过，散户对自选股的信心与其研究深度常常不成正比。<strong>原则三：始终保留现金垫。</strong>组合里长期保留一小部分现金或货基（比例因人而异，5%-20% 为常见教学示例区间），它的作用有三：应对突发开支而不用在低点被迫卖出持仓；在大跌时有子弹可以按计划补仓；以及最重要的——<strong>让你睡得着</strong>。现金垫是对"被迫卖出"这种最坏结局的保险，而被迫卖出是散户亏损故事里最常见的终章。</p>
+      <p class="ctx">仓位管理还有一条动态原则：<strong>权益仓位应与"年龄+目标+承受力"匹配，并随人生阶段下移</strong>。经典的粗略参照是"100 减去年龄"作为权益资产占比的起点（教学口径，非精确规则），年轻人可以更高、临近用钱的目标应更低。更重要的是与目标挂钩：为 20 年后养老攒的钱可以承受高波动，为 3 年后购房首付攒的钱则应该以低波动资产为主——<a href="../03-allocation/">第3章</a>的资产配置框架和<a href="../16-plan/">第16章</a>的目标倒推法，就是仓位管理的总纲。最后提醒一个红线：<strong>任何形式的借钱加仓、"场外配资"都绝对不属于仓位管理的选项</strong>。杠杆把"波动"变成"爆仓"，把"暂时浮亏"变成"永久出局"，本课程对所有杠杆工具的态度只有风险警示，没有操作教学。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（杠杆风险与"场外配资"风险警示专栏）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（理性投资与仓位管理投教材料）</a> · 格雷厄姆《聪明的投资者》关于防御型投资者股债比例的章节（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>加仓与减仓：只按规则，不按心情</h3>
+      <p class="ctx">仓位不是一次定终身，但每一次调整都应该有事先写好的触发条件。合理的加仓触发器包括：<strong>定期定额的常规买入</strong>（定投本身就是纪律化加仓）；<strong>再平衡触发的买入</strong>（下一节细讲：某类资产跌出目标区间下限时按规则补回）；<strong>现金流改善</strong>（加薪、奖金进入长期投资账户）。不合理的加仓理由则要拉响警报："跌了这么多该反弹了"（预测）、"这次是黄金坑"（叙事）、"别人都在抄底"（从众）——这三个理由的共同点是<strong>它们都依赖对短期走势的判断</strong>，而判断恰恰是我们承认做不到的事。</p>
+      <p class="ctx">减仓同理。合理的减仓触发器：<strong>再平衡触发的卖出</strong>（涨出区间上限）；<strong>目标临近</strong>（购房、退休日期接近，按计划降低权益仓位，即"下滑轨道"）；<strong>标的逻辑破坏</strong>（见第七节卖出纪律）；<strong>组合超出了你的承受力</strong>（连续失眠说明仓位过重，降到能睡着的水平本身就是正当理由——这条看似"不专业"，却是行为金融学最诚实的应用）。不合理的减仓理由："涨太多怕回吐"（无规则止盈）、"新闻说风险很大"（情绪传导）、"大师说要到 4000 点以下"（预测依赖）。一个简单的自检办法：<strong>每次调整仓位前问自己——"这个动作是我年度检视计划里写过的吗？"</strong>如果答案是"没有，但我现在强烈觉得该做"，那么请把它写进观察清单，冷静一周再决定。绝大多数"强烈觉得"都撑不过一周。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：格雷厄姆《聪明的投资者》关于"防御型投资者的组合策略"章节（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（资产配置与动态调整投教栏目）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（风险提示与理性决策材料）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、再平衡：让组合自动"高抛低吸"</h2>
+    <p class="chapter-sub">一条把"低买高卖"变成机械动作的规则，不需要任何判断力</p>
+
+    <article class="view">
+      <h3>再平衡是什么：偏离目标比例后的强制回归</h3>
+      <p class="ctx">假设你的目标配置是"60% 宽基指数基金 + 40% 债券基金"（教学示例，非建议）。一年后股市大涨，组合实际变成 70%/30%——权益涨出来的部分让组合风险悄悄升高了；反之如果股市大跌变成 50%/50%，组合又变得过于保守，偏离了你的设计。<strong>再平衡（rebalancing）就是把偏离的比例调回目标</strong>：涨多了的卖一部分，跌多了的补一部分。注意它的精妙之处：这个机械动作天然实现了"高抛低吸"——卖出的是相对涨多的资产，买入的是相对跌多的资产——<strong>而整个过程不需要你预测任何资产的涨跌</strong>。它是普通人可以拥有的、最接近"自动低买高卖"的规则工具。</p>
+      <p class="ctx">再平衡的第二个作用是<strong>风险控制</strong>，而且这是比收益更根本的作用。学术研究与实务界对再平衡能否提高收益并无一致结论（取决于资产走势路径），但对它能<strong>把组合风险锚定在目标水平</strong>则高度一致：不再平衡的组合，风险会随着行情漂移——牛市尾部风险最高（权益占比被动膨胀），恰恰在人们最乐观、最不设防的时候。用一个教学示例说明心理价值：2008 年全球金融危机前的美股投资者，若坚持年度再平衡，会在 2006-2007 年的上涨中被动卖出部分权益、增持债券，危机来临时组合回撤显著小于满仓股票者，且手里有债券仓位可以在低点换回权益。<strong>再平衡的收益不在"每次都对"，而在"永远不离谱"</strong>。</p>
+      <div class="fig"><img src="../assets/img-09-2.png" alt="再平衡示意：一个天平左右两端分别为股票与债券的几何图标，指针偏离中心后，一只手将砝码从高的一端移向低的一端使其回归平衡，深蓝 #1d4ed8 扁平风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Bernstein 等关于资产配置与再平衡的研究脉络（英文，机构研究综述口径） · <a href="https://www.csindex.com.cn/">中证指数有限公司（股债指数数据官方渠道，可自行回测再平衡效果）</a> · 博格《共同基金常识》关于组合维护的论述（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>三种再平衡方法：日历法、阈值法、现金流法</h3>
+      <p class="ctx"><strong>方法一：日历法。</strong>固定时间（每年一次或每半年一次）检查并调回目标比例。优点是简单、可预期、执行成本低；缺点是可能对小幅偏离做无谓交易。实务中常选每年固定一个月（如年初）执行，配合年度检视一起做。<strong>方法二：阈值法。</strong>不设固定日期，当某类资产偏离目标超过设定阈值（教学示例：绝对偏离 5 个百分点，或相对偏离 20%-25%）才触发调整。优点是只在"值得动"的时候动，减少交易与费用；缺点是需要偶尔查看比例（每月看一次即可，不是每天盯盘）。<strong>方法三：现金流法。</strong>不动存量，只用新增资金买"低配"的资产，让比例自然回归。优点是<strong>零卖出、零税费摩擦</strong>（卖出可能触发赎回费和税，见<a href="../10-tax/">第10章</a>）；缺点是回归速度慢，且要求持续有新现金流。三种方法可以组合：日常用现金流法，年度用日历法体检，极端偏离用阈值法强制纠正。</p>
+      <p class="ctx">再平衡还有三条执行注意事项。第一，<strong>先算总账再动手</strong>：调整前把赎回费、可能的红利税影响算进去（第10章有完整清单），如果费用吃掉大半个偏离收益，宁可不动或改用现金流法。第二，<strong>阈值不要太窄</strong>：1-2 个百分点的阈值会让组合变成"交易机器"，学术回测显示过窄阈值并无额外好处，5 个百分点上下是常见的教学参考。第三，<strong>再平衡的敌人是"这次别卖"</strong>：牛市里卖出涨得最好的资产极度反人性，"它还会涨"的念头会在每一次再平衡日出现——请回到本章第一节的立场：我们不预测。再平衡卖出的不是"未来会跌的资产"，而是"超出计划的仓位"；同样，它买入的不是"未来会涨的资产"，而是"低于计划的配置"。<strong>规则的意义正在于它替你挡住了每一次讨价还价</strong>。</p>
+      <table class="cmp">
+        <tr><th>方法</th><th>触发条件</th><th>优点</th><th>缺点</th><th>适合人群</th></tr>
+        <tr><td>日历法</td><td>固定周期（年/半年）</td><td>最简单、可与年度检视合并</td><td>小偏离也交易，费用略高</td><td>所有人（作为基础体检）</td></tr>
+        <tr><td>阈值法</td><td>偏离超过5个百分点（示例）</td><td>只在值得时动手</td><td>需每月粗查一次比例</td><td>组合较大、偏离代价高的人</td></tr>
+        <tr><td>现金流法</td><td>新增资金买入低配资产</td><td>零卖出、零税费摩擦</td><td>回归慢，依赖持续现金流</td><td>定投中的工资族（天然适配）</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（资产配置与组合调整投教栏目）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金赎回费率规则口径，再平衡费用测算依据）</a> · 表中阈值为教学示例</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、卖出纪律：比买入更难的那一半</h2>
+    <p class="chapter-sub">买入决定你上不上车，卖出决定你能不能把收益带回家</p>
+
+    <article class="view">
+      <h3>卖出的五个正当理由</h3>
+      <p class="ctx">卖出之所以难，是因为它同时对抗两种偏差：卖早了怕踏空（后悔厌恶），卖晚了怕回吐（损失厌恶）。解法与买入相同——<strong>把理由清单化，只在清单内行动</strong>。正当理由一：<strong>目标达成或目标临近。</strong>为购房攒的首付到位了、距退休只剩五年了——按事先的"下滑轨道"降低权益仓位，这是最无可指摘的卖出，因为它服务于人生目标而非市场判断。正当理由二：<strong>再平衡规则触发。</strong>上一节已讲，卖出超配部分，机械执行。正当理由三：<strong>标的的长期逻辑被破坏。</strong>你买入行业基金的产业逻辑消失了、你持有的个股基本面恶化到当初买入理由不再成立——注意关键词是"逻辑破坏"而非"价格下跌"：价格跌 30% 不是理由，商业逻辑变了才是（<a href="../18-review/">第18章</a>会教用交易日志核对"当初为什么买"）。</p>
+      <p class="ctx">正当理由四：<strong>发现了确定更优的替代（且算清全部成本）。</strong>比如持有的高费率主动基金长期跑输基准，换入同标的低费率指数基金——但必须把赎回费、申购费、可能的税负全部算进比较（第10章的清单直接用得上），"费率差每年 1%、换仓成本 1.5%"的替换需要一年半才回本，值不值自己算。正当理由五：<strong>仓位让你睡不着。</strong>连续失眠、影响工作与家庭，说明仓位超出了真实承受力——降到能睡着的水平是正当的，哪怕卖在"低点"。健康的财务生活本身就是投资的目的，本末不能倒置。清单之外，请默认<strong>"不卖"是常态</strong>：对长期资产而言，每一次卖出都是一次"重新入场判断"，而判断正是我们最不可靠的能力。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：格雷厄姆《聪明的投资者》关于卖出决策的论述（书籍引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（长期投资与换手率相关投教材料）</a> · <a href="https://www.investor.org.cn/">中国投资者网（投资纪律与常见误区栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>卖出的五个危险信号：出现任何一条，先停手</h3>
+      <p class="ctx">与正当理由相对，以下五个卖出冲动几乎都通向糟糕的结果。<strong>信号一："跌怕了，卖了就解脱了。"</strong>——这是损失厌恶在夺方向盘：卖出确实能立刻停止痛苦，但把浮亏变成了永久亏损，还丢掉了反弹的份额。深跌时该问的不是"卖不卖"，而是"当初买入的逻辑还在吗？定投该不该继续？"<strong>信号二："涨了不少，落袋为安。"</strong>——在没有事先规则的情况下临时止盈，等于宣布长期策略失效；对以年为单位的目标（养老、教育），过早收割复利的种子是最昂贵的错误。<strong>信号三："大师/群友说要大跌，先跑。"</strong>——基于他人预测的卖出是双重错误：预测本身不可靠，跟着陌生人的预测行动还可能是骗局的一环（"先让你卖、再让你高位接回"是非法"荐股"团伙的常见收割路径，详见<a href="../11-scam/">第11章</a>）。</p>
+      <p class="ctx"><strong>信号四："别的涨得更快，换过去。"</strong>——追逐近期业绩是散户最稳定的亏损模式之一：你看到的"涨得更快"是后视镜，热门资产在被大众注意到时往往已走完大半涨幅，换仓还要付出双重费用。<strong>信号五："急用钱，只能割肉。"</strong>——这条最让人无奈，但它是可以预防的：应急金与现金垫的存在意义，就是让"急用钱"永远轮不到卖持仓。如果发现自己多次因急用钱被迫卖出，问题不在市场，在<a href="../16-plan/">第16章</a>的财务地基没打好。最后给一个实操工具：<strong>48 小时冷静期</strong>。任何清单外的卖出冲动，写下理由、放入观察清单、48 小时后再看——绝大多数冲动撑不过两天，撑得过两天的，也多半能等到下一次年度检视用规则处理。冷静期不是拖延，是给"规则的你"留出席位，别让"情绪的你"单独做决定。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kahneman & Tversky (1979)（英文） <a href="https://doi.org/10.2307/1914185">https://doi.org/10.2307/1914185</a>（损失厌恶与后悔厌恶） · Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a>（频繁交易者长期收益更差） · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（追涨杀跌风险警示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、不适合普通人的策略，与适合你的策略</h2>
+    <p class="chapter-sub">先划清"不做什么"的边界，再在边界内找到拿得住的方案</p>
+
+    <article class="view">
+      <h3>四种不推荐给普通人的策略及其原因</h3>
+      <p class="ctx"><strong>其一，短线交易与日内炒作。</strong>原因有三层：成本层——高频买卖把佣金、印花税、价差摩擦成堆地交给市场（第10章会量化这笔账）；证据层——Barber & Odean（2000）对数万账户的研究发现交易越频繁、长期收益越差，最活跃组年化收益比最不活跃组低出一大截；能力层——短线比拼的是信息、速度与纪律，散户在三条上全面处于劣势，你的对手盘是机构与算法。<strong>其二，杠杆与"场外配资"。</strong>杠杆放大收益的同时放大回撤，且带有强制平仓线：不加杠杆时"扛过去"是选项，加了杠杆后暴跌可能在最低点被强制卖出、永久出局。监管对非法"场外配资"持续打击（证监会历年风险警示），任何宣称"小资金撬大仓位"的配资服务都是高危红线，本课程只作风险警示。<strong>其三，追逐热点与题材轮动。</strong>热点行情的特征是"涨得最猛的阶段恰恰是普通人进场的阶段"，等你从新闻里看到机会，早期资金已在寻找接盘者。<strong>其四，跟随"大师"与付费群操作。</strong>把买卖决策外包给陌生人，等于把钱包交给对方的良心——而非法"荐股"产业链的商业模式恰恰建立在收割跟随者之上（<a href="../11-scam/">第11章</a>整章拆解）。</p>
+      <p class="ctx">这四种策略的共同基因是：<strong>依赖预测、依赖频繁决策、依赖对手盘犯错</strong>——三个依赖，每一个都与普通人的信息、时间与心理禀赋相冲突。划清"不做清单"不是保守，而是把有限的精力集中到胜率真正高的事情上：配置、成本控制、长期持有、纪律执行。这四项没有一项需要天赋，但每一项都需要时间——而时间恰恰是普通人相对机构最大的比较优势：<strong>机构有季度排名压力，你没有；你唯一要跑赢的是十年后的自己</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（打击非法证券活动与"场外配资"风险警示的官方通报渠道）</a> · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（短线交易与杠杆风险提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>策略与性格匹配：拿得住的方案才是好方案</h3>
+      <p class="ctx">纸面上最优的策略，执行不了就是零。选择投入策略时，请诚实回答四个问题：<strong>①现金流形态</strong>——你有的是每月结余（→定投优先）还是一笔存量（→一次性或分批，参照第二节对照表）？<strong>②波动耐受度</strong>——账户浮亏 20% 时你会照常吃饭睡觉（→可承受更高权益比例），还是会反复查看、彻夜难眠（→降低权益仓位、拉长投入周期）？<strong>③时间投入</strong>——你每月愿意为投资花的时间是十分钟（→全自动定投+年度再平衡）还是几小时（→可加入估值参考与季度检视）？<strong>④控制欲</strong>——你能接受"完全不做主动决策"的方案吗？不能的话，给自己划一个不超过组合 10% 的"学习仓"去满足探索欲，主仓仍按纪律执行——这是对付"手痒"的泄压阀设计。</p>
+      <p class="ctx">把四个答案拼起来，多数人会落在这样一个默认方案上（教学示例，非投资建议）：<strong>存量资金按估值状态选择一次性或 12-24 个月分批投入宽基指数基金为主的核心仓位；每月工资结余自动定投；每年固定月份做一次再平衡与检视；单一行业或个股（如果一定要配）合计不超过组合的一成；卖出只发生在第五节的正当理由清单内</strong>。这个方案的全部动作加起来，一年占用的时间不超过四个小时，却覆盖了本章讲的所有纪律要点。最后回到本章开头那句话：策略的意义不是让你买在最低点——那做不到——而是<strong>让你在任何行情下都有明确的下一步，从而永远不需要被情绪推着做决定</strong>。下一章我们算一笔更冷峻的账：这套方案每年要交出去多少费用与税，以及怎么把这块唯一可控的成本压到最低。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（风险承受能力评估与适当性管理投教栏目）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（投资规划与生命周期配置材料）</a> · 格雷厄姆《聪明的投资者》"防御型投资者"框架（书籍引用） · 本节方案为教学示例，非投资建议</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能不看课文讲出来，才算把策略装进了脑子</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于定投的四个流行说法</h3>
+      <p class="ctx"><strong>谣言一："定投任何基金都不会亏。"</strong>——错。定投只摊平成本，不消灭风险；对长期下行或可能归零的资产（单一衰退行业、绩差个股），越跌越买等于持续加注错误。定投成立的前提是"标的长期向上"，宽基指数才天然满足。<strong>谣言二："跌了就停扣，等企稳再继续。"</strong>——错，而且是定投第一大杀手。微笑曲线的低位份额恰恰来自下跌段，停扣等于在折扣最深时离场；"企稳"无法事前判断，等你确认企稳时往往已回升一大截。<strong>谣言三："一次性买入总是更好，定投是胆小鬼方案。"</strong>——半对半错。研究口径下一次性投入的期望收益确实平均更高（约三分之二情境），但它的前提是标的分散、资金长期、且你拿得住买后即跌 20% 的回撤；拿不住的人执行定投，实际到手收益反而更高——能执行完的方案才是好方案。<strong>谣言四："有'内部节奏'的智能定投能稳定跑赢普通定投。"</strong>——警惕。所谓按"内部信号"调节的策略无法事前验证，任何以此宣传"稳定跑赢""稳赚不赔"的产品或社群，请直接对照<a href="../11-scam/">第11章</a>的骗局清单处理。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Vanguard DCA 研究综述（英文，机构公开研究口径） · <a href="https://www.investor.org.cn/">中国投资者网（定投风险与误区投教栏目）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（非法证券活动警示通报渠道）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"投资策略"回答的是哪三个朴素问题？为什么说好的策略恰恰以"承认无法预测"为前提？</li>
+        <li>对最终收益的影响链条是哪三环（配置、节奏、纪律）？各自决定什么？</li>
+        <li>一次性投入"平均而言"更优的数学原因是什么？（提示：在场时间）</li>
+        <li>一次性投入的三个适用边界分别是什么？哪一个最容易被低估？</li>
+        <li>哪四类情形下应该坚决避免一次性满仓？"怕踏空"为什么本身是危险信号？</li>
+        <li>用四个月的净值示例复述定投"平均成本低于算术平均"的计算过程。</li>
+        <li>定投的三个真相分别是什么？为什么"微笑曲线也会倒过来哭"？</li>
+        <li>定投为什么不适合单一个股？"越跌越买"在什么资产上是灾难？</li>
+        <li>智能定投与价值平均法各自的机制与代价是什么？为什么建议先执行普通定投三年？</li>
+        <li>定投方案的五个参数是什么？每个参数的设定原则用一句话说清。</li>
+        <li>"止盈不止损"这句话哪里对、哪里需要修正？</li>
+        <li>定投中途三大坑是什么？它们背后共同的行为偏差是什么？（提示：前景理论）</li>
+        <li>仓位三原则（闲钱、分散、现金垫）各自防的是什么最坏结局？</li>
+        <li>再平衡的两种作用是什么？为什么说它的收益"不在每次都对，而在永远不离谱"？</li>
+        <li>日历法、阈值法、现金流法各自的触发条件与优缺点？定投中的工资族天然适配哪一种？</li>
+        <li>卖出的五个正当理由与五个危险信号，你能各复述出四个吗？</li>
+        <li>"48 小时冷静期"的操作要领是什么？它防的是哪两个"你"打架？</li>
+        <li>四种不推荐策略的共同基因是什么？普通人相对机构的真正比较优势是什么？</li>
+        <li>性格匹配四问是哪四问？"学习仓"的泄压阀设计怎么用？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>策略解决"节奏与纪律"而非预测——配置决定风险收益特征、投入节奏决定平均成本、持有纪律决定收益能否落袋；一次性投入在长期向上市场里期望收益平均更高（研究口径约 2/3 情境跑赢，Vanguard 等），前提是标的分散、资金长期、拿得住回撤，但估值极端期或情绪高点应坚决分批；定投＝固定时间固定金额不判断涨跌，数学上"贵时少买、便宜时多买"使平均成本偏向低位（微笑曲线），但三个真相必须记住：路径反了就亏、期望低于一次性、标的必须长期向上不归零（宽基指数适配，单一个股禁用）；定投五参数——频率（月/周皆可，定了不改）、金额（结余的 30%-50% 教学示例，失业半年也不中断）、标的（宽基为主）、止盈（目标收益/估值/回撤法，事先写清）、暂停（只有现金流危机或逻辑破坏可停，"心里发慌"不是理由）；三大坑——深跌停扣、频繁换车、提前收割，根源都是前景理论的损失厌恶（Kahneman & Tversky 1979）；仓位三原则——苛刻定义的闲钱、单一标的上限、常备现金垫，杠杆与"场外配资"是绝对红线；再平衡是普通人唯一机械化的"高抛低吸"，日历法+阈值法+现金流法可组合使用，阈值约 5 个百分点（教学示例），先算费用再动手；卖出五正当理由——目标达成、再平衡、逻辑破坏、确定更优替代（算清成本）、仓位影响睡眠，五危险信号——跌怕了、临时落袋、听"大师"、追热点、被迫割肉，清单外默认不卖+48 小时冷静期；不推荐四策略——短线、杠杆、追热点、跟"大师"，共同基因是依赖预测与频繁决策；好策略的唯一标准：与你的现金流、耐受度、时间、控制欲匹配，且你能拿住五年以上。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-account/"><span class="dir">← 第8章</span>开户与交易规则：从零到第一笔</a>
+    <a href="../10-tax/"><span class="dir">第10章 →</span>费用与税：看不见的成本</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第9章 · 依据上海证券交易所与深圳证券交易所投资者教育材料、中国证监会投资者保护相关公开内容、中国证券投资基金业协会投教口径、博格《共同基金常识》、格雷厄姆《聪明的投资者》、马尔基尔《漫步华尔街》等经典教材，以及 Fama & French（1993）、Kahneman & Tversky（1979）、Barber & Odean（2000）、Vanguard 成本平均法研究等公开学术与机构研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

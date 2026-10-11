@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 风险与收益：投资的第一课 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第2章 · 建立投资认知</div>
+  <h1>风险与收益：投资的第一课</h1>
+  <p>波动率、最大回撤、无风险利率、风险溢价：把"风险"从形容词变成能度量的数字——顺便看清为什么"稳赚不赔"是骗局的身份证</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-basics/">← 第1章</a>
+    <a href="../03-allocation/">第3章：资产配置 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">风险是什么</a>
+    <a class="anchor" href="#s2">无风险利率与溢价</a>
+    <a class="anchor" href="#s3">历史数据</a>
+    <a class="anchor" href="#s4">高收益铁律</a>
+    <a class="anchor" href="#s5">复利</a>
+    <a class="anchor" href="#s6">自评与适当性</a>
+    <a class="anchor" href="#s7">谣言粉碎</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为投资教育科普，仅供学习参考，<strong>不构成投资建议</strong>；文中出现的所有数字、收益率与情景均为教学示例（非历史承诺、非未来预测），据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：本站“不荐股”、不预测行情、不承诺收益，不教授短线炒作与杠杆博弈。请警惕以"荐股""带单""稳赚不赔""保本高息"为话术的骗局，合法证券业务只能通过<strong>证监会许可的正规机构</strong>开展。历史收益数据一律注明区间与口径，<strong>过往业绩不代表未来表现</strong>；规则与门槛以监管机构及交易所官方口径为准（截至 2026 年 10 月）。重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用波动率、最大回撤、夏普比率三把尺子把"风险"量化成数字，并说出各自的局限；②解释无风险利率为什么是"一切收益的水位线"，风险溢价为什么是"忍受波动的报酬"；③读懂长期历史数据的正确姿势，识别幸存者偏差与口径陷阱；④用一条铁律（高收益必然高风险）当场拆穿"保本高息"类话术；⑤用 72 法则心算复利翻倍时间，并说出复利的两个敌人；⑥区分风险承受能力与风险偏好，完成一次回撤承受力自测。本章是<a href="../03-allocation/">第3章</a>资产配置的全部理论基础，也是防骗的底层逻辑。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>先通读一遍建立框架；之后每当你看到任何"收益承诺"（产品页、群聊截图、直播间话术），回到第四节用铁律过一遍。第六节的自测五问建议在真正投入资金前认真做一次，并在<a href="../16-plan/">第16章</a>写投资计划时重做。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、风险是什么：不只是"亏钱"</h2>
+    <p class="chapter-sub">先学会度量它，才谈得上管理它</p>
+
+    <article class="view">
+      <h3>风险的教科书定义：不确定性，而不是亏损</h3>
+      <p class="ctx">金融学对风险的定义和日常直觉不同：<strong>风险是实际收益偏离预期收益的可能性</strong>——注意，是"偏离"，既包括跌得比预期惨，也包括涨得比预期猛。一个每年稳定给你 2% 的存款，风险极低；一个年化回报在 -40% 到 +60% 之间剧烈摆动的资产，风险极高——哪怕两者的长期平均收益相同。这就是为什么教材用"波动"来度量风险：摆动幅度越大，你越无法预知某个时点上账户里是多少钱，也越可能在最糟糕的时点被迫做决定（急用钱时正好在底部）。</p>
+      <p class="ctx">还要区分两种性质完全不同的"亏"：<strong>波动性亏损</strong>是账面浮亏，只要你不在底部卖出、且资产本身长期价值未损，它有恢复的可能；<strong>永久性本金损失</strong>才是真正可怕的风险——公司退市归零、遭遇诈骗、在杠杆下被强制平仓，钱没了就是没了。博格在《共同基金常识》里的立场很清晰：对长期投资者而言，真正要防的是永久性损失与"在最坏时点被迫卖出"，而不是账户数字的日常起伏。这个区分贯穿全课：<a href="../05-behavior/">第5章</a>讲的情绪失控，正是把波动性亏损亲手变成永久性损失的机制。</p>
+      <p class="ctx">一个容易混淆的点顺便说清：<strong>风险与不确定性不是一回事</strong>。掷骰子，六种结果的概率精确已知——这叫风险，可以定价、可以对冲；"这家公司五年后还在不在""这项技术会不会被颠覆"——概率根本无法客观计算，这叫不确定性（经济学家奈特的经典区分）。市场里的股票回报主要由后者驱动，所以任何声称能"精确量化并消除"股票投资风险的模型宣传，先打个问号：模型只能处理已知分布的风险，处理不了真正的不确定性——2008 年大量"AAA 级"产品的崩盘就是模型失灵的集体演示。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（Common Sense on Mutual Funds，经典著作，风险章节） · <a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov（英文，Risk and Return 科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>两把尺子：波动率与最大回撤</h3>
+      <p class="ctx"><strong>波动率</strong>（标准差）度量收益摆动的平均幅度：数值越大，涨跌越剧烈。通俗理解——如果某基金年化波动率是 20%，意味着它的年度回报大多数时候在"平均值上下 20 个百分点"的范围内摆动（简化示意，假设正态分布）。<strong>最大回撤</strong>度量历史上最惨的一段：从最高点跌到之后最低点的最大跌幅。它对普通人的心理意义比波动率更直接——"如果我在最坏的时点买入最高点，最多会浮亏多少、要熬多久"。</p>
+      <p class="ctx">举个教学示例（非真实产品）：净值从 1.0 元涨到 1.5 元，再跌到 0.9 元——这段的最大回撤 =（1.5 − 0.9）÷ 1.5 = <strong>40%</strong>。回撤有一个反直觉的数学性质：<strong>跌下去容易，涨回来难</strong>。因为回本所需的涨幅是以跌后的更低基数计算的：</p>
+      <table class="cmp">
+        <tr><th>下跌（回撤）</th><th>回本所需涨幅</th></tr>
+        <tr><td>−10%</td><td>+11.1%</td></tr>
+        <tr><td>−20%</td><td>+25%</td></tr>
+        <tr><td>−30%</td><td>+42.9%</td></tr>
+        <tr><td>−50%</td><td>+100%</td></tr>
+        <tr><td>−70%</td><td>+233%</td></tr>
+      </table>
+      <p class="ctx">这张表是"控制回撤比追逐收益更重要"的数学依据：−50% 之后需要翻倍才能回本，而翻倍恰恰是绝大多数人毕生追求的收益。指数与基金的波动率、回撤数据可在中证指数官网及基金定期报告中查到（口径以官方披露为准）。</p>
+      <div class="fig"><img src="../assets/img-02-1.png" alt="两条抽象净值曲线对比：一条平缓小幅波动，一条剧烈起伏并标出从峰值到谷底的最大回撤区间，深蓝配色几何风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司（指数历史数据与编制方案，官方口径）</a> · 伯顿·马尔基尔《漫步华尔街》（A Random Walk Down Wall Street，经典著作，风险与波动章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>第三把尺子：夏普比率——每承受一份风险，换回几份收益</h3>
+      <p class="ctx">单看收益或单看风险都会误判：年化 12% 但波动 35% 的组合，未必好过年化 8% 但波动 10% 的组合。<strong>夏普比率</strong>（Sharpe Ratio）把两者合在一起：（组合收益 − 无风险利率）÷ 波动率——含义是"每承受一单位波动，额外赚取多少超过无风险利率的收益"，数值越高，承担风险的"性价比"越高。它是学术界与基金评价的通用指标，由诺贝尔经济学奖得主威廉·夏普提出。</p>
+      <p class="ctx">用它时记住三个局限：①它假设波动是风险的充分度量——但"缓慢阴跌不波动"的资产照样能亏光本金；②它对短期数据极不稳定，两三年的夏普比率几乎没有比较意义（业内惯例看 5–10 年以上）；③它可以被操纵——通过持有"平时稳、偶尔爆"的策略（如卖出尾部风险）把波动率做低，账面夏普很好看，实则埋雷（2008 年金融危机中大量高评级产品即是教训）。所以对普通人，夏普比率适合当<strong>粗筛工具</strong>（同类基金横向比较、拉长期限），不适合当唯一标准。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：兹维·博迪等《投资学》（Investments，经典教材，夏普比率与绩效评估章节） · <a href="https://www.investor.gov/">investor.gov（英文，风险调整后收益科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、收益的锚：无风险利率与风险溢价</h2>
+    <p class="chapter-sub">一切收益的"水位线"，和忍受波动的"报酬"</p>
+
+    <article class="view">
+      <h3>无风险利率：一切收益的水位线</h3>
+      <p class="ctx"><strong>无风险利率</strong>是理论上"零风险"投资的回报率，现实中通常用国债收益率作近似代表（国家信用背书、违约概率极低），中国市场常用 10 年期国债收益率作为参照（具体数值随市场变动，以央行与财政部相关发布及中债收益率曲线为准，可在中国人民银行官网查询宏观数据口径）。它的意义在于给一切投资定了一个<strong>比较基准</strong>：任何资产的回报，先减去无风险利率，剩下的部分才值得讨论——因为那部分是你承担额外风险换来的。</p>
+      <p class="ctx">无风险利率还是资产定价的"水位"：水位低时，同样的未来现金流折算到今天更值钱，股票、房产等资产的估值中枢倾向于抬高；水位升时则相反（<a href="../01-basics/">第1章</a>四力模型中的"利率"一力）。对普通人的直接启示：①看到任何产品宣传"年化 X%"，第一反应是和无风险利率比——高出多少？高出的部分对应的风险说清楚了吗？②无风险利率是变动的，不存在永远高息的"无风险"资产——历史上每一次"稳定高息"的最后都被证明不是稳定、就是高息、或者两者都不是。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行（金融市场与利率数据官方口径）</a> · 兹维·博迪等《投资学》（Investments，经典教材，利率结构与资产定价章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>风险溢价：收益是对"忍受不舒服"的补偿</h3>
+      <p class="ctx"><strong>风险溢价</strong>（Risk Premium）= 风险资产的预期回报 − 无风险利率。它的存在逻辑很朴素：股票会大幅波动、会腰斩，如果它的长期回报不比存款国债高，就没人愿意持有——市场必须给出"额外的甜头"来补偿这份不舒服，否则股票根本卖不出去。换句话说，<strong>股票的高回报不是天上掉的，而是你出售"承受波动的忍耐力"收到的租金</strong>。这也解释了为什么风险溢价长期存在却不会被套利抹平：抹平它需要有人愿意无限量承担风险，而这不可能。</p>
+      <p class="ctx">金融史上最著名的长期统计来自 Dimson、Marsh 与 Staunton：覆盖二十多个国家、跨越一百多年的数据显示，股票的实际（扣除通胀）长期年化回报显著高于债券与现金，同时年度波动也大得多（《乐观者的胜利》，具体数值以原书口径为准）。但注意风险溢价的兑现方式：它是<strong>长期、平均、不保证</strong>的——拉长看总体成立，任何单一年份、单一国家、单一行业都可能失效（日本股市 1990 年代后的"失去的三十年"是常被引用的反例情形）。把它当成"必然到手的工资"是误用，把它当成"坚持长期持有才可能领到的补偿"才是正解。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Dimson、Marsh & Staunton《乐观者的胜利》（Triumph of the Optimists，百年跨国数据，经典著作） · Fama & French（1993）"Common risk factors in the returns on stocks and bonds"，Journal of Financial Economics，<a href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、历史数据怎么说：长期与短期的两副面孔</h2>
+    <p class="chapter-sub">同一份数据，两种读法——以及三个必须避开的陷阱</p>
+
+    <article class="view">
+      <h3>长期数据：股票跑赢债券与存款，但路径极其颠簸</h3>
+      <p class="ctx">把百年跨国数据（Dimson 等）与 A 股自身的历史放在一起看，结论方向一致：<strong>拉长到十年以上，权益类资产的平均回报高于债券与存款；但任何一两年内，它完全可能大幅跑输甚至腰斩</strong>。以 A 股为例，沪深300 指数自 2005 年发布以来的完整走势（含 2008、2015、2018 年的剧烈回撤与其后修复）可在中证指数官网查询原始数据——本站不摘引具体收益数字，因为任何截取区间的数字都会被选择性使用；请直接看官方全序列（口径与区间以中证指数官网披露为准）。</p>
+      <p class="ctx">这份数据的正确打开方式是"两副面孔一起看"：只看长期均值，你会低估过程的痛苦——均值是用一次次 30%、50% 级别的回撤"熬"出来的；只看某段回撤，你会否定长期逻辑——那等于用一张照片否定一部电影。投资规划的意义正在于此：<strong>用资产配置决定你暴露多少（<a href="../03-allocation/">第3章</a>），用持有期与纪律决定你能不能撑到长期均值兑现的那天（<a href="../05-behavior/">第5章</a>）</strong>。数据本身不会替你做到这两件事。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/#/indices/family/detail?indexCode=000300">中证指数 · 沪深300 指数详情页（历史行情官方数据）</a> · Dimson、Marsh & Staunton《乐观者的胜利》（经典著作）</div>
+    </article>
+
+    <article class="view">
+      <h3>读数据的三个陷阱：幸存者偏差、口径、以史推未来</h3>
+      <p class="ctx"><strong>陷阱一：幸存者偏差。</strong>你看到的长期高收益数据，来自"活下来"的样本：指数会定期剔除退市与衰落的公司、纳入新龙头，指数收益天然含"优胜劣汰"红利，不等于随便买一堆股票持有就能复制；基金业绩统计也常剔除已清盘产品——"某类基金过去十年平均年化 X%"里的分母，只有幸存者。<strong>陷阱二：口径。</strong>名义收益还是扣除通胀的实际收益？含不含分红（全收益指数 vs 价格指数差异可观）？区间从哪天算起？同一资产换个口径，数字能差出一倍——引用任何收益数字前先问口径，是本课反复强调的肌肉记忆。<strong>陷阱三：以史推未来。</strong>"过往业绩不代表未来表现"不是免责套话，是统计事实：过去的风险溢价依赖过去的经济增长、人口结构与制度环境，它们都在变。监管因此要求所有基金宣传必须带这句话（基金业协会信息披露口径），凡是刻意淡化它的销售材料都值得警惕。</p>
+      <p class="ctx">给一个可操作的读数据流程：看到任何收益宣传，先问四个问题——①<strong>区间</strong>：从哪天到哪天？（从底部算起和从顶部算起，同一资产能讲出相反的故事）②<strong>口径</strong>：名义还是实际？含不含分红？费前还是费后？③<strong>样本</strong>：统计对象是全部产品还是"活下来"的产品？④<strong>基准</strong>：和同期无风险利率、和对应指数比，超额部分有多少？四问之后还站得住的数字，才有讨论价值；答不上来的宣传，按<a href="../11-scam/">第11章</a>的话术库对照处理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金信息披露与业绩展示规范口径）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（投资者风险提示专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>通胀：不投资也有风险——现金的"慢性回撤"</h3>
+      <p class="ctx">风险讨论如果只盯着波动，会漏掉最安静的一种：<strong>购买力风险</strong>。物价上涨意味着同样的钱能买的东西变少——现金和活期存款的名义数字一分不少，实际价值却在逐年"慢性回撤"，而且这种回撤没有行情软件提醒你、没有跌停板拦着。衡量口径是居民消费价格指数（CPI，国家统计局按月发布，可在官网查询）：教学示例——若长期平均通胀为 2.5%，100 万元现金放 20 年，购买力约缩水到 61 万（按购买力折算，非名义金额）；若某年通胀更高，缩水更快。这就是"什么都不做"的真实成本：<strong>不投资不是零风险，而是选择了确定性缓慢贬值</strong>（<a href="../00-intro/">导论</a>展开过这个论证）。</p>
+      <p class="ctx">但结论不是"所以要赶紧全仓股票"——那是从一个极端跳到另一个极端。正确的框架是<strong>两本账一起算</strong>：短期要用的钱，通胀侵蚀有限而波动伤害致命，仍应放存款与货币基金（存款保险制度保障 50 万元以内本息，见<a href="../01-basics/">第1章</a>）；十年以上不动的钱，放着不动的购买力损失几乎确定发生，而权益资产的波动风险可以通过分散与期限管理降低（本章与<a href="../03-allocation/">第3章</a>的全部内容）。"实际收益率 = 名义收益率 − 通胀率"——比较任何资产时都该用这个口径，存款的真实对手从来不是股票，是物价。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/">国家统计局（CPI 月度数据官方口径）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行（物价与货币统计数据）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、高收益必然高风险：一条没有例外的铁律</h2>
+    <p class="chapter-sub">它不只是投资原理，更是骗局的照妖镜</p>
+
+    <article class="view">
+      <h3>铁律本身：超出无风险利率的收益，必然来自某种风险</h3>
+      <p class="ctx">金融体系里没有"免费的高收益"：任何超过无风险利率的回报，背后必然对应某种被承担的风险——波动风险、信用风险、流动性风险，或者……根本不存在回报，只有庞氏结构（用后来者的本金支付先来者的"收益"）。这条铁律的实用推论是一个<strong>识别器</strong>：当有人同时承诺"高收益"和"低风险/保本/稳赚"时，两个承诺在逻辑上不可能同时为真——要么收益是假的（骗局），要么风险被隐瞒了（爆雷在后头）。证监会历年风险提示反复强调这一点：对承诺"保本高息""稳赚不赔"的金融产品保持高度警惕，这类话术是非法集资与诈骗的典型特征（以证监会官网风险提示专栏为准）。</p>
+      <p class="ctx">给一个粗糙但好用的标尺（教学示意，非精确阈值）：明显高于同期国债与存款利率数倍的"稳定收益"承诺，基本可以直接判定为骗局或高风险伪装——司法机关通报的集资诈骗案中，年化百分之几十的"固定收益"是最常见的话术配置（最高检典型案例可在官网检索）。2018 年资管新规实施后，监管已明确要求金融机构<strong>打破刚性兑付</strong>：正规资管产品不得承诺保本保收益，银行理财也不再保本——所以今天在正规渠道你根本找不到"保本高息"产品，找得到的都不是正规渠道。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（打击非法证券期货与风险提示专栏）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（非法集资与证券犯罪典型案例发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>杠杆：收益的放大器，也是死神的加速器</h3>
+      <p class="ctx">杠杆就是借钱投资：自有 10 万、借 10 万，买入 20 万——涨 10% 你赚 20%（对自有资金），跌 10% 你亏 20%，外加利息照付。它的数学本质是把收益与亏损同比例放大，同时引入一个全新风险：<strong>强制平仓</strong>。教学示例：2 倍杠杆买入，资产下跌 40% 时你的本金理论上已亏 80%，而实际上跌到约一半时出借方就会强制卖出你的持仓锁定他的本金——你在最深的底部被系统性地"卖在地板上"，连等反弹的资格都没有。这就是"波动性亏损变永久性损失"的最快通道。</p>
+      <p class="ctx">合规与违规的分界要说清：券商<strong>融资融券</strong>是持牌业务，有资产与交易经验门槛、有维持担保比例约束（具体以券商与交易所现行规定为准，截至 2026 年 10 月），本课程不鼓励普通投资者使用；而"场外配资"是<strong>违法违规</strong>业务——无牌照出借资金、杠杆倍数失控，证监会历年"打击非法证券期货活动"专项中反复查处并警示（以证监会官网打非专栏为准）。识别口径：凡是绕开正规券商、通过私人账户或不明 APP 给你“放大资金”的，都是“场外配资”或其变种。对普通人，本章的结论只有一句：<strong>在你还没学会控制不加杠杆的冲动之前，杠杆与你无关</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 打击非法证券期货活动专栏（"场外配资"风险提示与典型案例）</a> · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务（融资融券投资者教育专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、复利的真相：时间是最大的变量</h2>
+    <p class="chapter-sub">72 法则、成本侵蚀，以及复利最怕的两件事</p>
+
+    <article class="view">
+      <h3>72 法则：72 ÷ 年化收益 ≈ 翻倍年数</h3>
+      <p class="ctx">复利（利滚利）的心算工具：<strong>用 72 除以年化收益率（百分数），约等于本金翻倍所需年数</strong>（教学示意，近似公式）：年化 3% → 约 24 年翻倍；6% → 约 12 年；8% → 约 9 年；10% → 约 7.2 年。反过来用更扎心：年化 2% 的存款翻倍要 36 年，而同期若通胀平均 2%，你的购买力实际上原地踏步。72 法则揭示的核心不是"哪个收益率好"，而是<strong>时间才是复利公式里权重最大的变量</strong>：同样年化 7%，投 10 年翻约 1 倍，投 30 年翻约 7 倍——后期增长远超前期，因为基数在滚大。这就是"尽早开始、别中断"在数学上的依据（investor.gov 提供复利计算器可自行验证，英文）。</p>
+      <p class="ctx">两个必须同步说清的边界：①72 法则里的收益率是<strong>假设值</strong>——真实的股票回报逐年剧烈波动，某些年份是负数，"年化 7%"是长期平均的事后描述，不是每年到手的工资；②它默认你<strong>全程持有不中断</strong>——而中断恰恰是大多数人复利失败的原因，见下一卡。任何人用"复利表"向你演示"每月投 X 元、N 年后变 Y 万"时，检查他的假设收益率有没有给来源与口径：没有口径的复利演示是画饼，不是规划。另外注意 72 法则只适用于复利情形：单利（利息不再投入）下本金翻倍是线性的，10% 单利要 10 年而不是 7.2 年——"利滚利"与"利不滚利"的差距，前十年看着不大，第三十年差出一倍。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.investor.gov/">investor.gov（英文，Compound Interest Calculator 复利计算器）</a> · 约翰·博格《共同基金常识》（经典著作，长期回报的来源分解）</div>
+    </article>
+
+    <article class="view">
+      <h3>复利的两个敌人：成本与中断</h3>
+      <p class="ctx"><strong>敌人一：成本。</strong>复利对费用同样生效——费用每年从本金里"负复利"地扣。博格反复引用一个算术：假设两个组合毛回报相同，一个每年总费用 0.2%，一个 1.2%，30 年后终值差距可达两三成（费用差 1% 复利 30 年的侵蚀，具体测算见《共同基金常识》，教学示意）。这笔钱不会出现在任何一张账单上提醒你，它只体现为"你的净值比指数少涨的那部分"。这就是<a href="../04-index/">第4章</a>把费率作为选基金第一梯队的筛选条件、以及<a href="../10-tax/">第10章</a>逐项拆解费用与税的原因。<strong>敌人二：中断。</strong>复利公式里时间 t 是指数位——中断十年，不是"少赚十年"，是终值打对折级别的损失。而造成中断的通常不是没钱，是行为：在深跌时恐慌清仓（把浮亏变实亏、把复利进程清零），然后在不涨的岁月里彻底离场。</p>
+      <p class="ctx">中断的代价有实证支撑：Barber 与 Odean（2000）对数万散户账户的经典研究发现，<strong>交易越频繁的投资者，年化净收益越显著低于市场</strong>——频繁进出等于反复中断持仓的复利进程、并叠加交易成本（结论以原论文口径为准）。对策不是预测市场，而是工程化设计：只用长期不用的钱投资（先备好应急金，<a href="../16-plan/">第16章</a>）、选择自己拿得住的风险水平（下一节）、用定投与再平衡代替择时（<a href="../09-strategy/">第9章</a>）。复利不需要你聪明，只需要你不打断它。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：约翰·博格《共同基金常识》（经典著作，成本章节） · Barber & Odean（2000）"Trading Is Hazardous to Your Wealth"，Journal of Finance，<a href="https://doi.org/10.1111/0022-1082.00226">DOI（英文，浏览器访问）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、你能承受多大风险：自评与适当性</h2>
+    <p class="chapter-sub">能力与意愿是两回事，取低者执行</p>
+
+    <article class="view">
+      <h3>承受能力 vs 风险偏好：一个客观、一个主观</h3>
+      <p class="ctx"><strong>风险承受能力（capacity）</strong>是客观条件：你的钱亏掉多少、亏多久，不会破坏生活。四个决定因素——①<strong>年龄与人力资本</strong>：越年轻，未来工资收入的"债券属性"越强，能承受的金融资产波动越大（经验方向，非定律）；②<strong>收入稳定性</strong>：双职工稳定收入家庭与自由职业单收入家庭，承受力完全不同；③<strong>资金用途与期限</strong>：三年内要付首付的钱与三十年后的养老钱，是两个物种——期限越短承受力越低，这是硬性约束；④<strong>负债与应急储备</strong>：有房贷车贷、无应急金的人，一次失业叠加一次回撤就是双重打击。<strong>风险偏好（tolerance/willingness）</strong>是主观心理：账面浮亏多少你会睡不着、会不会手痒操作。两者不一致时——很常见，比如"承受力强的年轻人偏好极保守"或"承受力弱的临近退休者偏好激进"——<strong>以低者为准</strong>：偏好高于能力，一次回撤就财务受伤；能力高于偏好，拿不住照样在底部卖出。</p>
+      <p class="ctx">怎么测自己的真实偏好？问卷之外有个更诚实的办法：<strong>用小仓位先经历一次下跌</strong>。教学示例：如果你计划投入 20 万，可以先投 1–2 万，故意经历一段 10%–20% 的回撤再观察自己——是照常生活，还是每天刷十次行情、忍不住想"落袋为安"？行为不会说谎，问卷会。很多"激进型"投资者是在牛市里测出来的，牛市问卷测不出熊市的手。这也是<a href="../09-strategy/">第9章</a>强调"没有最好的策略、只有拿得住的策略"的原因。</p>
+      <div class="fig"><img src="../assets/img-02-2.png" alt="抽象风险阶梯：从底部稳固的存款几何块到顶部波动的股票曲线块，一个无脸小人站在中段衡量自身位置，深蓝配色" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（经典著作，资产配置与生命周期章节） · <a href="https://www.sac.net.cn/">中国证券业协会（投资者适当性管理自律规则口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>适当性管理：C1–C5 与 R1–R5 的匹配游戏</h3>
+      <p class="ctx">中国证监会《证券期货投资者适当性管理办法》把"把适当的产品卖给适当的投资者"变成了制度：经营机构必须评估投资者的风险承受能力等级（常见 C1 保守型到 C5 激进型五档），产品与服务也划分风险等级（常见 R1 到 R5），<strong>销售时两者必须匹配</strong>——C2 的投资者默认不能买 R4 的产品，除非按流程主动申请并确认（规则细节以证监会与中证协现行文件为准，截至 2026 年 10 月）。开户时那份风险测评问卷就是这个制度的入口。</p>
+      <p class="ctx">正确对待测评的姿势：<strong>如实填，把它当保护而不是障碍</strong>。两个常见错误：①为了买某产品把问卷"做成"高风险等级——匹配制度保护的是你，绕过它的后果由你的本金承担；②嫌麻烦随便填——被匹配到过低等级后，你会在真正合适的机会面前被制度性拦截。另外记住测评的边界：它评估的是你的承受等级，<strong>不构成对任何产品的推荐</strong>；"通过了测评"不等于"这个产品适合你现在的财务目标"——后者需要你自己按上一卡的四个因素再想一遍。凡是声称能"帮你过测评""代填问卷"的中介，直接拉黑（这属于违规"代客理财"类灰产的前置环节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会（《证券期货投资者适当性管理办法》发布口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（适当性管理与投资者权利科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>流程框：回撤承受力自测五问</h3>
+      <blockquote class="q">
+        <strong>风险承受力自测五问（投入资金前认真做一遍）：</strong>①假设你投入 10 万元（换成你的真实计划金额），三个月后打开账户看到只剩 9 万——你的第一反应是"补仓/不动/睡不好/立刻清仓"里的哪个？②如果它继续跌到 7 万、且新闻里全是悲观论调、身边人都在割肉离场，你还能执行既定计划吗？③这笔钱如果三年内完全不能动，会影响你的生活安排吗（首付、学费、医疗）？④若同期无风险利率 2%，你愿意为"可能"的更高回报承受②里的煎熬吗——还是发现自己其实只想要那 2%？⑤把①–④的答案对照你的年龄、收入稳定性与应急储备：客观承受力与主观意愿，哪个更低？<strong>以低者为准设定权益仓位上限</strong>（具体比例方法见<a href="../03-allocation/">第3章</a>，教学框架，非投资建议）。
+        <span class="qsrc">—— 依据交易所投教风险测评框架与适当性管理逻辑整理（截至 2026 年 10 月），问题为本站教学化改写</span>
+      </blockquote>
+      <div class="checklist">
+        <h4>📋 投入资金前的前置检查（全部为"是"再谈收益）</h4>
+        <ul>
+          <li>应急金已备好（3–6 个月必要开支放在随时可取的低风险资产，见<a href="../16-plan/">第16章</a>）；</li>
+          <li>拟投入的钱是三年以上确定不动用的闲钱；</li>
+          <li>高息负债（消费贷、信用卡分期）已优先还清——还清 15% 利率的负债=无风险赚 15%，优于任何投资；</li>
+          <li>已完成五问自测，且权益仓位不超过"能力与意愿取低者"对应的上限；</li>
+          <li>风险测评如实填写，拟买产品风险等级与自身等级匹配；</li>
+          <li>知道持仓的最大历史回撤数字，并确认自己在该情景下不会恐慌清仓。</li>
+        </ul>
+      </div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站（风险测评与理性投资专栏）</a> · <a href="https://www.sac.net.cn/">中国证券业协会（适当性管理与投资者保护口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、谣言粉碎：关于风险与收益的三大谎话</h2>
+    <p class="chapter-sub">每句话术背后都有一个等着你的坑</p>
+
+    <article class="view">
+      <h3>谣言粉碎：风险收益篇三连</h3>
+      <p class="ctx"><strong>误区一："存在保本、无风险、年化两位数的渠道，只是普通人不知道。"</strong>第四节已经给出逻辑证明：超过无风险利率的收益必然来自风险，"保本+高息"在数学上自相矛盾。现实中这类话术只有三种结局：庞氏骗局（用新本金付旧"收益"，资金链断即崩盘，司法机关通报的集资案标准剧本）、风险后置的伪装产品（平时稳、爆雷一次性亏光），或者纯粹的"杀猪盘"——先用小额"提现成功"养信任，再诱你加大投入。资管新规后正规机构不得承诺保本保收益，所以<strong>"保本高息"四个字本身就是非正规渠道的自供状</strong>。记住反方向才成立：收益越高，风险必然越高——这不是悲观，是定价规律。反过来推论同样成立：<strong>任何"低风险"资产都不该有"高收益"标签</strong>，如果有人告诉你某个存款替代品、某类"固收+"、某个理财计划既安全又高息，你不需要懂金融工程，只需要问一句"多出来的收益是谁付的、他为什么付"——答不上来，就是你要付。</p>
+      <p class="ctx"><strong>误区二："分散投资可以消除所有风险。"</strong>分散化是金融学里唯一的"免费午餐"（马科维茨组合理论的核心洞见：持有相关性低的多种资产，可以在不降低预期收益的前提下降低组合波动），但它的边界同样清楚：分散只能消除<strong>非系统性风险</strong>（单个公司暴雷、单个行业衰退），无法消除<strong>系统性风险</strong>（整个市场、整个经济体层面的下跌）——2008 年式的危机里，几乎所有风险资产同跌，"分散"只能让你亏得比单押少，不能让你不亏。所以"我已经分散了所以安全了"是半句话：分散降低了归零概率，没有降低回撤可能，仓位与期限管理仍然不可省（<a href="../03-allocation/">第3章</a>的主题）。还有一个常见变体要戳破：<strong>"我买了八只基金，很分散"</strong>——如果八只全是沪深300指数增强或同一赛道主题基金，持仓高度重叠，分散的只是产品名称；真正的分散看底层资产的相关性（股票/债券/现金/海外，<a href="../03-allocation/">第3章</a>给方法），不看账户里有几个代码。</p>
+      <p class="ctx"><strong>误区三："风险测评问卷是走过场，随便填填就行，反正只是形式。"</strong>问卷是适当性管理制度的入口：你填出来的等级，决定机构能向你销售什么风险等级的产品、决定你在纠纷中的举证位置（机构需证明"已了解投资者"并匹配销售）。乱填高（为了买高风险产品）等于亲手拆掉制度给你的护栏——真出了超出承受力的亏损，"是你自己声称能承受"会成为对你不利的证据；乱填低则会在合适机会前被拦。花五分钟如实填写，是整套投资者保护制度里你唯一需要做的事，也是性价比最高的五分钟。顺带一提：测评结果有有效期（通常一到两年，以券商提示为准），到期重测不是刁难——你的财务状况确实会变，两年前的承受力等级不该自动沿用到今天。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 打击非法证券期货活动专栏与风险提示</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（集资诈骗典型案例发布）</a> · 哈里·马科维茨《投资组合选择》（Portfolio Selection 理论，经典著作） · <a href="https://www.investor.org.cn/">中国投资者网（适当性制度科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>金融学里"风险"的定义是什么？为什么它不等于"亏钱"？</li>
+        <li>波动性亏损与永久性本金损失的区别是什么？哪个才是长期投资者真正要防的？</li>
+        <li>波动率和最大回撤分别度量什么？各自适合回答什么问题？</li>
+        <li>跌 30% 后回本需要涨多少？跌 50% 呢？为什么"控制回撤比追收益重要"？</li>
+        <li>夏普比率的含义是什么？说出它的三个使用局限。</li>
+        <li>无风险利率为什么被称为"一切收益的水位线"？现实里常用什么近似？</li>
+        <li>风险溢价的经济学逻辑是什么？为什么说它是"出售忍耐力的租金"？</li>
+        <li>风险溢价的兑现有哪三个限定词？"失去的三十年"说明了什么？</li>
+        <li>长期历史数据的"两副面孔"指什么？只看其中一副各会导致什么错误？</li>
+        <li>幸存者偏差、口径陷阱、以史推未来分别是什么？各举一个例子。</li>
+        <li>"高收益+保本"为什么在逻辑上不可能同时为真？资管新规对此有什么制度安排？</li>
+        <li>杠杆如何把波动性亏损变成永久性损失？强制平仓的机制是什么？</li>
+        <li>融资融券与"场外配资"的合规边界在哪里？</li>
+        <li>72 法则怎么用心算？为什么说时间是复利里权重最大的变量？</li>
+        <li>复利的两个敌人是什么？Barber & Odean（2000）的核心发现是什么？</li>
+        <li>风险承受能力与风险偏好的区别？两者冲突时怎么办？</li>
+        <li>C1–C5 与 R1–R5 的匹配制度在保护什么？为什么不能"做成"高风险等级？</li>
+        <li>回撤承受力自测五问大致问什么？前置检查清单里为什么"还清高息负债"排在投资前面？</li>
+        <li>三条谣言（保本高息渠道、分散消除一切风险、测评走过场）各错在哪里？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>风险=实际收益偏离预期的不确定性（双向摆动），度量的三把尺子：波动率（摆动幅度）、最大回撤（历史最惨一段，−50% 需 +100% 回本——回撤数学决定"少亏"比"多赚"更硬）、夏普比率（每单位波动的超额收益，长期限粗筛用）；真正要防的是永久性本金损失与底部被迫卖出，不是日常波动；无风险利率（国债收益率近似，央行/财政部口径）是一切收益的水位线，风险溢价是承担波动收到的补偿——长期、平均、不保证（Dimson 等百年跨国数据方向：股票实际回报高于债券现金，波动也大得多）；读历史数据避开三陷阱：幸存者偏差（指数与基金统计只含活下来的）、口径（名义/实际、含不含分红、区间起点）、以史推未来（"过往业绩不代表未来"是统计事实）；铁律：超出无风险利率的收益必来自风险——"保本+高息"逻辑上不可能同时为真，资管新规后正规机构不得承诺保本，"稳赚不赔"话术=骗局身份证（庞氏、"杀猪盘"的标准开场）；杠杆放大收益也放大亏损并引入强制平仓——把浮亏瞬间变成实亏，"场外配资"违法违规（证监会打非专栏持续警示）；复利：72÷年化≈翻倍年数，时间是最大变量，两个敌人=成本（1% 费差 30 年侵蚀可观，博格）与中断（Barber & Odean 2000：越频繁交易净收益越差）；风险承受能力（年龄/收入稳定性/资金期限/负债应急金，客观）与风险偏好（心理，主观）冲突时取低者；适当性制度：C1–C5 投资者等级与 R1–R5 产品等级必须匹配，问卷如实填是保护不是形式；投前检查：应急金→还高息负债→三年以上闲钱→五问自测→等级匹配→知道持仓历史最大回撤；谣言三连已粉碎：没有普通人不知道的保本高息渠道（数学反证+监管制度反证）、分散只消除非系统性风险（系统性下跌仍需仓位与期限管理）、风险测评不是走过场（它是纠纷举证与制度护栏的入口）。下一章把"承受力"落地成具体比例：资产配置——别把鸡蛋放在一个篮子里；在那之前，请先用第六节的五问给自己一个诚实的答案，因为配置比例的地基，就是你对回撤的真实承受力。
+  </div>
+
+  <nav class="pager">
+    <a href="../01-basics/"><span class="dir">← 第1章</span>股票是什么：股权、市场与交易常识</a>
+    <a href="../03-allocation/"><span class="dir">第3章 →</span>资产配置：别把鸡蛋放在一个篮子里</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第2章 · 依据证监会与交易所官方投教材料、《证券期货投资者适当性管理办法》、中证指数官方数据口径、博格《共同基金常识》、马尔基尔《漫步华尔街》、Dimson/Marsh/Staunton《乐观者的胜利》、Fama & French（1993）、Barber & Odean（2000）、Kahneman 行为金融研究等整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 过往业绩不代表未来表现 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

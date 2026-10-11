@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 货币与信用：钱从哪里来 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第4章 · 基础概念</div>
+  <h1>货币与信用：钱从哪里来</h1>
+  <p>M0/M1/M2 三层水位、银行"造钱"的派生机制、社会融资规模——以及"印钞"这个词到底哪里用对了、哪里用错了</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../03-interest/">← 第3章：利率</a>
+    <a href="../05-exchange/">第5章：汇率与国际收支 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">货币的职能</a>
+    <a class="anchor" href="#s2">M0/M1/M2</a>
+    <a class="anchor" href="#s3">钱怎么造出来</a>
+    <a class="anchor" href="#s4">社会融资规模</a>
+    <a class="anchor" href="#s5">信用周期</a>
+    <a class="anchor" href="#s6">印钞迷思</a>
+    <a class="anchor" href="#s7">金融数据怎么读</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本章内容仅供<strong>经济教育与参考</strong>，不构成投资建议、政策预测或任何产品的商业推荐；本站无商业合作、无推广链接。</li>
+      <li>本章<strong>不预测具体行情与政策走向</strong>：不判断货币数据"意味着大放水还是大收紧"，只教你读懂指标口径与新闻表述；"崩溃"类断言只出现在谣言粉碎与批判语境。</li>
+      <li>货币与金融数据以<strong>官方统计口径</strong>为准：中国人民银行金融统计数据发布、国家统计局等，正文注明统计时点；中外对比提示口径差异。</li>
+      <li>不传播未经证实的"内幕政策消息"；重大政策一律以<strong>官方发布</strong>为准，本章只教"怎么读公开发布的文件"。</li>
+      <li>本章依据官方文件、权威教科书与学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出货币的三大职能，解释"钱为什么值钱"；②讲清中国 M0/M1/M2 的口径差别，以及"M1 与 M2 增速剪刀差"新闻在说什么；③用"存款派生"讲清钱是怎么被银行体系"造"出来的，并说出乘数理论的局限；④解释社会融资规模是什么、与 M2 什么关系；⑤描述宽信用与紧信用的传导链条；⑥拆穿"央行印钞=直升机撒钱"的误解，说清 QE 与中国结构性工具的区别；⑦每月金融数据发布会，知道先看哪几个数、按什么顺序读。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>货币是宏观经济的"血液"——<a href="../02-inflation/">第2章</a>的"通胀是不是货币现象"、<a href="../03-interest/">第3章</a>的利率传导、<a href="../06-monetary/">第6章</a>的央行政策、<a href="../10-housing/">第10章</a>的住房信贷，都以本章的货币创造机制为底座。第一次通读建立"水位-水管-水泵"的整体图景；以后每月看到金融数据新闻，回来对照第七节的读法清单。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、货币的职能：钱为什么值钱</h2>
+    <p class="chapter-sub">交易媒介、计价单位、价值储藏——三大职能撑起一张纸（或一串数字）的信用</p>
+
+    <article class="view">
+      <h3>三大职能：教科书的标准答案与背后的逻辑</h3>
+      <p class="ctx">经济学教科书对货币职能的经典划分是三条：①<strong>交易媒介</strong>——大家接受它来买卖东西，解决了"以物易物必须双重巧合"（你有羊想换斧头，斧头主人偏不要羊）的难题，这是货币诞生的第一推动力；②<strong>计价单位</strong>——万物用同一个尺度标价，羊值 3 块、斧头值 50 块，价格体系才可能形成，经济计算才可能进行；③<strong>价值储藏</strong>——今天的劳动成果可以存起来明天再花，跨越了时间的交易才成为可能。三条职能里，交易媒介是根：正因为人人接受，它才能计价、才值得储藏。</p>
+      <p class="ctx">现代货币是<strong>信用货币</strong>：人民币没有黄金背书，它"值钱"的根基是<strong>国家信用与法定地位</strong>——法律规定它是法定偿付手段（《中国人民银行法》与《人民币管理条例》确立人民币的法定货币地位），税收、工资、合同都以它结算，全社会对它"明天还能买到东西"有稳定信心。理解这一点很重要：<strong>货币的价值本质上是一种社会共识与制度安排</strong>，它的稳定性来自发行纪律（央行不滥发）与经济基本面的支撑，而不是某种实物抵押。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》（第10版，北京大学出版社）货币制度章节 · 萨缪尔森、诺德豪斯《经济学》（第19版）货币职能章节 · <a href="https://www.pbc.gov.cn/">中国人民银行官网（人民币法定货币地位与货币发行说明入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>货币形态的演化：从贝壳到数字，职能没变</h3>
+      <p class="ctx">货币的形态一路演化：实物货币（贝壳、布帛）→金属货币（铜钱、银两）→可兑换纸币（凭票兑银）→信用货币（不可兑换、国家信用背书）→电子与数字货币（银行卡余额、移动支付、数字人民币）。形态在变，三大职能没变。今天你钱包里的"钱"，绝大部分已经不是现金，而是<strong>银行账户里的一串数字</strong>——这串数字怎么来的、能不能变多，正是本章第三节"货币创造"的主题。</p>
+      <p class="ctx">值得一提的中国实践是<strong>数字人民币（e-CNY）</strong>：由中国人民银行发行的法定数字货币，定位于流通中现金（M0）的数字化替代，支持"支付即结算"与可控匿名（以人民银行数字人民币官方说明为准）。它改变的是现金的形态与支付效率，不改变货币创造的总体机制——这个定位常被误读，第八节谣言粉碎会再提到。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（数字人民币研发进展白皮书与官方说明入口）</a> · 曼昆《经济学原理（宏观分册）》（第10版）货币制度演化章节 · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（居民消费中支付方式的统计观察）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、M0/M1/M2：货币的三层水位</h2>
+    <p class="chapter-sub">流动性从高到低的三个口径——以及"剪刀差"新闻到底在说什么</p>
+
+    <article class="view">
+      <h3>三个口径：现金、活钱、总水量</h3>
+      <p class="ctx">央行按<strong>流动性</strong>（变现的容易程度）把货币分层统计，中国的口径（以中国人民银行最新公布的统计口径为准）大致是：<strong>M0=流通中现金</strong>——你钱包里、商家收银台里的纸币硬币，流动性最强；<strong>M1=M0+单位活期存款等</strong>——企业随时可以动用的"活钱"，反映经济活动的即期热度；<strong>M2=M1+定期存款+居民储蓄存款+其他存款等</strong>——全社会货币总量的"总水位"，是货币政策最关注的总量指标之一。三层像同心圆：M0 在核心，M1 包一层，M2 再包一层。</p>
+      <p class="ctx">一个重要的口径更新：2024 年，中国人民银行修订了 M1 统计口径，将<strong>个人活期存款与非银行支付机构客户备付金</strong>纳入 M1，自 2025 年 1 月起按新口径统计并公布数据（以人民银行官方发布为准）。这意味着新旧口径下的 M1 增速不能直接对比——看到"M1 增速大幅变化"的新闻，先确认口径，再谈含义，这是数据纪律的又一次应用。</p>
+      <table class="cmp">
+        <tr><th>口径</th><th>包含什么</th><th>流动性</th><th>主要看什么</th></tr>
+        <tr><td>M0</td><td>流通中现金</td><td>最高</td><td>现金使用需求、节假日效应</td></tr>
+        <tr><td>M1</td><td>M0 + 单位活期存款 + 个人活期存款、支付机构备付金（2025 年起新口径）</td><td>高</td><td>企业活钱多不多、即期交易活跃度</td></tr>
+        <tr><td>M2</td><td>M1 + 定期存款 + 储蓄存款 + 其他存款</td><td>中</td><td>货币总量水位、与名义 GDP 增速的匹配度</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据发布栏目：M0/M1/M2 月度数据与口径修订说明）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（货币金融数据聚合页）</a> · 曼昆《经济学原理（宏观分册）》（第10版）货币衡量章节</div>
+    </article>
+
+    <article class="view">
+      <h3>"M1 与 M2 剪刀差"：一个被过度解读的指标</h3>
+      <p class="ctx">财经媒体常报道"M1 与 M2 增速的剪刀差"：M2 增速高、M1 增速低，通常被解读为"钱躺在定期账户里，不愿意出来活动"——企业把活钱转成定期吃利息，居民储蓄倾向上升，即期交易与投资意愿偏弱。这个解读有其道理（M1 更贴近"准备花的钱"），但<strong>不能过度推演</strong>：剪刀差还受口径调整、存款利率变化（定期与活期利差影响搬家方向）、企业资金管理模式、财政收支节奏等多种因素影响，单月数据的波动常常只是技术性原因。</p>
+      <p class="ctx">正确的用法是把 M1/M2 结构当作<strong>资金活化程度的一个观察窗口</strong>，与信贷、社融、企业存款搬家等数据放在一起看（第七节的组合读法），而不是拿单月剪刀差直接下"经济活力衰竭"的结论。顺带一提：M2 增速与名义 GDP 增速的匹配度是央行在《中国货币政策执行报告》中常用的分析框架——"货币增速与经济增长和物价水平相适应"是理解中国货币政策的官方表述基准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据新闻发布会与解读稿入口）</a> · 中国人民银行《中国货币政策执行报告》（季度出版物，货币供应量与名义 GDP 匹配度分析框架，以最新一期为准） · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（GDP 数据，用于与 M2 对照）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、钱是怎么"造"出来的：贷款创造存款</h2>
+    <p class="chapter-sub">央行供应"基础货币"，商业银行通过放贷"派生"存款——绝大多数钱是记账记出来的</p>
+
+    <article class="view">
+      <h3>一个思想实验：100 元准备金如何变成一串存款</h3>
+      <p class="ctx">教科书版的货币创造故事是这样的（示例）：央行向银行体系注入 100 元基础货币；甲银行留下法定准备金（假设 10 元），把 90 元贷给企业 A；A 用这 90 元付货款，钱进入收款方在乙银行的账户——乙银行又多了 90 元存款，留下 9 元准备金，再贷出 81 元……如此循环，最初的 100 元基础货币，理论上最多"派生"出 100÷10%=1000 元的存款总量。这个 10 倍就是<strong>货币乘数</strong>的教科书版本：货币乘数≈1÷法定准备金率。</p>
+      <p class="ctx">关键认知是：<strong>存款不是"先有储蓄才能放贷"，而是"放贷的同时创造存款"</strong>——银行批一笔贷款，借款人的账户上就多出一笔钱，这笔钱是记账记出来的新购买力。当借款人还本付息时，对应的存款又被"销毁"。所以现代经济中的钱，绝大部分是银行体系的<strong>债权债务记录</strong>：你的存款，是银行对你的负债；社会上的钱多钱少，取决于银行体系整体在扩张还是收缩信贷。这也是"货币与信用"总被放在一起讲的原因——<strong>钱即信用，信用即钱</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》（第10版）货币创造与货币乘数章节 · McLeay、Radia &amp; Thomas（2014）"Money creation in the modern economy"，英格兰银行《Quarterly Bulletin》（英文，央行对"贷款创造存款"机制的权威科普） · 中国人民银行《中国货币政策执行报告》（货币创造与流动性供给分析，以最新一期为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>乘数理论的局限：现实比教科书"毛糙"</h3>
+      <p class="ctx">教科书的乘数故事有两个简化必须指出：①它假设银行<strong>总能把钱贷出去</strong>——现实中银行可能惜贷（经济前景差时宁可不放），乘数会缩水；②它假设公众<strong>不留现金</strong>——现实中大家会提取一部分现金（现金漏损），银行也会持有超额准备金，两者都会让实际派生倍数低于理论值。因此现代央行学界的共识是：<strong>货币供给不是央行单方面"外生"控制的，而是央行、商业银行、公众三方行为共同决定的"内生"过程</strong>——央行能通过准备金率、政策利率、各类工具影响货币创造的<em>成本与意愿</em>，但不能像拧水龙头一样精确控制总量。</p>
+      <p class="ctx">这个认知有直接的读新闻价值：当看到"降准释放 X 千亿资金"的报道时，正确理解是"降准<strong>增加了银行可用于信贷扩张的资金与意愿</strong>"，而不是"市场上马上多了 X 千亿的钱"——后者要等贷款真的放出去、存款真的派生出来才会发生，中间隔着银行的放贷决策和实体经济的借款需求。货币政策"从宣布到见效"存在<strong>时滞</strong>，这是<a href="../06-monetary/">第6章</a>的重要主题。</p>
+      <blockquote class="q">货币创造链条（简化版）：<br>① 央行供应基础货币（公开市场操作、降准、再贷款等工具）<br>② 商业银行决定放贷（看资本充足率、资金成本、风险与需求）<br>③ 贷款同时创造存款 → 存款进入支付循环 → 部分回到银行体系再放贷<br>④ 公众的现金持有与银行的超额准备金决定"漏损"多少<br>⑤ 结果：M2 = 基础货币 × 实际货币乘数（乘数由三方行为共同决定）<span class="qsrc">—— 框架整理自曼昆《经济学原理》货币创造章节与英格兰银行 Quarterly Bulletin（2014，英文）</span></blockquote>
+      <div class="fig">
+        <img src="../assets/img-04-1.png" alt="水塔水管模型：央行水塔通过管道向商业银行网络供水，银行网络再分流到企业与居民的蓄水池，部分水流回收到水塔" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+        <div class="cap">插画 · AI 生成</div>
+      </div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：McLeay、Radia &amp; Thomas（2014）"Money creation in the modern economy"，英格兰银行《Quarterly Bulletin》（英文） · 曼昆《经济学原理（宏观分册）》（第10版）货币乘数局限相关讨论 · <a href="https://www.pbc.gov.cn/">中国人民银行官网（存款准备金制度与流动性管理发布入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>基础货币的投放渠道：央行的钱从哪出去</h3>
+      <p class="ctx">央行向银行体系供应基础货币的主要渠道（中国语境，以人民银行官方发布为准）：<strong>公开市场操作</strong>（逆回购投放、正回购与到期回笼）、<strong>中期借贷便利（MLF）</strong>等借贷便利工具、<strong>再贷款再贴现</strong>（支农支小、科技创新、碳减排等定向领域的央行贷款），历史上还有<strong>外汇占款</strong>（企业出口赚的外汇卖给银行、银行卖给央行，央行被动投放人民币——2014 年前后曾是中国基础货币的主渠道，此后占比下降，央行转向主动工具投放）。降准则不是"投放新钱"，而是<strong>降低银行必须冻结的准备金比例</strong>，把"死钱"变"活钱"，提高派生能力。</p>
+      <p class="ctx">把这些渠道记住有个实用价值：看到"央行开展 X 亿元 MLF 操作""净投放/净回笼 X 亿元"的新闻，你能立刻定位这是<strong>基础货币层面</strong>的动作（第一级水管），它要经过银行放贷（第二节讲的派生）才影响 M2 与实体经济。新闻标题里的"放水"多数时候指的就是这一层的操作——而这一层的水量，远不等于最终流进经济的水量。顺带把"净投放/净回笼"这对词讲清：央行每天的操作有投放（逆回购、MLF 到期续作）也有回笼（到期不续、正回购），两者相抵后的净额才是当天的方向——只看"投放 X 亿"而不看到期量，是媒体标题最常见的断章取义，读公告时把两个数都找出来再作判断。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行公开市场业务公告栏目（逆回购/MLF 操作量与利率发布）</a> · 中国人民银行《中国货币政策执行报告》（基础货币投放渠道与结构性工具专栏，以最新一期为准） · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（货币金融数据聚合）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、社会融资规模：中国特色的"信用温度计"</h2>
+    <p class="chapter-sub">M2 看"钱的存量水位"，社融看"实体从金融体系拿到的钱"</p>
+
+    <article class="view">
+      <h3>社融是什么：从实体经济的角度数钱</h3>
+      <p class="ctx"><strong>社会融资规模</strong>（简称社融）是中国人民银行 2010 年前后创设的统计指标：一定时期内<strong>实体经济（境内非金融企业和住户）从金融体系获得的资金总额</strong>。它与 M2 是一枚硬币的两面：M2 从"钱存在哪里"（金融体系的负债端）统计，社融从"钱到了谁手里"（实体经济的融资端）统计。社融的构成大体分四块：<strong>表内贷款</strong>（人民币贷款、外币贷款）、<strong>表外融资</strong>（委托贷款、信托贷款、未贴现银行承兑汇票）、<strong>直接融资</strong>（企业债券、非金融企业境内股票融资）、<strong>其他</strong>（政府债券、存款类金融机构资产支持证券等，具体构成以人民银行最新统计口径为准）。</p>
+      <p class="ctx">社融对中国特别有用，原因在于金融结构：中国以银行间接融资为主，但企业发债、股票融资、政府债券的占比在上升，只看银行信贷会漏掉越来越大的融资渠道。社融把表内、表外、直接融资一网打尽，成为观察"实体融资需求强弱"的核心指标——新闻里"宽信用有没有兑现"，多数时候就是在问社融（尤其是其中的中长期贷款）有没有起量。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（社会融资规模统计数据月度发布与口径说明）</a> · 中国人民银行《中国货币政策执行报告》（社会融资规模分析框架，以最新一期为准） · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（社融与信贷数据聚合页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>社融与 M2 的"背离"：为什么两个数经常对不上</h3>
+      <p class="ctx">社融增速与 M2 增速理论上应该大体同步（一笔融资既增加实体的钱、也增加金融体系的存款），但现实中经常背离，常见原因有四类：①<strong>政府债券发行</strong>计入社融，但财政把钱存在国库（未进入企业与居民存款）时 M2 不增；②<strong>资金在金融体系内空转</strong>（如非银机构之间的往来）推高 M2 却不进实体、不增社融；③<strong>表外融资收缩</strong>（资管新规后通道业务压降）让社融少一块而 M2 不受直接影响；④<strong>口径与统计范围</strong>本身在演进（社融的"其他"项历次扩容）。看到背离新闻，先想这四类原因，再谈"资金空转""信用坍塌"之类的大词。</p>
+      <p class="ctx">还要记住社融的两个使用纪律：①社融是<strong>流量指标</strong>（某月/某季新增多少），波动大、受季节与政府债发行节奏影响明显——单月数据说明不了趋势，要看连续多月与累计同比；②社融内部结构比总量更有信息量：企业<strong>中长期贷款</strong>反映实体投资意愿，居民中长期贷款主要对应房贷（<a href="../10-housing/">第10章</a>会展开），票据冲量则可能是银行"凑规模"的信号——官方发布会与《货币政策执行报告》对结构的分析，比媒体标题的"超预期/不及预期"更值得读。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（金融统计数据发布会实录，社融结构官方解读）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（社会融资规模统计口径说明）</a> · 中国人民银行《中国货币政策执行报告》（以最新一期为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、信用周期：宽信用与紧信用如何影响经济</h2>
+    <p class="chapter-sub">从"政策转向"到"经济见效"，中间隔着一条不短的传导链</p>
+
+    <article class="view">
+      <h3>宽信用的传导链：政策→银行→实体→收入</h3>
+      <p class="ctx">当政策取向转向"宽信用"（降准降息、放松信贷约束、鼓励投放），传导链条大致是：①央行降低银行的资金成本与准备金约束；②银行放贷意愿与能力提升，贷款利率下行；③企业与居民借款增加——企业扩产补库存、居民加杠杆买房消费；④投资与消费推升总需求，企业收入与居民就业改善；⑤收入改善又反过来增强借款需求与还款能力，信用扩张自我强化。反向的"紧信用"则是同一条链条倒着走：融资收缩→投资消费降温→收入放缓→信用需求进一步萎缩。</p>
+      <p class="ctx">这条链的每个环节都可能"堵"：银行惜贷（环节②）、实体不愿借（环节③，预期弱时利率再低也不加杠杆）、收入改善不达预期（环节④）。这就是为什么"宽货币"不等于"宽信用"——央行把水放到银行间市场（货币宽松）相对容易，让水流进实体经济（信用扩张）取决于银行与借款人的行为。新闻里"宽货币、紧信用"的说法，指的就是水停在第一级、还没流到第二级。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》（第10版）货币政策传导机制章节 · 中国人民银行《中国货币政策执行报告》（信贷传导与实体融资成本分析，以最新一期为准） · <a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（政策取向的官方表述）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>信用周期的两面：加速器也是放大器</h3>
+      <p class="ctx">信用扩张是经济增长的<strong>加速器</strong>：没有信贷，企业无法先于收入进行投资，家庭无法先于储蓄进行大额消费（房贷、车贷、教育）。但信用同时是风险的<strong>放大器</strong>：繁荣期抵押品升值→银行更愿意放贷→更多资金推高资产价格→抵押品进一步升值，这个正反馈（金融加速器机制）在上行期助推繁荣，在下行期同样助推收缩——资产价格跌、抵押品贬值、银行抽贷、被迫抛售、价格再跌。2008 年全球金融危机就是信用放大器失控的教科书案例（<a href="../12-finance/">第12章</a>详述）。</p>
+      <p class="ctx">正因为信用有放大效应，各国在常规货币政策之外建立了<strong>宏观审慎管理</strong>框架：逆周期资本缓冲、房贷首付比例与利率下限的差别化安排、对系统重要性机构的额外要求等，目标是"在经济上行期踩一点刹车、下行期少踩刹车"，平滑信用周期。中国的宏观审慎政策框架以人民银行官方表述为准，《中国货币政策执行报告》与国际清算银行（BIS）的统计与方法论页面是公开可查的一手资料。对普通人的含义：<strong>信用周期的位置影响就业、收入与资产价格</strong>——理解它在哪个阶段（只讲读法、不做预测），是<a href="../08-cycle/">第8章</a>经济周期与<a href="../17-asset/">第17章</a>家庭资产配置认知的基础。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.bis.org/statistics/index.htm">国际清算银行 BIS 统计栏目（英文；信用缺口与债务偿付率数据库，宏观审慎监测的常用口径）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（宏观审慎政策框架发布入口）</a> · Bernanke、Gertler &amp; Gilchrist（1999）金融加速器机制（The Financial Accelerator，学术文献，英文，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、"印钞"迷思：央行扩表 ≠ 直接发钱</h2>
+    <p class="chapter-sub">QE 是什么、中国的结构性工具是什么——以及为什么"大水漫灌"是个粗糙的比喻</p>
+
+    <article class="view">
+      <h3>QE 的真实机制：买债券，不是印钞票撒街</h3>
+      <p class="ctx">"量化宽松"（QE）指央行在政策利率已接近零下限时，通过<strong>大规模购买国债等资产</strong>向金融体系注入准备金、压低长期利率的操作——2008 年金融危机后由美联储、欧洲央行、日本央行等大规模使用（以各央行官方说明为准）。注意它的机制：央行"印"出来的钱<strong>首先变成银行在央行的准备金</strong>，是银行体系的资产，不直接进入居民和企业的口袋；只有银行愿意放贷、公众愿意借款，准备金才会转化为实体经济的存款与购买力。所以 QE 的传导同样卡在"银行放贷意愿+实体借款需求"这两环——这正是 QE 效果在学界持续争论的原因。</p>
+      <p class="ctx">"央行印钞"这个说法本身就有误导性：现代央行的"印钞"绝大多数是<strong>资产负债表上的记账操作</strong>（买资产、记准备金），物理印钞机印的纸币只占货币总量的极小部分（M0 在 M2 中占比很低，具体比例以人民银行金融统计数据为准）。把"扩表"直接等同于"给全民发钱"，混淆了基础货币投放与财政转移支付两种完全不同的机制——后者是财政部的事，见<a href="../07-fiscal/">第7章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（英文；QE 操作与资产负债表政策的官方说明入口）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（货币政策工具箱说明入口）</a> · Joyce、Lasaosa、Stevens &amp; Tong（2011）"The financial market impact of quantitative easing"，英格兰银行工作论文（英文，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>中国的结构性货币政策工具：定向滴灌而非漫灌</h3>
+      <p class="ctx">与 QE 的"总量购买"不同，中国人民银行的特色是<strong>结构性货币政策工具</strong>：支农支小再贷款、碳减排支持工具、科技创新和技术改造再贷款等（工具清单与额度以人民银行官方发布为准）。机制上，央行以优惠利率向银行提供资金，并<strong>要求银行定向投向特定领域</strong>——相当于给水管加装了定向阀门，让资金流向政策希望支持的薄弱环节（小微、三农、绿色、科技）。官方将其定位为"总量+结构"双重功能的调控模式，与欧美以总量工具为主的框架形成对照。</p>
+      <p class="ctx">"大水漫灌"是媒体对宽松政策的粗糙比喻，官方表述历来强调"精准滴灌""不搞大水漫灌"。作为读者要能分辨：①<strong>总量工具</strong>（降准、政策利率）影响的是整个金融体系的资金成本与数量；②<strong>结构性工具</strong>影响的是资金的流向；③任何工具的实际效果都要看传导（第五节）与实体需求，"投放量"不等于"生效量"。把三者混为一谈，就会得出"央行印了 X 万亿所以物价要飞"这类跳跃结论——这正是下一节谣言粉碎的对象。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（结构性货币政策工具的官方介绍与答问实录）</a> · 中国人民银行《中国货币政策执行报告》（结构性货币政策工具专栏，以最新一期为准） · <a href="https://www.gov.cn/zhengce/">中国政府网政策频道（货币政策相关文件检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、每月金融数据怎么读：五步法</h2>
+    <p class="chapter-sub">数据发布节奏、先看什么后看什么——一套可复用的阅读流程</p>
+
+    <article class="view">
+      <h3>发布节奏与阅读顺序</h3>
+      <p class="ctx">中国的金融数据主要由中国人民银行按月度发布（金融统计数据报告：M2、社融、信贷；一般在每月中旬发布上月数据，具体以官网发布为准）；物价与产出数据由国家统计局发布（CPI/PPI 一般每月 9-10 日左右，GDP 按季度）；财政数据由财政部按月度与年度发布。读月度金融数据，推荐一个<strong>五步法</strong>：</p>
+      <blockquote class="q">金融数据五步阅读法：<br>① <strong>看总量</strong>：M2 增速、社融存量增速与上月/去年同期比，判断水位升降的方向<br>② <strong>看结构</strong>：社融里政府债、企业中长期贷款、居民中长期贷款各贡献多少——总量靠谁撑起来的<br>③ <strong>看口径</strong>：有没有统计口径调整（如 M1 新口径、社融扩容）导致数字不可比<br>④ <strong>看组合</strong>：与同期 CPI、GDP、财政数据对照，验证"宽信用是否流向实体"<br>⑤ <strong>看官方解读</strong>：读央行数据发布会实录与《货币政策执行报告》，官方对数据的定性比媒体标题可靠<span class="qsrc">—— 阅读流程为本站根据人民银行与统计局公开发布惯例整理的方法建议，不构成任何投资参考</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据月度发布栏目）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（月度/季度数据发布列表页）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（月度财政收支发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>常见误读纠正：三个"想当然"</h3>
+      <p class="ctx"><strong>误读一："M2 总量超过 X 万亿，说明钱印疯了。"</strong>M2 是<strong>存量</strong>，逐年累积，经济体量与货币化程度上升自然推高存量；有意义的比较是 M2 <strong>增速</strong>与名义 GDP 增速的匹配度（央行官方分析框架），而不是存量绝对值。中国 M2/GDP 比例偏高与以银行间接融资为主的金融结构有关，与"印钞失控"是两回事。<strong>误读二："社融大增=经济马上好转。"</strong>社融是<strong>领先指标之一</strong>而非结果本身：融资改善到企业投资、居民收入改善之间有时滞，且要看结构（政府债驱动的社融与企业自主融资驱动的社融含义不同）。<strong>误读三："存款增加=大家有钱了。"</strong>存款增加可能来自贷款派生（第三节）、财政支出投放、理财回流等多种渠道，"钱多了"与"你的钱多了"没有直接关系——居民部门可支配收入数据要看统计局的住户调查发布。三句"想当然"的共同毛病是一样的：把存量当流量、把领先当兑现、把总量当分配——记住这三组区分，月度金融数据的标题党就骗不到你。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（金融统计数据发布会官方答问）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（居民收入与存款口径的官方解读）</a> · 中国人民银行《中国货币政策执行报告》（M2 与名义 GDP 匹配度分析，以最新一期为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>数据去哪查：官方一手入口清单</h3>
+      <p class="ctx">养成"先看原始发布、再看媒体解读"的习惯，能过滤掉大量标题党噪音。常用一手入口：<strong>货币金融数据</strong>——中国人民银行官网"调查统计"与新闻发布栏目（M0/M1/M2、社融、信贷）；<strong>物价与产出</strong>——国家统计局官网"最新发布"与"数据解读"栏目（CPI、PPI、GDP、收入）；<strong>财政</strong>——财政部官网"财政数据"栏目（收支、政府债）；<strong>跨国对比</strong>——世界银行数据平台（各国 GDP、通胀可比口径）；<strong>利率</strong>——中国货币网与人民银行公开市场业务栏目（LPR、操作利率）；<strong>美国数据</strong>——FRED 数据库与美联储官网（英文）。</p>
+      <p class="ctx">两个查询纪律：①官方数据会有<strong>修订</strong>（GDP 初步核算→最终核实→修订，金融数据偶有口径回溯调整），引用时注明数据所属期与发布时间；②跨国对比注意<strong>统计口径差异</strong>（如各国 M2 定义不同、CPI 篮子权重不同），世界银行与 IMF 的数据库提供可比化处理，但仍有口径注释需要阅读。这些纪律在<a href="../16-indicator/">第16章</a>"看懂经济指标"会系统展开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://data.worldbank.org/">世界银行数据平台（英文；各国指标可比数据总入口）</a> · <a href="https://www.chinamoney.com.cn/">中国货币网（LPR 与货币市场数据官方发布平台）</a> · <a href="https://fred.stlouisfed.org/">美联储圣路易斯分行 FRED 数据库（英文；美国宏观指标，浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：货币篇</h2>
+    <p class="chapter-sub">四条流传极广的货币误解，逐条对照机制与证据</p>
+
+    <article class="view">
+      <h3>谣言粉碎："印钞必通胀"与"M2 高=大水漫灌"</h3>
+      <p class="ctx"><strong>误区一："央行一印钞，物价必然飞涨。"</strong>货币数量论的朴素版本（货币多→物价涨）省略了关键中间变量：<strong>货币流通速度</strong>与<strong>货币是否流入实体</strong>。弗里德曼"通胀无论何时何地都是货币现象"的名言有其语境与学术争论（见<a href="../02-inflation/">第2章</a>）；现实反例充分——2008 年后美欧日央行大规模 QE、资产负债表扩张数倍，多年通胀反而低于 2% 目标，因为准备金大量停留在银行体系、信贷与需求未同步扩张。通胀是货币、需求、供给、预期共同作用的结果，单一"印钞量"推不出物价结论。<strong>误区二："中国 M2 增速/总量全球第一，说明在大水漫灌。"</strong>M2/GDP 比例高主要反映<strong>以银行为主的金融结构</strong>（储蓄通过银行存款形式持有，而美国更多通过股市债市持有财富），官方分析框架看的是 M2 与名义 GDP 增速的匹配度，且"大水漫灌"恰是官方明确反对的表述。用存量比例直接指控"漫灌"，混淆了结构与政策取向两件事。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》（第10版）货币数量论及其局限章节 · Friedman（1968）"The Role of Monetary Policy"，American Economic Review（英文，学术文献） · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（英文；QE 时期资产负债表与通胀数据的一手来源）</a> · 中国人民银行《中国货币政策执行报告》（M2 与名义 GDP 匹配度官方分析）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："数字人民币能查到一切""存款消失=钱被偷了"</h3>
+      <p class="ctx"><strong>误区三："数字人民币会监控你的一切消费。"</strong>官方对数字人民币的隐私设计表述是<strong>"小额匿名、大额依法可溯"的可控匿名</strong>：日常小额支付保护隐私，只有涉及违法犯罪调查时依法可追溯——这与现有银行账户体系"依法可查询"的法律框架一致，并非新增的全民监控（以人民银行数字人民币官方白皮书与说明为准）。把"依法可溯"渲染成"全面监控"，是脱离官方文本的臆测。<strong>误区四："银行出问题，我的存款就没了/钱被偷了。"</strong>中国实行<strong>存款保险制度</strong>（2015 年《存款保险条例》施行）：同一存款人在同一家银行的存款本息合计在最高偿付限额（人民币 50 万元）以内实行全额偿付，超出部分依法从该行清算财产中受偿（以存款保险基金管理有限责任公司官方口径为准）；此外系统重要性银行受严格审慎监管。把个别高风险中小机构的处置案例（官方均有公告与兑付安排）渲染成"存款不安全"的普遍恐慌，既不符合制度事实，也落入制造焦虑的话术陷阱——此类话术常与"赶紧买黄金/换外汇"的诱导捆绑出现，需警惕。涉及资金的"编造传播"类谣言信息，官方会依法处置，读者应以人民银行与金融管理部门公告为准。</p>
+      <div class="fig">
+        <img src="../assets/img-04-2.png" alt="盾牌保护下的储蓄罐与银行账户符号：几何盾牌环绕存款保险限额标志，谣言形状的暗色雾团被盾牌光挡住" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+        <div class="cap">插画 · AI 生成</div>
+      </div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（数字人民币白皮书与存款保险制度说明入口）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《存款保险条例》全文检索）</a> · <a href="https://www.gov.cn/zhengce/">中国政府网政策频道（《存款保险条例》发布页检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>货币的三大职能是什么？哪一个是根？为什么？</li>
+        <li>现代信用货币"值钱"的根基是什么？与金本位时代有何不同？</li>
+        <li>数字人民币的官方定位是什么（M0 替代）？它改变货币创造机制了吗？</li>
+        <li>写出中国 M0/M1/M2 的口径；2025 年起 M1 新口径纳入了什么？</li>
+        <li>"M1 与 M2 剪刀差"通常被怎么解读？为什么不能过度推演？</li>
+        <li>用 100 元准备金的思想实验讲一遍存款派生与货币乘数。</li>
+        <li>"贷款创造存款"是什么意思？还贷款时钱去哪了？</li>
+        <li>乘数理论的两个简化假设是什么？现实中什么因素让派生缩水？</li>
+        <li>为什么说货币供给是"内生"的？这对读"降准释放 X 千亿"新闻有什么启发？</li>
+        <li>央行投放基础货币的渠道有哪些？降准为什么不算"投放新钱"？</li>
+        <li>社会融资规模统计的是什么？四大构成块是哪些？</li>
+        <li>社融与 M2 背离的四类常见原因是什么？</li>
+        <li>使用社融数据的两个纪律（流量看趋势、结构比总量重要）各指什么？</li>
+        <li>宽信用传导链的五个环节是什么？哪几环可能"堵"？</li>
+        <li>"金融加速器"的正反馈机制是什么？宏观审慎管理为什么存在？</li>
+        <li>QE 的钱首先变成了什么？为什么"央行印钞=发钱"是误解？</li>
+        <li>中国结构性货币政策工具的机制与定位是什么？与 QE 的关键区别？</li>
+        <li>复述金融数据五步阅读法。</li>
+        <li>"M2 总量大=印疯了""社融大增=经济马上好""存款增加=大家有钱了"各错在哪？</li>
+        <li>存款保险制度的最高偿付限额是多少？"小额匿名、大额依法可溯"指什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>货币三大职能（交易媒介/计价单位/价值储藏），现代货币是信用货币、价值根基是国家信用与全民共识；中国按流动性分 M0/M1/M2 三层水位（2025 年起 M1 新口径含个人活期存款与支付备付金，新旧不可直接对比），剪刀差是资金活化的观察窗口而非判决；钱主要由银行"贷款创造存款"派生而来，货币乘数是教科书简化，现实中银行惜贷与现金漏损让货币供给成为央行-银行-公众三方共同决定的内生过程；基础货币渠道=公开市场操作/MLF/再贷款/历史上的外汇占款，降准是解冻不是新钱；社融从实体融资端数钱，与 M2 是一体两面，背离有四类技术原因，结构（企业中长贷/居民中长贷/政府债）比总量更有信息量；信用周期是加速器也是放大器，宽货币≠宽信用，传导卡在银行放贷意愿与实体借款需求；QE 是买债扩表、准备金停在银行体系，"印钞=发钱"是误解，中国用结构性工具定向滴灌、官方明确"不搞大水漫灌"；每月金融数据用五步法读（总量→结构→口径→组合→官方解读），"M2 存量大=印疯了""社融大增=马上好转""存款增加=大家有钱"都是想当然；存款保险 50 万元限额内全额偿付，数字人民币"小额匿名、大额依法可溯"——涉及货币的恐慌话术常与"赶紧买金换汇"诱导捆绑，以官方公告为准。
+  </div>
+
+  <nav class="pager">
+    <a href="../03-interest/"><span class="dir">← 第3章</span>利率：资金的价格</a>
+    <a href="../05-exchange/"><span class="dir">第5章 →</span>汇率与国际收支</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第4章 · 依据中国人民银行金融统计数据发布与新闻发布会实录、《中国货币政策执行报告》、国家统计局数据解读、财政部财政数据、美联储货币政策页（英文）、英格兰银行 Quarterly Bulletin（2014，英文）、国际清算银行 BIS 统计（英文）、世界银行数据平台（英文）及曼昆《经济学原理》、萨缪尔森《经济学》等教科书与学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 货币与金融数据以官方最新发布口径为准 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

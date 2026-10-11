@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6章 估值常识：贵和便宜怎么看 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:var(--accent-deep);border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第6章 · 估值与实操工具</div>
+  <h1>估值常识：贵和便宜怎么看</h1>
+  <p>市盈率、市净率、股息率、ROE——四个指标的直觉理解与适用边界，以及估值最容易被用错的三个地方：预测短期、单指标下结论、把历史百分位当保票</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../05-behavior/">← 第5章：行为金融</a>
+    <a href="../07-financial/">第7章：财报入门 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">价格与价值</a>
+    <a class="anchor" href="#s2">市盈率PE</a>
+    <a class="anchor" href="#s3">市净率与股息率</a>
+    <a class="anchor" href="#s4">ROE与盈利质量</a>
+    <a class="anchor" href="#s5">百分位与周期性</a>
+    <a class="anchor" href="#s6">相对比较</a>
+    <a class="anchor" href="#s7">估值的正确用法</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章内容仅供投资教育与参考，不构成投资建议，不推荐任何证券；文中出现的所有数字、算式与场景均为教学示例，据此操作风险自负。市场有风险，投资需谨慎——估值指标<strong>不能预测短期涨跌</strong>，本章教的是"怎么理解贵和便宜"，不是"买什么"。本站不推荐个股、不预测行情、不承诺收益；请警惕任何以"低估值""价值洼地"为话术的"荐股"服务，合法证券业务只能通过证监会许可的正规机构开展。费率、税率与规则数字以监管机构与交易所官方口径为准（截至 2026 年 10 月）。各节均标注权威来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用一句话说清"价格是付出，价值是得到"，理解估值到底在估什么；②解释市盈率 PE 的含义，分清静态、滚动（TTM）、预测三种口径的差别与陷阱；③说明市净率 PB 和股息率各自适合什么行业、在什么情况下会失灵；④用 ROE 和"经营现金流/净利润"给盈利质量做一个粗略体检；⑤看懂估值百分位，并说出它为什么会骗人；⑥掌握跨行业、跨市场比较估值时的注意事项；⑦分清估值"能做什么、不能做什么"，把估值放回资产配置和纪律框架里使用。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是"估值与实操工具"部分的第一章，为第7章（财报）、第9章（策略）、第17章（组合）打地基。建议先通读一遍建立框架，之后在实际查看指数或基金资料时，把第二至第五节当工具书翻回来对照。所有算式都是小学水平的除法，重点不在算，而在理解"这个数字在什么条件下有意义"。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、估值在估什么：价格与价值的两杆秤</h2>
+    <p class="chapter-sub">同一只股票，行情软件显示的是价格；估值指标想回答的是：这个价格相对它的"价值"是贵了还是便宜了</p>
+
+    <article class="view">
+      <h3>开场场景：那个让你心痒的"看起来很便宜"</h3>
+      <p class="ctx">（示例场景）行情软件弹出一条推送：某只股票的市盈率只有 4 倍，"比银行存款还划算"。你的手指悬在买入键上——4 倍市盈率，意味着按现在的盈利水平，四年就能"赚回"整个公司？听起来像白捡。但另一条新闻标题同时映入眼帘：这家公司所在行业正经历剧烈下行，去年利润腰斩。到底该信哪个？</p>
+      <p class="ctx">这个场景浓缩了估值的全部难点：<strong>估值指标本身不会骗人，但对指标的"单相思式"使用一定会</strong>。4 倍市盈率可能是机会，也可能是陷阱——判断的前提，是你知道这个数字是怎么算出来的、分母里藏着什么假设、它适合什么样的公司。本章接下来的内容，就是把"贵和便宜"从一种感觉，变成一组有明确边界的问题：相对什么贵？用什么尺子量？这把尺子在什么情况下会失灵？</p>
+      <p class="ctx">先给一个贯穿全章的定盘星。价值投资奠基人本杰明·格雷厄姆在《聪明的投资者》里给出的区分至今仍是估值的第一性原理：<strong>"价格是你付出的，价值是你得到的。"</strong>行情软件上跳动的数字是价格；估值指标做的全部事情，就是用各种尺子去量"这个价格相对价值是偏高还是偏低"——而任何一把尺子都有量程，超出量程的读数毫无意义。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：本杰明·格雷厄姆《聪明的投资者》（The Intelligent Investor，书籍按书名引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（估值与风险科普栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>价值到底是什么：三派答案与一个实用共识</h3>
+      <p class="ctx">"一家公司值多少钱"这个问题，金融学里至少有三个流派的答案。<strong>第一派：现金流折现</strong>——公司的价值等于它未来能产生的全部自由现金流，按一个反映风险的折现率折回今天的总和。这是教科书里的"标准答案"，逻辑严密，但输入项（未来几十年的现金流、折现率）全是估计值，输入差一点，输出差很多，对普通人来说它更像一个思想框架而不是计算器。<strong>第二派：相对估值</strong>——不去算绝对价值，而是拿可比对象做参照：跟自己的历史比、跟同行业公司比、跟整个市场比，市盈率、市净率这些指标全部属于这一派。<strong>第三派：市场有效派</strong>——尤金·法玛（Eugene Fama）等人的研究传统认为，价格已经充分反映了公开信息，普通投资者系统性寻找"便宜货"很难持续成功。</p>
+      <p class="ctx">三派吵了半个多世纪，本章不裁决，但给你一个实用共识：<strong>相对估值指标（PE、PB、股息率）的意义不在于算出"正确答案"，而在于把模糊的贵贱感觉变成可检查的问题</strong>。当你说"这只股票便宜"时，指标强迫你回答：便宜是相对什么说的？相对它自己的历史？相对同行？这个"便宜"持续了多久、为什么还没被市场买上去？——能回答这些问题，你就已经超过了大多数凭感觉下单的人。法玛的研究恰好也提示了 humble（谦逊）的必要性：如果便宜这么容易被识别并兑现，它就不会一直便宜。</p>
+      <div class="fig"><img src="../assets/img-06-1.png" alt="一个抽象的无脸人物站在两杆秤之间：左秤盘上放着发光的立方体代表价格，右秤盘上放着齿轮与幼苗的组合代表价值，两杆秤读数不同，人物在思考，深蓝主色扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://doi.org/10.1111/j.1540-6261.1992.tb04398.x">Fama & French (1992) The Cross-Section of Expected Stock Returns, Journal of Finance（英文，DOI 链接；出版商页面对自动访问有限制，可用浏览器打开或经学术数据库检索）</a> · <a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov：估值与投资基础科普（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、市盈率 PE：最常用也最容易被误用的尺子</h2>
+    <p class="chapter-sub">PE=价格÷每股收益，直觉是"按现在的赚钱速度，多少年回本"——但"现在的盈利"这三个字里藏着三种口径</p>
+
+    <article class="view">
+      <h3>PE 的直觉：多少年"回本"，以及它的隐含假设</h3>
+      <p class="ctx">市盈率（Price-to-Earnings Ratio，PE）的计算极其简单：<strong>股价 ÷ 每股收益</strong>，等价于<strong>公司总市值 ÷ 公司年净利润</strong>。一家公司市值 100 亿元、去年净利润 10 亿元，PE 就是 10 倍。它的直觉含义常被说成"回本年数"：如果公司盈利永远保持这个水平、并且全部分给你，10 年回本。</p>
+      <p class="ctx">注意这个直觉里的两个隐含假设，它们是理解 PE 全部陷阱的钥匙：<strong>其一，盈利是不变的</strong>——现实里盈利每年都在变，周期行业甚至大起大落；<strong>其二，盈利等于你能拿到的钱</strong>——现实里公司要留利再投资，分红比例各不相同。所以 PE 的正确读法不是"回本年数的承诺"，而是"<strong>在市场当前预期下，你为每一块钱盈利付出了多少钱</strong>"。PE 高，说明市场愿意为它的一块钱盈利出高价——可能因为预期它未来盈利大涨（成长股），也可能仅仅因为炒作（泡沫）；PE 低，说明市场只肯出低价——可能因为它被错杀（机会），也可能因为市场知道它的盈利撑不住（陷阱）。PE 本身不告诉你是哪种，这正是后面几节要拆的。</p>
+      <p class="ctx">还有一个容易被忽略的点：<strong>PE 的倒数是"盈利收益率"</strong>。10 倍 PE 等于 10% 的盈利收益率，20 倍 PE 等于 5%。把 PE 倒数拿来跟国债收益率、存款利率比，是一种快速判断"股票整体贵不贵"的思路——格雷厄姆时代就在用。当然，盈利是波动的、有风险的，存款利息是相对确定的，两者不能直接画等号，这个比较只提供一个数量级的参照（第2章讲过的风险溢价逻辑在这里再次出现）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司官网（指数市盈率等估值数据的官方发布渠道）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（基础指标科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三种口径：静态、滚动（TTM）、预测——先问"分母是哪一年的"</h3>
+      <p class="ctx">同一只股票，行情软件上可能同时显示三个不同的 PE，因为分母（每股收益）取的时段不同。<strong>静态市盈率</strong>：用上一年年报的净利润。数据最"实"，但最滞后——年报披露时，里面的经营情况可能已经是十几个个月前的了。<strong>滚动市盈率（PE-TTM）</strong>：用最近四个季度（十二个月）的净利润滚动加总。时效性最好，是专业投资者最常看的口径。<strong>预测市盈率（Forward PE）</strong>：用分析师预测的今年或明年净利润。最"新"，但分母是预测值——预测本身经常出错，牛市里普遍偏乐观。</p>
+      <p class="ctx">三种口径的差别在平稳年份不大，在盈利剧烈变化的年份可以差出天际。（示例算式）某公司前年净利润 10 亿元，去年只有 2 亿元，今年市场预期恢复到 8 亿元：按前年算静态 PE 是 10 倍（看起来很便宜），按去年算 TTM PE 是 50 倍（看起来很贵），按今年预测算是 12.5 倍。<strong>三个数字都是"对的"，讲的是三个不同的故事</strong>。普通投资者最常犯的错，是拿软件首页默认显示的那一个 PE 就下结论，根本没注意它是哪个口径。</p>
+      <p class="ctx">实用建议：①看指数估值时（比如判断宽基指数贵不贵），中证指数公司官网等官方渠道会明确标注口径与计算日期，以官方标注为准；②看个股 PE 时先确认口径，盈利波动大的公司，三种口径都要看一遍；③对预测 PE 保持最大的警惕——它把"别人的猜测"放进了分母。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司（指数估值数据口径说明）</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务（信息披露与定期报告科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>PE 的适用边界：三类公司面前它会失灵</h3>
+      <p class="ctx">PE 的分母是盈利，所以<strong>第一类失灵：亏损公司</strong>。净利润为负时 PE 没有意义（软件上常显示为"—"或负数），初创期、重研发投入、行业底部的公司常见这种情况。对它们，投资者会改用市销率（PS=市值÷营收）等指标，但亏损公司的估值本质上是对遥远未来的押注，不确定性极高——这正是第2章说的"高收益必然高风险"的具体形态。<strong>第二类失灵：强周期公司</strong>。钢铁、航运、养殖、部分化工行业的盈利随经济周期大幅波动：周期顶点时盈利暴增，PE 反而显得极低；周期谷底时盈利崩塌，PE 高得吓人或不适用。对周期股，"低 PE 买入"这句口诀经常恰好买在山顶（第五节详述）。</p>
+      <p class="ctx"><strong>第三类失灵：盈利结构特殊的公司</strong>。银行、保险等金融企业的资产负债结构与一般工商企业完全不同，利润受拨备、准备金等会计处理影响大，单看 PE 容易失真，业内常结合 PB 一起看（下一节）；持有大量投资性资产的公司，利润里混着公允价值变动，"盈利"的含金量需要拆开看（第7章财报部分展开）。一句话总结这一节：<strong>PE 是把好尺子，但先看清你量的东西是不是它能量的</strong>——量错了对象，读数再精确也没用。</p>
+      <blockquote class="q"><strong>三指标快速估值法（教学示例，非投资建议）</strong><br>第1步：确认口径——这个 PE 是静态、TTM 还是预测？分母是哪段时间的盈利？<br>第2步：找参照系——跟自身历史区间比（现在处于什么位置），跟同行业可比公司比（是不是显著偏离），跟宽基指数整体比（市场整体温度如何）。<br>第3步：问一句为什么——如果它显著"便宜"，写下市场对它担心的那件事（周期下行？盈利不可持续？行业逻辑变了？）；如果你答不出市场在担心什么，那大概率是你还没看懂，而不是市场送钱。<br>三步都过了，再谈它是否适合放进你的资产配置框架——估值从来不是买入的全部理由。<span class="qsrc">流程模板 · 依据相对估值通行方法整理，仅供教学示例，不构成投资建议</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.investor.gov/">investor.gov：投资基础与风险科普（英文）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站（行业差异与风险警示栏目）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、市净率与股息率：另外两把尺子</h2>
+    <p class="chapter-sub">PB 量的是"家底"，股息率量的是"到手的分红"——两把尺子各有擅长的对象，也各有量不准的时候</p>
+
+    <article class="view">
+      <h3>市净率 PB：为"家底"付了几倍价钱</h3>
+      <p class="ctx">市净率（Price-to-Book Ratio，PB）= 股价 ÷ 每股净资产，等价于市值 ÷ 净资产（所有者权益）。净资产是资产负债表上"总资产减总负债"的余额，可以理解为公司清算变卖后理论上归股东的"家底"。PB=1 意味着市场价格正好等于账面家底；PB=3 意味着市场愿意为每一块钱的账面净资产付三块钱——多付的部分，定价的是这家公司用家底赚钱的能力（ROE，第四节）和成长性。</p>
+      <p class="ctx">PB 的擅长对象是<strong>重资产与金融行业</strong>：银行、保险、券商的资产负债表本身就是经营的核心（钱和资本就是它们的原材料），账面价值相对可靠；钢铁、地产等重资产行业也常用 PB。PB 的失灵场景恰恰在轻资产公司：一家软件企业最值钱的东西是人才、代码与品牌，这些大多不进资产负债表，账面净资产很小，PB 天然高得"离谱"却不说明贵。另一个失灵场景是<strong>账面价值注水</strong>：如果应收账款收不回来、商誉减值没提够、存货卖不掉，"家底"本身就是虚的——这正是第7章要讲的财报阅读要警惕的地方。</p>
+      <p class="ctx">至于广为流传的"破净"（PB 低于 1）：它意味着市场价低于账面家底。破净可能是错杀的机会，也可能是市场对"家底不实"或"这些资产永远赚不回成本"的定价。破净本身不构成买入理由——便宜必须有便宜的道理，找到那个道理，才谈得上判断它是机会还是陷阱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司（指数市净率数据官方渠道）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站（估值指标科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>股息率：真金白银的分红，以及它的税</h3>
+      <p class="ctx">股息率 = 每股年度分红 ÷ 股价（常用口径是过去十二个月分红或上一年度分红，看数据时注意标注）。它是三把尺子里唯一量"已经真实发到你手上的钱"的：盈利可以做账，净资产可以估值，但分红是要真金白银打款、且经过审计与董事会、股东大会程序的。因此股息率常被视为盈利"含金量"的一个旁证——长期持续分红的公司，账上利润造假的空间相对更小（不是绝对，第7章讲警示信号）。</p>
+      <p class="ctx">股息率也要防两个陷阱。<strong>其一，高股息率可能是价格暴跌的算术结果</strong>：股息率的分母是股价，股价腰斩、分红不变，股息率就"翻倍"了——这种"高息"背后可能是市场在用脚投票。<strong>其二，分红的可持续性比当期数字重要</strong>：一次性特别分红、借钱分红、盈利下滑仍勉强维持的分红，都撑不起"高股息"的故事，看分红要拉长到多年区间。</p>
+      <p class="ctx">最后提醒税：A股个人投资者的股息红利实行<strong>差别化个人所得税</strong>——持股期限越长税负越低，持股超过一年的免征（现行政策口径，具体以国家税务总局法规库文件为准，截至 2026 年 10 月）。这意味着同一笔分红，短炒者和长持者到手的钱不同，第10章（费用与税）会专门算这笔账。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">国家税务总局法规库：股息红利差别化个人所得税等个人投资税收政策文件（检索入口）</a> · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务（分红与权益分派业务科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、ROE 与盈利质量：好公司的粗略画像</h2>
+    <p class="chapter-sub">估值回答"贵不贵"，ROE 回答"这些资产赚钱的效率如何"——两问合起来才有意义</p>
+
+    <article class="view">
+      <h3>ROE：股东每一块钱本金的赚钱效率</h3>
+      <p class="ctx">净资产收益率（Return on Equity，ROE）= 净利润 ÷ 净资产，衡量的是股东投入的每一块钱本金，一年赚回多少。一家净资产 10 亿、年净利 2 亿的公司，ROE 是 20%。为什么这个指标重要？因为长期来看，<strong>股票的回报率会向企业本身的 ROE 收敛</strong>：如果一家公司能常年用股东的钱赚出 20% 的回报，而你再投资这些利润，长期复利就会围绕这个效率展开——买入价格（估值）决定你在起点多付或少付多少，ROE 决定这台机器本身的转速。巴菲特在多封致股东信里反复强调的正是这个逻辑：时间与优质企业（高且可持续的资本回报）是长期投资者的朋友。</p>
+      <p class="ctx">ROE 高也有三种来历，含金量完全不同，这就是著名的杜邦分解（用白话说）：<strong>ROE ≈ 净利率 × 资产周转率 × 权益乘数</strong>——赚钱可以靠"每单赚得多"（高利润率，如高端消费品），靠"卖得快、翻台多"（高周转，如零售），或者靠"借了很多钱放大本金"（高杠杆，如部分金融与地产）。前两种是经营能力的体现，第三种是负债的放大效应：杠杆抬高的 ROE，同时抬高了风险——行业一变天，高杠杆公司的 ROE 跌得最快。看 ROE 时顺带看一眼资产负债率，就是在区分"真本事"和"借来的胆"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.berkshirehathaway.com/letters/letters.html">伯克希尔·哈撒韦：巴菲特致股东信（免费公开，英文；关于资本回报率与长期持有的论述散见各年度信件）</a> · <a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama & French (1993) Common risk factors in the returns on stocks and bonds, Journal of Financial Economics（英文，DOI）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>盈利质量：利润有没有现金 backing</h3>
+      <p class="ctx">ROE 和 PE 的分母都是"净利润"，但净利润是会计数字，不是现金。判断盈利质量有一个大众也能用的粗筛指标：<strong>经营现金流净额 ÷ 净利润</strong>。健康的企业，卖货收回的钱（经营活动现金流量净额）长期看应与账面利润大体相当，比值常年在 1 上下波动；如果一家公司连年"利润很高、经营现金流很差"，说明利润大量停留在纸面上——可能是货卖了钱没收回来（应收账款堆积），也可能是收入确认激进。这样的利润撑不起 PE 的"便宜"，也撑不起 ROE 的"优秀"。</p>
+      <p class="ctx">另一个粗筛是<strong>扣非净利润</strong>：扣除"非经常性损益"（卖楼、卖子公司、政府补助、投资浮盈等一次性收益）之后的净利润。一家主业年赚 5000 万、靠卖了两栋楼凑出 3 亿净利润的公司，报表净利润很好看，扣非后原形毕露。定期报告里同时披露这两个数字，看公司盈利时优先看扣非口径的持续性。这两个粗筛指标不能替代完整财报阅读（第7章展开），但足以帮你避开一大类"纸面富贵"。</p>
+      <div class="fig"><img src="../assets/img-06-2.png" alt="一条发光的流水线：左侧输入金币堆，经过标着齿轮的机器加工，右侧输出分成两路——一路是沉甸甸的实心金块代表有现金支撑的利润，一路是半空心的气泡块代表纸面利润，一个无脸人物拿着放大镜检查，深蓝主色扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会·证监会要闻（财务信息披露监管与处罚案例发布主渠道）</a> · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务（定期报告披露内容与格式科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、估值百分位与周期性：两把会骗人的尺子</h2>
+    <p class="chapter-sub">"处于历史 10% 分位"听起来很科学——但历史不是承诺；"周期股低 PE"听起来很便宜——但可能正是山顶</p>
+
+    <article class="view">
+      <h3>估值百分位：含义、算法与三个陷阱</h3>
+      <p class="ctx">估值百分位是近年基金销售页面和行情软件上的高频词：把指数当前的 PE（或 PB）放到过去 N 年的历史序列里排位，"处于历史 15% 分位"意思是当前估值比过去 85% 的时间都低。它的价值在于提供了一个<strong>客观的、可复核的相对位置</strong>，比"感觉挺便宜"进步了一大截。中证指数公司官网等官方渠道发布主要指数的估值数据，可自行查证。</p>
+      <p class="ctx">但它有三个陷阱。<strong>陷阱一：历史区间怎么选，结论就怎么变</strong>——取 5 年、10 年还是"成立以来"，百分位可以差很多；一段包含极端泡沫的历史会把"正常"衬托成"便宜"。<strong>陷阱二：基本面会变，历史刻度尺不会</strong>——如果一个行业的长期增速、利率环境、竞争格局已经系统性变化，过去十年的估值区间就不再是有效的参照系，"回到历史均值"的假设本身失效。<strong>陷阱三：低分位可以更低</strong>——百分位描述的是"过去"，对"未来"没有承诺；估值处于 10% 分位之后继续下跌、百分位进一步降低的情况在历史上反复出现。把百分位当"抄底信号"，等于把统计位置误当成了时间预言。</p>
+      <p class="ctx">百分位的正确用法：作为<strong>温度计而非发令枪</strong>。整体市场或宽基指数处于很低分位时，说明市场情绪悲观，长期资金"分批、纪律化"投入的赔率相对好一些；处于很高分位时，说明情绪亢奋，该做的是检查自己的仓位与预期，而不是追加杠杆去追。它服务于第3章讲的配置纪律和第9章讲的定投策略，而不是替代它们。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司（沪深300等主要指数估值数据，例：指数详情页 indexCode=000300）</a> · 伯顿·马尔基尔《漫步华尔街》（A Random Walk Down Wall Street，书籍按书名引用；关于市场情绪与估值回归的讨论）</div>
+    </article>
+
+    <article class="view">
+      <h3>周期股的 PE 悖论：最便宜的时候往往最危险</h3>
+      <p class="ctx">把第二节的"PE 失灵场景之二"展开讲透，因为它坑过太多人。强周期行业的利润随行业景气度波动：以航运为例（教学示例，非指向任何公司），景气顶点时运价暴涨，利润可能是平时的十倍——市值不变的情况下，PE 被盈利分母"砸"到只有三五倍，看起来便宜到极致；景气谷底时运价崩盘，公司亏损或微利，PE 变成几十倍、上百倍甚至不适用。</p>
+      <p class="ctx">于是出现了与直觉完全相反的现象：<strong>周期股的 PE 低点常常对应行业景气顶点，也就是股价的高危区；PE 高点反而可能对应行业谷底</strong>。"低 PE 买入"的口诀用在周期股上，大概率买在山顶，然后眼看着"便宜的股票"随盈利崩塌一路下跌——PE 从 5 倍变成 50 倍的过程，就是分母缩水的过程。对周期性明显的行业，成熟的观察者更多看 PB（家底相对盈利稳定得多）、看行业供需与价格数据、看产能周期，而不是盯 PE。普通投资者如果分不清手里的标的"是不是周期股"，这本身就是最该警惕的信号——不知道自己在量什么，读数就没有意义。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama & French (1993)，Journal of Financial Economics（英文，DOI；盈利与账面市值比对收益的解释力）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站（行业风险与周期科普栏目）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、贵和便宜是相对的：跨行业、跨市场比较的注意事项</h2>
+    <p class="chapter-sub">没有绝对标准的"合理 PE"——所有估值判断都发生在参照系里，而参照系选错，结论全错</p>
+
+    <article class="view">
+      <h3>跨行业比较：商业模式决定"正常水位"</h3>
+      <p class="ctx">新手最常问的问题是"PE 多少算便宜？15 倍还是 25 倍？"——这个问题没有通用答案，因为<strong>不同商业模式的"正常估值水位"天然不同</strong>。增长稳定、现金流可预期的行业（如部分公用事业），市场给的估值通常偏温和；成长空间大、盈利可能指数式扩张的行业（如部分科技赛道），市场愿意提前定价未来，PE 天然偏高；重资产、强周期行业的估值则随周期大幅摆动。拿银行的 5 倍 PE 去嘲笑软件公司的 40 倍 PE"太贵"，就像拿货轮的航速去嘲笑跑车的"效率"——量错了对象。</p>
+      <p class="ctx">正确的跨行业姿势是：<strong>同行业内部比</strong>（这家公司相对它的可比公司贵还是便宜，为什么），以及<strong>跟自己的历史比</strong>（当前水位在自身历史区间的什么位置）。行业之间的估值差异，本身不是买卖信号，而是商业模式差异的定价结果。指数层面同理：中证指数公司官网可以查到各行业指数的估值数据，行业指数之间横向比 PE 意义有限，各自跟自己的历史比才有参考价值。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司（行业指数与估值数据官方渠道）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站（板块与行业差异科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>跨市场比较：A股、港股、美股的估值差从何而来</h3>
+      <p class="ctx">经常能看到"同一家公司，港股比 A 股便宜""美股某指数 PE 比 A 股某指数高"的说法。跨市场比较估值时，至少有五个变量在起作用：<strong>投资者结构</strong>（机构主导与散户占比高的市场，定价风格不同）、<strong>流动性与资金成本</strong>（利率环境不同，折现率就不同——第2章讲过，无风险利率是所有估值的锚）、<strong>汇率与跨境资金限制</strong>（不同市场的货币计价与资金进出规则不同）、<strong>会计与披露准则差异</strong>（净利润口径本身可能有差别）、<strong>指数构成差异</strong>（"某市场指数"的行业权重不同，整体 PE 自然不同——金融权重高的指数 PE 天然偏低）。把这五个变量忘掉、只比一个 PE 数字，得出的"洼地"结论十有八九是幻觉。</p>
+      <p class="ctx">还有一个合规提醒放在这里正合适：跨境投资要走<strong>合法合规渠道</strong>（如 QDII 基金、港股通等有明确制度安排的通道），任何绕开监管的"出海配资""地下炒美股"通道都属违法且资金毫无保障——第14章（全球视角）会专门展开，这里先记住结论：<strong>估值再"便宜"，也不构成走非法渠道的理由</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.gov/">investor.gov：国际市场投资基础与风险提示（英文）</a> · <a href="https://www.investor.org.cn/">中国投资者网（跨境投资合规渠道与风险警示科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、估值的正确用法：普通投资者该用它做什么</h2>
+    <p class="chapter-sub">估值不能预测短期涨跌，但能校准长期预期、支撑纪律——把它放回配置框架，它才是工具；单独供起来，它就成了迷信</p>
+
+    <article class="view">
+      <h3>估值能做的三件事与不能做的一件事</h3>
+      <p class="ctx">先说<strong>不能做的一件事：预测短期涨跌</strong>。"便宜"可以持续便宜很多年，"贵"也可以在情绪推动下继续贵很多年——凯恩斯那句被反复引用的话："市场保持非理性的时间，可以长过你保持不破产的时间。"主动管理长期跑输基准的证据（S&P SPIVA 记分卡的历年结论：以年报口径计，拉长时间窗后大多数主动基金未能跑赢其基准，具体比例因期数与类别而异）从侧面印证了同一件事：连专业机构都很难靠"发现低估"持续获胜，普通人更不该指望一个 PE 数字充当择时水晶球。</p>
+      <p class="ctx">再说<strong>能做的三件事</strong>。第一，<strong>校准长期预期</strong>：买入时的估值水位，是长期回报最重要的起点变量之一——在市场整体估值低位开始长期投入，历史数据上的后续长期回报通常好于在高位开始（注明：这是历史统计规律，不构成对未来的承诺）。第二，<strong>支撑配置与再平衡纪律</strong>：估值温度计帮你执行第3章的再平衡——市场整体亢奋时权益仓位被动升高，估值分位提醒你"该按纪律卖出一部分了"；悲观时提醒你"定投的份额正在便宜地积累"。第三，<strong>过滤明显的错误</strong>：估值框架未必帮你找到大牛股，但能帮你回避"为故事支付天价"的明显泡沫，回避亏损公司被包装成"便宜"的话术——对普通人来说，少犯大错比多抓机会重要得多。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">S&P SPIVA 记分卡（英文；官方页面对自动访问有限制，浏览器可达；引用其结论需注明期数）</a> · 约翰·博格《共同基金常识》（Common Sense on Mutual Funds，书籍按书名引用；成本与长期回报的关系）</div>
+    </article>
+
+    <article class="view">
+      <h3>起点效应：估值水位与长期回报的历史统计关系</h3>
+      <p class="ctx">"在市场整体估值低位开始投入，长期回报通常更好"这个说法，背后的统计逻辑值得单独讲清楚，因为它常被过度引申。逻辑本身朴素：股票的长期回报可以粗略拆成三块——<strong>盈利增长 + 分红 + 估值变化</strong>。盈利增长与分红由企业基本面决定，长期看相对稳定；而估值变化这一块，取决于你买入时的起点水位：从低估值起点出发，未来估值"向上修复"是顺风；从高估值起点出发，估值向常态回归就是逆风——同样的企业盈利，起点不同，落到你手里的总回报不同。美国市场的长期序列研究（如以标普500十年期平均市盈率与后续十年回报做散点分析的经典做法）显示，起点估值与后续长期回报之间存在明显的负相关；A股宽基指数的历史数据也呈现类似形态（引用时务必注明区间与口径，历史统计不构成对未来的承诺）。</p>
+      <p class="ctx">但要防三个过度引申：<strong>其一，"长期"可以很长</strong>——低估值之后继续低估好几年是常态，起点效应是十年尺度的统计规律，不是十二个月的择时信号；<strong>其二，相关不是保证</strong>——估值起点解释的是回报分布的"重心偏移"，不消除波动与个体差异，更不保证任何单笔投资盈利；<strong>其三，它服务的是"分批投入的赔率"，不是"一把梭的勇气"</strong>——正确用法是第9章式的：市场整体低温时，按计划、分批次地让定投与再平衡纪律去积累便宜份额，而不是把应急金掏出来抄底。把统计规律用成赌注，是对这一节最大的误读。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama & French (1993) Common risk factors in the returns on stocks and bonds, Journal of Financial Economics（英文，DOI；估值类变量对长期收益的解释力）</a> · 伯顿·马尔基尔《漫步华尔街》（A Random Walk Down Wall Street，书籍按书名引用；关于起点估值与长期回报关系的综述）</div>
+    </article>
+
+    <article class="view">
+      <h3>红线：警惕把估值包装成"荐股"服务的一切话术</h3>
+      <p class="ctx">估值知识有个阴暗的镜像：因为它听起来专业、有数字、有术语，恰好是骗局最爱借的外衣。证监会历年打击非法证券活动的通报与案例里，一类高频套路就是：先免费给你讲"估值方法""价值投资"，建立专业人设，再顺势推销付费的"低估值金股池""老师带单"服务——本质是无资质的非法"荐股"，甚至配合虚拟盘实施诈骗。识别要点回到第2章和免责里说过的那句话：<strong>凡是承诺收益、催你跟单、要你转账到个人账户或非正规 APP 的，无论包装多专业，都是骗局信号</strong>；合法证券投资咨询业务必须由证监会许可的机构开展，资质可在中国证券业协会、证监会官方渠道核验。</p>
+      <p class="ctx">本章教估值，恰恰是为了让你<strong>不需要任何"老师"</strong>：PE、PB、股息率、ROE 的数据全部来自官方公开渠道（中证指数公司、交易所、定期报告），方法全部是公开常识——任何声称"独家估值模型""内部低估名单"并以此收费或带单的，你可以直接拉黑。被骗后的维权路径（12386 热线、中证投服等）在第11章和第13章详述。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会·证监会要闻（打击非法证券期货活动与风险提示通报）</a> · <a href="https://www.sac.net.cn/">中国证券业协会（证券经营机构与从业人员资质信息查询入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲给朋友听、能在打开行情软件时想起来，才算真的学会了</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于估值的三个流行误区</h3>
+      <p class="ctx"><strong>误区一："低 PE 就是捡漏。"</strong>证据：PE 低只说明"每块钱盈利的价格低"，不说明盈利本身可靠——周期顶点、盈利注水、行业逻辑恶化都会制造"便宜"的假象；格雷厄姆在《聪明的投资者》中早已警告过"价值陷阱"，本章第五节的周期股悖论是它最典型的形态。<br><strong>误区二："估值百分位是科学抄底信号。"</strong>证据：百分位是历史统计位置，不是对未来的承诺；历史区间选择、基本面系统性变化、"低分位可以更低"三个陷阱都在第五节列明；SPIVA 等长期业绩研究显示，专业投资者尚且难以持续择时成功，普通人不该指望一个分位数当发令枪。<br><strong>误区三："看懂估值指标就能炒股赚钱，所以不需要配置和纪律。"</strong>证据：估值解决的是"贵贱的相对判断"，长期回报还取决于资产配置（第3章）、成本控制（第10章）与行为纪律（第5章）；Barber 与 Odean 的经典研究（Trading Is Hazardous to Your Wealth）发现交易越频繁的个人投资者净收益越差——估值知识若被用来支撑频繁买卖，反而加速亏损。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://doi.org/10.1111/0022-1082.00226">Barber & Odean (2000) Trading Is Hazardous to Your Wealth, Journal of Finance（英文，DOI 链接；出版商页面对自动访问有限制，浏览器可达）</a> · <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">S&P SPIVA 记分卡（英文，浏览器可达；引用需注明期数）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 估值常识自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"价格是付出的，价值是得到的"——这句话是谁说的？它对估值意味着什么？</li>
+        <li>关于"公司值多少钱"，三个金融学流派各自的答案是什么？相对估值的实用价值在哪？</li>
+        <li>PE 的计算公式是什么？"回本年数"这个直觉里藏着哪两个假设？</li>
+        <li>PE 的倒数叫什么？它能拿来跟什么做数量级的比较？为什么不能直接画等号？</li>
+        <li>静态 PE、TTM PE、预测 PE 的分母分别是什么？盈利剧变年份三者能差多少？</li>
+        <li>PE 会在哪三类公司面前失灵？各自为什么？</li>
+        <li>PB 适合什么行业？为什么轻资产公司的 PB 天然偏高却不是"贵"的证据？</li>
+        <li>"破净"一定便宜吗？破净背后可能藏着哪两种完全不同的故事？</li>
+        <li>股息率的两个陷阱是什么？为什么"分红可持续性"比当期数字重要？</li>
+        <li>A股股息红利税跟什么挂钩？持股超一年的现行口径是什么（以官方为准）？</li>
+        <li>ROE 的公式是什么？杜邦三因子分别对应哪三种"赚钱方式"？哪种要格外小心？</li>
+        <li>"经营现金流/净利润"长期显著小于 1 说明什么？扣非净利润能识破什么？</li>
+        <li>估值百分位的三个陷阱是什么？它的正确角色是温度计还是发令枪？</li>
+        <li>为什么周期股"PE 最低时最危险"？用航运的例子讲一遍。</li>
+        <li>跨行业比 PE 为什么意义有限？正确的两个比较方向是什么？</li>
+        <li>跨市场比较估值时至少要考虑哪五个变量？</li>
+        <li>估值"不能做的一件事"和"能做的三件事"分别是什么？</li>
+        <li>把估值包装成付费"金股池"的服务，识别要点是什么？资质去哪里核验？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张清单带走）：</strong>四把尺子各管一段——PE 量"每块钱盈利的价格"（先问口径：静态/TTM/预测；亏损股、周期股、金融股面前会失灵）；PB 量"家底的价格"（重资产与金融行业适用；轻资产公司天然偏高；账面家底可能注水）；股息率量"到手的分红"（防"股价暴跌型高息"与"不可持续分红"；红利税与持股期限挂钩）；ROE 量"赚钱效率"（杜邦三分解区分真本事与高杠杆；配上"经营现金流/净利润"与扣非净利润做盈利质量粗筛）。两把会骗人的尺子：估值百分位（温度计而非发令枪；历史区间、基本面变化、低分位可更低三陷阱）与周期股 PE（低点常在山顶）。比较要有参照系：同行业内部比、跟自己历史比；跨市场比较先想五个变量。估值的用途：校准长期预期、支撑配置与再平衡纪律、过滤明显泡沫——唯独不能预测短期涨跌。红线：一切借"低估值"话术推销的付费"荐股""带单"服务都是骗局信号，资质在证监会与中证协官方渠道核验。
+  </div>
+
+  <nav class="pager">
+    <a href="../05-behavior/"><span class="dir">← 第5章</span>行为金融：你最大的敌人是自己</a>
+    <a href="../07-financial/"><span class="dir">第7章 →</span>财报入门：三张报表读懂一家公司</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第6章 · 依据中证指数有限公司官方估值数据渠道、上海证券交易所投资者教育网站、深圳证券交易所投资者服务、国家税务总局法规库、中国证监会要闻栏目、investor.gov（英文）、S&P SPIVA（英文）、Fama & French (1992, 1993)、Barber & Odean (2000) 及《聪明的投资者》《漫步华尔街》《共同基金常识》等经典教材整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 不推荐个股、不预测行情、不承诺收益 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

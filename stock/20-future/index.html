@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第20章 长期主义：30天行动方案 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:var(--accent-deep);border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第20章 · 第四部分 · 你自己的方案</div>
+  <h1>长期主义：30天行动方案</h1>
+  <p>复利为什么偏爱长期主义者、30天四周怎么把全课程落地、投资纪律的"五不三要"、信息食谱与学习路线图——课程的终点，是你自己方案的起点</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../19-family/">← 第19章：家庭财务与生命周期</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">数学基础</a>
+    <a class="anchor" href="#s2">30天计划</a>
+    <a class="anchor" href="#s3">纪律清单</a>
+    <a class="anchor" href="#s4">信息食谱</a>
+    <a class="anchor" href="#s5">学习路线</a>
+    <a class="anchor" href="#s6">十年后的你</a>
+    <a class="anchor" href="#s7">谣言汇总</a>
+    <a class="anchor" href="#s8">结课自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章及全课程仅供<strong>投资教育与参考</strong>，不构成投资建议或任何证券的买卖推荐；市场有风险，投资需谨慎。本课程<strong>不“荐股”、不预测行情、不承诺收益</strong>，不教授短线炒作、杠杆博弈与任何灰色操作；请警惕以"荐股""带单""付费教你翻倍"为话术的骗局，合法证券业务只通过证监会许可的正规机构开展。本章所有测算、计划与组合均为教学示例，历史数据不预示未来表现；费率、税率与规则以监管与税务机关官方口径为准（截至 2026 年 10 月）。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用72法则与成本复利解释"时间为什么是普通投资者唯一的结构性优势"；②读懂均值回归与长期统计数据的正确打开方式（不神化、不承诺）；③领走一份30天四周行动方案，把全课程20章变成可勾选的清单；④背出投资纪律"五不三要"；⑤给自己配一份信息食谱：白名单与黑名单；⑥识别"付费带你翻倍"类课程的骗局特征。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的收官章，也是一份"行动交接书"。建议现在就翻到 s2，把30天计划抄进日历——课程的价值不在读完，而在第30天你手里多出来的那套系统：两张表、一份测评、一页纸计划、一个定投设置、一本交易日志。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、长期主义的数学基础：复利、成本与均值回归</h2>
+    <p class="chapter-sub">不是鸡汤，是算术</p>
+
+    <article class="view">
+      <h3>72法则：时间对复利做了什么</h3>
+      <p class="ctx">长期主义的第一块基石是复利算术。一个方便的估算工具是<strong>72法则</strong>：资产翻倍所需的年数约等于72除以年化收益率（百分比）——年化6%约12年翻倍，年化8%约9年翻倍（示意估算，教学用途）。这个法则真正的启示藏在时间里：同样一笔钱，25岁开始每月投入和35岁开始每月投入，到60岁的差距不是"少十年"，而是少了十年复利滚动出来的整段指数曲线——时间是复利公式里的指数项，没有任何技巧能替代它。</p>
+      <p class="ctx">反过来，复利也是<strong>成本的放大器</strong>：<a href="../10-tax/">第10章</a>算过，每年1.5%的费率差在三十年维度会吃掉最终资产的三分之一上下。这就是指数基金之父博格（John Bogle）在《共同基金常识》里反复强调"成本至关重要"（cost matters）的算术依据——你控制不了收益率，但费率、换手率、税负是你能亲手拧小的三个漏水口。长期主义者的第一份功课不是寻找高收益，而是堵住确定性的损耗。</p>
+      <p class="ctx">还要诚实地给复利标注边界：复利要求<strong>过程不被打断</strong>——一次深度回撤后需要更大的涨幅才能回本（跌50%要涨100%才回本），一次被迫在低点卖出的应急事件就能毁掉几十年的滚动。所以复利的两个前提，恰恰是前19章反复讲的：留足应急金（不被迫卖）+控制波动在承受力之内（不被吓到卖）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：Bogle《共同基金常识》（机械工业出版社中译本，成本与复利论述，文字引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a>（复利与长期投资系列投教课程）</div>
+    </article>
+
+    <article class="view">
+      <h3>均值回归与长期数据：正确的打开方式</h3>
+      <p class="ctx">第二块基石是<strong>均值回归</strong>：拉长看，资产收益率有向其长期均值回归的倾向，短期的极端表现（暴涨暴跌、冠军基金）难以持续。它的实证注脚之一是主动管理的长期统计：夏普（William Sharpe, 1991）在《主动管理的算术》一文中给出了一个不依赖任何预测的算术结论——扣除费用前，主动投资者整体只能获得市场平均收益，因此扣费后整体必然跑输被动（文字引用）；SPIVA 记分卡的长期数据与此一致：以15-20年维度看，约85%-93%的美国大盘主动基金跑输基准（以 SPIVA 官方记分卡为准；另有研究以资产加权口径批评该比例被夸大至约56%——争议如实标注，但两种口径都不支持"挑主动就是挑常胜将军"的幻想）。</p>
+      <p class="ctx">这些数据<strong>怎么用才对</strong>？三条纪律。第一，它们是"群体长期"的统计规律，不是对任何个体、任何具体年份的承诺——历史数据不预示未来表现，这句话在本课程里出现多少次都不为过。第二，它们支持的是<strong>降低预期+降低成本+拉长期限</strong>的组合策略，而不是"闭眼买什么都能赚"——市场整体长期为正的前提是经济与企业长期增长，且中途必然包含多次深度回撤。第三，它们不否定主动研究的价值（<a href="../07-value/">第7章</a>讲过估值框架），只是否定"我能持续精准择时选股"的幻觉。长期主义不是信仰，是把胜率建立在算术而不是运气上的选择。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">SPIVA 记分卡（S&amp;P Dow Jones Indices，英文，官方站对脚本访问有限制，浏览器可达）</a> · <a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama &amp; French (1993), Journal of Financial Economics（英文，市场与风险因子长期证据）</a> · Sharpe (1991), The Arithmetic of Active Management, Financial Analysts Journal（英文，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>长期主义的对立面：为什么频繁交易在算术上必输</h3>
+      <p class="ctx">把前两块基石合起来，就能看清频繁交易的算术困境。Barber 与 Odean 对美国上万个个人账户的跟踪研究发现：交易越频繁，收益越差；换手率最高的组年化收益显著低于市场平均，且差距主要来自交易成本与追涨杀跌的择时损耗（英文论文，见来源）。每一笔交易同时支付三份成本——佣金与印花税（<a href="../10-tax/">第10章</a>）、买卖价差、以及最贵的"决策错误税"：频繁交易者系统性地买在情绪高点、卖在情绪低点。</p>
+      <p class="ctx">行为金融的解释在第15章已经展开：损失厌恶让你拿不住盈利、处置效应让你死抱亏损、过度自信让你高估自己的信息优势。频繁交易本质上是让系统1（快思考）掌管了本该由系统2（慢思考+规则）掌管的按钮。而长期主义的操作化定义，正是把决策频率降下来：<strong>决策在计划里做（一年几次），执行在日历里做（定投、再平衡），行情软件只用来看，不用来指挥手</strong>。这也是为什么本课程把"30天行动方案"设计成一次性搭好系统，此后大部分时间只是让系统运转。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1111/0022-1082.00226">Barber &amp; Odean (2000), Trading Is Hazardous to Your Wealth, Journal of Finance（英文）</a> · <a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky (1979), Prospect Theory, Econometrica（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、30天行动方案：四周把课程落地</h2>
+    <p class="chapter-sub">每周一个主题，每天不超过30分钟，第30天你拥有一套完整系统</p>
+
+    <article class="view">
+      <h3>总览：四周四个交付物</h3>
+      <p class="ctx">读完20章只是输入，系统要落地才算数。这份30天计划每周产出一个"交付物"，全部完成后你手里有：两张家庭财务表、一份新的风险测评、一页纸投资计划（IPS）、一个自动定投设置、一本开始记录的交易日志。计划的强度刻意压低——每天30分钟以内，周末稍多——因为可持续比冲刺重要，这本身就是课程主题的践行。</p>
+      <blockquote class="q">📝 <strong>30天行动方案总览（可直接抄进日历）</strong><br>
+      <strong>第1周 · 摸清家底</strong>：D1-2 画家庭资产负债表（19章）；D3-4 记录一周现金流并推算储蓄率（19章）；D5 检查应急金是否≥3-6个月支出，不足则先定补足计划（16章）；D6-7 列出所有负债与利率，确认"先还高息债再投资"的顺序（16章）。交付物：两张表+应急金结论。<br>
+      <strong>第2周 · 认识自己</strong>：D8 在券商/基金官方渠道重做风险测评（2章、19章）；D9-10 精读两篇官方投教文章（上交所投教网+中国投资者网任选，见s4白名单）；D11-12 用测评结果草拟股债目标比例，和家人讨论（17章、19章）；D13-14 回顾自己过往交易的冲动单，写一段"我的行为弱点自白"（15章、18章）。交付物：新测评+目标比例草案。<br>
+      <strong>第3周 · 搭好系统</strong>：D15-16 未开户者按"开户五步核验"选正规券商（7章、11章），已开户者做一次账户成本体检（佣金费率、持仓费率，10章）；D17-18 写一页纸IPS：目标/比例/工具类型/再平衡规则/卖出条件（16章、17章、18章）；D19-20 核对个人养老金账户状态，测算是否参加与缴多少（19章）；D21 设置教育金/养老金的下滑轨道检查项进日历（19章）。交付物：一页纸IPS+成本体检单。<br>
+      <strong>第4周 · 启动与固化</strong>：D22-23 设置第一笔小额自动定投（金额以"跌一半也睡得着"为准，教学示例，8章）；D24-25 建立交易日志，从今天起每笔决策先写"三个理由+一个卖出条件"（18章）；D26-27 清理信息环境：退掉“荐股”群、取关喊单博主、订阅白名单（s4）；D28 召开第一次家庭财务会议，定下季度会日历（19章）；D29-30 通读一遍IPS，把年度复盘（再平衡+重测）写进日历。交付物：定投在跑+日志开本+会议日历。<br>
+      <span class="qsrc">括号内为对应章节；全部动作均为流程示例，不构成任何具体投资建议。</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（新手入门系列课程，第2周精读材料） · <a href="https://www.investor.org.cn/">中国投资者网</a>（投资者自我教育课程入口，第2周精读材料）</div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-20-1.png" alt="抽象插画：一条分为四段的上升阶梯路径，每段顶端各立着一个几何交付物图标（表格、仪表盘、一页纸、日历），一个无脸小人背着行囊正踏上第一段阶梯，远处是平缓延伸的时间地平线" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>为什么是这个顺序：先地基、再自己、后系统、最后启动</h3>
+      <p class="ctx">四周的顺序不是随意排的，它复刻了全课程的逻辑链。<strong>第一周先摸家底</strong>，因为在应急金与高息负债问题解决之前，任何投资都是在流沙上盖楼（16章的核心结论）；<strong>第二周认识自己</strong>，因为配置比例的唯一合法来源是你的风险承受能力与用钱时点，而不是行情热点（2章、19章）；<strong>第三周搭系统</strong>，把决策一次性写进规则——IPS 的意义在于让未来每一次"要不要操作"都变成"翻规则"而不是"凭感觉"（16-18章）；<strong>第四周才启动资金</strong>，且从小额定投开始——新手最常见的错误是研究三天就满仓进场，正确的姿势是系统先跑起来、金额随经验与信心慢慢加。</p>
+      <p class="ctx">执行这份计划有两个提醒。其一，<strong>允许降速不允许跳过</strong>：某周没做完就顺延，但顺序别乱——尤其别跳过第一、二周直接去第四周设定投，那等于没打地基就装修。其二，<strong>第30天不是终点</strong>：30天搭好的系统，此后靠三个日历项维持——每月定投自动执行、每季家庭财务会议+日志对账、每年再平衡+重测评。系统运转起来之后，你要做的事反而越来越少，这正是长期主义的样子。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资规划与自我管理课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（"万事先求稳"入门系列）</div>
+    </article>
+
+    <article class="view">
+      <h3>常见执行障碍与对策</h3>
+      <p class="ctx">根据行为金融的研究与投教实践，这份计划最常见的三个死法和对策。<strong>死法一："等行情稳一点再开始。"</strong>——这是择时幻觉的变体：没有人能判断"稳"的时点（12章），而计划的第1-3周根本不需要进场，摸清家底与写IPS任何时候都是正确的开始。<strong>死法二："金额太小，没意义。"</strong>——小额的意义不在金额而在系统跑通：定投的第一年是习惯养成期，习惯的复利比资金的复利启动得更早；况且储蓄率才是主引擎（19章），金额会随收入增长自然放大。</p>
+      <p class="ctx"><strong>死法三："家人不配合。"</strong>——回到19章s7的结构化方案：不说服、分别测评、共同配置按保守方、给激进方留小额"学习资金"；财务会议第一次只谈两张表，不谈买卖，先把"共同看见事实"这一步做到。<strong>如果30天里只做得到一件事</strong>，就做第一周的两张表——它不依赖任何人配合、不依赖行情、不花钱，却是后面一切的地基。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky (1979), Prospect Theory, Econometrica（英文，损失厌恶与决策偏差）</a> · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（理性投资与长期投资投教）</div>
+    </article>
+    <article class="view">
+      <h3>第30天验收清单：你手里应该有这五样东西</h3>
+      <p class="ctx">计划执行完，用一张清单验收，逐项打勾：<strong>①两张表</strong>——家庭资产负债表与现金流量表各一份，净资产、储蓄率、应急金覆盖月数三个数字写得出来；<strong>②一份新风险测评</strong>——两个月内做的，结果和目标股债比例对得上，家人知情；<strong>③一页纸IPS</strong>——目标、比例、工具类型、再平衡规则、卖出条件五项俱全，背面贴着"五不三要"；<strong>④一个在跑的定投</strong>——自动扣款设置完成，金额经过"跌一半也睡得着"检验；<strong>⑤一本开本的日志</strong>——第一笔记录已按"三个理由+一个卖出条件"写完，季度对账和年度复盘的日历项已设置。</p>
+      <p class="ctx">五样里有任何一样缺失，就回到对应周补做，不要带病进入"系统运转期"。验收通过的标志不是账户里赚了多少钱——30天太短，盈亏纯属噪音——而是<strong>你能在不看行情的情况下，完整说出自己的计划</strong>：钱分几笔、各管什么目标、什么情况下买、什么情况下卖、多久检查一次。说得出，系统就是你的了；说不出，说明还停留在"看过课程"的阶段。这张验收清单建议存档，明年年度复盘时拿出来对照：五样东西还在不在运转，日志记了几页，IPS改过几次、每次的理由是什么。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资规划与自我管理课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（新手村系列课程）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、投资纪律清单：五不三要</h2>
+    <p class="chapter-sub">贴在一页纸IPS背面的八条军规</p>
+
+    <article class="view">
+      <h3>"五不"：五条负面清单，每条背后都是一章课程</h3>
+      <p class="ctx"><strong>不用杠杆、不配资。</strong>杠杆把波动放大成爆仓风险，融资与"场外配资"更是把本金置于强平线与非正规平台的双重危险中——配资平台卷款跑路是监管反复提示的骗局类型（<a href="../11-scam/">第11章</a>）；对普通投资者，杠杆的数学期望再诱人也抵不过"一次清零"的尾部风险。<strong>不借钱投资。</strong>消费贷、经营贷、信用卡资金入市既违反信贷资金用途的监管要求，也把还款的刚性期限压在波动的资产上——被迫卖出的时点从来不由你选。</p>
+      <p class="ctx"><strong>不信"内幕消息"与"老师带单"。</strong>凡是以"内幕消息""稳赚不赔""老师带单""VIP群"为话术的，一律按第11章的防骗框架处理：真消息轮不到你，假消息专挑你；所谓交易软件"跟单神器"多数是非法平台的对赌盘。<strong>不梭哈、不一次性投入。</strong>无论多"确定"的机会，分批与定投都是对判断力上限的诚实（8章、12章）。<strong>不频繁改规则。</strong>IPS 写好的比例、再平衡阈值、卖出条件，修改只能在年度复盘时进行且必须书面记录理由——盘中改规则不叫灵活，叫情绪接管。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">证监会青海监管局"打击非法证券活动"专栏</a>（非法配资与非法“荐股”典型案例） · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">深圳证监局《关于警惕非法“荐股”骗局的风险提示》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"三要"：三条正面纪律，把系统养起来</h3>
+      <p class="ctx"><strong>一要坚持定投与再平衡的日历。</strong>定投解决"何时买"（答案是定期、机械、不猜），再平衡解决"何时卖一部分"（答案是比例偏离时、机械、不猜）——这两个日历项是整套系统里仅有的常规操作，其余时间系统静止。再平衡的纪律价值在第17章讲透了：它是规则化的高抛低吸，也是强制你在群体狂热时减仓、群体恐慌时加仓的唯一合法机制。</p>
+      <p class="ctx"><strong>二要坚持记录。</strong>每笔决策先写"三个理由+一个卖出条件"，季度对账一次理由兑现率与冲动单占比（18章）——记录是系统的行车记录仪，没有它，你既无法归因也无法进步。<strong>三要定期重学。</strong>每年至少精读两篇官方投教新材料、重做一次风险测评、通读一遍自己的IPS：市场规则在更新（注册制、退市常态化、个人养老金全面实施都是近几年的变化），你的认知与制度环境都要保持同步。三条"要"的共同点：都是低频、机械、可勾选的动作——好的投资系统，日常运转起来应该是无聊的。</p>
+      <p class="ctx">关于纪律还有一个常见误解值得拆开："纪律=死板，市场变了规则也得变。"恰恰相反——纪律的"死板"是刻意为之的设计：它把"要不要改规则"本身也变成一条规则（只能在年度复盘时改、必须书面记录理由），从而堵住情绪在盘中修改规则的通道。市场确实会变，但应对变化的正确位置是年度复盘桌前，带着全年的日志与数据冷静评估；而不是暴跌当天的行情软件前，带着一身肾上腺素临时决断。规则可以迭代，但迭代必须有仪式、有记录、有冷却期——这是对"灵活"与"随意"这对双胞胎唯一的区分方法。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会投资者教育专栏</a>（规则更新与投教材料官方入口） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（再平衡与定投系列课程）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、信息食谱：白名单与黑名单</h2>
+    <p class="chapter-sub">你每天喂给大脑的信息，决定了你会成为什么样的投资者</p>
+
+    <article class="view">
+      <h3>黑名单：这三类信息源请立刻清退</h3>
+      <p class="ctx"><strong>第一类：一切"荐股"类群聊、直播与博主。</strong>无论话术是"老师带单""内部圈子"还是"免费诊断个股"，其商业模型只有三种：收会员费割韭菜、引流到非法平台对赌、或用你的跟风盘给自己抬轿——三种里没有一种能为你创造价值（<a href="../11-scam/">第11章</a>逐条拆过）。判断标准极简：<strong>凡是直接告诉你"买什么"的信息源，一律拉黑</strong>；合规的投教只讲框架与风险，从不给代码。</p>
+      <p class="ctx"><strong>第二类：实时行情推送与财经短视频流。</strong>它们不违法，但对配置型投资者是纯噪音：日度波动里没有你需要响应的信息（18章s4），而推送的机制设计恰恰以制造焦虑、诱发点击为目的——你多看一眼，就多一分手痒的概率。行情软件保留查持仓与下单功能即可，推送全关。<strong>第三类："付费带你翻倍"类课程与训练营。</strong>识别特征在第11章列过：晒不实收益截图、限时优惠逼单、承诺收益率、拉你进"实盘群"。一个自洽的检验：<strong>真有稳定翻倍的方法，为什么靠卖998的课程变现？</strong>——本课与全部正规投教都免费或低价，因为投教的目的不是从你身上赚钱。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">深圳证监局《关于警惕非法“荐股”骗局的风险提示》</a> · <a href="https://www.investor.org.cn/">中国投资者网</a>（防非宣传与12386服务平台渠道）</div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-20-2.png" alt="抽象插画：一个几何漏斗上方漂浮着大量杂乱的信息碎片，漏斗内部有三层滤网，滤出的清澈水流注入下方一个安静的圆形水池，水池边一个无脸小人在阅读一本打开的书" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>白名单：五个值得长期订阅的信息源</h3>
+      <p class="ctx"><strong>①交易所官方渠道</strong>：上交所投资者教育网站、深交所投资者服务——规则解读、风险提示、系统课程都在这两处，且永久免费；上市公司公告与定期报告也经由交易所指定渠道披露，这是一手信息的源头。<strong>②证监会系统</strong>：证监会官网投资者教育专栏与各地证监局的"打击非法证券活动"专栏——前者更新规则，后者是最新的骗局样本库，每季度翻一遍案例，防骗免疫力自然提升。</p>
+      <p class="ctx"><strong>③中证投服与中国投资者网</strong>：12386服务平台的口径、纠纷调解与股东权利知识都在这里，它是"权利受损怎么办"的官方答案。<strong>④官方统计与金融数据</strong>：国家统计局、中国人民银行的定期数据发布——宏观背景自己看一手数据，不经二手解读（延伸学习见姊妹课程"宏观经济课"的思路：看懂指标比听结论重要）。<strong>⑤经典书籍</strong>：教材与经典是密度最高、噪音最低的信息源，书单见下一节。白名单的共同特征：<strong>讲框架不给代码、讲风险不许诺收益、可查证身份、不催你掏钱</strong>。用这四条去过滤任何新信息源，误差不大。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会投资者教育专栏</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务</a> · <a href="https://www.stats.gov.cn/">国家统计局官网</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、学习路线图：从投教课程到经典教材</h2>
+    <p class="chapter-sub">按顺序读，别跳级；读完一本再买下一本</p>
+
+    <article class="view">
+      <h3>三级路线图：官方课程→经典教材→持续跟进</h3>
+      <p class="ctx"><strong>第一级：官方投教课程（1-2个月）。</strong>上交所投教网与投资者网的体系化课程覆盖开户、交易规则、基金基础、风险揭示，全部免费且口径权威——本课程的大量框架也以此为锚。这一级的目标是把"规则事实"全部换成官方口径，戒掉从短视频里学规则的习惯。<strong>第二级：经典教材（每本1-2个月，按序读）。</strong>入门首推马尔基尔《漫步华尔街》（市场有效性与指数化投资的经典科普，注意版本更新）；基金投资读博格《共同基金常识》（成本与被动投资的算术）；想理解自己的非理性，读卡尼曼《思考，快与慢》（前景理论作者的集大成科普）；进阶估值可尝试格雷厄姆《聪明的投资者》——但请注意它写于另一个时代的市场，读它学的是"安全边际"的思想框架，具体操作方法需结合现行规则批判性吸收。</p>
+      <p class="ctx"><strong>第三级：持续跟进（长期）。</strong>每年精读若干官方新规则解读（注册制、退市、个人养老金等制度仍在演进）、重读一遍自己的交易日志与IPS、参加交易所或投服机构的线上投教活动。三级路线的共同原则：<strong>先框架后细节、先官方后市场、先免费后付费</strong>——任何跳过第一、二级直接向你兜售"实战秘笈"的，回到 s4 黑名单处理。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（体系化免费课程） · <a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（课程与书籍导读） · Malkiel《漫步华尔街》、Bogle《共同基金常识》、Kahneman《思考，快与慢》、Graham《聪明的投资者》（中译本，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>学习中最该警惕的三种走火入魔</h3>
+      <p class="ctx"><strong>其一，学成了"预测瘾"。</strong>读了几本书后开始热衷判断顶底、预测政策——请回到 s1：均值回归与长期统计恰恰说明持续精准预测不存在，学习的目的是搭建不依赖预测的系统，不是把自己练成算命先生。<strong>其二，学成了"工具收集癖"。</strong>指标、模型、策略囤了一堆，每个都浅尝辄止——工具的价值在于长期一致地使用，一页纸IPS里写明的少数几条规则，胜过收藏夹里的一百个技巧。</p>
+      <p class="ctx"><strong>其三，学成了"付费升级"的猎物。</strong>这是最危险的一种：免费课程听完觉得"不够"，于是购买越来越贵的"进阶营""私教课"，最终被引入配资、虚拟资产或非法平台的深水区。识别的锚点只有一条：<strong>正规投教的终点是让你独立，骗局的终点是让你依赖</strong>——凡是越学越离不开"老师"的，立刻止损离场。学完本课程与三级路线图，你掌握的框架已经覆盖普通投资者所需的全部认知；剩下的进步来自实践中的日志与复盘，不来自更贵的课。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">青海证监局"打击非法证券活动"专栏</a>（"培训+荐股+配资"链条案例） · <a href="https://www.investor.org.cn/">中国投资者网</a>（防非宣传专栏）</div>
+    </article>
+    <article class="view">
+      <h3>读书方法论：把一本书变成自己的三遍读法</h3>
+      <p class="ctx">经典教材不该只读一遍。推荐"三遍读法"：<strong>第一遍通读</strong>，不较真细节，目标是抓住全书的骨架问题——这本书回答的是"市场是什么"（马尔基尔）、"成本怎么吃掉收益"（博格）还是"我的大脑怎么骗我"（卡尼曼）；<strong>第二遍对照自己</strong>，带着你的交易日志和IPS重读，把书里每一条原理在自己账户里找对应物——"哪一笔是处置效应？哪一次是过度自信？哪条费率我本来可以省？"这一遍读下来，书就从知识变成了镜子；<strong>第三遍只读结论章</strong>，在每次年度复盘前翻一遍，用作者的清单校验自己这一年的系统。</p>
+      <p class="ctx">配套的记法：每本书读完写一页"给自己的三条规则"，追加到IPS的附录里——读书的产出不应该是摘抄金句，而应该是可执行、可检查的规则变更。三条就够，多了执行不了；如果一条都写不出来，说明这本书还没读懂，不必急着读下一本。这个方法的底层逻辑和本课程一致：<strong>输入只有变成规则，才算进入了系统</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（书籍导读与课程体系） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（投资学习路径类投教材料）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、十年后的你：目标反算与期望管理</h2>
+    <p class="chapter-sub">把"财务自由"从口号变成一张可核对的表</p>
+
+    <article class="view">
+      <h3>目标反算：从终点数字倒推今天的动作</h3>
+      <p class="ctx">长期主义需要一个具象的终点，否则"长期"只是拖延的借口。方法就是19章教育金倒推三步法的通用版：<strong>定终点→定期限→算每月</strong>。举例（教学示例，非收益承诺、非投资建议）：假设你希望十年后拥有一笔目标金额 G 的稳健资产，当前储蓄能力为每月可投入 M——先用保守的假设收益率（比如取长期无风险利率上下的保守值而非股票历史均值）测算 M 十年累积能到多少；缺口大就三选一：延长年限、提高 M（改善储蓄率，19章）、适度提高组合的风险资产比例（以测评结果为上限，不超承受力）。三个旋钮里，<strong>储蓄率是最可靠的一个</strong>——它完全由你控制，不像收益率要看市场脸色。</p>
+      <p class="ctx">反算时给期望值做三件事：用<strong>保守收益率</strong>（历史数据是上限参考不是预期）；给中途的大额支出（换房、医疗、教育）单独立目标分账户，不占用长期账户（16章）；接受<strong>路径的不确定</strong>——同样的计划，第十年的实际数字可能比测算高一截也可能低一截，但只要你按再平衡与年度复盘维护系统，长期收敛到目标区间的概率远高于任何单点预测。反算表的真正产出不是那个终点数字，而是"每月 M"这个今天就能执行的动作。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（目标导向的财务规划课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（长期投资与复利系列）</div>
+    </article>
+
+    <article class="view">
+      <h3>时间优势：普通投资者唯一的不公平优势</h3>
+      <p class="ctx">收官前说一个容易被低估的事实：在期限上，普通投资者其实站在专业机构的前面。公募基金经理受排名、申赎与考核周期的约束，很难真正持有十年；而你的钱没有客户催、没有季度排名、没有人能在恐慌时把你赎回——<strong>你的投资期限只由你的生活决定</strong>。巴菲特在历年致股东信中反复阐述的正是这种"永远"视角的力量：他管理的资金没有到期日，因此可以承受短期难堪去换长期回报（英文原信公开可查，见来源）。普通人复制不了他的选股，但完全可以复制他的期限结构。</p>
+      <p class="ctx">把这一点想透，很多焦虑会自动消解：你不需要战胜任何人的今年，你只需要让系统跑完自己的十年。十年后的你回头看今天，决定结果的不会是某一笔买卖的盈亏，而是：应急金有没有让你被迫卖出、储蓄率有没有让复利有料可滚、IPS 有没有让你在狂热与恐慌中保持机械、日志有没有让你每年都比上一年更少犯错。这四件事，全部在30天行动方案里，全部由你自己控制——这就是本课程最后想交付的东西：<strong>一套不依赖运气、不依赖消息、不依赖任何人的系统</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.berkshirehathaway.com/letters/letters.html">Berkshire Hathaway 历年致股东信（英文，公开原文）</a> · <a href="https://www.csindex.com.cn/#/indices/family/detail?indexCode=000300">中证指数有限公司 · 沪深300指数详情页</a>（长期指数数据官方查询口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>结课寄语与免责声明重申</h3>
+      <p class="ctx">20章走到这里，请允许本课程最后一次重申边界：我们教的是<strong>认知框架、流程方法与避坑能力</strong>——市场是什么（第一部分）、工具怎么用（第二部分）、坑在哪里（第三部分）、你的方案怎么搭（第四部分）。我们自始至终<strong>没有推荐过任何一只股票或基金，没有预测过任何一段行情，没有承诺过任何一分收益</strong>；文中所有数字均为教学示例。这不客套，是这门课最重要的内容本身：一个拒绝“荐股”、拒绝预测、拒绝承诺的知识产品，就是在向你演示合规投资教育应有的样子。</p>
+      <p class="ctx">往后遇到具体决策：产品与规则问题查官方口径（交易所、证监会、税务机关），重大财务、税务、法律问题咨询持牌专业人士，权益受损拨打证监会12386服务平台热线或通过中证投服渠道求助，遭遇骗局向公安机关报案。市场会一直是那个市场——有牛市有熊市，有暴富故事更多有沉默的亏损者。愿你带着系统而不是情绪回到市场。祝投资顺利，更祝生活安稳。</p>
+      <p class="ctx">最后交代一下这门课在你知识版图里的位置：它解决的是"股票与权益类投资怎么想、怎么做、怎么不上当"。但你的财务生活还有三块相邻的版图——家庭收支与健康保障的底层安排、职业收入这条最大现金流的经营、以及看懂利率通胀汇率如何影响你的钱包。这些不是本课程的射程，却是同一张地图上的邻省：投资从来不是孤立的技术动作，而是整个家庭财务系统的一个子系统。把系统搭稳，把身体照顾好，把工作经营好，然后让定投和复利在时间里安静工作——这是一个普通人能写出的、最接近"财务自由"的答案。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.investor.org.cn/">中国投资者网</a>（12386服务平台与维权渠道） · <a href="https://flk.npc.gov.cn/">国家法律法规数据库</a>（《证券法》等法规原文检索）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、全课程谣言粉碎汇总</h2>
+    <p class="chapter-sub">八个流行说法的终审判决，每句都能指回一章</p>
+
+    <article class="view">
+      <h3>谣言粉碎：八个流行说法，逐条对质</h3>
+      <p class="ctx"><strong>谣言一："有稳赚不赔的方法，只是不告诉你。"</strong>——收益与风险同源是金融第一原理（1章）；任何"稳赚"话术都是骗局信号（11章），监管风险提示原文可查。<strong>谣言二："跟着老师买，散户也能吃内幕。"</strong>——"内幕消息"类交易本身违法，而你收到的"内幕"几乎必然是编造的话术（11章、12章）；真内幕轮不到散户，假内幕专挑散户。</p>
+      <p class="ctx"><strong>谣言三："交易越勤快，赚钱越快。"</strong>——大样本研究结论相反：换手率最高的组年化收益显著垫底（Barber &amp; Odean, 2000；10章、18章）。<strong>谣言四："止损止盈凭盘感，高手都是盘中决定的。"</strong>——盘感是情绪的美化名；卖出应当是规则的执行（再平衡/逻辑破坏/目标达成/用钱，18章），盘中临时起意是亏损的主要来源之一。<strong>谣言五："指数基金就是买整个市场，等于买整个市场的平庸。"</strong>——夏普的算术说明：扣费后主动整体必输被动（s1、4章）；"平庸"的市场平均收益，长期已胜过绝大多数专业选手的净值。</p>
+      <p class="ctx"><strong>谣言六："个人养老金的钱交进去就取不出来了，等于被没收。"</strong>——封闭运行是制度设计而非没收：资产归个人、收益归个人、余额可继承，达龄等情形依规领取（19章）。<strong>谣言七："杠杆是放大器，胆子大就该上。"</strong>——杠杆同时放大亏损与强平风险，“场外配资”平台本身就是高发骗局（11章）；一次清零，之前所有复利归零（s1）。<strong>谣言八："长期主义就是买了别动，什么都不用管。"</strong>——长期主义的完整形态是"低频但持续的管理"：定投与再平衡的日历、季度对账、年度大修、逻辑破坏即卖出（17章、18章、s3）；躺着不动不叫长期主义，叫失控——系统需要维护，维护本身就是低频而持续的"动"，这正是第30天验收清单里日历项存在的意义。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1111/0022-1082.00226">Barber &amp; Odean (2000), Journal of Finance（英文）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会投资者教育专栏</a>（防非与规则官方口径） · <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">SPIVA 记分卡（英文，浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、结课自测</h2>
+    <p class="chapter-sub">最后一组15题：答得上来，就可以出发了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（15条）</h4>
+      <ul>
+        <li>72法则怎么估算翻倍年限？它对"25岁开始"和"35岁开始"的差距给出了什么启示？</li>
+        <li>为什么成本是"复利的放大器"？博格"cost matters"的算术逻辑是什么？</li>
+        <li>复利成立的两个前提是什么？它们分别对应前面哪两章的结论？</li>
+        <li>夏普1991年的算术结论是什么？它为什么"不依赖任何预测"？</li>
+        <li>SPIVA 的长期数字和 SSRN 的资产加权批评各说了什么？争议中两种口径的共同结论是什么？</li>
+        <li>长期数据"怎么用才对"的三条纪律是什么？</li>
+        <li>频繁交易在算术上必输的三份成本分别是什么？</li>
+        <li>30天计划四周的四个交付物各是什么？为什么顺序不能乱？</li>
+        <li>计划执行的三个常见"死法"与对策分别是什么？只做一件事该做哪件？</li>
+        <li>"五不三要"纪律清单你能完整背出来吗？每条对应哪一章？</li>
+        <li>信息黑名单的三类信息源是什么？"凡是直接告诉你买什么的一律拉黑"为什么成立？</li>
+        <li>白名单五类信息源是什么？它们的四个共同特征是什么？</li>
+        <li>三级学习路线图的内容与"先框架后细节、先官方后市场、先免费后付费"原则怎么落地？</li>
+        <li>目标反算的三个旋钮是什么？为什么储蓄率最可靠？</li>
+        <li>普通投资者相对专业机构的"期限优势"是什么？它如何改变你对今年排名的焦虑？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>长期主义是算术不是信仰——72法则（翻倍年数≈72÷年化收益率，示意）说明时间是指数项，成本同样被复利放大（博格 cost matters），复利前提是"不被打断"（应急金+承受力内的波动）；均值回归与长期统计（夏普1991算术：扣费后主动整体必输被动；SPIVA 15-20年85%-93%跑输、SSRN资产加权批评约56%，争议如实标注）支持"降预期+降成本+拉期限"，不构成任何承诺；频繁交易付三份成本（佣金税/价差/决策错误税，Barber & Odean 2000）；30天四周计划：摸家底（两张表+应急金）→认识自己（重测评+官方投教精读）→搭系统（五步核验开户或成本体检+一页纸IPS+个人养老金测算）→启动固化（小额定投+日志开本+信息清退+家庭财务会议），顺序不可乱、可降速不跳过；纪律五不（杠杆配资/借钱投资/"内幕消息"带单/梭哈/频繁改规则）三要（定投再平衡日历/记录/定期重学）；信息食谱黑名单（“荐股”群直播、实时推送流、付费翻倍课）白名单（交易所投教、证监会专栏、中证投服、官方统计、经典书籍），过滤四标准=讲框架不给代码/讲风险不许诺/身份可查/不催掏钱；学习三级路线防三种走火入魔（预测瘾/工具癖/付费升级猎物），"正规投教让你独立，骗局让你依赖"；目标反算三旋钮（年限/储蓄率/风险比例）以储蓄率最可靠；期限结构是普通人唯一的不公平优势（巴菲特股东信"永远"视角）；八条谣言终审全部指回对应章节；课程边界重申：不“荐股”、不预测、不承诺，重大决策咨询持牌专业人士，维权走12386与中证投服。
+  </div>
+
+  <nav class="pager">
+    <a href="../19-family/"><span class="dir">← 第19章</span>家庭财务与生命周期</a>
+    <a href="../"><span class="dir">课程完结 🎓</span>返回课程首页</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第20章（完结） · 依据证监会与交易所官方投教材料、《证券法》等法规、SPIVA 长期统计、Barber &amp; Odean (2000)、Kahneman &amp; Tversky (1979)、Fama &amp; French (1993)、Sharpe (1991) 等学术研究及 Bogle《共同基金常识》、Malkiel《漫步华尔街》等经典教材整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 不“荐股”、不预测行情、不承诺收益 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 就业与工资 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第9章 · 政策与周期</div>
+  <h1>就业与工资</h1>
+  <p>失业率是怎么统计出来的、工资数字为什么和你的体感不一样、新就业形态怎么计入官方口径——就业是宏观数据里离你最近的一组</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-cycle/">← 第8章：经济周期</a>
+    <a href="../10-housing/">第10章：房地产与宏观经济 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">失业率从哪来</a>
+    <a class="anchor" href="#s2">口径意识</a>
+    <a class="anchor" href="#s3">三种失业</a>
+    <a class="anchor" href="#s4">就业总量</a>
+    <a class="anchor" href="#s5">两条经验规律</a>
+    <a class="anchor" href="#s6">工资怎么算</a>
+    <a class="anchor" href="#s7">新就业形态</a>
+    <a class="anchor" href="#s8">谣言粉碎与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为经济学科普教育内容，仅供经济教育与参考，不构成投资建议、政策预测或任何产品的商业推荐。本站不预测具体行情与政策走向，"必然失业潮""工资必涨必跌"类断言只出现在谣言粉碎与批判语境。数据以国家统计局、人力资源社会保障部、国际劳工组织等官方统计口径为准，正文注明统计时点；中外数据对比会提示统计口径差异。不传播未经证实的"内幕政策消息"，重大政策一律以官方发布为准。各节观点均标注权威来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清"城镇调查失业率"是怎么统计出来的，理解它和"登记失业率"的区别；②看懂青年失业率口径调整（不含在校生）背后的统计逻辑；③区分摩擦性、结构性、周期性三种失业，理解"自然失业率"为什么不是零；④读懂《政府工作报告》里的就业目标和统计公报里的就业数据；⑤知道奥肯定律和菲利普斯曲线讲什么、在什么条件下会失效；⑥理解平均工资的发布口径，明白为什么"平均数"经常和你的体感对不上；⑦了解灵活就业与新就业形态的官方统计口径。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>就业数据是宏观指标里发布频率最高、和普通人关系最直接的一组：每月统计局发布调查失业率，每年政府工作报告定就业目标，每年统计公报给平均工资。建议读完本章后，下次看到就业新闻时用第 5 节的"四步读法"过一遍：谁发布、什么口径、和什么比、说明什么。你会发现大部分"就业恐慌文"都经不起这四问。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、从一条新闻说起：你每月看到的失业率是怎么来的</h2>
+    <p class="chapter-sub">失业率不是"报名登记"数出来的，而是抽样调查问出来的——理解方法，才能理解数字的边界</p>
+
+    <article class="view">
+      <h3>每月中旬的那个数字：发布机制与节奏</h3>
+      <p class="ctx">打开任何一个财经 App，每月中旬你大概率会看到一条新闻："国家统计局发布，X 月份全国城镇调查失业率为 X.X%。"这个发布有固定节奏：国家统计局在每月召开的国民经济运行情况新闻发布会上（或按月发布的数据新闻稿中）公布上月全国城镇调查失业率，同时公布 31 个大城市城镇调查失业率、分年龄组失业率等配套数据。发布入口就在国家统计局官网"最新发布"栏目，任何人免费可查。</p>
+      <p class="ctx">这里有个容易被忽略的细节：新闻标题里的失业率永远只是这组数据里的一个数字。同一次发布通常还包含就业人员总量、新增就业、分年龄段数据等信息。只盯着标题里的一个百分数做判断，相当于只看书名就写书评。第 8 节的谣言粉碎会回到这个问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布栏目（月度调查失业率与国民经济运行情况发布入口）</a> · <a href="https://www.gov.cn/shuju/">中国政府网·数据频道（宏观数据聚合页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"调查"两个字的分量：抽样方法通俗版</h3>
+      <p class="ctx">城镇调查失业率，重点在"调查"。国家统计局采用抽样调查方法：在全国范围内抽取样本住户，调查员入户询问每位家庭成员的就业状况——上周是否工作、工作多少小时、是否在寻找工作、能否随时到岗。根据回答，把 16 岁及以上人口分成三类：就业人员、失业人员、非劳动力。失业率＝失业人员÷（就业人员＋失业人员）×100%。注意分母不是全部人口，而是"劳动力"（想工作且在找工作的人）。</p>
+      <p class="ctx">举个教学示例：一个 1000 人的抽样社区里，16 岁以上有 800 人，其中 600 人在工作、30 人没工作但正在找工作、170 人既不工作也没在找（在校生、退休者、全职家务劳动者等）。失业率＝30÷(600+30)≈4.8%，而不是 30÷800≈3.8%，更不是 30÷1000＝3%。同一批人，三个分母给出三个完全不同的数字——这就是为什么读任何比率指标，第一件事永远是问"分母是谁"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读栏目（调查失业率统计方法官方说明的检索入口）</a> · 曼昆《经济学原理（宏观分册）》第10版"失业的衡量"章（北京大学出版社中文版）</div>
+    </article>
+
+    <article class="view">
+      <h3>国际通行的"就业-失业-非劳动力"三分法</h3>
+      <p class="ctx">这套三分法不是中国独创，而是国际劳工组织（ILO）制定的国际通行标准，各国的劳动力调查基本都以此为框架。好处是概念上可对话，坏处是"可对话"不等于"可精确比较"：抽样方式、调查频率、"工作一小时就算就业"还是"有稳定岗位才算就业"等技术细节各国执行不同。ILO 的标准口径里，在调查参考期内工作哪怕一小时、且有报酬，就计入就业——这个宽口径经常被自媒体拿来嘲讽"数字游戏"，但它恰恰是国际统计惯例，第 2 节会专门拆解这个误解。</p>
+      <p class="ctx">对普通读者来说，记住一句话就够了：失业率是一个"调查估计值"，不是"点名册"。它有抽样误差、有口径边界，但它是目前唯一按统一方法、固定频率、公开透明生产的就业总量指标——这比"没有数字"或"各说各话"要好得多。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.ilo.org/">国际劳工组织（ILO）官网：劳动力统计国际标准与口径说明（英文）</a> · 曼昆《经济学原理（宏观分册）》第10版"失业的衡量"章</div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-09-1.png" alt="抽象几何风格示意图：一个由许多小方块组成的城市网格中，部分方块被聚光灯照亮代表抽样调查的样本住户，一个无脸调查员形象手持发光的问卷方块走访住户，橄榄绿 #4d7c0f 主色调，白色干净背景" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、口径意识：同一个"失业率"，可能是三个不同的数字</h2>
+    <p class="chapter-sub">调查失业率、登记失业率、青年失业率——分清口径，是读懂就业新闻的第一道门槛</p>
+
+    <article class="view">
+      <h3>调查失业率 vs 登记失业率：从"被动等登记"到"主动去调查"</h3>
+      <p class="ctx">中国曾经长期使用"城镇登记失业率"：失业者主动到公共就业服务机构登记，才会被计入。这个口径的问题显而易见——很多人失业后不去登记（嫌麻烦、不知道、觉得没用），于是登记失业率天然偏低，且对经济波动反应迟钝。学术界的批评持续多年之后，统计体系转向国际通行的抽样调查方法：2018 年起国家统计局正式按月发布城镇调查失业率，登记失业率逐步退出公众视野，只在《中国统计年鉴》等历史资料中还能看到两套数字并存的年代。</p>
+      <p class="ctx">这段历史值得记住，因为它示范了一个通用规律：官方统计口径会演进，演进的方向通常是"更接近真实、更国际可比"。看到新旧口径的数字被拿来混着说（比如用十年前的登记失业率对比今天的调查失业率），就是典型的口径陷阱。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（调查失业率方法制度说明检索入口）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">《中国统计年鉴》历年卷在线版（新旧口径并存的年代可查）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>青年失业率的口径完善：为什么"不含在校生"</h3>
+      <p class="ctx">2023 年，青年失业率一度成为舆论焦点，随后统计口径暂停发布并进行完善；从 2023 年 12 月起，国家统计局恢复发布分年龄组失业率，并明确新口径"不含在校生"——16-24 岁劳动力中剔除在校学生后再计算失业率。官方解释的理由是：在校学生的主责主业是学习，其中利用课余寻找工作、打零工的人群比例和就业意愿与毕业生显著不同，剔除在校生能更准确地反映真正进入劳动力市场的青年的就业状况。</p>
+      <p class="ctx">如何看待这次口径调整？两点常识供参考。第一，口径调整本身是各国统计的常态：美国劳工统计局也会定期修订劳动力调查的口径与权重，调整不等于丑闻。第二，评价口径调整是否合理，看的是方法说明是否公开、新旧序列是否可衔接、理由是否站得住——统计局对"不含在校生"给出了公开的方法说明，这符合统计规范。至于"新口径下数字更低所以是美化"的说法，混淆了两件事：口径变了，数字自然不可直接对比，这是技术事实，不是立场问题。真正严谨的读法是：比较数字前先看口径，跨口径的数字不做直接比较。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（分年龄组失业率发布与口径说明检索入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（统计口径完善相关说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>中外失业率不能直接比：美国的 U-3 与 U-6</h3>
+      <p class="ctx">"美国失业率 4%，中国 5%，所以美国就业更好"——这类比较几乎必然是错的。美国的失业统计由劳工统计局（BLS）通过当期人口调查（CPS）生产，其中 U-3 是官方失业率（对应 ILO 标准口径），而 U-6 是更宽的口径，额外计入"想全职却只能兼职"的人和"想工作但已放弃寻找"的边缘附着劳动力。同一时期 U-6 通常比 U-3 高出数个百分点。新闻里说的"美国失业率"默认是 U-3。</p>
+      <p class="ctx">中国的调查失业率对应 ILO 标准口径，理论上与 U-3 可比，但抽样设计、城乡覆盖（中国只统计"城镇"）、调查频率等技术细节仍有差异。所以本课的一贯纪律是：中外对比时，先说明两边各自的口径，再谈数字；只给两个百分数就下结论的报道，直接跳过。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.bls.gov/cps/">美国劳工统计局·当期人口调查（CPS）说明页：U-3/U-6 等六种失业口径定义（英文）</a> · <a href="https://www.ilo.org/">国际劳工组织（ILO）：劳动力统计国际标准（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"工作一小时就算就业"？拆解这个流传最广的嘲讽</h3>
+      <p class="ctx">每隔一段时间，社交媒体上就会出现对 ILO 口径的嘲讽："只要一周工作一小时就算就业，所以失业率都是假的。"这个说法半真半假：ILO 的就业定义确实以"调查参考期内工作至少一小时且有报酬"为下限，但这一小时门槛的设计初衷是覆盖非正规就业（零工、家庭帮工、农业季节性劳动），避免把这些真实在劳动的人误判为失业——在发展中经济体，这是必要的宽覆盖，而不是美化数字的技巧。</p>
+      <p class="ctx">更重要的是，成熟的统计体系不会只看一个门槛：配套的还有"就业不充分"（想多工作但工时不足）等补充指标。用"一小时门槛"否定整个劳动力调查体系，就像用"体温计只能量到 0.1 度"否定整个医学检验——混淆了工具的设计边界和工具的可靠性。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.ilo.org/">国际劳工组织（ILO）：就业与不充分就业统计口径说明（英文）</a> · 萨缪尔森、诺德豪斯《经济学》第19版失业衡量章节</div>
+    </article>
+
+    <table class="cmp">
+      <tr><th>指标</th><th>怎么统计</th><th>适合回答什么问题</th><th>常见误用</th></tr>
+      <tr><td>城镇调查失业率</td><td>抽样入户调查，月度发布，ILO 框架</td><td>劳动力市场总体冷暖</td><td>拿来和登记失业率旧数据直接对比</td></tr>
+      <tr><td>登记失业率</td><td>失业者主动登记，历史口径</td><td>了解历史序列（年鉴可查）</td><td>当作当前官方失业率引用</td></tr>
+      <tr><td>青年失业率（不含在校生）</td><td>16-24 岁非在校劳动力抽样调查</td><td>毕业生进入市场的难易</td><td>与旧口径（含在校生）数字混比</td></tr>
+      <tr><td>31 个大城市城镇调查失业率</td><td>大城市单独抽样，月度发布</td><td>观察大城市就业面</td><td>当作全国数字使用</td></tr>
+    </table>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、失业不是一种病，而是三种病：摩擦性、结构性、周期性</h2>
+    <p class="chapter-sub">同样是"没工作"，成因不同、对策不同、严重程度也不同——这个三分法是理解就业政策的钥匙</p>
+
+    <article class="view">
+      <h3>摩擦性失业：找工作的"路上时间"</h3>
+      <p class="ctx">你辞掉一份不合适的工作，花六周找到更匹配的下一份——这六周你就是"摩擦性失业者"。应届毕业生投递上百份简历、面试、比较 offer 的那几个月，同样如此。摩擦性失业本质上是劳动力市场的"搜索成本"：信息不对称、地理迁移需要时间、匹配需要试错。它通常是短暂的、自愿成分较高的，甚至是市场健康运转的标志——如果所有人一进职场就终身不再换工作，摩擦性失业为零，但那显然不是好经济。</p>
+      <p class="ctx">能降低摩擦性失业的政策是"润滑剂"型的：招聘平台与公共就业服务、透明的岗位信息、职业技能认证互认、降低落户与社保转移门槛。注意这些政策的作用是让匹配更快，而不是"创造岗位"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：曼昆《经济学原理（宏观分册）》第10版"失业的衡量"章（摩擦性失业与工作搜索） · 萨缪尔森、诺德豪斯《经济学》第19版失业类型章节</div>
+    </article>
+
+    <article class="view">
+      <h3>结构性失业：技能与岗位的错位</h3>
+      <p class="ctx">一个传统燃油车发动机的机修师傅，技术很好，但当地工厂都在转向新能源产线，需要的技能他一样不会——他面对的就是结构性失业：市场上有岗位空缺，也有失业者，但两边的技能、行业、地点对不上。结构性失业的麻烦在于它不会自己消失：经济再景气，机修师傅也不会自动变成电池工艺工程师。技术革命、产业转移、贸易格局变化都会制造结构性失业，而且往往集中在特定行业与地区，痛感极强。</p>
+      <p class="ctx">对应的政策是"转型桥"型的：职业再培训、转岗补贴、对受冲击地区的定向扶持。这类政策见效慢（学一门新技能以月年计），所以舆论场上"经济明明在增长，为什么还有人长期找不到工作"的困惑，答案多半是结构性的——增长创造的新岗位和失业者拥有的旧技能不匹配。第 15 章讲新技术与就业时会回到这个话题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（结构性失业与最低工资、工会、效率工资等成因讨论） · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（职业技能提升行动等再培训政策发布入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>周期性失业与自然失业率：为什么"充分就业"不是零失业</h3>
+      <p class="ctx">第三种失业跟着经济周期走：衰退时企业裁员、招聘冻结，失业率上升；复苏时反向回落——这是周期性失业，也是宏观政策（第 6、7 章的货币与财政政策）主要对付的对象。经济学里有个重要概念叫"自然失业率"：即使经济处于健康状态，摩擦性与结构性失业依然存在，失业率不会降到零。围绕经济正常运行的失业率水平，就叫充分就业——它是"周期性失业为零"的状态，不是"失业率为零"的状态。</p>
+      <p class="ctx">自然失业率的概念在 1960 年代由弗里德曼和菲尔普斯分别提出（两人后来都获了诺贝尔经济学奖），当时是为了反驳"可以把失业率永久压到很低"的政策幻觉：如果政策强行把失业率压到自然水平之下，短期或许有效，代价是通胀不断加速——这个论断在 1970 年代美国的滞胀中得到了戏剧性的验证，第 5 节讲菲利普斯曲线时会展开。自然失业率本身不可直接观测，只能估计，各国的估计值通常在 4%-6% 区间浮动，且会随人口结构、制度变化而漂移——这也是为什么央行不会公开承诺一个具体的"自然失业率"数字。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://scholar.google.com/scholar?q=Friedman+1968+the+role+of+monetary+policy+natural+rate">Friedman（1968）《The Role of Monetary Policy》：自然失业率概念的经典演讲（American Economic Review，Google Scholar 检索链接，英文）</a> · 曼昆《宏观经济学》第10版（自然失业率章节，中国人民大学出版社中译本）</div>
+    </article>
+
+    <table class="cmp">
+      <tr><th>类型</th><th>成因</th><th>典型人群</th><th>对症政策</th><th>会随景气消失吗</th></tr>
+      <tr><td>摩擦性失业</td><td>搜索与匹配需要时间</td><td>跳槽者、应届毕业生</td><td>就业服务、信息透明、降低流动门槛</td><td>本来就是市场常态，无需"消失"</td></tr>
+      <tr><td>结构性失业</td><td>技能/行业/地区错位</td><td>被技术或产业转型淘汰的工种</td><td>再培训、转岗扶持、区域政策</td><td>不会，经济景气也解决不了错位</td></tr>
+      <tr><td>周期性失业</td><td>总需求不足、经济衰退</td><td>衰退期被裁员的各行业员工</td><td>货币/财政逆周期政策</td><td>会，复苏后回落</td></tr>
+    </table>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、就业总量：目标、公报与重点群体</h2>
+    <p class="chapter-sub">除了失业率，官方还盯着一组"总量指标"——它们回答"就业这盘棋整体稳不稳"</p>
+
+    <article class="view">
+      <h3>《政府工作报告》里的就业目标怎么读</h3>
+      <p class="ctx">每年 3 月的《政府工作报告》会给出年度就业目标，近年稳定使用两个锚：城镇新增就业人数（如 2025 年报告提出"城镇新增就业 1200 万人以上"）和城镇调查失业率控制目标（如"5.5% 左右"）。这两个数字的组合信息量很大："新增就业"是流量指标，衡量一年内新创造了多少城镇就业岗位；"调查失业率"是时点存量指标，衡量劳动力市场的松紧。目标定得比上一年高、持平还是低，本身就是政策取向的信号——第 18 章讲政策文本阅读时会展开。</p>
+      <p class="ctx">完成情况则看年底和次年初：全年城镇新增就业的实际完成数会在国家统计局的年度《国民经济和社会发展统计公报》（每年 2 月末发布上一年度数据）中给出，与年初目标对照，就知道这一年就业目标完成得如何。这套"年初定目标—年中看进度—年底对账单"的公开机制，是普通读者跟踪就业形势最可靠的主线。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/yaowen/liebiao/202503/content_7013163.htm">2025 年《政府工作报告》全文（中国政府网）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（历年《国民经济和社会发展统计公报》入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>统计公报里的就业版图：总量、结构与重点群体</h3>
+      <p class="ctx">年度统计公报的"人口、居民收入消费"与就业相关章节，会给出一张就业全景图：全国就业人员总量与城镇就业人员数量、三次产业的就业结构（农业占比逐年下降、服务业占比上升是长期趋势）、农民工总量与外出/本地结构、城镇新增就业完成数等。读这张图的正确姿势是看"结构变迁的方向"而不是"某一年的波动"：比如农业就业占比的长期下降，对应的是城镇化与工业化——这是几十年的慢变量，任何单月新闻都不该让你对它重新下判断。</p>
+      <p class="ctx">公报还会点出重点群体：高校毕业生（近年每年超千万规模，2024 届为 1179 万人，人力资源社会保障部与教育部历年发布的口径）、农民工（总量近 3 亿，见历年《农民工监测调查报告》）。这两个群体的就业状况，比总体失业率更能说明结构性压力在哪里——总量数字平稳的同时，特定群体的困难可以真实存在，两者不矛盾。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（历年统计公报与《农民工监测调查报告》入口）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（高校毕业生就业政策与数据发布入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"就业是最大的民生"：政策优先级为什么这么排</h3>
+      <p class="ctx">翻遍近年的中央经济工作会议通稿和《政府工作报告》，"就业优先"是出现频率最高的政策词之一，官方表述长期是"就业是最大的民生"。这不只是修辞：从宏观逻辑看，就业连接着收入、消费、社会稳定三条线——没有就业就没有工资性收入，没有收入就没有消费（第 1 章 GDP 支出法里消费是最大项），消费的萎缩又反过来压制企业招聘，形成负向循环。所以各国政府几乎都把就业放在宏观政策的核心目标里，美国的央行（美联储）甚至被法律赋予"充分就业+物价稳定"的双重使命（第 6 章详述）。</p>
+      <p class="ctx">理解了这条逻辑，你就能读懂很多政策新闻的"为什么"：为什么经济下行压力大时首先强调"稳就业"、为什么扶持小微企业（吸纳就业的主力）、为什么把职业技能培训写进政策文件——它们都是沿着"就业→收入→消费→生产"这条链条在发力。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网·政策文件库（"就业优先"相关文件检索入口）</a> · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策页：双重使命（就业最大化与物价稳定）官方表述（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、两条经验规律：奥肯定律与菲利普斯曲线</h2>
+    <p class="chapter-sub">宏观经济学里两条最有名的"经验公式"，以及它们失效的历史——理解失效，比记住定律更重要</p>
+
+    <blockquote class="q">读任何一条就业新闻的四步法：①谁发布？（国家统计局月度调查 / 统计公报年度数据 / 人社部专项报告 / 媒体转述——只认前三者的原始出处）②什么口径？（调查还是登记？含不含在校生？城镇还是全国？流量还是存量？）③和什么比？（同比上月还是去年同月？和目标比还是和历史比？基数正常吗？）④说明什么？（是趋势变化还是季节波动？春节、毕业季因素剔除了吗？）——四问过完，九成"就业崩了/就业爆了"的标题党会自动失效。<span class="qsrc">—— 就业数据阅读四步法（本课程整理，方法框架参照统计局数据解读惯例）</span></blockquote>
+
+    <article class="view">
+      <h3>奥肯定律：失业率与产出缺口的经验关系</h3>
+      <p class="ctx">1962 年，美国经济学家阿瑟·奥肯（Arthur Okun）在《布鲁金斯经济活动论文集》发表论文，观察到美国经济中失业率上升与实际产出低于潜在水平的幅度之间存在稳定的经验关系——通俗版结论是：失业率每比"正常水平"高出 1 个百分点，实际产出大约比潜在产出低 2-3 个百分点（美国的经验系数，不同年代估计值有出入）。这个关系后来被称为"奥肯定律"。注意它的性质：这是从数据里归纳的经验规律，不是物理定律，系数因国家、因时期而异。</p>
+      <p class="ctx">对中国的适用性要特别谨慎：中国的就业统计口径、劳动力流动规模（农民工跨区域转移起到巨大的缓冲作用）、产业结构都与美国不同，学术界对中国版"奥肯系数"的估计结果分散，普遍认为不能照搬美国系数。所以正确的用法是理解它的方向性含义——经济增长显著放缓时，就业压力通常会显现；而不是拿一个系数去做精确推算。奥肯原文的出版链接已失效，本课按学术规范以文字方式引用：Okun, A. M. (1962), "Potential GNP: Its Measurement and Significance", Proceedings of the Business and Economics Statistics Section, American Statistical Association。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Okun（1962）"Potential GNP: Its Measurement and Significance"（文字引用，原 Brookings 链接已失效） · 曼昆《宏观经济学》第10版（奥肯定律章节及系数因国而异的说明）</div>
+    </article>
+
+    <article class="view">
+      <h3>菲利普斯曲线：失业与通胀的"跷跷板"及其破裂</h3>
+      <p class="ctx">1958 年，新西兰裔经济学家威廉·菲利普斯（A. W. Phillips）发表于《Economica》的论文中，用英国 1861-1957 年近百年数据发现：失业率低的时候，货币工资上涨更快；失业率高时，工资涨得慢甚至下降。这条负相关曲线后来被称为菲利普斯曲线， policy 含义看似诱人：政府可以"用高一点的通胀换低一点的失业"，在跷跷板上选一个喜欢的平衡点。1960 年代，不少国家的政策制定者真把它当成了可调的旋钮。</p>
+      <p class="ctx">然后旋钮坏了。1970 年代石油危机冲击下，美国等国家出现"滞胀"——高失业与高通胀同时出现，跷跷板两端同时翘起，菲利普斯曲线的稳定权衡关系在数据面前崩塌。事后看，弗里德曼（1968）和菲尔普斯（1967-68）早已给出理论警告：这种权衡只在短期存在，因为工人会被货币幻觉暂时迷惑；一旦通胀预期调整，失业率会回到自然失业率水平，留下的只有更高的通胀——想靠印钱永久压低失业率，等于给自己挖通胀的坑。这段历史是宏观经济学最重要的教训之一：从数据里挖出来的稳定关系，会因为人的预期和行为改变而失效（后来被称为"卢卡斯批判"的思想源头之一）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.jstor.org/stable/2550759">Phillips（1958）"The Relation between Unemployment and the Rate of Change of Money Wage Rates in the United Kingdom, 1861-1957", Economica（英文，JSTOR）</a> · <a href="https://scholar.google.com/scholar?q=Friedman+1968+role+of+monetary+policy">Friedman（1968）"The Role of Monetary Policy", American Economic Review（英文，Google Scholar 检索链接）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>今天的菲利普斯曲线：变平了，但没死</h3>
+      <p class="ctx">滞胀之后，菲利普斯曲线并没有被扔进垃圾桶，而是被改造为"预期增强版"：短期曲线仍然存在，但位置随通胀预期移动；长期曲线在自然失业率处垂直——长期看，通胀多高都换不来更低的失业。这套新框架成了各国央行政策分析的标配（第 6 章货币政策会再用到它）。另一个近年被反复讨论的现象是曲线"变平"：2010 年代美国失业率降到很低，通胀却迟迟不起，权衡关系弱得几乎看不见；2021-2022 年全球通胀飙升时，又有人宣布曲线"复活"。学界对此没有定论，如实并列两种解释：一说全球化与技术进步压低了通胀对劳动力市场松紧的敏感度；一说疫情等极端冲击让历史样本失去参照价值。</p>
+      <p class="ctx">对普通读者的启示很实际：当你看到"失业率创新低，通胀要来了"或"失业上升，央行要大放水"这类推演时，记住它们背后都站着一条有过失效前科的曲线——方向性参考可以，当成必然规律则不必。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://scholar.google.com/scholar?q=Blanchard+Bernanke+Summers+2024+what+happened+to+the+pandemic+era+macroeconomy">Blanchard、Bernanke、Summers（2024）关于疫情时代宏观经济学教训的综述（NBER 工作论文，Google Scholar 检索链接，英文）</a> · 曼昆《宏观经济学》第10版（预期增强菲利普斯曲线与长期垂直性）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、工资：为什么"平均工资"总让你觉得被平均</h2>
+    <p class="chapter-sub">工资数据的发布口径、平均数与中位数的差别、最低工资的调整机制——三个知识点治好"被平均"的憋屈</p>
+
+    <article class="view">
+      <h3>平均工资是怎么发布的：两套口径别混用</h3>
+      <p class="ctx">国家统计局每年 5 月左右发布上一年度"城镇单位就业人员平均工资"，而且是分两套口径同时发布：城镇非私营单位（国有、集体、联营、股份制、外商投资等大体量单位）和城镇私营单位（私营企业与个体工商户等）。两套数字差距显著——非私营单位平均工资通常明显高于私营单位。这是统计上的诚实：不同规模、所有制单位的薪酬结构本来就不同，分开公布比混成一个数更接近真实。新闻标题若只写"去年平均工资 XX 元"而不注明口径，你至少要追问一句：非私营还是私营？</p>
+      <p class="ctx">另外注意"平均工资"的统计定义是税前应发工资，包含奖金、津贴、加班费，以及单位代扣代缴的个税和社保个人缴费部分——拿到手的钱少于公布的数，不是数据造假，是口径使然。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（历年城镇单位就业人员平均工资发布入口，非私营/私营两套口径）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（平均工资统计口径官方说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"我又被平均了"：平均数与中位数的老问题</h3>
+      <p class="ctx">每次平均工资发布，评论区必然出现"拖后腿了"。这背后是统计学的基础事实：工资分布是右偏的——少数极高收入者把平均数拉高，而大多数人的工资低于平均数。中位数（把所有人从低到高排队，站在正中间那个人的工资）通常低于平均数，且更能代表"典型水平"。一个教学示例：十个人的月薪是 5、6、6、7、7、7、8、8、9、100（千元），平均工资 16.3 千，中位数 7 千——九个人"被平均"了，但数据本身没错。</p>
+      <p class="ctx">国家统计局在居民收入数据中会同时公布平均数和中位数（人均可支配收入两个口径都给），工资统计则以平均数为主。读工资新闻时，心里默念一句"平均数受高收入者拉动"，就能对"被平均"的失落免疫：那不是你退步了，是分布本来就长这样。顺带一个实用推论：谈薪酬、比较城市生活成本时，中位数和分位数（如招聘平台报告里的分位值）比平均数更有参考价值。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（居民人均可支配收入：平均数与中位数同时发布的历年新闻稿）</a> · 曼昆《经济学原理（微观分册）》第10版（收入分配与统计量选择章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>最低工资：标准怎么定、多久调一次</h3>
+      <p class="ctx">最低工资标准由各省、自治区、直辖市人民政府确定并调整（依据《最低工资规定》，原劳动保障部令第 21 号），报人力资源社会保障部备案后公布，因此全国没有统一数字，各省不同、同一省内还常分档（按经济发展水平划分区域）。调整时会参考当地就业者及其赡养人口的最低生活费用、城镇居民消费价格指数、职工个人缴纳的社保和公积金、职工平均工资、经济发展水平、就业状况等因素——所以它不是拍脑袋，而是一篮子因素的权衡；调整频率也无全国统一硬性周期，各省根据上述因素变化决定，实践中多数省份间隔一至三年调整一次。</p>
+      <p class="ctx">最低工资在经济学里是个经典争议话题：教科书的供给需求框架预测，价格下限会减少低技能岗位的雇佣量；但实证研究（最著名的是 Card 与 Krueger 1990 年代对新泽西-宾州快餐业的对比研究）发现适度提高最低工资的就业负效应远小于理论预测，甚至不显著。学界至今没有完全共识，如实并列：适度上调的证据总体温和，激进上调的风险证据较多。本课不站队，只提醒：看到"最低工资必然消灭岗位"或"涨最低工资百利无害"的绝对化断言，都是把有争议的问题讲成了定论。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（各省最低工资标准汇总发布入口，《最低工资规定》）</a> · <a href="https://scholar.google.com/scholar?q=Card+Krueger+1994+minimum+wages+and+employment">Card & Krueger（1994）"Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania"（American Economic Review，Google Scholar 检索链接，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>工资与生产率：长期看，工资跟着什么走</h3>
+      <p class="ctx">宏观经济学有一个被广泛接受、但常被舆论忽略的长期关系：一个经济体的实际工资水平，长期取决于劳动生产率——每个工人每小时能创造多少产出。生产率不涨，工资普涨的结果通常不是大家变富，而是物价跟着涨（企业把更高的人工成本转进价格）。这也是为什么各国政府文件里"居民收入增长和经济增长基本同步""劳动报酬提高和劳动生产率提高同步"是标准表述——它背后是这条经济学规律。</p>
+      <p class="ctx">推论对个人同样成立：行业的工资天花板，长期由该行业的人均产出决定；个人的议价能力，长期由你创造的价值稀缺性决定。第 13 章讲经济增长时会展开生产率的话题（全要素生产率），第 15 章会讨论 AI 对生产率的影响之争——它们是同一条逻辑线上的三站。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（生产率与生活水平章节） · <a href="https://www.gov.cn/yaowen/liebiao/202503/content_7013163.htm">2025 年《政府工作报告》（"居民收入增长和经济增长同步"官方表述，中国政府网）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-09-2.png" alt="抽象几何风格示意图：一条发光的水平线代表平均工资，线上方少数几个大方块与线下方多数几个小方块形成右偏分布，一个无脸人物形象站在队伍正中间位置被标记为中位数，橄榄绿 #4d7c0f 主色调配琥珀色点缀，浅灰白背景" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、新就业形态：外卖骑手、主播与两亿灵活就业者</h2>
+    <p class="chapter-sub">平台经济改写了很多人的工作方式——统计口径和劳动保障如何跟上，是正在发生进行时</p>
+
+    <article class="view">
+      <h3>"灵活就业"的官方口径与规模</h3>
+      <p class="ctx">"灵活就业"在官方语境里指非全日制、临时性、季节性、弹性工作等非标准就业形式，包括个体经营、非全日制、新就业形态（依托互联网平台就业）等。规模上最常被引用的是"2 亿左右"——这个口径来自官方多年前的调研估算与人社部门公开表态（如 2021 年国务院政策例行吹风会披露的口径），此后官方未再按统一口径更新总量数字，引用时应注明时点与来源属性。新就业形态劳动者（网约车司机、外卖骑手、网络主播、电商从业者等）是灵活就业中增长最快的部分，规模估算在数千万至亿级，不同机构口径差异大，本课按"以官方最新发布为准"的纪律处理，不采用无法溯源的数字。</p>
+      <p class="ctx">统计上的挑战是真实的：平台工作往往没有传统劳动合同，从业者可能同时接多个平台的单，"算不算就业、算几分之一个就业"在各国统计中都是新课题。ILO 与各国统计机构正在推动平台工作统计标准的完善——所以看到"灵活就业数据不透明"的批评时，更准确的说法是"全球都在摸索怎么统计"，而不只是中国的问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网·政策文件库（支持多渠道灵活就业、新就业形态相关政策检索入口）</a> · <a href="https://www.ilo.org/">国际劳工组织（ILO）：平台工作统计与劳动保护研究专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>劳动保障的补课：职业伤害保障试点与"第三类劳动者"探索</h3>
+      <p class="ctx">传统劳动保障体系（工伤保险、失业保险等）以标准劳动关系为前提，而平台从业者多数与平台之间不构成传统劳动关系——出了事故、断了收入，保障从哪来？中国的应对是渐进式的：2021 年起人力资源社会保障部等八部门发文维护新就业形态劳动者劳动保障权益；2022 年 7 月起，在部分省市的出行、外卖、即时配送、同城货运四个行业启动新就业形态就业人员职业伤害保障试点（按单缴费、平台承担，不以劳动关系为前提），试点范围此后逐步扩大——具体进展以人力资源社会保障部最新发布为准。学理上，这是在传统"雇员-自雇者"二分之外探索"第三类劳动者"的保护路径，与欧洲多国的立法讨论方向一致。</p>
+      <p class="ctx">对普通读者的实用含义：如果你或家人从事平台工作，主动查询所在省市是否在职业伤害保障试点范围、平台是否已参保，比笼统地担心"没有保障"更有行动价值。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（新就业形态就业人员职业伤害保障试点政策与进展发布入口）</a> · <a href="https://www.gov.cn/zhengce/">中国政府网（八部门《关于维护新就业形态劳动者劳动保障权益的指导意见》检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">就业是焦虑文重灾区——用本章的口径知识，把三个流行说法逐一拆掉</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于就业的三个流行误解</h3>
+      <p class="ctx"><strong>误解一："失业率数字是编的，身边一堆人没工作。"</strong> 拆解：个人社交圈的就业状况与全国调查失业率本来就是两个统计对象——你的圈子可能恰好集中在某个受冲击行业（结构性失业的特点正是"总体平稳、局部剧痛"）。调查失业率有公开的抽样方法、固定的发布节奏、可查的历史序列，质疑它的正确方式是讨论口径（比如城乡覆盖范围），而不是宣布"数字全是编的"。"官方数据不可信"式的全盘否定，恰恰是第 19 章要批判的信息虚无主义。</p>
+      <p class="ctx"><strong>误解二："AI 会消灭大部分工作岗位，赶紧恐慌。"</strong> 拆解：技术对就业的影响是"替代效应"与"创造效应"并存的历史常态——从蒸汽机到计算机，每一轮技术革命都消灭了一批岗位、创造了一批新岗位，并重组了几乎所有岗位的任务构成（第 15 章详述）。严肃研究（如 IMF 2024 年的估算）讨论的是"多大比例的岗位任务暴露于自动化"，而不是"多少人会失业"；暴露度高不等于被替代，就像电力普及没有消灭厨师，只是消灭了生火岗位。把"任务暴露度"偷换成"失业预言"，是恐慌文的标准手法。</p>
+      <p class="ctx"><strong>误解三："大学生太多，读书没用了。"</strong> 拆解：这句话混淆了三个问题。第一，青年就业压力真实存在，主因是结构性错配（学历结构与岗位结构、期望与现实的错位），不是"读书本身错了"。第二，工资与生产率的关系（本节第 6 节）在个体层面同样成立：统计上，受教育年限与终身收入的正相关在各国数据中稳健存在——这是分布规律，不保证个体，但"读书无用"作为总体判断与数据相悖。第三，"学历贬值"的准确表述是高学历供给增长快于高学历岗位增长，对策是技能结构与择业策略调整，而不是退出教育。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.imf.org/en/Topics/artificial-intelligence">IMF 人工智能专题：AI 对全球就业暴露度的研究汇总（英文）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（劳动力调查方法说明）</a> · <a href="https://scholar.google.com/scholar?q=Autor+2015+why+are+there+still+so+many+jobs">Autor（2015）"Why Are There Still So Many Jobs? The History and Future of Workplace Automation"（Journal of Economic Perspectives，Google Scholar 检索链接，英文）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 第9章理解自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>城镇调查失业率是怎么统计出来的？它的分母是全部人口、劳动力还是就业人口？</li>
+        <li>ILO 框架下"就业-失业-非劳动力"三分法里，一个不找工作的大学生属于哪一类？</li>
+        <li>调查失业率和登记失业率的核心区别是什么？为什么后者被前者替代？</li>
+        <li>青年失业率新口径为什么"不含在校生"？跨口径的数字能直接比较吗？</li>
+        <li>美国 U-3 和 U-6 的区别是什么？拿"美国失业率"和"中国调查失业率"直接比大小，问题出在哪？</li>
+        <li>"工作一小时就算就业"的设计初衷是什么？为什么用它否定整个统计体系站不住脚？</li>
+        <li>摩擦性、结构性、周期性失业各自的成因和对症政策是什么？哪种不会随经济景气自动消失？</li>
+        <li>什么是自然失业率？为什么"充分就业"不等于"零失业"？</li>
+        <li>《政府工作报告》的两个就业目标分别是什么类型的指标（流量还是存量）？年底去哪里对账单？</li>
+        <li>为什么重点群体（高校毕业生、农民工）的数据比总体失业率更能揭示结构性压力？</li>
+        <li>奥肯定律说的是什么关系？为什么它的系数不能从美国照搬到中国？</li>
+        <li>菲利普斯曲线的原始发现是什么？它在 1970 年代为什么失效？弗里德曼的事先警告是什么？</li>
+        <li>"长期菲利普斯曲线垂直"这句话的政策含义是什么？</li>
+        <li>平均工资的"非私营"与"私营"两套口径为什么要分开发布？税前口径包含哪些部分？</li>
+        <li>为什么大多数人会觉得"被平均"？中位数和平均数在右偏分布里谁大？</li>
+        <li>最低工资标准由谁确定？经济学界对它的就业效应争议焦点是什么？</li>
+        <li>长期看，实际工资水平取决于什么？"两个同步"的官方表述背后是哪条规律？</li>
+        <li>"灵活就业约 2 亿人"这个口径出自哪里？引用时要注意什么？</li>
+        <li>新就业形态职业伤害保障试点和普通工伤保险的关键区别是什么？</li>
+        <li>"AI 消灭大部分岗位"的说法，把研究里的哪个概念偷换成了哪个概念？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张对照表带走）：</strong>失业率＝失业人口÷劳动力，来自月度抽样调查（ILO 框架），不是登记数出来的；口径三分：调查失业率（现行主流）/登记失业率（历史口径）/青年失业率（2023 年 12 月起不含在校生），跨口径不可直接比；中外对比先看口径（美国 U-3 vs U-6，中国仅城镇）；失业分三种：摩擦性（搜索成本，润滑剂政策）、结构性（技能错位，再培训政策，不随景气消失）、周期性（需求不足，逆周期政策）；自然失业率＝摩擦+结构，充分就业≠零失业（弗里德曼 1968）；奥肯定律＝失业与产出缺口的经验关系，系数因国而异勿照搬；菲利普斯曲线＝失业与通胀的短期权衡，1970 年代滞胀证伪了长期权衡，长期曲线垂直；就业目标看《政府工作报告》（新增就业+调查失业率），完成情况看次年 2 月统计公报；平均工资分非私营/私营两套口径、税前应发、右偏分布导致"被平均"（看中位数）；最低工资省级确定、参考一篮子因素、就业效应有学术争议；灵活就业约 2 亿（2021 年官方吹风会口径），职业伤害保障试点按单缴费不以劳动关系为前提；AI 与就业：任务暴露度≠失业预言，替代与创造并存（第 15 章详述）。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-cycle/"><span class="dir">← 第8章</span>经济周期：繁荣、衰退与复苏</a>
+    <a href="../10-housing/"><span class="dir">第10章 →</span>房地产与宏观经济</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第9章 · 依据国家统计局、人力资源社会保障部、中国政府网、国际劳工组织（ILO）、美国劳工统计局等官方数据与方法说明、曼昆与萨缪尔森经典经济学教科书及 Phillips（1958）、Friedman（1968）、Okun（1962）、Card & Krueger（1994）、Autor（2015）等学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 来源标注：🏛 官方文件 ｜ 📘 权威手册 ｜ 📋 学术研究 ｜ 🏷 商业科普（标注） · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

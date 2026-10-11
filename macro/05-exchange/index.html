@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5章 汇率与国际收支 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第5章 · 基础概念</div>
+  <h1>汇率与国际收支</h1>
+  <p>人民币汇率制度怎么运行、国际收支这本"国家账"怎么读、外汇储备与"不可能三角"是什么——以及汇率涨跌对你的钱包到底意味着什么</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../04-money/">← 第4章：货币与信用</a>
+    <a href="../06-monetary/">第6章：货币政策 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">汇率是什么</a>
+    <a class="anchor" href="#s2">人民币汇率制度</a>
+    <a class="anchor" href="#s3">汇率影响你</a>
+    <a class="anchor" href="#s4">国际收支</a>
+    <a class="anchor" href="#s5">外汇储备</a>
+    <a class="anchor" href="#s6">不可能三角</a>
+    <a class="anchor" href="#s7">人民币国际化</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本章内容仅供<strong>经济教育与参考</strong>，不构成投资建议、政策预测或任何产品的商业推荐；本站无商业合作、无推广链接。</li>
+      <li>本章<strong>不预测汇率走势</strong>：不判断人民币"会升值还是会贬值"，只教你读懂汇率制度、数据口径与新闻表述；"崩溃"类断言只出现在谣言粉碎与批判语境。</li>
+      <li>汇率与国际收支数据以<strong>官方统计口径</strong>为准：中国人民银行、国家外汇管理局等，正文注明统计时点；中外对比提示口径差异。</li>
+      <li>不传播未经证实的"内幕政策消息"；重大政策一律以<strong>官方发布</strong>为准，本章只教"怎么读公开发布的文件"。</li>
+      <li>本章依据官方文件、权威教科书与学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清名义汇率与实际汇率、直接标价与间接标价的区别；②描述人民币汇率制度的三个关键词：有管理的浮动、中间价形成机制、一篮子货币（CFETS）；③列出汇率影响普通家庭的四条通道；④读懂国际收支平衡表的三大账户，解释"经常账户顺差"到底意味着什么；⑤说清外汇储备的规模来源与三大作用；⑥用"不可能三角"解释各国汇率制度的选择逻辑；⑦按官方口径了解人民币国际化的进展，并拆穿"贬值恐慌""顺差=赚钱"两类流行误解。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>汇率是国内经济与全球经济之间的"接口"——<a href="../02-inflation/">第2章</a>的进口物价、<a href="../03-interest/">第3章</a>的中美利差、<a href="../11-trade/">第11章</a>的国际贸易、<a href="../17-asset/">第17章</a>的家庭外币资产都要用到本章。第一次通读建立框架；以后看到"人民币破 X""顺差创新高"的新闻，回来对照第二、四节的口径说明，先弄清"说的是哪个数、什么口径"。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、汇率是什么：两种货币的比价</h2>
+    <p class="chapter-sub">名义与实际、直接与间接标价——先把"一个数字"拆清楚</p>
+
+    <article class="view">
+      <h3>汇率的定义与两种标价法</h3>
+      <p class="ctx"><strong>汇率</strong>是一种货币用另一种货币表示的价格：1 美元兑多少人民币、1 人民币兑多少日元。标价方法有两种：<strong>直接标价法</strong>——用本国货币表示一单位外国货币的价格（中国采用：1 美元=7.X 元人民币，数字变大=人民币贬值）；<strong>间接标价法</strong>——用外国货币表示一单位本国货币的价格（英美常用：1 英镑=X 美元）。读新闻第一步是确认标价法：同一天"数字上升"，在直接标价法下是本币贬值，在间接标价法下是本币升值——方向完全相反，混淆标价法是误读汇率新闻的头号原因。</p>
+      <p class="ctx">还要区分<strong>双边汇率</strong>与<strong>有效汇率</strong>：人民币兑美元只是对一种货币的比价；而贸易伙伴是一篮子国家，所以要按贸易权重把对多国汇率加权平均，得到<strong>名义有效汇率</strong>；再剔除各国通胀差异，得到<strong>实际有效汇率</strong>——后者才反映"中国商品在国际市场上的综合价格竞争力"。中国外汇交易中心（CFETS）每日发布 CFETS 人民币汇率指数，国际清算银行（BIS）也发布各国实际有效汇率序列，都是公开可查的官方口径数据。"人民币对美元贬值但对一篮子货币基本稳定"这类表述，说的就是双边汇率与有效汇率可以各走各的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（人民币汇率中间价与 CFETS 指数数据入口）</a> · <a href="https://www.bis.org/statistics/index.htm">国际清算银行 BIS 统计栏目（英文；实际有效汇率数据库）</a> · 曼昆《经济学原理（宏观分册）》（第10版，北京大学出版社）名义汇率与实际汇率章节</div>
+    </article>
+
+    <article class="view">
+      <h3>名义汇率与实际汇率：剔除物价后的"真实比价"</h3>
+      <p class="ctx"><strong>名义汇率</strong>是银行屏幕上跳动的数字；<strong>实际汇率</strong>是用两国物价水平调整后的汇率——它回答的是"一篮子中国商品和一篮子美国商品，换算成同一货币后谁贵谁便宜"。近似逻辑（示意级，不做计算要求）：实际汇率=名义汇率×外国物价÷本国物价。名义汇率不变时，如果中国物价涨得比美国快，中国商品相对变贵，实际汇率"升值"，出口竞争力受损——所以判断竞争力不能只看名义汇率的涨跌，还要看两国通胀差（这正是<a href="../02-inflation/">第2章</a>CPI 知识的国际版应用）。</p>
+      <p class="ctx">对普通人的翻译：实际汇率影响的是"中国制造在国际市场上贵不贵""出国旅游购物划不划算"的深层版本。短期看名义汇率（换汇时的即时价格），长期竞争力看实际汇率（物价与汇率的组合）。媒体报道几乎只谈名义汇率，你多知道实际汇率这一层，就比大多数读者更接近问题的本质。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》（第10版）实际汇率与购买力相关章节 · 萨缪尔森、诺德豪斯《经济学》（第19版）汇率决定章节 · <a href="https://www.bis.org/statistics/index.htm">国际清算银行 BIS 统计栏目（英文；实际有效汇率序列）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、人民币汇率制度：有管理的浮动</h2>
+    <p class="chapter-sub">三个关键词：有管理的浮动、中间价机制、一篮子货币</p>
+
+    <article class="view">
+      <h3>制度演进：从固定盯住到有管理的浮动</h3>
+      <p class="ctx">人民币汇率制度经历过几个阶段（以官方文件表述为准）：改革开放初期官方汇率多次调整；1994 年汇率并轨，实行<strong>以市场供求为基础的、单一的、有管理的浮动汇率制度</strong>；2005 年"7·21"改革，放弃单一盯住美元，改为<strong>以市场供求为基础、参考一篮子货币调节、有管理的浮动</strong>；2015 年"8·11"改革完善<strong>中间价报价机制</strong>（要求报价参考上日收盘价），同年 12 月发布 <strong>CFETS 人民币汇率指数</strong>，强化"盯一篮子"的透明度。今天的制度框架就是这一系列改革的产物：既不是完全自由浮动（央行保留管理手段），也不是固定汇率（价格由市场供求为基础形成）。</p>
+      <p class="ctx">"有管理"的管理手段是公开且制度化的：中间价机制引导预期、每日浮动幅度限制（银行间即期交易价围绕中间价上下 2% 幅度内浮动，2014 年起，以人民银行/外汇局公告为准）、外汇存款准备金率与跨境融资宏观审慎参数等逆周期工具、以及在市场出现顺周期"羊群效应"时的预期管理沟通。官方对这些工具的表述可在人民银行与外汇局的公告和《中国货币政策执行报告》中查到原文——读制度文件比读市场猜测可靠得多。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（汇率制度沿革与政策发布入口）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（人民币汇率形成机制改革公告检索入口）</a> · 中国人民银行《中国货币政策执行报告》（汇率制度专栏，以最新一期为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>中间价是怎么形成的：每天早上的"基准报价"</h3>
+      <p class="ctx">人民币兑美元中间价每个交易日上午由中国外汇交易中心受权发布，报价行报价的核心公式（2015 年后逐步完善，以官方说明为准）是"<strong>上日收盘价 + 一篮子货币汇率变化</strong>"，必要时叠加<strong>逆周期因子</strong>（2017 年引入，此后有启用与淡出的动态调整）。逻辑拆解：①上日收盘价反映市场供求的实际结果；②一篮子货币变化保证人民币对 CFETS 篮子（美元、欧元、日元等主要贸易伙伴货币，权重定期调整）的总体稳定——如果隔夜美元对欧元日元整体走强，按篮子逻辑人民币对美元中间价就相应调贬，以维持对一篮子的平稳；③逆周期因子用于对冲市场的顺周期情绪（单边追涨杀跌）。</p>
+      <p class="ctx">理解这个机制，就能看懂两类常见困惑：其一，"为什么美元指数大涨那天，人民币对美元中间价调贬，但对欧元日元反而升？"——因为盯的是一篮子，对美元单独看只是篮子的一部分；其二，"为什么市场价有时与中间价差很多？"——日内交易价可在中间价上下 2% 内波动，供求剧烈时贴近区间边缘属正常现象。中间价与市场价的关系，类似"锚"与"船"：锚定方向，船有活动半径。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（人民币汇率中间价每日发布入口）</a> · <a href="https://www.chinamoney.com.cn/">中国货币网（中国外汇交易中心：中间价与 CFETS 指数官方发布平台）</a> · 中国人民银行《中国货币政策执行报告》（中间价形成机制专栏，以最新一期为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>为什么选择"有管理的浮动"：制度选择的权衡</h3>
+      <p class="ctx">教科书把汇率制度排成一条光谱：一端是<strong>固定汇率</strong>（稳定预期、利于贸易，但放弃货币政策独立性、需要巨额储备干预），另一端是<strong>自由浮动</strong>（货币政策独立、自动调节国际收支，但汇率波动大、企业面临汇兑风险），中间是各种<strong>有管理的浮动</strong>。中国选择中间偏管理的位置，官方逻辑大体是：作为发展中大国需要货币政策独立性（<a href="../06-monetary/">第6章</a>），同时出口部门与金融体系对剧烈波动的承受力有限，需要在市场化方向上"渐进"推进——这一权衡正是第六节"不可能三角"的现实应用。</p>
+      <p class="ctx">要强调两点边界：①制度选择没有唯一正确答案，各国按自身条件取舍，学界对不同制度的绩效比较也持续存在争论（如实标注：这是有分歧的领域）；②本课<strong>不预测汇率制度与汇率水平的走向</strong>——官方对汇率的一贯表述是"保持人民币汇率在合理均衡水平上的基本稳定""防范超调风险"（以人民银行与外汇局公开发布为准），任何声称"知道下一步汇率政策"的"内幕消息"都不可信，传播此类未经证实信息本身就有违法风险（涉及"编造传播"虚假信息的，官方会依法处置——这也是本课免责强调"以官方发布为准"的原因）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》（第10版）汇率制度选择章节 · 萨缪尔森、诺德豪斯《经济学》（第19版）国际货币体系章节 · <a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（汇率政策取向的官方表述实录）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、汇率怎么影响你：四条通道</h2>
+    <p class="chapter-sub">进口物价、留学旅游、外币资产、就业与出口行业——每条都有赢家有输家</p>
+
+    <article class="view">
+      <h3>通道一与通道二：买东西的价格变了</h3>
+      <p class="ctx"><strong>通道一：进口商品与国内物价。</strong>人民币贬值时，以人民币计价的进口商品变贵——原油、铁矿石、大豆、芯片等大宗与关键中间品进口成本上升，会逐步传导到油价、部分食品与工业品价格（传导幅度与速度取决于需求弹性与库存周期，不是即时一比一）；升值则相反，进口成本下降。这也是为什么央行在通胀管理中会关注汇率因素——<a href="../02-inflation/">第2章</a>讲的"输入型通胀"走的就是这条通道。<strong>通道二：留学、旅游与海淘。</strong>最直观：人民币贬值时，同样的学费与旅行预算需要更多人民币兑换，留学家庭与出境游客的"实际价格"上升；海淘的境外标价商品折算后变贵。每年 5 万美元的个人便利化购汇额度（以外汇局现行规定为准）内的换汇成本，直接随汇率变动。</p>
+      <p class="ctx"><strong>通道三：外币资产与负债。</strong>持有美元存款、美元理财或海外资产的家庭，人民币贬值时这些资产折算成人民币"账面变多"；反之，持有外币负债（如美元贷款）的主体，贬值时还款压力上升。需要提醒：这类折算损益是<strong>账面与现金流层面的会计事实</strong>，围绕它的任何"该不该换汇"讨论都属于个人财务决策，涉及对走势的判断——本课不预测汇率、不构成投资建议，只提示"你的外币敞口方向决定你受升值还是贬值影响"这一机制。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇管理政策与便利化额度规定入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（进口价格与 CPI 分项的官方解读）</a> · 曼昆《经济学原理（宏观分册）》（第10版）开放经济章节</div>
+    </article>
+
+    <article class="view">
+      <h3>通道四：就业与行业——汇率的"分配效应"</h3>
+      <p class="ctx">第四条通道最宏观也最切身：<strong>汇率变动在行业间重新分配竞争力</strong>。本币贬值利好出口导向行业（纺织、机电、跨境电商——同样的美元订单换回更多人民币，价格竞争力也更强），利空依赖进口原料的行业（航空的燃油成本、造纸的纸浆成本）与持有外币债务的企业；升值则方向互换。就业跟着行业走：出口大省的订单与招工、进口替代行业的成本压力，都受汇率影响。这就是为什么汇率新闻从来不只是"金融圈的事"——它是实体经济的相对价格信号。</p>
+      <p class="ctx">但两个边界必须同时给出：①汇率只是出口竞争力的<strong>变量之一</strong>，产品质量、供应链效率、外部需求强弱同样关键——"贬值必然出口大增"在需求疲软期并不成立（J 曲线效应：贬值后贸易收支先恶化后改善，且改善有条件，教科书标准内容）；②正因为汇率有强烈的分配效应，任何"单边押注汇率"的话术都既不可靠（不预测是本课纪律）也不负责（诱导普通家庭承担其未必理解的敞口风险）。理解通道、算清自己的敞口，比赌方向重要。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》（第10版）开放经济中的净出口章节 · <a href="https://www.safe.gov.cn/">国家外汇管理局官网（跨境收支与结售汇数据发布入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（出口与工业生产月度数据）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、国际收支平衡表：国家对外的一本账</h2>
+    <p class="chapter-sub">经常账户、资本与金融账户、储备资产——三大块怎么读</p>
+
+    <article class="view">
+      <h3>三大账户：钱怎么流进来、怎么流出去</h3>
+      <p class="ctx"><strong>国际收支平衡表</strong>（Balance of Payments，BOP）记录一个国家在一定时期内与外界的全部经济交易，由国家外汇管理局按季度发布（以官方发布为准）。三大块：①<strong>经常账户</strong>——"过日子"的账：货物贸易（进出口商品）、服务贸易（运输、旅行、知识产权使用费）、初次收入（跨境投资收益与劳动报酬）、二次收入（无偿转移，如侨汇）；②<strong>资本账户与金融账户</strong>——"置资产"的账：直接投资（FDI，建厂并购）、证券投资（股票债券跨境买卖）、金融衍生品、其他投资（存贷款、贸易信贷）；③<strong>净误差与遗漏 + 储备资产</strong>——轧平账目与官方储备变动。</p>
+      <p class="ctx">复式记账的逻辑是：任何一笔跨境交易都同时记两笔（出口一批货收到美元=经常账户记出口收入、金融账户记美元资产增加），因此国际收支表<strong>在会计意义上总是平衡的</strong>——"顺差/逆差"说的从来不是整本账，而是某个账户（通常指经常账户）。这是读懂"中国国际收支"新闻的第一把钥匙：先问"说的是哪个账户的差额"。</p>
+      <table class="cmp">
+        <tr><th>账户</th><th>记录什么</th><th>常见新闻表述</th></tr>
+        <tr><td>经常账户</td><td>货物、服务、初次收入、二次收入</td><td>"经常账户顺差占 GDP X%"（国际可比口径，衡量对外收支的基本盘）</td></tr>
+        <tr><td>资本与金融账户</td><td>直接投资、证券投资、其他投资</td><td>"外资增持中国债券""对外直接投资增长"</td></tr>
+        <tr><td>储备资产</td><td>外汇储备、黄金储备等官方资产变动</td><td>"外汇储备规模稳定在 X 万亿美元以上"（以最新月度发布为准）</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（国际收支平衡表季度发布与数据解读栏目）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF《国际收支和国际投资头寸手册》框架与《世界经济展望》（英文；curl 403 反爬、浏览器可达，数据口径以其发布为准）</a> · 曼昆《经济学原理（宏观分册）》（第10版）开放经济账户章节</div>
+    </article>
+
+    <article class="view">
+      <h3>"顺差"到底意味着什么：不是简单的"赚了"</h3>
+      <p class="ctx">经常账户顺差的准确含义是：<strong>这个国家向国外卖出的东西（商品、服务、要素收入）比从国外买入的多，差额转化为对外净资产的增加</strong>。通俗说，顺差国是"净贷方"——把多赚的钱借给（投资于）世界其他地方；逆差国是"净借方"。所以顺差不是"赚钱存家里"，而是"用商品换回了对外债权"（美元资产、海外投资等）；逆差也不是"亏钱"，而是"用未来的收入换来了当下的商品与资本流入"——美国长期经常账户逆差与美元国际储备货币地位相关，是国际货币体系的结构性现象。</p>
+      <p class="ctx">衡量顺差的国际可比口径是<strong>经常账户差额占 GDP 的比重</strong>（而不是绝对额）：中国经常账户顺差占 GDP 比重已从 2007 年的历史高点回落到近年 2% 上下的区间（具体数值以外汇局与 IMF 发布为准），处于国际公认的合理区间——"顺差依赖"的叙事与数据并不相符。IMF 对各国经常账户"过度失衡"的评估（External Balance Assessment）是公开方法论，但评估结果随年份更新，引用时注明版本年份，不用旧数字讲新故事。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（国际收支数据与新闻发言人答问）</a> · <a href="https://data.worldbank.org/indicator/BX.KLT.DINV.CD.WD">世界银行数据平台：外国直接投资指标页（英文；跨国可比数据，实测可达）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF 对外部门评估方法（英文；反爬注浏览器可达；引用注明版本年份）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>服务贸易与旅行账户：容易被忽略的另一半</h3>
+      <p class="ctx">谈国际贸易时媒体默认谈货物，但国际收支里的<strong>服务贸易</strong>同样重要：运输、旅行（出境游消费记在旅行账户借方）、建设、保险、知识产权使用费、电信计算机与信息服务等。中国的结构特点（以外汇局发布的国际收支数据为准）：<strong>货物贸易长期顺差、服务贸易长期逆差</strong>——旅行（出境游与留学支出）与知识产权使用费是服务逆差的主要贡献项，而旅行、电信计算机等服务项目的收支随人员往来与数字服务出口波动明显。看"中国对外贸易"全景，必须货物+服务一起看。</p>
+      <p class="ctx">一个常见口径陷阱：<strong>海关统计的"贸易顺差"与国际收支口径的"货物贸易差额"数字不同</strong>——海关按跨境货物报关口径统计，国际收支按所有权转移与计价原则调整（如 FOB/CIF 换算、转手买卖处理），两者存在系统性差异属正常现象，不是"数据造假"。官方在外汇局国际收支报告的编制说明中有明确解释。看到两个"顺差"数字对不上时，先查口径再下结论——这是<a href="../16-indicator/">第16章</a>指标阅读纪律的又一实例。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（服务贸易数据发布与国际收支报告编制说明）</a> · <a href="http://www.customs.gov.cn/">海关总署官网（货物贸易统计数据发布入口；curl 412 反爬、浏览器可达）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF《国际收支手册》第六版口径说明（英文；浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、外汇储备：国家的"外汇钱包"</h2>
+    <p class="chapter-sub">规模从哪来、拿去做什么、为什么"太多太少"都是议题</p>
+
+    <article class="view">
+      <h3>外汇储备从哪来、干什么用</h3>
+      <p class="ctx"><strong>外汇储备</strong>是央行持有的可自由兑换的外国资产（外汇、黄金、特别提款权 SDR、在 IMF 的储备头寸等），中国外汇储备规模长期居全球第一，近年稳定在 3 万亿美元以上（具体数值以外汇局每月发布的官方储备资产表为准，2026 年写作时点引用请以最新月度数据为准）。历史来源主要是<strong>经常账户与资本账户双顺差时代的结汇</strong>：企业出口赚的美元卖给商业银行、商业银行卖给央行，央行积累美元资产、同时投放人民币（这就是<a href="../04-money/">第4章</a>讲的"外汇占款"，曾长期是基础货币主渠道）。</p>
+      <p class="ctx">外储的三大作用：①<strong>支付保障</strong>——保证国家有能力支付进口与对外偿债（常用参照：覆盖 3 个月以上进口、覆盖短期外债，国际通行经验值，IMF 有正式的储备充足性评估框架）；②<strong>信心之锚</strong>——充足的外储让市场相信本币有"后备弹药"，减少投机性冲击的自我实现；③<strong>调节工具</strong>——汇率剧烈波动时，央行可用外储平滑市场（"有管理"的物质基础）。外储的运用以安全性、流动性为首要原则，收益性居后（官方公开表述），主要配置于高信用等级的外国政府债券等资产。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（官方储备资产月度发布表）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF 储备充足性评估框架（英文；浏览器可达；方法论文档公开可查）</a> · <a href="https://www.bis.org/statistics/index.htm">国际清算银行 BIS 统计栏目（英文；跨国外汇储备与汇率统计）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>储备的估值效应与"去美元化"话题：中性理解</h3>
+      <p class="ctx">每月公布的外储规模波动，相当一部分是<strong>估值效应</strong>而非央行买卖：外储以美元计价，但持有欧元、日元等多币种资产——美元指数涨跌会让非美资产折算成美元时"账面变多变少"；债券价格随利率波动也影响账面价值。外汇局在数据发布中会说明"汇率折算与资产价格变动"的贡献。所以"外储一个月少了 X 百亿"不必然是"资本外逃 X 百亿"，先看官方解读中的估值因素拆解。</p>
+      <p class="ctx">关于"<strong>去美元化</strong>"与储备货币多元化：这是一个中性的结构话题——全球官方外汇储备中美元占比的长期缓步下行、黄金与其他货币占比上升，是 IMF 官方货币构成数据（COFER）可查的事实性趋势；各国央行出于安全性与收益性的多元化考虑调整储备结构，是常规资产管理行为。围绕它存在两类越界叙事：一类渲染"美元即将崩溃"的恐慌话术（本课不采信、不传播此类无据断言，涉及"货币崩溃论"的断言只在批判语境讨论，见第八节）；另一类则把正常的储备多元化说成"秘密抛售"的阴谋故事。两者的共同问题是缺乏官方数据支持——读这个话题，以 IMF COFER 数据与各国央行公开报告为准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（储备资产变动与数据解读发布）</a> · <a href="https://data.imf.org/COFER">IMF 官方外汇储备货币构成 COFER 数据库（英文；反爬注浏览器可达；全球储备币种结构的一手数据）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（黄金储备月度数据发布入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、不可能三角：三个目标只能选两个</h2>
+    <p class="chapter-sub">资本自由流动、汇率稳定、货币政策独立——国际宏观最著名的框架</p>
+
+    <article class="view">
+      <h3>框架本身：蒙代尔-弗莱明的经典命题</h3>
+      <p class="ctx"><strong>不可能三角</strong>（impossible trinity / trilemma）是开放经济宏观经济学最著名的命题，思想源自蒙代尔（Mundell，1963）与弗莱明（Fleming，1962）的开放经济模型（蒙代尔因此获 1999 年诺贝尔经济学奖；学术文献，英文）。命题内容：一个国家不可能<strong>同时</strong>实现三个目标——①<strong>资本自由流动</strong>（钱可以自由进出）、②<strong>汇率稳定</strong>（本币对外币比价固定或基本不动）、③<strong>货币政策独立</strong>（央行可自主决定利率服务国内目标）——最多三选二。</p>
+      <p class="ctx">直觉版推理：假设你想同时保住固定汇率与资本自由流动。若你的利率低于美国，套利资本就会流出（把人民币换成美元吃更高利息），本币面临贬值压力；要守住汇率，央行只能抛外储买本币，同时被动跟随美国加息——货币政策独立性丢失。反过来，放弃汇率稳定（自由浮动），利差引发的资本流动会体现在汇率涨跌上，央行就能自主定利率；或者保住利率自主，但用资本管制限制套利流动。三角的每一条边，都是"放弃一个"的选择。</p>
+      <blockquote class="q">不可能三角的现实定位（示意）：<br>· 美国/日本/欧元区：资本自由流动 + 货币政策独立 → 汇率自由浮动（放弃汇率稳定）<br>· 港币联系汇率制：资本自由流动 + 汇率盯住美元 → 利率被动跟随美国（放弃货币政策独立）<br>· 中国的组合：货币政策独立为优先 + 资本账户有管理（未完全自由流动）→ 汇率"有管理的浮动"，在三角内部取中间解<br>（以上为公开制度框架的教科书式归纳，各国官方表述与实际操作更为细致，以官方文件为准）<span class="qsrc">—— 框架整理自曼昆《经济学原理（宏观分册）》与萨缪尔森《经济学》开放经济章节</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》（第10版）开放经济宏观理论章节 · 萨缪尔森、诺德豪斯《经济学》（第19版）汇率制度与资本流动章节 · Mundell（1963）"Capital Mobility and Stabilization Policy under Fixed and Flexible Exchange Rates"，Canadian Journal of Economics（学术文献，英文，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>框架的边界：三角不是铁律，中间解是常态</h3>
+      <p class="ctx">学术界对不可能三角有两点重要补充（如实标注争议与演进）：①现实中多数国家（包括中国）选择的是<strong>三角内部的中间解</strong>——部分资本管制+部分汇率弹性+部分政策独立，"三选二"是理论极端，实践是连续光谱；②有学者（如 Rey，2013，学术文献，英文）提出"二元悖论"：在全球金融周期驱动下，只要资本自由流动，无论汇率是否浮动，货币政策独立性都会受限——即三角可能退化成"二选一"。这一观点与主流框架并存争论，尚无定论。</p>
+      <p class="ctx">对读者的实用价值：不可能三角是理解一切"汇率-利率-资本流动"新闻的<strong>万能坐标系</strong>。看到"中美利差扩大、资本流动压力、汇率承压"的报道，你可以在三角里定位：利差是货币政策独立的代价之一，汇率弹性与资本账户管理是缓冲垫——三者互相牵制的关系一目了然。同时记住本课纪律：框架帮你<strong>理解权衡</strong>，不帮你<strong>预测走势</strong>；任何用不可能三角推出"人民币必然如何"的论证，都超出了框架本身的含义。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Obstfeld、Shambaugh &amp; Taylor（2005）"The Trilemma in History"，Review of Economics and Statistics（学术文献，英文，文字引用；不可能三角的实证经典） · Rey（2013）"Dilemma not Trilemma"，Jackson Hole 会议论文（学术文献，英文，文字引用；二元悖论假说） · <a href="https://www.bis.org/statistics/index.htm">国际清算银行 BIS 统计栏目（英文；跨境资本流动统计）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、人民币国际化：进展以官方口径为准</h2>
+    <p class="chapter-sub">SDR、跨境支付、离岸市场——用事实清单代替情绪叙事</p>
+
+    <article class="view">
+      <h3>里程碑与基础设施：可查证的事实清单</h3>
+      <p class="ctx">人民币国际化的公开里程碑（均可在官方渠道查证）：①2009 年跨境贸易人民币结算试点启动；②<strong>2016 年 10 月人民币正式加入 IMF 特别提款权（SDR）货币篮子</strong>，成为继美元、欧元、日元、英镑之后的第五种篮子货币（初始权重 10.92%；2022 年 IMF 复审将权重上调至 12.28%，2022 年 8 月生效——以 IMF 官方公告为准）；③人民币跨境支付系统（CIPS）建成运行，为跨境人民币清算提供基础设施；④双边本币互换协议网络扩大（人民银行与其他央行签署，规模与名单以官方发布为准）；⑤"债券通""跨境理财通"等金融市场双向开放机制陆续落地。</p>
+      <p class="ctx">衡量"国际化程度"的可查指标：SDR 权重、全球外汇储备中人民币占比（IMF COFER 数据，近年在 2% 上下的量级，以最新数据为准）、全球支付份额（SWIFT 月度排名，商业机构数据，标注🏷口径）、跨境人民币收付规模（人民银行发布）。<strong>把这些指标放在一起看</strong>，才能得到平衡结论：人民币在贸易结算与储备中的使用稳步上升，但与美元的主导地位仍有数量级差距——"已经取代美元"与"毫无进展"两种叙事都与数据不符。国际化进程受资本账户开放节奏、金融市场深度与地缘因素影响，本课按官方口径陈述事实，不预测进程快慢。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.imf.org/en/News/Articles/2022/05/11/pr22143">IMF 官方公告：SDR 定值审查将人民币权重上调至 12.28%（英文）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（人民币国际化报告与跨境人民币业务发布入口）</a> · <a href="https://data.imf.org/COFER">IMF COFER 数据库（英文；浏览器可达；全球储备中人民币占比）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国际化与普通人：跨境支付的便利化</h3>
+      <p class="ctx">人民币国际化最贴近生活的成果是<strong>跨境支付与结算便利</strong>：与中国经贸往来密切的经济体中，人民币计价的贸易合同、当地银行的人民币存款与汇款服务、跨境电商的人民币结算越来越常见；出境游客在部分周边经济体可直接使用移动支付（背后是本地钱包与人民币清算网络的联通，具体覆盖范围以各支付机构与外汇局规定为准）。对企业，跨境人民币结算规避了"先换美元再换对方货币"的两次汇兑成本与美元波动敞口——这是"本币结算"吸引力的微观基础。</p>
+      <p class="ctx">对个人使用外币与跨境资金的两条合规提醒：①个人购汇结汇在年度便利化额度内凭有效身份证件办理，超额度或有真实需求（留学、就医）按外汇管理规定提供证明材料——<strong>"分拆购汇"（蚂蚁搬家）等规避额度监管的行为违反外汇管理规定</strong>，会被列入关注名单；②跨境资金流动必须通过<strong>合法渠道</strong>（银行、持牌支付机构），地下钱庄与非法换汇渠道不受法律保护且涉嫌违法。合规是本章一切讨论的前提——本课只讲合法框架内的机制与便利，不介绍任何规避监管的方式。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇管理办法与违规案例通报栏目）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（跨境人民币业务政策发布入口）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（外汇管理相关法规全文检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：汇率篇</h2>
+    <p class="chapter-sub">三类流行话术，逐条对照机制、数据与法律边界</p>
+
+    <article class="view">
+      <h3>谣言粉碎："贬值恐慌"与"顺差=赚钱"</h3>
+      <p class="ctx"><strong>误区一："人民币贬到 X 了，赶紧全部换美元，再不换就亏了。"</strong>这类话术的三重漏洞：①它预设了<strong>单边走势预测</strong>——"还会继续贬"没有任何公开数据能支持，本课与任何负责任的内容都不预测汇率走势；②它忽略<strong>双向波动是常态</strong>——汇率有贬必有升，追涨杀跌式的换汇在历史上多次让"恐慌换汇者"在高点接盘、在低点割肉；③它无视<strong>持有外币的机会成本</strong>（人民币存款利息与美元资产汇率损益的对比是双向的）与个人便利化额度的合规约束。央行与外汇局对汇率的公开表述一贯是"双向浮动、弹性增强""坚决防范超调风险"（以官方发布为准）——恐慌换汇话术恰是与官方口径和市场事实相反的诱导。<strong>误区二："贸易顺差越大越好，逆差就是吃亏。"</strong>如第四节所讲：顺差的实质是"用商品换对外债权"，逆差是"用未来收入换当下商品与资本流入"；顺差过大意味着国民储蓄大于国内投资、消费相对不足，逆差过度则积累对外负债——<strong>两者都是结构特征而非简单的输赢</strong>，国际可比口径看的是经常账户占 GDP 比重是否在合理区间。把国际贸易当"卖出=赚、买入=亏"的零和账本，是前现代的重商主义直觉，早已不是经济学共识。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（外汇市场形势与政策答问发布）</a> · <a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（汇率政策取向官方表述）</a> · 曼昆《经济学原理（宏观分册）》（第10版）贸易差额与国民储蓄章节 · <a href="https://www.imf.org/en/Publications/WEO">IMF 对外部门评估（英文；浏览器可达；经常账户合理区间的国际口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："货币崩溃论"与"外储减少=资本逃光"</h3>
+      <p class="ctx"><strong>误区三："外汇储备下降/某月数据波动，说明资本在疯狂外逃，人民币要崩。"</strong>此类"<strong>货币崩溃论</strong>"话术的标准漏洞：①外储月度波动大头是<strong>估值效应</strong>（美元指数与债券价格变化，第五节），官方发布中有明确拆解；②中国的资本账户是有管理的，跨境资金流动数据（结售汇、跨境收付）由外汇局按月度与季度公布，"疯狂外逃"的说法可以直接对照官方数据检验，而不是靠情绪断言；③"崩溃"叙事从不给出可检验的时间点与机制，事后总能"自圆其说"——这是伪预测的普遍特征（对照<a href="../16-indicator/">第16章</a>对不可证伪话术的识别方法）。历史上多次"崩溃倒计时"预言均告落空，而人民币汇率在合理均衡水平上保持基本稳定是官方一贯目标与公开数据可查的事实。<strong>误区四："国家禁止换汇/要没收外汇资产了。"</strong>个人年度便利化购汇额度制度长期稳定运行（以外汇局现行规定为准），历次谣言均无官方文件依据——此类消息属于典型的"编造传播"类虚假信息，编造、传播虚假金融信息扰乱市场秩序是违法行为，官方会依法处置；遇到此类消息，唯一正确的动作是查人民银行与外汇局的官方发布，而不是转发。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（储备资产月度发布、结售汇数据与辟谣说明）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据与政策发布）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（金融信息传播相关法律责任检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>直接标价法与间接标价法各是什么？为什么"数字上升"的含义可能完全相反？</li>
+        <li>双边汇率与有效汇率（名义/实际）的区别？CFETS 指数衡量的是哪个？</li>
+        <li>实际汇率的近似逻辑是什么？为什么判断出口竞争力不能只看名义汇率？</li>
+        <li>人民币汇率制度的三个关键词是什么？"7·21""8·11"改革各改了什么？</li>
+        <li>中间价的形成公式（上日收盘价+一篮子+逆周期因子）各部分的作用是什么？</li>
+        <li>"对美元贬值但对一篮子稳定"为什么会同时发生？</li>
+        <li>"有管理的浮动"中，"管理"的制度化工具有哪些？</li>
+        <li>汇率影响普通家庭的四条通道分别是什么？各举一个例子。</li>
+        <li>为什么"贬值必然出口大增"不成立？J 曲线效应说了什么？</li>
+        <li>国际收支平衡表三大账户各记录什么？为什么整本账"会计意义上总是平衡的"？</li>
+        <li>经常账户顺差的准确经济含义是什么？为什么它不是简单的"赚了"？</li>
+        <li>衡量顺差的国际可比口径是什么？中国近年处于什么区间（以官方数据为准）？</li>
+        <li>海关口径贸易顺差与国际收支口径货物贸易差额为什么对不上？</li>
+        <li>外汇储备的三大作用是什么？历史上中国外储的主要来源渠道是什么？</li>
+        <li>外储月度波动的"估值效应"指什么？为什么"外储减少=资本外逃"是错误推断？</li>
+        <li>不可能三角的三个顶点是什么？用套利逻辑推一遍"为什么三选二"。</li>
+        <li>美国、港币联系汇率制、中国分别在三角中如何取舍？"二元悖论"补充了什么？</li>
+        <li>人民币加入 SDR 的时间与现行权重（以 IMF 公告为准）？衡量国际化程度看哪些指标？</li>
+        <li>个人购汇的便利化额度与合规红线是什么？"分拆购汇"为什么违规？</li>
+        <li>"货币崩溃论"话术的三个标准漏洞是什么？遇到"禁止换汇"类消息的正确动作是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>汇率是两种货币的比价，先确认标价法（中国用直接标价：数字升=人民币贬）再谈含义；双边汇率之外看 CFETS 一篮子指数与实际有效汇率，竞争力判断要剔除两国通胀差；人民币制度=以市场供求为基础、参考一篮子货币、有管理的浮动（1994 并轨→2005"7·21"→2015"8·11"中间价改革+CFETS 指数），中间价="上日收盘价+一篮子变化（+逆周期因子）"，日内围绕中间价 ±2% 波动；汇率影响你四条通道：进口物价、留学旅游海淘、外币资产负债、行业与就业（贬值利出口损进口依赖行业，反之亦然），J 曲线提醒"贬值≠出口必增"；国际收支三大账户（经常/资本与金融/储备资产）复式记账、会计恒平衡，顺差实质是"商品换对外债权"，可比口径是经常账户占 GDP 比重（中国近年 2% 上下，以官方为准），海关与 BOP 口径数字不同属正常；外储全球第一（3 万亿美元以上量级，以外汇局月度发布为准），三大作用=支付保障、信心之锚、调节工具，月度波动先看估值效应；不可能三角（资本流动/汇率稳定/政策独立三选二）是理解一切"利差-汇率-资本流动"新闻的坐标系，现实多为中间解，且框架只助理解不助预测；人民币国际化看事实清单：2016 入 SDR、2022 权重升至 12.28%（IMF 公告）、CIPS 与互换网络扩大，储备占比与支付份额稳步上升但与美元差距仍是数量级；个人购汇守便利化额度、拒绝分拆购汇与地下钱庄；"贬值恐慌换汇""顺差=赚钱""货币崩溃论""没收外汇"四类话术分别败于双向波动常态、顺差的债权实质、估值效应拆解与官方文件查证——本课不预测汇率，涉及金融信息的"编造传播"属违法，一切以人民银行与外汇局官方发布为准。
+  </div>
+
+  <nav class="pager">
+    <a href="../04-money/"><span class="dir">← 第4章</span>货币与信用：钱从哪里来</a>
+    <a href="../06-monetary/"><span class="dir">第6章 →</span>货币政策：央行的水龙头</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第5章 · 依据中国人民银行、国家外汇管理局（国际收支平衡表、官方储备资产、中间价发布）、海关总署、IMF（COFER 数据库、SDR 定值审查公告、国际收支手册，英文）、国际清算银行 BIS 统计（英文）、世界银行数据平台（英文）及曼昆《经济学原理》、萨缪尔森《经济学》等教科书与 Mundell（1963）、Obstfeld 等（2005）、Rey（2013）等学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 汇率与国际收支数据以官方最新发布为准，本课不预测汇率走势 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

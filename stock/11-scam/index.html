@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 防骗指南：“荐股大师”“带单”“杀猪盘” — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第11章 · 避坑与合规</div>
+  <h1>防骗指南：“荐股大师”“带单”“杀猪盘”</h1>
+  <p>只拆话术、不教操作——四类高频骗局、危险信号清单、三步查证法与被骗后的正确动作</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../10-tax/">← 第10章：费用与税</a>
+    <a href="../12-rumor/">第12章：投资谣言粉碎 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么总有人上当</a>
+    <a class="anchor" href="#s2">四类高频骗局</a>
+    <a class="anchor" href="#s3">危险信号</a>
+    <a class="anchor" href="#s4">查证工具箱</a>
+    <a class="anchor" href="#s5">新型变种</a>
+    <a class="anchor" href="#s6">被骗之后</a>
+    <a class="anchor" href="#s7">家人的防火墙</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①说清骗局起效的三个心理钩子（贪婪、恐惧、信息不对称），理解"聪明人也会被骗"的机制；②对号入座四类高频骗局——"荐股"分成、"带单"老师与虚拟盘、"杀猪盘"、原始股与非法集资变种，讲出每一类的话术结构与收割路径（本章只拆话术、不复述任何操作细节）；③背下危险信号清单，听到"稳赚不赔""内幕消息""老师带单"任何一个词就自动拉响警报；④使用三步查证法（查机构、查人员、查账户）在转账前完成核实，说出每一步的官方渠道；⑤知道被骗后的黄金动作顺序——停止转账、保全证据、12386 与报警，以及为什么"维权追款"服务本身可能是二次骗局；⑥把本章压缩成三句话，讲给家里最容易上当的那个人听。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>第三节的危险信号清单和第四节的查证渠道表建议截图保存；第七节是写给"帮家人把关"的你的。如果你此刻正被某个"老师"催促转账，请先读完第二节对应骗局的话术拆解——骗局的每一步都在监管机构的案例通报里出现过，你大概率能对号入座。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、骗局为什么总有人上当：三个心理钩子与一条法律底线</h2>
+    <p class="chapter-sub">骗子不需要比你聪明，只需要比你更懂你的贪婪与恐惧</p>
+
+    <article class="view">
+      <h3>三个心理钩子：贪婪、恐惧、信息不对称</h3>
+      <p class="ctx"><strong>钩子一：贪婪。</strong>所有骗局的第一句台词都围绕"高收益"展开：月化 20%、翻倍牛股、"稳赚不赔"的计划。它利用的不是你的愚蠢，而是人对"错过暴富"的恐惧（FOMO，<a href="../09-strategy/">第9章</a>讲过）——当群里其他人都在晒收益截图时，"不参与"反而成了需要勇气的选择。<strong>钩子二：恐惧。</strong>另一路话术反向操作："大盘要崩了，只有跟着老师做才能保命""你的账户有风险，需要转移到安全账户"。恐惧让人跳过验证直接服从权威，这正是电信诈骗心理学里最经典的"制造紧迫感"手法。<strong>钩子三：信息不对称。</strong>骗局刻意使用专业词汇堆砌可信度——"量化对冲""主力席位""涨停基因"，半真半假、无法验证。普通人对金融市场"知道一点但不多"的状态，恰恰是最容易被话术击穿的状态：知道得越少越容易全盘怀疑，知道一点的人最容易相信自己能分辨真假。</p>
+      <p class="ctx">必须破除的一个迷思是："被骗的人都是贪心或无知。"监管与司法机关的案例通报呈现的画像远比这复杂：受过高等教育的、有多年股龄的、金额巨大的受害者都大量存在（最高人民检察院发布的典型案例中不乏此类）。原因在于骗局的工程化：<strong>它是一套针对人性弱点设计的标准化流程</strong>——先用人设与免费内容建立数月信任，再用小甜头完成"服从性测试"，最后在紧迫感中收割。流程里每一步都在利用第4章讲过的行为偏差：权威效应、社会认同、损失厌恶、沉没成本。<strong>防骗的正确姿势不是自信"我不会被骗"，而是承认自己会被骗，然后把验证动作变成不经思考的流程</strong>——就像系安全带不是因为觉得自己会出车祸。这也是本章的写法承诺：只拆解话术结构帮助识别，不复述任何可用于行骗的操作细节。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.spp.gov.cn/">最高人民检察院（涉众型金融犯罪与电信网络诈骗典型案例发布渠道）</a> · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 投资者保护风险提示（非法证券活动话术分析）</a> · 卡尼曼《思考，快与慢》关于系统性偏差的论述（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>一条法律底线：证券业务是持牌业务</h3>
+      <p class="ctx">识别一切投资骗局，只需要记住一条法律底线：<strong>在中国境内，证券期货基金业务是特许经营行业，未经监管机构许可，任何机构和个人不得经营</strong>。《证券法》对证券投资咨询业务实行许可管理（具体条文以<a href="https://flk.npc.gov.cn/">国家法律法规数据库</a>现行文本为准），证监会各地监管局常年发布风险提示，反复强调同一段话：合法机构名单可以在证监会官网查询，从业人员资质可以在中国证券业协会、中国证券投资基金业协会官网查询；<strong>凡是不在这两个名单里的"投资机构""分析师""老师"，无论其话术多么专业、办公室多么气派，都在法律之外经营</strong>。深圳、湖南、湖北等监管局的风险提示与典型案例通报里，"无资质荐股""假冒持牌机构"是出现频率最高的类别。</p>
+      <p class="ctx">这条底线推出三个立即可用的推论。<strong>推论一：资质是唯一门槛，其余都是装饰。</strong>名片、西装、写字楼、App、群里的"证监会授权文件"截图，全部不构成资质证明；资质只有一个查询处——官方公示系统（第四节给全渠道表）。<strong>推论二：合法机构被制度性禁止说某些话。</strong>持牌机构及其从业人员受执业规范约束，不得承诺收益、不得代客操盘、不得以个人名义收款——所以任何对你说"保证赚钱"的人，要么不是持牌机构的人，要么是持牌机构里正在违规的人，两种情况你都应该立刻离开。<strong>推论三：资金通道比话术更难伪装。</strong>正规证券交易的资金走券商客户交易结算资金第三方存管（<a href="../08-account/">第8章</a>讲过），你的钱在你的证券资金账户里；而骗局必然要求你把钱转入"老师指定的账户"——私人账户、来路不明的对公账户、或某个陌生 App 里的"充值"。<strong>记住一句话：让你把钱转给"人"而不是转入你自己名下三方存管账户的，百分之百是骗局，无一例外。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《证券法》现行文本官方检索渠道）</a> · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 风险提示专栏（非法证券投资咨询的认定口径）</a> · <a href="https://www.sac.net.cn/">中国证券业协会（合法机构与从业人员公示系统入口）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金机构与从业人员公示入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、四类高频骗局：话术结构逐一拆解</h2>
+    <p class="chapter-sub">以下拆解全部来自监管机构与司法机关的公开案例通报，只讲识别、不讲操作</p>
+
+    <article class="view">
+      <h3>骗局一：“荐股”分成——免费是最贵的价签</h3>
+      <p class="ctx">这是历史最悠久、变种最多的一类，证监会各监管局的打非专栏里常年置顶（青海局打非专栏收录的 3·15 晚会曝光案例即属此类）。话术结构分四步：<strong>第一步，广撒网引流</strong>——电话、短信、短视频评论区、股票论坛私信，由头五花八门："免费牛股体验""机构调研纪要分享"；<strong>第二步，展示"实力"</strong>——拉你进群，群里"老师"每日点评大盘，"助理"不断发布盈利截图，"学员"排队感谢；<strong>第三步，小甜头验证</strong>——免费推几只股票，用"多票同推、只播报涨的"或事后剪辑制造"很准"的假象（这就是概率游戏：推给一万个人，总有几千个收到的票在涨）；<strong>第四步，收割</strong>——路径有两个分支：要么收"会员费""服务费"升级成付费"内幕票"；要么引导你接盘他们提前建仓的股票（配合拉抬出货，受害者高位站岗）。"盈利分成"模式则更进一步：先让你赚钱再分走利润，亏了就消失——<strong>你出本金，他出话术，赢了分钱、输了拉黑，他无论如何不亏</strong>。</p>
+      <p class="ctx">识别要点有三。其一，<strong>所有"免费荐股"都在为收费或出货做铺垫</strong>——商业世界不存在持续的免费午餐，"免费"是获客成本，你是产品。其二，晒单不可信：盈利截图可以伪造、可以事后挑选、可以用模拟盘生成，监管案例通报中"盈利证明造假"是标配环节。其三，<strong>推荐行为本身就违法</strong>：无资质开展证券投资咨询即触碰法律底线（第一节），哪怕他推的票真涨了，这个"服务"本身也是非法的——不要因为"准"而放松"非法"的判断。深圳局风险提示里对此有一句话总结得非常精准：合法机构不会、也不敢用这种方式招揽客户。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">中国证监会青海监管局 · 打击非法证券活动专栏（含 3·15 曝光"荐股"分成骗局案例口径）</a> · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 投资者保护风险提示（免费"荐股"套路拆解）</a> · 21世纪经济报道对非法"荐股"产业链的调查报道（商业媒体，🔶引用前建议交叉复核）</div>
+    </article>
+
+    <article class="view">
+      <h3>骗局二：“带单”老师与虚拟盘——你的钱从未进入市场</h3>
+      <p class="ctx">比"荐股"分成更狠一步：老师不只告诉你买什么，还"亲自带你做"。话术结构：<strong>先以股票群养熟，再宣称"股市行情不好，带大家做原油/贵金属/数字货币/境外指数，收益更高"</strong>，随后发来一个"机构专用 App"或网页链接让你开户入金，"老师"在群里实时喊单、"助理"一对一指导操作。账户里的 K 线看起来是真的，盈利看起来是有的，甚至会让你成功提现一次小额——<strong>但整个盘面很可能是虚拟盘（模拟盘）：你的钱转入的那一刻就已经进了骗子的口袋，App 里的一切数字只是后台可以随意修改的数据库字段</strong>。收割方式多样：喊反单让你"爆仓"、以"保证金""解冻费""个税"为名追加转账、或直接关闭平台失联。中国证券业协会发布的典型案例中，上海警方 2025 年破获的一起案件涉案金额达 5600 余万元，受害者正是被"老师带单＋虚拟盘 App"的标准流程收割。</p>
+      <p class="ctx">识别要点：<strong>虚拟盘的死穴在资金通道</strong>。正规证券期货交易的入金只能进入你本人名下的第三方存管账户或持牌机构的官方通道；凡是让你转账到私人账户、陌生公司账户，或通过不明链接下载 App 入金的，无论界面做得多像真的，一律是骗局。第二个死穴在渠道：正规券商与基金公司的 App 只在官方渠道与主流应用商店分发，"老师发的安装包""网页链接"是虚拟盘的标配入口。第三，<strong>"带单操盘"本身就是违规红线</strong>——持牌从业人员都不得接受客户全权委托（“代客理财”并承诺收益属明令禁止行为），网上的陌生"老师"声称可以替你操作账户，无论真假都应立即终止接触。湖北局、湖南局的典型案例通报里，此类骗局的话术剧本几乎逐字雷同——因为它们早已产业化、剧本化。</p>
+      <div class="fig"><img src="../assets/img-11-1.png" alt="防骗识别示意图：左侧一部手机屏幕显示虚假的上涨曲线与转账请求，右侧一个盾牌图标将其挡下，盾牌上有对勾标志，周围环绕问号气泡被划掉，深蓝 #1d4ed8 扁平几何风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sac.net.cn/sjb/wlzf/zfdxal/202009/t20200929_30034.html">中国证券业协会 · 打击非法证券活动典型案例（含上海警方破获 5600 余万元虚拟盘"带单"案）</a> · <a href="https://www.csrc.gov.cn/hubei/c105452/c7584358/content.shtml">中国证监会湖北监管局 · 典型案例通报（虚拟盘骗局话术口径）</a> · <a href="https://www.csrc.gov.cn/hunan/c105691/c7595044/content.shtml">中国证监会湖南监管局 · 典型案例（非法"带单"平台案例）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>骗局三：“杀猪盘”——先养感情，再收割本金</h3>
+      <p class="ctx">"杀猪盘"是电信诈骗与投资骗局的杂交品种，得名于其冷酷的内部术语：受害者被称为"猪"，建立信任的过程叫"养猪"，最后收钱叫"杀猪"。话术结构与第二类相似但前置了情感工程：<strong>骗子以婚恋交友、成功人设（高管、军官、金融从业者）接近受害者，用数周到数月经营感情与信任，然后"不经意"透露自己有投资渠道——"内部平台""数字货币套利""跟着我做稳赚"</strong>，先带你小赚并成功提现，等你投入积蓄甚至借贷加码后，平台无法提现、"恋人"消失。公安部与最高检历年通报的典型案例显示，此类骗局单案金额常达数十万至数百万元，且因情感操纵，受害者往往在证据确凿后仍不愿相信被骗。它的目标人群不区分学历与年龄，离异、丧偶、情感空虚期的人被精准筛选——<strong>骗子的第一步不是谈投资，是筛选"此刻最需要被关心的人"</strong>。</p>
+      <p class="ctx">识别要点：<strong>"杀猪盘"的核心特征是"关系＋投资"的组合出现</strong>。一个只在网上认识、从未在现实场景核实过身份的人，无论人设多么完美，只要开始谈"一起投资""我有内部渠道"，警报就应该拉满。三条硬规则：①网恋对象谈钱即拉黑——真感情不需要你的本金证明；②"内部平台""套利漏洞"在金融学上不成立——真有稳定套利机会的人不会缺你的钱，只会闷声发财（<a href="../12-rumor/">第12章</a>会用逻辑进一步拆这个说法）；③任何"先小赚可提现"的体验都是剧本环节，提现成功不是平台合法的证据，而是加码的诱饵。如果你怀疑家人正处于此类关系中，第七节有沟通建议——直接说"你被骗了"通常适得其反。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.spp.gov.cn/">最高人民检察院（"杀猪盘"类电信网络诈骗典型案例发布渠道）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.html">中国证监会等八部门 · 打击非法证券期货活动相关文件（含跨境诈骗整治口径）</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">中国证监会青海监管局 · 打击非法证券活动专栏（情感类投资骗局风险提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>骗局四：原始股、境外盘与非法集资变种</h3>
+      <p class="ctx">第四类把道具从"交易"换成了"股权"与"新概念"。<strong>"原始股"骗局</strong>：宣称某公司"即将上市"，现在低价买"原始股"，上市后翻十倍百倍——通过微信群、电话推销、线下"上市发布会"售卖。事实是：公开发行须经法定程序并在正规交易所交易，<strong>面向不特定公众兜售"原始股"本身就涉嫌非法发行与非法集资</strong>；那些"即将上市"的公司多数连正规股权市场都没进过，你的"股权"只是收款收据。<strong>境外盘骗局</strong>：以"港股美股内部通道""离岸交易所"为噱头收钱代炒——跨境证券业务有严格的合法渠道（<a href="../14-global/">第14章</a>讲港股通与合规出海路径），八部门联合整治文件对跨境非法证券活动有专门部署；凡绕开正规渠道的"境外盘"，资金出境那一刻就脱离了任何保护。<strong>新概念变种</strong>：把非法集资包装成"区块链""元宇宙""养老项目""消费返利"，承诺"保本高息"——最高人民法院与最高检的涉众型金融犯罪案例通报中，此类以新概念为壳、以老年人与积蓄家庭为目标的案件占比持续上升。三个变种共享同一结构：<strong>一个无法验证的高收益叙事＋一个"名额有限"的紧迫感＋一个私人收款通道</strong>。</p>
+      <p class="ctx">识别要点：一查发行合法性——上市公司名单、公开发行信息在交易所官网全部可查，查不到的"上市公司"就是不存在；二查渠道——任何让你把钱打给公司或个人以换取"股权凭证"的操作，都远离了证券法框架下的登记结算体系（<a href="../08-account/">第8章</a>讲过正规股权登记在中国结算），你的"股东身份"无从登记也就无从主张；三查承诺——"保本保息""上市翻十倍"属于对不特定对象的收益承诺，恰恰是非法集资司法解释里的典型特征。还有一条通用的司法常识值得记住：<strong>参与非法集资，法律不保护"投资"损失</strong>——案发后追赃挽损比例通常有限，最好的保护是根本不进场。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.html">中国证监会等八部门 · 跨境非法证券期货活动整治相关文件（官方原文）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（非法集资与涉众型金融犯罪典型案例）</a> · <a href="https://www.csrc.gov.cn/hunan/c105691/c7595044/content.shtml">中国证监会湖南监管局 · 典型案例（"原始股"骗局通报口径）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（股票发行上市规则的官方科普渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、危险信号：一句话拉响警报</h2>
+    <p class="chapter-sub">骗局千变万化，危险信号高度收敛——听到这些词，直接进入查证流程</p>
+
+    <article class="view">
+      <h3>收益承诺类信号：六个词出现任何一个就转身</h3>
+      <p class="ctx">监管风险提示里被反复点名的收益承诺话术，可以归纳为六个高危词组：<strong>"稳赚不赔""保本保息""保证收益""内幕消息""涨停密码""只赚不亏"</strong>。这六个词组的共同点是：它们都做出了金融市场在数学上不可能做出的承诺。第2章讲过风险收益对等，第5章讲过连专业机构都难以持续跑赢指数——<strong>在一个人人都不确定的市场里，宣称"确定赚钱"的人只有两种可能：骗子，或者违规的持牌人员</strong>，两种你都不该打交道。"内幕消息"还要多说一句：真正的内幕信息交易是《证券法》明令禁止的犯罪行为（"内幕交易"在刑法与证券法下均有明确责任），拿着"内幕消息"来卖给你的人，声称的要么是犯罪、要么是谎言——逻辑上没有第三种可能，这句话可以原样用来反问任何兜售"消息"的人。</p>
+      <p class="ctx">收益承诺之外，还有四类结构性信号同样可靠。<strong>信号一：紧迫感</strong>——"名额只剩三个""今晚截止""错过等一年"，一切逼你跳过思考与查证的时间压力都是设计出来的。<strong>信号二：私密渠道</strong>——"这个不能说，只能群里讲""下载这个专用 App""用这个小众聊天软件联系"，正规业务经得起阳光，见不得光的渠道本身就是判决书。<strong>信号三：拉人头</strong>——"推荐朋友加入返佣金""发展下线享分红"，收益来自新增参与者而非底层资产的结构，是庞氏骗局的法定特征。<strong>信号四：完美人设</strong>——"老师"履历光鲜却查无此人、办公室照片气派却与注册地不符、"证监会授权书"却是伪造模板（监管局风险提示多次展示过此类伪造文件样例）。六个高危词＋四类结构信号，构成了普通人的"一句话警报系统"：<strong>不需要判断他说的是不是真的，只需要确认信号出现了，然后进入第四节的查证流程——查证通不过，一切免谈</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 投资者保护风险提示（收益承诺类话术与伪造文件样例）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《证券法》关于禁止"内幕交易"等行为的现行文本检索）</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">中国证监会青海监管局 · 打击非法证券活动专栏（常见话术风险提示合集）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>万能六问：对任何投资机会做同一套体检</h3>
+      <p class="ctx">把危险信号转化为主动盘问，以下六个问题适用于一切上门的投资机会——对方答不上来、绕着走、或让你"别问那么多"，答案就已经出来了。<strong>问题一："你们的牌照号是多少？我在证监会官网查一下。"</strong>（合法机构求之不得，骗子开始转移话题。）<strong>问题二："你是哪位持牌从业人员？执业编号多少？"</strong>（中证协、基金业协会官网可查，查无此人即出局。）<strong>问题三："我的钱转到哪里？是我本人名下的三方存管账户吗？"</strong>（私人账户、陌生对公户、App 充值，一票否决。）<strong>问题四："收益承诺写进合同吗？"</strong>（口头"保证赚"、合同不敢写——因为写了就是违法证据。）<strong>问题五："这个产品的底层资产是什么？托管在哪家银行？"</strong>（说不清底层资产的"产品"只是资金池话术。）<strong>问题六：“我回家和家人商量一下，明天答复你。”</strong>（一切拒绝你冷静与商量的催促，都是收网信号。）</p>
+      <p class="ctx">六问的设计逻辑值得点破：<strong>前三个问资质与资金通道——这是骗子的硬伤，伪装成本最高、破绽最必然；后三个问承诺与决策节奏——这是话术的软肋，阳光一照就蒸发</strong>。真正的持牌机构面对这六个问题会给出流畅、可验证、书面化的答案，因为合规本来就是他们的日常；而骗局的商业模式建立在"你不问"之上。请把这六问练成条件反射，尤其注意第五、六问背后的元原则：<strong>任何让你绕过常识、绕过家人、绕过冷静期的机会，都不是机会</strong>。第9章说过，正规的投资决策是慢的、书面的、可以商量和反悔的；骗局永远是快的、口头的、"机不可失"的。快与慢，本身就是最可靠的分类器。</p>
+      <blockquote class="q">资金安全三道防线：①只认证监会许可的机构——官网名单查不到的一切免谈；②"稳赚不赔"是骗局的身份证——承诺收益即违法，听到即离开；③钱不进本人名下三方存管账户的一律不转——私人账户、陌生对公户、App 充值，一票否决。<span class="qsrc">—— 依据证监会各监管局投资者保护风险提示与 12386 服务平台宣传口径整理（教学口诀）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（证监会批准的投资者保护平台，防非专栏与维权渠道）</a> · <a href="https://www.csrc.gov.cn/hubei/c105452/c7584358/content.shtml">中国证监会湖北监管局 · 典型案例与风险提示（资质与资金通道核查要点）</a> · <a href="https://www.sac.net.cn/">中国证券业协会（从业人员执业信息公示查询口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、查证工具箱：转账前的三步核实</h2>
+    <p class="chapter-sub">查机构、查人员、查账户——三步全部走官方渠道，一步都不能用对方给的材料</p>
+
+    <article class="view">
+      <h3>三步查证法：每一步都有官方入口</h3>
+      <p class="ctx"><strong>第一步：查机构。</strong>合法的证券公司、基金管理公司、证券投资咨询机构，全部列入证监会官网公示的机构名录；地方监管局网站还会公示辖内机构与风险提示名单（深圳局、青海局等的风险提示栏目常年更新"被冒名机构清单"）。查证动作：打开证监会官网（csrc.gov.cn）查询合法机构名录，再搜索"机构名＋风险提示／冒名"看是否上过监管警示名单。<strong>第二步：查人员。</strong>证券从业人员在中国证券业协会官网公示系统查询，基金从业资格与私募基金相关公示在中国证券投资基金业协会官网——输入姓名或执业编号即可核验。<strong>声称"首席分析师""操盘手"却查无执业记录的，直接出局</strong>；注意用对方机构的官方总机回拨核实"是否有此人此岗"，不要用对方提供的电话。<strong>第三步：查账户与渠道。</strong>正规证券资金实行第三方存管，入金只进你本人名下账户；App 从官方应用商店与机构官网下载；对公账户名称必须与持牌机构全称完全一致（多一个字、少一个字、用"科技公司""咨询公司"名义收投资款的都是李鬼）。</p>
+      <p class="ctx">三步之外，再补两个高价值动作。<strong>动作一：查产品备案。</strong>私募基金产品必须在基金业协会备案（官网可查产品编码），理财产品有银行业理财登记托管中心的登记编码——"查无备案"的高收益产品等于"查无此物"。<strong>动作二：用官方客服反向验证。</strong>对任何自称某券商、某基金公司的来电与链接，挂断后自己搜索官方客服电话回拨询问；对"交易所内部通道""证监会合作平台"之类的说法，直接拨打证监会 12386 服务平台热线咨询真伪——<strong>12386 既是投诉维权热线，也是防骗咨询渠道，这是多数人不知道的功能</strong>。把三步两动作做成习惯后你会发现：查证的成本是十分钟，不查证的代价可能是半生积蓄；骗局赢在"你嫌麻烦"，而它最怕的就是"较真的人"。</p>
+      <table class="cmp">
+        <tr><th>查证对象</th><th>官方渠道</th><th>查什么</th></tr>
+        <tr><td>机构资质</td><td>证监会官网合法机构名录 · 各地监管局风险提示栏目</td><td>是否在列 · 是否被冒名警示</td></tr>
+        <tr><td>证券从业人员</td><td>中国证券业协会官网公示系统（sac.net.cn）</td><td>执业编号 · 所属机构 · 有无处罚记录</td></tr>
+        <tr><td>基金从业人员与机构</td><td>中国证券投资基金业协会官网（amac.org.cn）</td><td>从业资格 · 管理人登记 · 产品备案编码</td></tr>
+        <tr><td>上市公司与发行信息</td><td>沪深北交易所官网信息披露栏目</td><td>"原始股"标的公司是否真实存在、是否真有发行安排</td></tr>
+        <tr><td>综合咨询与投诉</td><td>证监会 12386 服务平台 · 中国投资者网（investor.org.cn）</td><td>业务真伪咨询 · 投诉举报 · 防非专栏案例比对</td></tr>
+        <tr><td>涉嫌犯罪</td><td>公安机关 110 · 国家反诈中心 App</td><td>报案 · 涉诈 App 与号码核验</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（合法机构名录与打非通报官方渠道）</a> · <a href="https://www.sac.net.cn/">中国证券业协会（从业人员公示系统）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（管理人登记与产品备案公示）</a> · <a href="https://www.investor.org.cn/">中国投资者网（12386 热线与防非投教专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>被冒名怎么办：正规机构也常被"套牌"</h3>
+      <p class="ctx">有一类骗局专门钻"查证"的空子：<strong>冒用真实持牌机构的名义</strong>——伪造某知名券商的 App、公章、工牌，甚至搭一个与官网仅一字之差的钓鱼网站。受害者按对方给的"官网"去查，当然查得到"资质"，于是放心转账。破解方法只有一条：<strong>查证入口必须自己找，不能用对方给的</strong>。搜索引擎结果里的广告位也可能是钓鱼站，最稳的路径是：证监会官网的机构名录（自己输入网址 csrc.gov.cn）→ 机构全称一字不差核对 → 用 12386 或机构官方总机（从名录页获取，不从对方消息获取）二次确认。深圳局等监管局的风险提示专栏维护着"被冒名机构清单"，凡是清单上出现过被冒名记录的机构，涉及其"客户经理"主动联系你时，验证等级要再调高一档。</p>
+      <p class="ctx">如果你是被冒名机构的真实客户，还有两件事值得做：其一，发现冒名 App 或网站后通过 12386 与中国投资者网举报——监管对冒名案件的处置依赖线索汇集，你的举报可能阻止下一个人上当；其二，检查自己是否曾在钓鱼页面输入过真实账户密码，如有，立即修改密码并联系券商官方客服核查账户异动。<strong>冒名骗局的本质是"信任嫁接"：它偷的不是机构的名声，是你对查证流程的轻信</strong>——流程对了（入口自己找、双渠道交叉验证），嫁接就失效。这一节的方法论其实适用于整个信息时代：<strong>验证一个说法，永远从独立于该说法的第二信源开始</strong>；这也是<a href="../12-rumor/">第12章</a>谣言粉碎的总原则，两章共享同一套思维肌肉。</p>
+      <div class="fig"><img src="../assets/img-11-2.png" alt="三步查证流程示意图：三个串联的检查关卡图标依次为放大镜对着大楼（查机构）、放大镜对着证件（查人员）、放大镜对着银行账户（查账户），每个关卡上方有绿色对勾，末端是一个安全的保险箱，深蓝 #1d4ed8 扁平风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 风险提示（冒用合法机构名义实施诈骗的警示与"被冒名机构清单"口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（举报与维权入口）</a> · <a href="https://www.csrc.gov.cn/hubei/c105452/c7584358/content.shtml">中国证监会湖北监管局 · 风险提示案例（假冒券商 App 类骗局）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、新型变种：AI“荐股”、量化神话与虚拟币</h2>
+    <p class="chapter-sub">道具在升级，钩子没变——新瓶装旧酒的三个最新款</p>
+
+    <article class="view">
+      <h3>AI“股神”与“量化神器”：技术名词做的马甲</h3>
+      <p class="ctx">最近几年的骗局明显"科技含量"上升：AI 选股机器人、量化交易神器、大数据涨停预测系统、"GPT 操盘手"……宣传页做得比正规券商还精美，还常常配上伪造的"回测收益曲线"与"实盘战绩"。拆解方法依旧是老三板斧。<strong>第一斧，问逻辑</strong>：如果 AI 真能稳定预测涨停，开发者最理性的选择是自己加杠杆复利，而不是以 299 元/月卖给你——把赚钱机器批发给一万个散户等于亲手消灭自己的超额收益，<strong>这个悖论适用于一切"预测神器"</strong>（第12章会从市场有效性角度完整论证）。<strong>第二斧，查资质</strong>：卖"选股软件"并给出买卖建议，实质是证券投资咨询业务，须持证经营；App 商店里大量"智能诊股"应用并无咨询资质，其"建议"既非法也不可靠。<strong>第三斧，看资金去向</strong>：软件本身收费还算"低级骗局"，高级剧本是"软件免费用，跟单入我盘"——用 AI 概念把你导进第二节讲过的虚拟盘，技术名词只是获客话术。</p>
+      <p class="ctx">还有一个更隐蔽的新变种：<strong>AI 换脸与拟声</strong>。用深度伪造技术冒充财经名人"直播荐股"、合成知名基金经理的声音发"内部语音"、伪造与"大佬"的聊天记录——监管局与公安机关的风险提示均已点名此类手法。应对原则：<strong>视频与语音不再构成身份证明</strong>，一切以第四节的双渠道查证为准；"名人带你赚钱"本身就是危险信号，真正的公众人物不会通过私信拉你做单。至于"量化交易"这个词本身，它在正规金融界是中性技术（机构确实用算法执行与因子模型），但请记住区分：<strong>正规量化是持牌机构内部的策略工具，从不以"跟单群""带单 App"的形态向散户零售</strong>——凡是零售给你的"量化"，量化的是你的本金。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">中国证监会青海监管局 · 打击非法证券活动专栏（非法"荐股"软件与新媒体话术风险提示）</a> · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 风险提示（AI 换脸拟声类新型手法警示口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（新型网络骗局投教栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>虚拟币、元宇宙与"新金融"外壳下的非法集资</h3>
+      <p class="ctx">道具换成区块链与虚拟币的骗局，结构仍是第一节的老三样。典型话术："境外交易所内部额度""稳定币套利年化 40%""矿机租赁躺赚""元宇宙地产分红"。需要交代的合规背景是：<strong>中国对虚拟货币相关业务活动实行严格管制</strong>——监管部门明确虚拟货币不具有法定货币地位，相关交易与"代币发行融资"属于被禁止或清理整顿的对象（以人民银行、证监会等部门的官方文件与公告为准）；因此一切以虚拟币为标的、面向境内公众的"投资产品"，要么本身违规、要么纯属虚构，<strong>不存在"合规的高收益虚拟币理财"这个选项</strong>。最高检与公安部通报的典型案例中，"虚拟币＋传销拉人头"结构（发展下线返佣、层级计酬）出现频率极高——它同时踩中非法集资与组织传销两条刑事红线。</p>
+      <p class="ctx">判断此类项目，三个问题足够。<strong>问题一：收益从哪里来？</strong>"套利"需要说明对手方与价差来源，"矿机租赁"需要说明币价下跌时收益如何维持——凡是收益只能来自"新参与者的本金"的，数学上就是庞氏结构，崩盘只是时间问题。<strong>问题二：钱进了什么账户？</strong>虚拟币转账的不可逆性使它成为资金转移的完美通道——一旦转出，追回难度远高于银行转账，这是此类骗局危害加倍的技术原因。<strong>问题三：向谁维权？</strong>境外注册、匿名团队、无备案产品，意味着出事后没有可执行的追偿对象。与此同构的还有各种"消费返利""养老公寓预售""艺术品份额化"变种——道具从股票换成了床位、红酒、邮币卡，但"高息承诺＋拉人头＋资金池"的内核从未变过。<strong>识别非法集资不需要金融知识，只需要算术：承诺的收益率超过实体经济的可能回报率（想想第1章讲过的长期市场回报水平），钱就必然来自后面的人</strong>——这是所有庞氏骗局共同的、也是唯一的死穴。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行（虚拟货币相关业务活动监管政策的官方发布渠道）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（虚拟币类非法集资与传销典型案例）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.html">中国证监会等八部门 · 打击非法证券期货活动文件（新型非法集资整治口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（防非宣传专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、被骗之后：黄金动作与二次骗局</h2>
+    <p class="chapter-sub">止损永远不晚——但顺序错了，损失会翻倍</p>
+
+    <article class="view">
+      <h3>黄金四步：停止、保全、报案、投诉</h3>
+      <p class="ctx">发现被骗的那一刻，羞耻与恐慌会同时涌上来，而正确的动作顺序恰恰需要冷静。请把这四步背下来。<strong>第一步：立即停止一切转账。</strong>骗局的标准续集是"再交一笔就能解冻/提现/返本"——解冻费、保证金、个税、手续费，名目无穷；<strong>已经损失的钱不会因为你继续付款而回来，只会更多</strong>。这一步最难也最重要，因为沉没成本偏差会让你觉得"再试一次就回本了"。<strong>第二步：保全全部证据。</strong>聊天记录、转账凭证、对方账号信息、App 安装包与网址、"合同"与宣传材料，全部截图与导出，不要删除、不要拉黑对方（拉黑前先取证）——证据完整度直接决定立案与追赃效率。<strong>第三步：立刻报警。</strong>拨打 110 或到就近公安机关报案，涉及电信网络诈骗的可通过国家反诈中心 App 举报；报案越早，资金被拦截冻结的可能性越大（公安机关的紧急止付机制以小时计）。<strong>第四步：向监管渠道投诉举报。</strong>拨打证监会 12386 服务平台热线，或通过中国投资者网提交材料——即使你的案件属于公安管辖，监管渠道的线索汇集也能推动对涉案平台与话术链条的打击，保护其他人。</p>
+      <p class="ctx">四步之后，还有两个心态要点。<strong>要点一：接受"追赃是概率事件"。</strong>司法实践中的追赃挽损比例因案而异，跨境案件难度更高——这不是不报案的理由（报案既是个案追偿的唯一通道，也是打击链条的必要环节），但请把预期放在"止损与追责"而非"全额回本"上，避免为了回本执念落入下一个局。<strong>要点二：警惕"维权追款"二次骗局。</strong>被骗者聚集的论坛与群聊里，活跃着另一批猎人：自称"专业追款团队""黑客拦截""内部关系退款"，先收"服务费"再消失，或诱导你签"债权转让"协议——<strong>正规维权只有公安、法院、监管投诉与持牌律师四个通道，凡是声称能"技术追回"且先收费的，是骗局对同一批受害者的第二轮收割</strong>。判断标准与本章全部逻辑一致：合法服务可查证、走对公、签合同；"追款大师"三样全无。如果身边有人正在经历，请陪他完成这四步——受害者最需要的不是"我早说过"，而是一个能帮他恢复程序理性的人。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（证监会 12386 服务平台投诉举报入口与维权指南）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（电信网络诈骗案件办理与追赃挽损的司法口径发布渠道）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（投资者保护与打非工作动态）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>案例的司法结局：骗子会付出什么代价</h3>
+      <p class="ctx">防骗教育不该只讲受害者的损失，也该讲骗局的结局——这既是威慑，也是报案的信心来源。从监管与司法机关的公开通报看：非法经营证券期货业务、诈骗、非法集资、组织领导传销，都是明确的刑事罪名，近年涉众型金融犯罪的打击力度持续加大。中国证券业协会收录的典型案例中，上海警方破获的虚拟盘"带单"案涉案 5600 余万元，犯罪团伙被依法采取强制措施；最高检历年发布的典型案例显示，跨境电诈园区的头目与骨干被跨境执法合作押解回国受审的案例已成常态；八部门联合整治文件更把跨境非法证券活动列入常态化打击范围。<strong>换句话说：骗局的商业模式建立在"低风险"幻觉上，而这个幻觉正在被系统性拆除</strong>——对普通人的意义是双重的：报案有用（案件串并、追赃、跨境协作都在机制化），以及不要成为链条的一环（帮骗子拉人头、转账洗钱，"不知情"不能豁免法律责任，帮信罪的案例通报里有大量"只是帮朋友收个款"的年轻人）。</p>
+      <p class="ctx">从案例通报中还能提炼一条实用规律：<strong>骗局的生命周期在缩短，但剧本的复用率极高</strong>。同一套"养群—晒单—带单—收割"的剧本，换个 App、换个"老师"艺名、换个热点概念就在不同城市重演；监管局的风险提示之所以值得定期翻一翻，是因为你此刻遇到的话术，大概率半年前已在另一个省的案例通报里被逐字拆解过。<strong>读案例通报是性价比最高的防骗训练</strong>：本节来源栏里的四个官方渠道（证监会要闻、各监管局风险提示、中证协典型案例、最高检典型案例），建议每半年花二十分钟浏览一遍标题——你对剧本越熟，剧本对你越无效。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sac.net.cn/sjb/wlzf/zfdxal/202009/t20200929_30034.html">中国证券业协会 · 打击非法证券活动典型案例（5600 余万元虚拟盘案等）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（跨境电信网络诈骗典型案例发布渠道）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.html">中国证监会等八部门 · 跨境非法证券期货活动整治文件</a> · <a href="https://www.csrc.gov.cn/hunan/c105691/c7595044/content.shtml">中国证监会湖南监管局 · 典型案例通报</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、给家人装上防火墙</h2>
+    <p class="chapter-sub">你学会防骗只保护了你，家里的老人和新手才是骗局的主战场</p>
+
+    <article class="view">
+      <h3>家庭防线：沟通姿势比知识点更重要</h3>
+      <p class="ctx">骗局对家庭的最大杀伤，除了钱，还有信任：很多子女是在父母转账之后才发现，而发现时的第一反应——"你怎么这么糊涂！"——恰恰是最糟糕的应对。心理学上，被羞辱的受害者会更深地倒向骗子（骗子是此刻唯一"尊重"他的人），这就是"杀猪盘"受害者反复被骗的原因。正确的沟通姿势有三条。<strong>其一，先共情后拆解</strong>："这个收益率确实很吸引人，换我也心动——我们一起花十分钟查查它的牌照号好吗？"把查证变成共同行动而非审判。<strong>其二，用本章的工具代替说教</strong>：把第三节的六个高危词、第四节的查证渠道表打印出来贴在冰箱上；帮家人装好国家反诈中心 App；把 12386 存进全家人的通讯录。<strong>其三，设立家庭转账规则</strong>：与家人约定"任何超过一定金额（如 1 万元）的投资转账，先和家人或 12386 核实"——这不是不信任，是把第9章的"48 小时冷静期"扩展到家庭层面，给情绪决策装一道物理闸门。</p>
+      <p class="ctx">对不同家庭成员，防火墙的重点不同。<strong>对退休老人</strong>：高发剧本是"养老项目""消费返利""免费旅游＋推介会"与情感陪护式营销（骗子比子女更勤快地嘘寒问暖）——对策是增加陪伴频率（情感空缺是骗局的入口），并陪同管理大额存单的动账提醒。<strong>对刚入市的年轻人</strong>：高发剧本是"带单群""AI 神器""虚拟币套利"，往往从"想快速赚第一桶金"开始——对策是把这门课的第9、10章讲给他听：正规的路径慢而确定，骗局的路快而致命。<strong>对企业主与高净值家人</strong>：高发剧本是"原始股""Pre-IPO 额度""定制私募"，金额巨大且常披着熟人介绍的外衣——对策是任何股权类投资前完成第四节的三步查证加产品备案核查，必要时聘请持牌律师尽调。<strong>防骗的终极形态不是知识，是家庭流程</strong>：当"查证再转账"像"出门带钥匙"一样成为肌肉记忆，剧本再新也无缝可钻。本章到此可以压缩成三句话，讲给你最想保护的那个人：<strong>只认官方名录里的机构；"稳赚不赔"四个字出现就挂电话；钱不进自己名下的三方存管账户，一分都不转。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（投资者保护与家庭防非投教材料）</a> · <a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">中国证监会深圳监管局 · 投资者保护宣传（面向老年人与新手群体的风险提示口径）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（防非宣传专栏）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（养老领域非法集资典型案例）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能对号入座每一种话术，才算拿到了防骗的"执业资格"</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于骗局的四个流行说法</h3>
+      <p class="ctx"><strong>谣言一："骗子只骗小钱，我没什么积蓄，很安全。"</strong>——错。骗局筛选的不是余额而是心理状态：情感空虚期的年轻人被"杀猪盘"诱导网贷加码，新手被"带单群"骗光信用额度——<strong>骗局会让你"变得有钱"（借来的）再收割</strong>，监管案例中受害者负债被骗的比例持续上升。<strong>谣言二："我懂金融，骗子骗不到我。"</strong>——恰恰相反，最高检与各地监管局通报的案例里高学历、多年股龄受害者大量存在；骗局利用的是情绪与流程漏洞（紧迫感、权威人设、社会认同），不是知识缺口——知识不能替代查证流程。<strong>谣言三："平台能提现，说明是正规的。"</strong>——错。小额成功提现是剧本的标准环节（"养猪"阶段），目的正是让你加大投入；虚拟盘的后台数字可以随意修改，提现权限完全由骗子控制。<strong>谣言四："被骗了报案也没用，钱肯定追不回来。"</strong>——半错。追赃是概率事件且跨境案件更难，但紧急止付机制以小时计、报案越早拦截概率越高，且案件串并依赖每一个报案；"反正追不回"的想法只会让你放弃止损，正中骗子下怀——还会引来"追款团队"的二次收割。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.spp.gov.cn/">最高人民检察院（电信网络诈骗与非法集资典型案例发布渠道）</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">中国证监会青海监管局 · 打击非法证券活动专栏（骗局话术风险提示合集）</a> · <a href="https://www.investor.org.cn/">中国投资者网（防非与维权投教栏目）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>骗局的三个心理钩子分别是什么？各自利用了第4章讲过的哪种行为偏差？</li>
+        <li>"被骗的人都是贪心或无知"为什么是迷思？骗局的"工程化"体现在哪三个阶段？</li>
+        <li>"证券业务是持牌业务"这条底线的三个推论是什么？哪一个能一票否决绝大多数骗局？</li>
+        <li>"荐股"分成骗局的四步话术结构是什么？为什么"他推的票真涨了"也不能改变非法的判断？</li>
+        <li>虚拟盘"带单"骗局的两个死穴是什么？（提示：资金通道与下载渠道）</li>
+        <li>"杀猪盘"的核心特征是什么？三条硬规则分别是什么？</li>
+        <li>"原始股"骗局为什么在发行合法性上必然穿帮？面向公众兜售"原始股"涉嫌什么性质的违法？</li>
+        <li>收益承诺类六个高危词是哪六个？为什么"内幕消息"在逻辑上只有骗子与谎言两种可能？</li>
+        <li>四类结构性危险信号（紧迫感、私密渠道、拉人头、完美人设）各举一个话术例子。</li>
+        <li>万能六问分别是什么？前三个与后三个各打在骗局的什么要害上？</li>
+        <li>三步查证法每一步的官方入口是什么？为什么"查证入口必须自己找"？</li>
+        <li>被冒名机构的"套牌"骗局怎么破？"信任嫁接"失效的条件是什么？</li>
+        <li>AI"股神"的三斧拆解法是什么？"预测神器"悖论怎么用一句话反问？</li>
+        <li>为什么"合规的高收益虚拟币理财"在中国不存在？识别非法集资的三个问题是什么？</li>
+        <li>被骗后的黄金四步顺序是什么？为什么"再交一笔解冻费"是最危险的续集？</li>
+        <li>"维权追款"二次骗局的识别标准是什么？正规维权的四个通道是哪四个？</li>
+        <li>对退休老人、入市新手、企业主三类家人，防火墙重点各有什么不同？</li>
+        <li>把本章压缩成三句话讲给家人听——你能不看课文说出来吗？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>骗局靠三个心理钩子起效——贪婪（高收益＋FOMO）、恐惧（紧迫感＋权威）、信息不对称（专业词汇堆砌），受害者不分学历与股龄，防骗靠流程不靠自信；法律底线一条——证券期货基金是持牌业务，资质只认证监会名录＋中证协/基金业协会公示，查不到的一律出局；四类高频骗局——"荐股"分成（免费引流→晒单→小甜头→收费或出货，青海局打非专栏 3·15 案例）、"带单"老师与虚拟盘（钱从未入市，App 数字后台可改，中证协典型案例上海 5600 余万案）、"杀猪盘"（情感工程＋内部平台，关系谈钱即拉黑）、原始股与非法集资变种（无法验证的叙事＋名额紧迫＋私人收款通道）；六个高危词——"稳赚不赔""保本保息""保证收益""内幕消息""涨停密码""只赚不亏"，四类结构信号——紧迫感、私密渠道、拉人头、完美人设；万能六问打资质、资金通道、收益承诺与决策节奏；三步查证——查机构（证监会官网＋监管局风险提示）、查人员（中证协/基金业协会）、查账户（本人三方存管＋对公全称核对），入口必须自己找、防冒名"套牌"，12386 兼做防骗咨询；新型变种——AI"股神"（预测神器悖论：真能赚为何卖给你）、AI 换脸拟声（视频语音不再构成身份证明）、虚拟币与"新金融"非法集资（收益只能来自新本金＝庞氏死穴，虚拟货币业务受严格管制）；被骗黄金四步——停止转账、保全证据、110 报案（紧急止付以小时计）、12386 与中国投资者网投诉，警惕"追款团队"二次收割；家庭防火墙——先共情后拆解、家庭转账规则、对老人/新手/企业主各有重点；三句话口诀——只认官方名录机构、"稳赚不赔"出现即挂断、钱不进本人三方存管账户一分不转。
+  </div>
+
+  <nav class="pager">
+    <a href="../10-tax/"><span class="dir">← 第10章</span>费用与税：看不见的成本</a>
+    <a href="../12-rumor/"><span class="dir">第12章 →</span>投资谣言粉碎</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第11章 · 依据中国证监会及各地方监管局（深圳、青海、湖南、湖北）投资者保护风险提示与打击非法证券活动案例通报、中国证券业协会打击非法证券活动典型案例、最高人民检察院电信网络诈骗与非法集资典型案例、八部门跨境非法证券期货活动整治文件、中国投资者网与 12386 服务平台维权口径整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

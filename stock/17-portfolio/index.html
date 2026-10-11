@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17章 构建你的组合：核心-卫星 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第17章 · 你自己的方案</div>
+  <h1>构建你的组合：核心-卫星</h1>
+  <p>分散的三个层次、大类比例的三种定法、核心与卫星的分工、再平衡的两种触发方式——外加三个全程标注"教学示例"的组合</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../16-plan/">← 第16章：个人投资计划</a>
+    <a href="../18-review/">第18章：记录、复盘与卖出 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么要组合</a>
+    <a class="anchor" href="#s2">大类比例怎么定</a>
+    <a class="anchor" href="#s3">核心-卫星结构</a>
+    <a class="anchor" href="#s4">再平衡</a>
+    <a class="anchor" href="#s5">费率的复利</a>
+    <a class="anchor" href="#s6">示例组合</a>
+    <a class="anchor" href="#s7">FOF与基金投顾</a>
+    <a class="anchor" href="#s8">不该进组合的与谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出分散化的三个层次（资产内、跨资产、跨时间），并解释为什么它被称为投资中"唯一的免费午餐"；②用三种方法（年龄起点法、风险测评法、目标期限法）确定自己的股债大类比例，并知道"100−年龄"为什么只是起点不是答案；③画出核心-卫星结构图：核心仓用什么、卫星仓用什么、卫星占比为什么要设上限；④比较再平衡的阈值法与日历法，说清再平衡的本质是"纪律"而不是"预测"；⑤用夏普（Sharpe, 1991）的算术解释为什么费率差 1% 在三十年后会吞掉约四分之一的终值；⑥看懂三个全程标注"教学示例、非投资建议"的组合（保守/均衡/进取），并照着流程搭出自己的版本；⑦分清 FOF 与基金投顾是什么、不是什么，警惕一切"代客理财"式承诺。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>上一章的一页纸计划里，第⑤空"资产配置"是留白的——本章负责把它填满。读完第六节后，请回到你的 IPS，把三个示例组合当"参考系"（不是抄作业对象），结合自己的风险测评与目标期限写下你的比例；第⑥空的再平衡规则也按第四节的阈值法或日历法二选一填好。本章与<a href="../03-allocation/">第3章</a>（配置原理）、<a href="../04-index/">第4章</a>（指数工具）关系最密，原理没吃透建议先回读。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么要组合，而不是押一只好资产</h2>
+    <p class="chapter-sub">分散化：唯一不额外收费的午餐——但多数人吃的其实是"伪分散"套餐</p>
+
+    <article class="view">
+      <h3>免费午餐的数学：波动互相抵消，收益并不打折</h3>
+      <p class="ctx">现代组合理论的起点是马科维茨 1952 年的论文《投资组合选择》（Markowitz, 1952, <em>Journal of Finance</em>，英文）：只要资产之间的价格变动<strong>不完全同步</strong>（相关系数小于 1），把它们组合起来就能在不牺牲期望收益的前提下降低整体波动——这个"波动降了、收益没降"的缺口，就是"免费午餐"的由来。直觉版本：股票大跌的年份，长久期国债往往上涨（避险资金涌入）；通胀失控的年份，实物类资产往往比现金类扛跌。没有哪种资产在所有天气里都表现最好，<strong>组合的任务不是找到"最好的资产"，而是让任何天气下都有一部分资产在值班</strong>。这也是<a href="../03-allocation/">第3章</a>反复引用的结论：学术研究普遍认为，组合的长期收益差异大部分可由大类资产配置解释，而非选股择时（Brinson 等人的归因研究，注明为学术口径，具体比例存在争议）。</p>
+      <p class="ctx">分散化有<strong>三个层次</strong>，缺一层都会漏水。<strong>第一层：资产内分散</strong>——买股票就买一篮子（宽基指数基金天然做到，<a href="../04-index/">第4章</a>），别押单只个股；<strong>第二层：跨资产分散</strong>——股票、债券、现金、黄金、REITs 等大类搭配（<a href="../15-product/">第15章</a>的工具箱），别把所有钱放在同一类资产里；<strong>第三层：跨时间分散</strong>——分批投入与定投（<a href="../09-strategy/">第9章</a>），别把三年的工资在同一个星期全部买入。三层的原理相同：你不知道哪个个股会暴雷、哪类资产明年垫底、哪一天是山顶，所以三个维度上都不押注单点。<strong>"伪分散"的典型</strong>：持有十只基金，打开持仓一看全是白酒与新能源——产品数量是十，风险敞口是一；或者股债各半，但债基是含两成股票的二级债基，股市暴跌时"半壁江山"一起塌。检验分散是否真实的办法只有一个：穿透到<strong>底层资产与风险因子</strong>去看，这在第六节的示例里会演示。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Markowitz, H. (1952). "Portfolio Selection"（<em>Journal of Finance</em>，英文，现代组合理论奠基论文） · 博格《共同基金常识》分散化与低成本组合论述（书籍引用） · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（资产配置科普专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>组合思维换掉的三个旧问题</h3>
+      <p class="ctx">从"买什么"切换到"配什么"，会同时换掉三个折磨人的旧问题。<strong>其一，不再需要预测。</strong>押单一资产的前提是判断对它——判断错就全盘皆输；组合的前提只是"我不知道哪个会赢，但我知道不会全输"，这恰好与本课程"不预测行情"的立场咬合。<strong>其二，不再需要完美择时。</strong>跨时间分散（定投+分批）把"哪天买"这个无法回答的问题，替换成"每个月买多少"这个可以回答的问题。<strong>其三，情绪有了锚。</strong>单一持仓的暴涨暴跌直接冲击心态，而组合的波动被各资产的此消彼长熨平了一部分——波动小了，你在暴跌日做出蠢事的概率就低了，这与<a href="../05-behavior/">第5章</a>的行为纪律一脉相承：<strong>结构本身就是最好的心理干预</strong>。</p>
+      <p class="ctx">需要预防的误解：组合≠中庸≠没有观点。核心-卫星结构（第三节）正是给"有观点的你"留出的表达空间——但表达被限制在卫星仓的小比例里，核心的大部分仓位仍然站在分散化与低成本这一边。另一个常见误解是"组合越多越好"：持有二三十只产品不但管理成本剧增，重叠持仓还会让分散度不升反降。对普通家庭，<strong>三到七只工具通常足够</strong>覆盖全部大类（教学示例口径）——一只宽基股票指数基金、一只债券基金、一只货基、可选的黄金 ETF 与 REITs，结构就完成了。少即是多，在组合构建上是被反复验证的真理。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：马尔基尔《漫步华尔街》（机械工业出版社版）资产配置与"有效分散"章节（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（组合投资与分散风险投教科普）</a> · <a href="https://edu.sse.com.cn/college/optional/etf/">上交所投资者教育基地 ETF 专栏（用 ETF 实现大类配置的机制科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、大类比例怎么定：三种方法与一个警告</h2>
+    <p class="chapter-sub">股债比例是组合的"总开关"——它决定你八成的投资体验</p>
+
+    <article class="view">
+      <h3>方法一与方法二：年龄起点法、风险测评法</h3>
+      <p class="ctx"><strong>"100−年龄"</strong>是最流行的经验法则：权益类资产占比≈100 减去你的年龄，30 岁配七成股票、60 岁配四成。它的全部依据是一条朴素的金融学原理：<strong>人力资本随年龄递减</strong>——年轻时你未来几十年的工资收入像一笔巨大的"类债券资产"，金融资产可以更激进；临近退休，人力资本耗尽，金融资产必须转为保守。但请注意它的粗糙处：它没考虑你的收入稳定性（公务员与创业者同龄不同命）、没考虑存量资产（已有两套房的人与租房的人不同）、也没考虑目标结构（要留遗产的人期限更长）。更新的变体用"110−年龄"甚至"120−年龄"，反映人均寿命延长——变体之间差 20 个百分点，恰好说明<strong>这类法则只能当起点，不能当答案</strong>。用它得出初值后，必须过下一道关。</p>
+      <p class="ctx"><strong>风险测评法</strong>把决定权交回制度：券商与基金销售机构的适当性测评（<a href="../16-plan/">第16章</a>详解）会把普通投资者划入 C1—C5 五档，销售机构据此匹配产品风险等级。实务用法是"双约束"：<strong>年龄法给出建议值，测评等级给出上限</strong>——假如"100−年龄"算出 70%，而你的测评结果只支持中风险（对应权益上限假设 50%，以机构实际匹配规则为准），那就取 50%。测评不是形式：如果你的真实承受力低于仓位，第一次大回撤就会把你洗出去，再好的长期配置也与你无关。两种方法冲突时，<strong>永远取更低的那个</strong>——配置错了可以调，心态崩了计划就死了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（投资者分类与产品匹配条款）</a> · 博格《共同基金常识》关于年龄与股债比例的论述（书籍引用） · 马尔基尔《漫步华尔街》（机械工业出版社版）生命周期配置章节（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>方法三：目标期限法——每笔钱按自己的日历配置</h3>
+      <p class="ctx">第三种方法最精细，也与<a href="../16-plan/">第16章</a>的三笔钱框架直接衔接：<strong>不给人配比例，给目标配比例</strong>。同一家庭的三个目标可以有三种配置——三年后购房首付（期限短、不容有失）：固收为主，权益 0%—20%（教学示例区间）；十二年后子女教育：均衡配置，权益四成上下；二十五年后养老（期限最长）：权益可到六至八成。原则一句话：<strong>期限越长，权益比例可以越高</strong>——因为时间会消化波动（<a href="../02-risk/">第2章</a>的历史数据：持有期拉长到十年以上，宽基权益资产正收益的历史概率显著上升；历史情形，不构成对未来的保证）。目标法的优点是每个比例都有明确的存在理由，暴跌时的心理防线也更具体："这笔钱是给二十五年后的我准备的，今天的下跌与它无关。"</p>
+      <p class="ctx">最后一个警告，比三个方法都重要：<strong>任何比例都是"假设下的合理"，不存在"最优标准答案"</strong>。学术界对最优股债比的争论持续了几十年，结论高度依赖假设的收益、波动与相关系数——而这些参数没人能预知。所以本课程的态度是：用三法交叉验证得出一个<strong>你能长期拿住的整数比例</strong>（如 60/40、50/50），写进 IPS，然后遵守它、定期再平衡它。一个被你执行十年的 60/40，胜过一个你拿不住三个月的"理论最优"。追求精确的最优解，恰恰是普通人配置路上最大的弯路。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：马尔基尔《漫步华尔街》（机械工业出版社版）目标导向配置与期限匹配论述（书籍引用） · Fama, E. & French, K. (2004). "The Capital Asset Pricing Model: Theory and Evidence"（<em>Journal of Economic Perspectives</em>，英文，收益风险关系的学术综述；原文见 SSRN，反爬不附直链） · <a href="https://www.investor.org.cn/">中国投资者网（长期投资与期限匹配投教口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、核心-卫星：给纪律留骨架，给兴趣留窗口</h2>
+    <p class="chapter-sub">核心仓负责"不出大错"，卫星仓负责"表达观点"——比例就是两者的国境线</p>
+
+    <article class="view">
+      <h3>结构：大核心稳住底盘，小卫星满足人性</h3>
+      <p class="ctx">核心-卫星（Core-Satellite）是把组合切成两块的架构：<strong>核心仓</strong>占大头，用低成本、宽分散、被动化的工具构建——典型如覆盖全市场或大市值的宽基指数基金/ETF（<a href="../04-index/">第4章</a>），加上债券类与现金类工具；它的使命是<strong>低成本地获取市场平均回报</strong>，不预测、不折腾。<strong>卫星仓</strong>占小头，装你"有观点"的部分——行业主题基金、单一赛道 ETF、个股（本课程不推荐但依法合规的小额自主决策）、黄金、REITs 等；它的使命是<strong>在风险封顶的前提下满足你表达判断的人性需求</strong>。这个结构的聪明之处在于承认现实：完全禁止自己"玩一把"的计划，往往在某个热点爆发日全面崩溃；而给冲动划出一块比例封顶的合法领地，核心的纪律反而守得住。</p>
+      <p class="ctx">为什么核心要用被动工具？证据链在前面的章节已经铺完：SPIVA 记分卡长年追踪显示，以十五年以上的窗口看，绝大多数主动管理基金跑输其业绩比较基准（S&P Dow Jones Indices 各年度 SPIVA 记分卡，引用时注明期数；官网反爬，建议检索"SPIVA Scorecard"）；夏普（Sharpe, 1991）的算术进一步证明这是<strong>结构性的</strong>——下一节展开。核心仓不追求战胜市场，追求的是"用最便宜的车费搭上市场这趟车"。卫星占比多少？没有规定，常见的教学口径是<strong>不超过组合的 10%—30%</strong>（教学示例区间，非投资建议）：承受力强、确有研究能力者取上限，新手从零开始——卫星仓亏光了不影响你的人生，是这条线存在的意义；如果卫星的波动会让你失眠，说明线画高了。</p>
+      <div class="fig"><img src="../assets/img-17-1.png" alt="抽象插画：中心一个大圆核，外围数颗小卫星沿轨道环绕，象征核心卫星组合结构，深蓝主色" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Sharpe, W. (1991). "The Arithmetic of Active Management"（<em>Financial Analysts Journal</em>，英文，<a href="https://web.stanford.edu/~wfsharpe/art/active/active.htm">斯坦福大学作者主页全文</a>） · SPIVA 记分卡（S&P Dow Jones Indices 发布，引用注明期数；官网反爬，检索"SPIVA Scorecard"） · 博格《共同基金常识》核心配置与低成本论述（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>边界：卫星仓的三条军规</h3>
+      <p class="ctx"><strong>军规一：上限焊死，写进 IPS。</strong>卫星占比是事前写死的数字（比如 20%），不是"这次机会特别好就多加点"的橡皮筋。热点最诱人的时刻，恰恰是上限最需要生效的时刻——<a href="../05-behavior/">第5章</a>的 FOMO（错失恐惧）在卫星仓门口排队，唯一能拦住它的是一行事先写好的字。<strong>军规二：卫星内部也要分散。</strong>把 20% 的卫星仓全押一个赛道，等于核心仓白建；两三个不相关的方向（如一个行业主题+黄金+REITs）远比单吊一个热点接近卫星的本意。<strong>军规三：只用亏得起的钱，且不用杠杆。</strong>卫星仓的钱必须是第三笔"生钱的钱"里可承受全损的部分——借钱玩卫星、用应急金玩卫星，任何一个都是计划自杀。</p>
+      <p class="ctx">还有一条隐含军规：<strong>卫星亏了不补给、赚了要收割</strong>。卫星仓跌了不加仓摊成本（那是把卫星养成了失控的核心），涨到超出比例就按再平衡规则卖回目标值（下一节）——"赚了就收割"听起来像止盈技巧，本质只是执行既定比例。至于卫星仓里能不能放个股：法律上你有权自主决策，本课程立场依旧——<a href="../06-valuation/">第6章</a>与<a href="../07-financial/">第7章</a>教你看懂估值与财报，是为了让你<strong>有能力说不</strong>，而不是鼓励你把卫星仓变成赌桌；个股研究的投入产出比，对业余投资者几乎总是输给宽基指数（SPIVA 同一逻辑在个人层面的映射）。把这句话抄在 IPS 第⑥空旁边：卫星是兴趣，核心才是人生。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》关于集中持仓风险与分散化的论述（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（理性投资与仓位管理投教科普）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（风险分散与适当性匹配科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、再平衡：组合的"年检"制度</h2>
+    <p class="chapter-sub">阈值法与日历法——本质都是纪律，不是预测</p>
+
+    <article class="view">
+      <h3>为什么需要再平衡：漂移是悄悄的，风险是真实的</h3>
+      <p class="ctx">设定 60% 股票、40% 债券之后什么都不做，一两年后你的实际比例几乎必然偏离目标——牛市里股票涨得多，可能变成 75/25；熊市里反过来。<strong>漂移的后果是风险漂移</strong>：75/25 的组合在下一轮暴跌中承受的亏损远超你当初按 60/40 评估的承受力——你等于在行情最热的时候被动加仓了风险，而这正是<a href="../05-behavior/">第5章</a>说的人性反向操作。<strong>再平衡</strong>就是定期把比例调回目标值：卖掉涨多的、买入跌多的。它的行为学本质是<strong>强制"高抛低吸"</strong>——不靠判断，只靠规则；它的数学本质是<strong>维持组合的风险水平恒定</strong>，让你的 IPS 承诺持续有效。顺便说破一个常见心结：再平衡确实可能"卖飞"（调出后继续涨）——但它换来的是暴跌日的保命能力，这笔交易在几十年的维度上几乎总是划算的（历史逻辑推演，非收益承诺）。</p>
+      <p class="ctx">两种主流触发方式，各有脾气。<strong>日历法</strong>：固定时间检查调整，常见每年或每半年一次。优点是简单、可写进日程、心理负担小；缺点是市场剧烈波动年份里，两次年检之间的漂移可能已经很大。<strong>阈值法</strong>：任一资产偏离目标超过设定幅度（常见教学口径：绝对偏离 5 个百分点，或相对偏离 25%，两者取其先）才动手。优点是紧贴风险、避免无谓交易；缺点是需要盯比例（用券商 App 的持仓页面每月看一眼即可，不是盯盘）。研究对两种方法的长期收益差异结论并不强烈——<strong>哪种更好不重要，选了并且执行才重要</strong>；两者也可叠加："每年 1 月检查，偏离超 5 个百分点才调整"是省心且够用的组合（教学示例）。无论哪种，动手前过一遍<a href="../10-tax/">第10章</a>：场内 ETF 卖出有佣金、场外基金赎回有费率与持有期规则，再平衡的收益要扣掉交易成本才是净收益——这也是阈值不宜设得太窄的原因。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》再平衡与交易成本论述（书籍引用） · 马尔基尔《漫步华尔街》（机械工业出版社版）组合维护章节（书籍引用） · <a href="https://edu.sse.com.cn/college/optional/etf/">上交所投资者教育基地 ETF 专栏（ETF 交易费用机制科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>什么不该触发调整：三种"伪再平衡"</h3>
+      <p class="ctx"><strong>伪再平衡一：心情触发。</strong>"最近跌得心慌，把股票降到三成吧"——这不是再平衡，是恐慌性减仓；规则没触发就不动手，是 IPS 第⑥空纪律条款的直接应用。<strong>伪再平衡二：观点触发。</strong>"我觉得明年要熊市，先清仓权益"——这是择时，而择时正是本课程用一整章（<a href="../09-strategy/">第9章</a>）论证过普通人做不到的事。再平衡的规则里<strong>没有任何一栏叫"我对行情的看法"</strong>；如果你真的认为自己的风险承受力变了（失业、生病、临近退休），正确动作是修订 IPS 里的目标比例本身，然后按新目标再平衡——修改假设可以，绕过规则不行。<strong>伪再平衡三：频率失控。</strong>每周甚至每天把比例调回目标，交易成本会吃掉分散化的全部好处（阈值法存在的意义就是给手刹装上阻尼）；更糟的是，高频调比例的人往往在不知不觉中变成了自己最讨厌的"短线客"。</p>
+      <p class="ctx">把三种伪再平衡倒过来读，就是真再平衡的三条特征：<strong>规则触发（日历或阈值）、频率克制（一年一到两次量级）、与行情观点绝缘</strong>。执行细节上还有两个小提示：优先用<strong>新增资金</strong>补低配资产（发工资后买入偏少的那类），能省一笔卖出费用、也避免赎回费的持有期陷阱；账户内不同目标（教育金、养老金）分开记账时，各目标组合<strong>分别</strong>再平衡，而不是混在一起看总比例——总比例达标掩盖单目标错配，是目标法用户最容易踩的暗坑。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：马尔基尔《漫步华尔街》（机械工业出版社版）再平衡规则与择时批判章节（书籍引用） · Kahneman, D. & Tversky, A. (1979)（<em>Econometrica</em>，英文，恐慌减仓所对应的损失厌恶机制） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金赎回费率与持有期规则投教口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、费率的复利：1% 的差价，三十年的鸿沟</h2>
+    <p class="chapter-sub">夏普的算术不需要预测市场，因此无可辩驳</p>
+
+    <article class="view">
+      <h3>"主动管理的算术"：成本前的赢家，成本后的输家</h3>
+      <p class="ctx">1991 年，诺贝尔经济学奖得主威廉·夏普发表了一篇只有几页纸、却被称为被动投资"独立宣言"的文章《主动管理的算术》（Sharpe, 1991, <em>Financial Analysts Journal</em>，英文，斯坦福大学作者主页可查全文）。论证只需要会计恒等式：<strong>所有投资者的总收益=市场总收益</strong>；市场由主动投资者与被动投资者组成，那么在扣除成本<strong>之前</strong>，主动投资者的平均收益必然等于被动投资者的平均收益（大家都是市场的组成部分）；但主动管理有更高的交易成本、研究费与管理费，所以扣除成本<strong>之后</strong>，主动投资者的<strong>平均</strong>净收益必然低于被动投资者——这个结论不依赖任何对市场的预测，是纯算术，因此无法反驳。个别主动基金当然可能长期跑赢，但事前挑中它们的难度，本身就是另一层成本（挑选失败的概率见 SPIVA 数据：长期窗口下多数主动基金跑输基准，引用注明期数）。</p>
+      <p class="ctx">把算术落到费率数字上。假设市场长期年化 7%（示意假设，非预测），一只基金综合费率 0.5%，另一只 1.5%：三十年后，100 万本金分别变成约 761 万与约 574 万（示意演算）——<strong>1% 的年费差，吞掉了终值的近四分之一</strong>。这正是博格在《共同基金常识》里反复敲打的"成本重要假说"（CMH，与有效市场假说 EH 相对的文字游戏）：你无法控制市场给多少收益，但费率是合同里白纸黑字、你完全能控制的部分。所以核心仓的工具筛选标准朴素到无聊：<strong>同类宽基里选综合费率低的、规模适中流动性好的、跟踪误差小的</strong>——三条都在基金法律文件与交易所数据里公开可查（<a href="../04-index/">第4章</a>教过查询路径），不需要任何内幕消息。请注意本课程的边界：这是在讲"核心仓为什么用低成本被动工具"的逻辑，不是断言所有主动基金都不能买——费率与预期超额收益的权衡，<a href="../10-tax/">第10章</a>有完整展开。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Sharpe, W. (1991). "The Arithmetic of Active Management"（<em>Financial Analysts Journal</em>，英文，<a href="https://web.stanford.edu/~wfsharpe/art/active/active.htm">作者主页全文</a>） · 博格《共同基金常识》成本重要假说章节（书籍引用） · SPIVA 记分卡（S&P Dow Jones Indices，引用注明期数；官网反爬，检索"SPIVA Scorecard"） · <a href="https://www.sse.com.cn/assortment/fund/etf/home/">上交所 ETF 专栏（费率与产品数据官方查询入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、三个示例组合：从纸面到落地（教学示例）</h2>
+    <p class="chapter-sub">整节均为教学示例，非投资建议——看的是构建流程，不是抄比例</p>
+
+    <article class="view">
+      <h3>【教学示例，非投资建议】保守 / 均衡 / 进取三个参考系</h3>
+      <p class="ctx"><strong>再次声明：本卡与下表所有内容均为教学示例，不构成任何投资建议或收益承诺；示例只写大类资产比例、刻意不点名任何具体产品；比例请结合你的风险测评（C1—C5）与目标期限自行确定，重大决策咨询持牌专业人士。</strong>三个示例组合演示"同一套流程、不同的风险参数"：</p>
+      <table class="cmp">
+        <tr><th>大类资产</th><th>示例A · 保守型</th><th>示例B · 均衡型</th><th>示例C · 进取型</th><th>各类的工具举例（品类，非产品推荐）</th></tr>
+        <tr><td>现金与货基</td><td>20%</td><td>10%</td><td>5%</td><td>活期存款、货币基金、现金管理类理财</td></tr>
+        <tr><td>债券类（固收）</td><td>65%</td><td>45%</td><td>25%</td><td>储蓄国债、纯债/短债基金、R1—R2 银行理财</td></tr>
+        <tr><td>权益类（宽基为核心）</td><td>10%</td><td>35%</td><td>50%</td><td>宽基指数基金/ETF（核心仓主体）</td></tr>
+        <tr><td>卫星与其他</td><td>0%</td><td>10%（黄金 ETF 5%+REITs 5%）</td><td>20%（黄金 5%+REITs 5%+自选主题/个股≤10%）</td><td>黄金 ETF、公募 REITs、行业主题基金等</td></tr>
+        <tr><td>适配画像（示例）</td><td>临近退休/承受力低（C1—C2）/三年内有刚性支出</td><td>中年家庭/中等承受力（C3）/十年期目标为主</td><td>年轻/收入稳定/承受力高（C4—C5）/二十年以上目标</td><td>—</td></tr>
+        <tr><td>再平衡规则（示例）</td><td colspan="3">三例通用：每年 1 月检查，任一资产偏离目标 5 个百分点即调整（日历+阈值叠加）</td><td>—</td></tr>
+      </table>
+      <p class="ctx">读表的正确姿势是读<strong>流程</strong>而不是抄数字：①先由<a href="../16-plan/">第16章</a>的测评与目标期限把你归入某个风险档；②按档位取股债大比例（第二节的三法交叉）；③权益部分内部再切核心与卫星（第三节的上限军规）；④固收与现金部分按流动性需求摆工具（<a href="../15-product/">第15章</a>的光谱）；⑤写下再平衡规则（第四节）；⑥每年复盘时检查假设是否变化（<a href="../18-review/">第18章</a>）。同样的六步，收入、年龄、目标不同的人会走出完全不同的组合——这就是"参考系"与"作业答案"的区别。</p>
+      <div class="fig"><img src="../assets/img-17-2.png" alt="抽象插画：两组环形占比图在一架天平两端被一只几何风格的手调节配重，象征组合再平衡，深蓝主色" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">三个示例各自最容易犯的错也顺便点破。<strong>保守型的错</strong>是把"保守"执行成"全存款"——债券类里也有信用下沉的坑（<a href="../15-product/">第15章</a>），且 65% 固收不等于零波动，2022 年式的债市回撤照样会出现账面负收益。<strong>均衡型的错</strong>是卫星仓名存实亡——10% 的额度被一只重仓行业基金悄悄用超，穿透持仓才发现"均衡"早已漂移。<strong>进取型的错</strong>是把 50% 权益理解成"50% 押一个赛道"——进取指的是承受更大波动的意愿，不是放弃分散的许可；C4—C5 的测评等级保护不了押错单一行业的人。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》示例组合与三基金组合思路（书籍引用） · 马尔基尔《漫步华尔街》（机械工业出版社版）生命周期配置示例（书籍引用） · <a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（风险匹配依据）</a> · <a href="https://edu.sse.com.cn/college/optional/etf/">上交所投资者教育基地 ETF 专栏（大类工具机制科普）</a>（全表为教学示例，非投资建议）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、FOF 与基金投顾：把配置外包给谁、外包到什么程度</h2>
+    <p class="chapter-sub">两种"帮你搭组合"的正规形态——以及它们各自帮不了你的部分</p>
+
+    <article class="view">
+      <h3>FOF：买"一篮子基金"的基金</h3>
+      <p class="ctx">FOF（基金中基金，Fund of Funds）是依法设立的公募基金品种：它不直接买股票债券，而是把 80% 以上的基金资产投向<strong>其他基金份额</strong>——相当于由基金管理人替你完成"选基金+定比例+再平衡"这套动作，一只产品实现多资产配置。养老目标基金（目标日期型如"2045"、目标风险型如"稳健/平衡/积极"）多数采用 FOF 结构，并且是个人养老金账户可投的四类产品之一（<a href="../16-plan/">第16章</a>）。FOF 的代价是<strong>双层费用</strong>：底层基金收一道管理费，FOF 层面再收一道——虽然规则对重复收费有限制（FOF 持有自身管理人产品的部分不得双重收取管理费，以基金合同与现行规则为准），综合成本仍普遍高于自己用两三只指数基金搭组合。因此 FOF 的合理用户画像很清晰：<strong>愿意付一点费用买省心、且信任机构配置能力的人</strong>；而读懂了本课程的你，完全有能力用第六节的六步流程自建同构组合——两条路都合规，比较的是费用与你投入的时间。</p>
+      <p class="ctx">基金投顾是另一条路。2019 年 10 月，证监会启动<strong>公募基金投资顾问业务试点</strong>（《关于做好公开募集证券投资基金投资顾问业务试点工作的通知》，试点机构名单与业务规则以证监会及基金业协会公布为准），允许持牌机构接受客户委托、按约定策略代客户做出基金投资的具体操作——从"卖方代销"转向"买方投顾"的制度尝试，此后试点逐步扩容为常规业务（展业机构范围以监管最新公告为准）。它与非法"代客理财"的本质区别有三条，请逐条记住：<strong>其一，主体持牌</strong>——投顾业务资格由证监会核准，名单可查；非法"代客理财"没有任何牌照，且常与"荐股""带单"骗局同源（<a href="../11-scam/">第11章</a>）。<strong>其二，资金在你自己的账户</strong>——投顾只发出指令、不碰你的钱；任何要求把钱转到"老师账户""机构专户"的，一律是骗局。<strong>其三，不承诺收益</strong>——合规投顾合同禁止保本保收益承诺，签约前必读风险揭示书；开口就"保底"的投顾，签了也违法。</p>
+      <p class="ctx">投顾帮得了你的：策略制定、产品筛选、自动调仓、以及在你想割肉时推送的陪伴内容。投顾帮不了你的：<strong>你对波动的真实承受力</strong>——委托了投顾不等于委托了心态，暴跌那天的"要不要赎回"按钮，仍然长在你手上。所以即便全权委托，本章前六节的认知也不是白学：看得懂投顾给你配了什么、为什么这么配、费率合计多少，你才能判断这份委托值不值——这是"把钱外包、把认知留给自己"的正确姿势。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（基金投顾业务试点通知与 FOF 指引检索口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金投顾业务与养老目标基金投教栏目）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《国务院办公厅关于推动个人养老金发展的意见》（国办发〔2022〕7号，可投产品范围）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、什么不该进组合，以及组合四大谣言</h2>
+    <p class="chapter-sub">组合的下限比上限重要：先划掉不该有的，再添该有的</p>
+
+    <article class="view">
+      <h3>五样不该进组合的东西</h3>
+      <p class="ctx"><strong>其一，杠杆资金。</strong>融资买入、借贷投资、信用卡套现入市——杠杆把"波动"放大成"爆仓"，与组合"降低整体波动"的存在意义正好相反（<a href="../15-product/">第15章</a>的风险警示同样适用于组合内部）。<strong>其二，三笔钱里的前两笔。</strong>应急金与保障预算有各自的岗位，进了组合就是把地基拆了盖楼（<a href="../16-plan/">第16章</a>）。<strong>其三，短期要用的钱。</strong>一年内要付首付、交学费的钱，期限不允许它承受任何有意义的波动——放进组合等于给定时炸弹上发条。<strong>其四，你看不懂的东西。</strong>说不清收益来源与风险结构的"产品"，无论包装多精美都不进组合；这条同时是最强的防骗滤网——凡是以"内部渠道""原始股""海外项目"为卖点的，先在<a href="../11-scam/">第11章</a>的骗局清单里对一遍话术。<strong>其五，超出卫星上限的兴趣仓。</strong>看好某个行业不是把它买到 40% 的理由，比例就是观点的笼子。</p>
+      <p class="ctx">正面清单同样简短：组合里应当只有<strong>你说得出风险来源、算得出持有成本、且比例写在 IPS 里的资产</strong>。检查方法是每年复盘时做一次"穿透体检"：把每只产品的底层持仓拉出来（基金定期报告、ETF 每日清单都公开），合并同类项，看看真实的股债比例、行业集中度、单只个股暴露是多少——"伪分散"就是在这一步现形的。体检的合格线不是精确数字，而是两个问题：<strong>实际比例与 IPS 目标是否一致？任何单一风险敞口是否大到让你睡不着？</strong>两问有一个"否"，先调整再谈收益。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》组合构建与风险控制论述（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（防范非法证券期货基金活动专栏）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（基金定期报告与持仓披露查询科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：组合构建的四大误会</h3>
+      <p class="ctx"><strong>谣言一："持有的产品越多，组合越分散。"</strong>——错。分散度的度量单位是<strong>风险敞口</strong>，不是产品数量。十只重仓同一赛道的基金=一个敞口；三只覆盖股、债、黄金的低成本工具，分散度反而更高。穿透底层资产之前，数量毫无意义（第一节"伪分散"）。</p>
+      <p class="ctx"><strong>谣言二："再平衡就是割肉补仓、把赚的调给亏的，越调越穷。"</strong>——把因果讲反了。再平衡卖出的是<strong>比例超标</strong>的资产（涨多了的那部分利润），买入的是<strong>比例不足</strong>的资产；它锁定的是"风险回到目标"，不是"收益归零"。规则化的低买高卖恰是普通投资者唯一能稳定执行的"择时"——而放任漂移不管，才是真正把组合推向"高位重仓、低位轻仓"的追涨杀跌结构（第四节）。</p>
+      <p class="ctx"><strong>谣言三："核心-卫星就是拿大部分钱去追热点，赚了算卫星的功劳。"</strong>——恰好说反。核心-卫星的本意是<strong>大核心拒绝热点、小卫星限定兴趣</strong>：核心仓（大头）永远是宽基与低成本工具，热点与观点只允许住在比例封顶的卫星仓里。把七成仓位押在"今年最火的赛道"，那不叫卫星，那叫把核心拆了放烟花——军规一（上限焊死）就是为此而设（第三节）。</p>
+      <p class="ctx"><strong>谣言四："跟着投顾/FOF 就稳赚不赔，专业的事交给专业的人等于保本。"</strong>——"稳赚不赔"四个字一出口，这句话就已经越过了合规红线：基金投顾与 FOF 都是<strong>不保本</strong>的净值型服务与产品，监管规则明令禁止任何保本保收益承诺；投顾帮你的是流程与纪律，帮你不了的是市场本身的波动。凡是把"专业"与"保本"绑在一起卖给你的——无论对方自称老师、助理还是"机构通道"——请直接对照<a href="../11-scam/">第11章</a>的骗局话术库，然后拨打 12386 核实其资质（第三节三条区别的逆用）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（基金投顾业务规则与禁止保本承诺口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（FOF 与投顾业务投教材料）</a> · 博格《共同基金常识》再平衡与分散化原理（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（12386 服务平台入口与防非专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能讲给朋友听，才算真的学会</p>
+
+    <div class="checklist">
+      <h4>📋 组合构建自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>马科维茨（1952）的"免费午餐"成立的前提条件是什么？</li>
+        <li>分散化的三个层次分别是什么？各用什么工具实现？</li>
+        <li>"伪分散"的两种典型形态是什么？用什么方法检验分散是否真实？</li>
+        <li>组合思维换掉了哪三个折磨人的旧问题？</li>
+        <li>普通家庭组合通常几只工具就够？为什么不是越多越好？</li>
+        <li>"100−年龄"法则背后的金融学原理是什么？它的三处粗糙点在哪里？</li>
+        <li>年龄法与测评法冲突时取哪个？为什么？</li>
+        <li>目标期限法的原则一句话是什么？它的心理防线优势是什么？</li>
+        <li>为什么"不存在最优标准答案"？本课程建议的替代做法是什么？</li>
+        <li>核心仓与卫星仓各自的使命是什么？卫星占比的常见教学区间是多少？</li>
+        <li>核心仓用被动工具的完整证据链是什么（SPIVA+夏普算术）？</li>
+        <li>卫星仓三条军规分别防住什么行为偏差？</li>
+        <li>再平衡的行为学本质与数学本质各是什么？</li>
+        <li>阈值法与日历法的优缺点？"每年1月+偏离5个百分点"属于哪种组合？</li>
+        <li>三种"伪再平衡"分别是什么？真正该修订 IPS 的情形是什么？</li>
+        <li>夏普（1991）算术论证的三步是什么？为什么它"无法反驳"？</li>
+        <li>费率差 1%、三十年、7% 假设下终值差多少？（示意演算，说出量级即可）</li>
+        <li>示例组合六步构建流程是哪六步？三个示例各自最容易犯的错是什么？</li>
+        <li>FOF 的双层费用问题是什么？它适合谁？</li>
+        <li>合规基金投顾与非法"代客理财"的三条本质区别是什么？</li>
+        <li>五样不该进组合的东西是什么？"穿透体检"怎么做、合格线是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>组合的第一性原理是分散化——马科维茨（1952）：不完全相关的资产组合能在不降低期望收益的前提下降低波动（免费午餐）；分散有三层：资产内（宽基指数）、跨资产（股债金 REITs 现金）、跨时间（定投分批），伪分散要靠"穿透底层敞口"识破。大类股债比三法定：100−年龄（人力资本递减原理，只是起点）、风险测评（C1—C5 给上限，双约束取低）、目标期限（每笔钱按自己的日历配，期限越长权益可越高）；不存在"最优标准答案"，能执行十年的 60/40 胜过拿不住的"理论最优"。核心-卫星：核心大头用低成本宽基（SPIVA 长期数据+Sharpe 1991 算术：成本后主动平均必输，结构性结论），卫星小头装观点（教学口径 10%—30% 上限），军规三条：上限焊死写进 IPS、卫星内部也分散、只用亏得起的钱且不加杠杆。再平衡=规则化的高抛低吸：阈值法（偏离 5 个百分点量级）或日历法（年检），可叠加；三种伪再平衡（心情/观点/频率失控）都不许动手，只有"承受力真变了"才修订目标比例；优先用新增资金补低配省费用。费率复利：1% 年费差在三十年示意演算中吞掉终值近四分之一——核心仓筛选标准=低费率+适度规模+小跟踪误差。三个示例组合（保守/均衡/进取）整表为教学示例、非投资建议，学的是六步流程不是抄比例。FOF=一篮子基金（省心但双层费用），基金投顾=2019 年试点起的持牌买方服务，与非法"代客理财"三区别：持牌可查、资金在自己账户、不承诺收益；投顾帮流程不帮心态。不该进组合的五样：杠杆资金、应急金与保障预算、短期要用的钱、看不懂的东西、超限的兴趣仓；每年穿透体检两问：比例与 IPS 一致吗？单一敞口让你失眠吗？下一章：组合跑起来之后——记录、复盘与卖出的完整流程。
+  </div>
+
+  <nav class="pager">
+    <a href="../16-plan/"><span class="dir">← 第16章</span>个人投资计划：从应急金开始</a>
+    <a href="../18-review/"><span class="dir">第18章 →</span>记录、复盘与卖出</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第17章 · 依据《证券期货投资者适当性管理办法》、证监会公募基金投资顾问业务试点通知与 FOF 相关指引（注明检索渠道）、《国务院办公厅关于推动个人养老金发展的意见》（国办发〔2022〕7号）、上交所投资者教育基地与中国投资者网投教材料、中国证券投资基金业协会投教口径，博格《共同基金常识》、马尔基尔《漫步华尔街》等经典教材，以及 Markowitz（1952）、Sharpe（1991）、Fama & French（2004）、Kahneman & Tversky（1979）等学术研究与 SPIVA 记分卡（引用注明期数）整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

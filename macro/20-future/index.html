@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第20章 未来趋势与学习行动方案 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:var(--accent-deep);border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第20章 · 宏观与你</div>
+  <h1>未来趋势与学习行动方案</h1>
+  <p>债务、人口、气候、技术四个长期议题的权威机构情景分析；普通人宏观素养的三层路线图与 30 天行动计划——把二十章变成一种习惯</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../19-rumor/">← 第19章：宏观谣言粉碎</a>
+    <a href="../">课程完结 🎓 返回课程首页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">看未来的方法</a>
+    <a class="anchor" href="#s2">债务</a>
+    <a class="anchor" href="#s3">人口</a>
+    <a class="anchor" href="#s4">气候</a>
+    <a class="anchor" href="#s5">技术与AI</a>
+    <a class="anchor" href="#s6">转型与全球化</a>
+    <a class="anchor" href="#s7">学习路线</a>
+    <a class="anchor" href="#s8">30天行动</a>
+    <a class="anchor" href="#s9">结课地图</a>
+    <a class="anchor" href="#s10">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供<strong>经济教育参考</strong>，不构成投资建议或政策预测。本章讨论未来趋势时，只呈现 IMF、BIS、世界银行、联合国及各国官方机构的<strong>公开情景分析与研究口径</strong>，明确标注不确定性，不做任何具体行情、点位与政策走向的预测断言；"必涨""必跌""崩溃"类说法只出现在谣言粉碎语境。文中不含任何产品、机构或课程的商业推荐；数据以官方统计口径为准并注明时点（内容更新至 2026 年 10 月）。各节来源见标注，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说明"看未来"的正确工具是情景分析而不是单点预测，并复述机构情景报告的读法；②概述全球经济四个长期议题（债务水平、人口老龄化、气候转型、技术变革）各自的机制、权威口径与不确定性；③讲清中国经济转型主线（高质量发展、新旧动能转换、双循环）在官方文本中的位置；④用 IMF 的"地缘经济碎片化"概念描述全球化重构的研究口径；⑤按三层路线（入门→进阶→日常）规划自己的宏观学习；⑥执行一个 30 天行动方案，把本课二十章变成每月可重复的数据跟读习惯；⑦用一页概念地图串联全课程，并知道自己什么时候需要更专业的帮助。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是结课章，前半部分（一至六节）是"往远处看"，后半部分（七至十节）是"往回走"——把学习系统装进你的日常。建议先读完四个长期议题，然后直接跳到第八节，把 30 天行动方案的第一个动作（订阅统计局数据发布日历）今天就做掉：习惯的启动成本最低的时刻，永远是刚读完的这一分钟。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、看未来的正确方法：情景分析，不是单点预测</h2>
+    <p class="chapter-sub">连最权威的机构都给"情景"而不给"答案"——普通人更没理由相信任何斩钉截铁的未来图景</p>
+
+    <article class="view">
+      <h3>机构怎么谈未来：情景、假设与修订</h3>
+      <p class="ctx">打开 IMF《世界经济展望》（WEO，每年两期）或世界银行《全球经济展望》，你会发现它们谈未来的方式是高度克制的：给出<strong>基线情景</strong>（baseline，基于当前政策与条件的最可能路径）与<strong>替代情景</strong>（如"若贸易摩擦升级""若金融条件收紧"的条件推演），每个数字都带着假设前提，且下一期会依据新数据修订上一期的展望。这种"情景+假设+修订"的三件套，就是专业界谈未来的标准姿势——它承认不确定性，并给出在不同条件下的分支图景，而不是一个假装精确的单点答案。BIS 的年报讨论长期风险时同样使用情景语言（气候转型的快慢路径、利率环境的不同状态等）。</p>
+      <p class="ctx">对普通读者的三个启发：<strong>①看情景不看单点</strong>——读到"机构预测明年全球增长 ×%"时，先看它的假设条件与情景分支，单点数字只是分布的中枢；<strong>②看修订方向</strong>——同一机构连续几期的上调或下调，比任何一期的绝对数字信息量更大（修订本身是公开的，第<a href="../16-indicator/">16</a>章讲过修订是常态）；<strong>③警惕把情景当预言贩卖的人</strong>——机构给的是条件分支，自媒体常常掐掉条件只留结论，"IMF 说经济要衰退"式标题几乎都在省略"在××情景下"。本课最后一章坚持同一纪律：以下四个长期议题，全部只摆权威机构的公开研究口径与机制分析，不做预测断言。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.imf.org/en/Publications/WEO">IMF《世界经济展望》出版物页（英文，基线与情景框架；官网对工具限流、浏览器可达，引用注明期次）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS 国际清算银行统计与年报页（英文，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>长期议题与短期波动的区别：慢变量决定地形</h3>
+      <p class="ctx">为什么本章选"债务、人口、气候、技术"四个议题？因为它们都是<strong>慢变量</strong>——以十年为尺度缓慢展开，不随月度数据跳动，却决定经济运行的"地形"：短期政策与周期是地形上的天气，天气难测，地形可查。这与第<a href="../08-cycle/">8章</a>（周期）、第<a href="../13-growth/">13章</a>（长期增长）的分工一致：增长核算告诉我们，长期生活水平的提升靠资本积累、劳动投入与全要素生产率，而四个议题恰好分别作用于这三条线——债务影响资本配置效率、人口决定劳动供给、气候与技术重塑生产率的路径。</p>
+      <p class="ctx">慢变量对普通人的意义在于<strong>可规划性</strong>：你无法预测明年的行情，但你可以确定地知道"老龄化在加深""绿色转型在推进""AI 在扩散"，并据此调整自己的技能投资、职业选择与家庭财务韧性（第<a href="../17-asset/">17章</a>）。这正是宏观素养的实用内核：<strong>对不可控的短期保持淡定，对可响应的长期保持清醒</strong>。以下四节，每个议题都按"机制→权威口径→不确定性→与你有关"四步展开。</p>
+      <div class="fig"><img src="../assets/img-20-1.png" alt="一片起伏的抽象地形图，四条发光的慢变量河流（债务、人口、气候、技术）在地形上蜿蜒，上方飘浮着易变的短期天气符号被地形稳稳承托" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《宏观经济学》长期增长与短期波动分章框架（📘教科书：古典长期/凯恩斯短期的划分） · <a href="https://datatopics.worldbank.org/world-development-indicators/">世界银行 WDI 数据库（英文，长期跨国指标，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、长期议题一：全球债务水平</h2>
+    <p class="chapter-sub">债务是增长的燃料也是风险的存量——议题的关键不是"会不会出事"，而是"如何管理"</p>
+
+    <article class="view">
+      <h3>机制与权威口径：债务为什么是长期议题</h3>
+      <p class="ctx">机制链条（第<a href="../07-fiscal/">7</a>、<a href="../12-finance/">12</a>章的延伸）：债务本身是中性的会计事实——一方的负债是另一方的资产；它成为宏观议题的条件是<strong>债务增速长期快于收入（GDP）增速</strong>，导致偿债份额挤占消费与投资空间，并放大金融体系的脆弱性。权威口径的数据基础：BIS 维护全球主要经济体的政府、居民、企业部门债务序列（免费可查，实测可达）；IMF《财政监测报告》（Fiscal Monitor）定期评估各国政府债务与赤字路径；世界银行与国际清算银行的联合研究多次提示发展中经济体的债务累积风险（机构出版物口径，注明期次）。历史维度上，Reinhart & Rogoff《这次不一样》整理了八百年债务危机史（📘经典著作标注，其部分结论后被学界修正，第<a href="../19-rumor/">19章</a>已讲过这个公案）。</p>
+      <p class="ctx">不确定性在哪里：①<strong>可持续阈值没有统一答案</strong>——多高的债务率算"过高"取决于利率环境、增长前景、货币主权与债务结构，学界对此存在真实分歧（本课如实并列，不给单点结论）；②利率长期水平决定偿债压力的量级，而利率路径本身不可预测；③中国的债务结构有其特殊性（政府债务中地方融资平台的口径、居民部门房贷占比等），官方对化解路径有持续的政策安排（化债方案的官方文件可在中国政府网检索，读法见第<a href="../18-policy/">18</a>章）。与你有关的部分：债务议题的宏观后果（利率环境、财政空间、金融稳定）会渗透进存款收益、信贷可得性与就业环境——但这些都是慢传导，个人层面的正确响应是第<a href="../17-asset/">17章</a>的家庭负债率管理，而不是任何"债务危机要来"式的资产操作（那属于第<a href="../19-rumor/">19章</a>粉碎过的话术）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.bis.org/statistics/index.htm">BIS 统计页（英文，全球分部门债务序列，实测可达）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF 出版物页（英文，《财政监测报告》入口；官网对工具限流、浏览器可达）</a> · Reinhart & Rogoff《这次不一样》（📘著作标注，观点注明学界修正）</div>
+    </article>
+
+    <article class="view">
+      <h3>债务周期与家庭账本：慢变量怎么变成你的日历</h3>
+      <p class="ctx">债务议题落到家庭层面，有一条值得展开的机制：宏观债务周期通过<strong>利率环境</strong>与<strong>信贷可得性</strong>两个渠道进入家庭日历。利率环境决定你的两本账——负债端（房贷重定价日的月供变化，机制见第<a href="../03-interest/">3</a>章与第<a href="../17-asset/">17章</a>）与资产端（存款与固收类产品的收益水平）；信贷可得性决定你在换房、创业、教育投入等时点上"能不能借到钱、以什么条件借"。这两个渠道都是慢速的、公开的、可跟踪的——LPR 每月报价公布，存款挂牌利率各行官网可查，社融与信贷数据按月发布（第<a href="../16-indicator/">16章</a>的看板正是为此服务）。</p>
+      <p class="ctx">家庭对债务议题的正确响应因此可以写成三条不含任何预测的纪律：<strong>①负债率纪律</strong>——月供占家庭收入的比例留足安全边际，使任何利率情景下现金流都不断裂；<strong>②期限匹配纪律</strong>——不用短期负债支撑长期资产（这是银行"期限错配"脆弱性的家庭版，第<a href="../12-finance/">12章</a>）；<strong>③应急金纪律</strong>——三到六个月支出的流动性储备，是所有宏观不确定性的第一道缓冲（清单见第<a href="../17-asset/">17章</a>）。三条纪律的共同点：它们不赌宏观走向，在任何情景下都成立——这正是慢变量时代的家庭策略应有的形态：与其预测地形何时震动，不如把房子盖在抗震标准上。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《宏观经济学》利率与跨期选择章节（📘教科书口径） · <a href="https://www.pbc.gov.cn/">中国人民银行官网（LPR 报价与金融统计数据按月发布，站内检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、长期议题二：人口老龄化</h2>
+    <p class="chapter-sub">人口是最"硬"的慢变量：未来二十年的劳动年龄人口，今天已经出生完了</p>
+
+    <article class="view">
+      <h3>机制与权威口径：老龄化如何进入经济账本</h3>
+      <p class="ctx">人口变量的特殊地位在于它的<strong>可推算性</strong>：二十年后的劳动力规模由今天的成年人口决定，几乎不含不确定性——这让老龄化成为四个议题中"最确定的长期约束"（第<a href="../14-demography/">14章</a>的延伸）。数据基础：联合国《世界人口展望》（WPP）提供全球分国别的人口现状与多情景预测（免费开放，实测可达）；中国数据以国家统计局年度国民经济公报与人口普查公报为准（七普公报 2021 年发布，官网检索口径）。机制上，老龄化通过四条线进入经济账本：①劳动供给收缩——潜在增长率承压；②抚养比上升——养老金与医疗支出的收支压力（现收现付制逻辑见第<a href="../14-demography/">14章</a>）；③储蓄率变化——生命周期假说下，老龄社会的总储蓄倾向下降；④需求结构迁移——医疗、养老、服务消费占比上升。</p>
+      <p class="ctx">不确定性与政策响应：预测的<strong>远端</strong>（本世纪下半叶）分歧很大——WPP 给出高、中、低生育率多情景，生育率能否回升是最大的未知数；各国的政策工具箱（生育支持、延迟退休、移民、生产率对冲）效果评估存在争议（OECD 家庭数据库的跨国比较口径，反爬时注明官网检索）。官方对人口议题的表述以规划文本与统计公报为准（"人口高质量发展"等提法可在政府文件库检索原文）。与你有关的部分：老龄化对个人的影响是具体而缓慢的——养老金体系的参数调整、照护需求的家庭安排、区域间人口流动对楼市与就业的分化影响；应对方式是在自己的财务规划中把"长寿风险"列为确定项（应急与养老储备的通识框架见第<a href="../17-asset/">17章</a>，不构成产品推荐）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://population.un.org/wpp/">联合国《世界人口展望》WPP（英文，全球人口数据与多情景预测，实测可达）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·数据发布栏目（年度公报与人口普查公报，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国际镜鉴：先行老龄化社会的政策工具箱与效果争议</h3>
+      <p class="ctx">老龄化不是中国独有的议题——日本、韩国、意大利、德国都已先行进入深度老龄化，它们的政策实验为"工具箱里有什么、效果如何"提供了实证样本（跨国比较数据以 OECD 家庭数据库、联合国 WPP、世界银行 WDI 为权威口径；OECD 官网对抓取工具反爬时注明官网检索）。工具箱大致四类：<strong>①生育支持</strong>——现金补贴、育儿假、托育服务（北欧与法国投入最重；效果评估存在真实争议：多数研究发现补贴对生育率的提振有限且随时间衰减，如实并列是本课纪律）；<strong>②延迟退休与养老金参数调整</strong>——提高领取年龄、调整替代率（多国已实施，伴随显著的社会博弈）；<strong>③移民补充劳动力</strong>——对人口结构的即时效果明确，但受社会接受度约束；<strong>④生产率对冲</strong>——自动化与 AI 替代收缩的劳动投入（第<a href="../15-newtech/">15章</a>的框架，效果取决于技术扩散速度）。</p>
+      <p class="ctx">先行经济体的另一个重要样本是<strong>资产价格与人口结构的关系</strong>：日本 1990 年代后地价长期下行与人口拐点在时间上重叠，学界对因果权重仍有争论（人口只是多因素之一，第<a href="../10-housing/">10章</a>的框架适用）——这个案例提醒我们两点：人口变量重要，但"人口决定一切"的单因叙事同样是过度简化；对普通家庭的启示不是对楼市下注（本站不做任何走势判断），而是把养老与照护准备列为财务规划中的确定项：养老金体系的参数（退休年龄、替代率）历史上会被调整，个人储备的"第二、第三支柱"意识越早建立越从容（通识框架见第<a href="../17-asset/">17章</a>，不构成产品推荐）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://population.un.org/wpp/">联合国《世界人口展望》WPP（英文，各国老龄化进程与情景预测，实测可达）</a> · OECD Family Database（英文，生育支持政策跨国比较；官网对工具反爬、浏览器可达，站内检索口径） · <a href="https://datatopics.worldbank.org/world-development-indicators/">世界银行 WDI（英文，抚养比等指标序列，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、长期议题三：气候与绿色转型</h2>
+    <p class="chapter-sub">气候是唯一把"外部性"变成全球硬约束的议题——转型的成本与机会都写进了各国政策文本</p>
+
+    <article class="view">
+      <h3>机制与权威口径：从外部性到碳定价</h3>
+      <p class="ctx">经济学视角下，气候变化是教科书级的<strong>负外部性</strong>问题：排放的社会成本没有进入排放者的私人成本，市场因此"失灵"，需要政策工具矫正（曼昆教科书以庇古税开篇讲外部性，📘标准口径）。主流政策工具两类：<strong>碳定价</strong>（碳税或碳排放权交易体系——把外部成本内部化为价格信号）与<strong>管制与补贴</strong>（能效标准、可再生能源支持）。中国的官方框架是"双碳"目标（2030 年前碳达峰、2060 年前碳中和，官方文件表述）与全国碳排放权交易市场建设（生态环境部口径）；国际层面，《巴黎协定》框架下各国提交国家自主贡献（NDC），IMF 与世行定期评估转型的宏观经济影响（机构报告口径，注明期次）。</p>
+      <p class="ctx">不确定性：①转型<strong>速度路径</strong>不确定——技术降本速度（光伏与电池成本的历史下降超出多数预测）、政策力度、地缘因素都会改变节奏；②<strong>宏观影响估计分歧大</strong>——转型投资的拉动效应与化石资产搁浅的代价，不同模型的量化结果差异显著（IMF/NGFS 等机构用多情景呈现，正是承认这一点）；③"绿色就业"的净效应（新岗位创造与旧岗位消失的差）仍在研究中。与你有关的部分：能源价格与电价机制改革影响生活成本；新能源、电网、储能等产业链的扩张改变就业地图（职业选择的方法见职场课）；家庭层面的响应是能效决策（家电、车辆、住房保温）这类确定性划算的选择，而不是"绿色概念"的资产炒作——后者属于第<a href="../19-rumor/">19章</a>的话术范畴。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理》外部性与庇古税章节（📘教科书标准口径） · <a href="https://www.gov.cn/zhengce/">中国政府网·政策文件库（"双碳"目标与绿色转型官方文件检索）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF 出版物页（英文，气候宏观影响研究入口；官网对工具限流、浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、长期议题四：技术变革与 AI</h2>
+    <p class="chapter-sub">通用目的技术的扩散规律：潜力巨大、时滞漫长、分配不均——三条都别忘</p>
+
+    <article class="view">
+      <h3>机制与权威口径：AI 进入增长账本的方式</h3>
+      <p class="ctx">技术变革影响经济的路径在第<a href="../13-growth/">13</a>、<a href="../15-newtech/">15章</a>已系统讲过：作为<strong>通用目的技术</strong>（蒸汽机、电力、信息技术、AI 同属一类），它通过提升全要素生产率进入增长账本，但扩散需要互补投资（电网之于电力、组织流程之于 AI）与技能更新，因此存在著名的"索洛悖论"时滞——"计算机无处不在，唯独在生产率统计中看不见"。AI 的当前研究口径：IMF 的专题研究估算全球相当比例的就业岗位受到 AI 影响（"暴露度"概念——暴露不等于失业，影响方向取决于任务性质与互补性），并给出生产率提升的情景区间；布鲁金斯等智库（🏷标注）持续跟踪政策研究；学界（如 Acemoglu 等的增长效应估算，NBER 工作论文口径，英文）给出的长期增长贡献估计存在较大分歧——<strong>把分歧如实呈现，是本课对"AI 改变一切"与"AI 没什么用"两种叙事的共同回答</strong>。</p>
+      <p class="ctx">不确定性：①能力演进速度超出机构预测的历史惯例（无论乐观还是悲观方向）；②生产率统计能否及时捕捉 AI 贡献存在测量难题（免费服务、质量改进的计入问题，第<a href="../15-newtech/">15章</a>）；③分配效应——技术红利在资本与劳动、行业与地区间的分配，是政策辩论的焦点（OECD 与 IMF 均有专题研究，反爬时注明官网检索）。与你有关的部分：这是四个议题中<strong>个人可响应性最强</strong>的一个——技能投资的决策不必等待宏观共识：学会使用 AI 工具、保持"人类比较优势"领域（复杂沟通、判断责任、跨域整合）的深度，是任何情景下都不后悔的策略（具体方法属职场与 AI 应用课程的范围，本课只给宏观认知）。同时警惕两类话术："AI 将让大量人口永久失业"的恐慌版与"学会 AI 月入十万"的卖课版——前者是第<a href="../19-rumor/">19章</a>的漏斗结构，后者是常识性诈骗。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.imf.org/en/Topics/artificial-intelligence">IMF 人工智能专题页（英文，AI 与就业/生产率研究汇总；官网对工具限流、浏览器可达）</a> · <a href="https://www.brookings.edu/topics/artificial-intelligence/">布鲁金斯学会 AI 专题（英文，🏷智库标注，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、中国经济转型主线与全球化重构</h2>
+    <p class="chapter-sub">把四个议题放回中国语境：官方文本的转型叙事 + 国际机构的碎片化研究</p>
+
+    <article class="view">
+      <h3>转型主线：官方文本怎么表述</h3>
+      <p class="ctx">中国经济的长期转型在官方文本中有一条稳定的叙事主线（以下均为公开文件的表述框架，原文可在政府文件库检索）：<strong>从高速增长转向高质量发展</strong>——增速换挡、结构优化、动能转换；<strong>新旧动能转换</strong>——传统基建与地产驱动的边际减弱，科技创新、先进制造、绿色产业的比重上升；<strong>双循环</strong>——以国内大循环为主体、国内国际双循环相互促进的发展格局；以及近年的新表述如"新质生产力"（官方定义的内涵以权威解读为准，第<a href="../18-policy/">18章</a>教过新概念的查证方法）。读这条主线的正确方式：它是<strong>十年级别的方向陈述</strong>，配套的是五年规划指标与年度政策文本——既不要读成"下个季度某板块起飞"的信号，也不要因为它进展有波折就否定方向本身（转型期的阵痛与结构调整成本，第<a href="../09-employment/">9</a>、<a href="../13-growth/">13章</a>的框架都适用）。</p>
+      <p class="ctx">国际语境的另一半是<strong>全球化重构</strong>：IMF 提出"地缘经济碎片化"（geoeconomic fragmentation）概念并量化了贸易与投资限制升级的潜在产出成本（IMF 专题研究口径，英文；其官网对抓取工具限流，浏览器可达，引用注明期次）；WTO 与 UNCTAD 的年度报告持续跟踪贸易政策壁垒的变化（两机构官网对工具反爬，引用报告时注明届次与标题）。研究共识的部分是：碎片化有实际的效率成本；分歧的部分是：速度与最终形态。对普通读者的意义：外贸链条上的就业、跨境商品的价格、留学与出境游的成本都会受贸易与汇率环境影响（第<a href="../05-exchange/">5</a>、<a href="../11-trade/">11章</a>），但响应方式仍是技能与财务韧性，而非对新闻头条的应激反应。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网·政策文件库（五年规划纲要与转型主线官方文本检索）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF 出版物与专题页（英文，地缘经济碎片化研究入口；官网对工具限流、浏览器可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>把转型读进你的决策：三个不依赖预测的动作</h3>
+      <p class="ctx">转型叙事容易让人产生两种无效反应：要么激动（"新质生产力=某板块要起飞"——这属于第<a href="../19-rumor/">19章</a>粉碎过的漏斗），要么无感（"都是口号，与我无关"）。有效的第三种反应是把方向陈述翻译成<strong>不依赖预测的具体动作</strong>。动作一：<strong>技能结构对冲</strong>——长期方向指向科技制造、绿色产业、数字服务与养老健康，无论你的行业是否在其中，"本行业×数字化"的复合能力在任何情景下都是加分项（技能投资的方法属职场课范围，本课只给宏观依据）。动作二：<strong>区域与行业的分散意识</strong>——人口流动与产业转移意味着不同城市、不同行业的景气会持续分化，家庭的收入来源若高度绑定单一区域单一行业，等于把鸡蛋放在同一个慢变量里（分散化通识见第<a href="../17-asset/">17章</a>）。动作三：<strong>政策文本的定向跟踪</strong>——与你行业相关的五年规划专项规划、部委落实文件（如能源、制造、养老服务业的专项规划），每年花两小时读一遍原文，你对所在行业未来五年的理解会超过大多数同行（四步法见第<a href="../18-policy/">18章</a>）。</p>
+      <p class="ctx">三个动作的共同特征：<strong>它们不需要你对未来下任何判断</strong>——技能对冲在乐观与悲观情景下都成立，分散意识降低的是波动而非收益预期，定向跟踪积累的是理解而非仓位。这是慢变量时代的决策美学：放弃"猜对方向"的执念，转向"任何方向下都不太差"的结构。宏观素养的最终形态不是预测能力，而是这种结构性的从容。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网·政策文件库（行业专项规划与落实文件检索）</a> · 曼昆《经济学原理》分散化与风险章节（📘教科书通识口径，教材引用非商业推广）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、宏观学习的三层路线：入门→进阶→日常</h2>
+    <p class="chapter-sub">结课不是学习的终点，是自学系统的起点——三层路线各配明确的资源与检验标准</p>
+
+    <article class="view">
+      <h3>三层路线图：每层都有可检验的产出</h3>
+      <p class="ctx"><strong>第一层·入门（0-3 个月）：建立概念地基。</strong>资源：一本经典入门教科书（曼昆《经济学原理》宏观分册是最通行的选择，📘教材推荐非商业推广；图书馆与二手渠道即可）+ 本课二十章作为中文导读。方法：教科书每读一章，回到本课找对应章节对照（GDP→第<a href="../01-gdp/">1</a>章、货币→第<a href="../04-money/">4</a>章、开放经济→第<a href="../05-exchange/">5</a>章）。检验标准：能用大白话向朋友解释"通胀、利率、汇率各是什么、怎么传导到你"——解释不清的回去重读。<strong>第二层·进阶（3-12 个月）：读原始报告。</strong>资源：央行《货币政策执行报告》（季度）、统计局月度数据解读、IMF WEO 的概要章节（英文，读摘要与图表即可起步）。方法：用第<a href="../18-policy/">18章</a>的四步法逐份精读，做措辞对比笔记。检验标准：新一期报告发布后，你能在权威解读出来之前说出"这期与上期比，变化了什么"。</p>
+      <p class="ctx"><strong>第三层·日常（长期）：建立自己的指标看板。</strong>资源：国家统计数据库（data.stats.gov.cn，免费）、央行官网数据发布、海关总署月度数据；工具用一张电子表格就够。方法：选 6-8 个与你生活半径最相关的指标（CPI、城镇调查失业率、居民收入增速、LPR、社会融资规模等），每月数据发布日花十分钟更新表格、写一行观察。检验标准：一年后你拥有一条自己的"个人宏观时间序列"——再面对任何耸动标题，你的第一反应是查自己的账本（第<a href="../16-indicator/">16章</a>的五问框架继续适用）。三层路线的共同纪律：<strong>只积累理解，不积累仓位冲动</strong>——本课程自始至终不构成投资建议，学习宏观的目的恰恰是把财务决策从新闻驱动改回框架驱动。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://data.stats.gov.cn/">国家统计数据库（免费数据序列，实测可达）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（货币政策执行报告与金融数据发布）</a> · 曼昆《经济学原理》（📘入门教材推荐，非商业推广）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、30 天行动方案：把二十章变成习惯</h2>
+    <p class="chapter-sub">每周约一小时、四个动作——用最小的成本让宏观素养从"读过"变成"在用"</p>
+
+    <article class="view">
+      <h3>四周计划：跟一次数据、读一篇解读、记一页笔记、做一次复盘</h3>
+      <p class="ctx">行动方案的设计原则是"低强度可持续"——每天刷财经号是高强度不可持续的坏方案（第<a href="../19-rumor/">19章</a>的信息节食），每周固定的小动作才能长进生活：<strong>第一周·建立数据入口</strong>——在国家统计局官网找到"数据发布"栏目与发布日历，收藏央行官网；在本月最近的一个数据发布日（如 CPI 或金融数据发布），亲手找到原始新闻稿读一遍。<strong>第二周·跟一次发布</strong>——选一个发布日完整跟一次：读官方新闻稿→读统计局/央行的解读文章→在自己的笔记里用"数值+机构+时点"格式抄录三个数字。<strong>第三周·读一份政策文本</strong>——找最近的《政府工作报告》或央行季度报告，用四步法（定位→找锚→对比→翻译）过一遍，重点完成"翻译"：写出两条与你家庭有关的一句话结论。<strong>第四周·做一次季度复盘</strong>——回看前三周的笔记，回答三个问题：哪个数字让我意外？我原来的哪个印象被修正了？下个月我想固定跟踪哪两个指标？</p>
+      <blockquote class="q">30 天行动方案的完整循环：第 1 周建入口（统计局发布日历+央行官网）→ 第 2 周跟发布（新闻稿+官方解读+三数字笔记）→ 第 3 周读文本（四步法+两条"与我有关"翻译）→ 第 4 周做复盘（意外/修正/固定跟踪项）。此后每月重复 2-4 周的动作，一年即拥有个人指标看板。<span class="qsrc">——本章方法框 · 30 天宏观习惯启动计划（教学整理）</span></blockquote>
+      <table class="cmp">
+        <tr><th>周次</th><th>动作</th><th>用时</th><th>产出物</th></tr>
+        <tr><td>第 1 周</td><td>收藏发布日历，读一份原始新闻稿</td><td>约 40 分钟</td><td>数据入口书签×2</td></tr>
+        <tr><td>第 2 周</td><td>跟一次数据发布（稿+解读+抄录）</td><td>约 60 分钟</td><td>三行"数值+机构+时点"笔记</td></tr>
+        <tr><td>第 3 周</td><td>四步法读一份政策文本</td><td>约 60 分钟</td><td>两条"与我有关"翻译</td></tr>
+        <tr><td>第 4 周</td><td>复盘三问</td><td>约 30 分钟</td><td>下月固定跟踪指标×2</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·数据发布栏目（发布日历与新闻稿，实测可达）</a> · <a href="http://www.mof.gov.cn/">财政部官网（预算与财政数据的落实级读物，实测可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>资源清单：结课后的十张书签</h3>
+      <p class="ctx">把三年路线图压缩成一张可以今天就建好的书签表（全部免费，无任何商业推广）：<strong>中国数据四件套</strong>——①国家统计局·数据发布（stats.gov.cn/sj/zxfb/，月度数据与发布日历的第一出处）；②国家统计数据库（data.stats.gov.cn，长序列自查）；③中国人民银行官网（pbc.gov.cn，货币政策执行报告、LPR 与金融统计数据）；④财政部官网（mof.gov.cn，预算报告与专项债数据）。<strong>政策文本两件套</strong>——⑤中国政府网·政策文件库（gov.cn/zhengce/，中央文件与五年规划全文检索）；⑥国家法律法规数据库（flk.npc.gov.cn，经济相关法律条文原文）。<strong>国际三件套</strong>——⑦IMF《世界经济展望》出版物页（注明期次引用；官网对抓取工具限流、浏览器可达）；⑧BIS 统计页（全球债务与信贷序列）；⑨世界银行 WDI 数据库（跨国发展指标）。<strong>入门教材一件</strong>——⑩曼昆《经济学原理》或《宏观经济学》（📘教材推荐非商业推广，图书馆与二手渠道即可）。</p>
+      <p class="ctx">使用建议：书签表的价值不在收藏而在<strong>调用频率</strong>——每月至少打开①③各一次（数据发布与货币政策报告节奏），每年至少打开⑤两次（两会报告与年末中央经济工作会议通稿，读法见第<a href="../18-policy/">18章</a>），⑦⑧⑨按需查阅国际背景。把这张表放进浏览器书签栏的同一个文件夹，命名"宏观看板"——这个文件夹就是你从这门课毕业时带走的全部装备：不需要付费社群，不需要"大师"陪伴，官方与权威机构的第一手信息本来就向所有人敞开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://data.stats.gov.cn/">国家统计数据库（实测可达）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（实测可达）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS 统计页（英文，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、结课：一页概念地图与学习误区粉碎</h2>
+    <p class="chapter-sub">二十章的知识串成一张图；最后粉碎三个关于"学宏观"本身的误区</p>
+
+    <article class="view">
+      <h3>全课程概念地图：五个变量、两只手、三条长期线、四个应用</h3>
+      <p class="ctx">把二十章压缩成一页地图：<strong>五个核心变量</strong>（第 1-5 章）——GDP 衡量总量、CPI 衡量物价、利率衡量资金价格、货币与信用是血液、汇率连接内外；<strong>两只手</strong>（第 6-10 章）——货币政策与财政政策是"看得见的手"，经济周期是"看不见的手"的波动，就业与房地产是政策最关注的两个民生界面；<strong>三条长期线</strong>（第 11-15 章）——国际贸易与金融体系构成全球维度，增长核算解释国家贫富，人口与技术在最深的时间尺度上决定一切；<strong>四个应用</strong>（第 16-20 章）——读数据（16）、看传导（17）、读政策（18）、防谣言（19）、成习惯（20）。这张地图的使用方式：遇到任何财经新闻，先定位它属于哪一格——大多数新闻只在"短期波动"格子里，而你的决策应该主要参考"长期线"格子（第<a href="../19-rumor/">19章</a>三问过滤器的地图版）。</p>
+      <div class="fig"><img src="../assets/img-20-2.png" alt="一张发光的抽象概念地图：中央一个几何地球，周围分四组连接的节点群（五个变量方块、两只手的图形、三条长线、四个应用圆环），节点间以细光线相连形成网络" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《宏观经济学》教科书章节结构（📘长期/短期/开放经济的经典划分框架） · <a href="../">本课程首页目录（二十一章总览）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于学宏观的三个误区</h3>
+      <p class="ctx"><strong>误区一："学宏观就要每天看财经新闻。"</strong>恰恰相反——高频刷新闻积累的是情绪不是知识（第<a href="../19-rumor/">19章</a>的信息节食）；宏观素养来自主动阅读原始文本与积累自己的时间序列，每周一次的深读胜过每天一小时的刷屏。<strong>误区二："学宏观是为了炒股/投资赚钱。"</strong>这是最危险的误读：宏观变量到资产价格的传导充满时滞与不确定性，专业机构的宏观择时长期成绩也很差（相关研究口径见第<a href="../17-asset/">17章</a>与股票课）；本课教宏观是为了理解世界、管理家庭韧性与免疫恐慌营销——把它当"投资秘籍"用的人，往往先交学费。本站不构成任何投资建议。<strong>误区三："宏观离普通人太远，学了没用。"</strong>反例俯拾皆是：懂 CPI 与实际利率，就不会在"存款搬家"话术前慌不择路；懂三元悖论，就不会相信"必须跟随放水"；懂发布日历，就能在数据公布前对"独家爆料"免疫——宏观素养的回报不是暴富，是<strong>少被收割</strong>，而"少被收割"复利三十年，是普通人能获得的最高确定性的财务收益之一。</p>
+      <p class="ctx">最后的边界提示（全课程适用）：本课程提供的是通识框架，不能替代专业帮助——涉及大额资产配置、税务安排请咨询持牌专业人士；涉及劳动权益请走法律渠道（第<a href="../18-policy/">18章</a>与相关课程的合规框架）；涉及家庭财务危机，先做第<a href="../17-asset/">17章</a>的韧性清单再谈其他。结课快乐——从今天起，你读财经新闻的方式已经和三十天前不一样了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理》十大原理（📘教科书：人们面临权衡取舍的思维方式） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读栏目（官方解读示范，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s10">
+    <h2 class="chapter-title">十、结课自测</h2>
+    <p class="chapter-sub">能画出概念地图、能启动 30 天计划，这一章（和这门课）才算完成</p>
+    <div class="checklist">
+      <h4>📋 结课自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>机构谈未来的"三件套"是什么？为什么看情景与修订比看单点数字更有信息量？</li>
+        <li>慢变量与短期波动的区别是什么？"地形与天气"的比喻对应课程里哪些章？</li>
+        <li>债务成为宏观问题的条件是什么？为什么"可持续阈值"没有统一答案？</li>
+        <li>为什么说老龄化是四个议题中"最确定的长期约束"？它进入经济账本的四条线是什么？</li>
+        <li>气候问题的经济学本质是什么？碳定价与管制补贴两类工具各怎么起作用？</li>
+        <li>绿色转型的三个不确定性是什么？家庭层面的理性响应与"绿色概念炒作"的区别在哪？</li>
+        <li>通用目的技术的扩散规律是什么？"索洛悖论"说了什么？AI 就业"暴露度"为什么不等于失业？</li>
+        <li>官方转型叙事的主线有哪几个关键词？读它的正确期待是什么？</li>
+        <li>"地缘经济碎片化"是谁提出的概念？研究共识与分歧各在哪里？</li>
+        <li>三层学习路线的每层资源、方法与检验标准是什么？你现在在哪一层？</li>
+        <li>30 天行动方案的四周动作各是什么？本周你完成了哪一步？</li>
+        <li>你的个人指标看板打算固定跟踪哪 6-8 个指标？为什么是它们？</li>
+        <li>一页概念地图的四个分组是什么？用一条今天的新闻实际定位一次。</li>
+        <li>三个学习误区里，你入学时最接近哪一个？现在怎么反驳它？</li>
+        <li>什么情况下你需要超出本课程的专业帮助？各找什么渠道？</li>
+        <li>终极自测：把"这门课教了我什么、改变了我的什么习惯"讲给一个没学过的人听，限时三分钟。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>看未来用情景分析不用单点预测——机构报告读"情景+假设+修订"三件套，看修订方向胜过看绝对数字；四个长期议题按"机制→权威口径→不确定性→与你有关"四步掌握：债务是中性会计事实、增速长期超收入才是问题、阈值无统一答案；老龄化是最确定的慢变量，通过劳动供给、抚养比、储蓄率、需求结构四条线进入账本；气候是负外部性的全球硬约束，碳定价与管制是两大工具，转型速度路径不确定；AI 是通用目的技术，潜力、时滞、分配不均三条并存，个人可响应性最强——技能投资在任何情景下都不后悔；中国转型主线（高质量发展、新旧动能、双循环）是十年级方向陈述，全球化重构看"地缘经济碎片化"研究口径；学习走三层路线（教科书入门→原始报告进阶→指标看板日常），30 天方案每周一个小动作：建入口、跟发布、读文本、做复盘；结课地图=五变量+两只手+三条长期线+四个应用，遇新闻先定位格子；学宏观不是为了投资赚钱，是为了少被收割——本站全课程不构成投资建议，专业事务找持牌与法定渠道。
+  </div>
+
+  <nav class="pager">
+    <a href="../19-rumor/"><span class="dir">← 第19章</span>宏观谣言粉碎与反焦虑</a>
+    <a href="../"><span class="dir">课程完结 🎓</span>返回课程首页</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第20章 · 依据 IMF（世界经济展望、财政监测、AI 与地缘经济碎片化专题）、BIS、世界银行、联合国《世界人口展望》、国家统计局、中国人民银行、财政部、中国政府网等官方数据与报告，曼昆等经典教科书及相关学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

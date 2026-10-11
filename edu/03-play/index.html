@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 游戏的力量：玩就是学习 — 儿童教育课</title>
+<style>
+  :root{--accent:#047857;--accent-deep:#065f46;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.cmp{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">儿童教育课 · 第3章 · 第一部分 · 理解孩子的发展</div>
+  <h1>游戏的力量：玩就是学习</h1>
+  <p>美国儿科学会专门发临床报告为"玩"正名：游戏训练执行功能、社交与情绪调节——各年龄段玩什么、玩具怎么选、家长怎么陪、"过度安排"为什么反而亏</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../02-attach/">← 第2章：依恋与安全感</a>
+    <a href="../04-lang/">第4章：语言发展与亲子阅读 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">官方口径</a>
+    <a class="anchor" href="#s2">游戏怎么升级</a>
+    <a class="anchor" href="#s3">玩训练什么</a>
+    <a class="anchor" href="#s4">自由游戏与早教班</a>
+    <a class="anchor" href="#s5">户外与冒险</a>
+    <a class="anchor" href="#s6">玩具怎么选</a>
+    <a class="anchor" href="#s7">家长怎么陪玩</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供家庭教育参考，不构成医疗、心理或法律建议。每个孩子的发育节奏、气质与家庭环境差异很大，文中建议需<strong>个体化调整</strong>；若对孩子的运动、社交或情绪发育有疑虑，请及时到正规医疗机构儿童保健科或发育行为儿科寻求<strong>专业评估</strong>，本站只科普一般规律，不做任何诊断。本章不推荐任何具体培训机构、玩具品牌或商品，提到的研究均注明出处与已有争议。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出"玩就是学习"背后的三家权威机构口径（AAP、WHO、教育部）；②按年龄段讲出游戏类型的升级路线（功能游戏→假装游戏→规则游戏）；③解释游戏训练执行功能与社交能力的机制，同时诚实说出证据的边界；④分辨自由游戏、引导式游戏与直接教学各自适合什么；⑤说出 WHO 身体活动指南的分年龄建议；⑥用"开放式材料"原则挑玩具，识破"益智"营销；⑦掌握陪玩的正确姿势：跟随而不是指导。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>0-6 岁家长重点读第一至五节；学龄儿童家长重点读第三、四、七节（游戏并没有在上学后失去价值）。如果你正被"别人家孩子已经报了三四个班"的压力裹挟，直接读第四节和第八节。章末自查清单可以讲给家人听——尤其是认为"玩是浪费时间"的那位。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、"玩就是学习"：不是观点，是官方口径</h2>
+    <p class="chapter-sub">美国儿科学会、世界卫生组织、中国教育部——三家机构罕见地站在同一边</p>
+
+    <article class="view">
+      <h3>AAP 专门发临床报告：游戏不是学习的对立面</h3>
+      <p class="ctx">2018 年，美国儿科学会（AAP）在旗舰期刊《Pediatrics》发布临床报告《游戏的力量》（The Power of Play），呼吁儿科医生向家长开具"玩耍处方"。报告的核心结论是：游戏与学习<strong>不是二选一</strong>，游戏本身就是儿童最重要的学习方式——它促进大脑执行功能发展、帮助孩子应对压力、巩固亲子纽带。更早的 2007 年，Ginsburg 受 AAP 委托撰写的报告《游戏在促进儿童健康发展中的重要性》就已指出：自由游戏是儿童认知、身体、社交与情绪福祉的必需品，而不是"学有余力的消遣"。</p>
+      <p class="ctx">为什么儿科医生的专业组织要专门为"玩"发声？因为临床观察到了一种失衡：越来越多的孩子日程被结构化课程填满，自由玩耍的时间被系统性挤占，而与此同时，焦虑、睡眠不足与运动不足的问题在上升。AAP 的立场翻译成大白话就是：<strong>把玩的时间还给孩子，这不是纵容，是医学建议</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://publications.aap.org/pediatrics/article/142/3/e20182058/81592">AAP 临床报告 The Power of Play（2018，英文，官方页对脚本访问有限制，浏览器可达）</a> · <a href="https://doi.org/10.1542/peds.2006-2697">Ginsburg（2007）The Importance of Play，Pediatrics（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>WHO 与教育部：早期学习机会、以游戏为基本活动</h3>
+      <p class="ctx">世界卫生组织、联合国儿童基金会与世界银行 2018 年联合发布的《养育照护框架》把"早期学习机会"列为儿童早期发展五大要素之一（其余四个是良好健康、充足营养、回应性照护、安全保障）——注意，框架强调的早期学习机会，主要形式恰恰是<strong>与孩子互动、玩耍、说话、唱歌</strong>，而不是提前上课。UNICEF 的"Early Moments Matter"专题同样把游戏称为儿童的学习引擎。</p>
+      <p class="ctx">中国官方口径也一致：教育部《3-6岁儿童学习与发展指南》明确规定幼儿园教育"以游戏为基本活动"，反对为了追求知识技能而进行强化训练的"小学化"倾向；《幼儿园工作规程》与历年学前教育政策文件反复重申这一原则。换句话说，<strong>"幼儿的学习以直接经验为基础，在游戏和日常生活中进行"是国家幼教指导文件的白纸黑字</strong>，不是某个育儿流派的偏好。那些把学龄前孩子日程排满学科训练班的做法，恰恰是与官方指南相悖的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.who.int/publications/i/item/9789241514064">WHO/UNICEF/世界银行《养育照护框架》（2018，英文）</a> · <a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》全文（正式颁发稿）</a> · <a href="https://www.unicef.org/early-moments-matter">UNICEF Early Moments Matter 专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么大人总低估"玩"：因为它不像学习</h3>
+      <p class="ctx">大人对游戏的偏见有一个认知根源：<strong>学习在成人的想象里是"坐着、安静、有教材、可考核"的</strong>，而游戏看起来正相反——吵闹、混乱、没有产出。于是"玩"被归入"学习的反面"。但发展科学对游戏的界定恰恰抓住了它的学习本质：游戏是<strong>内在动机驱动</strong>（孩子自己想玩，不是被要求）、<strong>过程导向</strong>（目的就在玩的过程里，不为外在奖赏）、<strong>主动参与</strong>（不是被动观看）、并且允许<strong>自由探索与试错</strong>的活动。</p>
+      <p class="ctx">对照这四个特征你会发现一个扎心的事实：很多孩子坐在课堂里是被动的、为了奖赏的、不允许试错的——那反而更不像"学习"。大脑科学也支持这一点：主动探索时的多巴胺系统与记忆编码效率，显著优于被动听讲（这也是<a href="../01-brain/">第1章</a>讲过的"用进废退"逻辑）。<strong>孩子不是在学习和玩之间切换，他们是在玩的过程中学习</strong>——搭积木在学物理与几何，过家家在学社会角色与语言，追逐打闹在学情绪调节与身体控制。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/play">APA 心理学词典 play 相关词条（英文）</a> · <a href="https://doi.org/10.1037/a0031817">Lillard 等（2013）假装游戏与儿童发展证据综述，Psychological Bulletin（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>游戏与压力：孩子的天然减压阀</h3>
+      <p class="ctx">AAP《游戏的力量》报告里有一条常被家长忽略的结论：游戏是儿童<strong>应对压力</strong>的重要机制。孩子的世界并不比成人轻松——新环境、分离、冲突、失败、被比较，都是真实的压力源，但他们既不会喝酒也不会找人倾诉。游戏就是他们的倾诉方式：孩子在玩过家家时反复演练"去医院打针"，在搭好的城堡被推倒后一次次重建，其实是在安全的环境里<strong>预演和消化现实的焦虑</strong>——这在游戏治疗领域被称为"游戏的象征性排练"功能。你会发现孩子经历大事件（搬家、入园、弟妹出生）后，游戏主题常常围着那件事转，这不是巧合，是他在自我疗愈。</p>
+      <p class="ctx">反过来，当自由游戏被压缩到接近零、日程被课程填满时，孩子失去的不仅是学习时间，还有唯一的减压出口——压力没有地方去，就转向睡眠问题、易怒和退缩。哈佛儿童发展中心的毒性压力研究给出了生理机制：长期高压且缺少支持性关系缓冲的环境会持续激活应激系统、损伤发育中的大脑，而<strong>轻松的亲子游戏恰恰是高质量的关系缓冲</strong>——一起笑、一起闹的十五分钟，同时在做减压和储蓄依恋两件事（呼应<a href="../02-attach/">第2章</a>）。所以"孩子最近脾气大、睡不好"，在排查其他原因之余，不妨先看一眼日程表：他的自由游戏时间还剩多少？</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://publications.aap.org/pediatrics/article/142/3/e20182058/81592">AAP The Power of Play（2018，英文，游戏帮助儿童应对压力）</a> · <a href="https://developingchild.harvard.edu/resources/toxic-stress/">哈佛儿童发展中心：毒性压力（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、游戏怎么随年龄升级：从啃玩具到守规则</h2>
+    <p class="chapter-sub">皮亚杰的三阶段框架：游戏类型的进化，就是认知发展的足迹</p>
+
+    <article class="view">
+      <h3>功能游戏→假装游戏→规则游戏：一条清晰的升级线</h3>
+      <p class="ctx">发展心理学家皮亚杰把儿童游戏分为依次出现的三类。<strong>功能游戏（练习性游戏）</strong>：0-2 岁为主，重复动作本身带来的快乐——摇铃铛、扔勺子、爬上滑下、把水倒来倒去，孩子其实在反复"练习"新获得的动作与因果认知。<strong>象征性游戏（假装游戏）</strong>：2-7 岁的高峰，用一物代替另一物、扮演角色——香蕉是电话、纸箱是城堡、"你当宝宝我当妈妈"，这标志着符号思维的诞生，也是语言与想象力的训练场。<strong>规则游戏</strong>：6 岁以后逐渐主导，跳房子、捉迷藏、棋类、球类——有明确规则、有输赢，孩子在其中学习遵守约定、处理竞争与合作。</p>
+      <p class="ctx">这条升级线的实用价值在于：<strong>你可以用它判断"这个玩具/活动适不适合我家孩子现在的阶段"</strong>。给 1 岁孩子买规则复杂的桌游是浪费，给 7 岁孩子只留声光玩具则不够。三类游戏并不是"升级后淘汰旧款"——学龄孩子依然需要跑跳攀爬的功能游戏，青少年和成人也依然会从假装类活动（戏剧、角色扮演、创作）中获益。</p>
+      <p class="ctx">再补一层常被忽略的观察：<strong>同一个孩子身上，三类游戏是并存分层的</strong>——4 岁孩子可能上午玩复杂过家家（象征），下午在小区疯跑半小时（功能），晚上和爸爸下飞行棋输了耍赖（规则萌芽）。升级不是替换，是叠加。所以选活动别只看年龄标签，看孩子当下的状态：需要释放能量时给身体游戏，安静时段给建构和假装，有同伴在场时规则游戏自然发生。另外，社会性维度也有一条平行升级线——从独自游戏、旁观游戏、平行游戏（各玩各的但在彼此旁边）到真正的合作游戏，大约 3 岁前后的孩子"一起玩但互不交流"是完全正常的阶段，不必急着推他去"社交"（入园适应的社交话题见<a href="../02-attach/">第2章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/piaget">APA 心理学词典 Piaget 词条（英文）</a> · 发展心理学教材（如 Berk《儿童发展》）游戏发展章节（书籍）</div>
+    </article>
+
+    <article class="view">
+      <h3>分年龄游戏清单：每个阶段玩什么</h3>
+      <p class="ctx">下表按年龄段给出游戏类型的参考清单（示例性质，孩子节奏各异，前后浮动都正常）：</p>
+      <table class="cmp">
+        <tr><th>年龄段</th><th>典型游戏</th><th>在练什么</th></tr>
+        <tr><td>0-1 岁</td><td>躲猫猫、摇铃、抓握啃咬、抚触游戏、地板上的自由翻身爬行</td><td>因果认知、感官统合、依恋互动（"发球与回球"）</td></tr>
+        <tr><td>1-3 岁</td><td>堆积木、推拉玩具、玩沙玩水、简单假装（喂娃娃吃饭）、涂鸦</td><td>精细动作、符号思维萌芽、词汇爆发期的语言输入</td></tr>
+        <tr><td>3-6 岁</td><td>过家家、角色扮演、搭大型建构、骑滑步车、集体追逐游戏、简单棋类</td><td>想象力、社交协商、轮流与规则意识、大运动</td></tr>
+        <tr><td>6-12 岁</td><td>球类与团队运动、复杂建构与手工、桌游与卡牌、戏剧表演、电子游戏（需内容管理，见<a href="../09-screen/">第9章</a>）</td><td>规则与公平竞争、团队协作、策略思维、专注与坚持</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-03-1.png" alt="分年龄游戏升级示意：从婴儿摇铃、幼儿过家家到学龄儿童团队球类，一条上升的游戏发展路线" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》（五大领域分龄目标）</a> · <a href="https://www.who.int/publications/i/item/9789241549974">WHO《5岁以下儿童身体活动、久坐行为和睡眠指南》（2019，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、游戏到底在训练什么：执行功能、社交与情绪</h2>
+    <p class="chapter-sub">三条证据线，外加一个诚实的证据边界说明</p>
+
+    <article class="view">
+      <h3>执行功能：假装游戏是"大脑健身房"</h3>
+      <p class="ctx">执行功能（工作记忆、抑制控制、认知灵活性）是<a href="../01-brain/">第1章</a>讲过的"大脑指挥系统"，也是预测学业表现的重要指标。哈佛儿童发展中心明确指出：执行功能不是天生的，需要在童年通过<strong>反复的练习性活动</strong>逐步建立——而游戏正是最自然的练习场。想象一个孩子玩"医院角色扮演"：他要记住自己是谁、病人是谁（工作记忆）；想笑场时要绷住、想抢玩具时要忍住（抑制控制）；剧情被同伴改了要随时调整（认知灵活性）——三种能力同时在线训练。</p>
+      <p class="ctx">尤其值得注意的是假装游戏中的"规则内化"：孩子扮演妈妈时，会主动用"妈妈该怎么做"来约束自己的行为——维果茨基称之为儿童"最高水平的自我调节"。一个在教室里坐不住的孩子，在自己发起的游戏里可以专注四十分钟。<strong>这不是注意力缺陷，这是注意力只为主动参与的事服务</strong>——这个观察对<a href="../06-habit/">第6章</a>讲学习习惯时非常关键。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developingchild.harvard.edu/resources/enhancing-and-practicing-executive-function-skills-with-children-from-infancy-to-adolescence/">哈佛儿童发展中心：各年龄段执行功能练习（英文）</a> · <a href="https://dictionary.apa.org/zone-of-proximal-development">APA 心理学词典 zone of proximal development 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>社交与情绪：游戏是人际关系的模拟器</h3>
+      <p class="ctx">和同伴玩，孩子必须处理一连串真实的社会问题：谁当队长？规则有分歧怎么办？新来的小朋友要不要加入？输了想哭怎么办？每一次协商、妥协、拒绝与和解，都是社交能力的实战演习——而这些在成人安排的课堂上很难自然发生。假装游戏还额外训练<strong>心理理论</strong>（理解"别人想的和我不一样"）：扮演他人角色的孩子，是在 literally 练习换位思考。</p>
+      <p class="ctx">情绪调节的训练藏得最深：追逐打闹类游戏（rough-and-tumble play）里，孩子反复体验兴奋→失控边缘→自我拉回的循环，并学习读取对方的信号（"他笑不出来了，我该收力了"）。研究发现这类游戏的分寸感与儿童的情绪调节能力、同伴受欢迎程度正相关。这也回应了一个常见担心：<strong>适度的打闹不是暴力的种子，而是学习控制力量的机会</strong>——当然，需要成人在场把住安全底线（见第五节）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://casel.org/fundamentals-of-sel/">CASEL 社会情感学习框架（英文）</a> · Paquette（2004）父子打闹游戏与儿童社会化的理论综述（学术文献，英文） · 《游戏力》Cohen（观点引用，商业出版物 🏷）</div>
+    </article>
+
+    <article class="view">
+      <h3>诚实的证据边界：相关不等于因果</h3>
+      <p class="ctx">必须如实说明：游戏研究的证据并非铁板一块。Lillard 等人 2013 年发表在《Psychological Bulletin》的权威综述系统审查了假装游戏与儿童发展的证据，结论是：游戏与发展的<strong>相关性证据充分</strong>（爱玩假装游戏的孩子在语言、社交、执行功能测验上表现更好），但<strong>因果证据仍有限</strong>——有可能是发展好的孩子更爱玩，而非玩导致了发展好；部分早期研究的实验设计存在缺陷。</p>
+      <p class="ctx">那为什么我们仍然说"玩就是学习"？三个理由：①<strong>无害且低成本</strong>——自由游戏没有已知风险，被挤占才是风险；②<strong>替代方案更差</strong>——把游戏时间换成被动听课或屏幕时间，证据上没有任何优势，反而有明确的坏处（久坐、近视、注意力问题）；③<strong>机制合理</strong>——执行功能需要练习、社交需要实战，而游戏恰好提供了两者，这条逻辑链本身是稳的。诚实的表述是：<strong>"游戏对发展有益"有强相关证据与合理机制支持，"某种特定玩法必然提升某项智力"则多半是营销</strong>——记住这个区分，第八节的谣言就不难拆了。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1037/a0031817">Lillard 等（2013）The Impact of Pretend Play on Children's Development，Psychological Bulletin（英文）</a> · <a href="https://ies.ed.gov/ncee/wwc/">美国教育部 IES What Works Clearinghouse 循证教育实践数据库（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、自由游戏 vs 结构化早教：被过度安排的童年</h2>
+    <p class="chapter-sub">三种学习方式各有位置，但顺序不能倒</p>
+
+    <article class="view">
+      <h3>自由游戏、引导式游戏、直接教学：一个光谱</h3>
+      <p class="ctx">学习方式不是"玩 vs 学"的二元对立，而是一个光谱。一端是<strong>自由游戏</strong>：孩子完全主导，玩什么、怎么玩、玩多久自己定，成人在场保障安全但不干预。另一端是<strong>直接教学</strong>：成人设定目标、内容、节奏，孩子跟随。中间是近年研究最关注的<strong>引导式游戏（guided play）</strong>：成人设定一个有学习目标的环境或提出一个开放问题（"我们用积木搭一座能过小球车的桥试试？"），但探索过程仍由孩子主导。</p>
+      <p class="ctx">三者的分工很清楚：<strong>幼儿阶段以自由游戏为主、引导式游戏为辅，直接教学占比越小越好</strong>；随着年龄增长，直接教学的比例才逐步上升。研究显示引导式游戏在词汇、数学概念、执行功能上的学习效果不劣于甚至优于直接教学，且孩子的投入度更高——因为它保住了内在动机（这正是<a href="../10-motivation/">第10章</a>自我决定理论讲的自主感）。反过来，学龄前过多的直接教学不仅收益存疑，还可能损伤学习兴趣：被要求"坐好跟读"的 4 岁孩子，学到的不只是知识，还有"学习＝不舒服"的隐性联想。</p>
+      <p class="ctx">引导式游戏的实操长相（示例）：想练数概念，不是拿卡片认数字，而是"开小超市"——积木当商品、纸片当钱，你来当顾客买三样东西；想练空间与物理，不是做练习册，而是"给小球修一条能拐弯的轨道"，用沙发垫和纸筒搭，塌了就一起分析为什么。共同配方是：<strong>大人出环境和目标，孩子出玩法和决定权，出错了让它错——错误本身就是教学内容</strong>。判断你是在"引导"还是已经滑向"教学"，有个简单自检：最近十分钟里，是谁在提问、谁在决定？如果一直是你在指挥，就退半步，把方向盘还回去。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://selfdeterminationtheory.org/theory/">自我决定理论官网：自主/胜任/归属三需要（英文）</a> · <a href="https://ies.ed.gov/ncee/wwc/">IES What Works Clearinghouse（英文）</a> · <a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》（反对"小学化"强化训练）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"过度安排"的代价：时间贫穷与内驱力透支</h3>
+      <p class="ctx">一个工作日：幼儿园放学后书法班，晚饭后英语班，睡前还有识字打卡——这不是虚构，是很多城市学龄前孩子的真实日程表（示例）。发展研究把这种状态称为"过度安排（overscheduling）"，它的代价至少有四笔：<strong>第一笔是自由游戏时间归零</strong>，本节讲的所有游戏收益随之蒸发；<strong>第二笔是自主感透支</strong>，日程全部由大人排定，孩子练习"自己决定做什么"的机会被剥夺，而自主感是内驱力的根（第10章详述）；<strong>第三笔是家庭时间被挤占</strong>，接送取代了共读和闲聊，而后者才是语言与依恋的主粮；<strong>第四笔是疲劳与睡眠</strong>，幼儿的神经系统需要大量"无所事事"的时间来消化一天的刺激。</p>
+      <p class="ctx">需要说清边界：这不是反对一切兴趣班。有质量的结构化活动（孩子自己选的、每周次数克制的）有真实价值——体育班补足运动量、音乐班提供系统训练。判断标准不是"报不报"，而是<strong>三个问题：孩子想去吗？自由游戏和家庭时间还剩多少？孩子的睡眠与情绪状态如何？</strong>任何一项亮红灯，就该做减法。兴趣班取舍的完整框架在<a href="../18-interest/">第18章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://doi.org/10.1542/peds.2006-2697">Ginsburg（2007）：结构化日程过度挤占自由游戏与亲子时间的警示（英文）</a> · <a href="https://www.who.int/publications/i/item/9789241549974">WHO 身体活动与久坐行为指南（英文）</a> · <a href="https://flk.npc.gov.cn/">《中华人民共和国家庭教育促进法》（国家法律法规数据库检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、户外游戏：阳光、奔跑与恰到好处的冒险</h2>
+    <p class="chapter-sub">WHO 给了硬指标；"冒险性游戏"研究给了新视角</p>
+
+    <article class="view">
+      <h3>身体活动的硬指标：WHO 分年龄建议</h3>
+      <p class="ctx">WHO《5岁以下儿童身体活动、久坐行为和睡眠指南》（2019）给出了明确的量化建议：<strong>1 岁以下</strong>：每天多次地板上的互动游戏，尚无屏幕时间；<strong>1-2 岁</strong>：每天至少 180 分钟各种强度的身体活动，1 小时内不应被约束在推车里；不建议屏幕时间；<strong>3-4 岁</strong>：每天至少 180 分钟身体活动，其中至少 60 分钟是中高强度（让孩子喘起来、热起来的那种）；屏幕时间不超过 1 小时，越少越好。学龄儿童的建议口径类似且更高（每天至少 60 分钟中高强度活动）。</p>
+      <p class="ctx">为什么户外格外重要？除了运动量，还有一条独立证据线：<strong>户外自然光照与近视防控</strong>。多项大样本研究发现，每天户外时间充足的儿童近视发生率显著更低，主流解释是自然光强度刺激视网膜多巴胺分泌、抑制眼轴过度增长——这条证据的强度远高于任何"护眼灯""护眼仪"的宣传（视力问题请遵医嘱，此处只讲户外活动的一般性证据）。此外，泥土、树叶、水坑这些"非结构化自然材料"提供的感官刺激丰富度，是任何塑料玩具无法比拟的；雨后的水坑、下坡的草地、能藏身的灌木丛，在孩子眼里的游乐价值远超标准化的塑胶游乐场——条件允许时，把"去公园"升级成"去有土有树有水的地方"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.who.int/publications/i/item/9789241549974">WHO《5岁以下儿童身体活动、久坐行为和睡眠指南》（2019，英文）</a> · 户外光照与近视的队列研究综述（学术文献，英文） · <a href="https://www.unicef.org/early-moments-matter">UNICEF Early Moments Matter（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>冒险性游戏：危险与风险的区分</h3>
+      <p class="ctx">孩子偏爱爬高、滑快、荡高、打闹——家长的本能是"快下来！"。挪威学者 Sandseter 的研究把这类活动称为<strong>冒险性游戏（risky play）</strong>，并归纳出常见类型：高处游戏、高速游戏、危险工具游戏（在监督下用刀锯）、危险元素游戏（水火）、打闹游戏、以及"消失/躲藏"游戏。她的核心观点是：儿童通过这些游戏<strong>系统性地练习风险评估</strong>——他们会自己试探边界，一点点加码，学会判断"这个高度我下得来吗"。把一切风险清零的孩子，反而失去了校准风险的机会，可能在家长看不见的场合做出更冒失的判断。</p>
+      <p class="ctx">实操上要区分两个词：<strong>危险（hazard）</strong>是孩子无法识别的隐患——松动的栏杆、有毒植物、马路，这些必须排除；<strong>风险（risk）</strong>是孩子可以感知并练习应对的挑战——爬一个够得着的攀爬架、从矮墙跳下。家长的正确姿势是"清危险、留风险、在视线内放手"：把环境里的隐患排查干净，然后克制住每一步都伸手保护的冲动。摔倒是童年的一部分——擦破皮的膝盖换来的是对身体能力的真实认知。</p>
+      <p class="ctx">分年龄的放手尺度也可以更具体（示例口径）：1-3 岁，伸手可及的距离内自由活动，重点是防"够不着的危险"（热水、电源、马路沿）；3-6 岁，小区游乐场可以在视线内完全放手，让他自己决定爬多高——你会发现孩子很少超出自己的能力冒险，他们比大人想象的保守；6-12 岁，逐步扩大到"约定范围内的自由"（这个公园你自己玩，我不跟到器械区，每十分钟碰头一次），并开始允许有同伴、无大人的短时游戏。判断尺度是否合适看两条：孩子的实际能力跟上了没有、出事时的兜底（就医方便、孩子会呼救）在不在。<strong>过度保护的风险不是零，它把"摔破膝盖"的小风险，换成了"不会评估风险"的大风险</strong>——这笔账值得每个"快下来"出口之前算一遍。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Sandseter（2007）冒险性游戏分类研究（学术文献，英文） · Brussoni 等（2015）户外冒险游戏与儿童健康系统综述（学术文献，英文） · <a href="https://www.who.int/publications/i/item/9789241549974">WHO 身体活动指南（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、玩具怎么选：开放式材料优于声光电</h2>
+    <p class="chapter-sub">一条选玩具的黄金法则：玩具做的越少，孩子做的越多</p>
+
+    <article class="view">
+      <h3>开放式材料：一块积木的 100 种玩法</h3>
+      <p class="ctx">玩具分两类。<strong>封闭式玩具</strong>只有一种玩法：按下按钮弹出小狗的电子玩具，玩法在出厂时就定死了，孩子的工作只是"触发"。<strong>开放式材料（open-ended materials）</strong>玩法由孩子定义：积木今天是高塔明天是电话；纸箱是飞船、房子、乌龟壳；沙、水、面团、树枝、锅碗瓢盆都是顶级玩具。选择标准就一句话：<strong>玩具做的越少，孩子做的越多</strong>——凡是"玩具自己会动会响会发光，孩子只需要看"的，都在把主动游戏降级为被动消费。</p>
+      <p class="ctx">声光电玩具还有一个隐性代价：<strong>挤占语言互动</strong>。研究发现，与玩传统玩具或图书相比，婴儿玩会说话的电子玩具时，父母发出的词汇更少、孩子发出的声音也更少——玩具在替人说话，而语言发育恰恰需要人对人的对话轮次（<a href="../04-lang/">第4章</a>详述）。同理，宣称"英语早教""智力开发"的电子玩具，没有证据表明优于免费的锅碗瓢盆加一个愿意陪玩的家长。</p>
+      <p class="ctx">一份几乎零成本的开放式材料清单（示例）：各种尺寸的纸盒与纸筒、积木与乐高大颗粒、面团与黏土、沙与水（加几个杯子勺子就是实验室）、毯子与夹子（搭帐篷）、锅碗瓢盆与木勺、旧衣服与帽子（角色扮演服装间）、树枝石头松果（户外采集三件套）、白纸与蜡笔。注意清单的共同点：<strong>没有一件规定了玩法</strong>。给孩子材料之外，还要给两样看不见的东西：时间（不碎片化的整块自由时间，至少三四十分钟才够进入深度游戏）和容忍度（允许乱、允许脏、允许"没用"——弄乱的房间五分钟能收拾，被掐灭的游戏兴致补不回来）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Sosa 等（2016）电子玩具与传统玩具对亲子语言输入影响的对照研究，JAMA Pediatrics（学术文献，英文） · <a href="https://www.healthychildren.org/English/family-life/Media/Pages/default.aspx">HealthyChildren（AAP 家长版）媒体与玩具专栏（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>少而好，胜过多而杂：玩具轮换与环境设计</h3>
+      <p class="ctx">玩具太多反而是问题：研究显示玩具数量少的场景中，孩子对单个玩具的玩耍时间更长、玩法更有创造性——选择过多导致浅尝辄止，这在儿童和成人身上是同一个心理学规律。实操建议：<strong>做减法与轮换</strong>——常设的玩具控制在孩子一两双手数得过来的量，其余收进箱子每月轮换一批，旧玩具会像新玩具一样被重新发明。</p>
+      <p class="ctx">比玩具更重要的是<strong>可及性设计</strong>：材料放在孩子自己拿得到、看得见的高度（低矮开放格胜过带盖大整理箱），因为"看得见"才会"想得起来玩"；留出一块可以弄乱的空间（一角地板、一张可以涂画的桌子），让"开始玩"的门槛降到零。最后提醒安全底线：小零件窒息风险（3 岁以下避免可入口的小物件）、绳带长度、电池仓螺丝固定——玩具安全以国家强制性认证（3C 标志）与年龄标注为准，这是唯一值得认的"官方背书"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Dauch 等（2018）玩具数量与游戏质量关系研究，Infant Behavior and Development（学术文献，英文） · 国家强制性产品认证（CCC/3C）目录中玩具类目要求（市场监管总局官网检索口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、家长怎么陪玩：跟随，而不是指导</h2>
+    <p class="chapter-sub">你最重要，但戏份最少</p>
+
+    <article class="view">
+      <h3>陪玩四原则：孩子在导演位</h3>
+      <p class="ctx">家长陪玩最常见的失败模式是"接管"：积木搭歪了伸手扶正、过家家时纠正"医生不是这么当的"、把自由游戏变成变相上课。接管的那一刻，游戏的四个本质特征（内在动机、过程导向、主动参与、自由探索）就死了三个。正确的姿势可以浓缩为四条原则：<strong>①跟随</strong>——孩子玩什么你玩什么，让他当导演，你当配角；<strong>②描述而不指导</strong>——"你把红色的放在了最上面"（描述）胜过"应该把大的放下面"（指导），描述让孩子感到被看见，同时输入语言；<strong>③忍住纠错</strong>——积木塔倒了是物理学上课，不是失败事故，除非孩子求助，先让他自己试；<strong>④玩真的</strong>——心不在焉地刷着手机"嗯嗯"陪玩，孩子完全能察觉，每天 15 分钟全神贯注的游戏胜过 2 小时的在场缺席。</p>
+      <blockquote class="q">陪玩口诀：他主导，你跟随；他卡住，你搭梯；他成功，你描述；他邀请，你入戏。<span class="qsrc">—— 本站根据 AAP 游戏报告与"发球与回球"互动框架归纳（非官方原文）</span></blockquote>
+      <p class="ctx">一个对照示例（示例场景）：孩子在给积木塔加第七块。指导型家长："放中间！歪了歪了，我帮你扶——你看，应该大的在下面。"塔保住了，游戏死了——后半程是家长在玩，孩子成了助手。跟随型家长："哇，好高。"（描述）塔倒了。"哦！全塌了。"（接住情绪，不评判）孩子笑出声开始重建。"这次你想怎么搭？"（交还方向盘）同样是二十分钟，前者孩子学到"我不行，等大人来"，后者练了抗挫、规划和问题解决——<strong>塌掉的积木塔是玩具能提供的最便宜也最优质的挫折教育</strong>，前提是旁边坐着一个忍得住不伸手的大人。唯一的例外是安全问题和孩子明确求助："帮帮我"说出口时，帮，但帮到"刚好够他自己完成下一步"为止（维果茨基的脚手架：搭在<a href="https://dictionary.apa.org/zone-of-proximal-development">最近发展区</a>里，不代劳）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developingchild.harvard.edu/resources/serve-and-return/">哈佛儿童发展中心：发球与回球互动（英文）</a> · <a href="https://publications.aap.org/pediatrics/article/142/3/e20182058/81592">AAP The Power of Play（2018，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>打闹游戏与"第二个玩伴"的价值</h3>
+      <p class="ctx">追逐、摔跤、举高高这类身体打闹游戏，在传统家庭分工里更多由父亲承担——研究称之为父亲游戏的独特贡献：打闹游戏的兴奋-收放节奏、力量分寸的实时校准，与儿童的情绪调节能力和同伴交往能力正相关。但要点不在性别，而在<strong>风格互补</strong>：孩子需要"温柔安抚型"与"兴奋挑战型"两种游戏风格的组合，谁来提供都可以。单亲家庭、隔代养育家庭不必焦虑——风格可以由不同照护者分担，也可以由同一个人在不同时段切换。</p>
+      <div class="fig"><img src="../assets/img-03-2.png" alt="家长蹲在地毯上跟随孩子玩积木，孩子主导搭建，家长微笑描述，开放式玩具散落周围" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">另一个被低估的玩伴是<strong>兄弟姐妹与同伴</strong>：手足游戏提供了成人无法模拟的"平等谈判"场景（你没有权威可以借用，只能协商）。独生子女家庭不必刻意"补"，小区玩伴、幼儿园同伴、表亲聚会都在提供同类经验。家长要做的不是充当孩子唯一的玩伴——那不现实也不必要——而是<strong>保证孩子每天都有"能自己找到玩伴或自己玩得起来"的时间</strong>。会独处玩耍（self-directed play）本身就是一项需要练习的能力：从 5 分钟开始，逐步给孩子"无聊的自由"，无聊恰恰是创造力的启动器。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Paquette（2004）身体打闹游戏与儿童发展（学术文献，英文） · Fletcher & St George（2015）父亲游戏研究综述（学术文献，英文） · <a href="https://www.unicef.cn/media/8456/file/%E3%80%8A3%E2%80%946%E5%B2%81%E5%84%BF%E7%AB%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%8F%91%E5%B1%95%E6%8C%87%E5%8D%97%E3%80%8B.pdf">教育部《3-6岁儿童学习与发展指南》PDF（UNICEF 中国转载）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于玩的三大误区</h2>
+    <p class="chapter-sub">每一条都让家长的钱包和时间白白流血</p>
+
+    <article class="view">
+      <h3>谣言粉碎：游戏篇三连</h3>
+      <p class="ctx"><strong>误区一："玩是浪费时间，多学点知识才不浪费童年。"</strong>恰恰相反：对学龄前儿童，游戏是被三家权威机构（AAP、WHO、教育部）背书的学习方式，而把游戏时间换成学科训练没有任何证据优势——教育部《指南》明确反对"小学化"的强化训练，AAP 的临床报告直接呼吁把玩耍当作"处方"。知识可以以后补，被剥夺的游戏所损伤的内驱力、社交练习与执行功能训练，补起来难得多。</p>
+      <p class="ctx"><strong>误区二："不上早教班就'输在起跑线'。"</strong>"输在起跑线"本身就是被反复批判的焦虑话术，不是科学概念。诺贝尔经济学奖得主赫克曼对早期干预的著名研究发现：回报率最高的早期投入是<strong>高质量的亲子互动与回应性照护</strong>——恰恰是免费的那种；而对商业早教班的对照研究至今没有发现它们在认知发展上稳定优于高质量的家庭陪伴。把"早教"外包给机构、自己在旁边刷手机的家长，做的是一笔亏本买卖：孩子要的不是课程，是回应。</p>
+      <p class="ctx"><strong>误区三："买'益智玩具'、早教机器人，就能替代陪玩。"</strong>"益智"是营销词汇，不是认证标准。声光电玩具与早教机器人的问题是结构性的：它们提供的是<strong>预设的刺激</strong>，而发展需要的是<strong>主动的探索与真人的互动</strong>。语言习得研究给出了硬证据：幼儿从视频和电子设备中学语言的效率显著低于真人互动（所谓"视频缺陷"效应），会说话的玩具反而挤占了亲子对话。最贵的玩具也替代不了最便宜的家长——这句残酷的话是证据说的，不是本站说的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://heckmanequation.org/">Heckman Equation：早期干预回报率研究（英文）</a> · <a href="https://doi.org/10.1542/peds.2016-2591">AAP《Media and Young Minds》政策声明（2016，英文）</a> · <a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲给家人听，才算学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给认为"玩没用"的那位听试试）</h4>
+      <ul>
+        <li>哪三家权威机构为"游戏即学习"背书？各自的核心文件是什么？</li>
+        <li>游戏的四个本质特征是什么？为什么被动看动画片不满足其中几条？</li>
+        <li>皮亚杰的三类游戏是什么？各自的高峰年龄段与训练价值？</li>
+        <li>为什么三类游戏不是"升级后淘汰"的关系？</li>
+        <li>执行功能的三个成分是什么？假装游戏如何同时训练这三者？</li>
+        <li>维果茨基说假装游戏中的孩子表现出"最高水平的自我调节"，指什么现象？</li>
+        <li>Lillard 2013 综述对假装游戏证据的结论是什么？为什么相关证据有限我们仍要保卫游戏时间？</li>
+        <li>自由游戏、引导式游戏、直接教学的分界在哪里？幼儿阶段三者的合理配比？</li>
+        <li>"过度安排"的四笔代价分别是什么？判断要不要报班的三个问题？</li>
+        <li>WHO 对 1-2 岁、3-4 岁儿童身体活动与屏幕时间的量化建议各是什么？</li>
+        <li>"危险（hazard）"与"风险（risk）"的区别？家长的正确姿势九个字是什么？</li>
+        <li>户外光照与近视防控的证据是什么？为什么它比护眼产品靠谱？</li>
+        <li>选玩具的黄金法则一句话是什么？声光电玩具挤占了什么？</li>
+        <li>为什么"玩具少反而玩得好"？轮换制怎么做？</li>
+        <li>陪玩四原则是什么？"描述而不指导"举一个例子。</li>
+        <li>打闹游戏的研究发现是什么？为什么重点在"风格互补"而非性别？</li>
+        <li>"视频缺陷"效应是什么？它如何拆穿"早教机器人替代陪玩"的说法？</li>
+        <li>赫克曼的研究发现早期投入回报率最高的是什么？这对"花钱买早教"意味着什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>"玩就是学习"是 AAP（临床报告开玩耍处方）、WHO（养育照护框架的早期学习机会）、教育部（《3-6岁儿童学习与发展指南》以游戏为基本活动、反对"小学化"）三家权威的共同口径；游戏沿功能游戏→假装游戏→规则游戏升级，对应感官因果、符号思维、规则与协作的训练；假装游戏是执行功能健身房（工作记忆+抑制控制+认知灵活性同时在线），同伴游戏是社交模拟器，打闹游戏练情绪调节——但如实说：Lillard 2013 综述指出因果证据有限，我们仍要保卫游戏时间，因为它无害、低成本、且替代方案更差；学习方式是一个光谱，幼儿以自由游戏为主、引导式游戏为辅、直接教学越少越好；"过度安排"四笔代价：游戏归零、自主感透支、家庭时间被挤占、疲劳与睡眠——报班三问：孩子想去吗、自由游戏还剩多少、睡眠情绪如何；WHO 硬指标：1-4 岁每天≥180 分钟身体活动（3-4 岁含≥60 分钟中高强度），2 岁以下不建议屏幕；户外光照防近视证据强；冒险性游戏分清"危险要排除、风险要保留"；选玩具一句话：玩具做的越少，孩子做的越多——开放式材料胜过声光电，少而轮换胜过多而杂，3C 认证是底线；陪玩四原则：跟随、描述不指导、忍住纠错、玩真的；打闹游戏与手足同伴不可替代；谣言三连："玩浪费时间"（三家机构打脸）、"不上早教班输在起跑线"（赫克曼：高质量亲子互动回报率最高且免费）、"益智玩具替代陪玩"（视频缺陷效应：真人互动无可替代）。对发育有疑虑→儿童保健科/发育行为儿科专业评估。
+  </div>
+
+  <nav class="pager">
+    <a href="../02-attach/"><span class="dir">← 第2章</span>依恋与安全感：人生前三年的底色</a>
+    <a href="../04-lang/"><span class="dir">第4章 →</span>语言发展与亲子阅读</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>儿童教育课 · 第3章 · 依据教育部《3-6岁儿童学习与发展指南》、WHO《养育照护框架》与《5岁以下儿童身体活动、久坐行为和睡眠指南》、AAP《The Power of Play》（2018）与 Ginsburg（2007）、Lillard 等（2013）、哈佛儿童发展中心、Sandseter（2007）、Heckman Equation 及相关同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供家庭教育参考，不构成医疗、心理或法律建议 · 发育疑虑请到儿童保健科或发育行为儿科做专业评估 · 无机构推荐、无带货链接 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #047857;border-radius:12px;background:#ecfdf5;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#065f46;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#047857;border:1.5px solid #047857;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/edu/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#047857;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#047857;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#ecfdf5;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#065f46;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #047857;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#ecfdf5;}
+.sr-item .sr-c{display:block;font-size:12px;color:#047857;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/edu\/.*/,'/edu/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.EDU_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#047857;border:1.5px solid #047857;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#ecfdf5;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

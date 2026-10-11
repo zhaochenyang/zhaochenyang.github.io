@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第18章 副业与第二曲线 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:var(--accent-deep);border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第18章 · 变化与长线</div>
+  <h1>副业与第二曲线</h1>
+  <p>动手之前先查合同、竞业限制的准确口径、副业光谱怎么选、零工权益与个税怎么算、第二曲线从验证到切换——这一章教你把副业做成资产而不是隐患</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../17-layoff/">← 第17章：裁员与低谷</a>
+    <a href="../19-balance/">第19章：工作生活平衡与倦怠 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">组合式职业</a>
+    <a class="anchor" href="#s2">查合同</a>
+    <a class="anchor" href="#s3">利益冲突与保密</a>
+    <a class="anchor" href="#s4">竞业限制</a>
+    <a class="anchor" href="#s5">副业光谱</a>
+    <a class="anchor" href="#s6">零工权益与税</a>
+    <a class="anchor" href="#s7">第二曲线</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为职业发展教育科普，不构成法律、税务或投资建议。涉及劳动合同条款、竞业限制、商业秘密与个人所得税的具体问题，请以《劳动法》《劳动合同法》等现行法律法规、主管税务机关与人社部门的官方口径为准，必要时咨询执业律师或税务师。本章不教授任何隐瞒雇主、规避竞业义务或从事违法收入的行为；相关词汇仅出现在风险警示与批判语境中。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①动手前完成"合规三查"：翻劳动合同、看员工手册、想清楚利益冲突；②说清竞业限制到底约束谁、最长多久、公司要给什么；③用"技能变现、资产变现、时间变现"三分法给自己的副业选项定位；④知道零工平台干活有哪些官方权益保障口径、劳务报酬和经营所得怎么报税；⑤掌握第二曲线的启动信号、验证步骤与切换决策点；⑥识破"副业月入十万""公司发现不了"这类幻觉。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>如果你已经在做副业，直接从 s2、s3 开始自查，确认自己没有踩线；如果你还在观望，先读 s1 想清楚"为什么做"，再用 s5 的对照表选方向。s7 的五步验证流程建议截图保存，它是把"想做点什么"变成"验证过的小生意"的操作手册。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、组合式职业：为什么副业成了必修课</h2>
+    <p class="chapter-sub">从"一份工作干到退休"到"一篮子收入与技能"——时代变了，但合规底线没变</p>
+
+    <article class="view">
+      <h3>一个周末接单的设计师（示例）</h3>
+      <p class="ctx">小周在一家电商公司做视觉设计，月薪到手一万出头。两年前她开始在周末接插画私单：老客户转介绍，一单八百到三千不等，一个月多则五六千、少则没有。她用这笔钱覆盖了房贷的一半，还在社交平台积累了一万多粉丝——偶尔有品牌方直接找上门。她说副业带给她的最大变化不是钱："以前公司裁员新闻一出来我就心慌，现在我知道自己离开平台也能接到活，心就定了。"（示例为虚构场景，人物为合成形象。）</p>
+      <p class="ctx">小周的故事不是个例。灵活就业、平台零工、内容创作、技能接单——过去十年，"主业+副业"的组合式职业（portfolio career）从少数自由职业者的选择，变成了大量上班族的现实选项。人社部等部门近年多次发文支持和规范新就业形态，国家统计局的就业统计口径也早已覆盖灵活就业人员。副业不再是"不务正业"的代名词，而是一种常见的职业风险管理工具。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（新就业形态与灵活就业政策，检索路径：首页→政策文件）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（就业人员统计口径，检索路径：首页→统计数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>副业的三重价值：钱、技能、抗风险</h3>
+      <p class="ctx">认真拆解，一份健康的副业通常同时提供三种价值。第一是<strong>增量收入</strong>：最直接也最容易理解，但恰恰不该是唯一目标——只盯着钱的副业最容易变成"用健康换现金"的坏交易。第二是<strong>技能与作品</strong>：主业里没机会练的能力，副业是最好的练习场；设计师接私单练谈判，程序员做开源练架构，运营写公众号练内容，这些积累会反哺主业，甚至打开新的职业通道。第三是<strong>抗风险能力</strong>：第17章讲过裁员的冲击，副业相当于职业上的"应急电源"——主业断电时不至于全屋漆黑。</p>
+      <p class="ctx">三重价值里，最被低估的是第二重。收入是波动的，平台规则是变化的，但"我能独立交付一件事并获得报酬"这个能力证明，一旦拿到手就不会贬值。这也是本章后半部分讲"第二曲线"的底层逻辑：副业的终局不是永远打两份工，而是让验证过的第二曲线在合适的时机长成新的主线。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：Bolles《你的降落伞是什么颜色？》（技能可迁移与职业自主性框架，书籍文字引用） · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（职业技能提升行动政策口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>先泼冷水：副业解决不了主业的问题</h3>
+      <p class="ctx">有一种常见的危险动机：主业干得痛苦，想用副业"逃出去"。加班太多、老板不行、晋升无望——于是把希望寄托在下班后的另一摊事上。这种副业大概率两头落空：主业的问题没解决，还在持续消耗你；副业又占掉了本该用于恢复和复盘的时间，做成半吊子。第19章会专门讲倦怠——如果你做副业的动机是"逃离主业"，请先回去读<a href="../17-layoff/">第17章</a>的去留判断和本课程的倦怠章节，先把主业的问题当作独立问题处理。</p>
+      <p class="ctx">相对健康的启动前提是三个：主业基本盘稳定（不处于试用期、绩效危机或裁员风波中）；有一项市场验证过的可卖技能（别人愿意付钱，而不只是自己觉得不错）；有真实可支配的时间余量（每周能稳定拿出 5-10 小时，而不是靠挤占睡眠）。三条缺一条，建议先缓一缓——副业是长跑，不差这几个月。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://hbr.org/2005/01/managing-your-boss">HBR《Managing Your Boss》Gabarro &amp; Kotter（英文，主业关系先理顺的经典框架）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">APA 健康职场专题（英文，工作负荷与恢复研究入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、合规检查第一查：你的劳动合同写了什么</h2>
+    <p class="chapter-sub">兼职条款、规章制度、解除风险——动手之前，先把纸面上的规则读一遍</p>
+
+    <article class="view">
+      <h3>合同里的三个关键位置</h3>
+      <p class="ctx">很多上班族对副业的第一反应是"法律没禁止就能做"。这个理解不完整。我国法律层面确实没有一刀切禁止劳动者兼职，《劳动合同法》第三十九条同时规定：劳动者<strong>同时与其他用人单位建立劳动关系，对完成本单位工作任务造成严重影响，或者经用人单位提出，拒不改正的</strong>，用人单位可以解除劳动合同。也就是说，法律把相当大的裁量空间交给了劳动合同与公司规章制度——你的合同怎么写，很大程度决定了你的副业边界在哪里。</p>
+      <p class="ctx">动手之前翻出劳动合同，重点看三个位置：①<strong>兼职/全职义务条款</strong>——有的合同明确写"未经公司书面同意不得在外兼职"，有的写"不得从事与公司业务存在竞争的活动"，措辞不同边界差很多；②<strong>保密与知识产权条款</strong>——第三章会展开；③<strong>竞业限制条款</strong>——第四章专门讲。合同没写的，去翻员工手册和入职时签过的各类承诺书。依照《劳动合同法》第四条，经过民主程序制定并已向劳动者公示的规章制度，是可以作为管理依据的——"我没看见过"不构成抗辩。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第4条、第39条（现行有效文本）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（劳动合同制度官方解读口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>事业单位、国企与特殊岗位：规则更严</h3>
+      <p class="ctx">上面的讨论针对一般企业劳动关系。如果你身处体制内或特殊岗位，规则要严格得多：公务员依照《公务员法》不得违规兼职取酬；事业单位工作人员到企业兼职、离岗创新创业有专门的政策通道，但必须<strong>经过审批备案</strong>，人社部历年文件对科研人员兼职兼薪有明确的"可以"与"禁止"清单；金融机构从业人员、上市公司董监高等岗位，兼职与对外投资还受行业监管规则约束，很多机构要求逐项申报。</p>
+      <p class="ctx">这一类的共同点是：<strong>默许不存在，审批才算数</strong>。不要拿"同事也在做"当依据——行业监管的追责是个人化的。如果你属于这类身份，正确动作只有一个：查本单位人事部门的正式规定，需要报批的走报批程序，批不下来就不做。副业的机会一直会有，职业生涯的污点很难洗掉。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国公务员法》（兼职取酬禁止性规定）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（事业单位工作人员兼职与创新创业政策，检索路径：首页→政策文件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>如实申报：最被低估的自我保护</h3>
+      <p class="ctx">越来越多公司（尤其是外企和大型民企）设有<strong>利益冲突申报制度</strong>：每年或在岗变动时，员工需要申报对外兼职、投资、亲属关联业务等情况。很多人本能地想"能不报就不报"，这是把申报当成了"申请许可"。换个角度看：申报制度其实是给合规副业发的"通行证"——你的副业与公司业务无关、不占用工作资源，如实申报后获得书面确认，日后任何人拿副业做文章，你手里都有公司知情且认可的记录。</p>
+      <p class="ctx">反过来，如果公司制度要求申报而你隐瞒，即使副业本身干干净净，"未如实申报"这一条就可能单独构成违反规章制度，成为处分甚至解除合同的依据。一条实用原则：<strong>制度要求申报的，一律书面申报并保留回执；制度没有申报通道的，评估后认为存在利益冲突可能的，主动书面告知直属上级与人事部门。</strong>坦荡是成本最低的合规策略。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第39条（严重违反规章制度的解除情形）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（规章制度效力与解除边界的裁判口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、合规检查第二、三查：利益冲突与资源隔离</h2>
+    <p class="chapter-sub">不抢主业的生意、不动主业的资源——时间、设备、数据三条隔离线</p>
+
+    <article class="view">
+      <h3>什么叫利益冲突：三张判断卷</h3>
+      <p class="ctx">"利益冲突"听起来抽象，落到判断上就是三张卷子。第一张：<strong>业务卷</strong>——你的副业和主业的业务是否重叠？给主业的竞争对手供货、接主业的客户做同样的活、在上下游赚差价，都属于典型冲突；哪怕不直接竞争，如果你的岗位职责（采购、销售、招聘）能对副业输送机会或信息，同样构成冲突。第二张：<strong>角色卷</strong>——副业里你的身份会不会和主业身份打架？比如你是某公司的法务，业余给别人做法律咨询，客户会默认你代表公司立场；你是财务人员，兼职代理记账可能触碰执业规范。第三张：<strong>时间卷</strong>——副业是否实际侵蚀了主业的履职？长期熬夜接单导致白天工作质量下滑，即便业务无关，也落进《劳动合同法》第三十九条"对完成本单位工作任务造成严重影响"的射程。</p>
+      <p class="ctx">三张卷子有一张答"是"，就应该走 s2 讲的申报程序，由公司书面确认是否允许；有两张答"是"，建议直接换方向——世界上可做的副业很多，没必要挑一个和雇主天然打架的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第39条</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（劳动关系解除争议官方口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>资源隔离三条线：时间、设备、数据</h3>
+      <p class="ctx">即使业务完全不冲突，操作层面也要守住三条隔离线。<strong>时间隔离</strong>：副业不占用工作时间——工作日午休和下班后是你的，上班时段接的单、回的消息都可能成为日后的证据。<strong>设备隔离</strong>：不用公司电脑、公司网络、公司手机做副业，也不把公司的正版软件许可用于营利的私活；用自己的设备、自己的账号、自己购买的工具。<strong>数据隔离</strong>：这条最致命——主业的客户名单、报价体系、源代码、设计源文件、未公开的经营数据，一个字节都不能带进副业。</p>
+      <p class="ctx">数据隔离值得单独强调：客户名单与经营信息在符合"不为公众所知悉、具有商业价值、权利人采取相应保密措施"三要件时构成商业秘密，受《反不正当竞争法》保护；带走并使用，轻则民事赔偿，重则触及刑事红线。很多人以为"名单在我脑子里，背下来不算带走"——司法实践早已明确，利用职务接触获取并使用的信息同样可以构成侵权。副业要用素材，请用自己创作或公开合法来源的素材。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国反不正当竞争法》（商业秘密条款）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第23条（保密义务约定）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>作品权属：用公司电脑做的东西归谁</h3>
+      <p class="ctx">做内容、设计、代码类副业的人必须搞懂"职务作品"规则。依照《著作权法》的一般原则，公民为完成法人工作任务所创作的作品是职务作品；主要是<strong>利用法人或者非法人组织的物质技术条件创作，并由其承担责任</strong>的工程设计图、计算机软件等作品，作者享有署名权，其他权利归单位。翻译成大白话：上班时间、用公司设备和素材、为了公司业务做出来的东西，权属大概率是公司的——你把它挂到自己账号上卖，卖的可能根本不是你的货。</p>
+      <p class="ctx">反过来，保护自己的方法也是三条隔离线的自然结果：<strong>自己的时间、自己的设备、与本职工作无关的主题</strong>，做出来的东西才干净地属于你。如果副业方向与主业技能高度同源（设计师接插画单、程序员接开发单），更要注意主题隔离：给主业做的项目衍生内容不要碰，接与主业产品线无关的单。拿不准权属的 commissioned 作品，在接单合同里白纸黑字写清著作权归属与使用范围，也是对客户负责。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国著作权法》（职务作品条款）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第23条、第24条（保密与竞业限制）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、竞业限制：管到谁、管多久、给多少钱</h2>
+    <p class="chapter-sub">第23、24条的准确口径——它不是悬在所有打工人头上的剑，但签字之前必须看清</p>
+
+    <figure class="fig"><img src="../assets/img-18-1.png" alt="抽象插画：一份摊开的合同文件上盖着放大镜，旁边一条虚线时间轴标注期限与补偿两个刻度，轴的一端连着原公司大楼剪影、另一端连着新公司剪影，中间一道可开合的闸门，象征竞业限制的范围、期限与补偿三要素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>法条原文的三要素：人员、期限、补偿</h3>
+      <p class="ctx">竞业限制的准确口径来自《劳动合同法》第二十三条、第二十四条，三个要素缺一不可。<strong>人员范围</strong>：限于用人单位的高级管理人员、高级技术人员和其他负有保密义务的人员——注意，这是对"人"的限制，不是对"全员"的限制；给前台、普通流水线岗位签竞业协议，主体资格本身就存疑。<strong>期限上限</strong>：解除或终止劳动合同后，竞业限制期限<strong>不得超过二年</strong>。<strong>经济补偿</strong>：竞业限制期内，用人单位应当按月给予劳动者经济补偿——不给钱就想让你干等，法律不支持。</p>
+      <p class="ctx">三个要素对应的自查动作：①我的岗位是否真的接触核心商业秘密？②协议约定的范围（地域、行业、企业名单）是否宽到不合理？③补偿标准和支付方式写没写清楚？最高法与人社部联合发布的第四批劳动人事争议典型案例中就有竞业限制案件，裁判口径明确倾向于防止竞业限制被滥用——普通岗位被"全员竞业"的，仲裁与法院会审查主体适格性与范围合理性。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第23条、第24条</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（含竞业限制案件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>签了竞业协议，离职时怎么办</h3>
+      <p class="ctx">如果你属于适格人员、签了内容合理的竞业协议，正确的应对是"确认—谈判—留痕"三步，而不是想办法绕。第一步<strong>确认启动状态</strong>：竞业限制义务是否被启动，以离职时公司的书面通知为准；有些公司入职时让你签了协议，离职时并不启动（因为要按月掏补偿金），这时你的择业是自由的——离职交接时主动问一句"是否要求我履行竞业限制义务"，并要求书面答复。第二步<strong>谈判范围</strong>：启动的话，核对限制的企业名单与业务范围，过宽的部分（比如把整个行业都圈进去）可以协商缩小；补偿标准低于法定与司法口径的，同样可以谈。第三步<strong>留痕履约</strong>：履约期间按月确认补偿到账并保留记录，公司连续不付补偿达到法定条件的，你有权依法请求解除竞业限制约定——具体口径以仲裁与司法解释为准，操作前咨询专业人士。</p>
+      <p class="ctx">需要点名的反面教材是所谓"竞业规避"——用亲属身份入职竞对、隐身代持、化名接单这类操作。这不仅是违约，还可能构成不正当竞争甚至触发刑事责任，而且在大厂法务的尽调手段下几乎必然暴露。本课程不教任何规避手段：竞业协议要么谈判缩小，要么诚实履约，要么依法解除，没有第四条路。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第23条、第24条、第90条（劳动者违法解除的赔偿责任）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（竞业限制补偿与解除口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>在职竞业与副业的关系</h3>
+      <p class="ctx">很多合同里除了离职后的竞业限制，还有<strong>在职期间的竞业禁止义务</strong>——这来自劳动关系的基本要求：拿着工资为竞争对手干活，属于典型的利益冲突，多数公司的规章制度将其列为严重违纪。它与副业的交叉点在于：如果你的副业与主业处于同一行业链条，即使你自认为"只是赚点小钱"，也很容易落入在职竞业禁止的打击面。</p>
+      <p class="ctx">实操判断可以简化为一个问题：<strong>"如果我的雇主知道了这个副业的全部细节，会觉得我在帮竞争对手吗？"</strong>会——停；不确定——申报，让公司书面判断；明确不会（行业无关、角色无关、资源无关）——做好 s3 的三条隔离，正常做。把这个问题作为每个副业机会的第一道过滤器，能挡掉九成风险。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国公司法》（董监高忠实义务条款，作为在职竞业义务的法理参照）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（劳动人事争议仲裁口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、副业光谱：技能、资产、时间三种变现</h2>
+    <p class="chapter-sub">同样叫副业，商业逻辑完全不同——选错类型，努力白费</p>
+
+    <article class="view">
+      <h3>三分法对照表</h3>
+      <p class="ctx">市面上的副业五花八门，按"你拿什么换钱"可以归成三类，三类的门槛、天花板、风险和税务处理都不一样：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>技能变现</th><th>资产变现</th><th>时间变现</th></tr>
+        <tr><td><strong>典型形态</strong></td><td>设计接单、写作约稿、编程外包、咨询顾问、家教培训、翻译</td><td>闲置出租、内容版权分成、数字产品（模板/课程）、理财收益（另见投资课）</td><td>网约车、代驾、外卖配送、跑腿、平台众包任务</td></tr>
+        <tr><td><strong>门槛</strong></td><td>高：需要市场验证过的专业能力与作品集</td><td>中：需要有可变现的资产或前期内容积累</td><td>低：注册即可开始，平台标准化派单</td></tr>
+        <tr><td><strong>收入弹性</strong></td><td>高：时薪可持续上涨，可沉淀为个人品牌</td><td>中高：可规模化，边际成本递减</td><td>低：时薪基本固定，多做多得、不做归零</td></tr>
+        <tr><td><strong>主要风险</strong></td><td>与主业利益冲突、知识产权纠纷、客户拖欠</td><td>平台规则变动、内容合规、前期投入沉没</td><td>体力透支、交通事故、劳动关系认定模糊</td></tr>
+        <tr><td><strong>税务口径</strong></td><td>劳务报酬或经营所得（s6）</td><td>财产租赁/特许权使用费/经营所得，分项处理</td><td>平台代扣或按劳务报酬/经营所得申报</td></tr>
+      </table>
+      <p class="ctx">表格不评判哪类"更好"，但有一个长期视角的提示：<strong>技能变现和资产变现具有复利属性</strong>——做得越久，单价越高或被动收入越多；纯时间变现没有复利，它的合理定位是过渡期现金流工具，而不是长期方向。用时间变现养技能变现，是很多人验证过的路径。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（劳务报酬、经营所得等税目口径，检索路径：首页→政策法规）</a> · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（新就业形态分类口径）</a>（副业形态归纳为教学整理，收入弹性判断为一般性分析）</div>
+    </article>
+
+    <article class="view">
+      <h3>选方向的三问：复利、验证、时薪</h3>
+      <p class="ctx">具体到自己怎么选，三个问题按顺序问。<strong>第一问：有没有复利？</strong>优先选与主业技能同向积累的副业——主业的技能树在副业里继续升级，两边的作品集互相加持；警惕与主业完全割裂、且自身不沉淀任何东西的纯时间出售。<strong>第二问：验证过吗？</strong>"我觉得我的插画不错"和"有三个陌生人付费买过我的插画"是两个世界；启动前先做最小验证：接一单、卖一份、开一场，用真实交易检验，而不是先囤设备、先印名片、先花两个月搭网站。<strong>第三问：真实时薪是多少？</strong>把找客户、沟通、返工、开票、催款的时间全算进去，很多看起来单价不低的副业，折算真实时薪后低于你的主业时薪——那它只是在用更低的效率重复出卖时间。</p>
+      <blockquote class="q">副业方向筛选三问（按顺序，任何一问答"否"就谨慎）：<br>① 复利——这件事做一年后，我的技能、作品或客户资产会比现在厚吗？<br>② 验证——有没有至少一个非熟人的付费记录？<br>③ 时薪——把全部隐性时间算进去，真实时薪是否高于主业时薪的 1.5 倍（补偿不稳定性）？<span class="qsrc">—— 依据本章三分法与技能复利原则整理的自查框架（教学整理）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：Bolles《你的降落伞是什么颜色？》（可迁移技能盘点方法，书籍文字引用） · <a href="https://hbr.org/topic/subject/career-transitions">HBR 职业转型专题（英文，副业作为职业实验的讨论入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>内容创作类副业的特别提醒</h3>
+      <p class="ctx">写公众号、做短视频、开知识付费，是近年最热门的副业方向，也是坑最密集的方向。三个特别提醒。第一，<strong>身份边界</strong>：以专业身份输出内容（财经、医疗、法律、教育）时，平台与监管都要求资质认证；用主业头衔为账号背书前，先确认公司是否允许员工以公司身份对外发声——很多公司的对外传播制度对此有明确限制。第二，<strong>内容合规</strong>：广告要标明"广告"，带货商品要核验资质，AI 生成的内容依规需要标识——《人工智能生成合成内容标识办法》自 2025 年 9 月起施行，做内容的人不能装看不见。第三，<strong>收益幻觉</strong>：内容平台的收入分布是极端头部化的，绝大多数账号长期零收入或微薄收入；把它当"作品积累+小概率爆发"的资产型尝试可以，把它当稳定现金流规划会失望。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.cac.gov.cn/">国家互联网信息办公室官网（《人工智能生成合成内容标识办法》及网络内容生态治理规定，官网检索口径）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国广告法》（广告标识义务）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、零工权益与个税：平台干活的两个必修课</h2>
+    <p class="chapter-sub">八部门 56 号文给了什么保障、劳务报酬和经营所得怎么报——别等出问题才补课</p>
+
+    <figure class="fig"><img src="../assets/img-18-2.png" alt="抽象插画：一条传送带上的包裹经过三道自动检查门，第一道有小机器人预检，最后一道有人类检查员盖章，象征副业合规的多道关口" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>你是哪一类劳动者：56 号文的三分法</h3>
+      <p class="ctx">在平台上跑单、接单，你和平台之间算什么关系？这是零工权益的核心问题。2021 年人社部等八部门《关于维护新就业形态劳动者劳动保障权益的指导意见》（人社部发〔2021〕56 号）给出了官方框架，把新就业形态劳动者分为三类：<strong>符合确立劳动关系情形的</strong>，平台企业应当依法签订劳动合同；<strong>不完全符合确立劳动关系情形但企业对劳动者进行劳动管理的</strong>，平台企业要订立书面协议、合理确定权利义务（这是中国特色的"第三类"保护）；<strong>依托平台自主开展经营活动的</strong>，按民事关系调整。同样在平台干活，接派单受管理的骑手与自主定价接单的自由设计师，法律地位完全不同。</p>
+      <p class="ctx">56 号文及配套政策还推动了几件实事：职业伤害保障试点（平台按单缴费，骑手等群体工伤有兜底）、最低工资与报酬支付规则、算法规则的公示与修改程序、休息制度。如果你长期从事平台零工，建议花半小时读一遍 56 号文原文（人社部官网可检索），搞清楚自己属于哪一类、平台欠你哪些保障。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网检索《关于维护新就业形态劳动者劳动保障权益的指导意见》（人社部发〔2021〕56号）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（含新就业形态劳动关系认定案件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>零工接单自我保护清单</h3>
+      <p class="ctx">平台规则会变，保障在完善中，但接每一单之前你能做的事是确定的：</p>
+      <ul>
+        <li><strong>看清协议再注册</strong>：平台服务协议里关于报酬结算周期、抽成比例、罚则、账号处置的条款逐条读，截图留存当期版本；</li>
+        <li><strong>报酬留痕</strong>：每单的收入记录、结算明细定期导出备份，发生争议时这是核心证据；</li>
+        <li><strong>伤害保障确认</strong>：确认平台是否已参加职业伤害保障试点或购买商业保险，自己再补一份意外险（成本很低）；</li>
+        <li><strong>设备与交通安全</strong>：车辆合规、护具齐全，别为抢时效违章——零工的最大风险不是少赚钱，是出事故；</li>
+        <li><strong>争议渠道记牢</strong>：平台内申诉 → 12333 人社咨询 → 劳动仲裁（确认存在劳动关系时）→ 12348 公共法律服务；</li>
+        <li><strong>税务不裸奔</strong>：平台代扣代缴的看清税目；需要自己申报的按 s6 下一卡的口径处理。</li>
+      </ul>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（12333 咨询与劳动仲裁渠道口径）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（新就业形态权益案件裁判口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>个税三个税目：劳务报酬、经营所得、工资</h3>
+      <p class="ctx">副业收入怎么纳税，取决于收入性质，最常见的三个口径：<strong>劳务报酬所得</strong>——个人独立从事设计、咨询、讲学、翻译等劳务取得的收入，按次或按月预扣预缴（有 20%-40% 的预扣率），年度终了并入综合所得汇算清缴；<strong>经营所得</strong>——注册了个体工商户、个人独资企业，或以个人名义持续经营性接单的收入，按 5%-35% 五级超额累进税率单独计税，不并入综合所得；<strong>工资薪金</strong>——与副业单位构成劳动关系时由对方按工资代扣。同样是设计接单，偶尔一单是劳务报酬，注册个体户长期做是经营所得，税目不同、算法不同、能不能扣成本也不同。</p>
+      <p class="ctx">两个必须记住的时间点与动作：①<strong>年度汇算清缴</strong>——每年 3 月 1 日至 6 月 30 日，通过"个人所得税"官方 App 办理上一年度综合所得汇算，有劳务报酬的人经常能退税，不办等于放弃；②<strong>发票问题</strong>——企业客户通常要发票才付款，个人可以到税务机关申请代开（自然人代开），或在注册个体户后自行开具；具体流程以主管税务机关口径为准。"用私人账户收款就查不到"是幻觉：金税系统的银行流水比对早已常态化，逃税的滞纳金与罚款远高于税款本身。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（个人所得税法实施条例、劳务报酬与经营所得口径、汇算清缴公告，检索路径：首页→政策法规库）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国个人所得税法》（税目与税率表）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、第二曲线：从信号识别到切换决策</h2>
+    <p class="chapter-sub">副业的终局不是永远打两份工——让验证过的第二条线在合适的时机长成主线</p>
+
+    <article class="view">
+      <h3>第二曲线思维：在第一条曲线下坡之前出发</h3>
+      <p class="ctx">"第二曲线"（The Second Curve）是管理思想家查尔斯·汉迪提出的经典框架：任何组织与个人的职业轨迹都是一条 S 型曲线——增长、见顶、下滑；要跨越到下一条增长曲线，<strong>启动时机必须在第一条曲线还在高位的时候</strong>，因为转型需要资源、心气和试错空间，而这三样在曲线下坡段都是稀缺的。等到被裁员了才想起转型，就是在最低点被迫起跳。</p>
+      <p class="ctx">对个人来说，第二曲线启动的信号有三类：<strong>行业信号</strong>——所在行业规模连续收缩、技术路线被替代（比如 AI 工具直接吞掉你岗位的核心任务，详见<a href="../20-future/">第20章</a>）；<strong>岗位信号</strong>——你的核心技能在招聘市场上的岗位数量与薪酬明显走低；<strong>个人信号</strong>——你在主业里连续一年以上学不到新东西，价值感持续流失。出现任何一类信号，就值得启动副业验证，而不是等三类信号凑齐。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：查尔斯·汉迪《第二曲线》（The Second Curve，书籍文字引用） · <a href="https://hbr.org/topic/subject/career-transitions">HBR 职业转型专题（英文，转型时机与实验方法）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>验证五步流程：把"想做"变成"验证过"</h3>
+      <blockquote class="q">第二曲线验证五步（每步都有明确的完成标志）：<br>① <strong>盘点可迁移技能</strong>——列出主业积累的、离开平台仍然值钱的能力（客户沟通？项目管理？某个专业工具链？），完成标志：写出 3 项并各配一个实例；<br>② <strong>最小可行验证</strong>——用最小成本接第一单：熟人转介绍、垂直平台挂服务、内容引流，完成标志：1 个非熟人付费客户；<br>③ <strong>合规检查</strong>——过一遍本章 s2-s4：合同、申报、隔离、竞业，完成标志：书面确认无冲突或已获公司认可；<br>④ <strong>迭代定价与流程</strong>——连续 5-10 单后复盘：真实时薪、客户来源、交付瓶颈，完成标志：一页纸的"副业经营数据"；<br>⑤ <strong>切换决策点评估</strong>——按下一卡的硬指标判断继续兼职还是全职投入，完成标志：一次和家人的正式讨论。<span class="qsrc">—— 综合第二曲线框架与精益创业"最小可行产品"方法整理的操作流程（教学整理）</span></blockquote>
+      <p class="ctx">五步的顺序不能乱：最常见的失败模式是跳过②直接大投入（囤货、租场地、辞职 all in），以及跳过③埋下合规雷。每一步的"完成标志"都是刻意设计的——没有标志的步骤等于没有做。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：Eric Ries《精益创业》（最小可行产品方法，书籍文字引用） · <a href="https://www.mohrss.gov.cn/">人力资源社会保障部官网（创业担保贷款与创业服务政策口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>切换决策：硬指标说了算，不靠感觉</h3>
+      <p class="ctx">什么时候可以从"业余副业"升级为"全职主线"？建议用四条硬指标代替一时冲动：<strong>①收入持续性</strong>——副业月收入连续 6 个月达到主业的 50% 以上，且客户来源不是单一大客户（超过 60% 收入来自一个客户，那不叫事业，叫依赖）；<strong>②现金缓冲</strong>——手里有覆盖 12 个月家庭基本开支的储蓄（衔接<a href="../17-layoff/">第17章</a>的空窗期逻辑）；<strong>③合规交割</strong>——离职手续、竞业确认、社保衔接全部理清，主业好聚好散；<strong>④家庭共识</strong>——配偶或家人了解收入波动性并同意，全职转型期的家庭张力经常被低估。</p>
+      <p class="ctx">四条全部达标，切换是理性的经营决策；只有一两条达标就辞职，本质是赌博。还有一条反向提醒：切换之后，第二曲线同样会经历它自己的 S 型周期——增长、见顶、再转型。第二曲线思维不是一次性的跳槽方法论，而是一种持续的职业经营习惯：永远有一条正在验证的下一曲线。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：查尔斯·汉迪《第二曲线》（切换时机框架，书籍文字引用） · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第37条（劳动者提前三十日书面通知解除）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于副业的四个幻觉</h2>
+    <p class="chapter-sub">每一个幻觉背后，都有一批收割焦虑的人</p>
+
+    <article class="view">
+      <h3>谣言粉碎：副业路上的四块绊脚石</h3>
+      <p class="ctx"><strong>幻觉一："副业月入十万很常见。"</strong>不常见，而且离常见很远。内容平台与接单平台的收入分布是极端的头部化结构，绝大多数参与者长期处于零收入或补贴家用的水平；社交媒体上晒出的"副业收入截图"存在严重的幸存者偏差，其中还混着大量为卖课造势的摆拍。任何以"月入十万"为钩子向你推销培训、工具或"项目名额"的内容，先默认它是生意，再判断它是不是机会。</p>
+      <p class="ctx"><strong>幻觉二："公司发现不了。"</strong>低估了信息流通的速度：社保与个税记录、背调机构的任职核查、同行圈子的口口相传、你自己社交账号的蛛丝马迹，都是暴露渠道；一旦副业与主业存在利益冲突而被发现，"隐瞒"本身就会把普通问题升级成诚信问题，构成解除合同的依据（s2、s3 的法条口径）。合规的副业根本不需要赌"发现不了"。</p>
+      <p class="ctx"><strong>幻觉三："用公司资源做点私活没什么。"</strong>法律上不成立：客户名单等经营信息可能构成商业秘密，用公司设备与素材产出的作品权属可能归公司，情节严重的还有刑事风险（s3）。"没什么"的潜台词是"没人管"，但资源挪用恰恰是最容易被审计和离职交接暴露的一类问题。</p>
+      <p class="ctx"><strong>幻觉四："搞点'灰色收入'，查到再说。"</strong>这是四个幻觉里唯一可能毁掉整个职业生涯的。所谓灰色地带——虚开发票、代持挂名、利用职务信息差赚"介绍费"——每一项都有明确的法律后果：补税加罚款起步，贿赂类犯罪与职务侵占触及刑法，职业生涯里的诚信记录一旦留下污点，背调时代几乎无法洗白。副业的初衷是让职业更抗风险，用违法方式做副业，是在给人生加杠杆。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.chinatax.gov.cn/">国家税务总局官网（税收违法"黑名单"与联合惩戒口径）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国刑法》（贿赂、职务侵占等相关条款）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院、人社部第四批劳动人事争议典型案例（诚信义务相关裁判口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能给朋友讲清楚，才算真的学会了</p>
+
+    <div class="checklist">
+      <h4>📋 副业合规与第二曲线自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>《劳动合同法》第39条里，与兼职相关的解除情形是怎么表述的？两个条件是什么？</li>
+        <li>动手做副业前的"合规三查"分别查什么？为什么员工手册和合同同样重要？</li>
+        <li>什么是利益冲突申报？为什么如实申报反而是自我保护？</li>
+        <li>利益冲突的"三张判断卷"是哪三张？各自问什么？</li>
+        <li>资源隔离三条线是什么？哪一条最致命、为什么？</li>
+        <li>商业秘密的三个构成要件是什么？"名单在脑子里背下来"为什么不算数？</li>
+        <li>用公司电脑在上班时间做的作品，权属大概率归谁？依据是什么规则？</li>
+        <li>竞业限制的人员范围、期限上限、补偿要求分别是什么？</li>
+        <li>离职时怎么确认竞业限制义务是否被启动？公司长期不付补偿怎么办？</li>
+        <li>为什么本课程不教"竞业规避"类操作？合法的路径有哪三条？</li>
+        <li>技能变现、资产变现、时间变现三类的门槛、弹性、风险有什么不同？哪两类有复利？</li>
+        <li>副业方向筛选三问是什么？为什么时薪要按 1.5 倍门槛算？</li>
+        <li>56号文把新就业形态劳动者分成哪三类？你的平台身份属于哪类？</li>
+        <li>劳务报酬和经营所得在计税上有什么区别？汇算清缴的时间窗口是哪几个月？</li>
+        <li>第二曲线的启动信号有哪三类？为什么必须在第一条曲线高位时启动？</li>
+        <li>验证五步流程里，每一步的"完成标志"分别是什么？</li>
+        <li>全职切换的四条硬指标是什么？为什么"只有一个大客户"不算达标？</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>📌 本章要点速览：</strong>副业提供钱、技能、抗风险三重价值，但解决不了主业的问题；启动前合规三查——劳动合同兼职条款、规章制度与申报要求、利益冲突三张卷（业务/角色/时间）；如实申报是最便宜的护身符；资源隔离三条线——时间、设备、数据，商业秘密一个字节都不能带；职务作品权属看"工作任务+物质技术条件"，用自己的时间设备做自己的主题；竞业限制三要素——适格人员（高管/高级技术/保密义务）、期限≤2年、按月经济补偿，应对靠"确认—谈判—留痕"而非规避；副业三分法：技能变现与资产变现有复利、时间变现适合过渡；选方向三问：复利、验证、真实时薪；平台零工先看56号文三分法定位自己的权益；税务分劳务报酬/经营所得/工资三口径，3月1日-6月30日汇算清缴别错过，私户收款逃税是幻觉；第二曲线在第一曲线高位启动，验证五步各带完成标志；全职切换四硬指标——收入连续6个月≥主业50%且客户分散、12个月现金缓冲、合规交割、家庭共识；四大幻觉（月入十万/发现不了/挪用资源/“灰色收入”）每一个都有法律与职业代价。
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../17-layoff/"><span class="dir">← 第17章</span>裁员与低谷：恢复指南</a>
+    <a href="../19-balance/"><span class="dir">第19章 →</span>工作生活平衡与倦怠</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第18章 · 依据《劳动法》《劳动合同法》《反不正当竞争法》《著作权法》《个人所得税法》现行文本、人社部等八部门 56 号文、最高人民法院与人社部联合典型案例、国家税务总局官方口径及查尔斯·汉迪《第二曲线》等经典著作整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业发展教育参考，不构成法律或税务建议 · 具体个案请咨询执业律师、税务师或当地人社部门 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

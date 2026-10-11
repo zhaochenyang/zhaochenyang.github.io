@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 通货膨胀与紧缩：钱为什么变毛 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第2章 · 基础概念</div>
+  <h1>通货膨胀与紧缩：钱为什么变毛</h1>
+  <p>CPI 篮子里装了什么、通胀从哪来、央行为什么普遍盯住温和通胀目标、通缩为什么更让经济学家警惕，以及通胀如何不对称地影响存款、工资和不同人群</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-gdp/">← 第1章：GDP</a>
+    <a href="../03-interest/">第3章：利率 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">三个温度计</a>
+    <a class="anchor" href="#s2">CPI篮子</a>
+    <a class="anchor" href="#s3">通胀从哪来</a>
+    <a class="anchor" href="#s4">温和通胀目标</a>
+    <a class="anchor" href="#s5">通缩为何可怕</a>
+    <a class="anchor" href="#s6">体感与统计</a>
+    <a class="anchor" href="#s7">谁得谁失</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为经济学科普，仅供经济教育与参考，不构成投资建议或政策预测。本章<strong>不预测</strong>物价走势，也不推荐任何"抗通胀"产品；所有数据以国家统计局、中国人民银行等官方统计口径为准并注明时点。"钱要变毛了""恶性通胀要来了"这类恐慌断言只出现在谣言粉碎的批判语境中；不编造、不传播虚假经济信息。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①分清 CPI、PPI、GDP 平减指数三个"温度计"各测什么；②说出中国 CPI 篮子的八大类与权重逻辑，解释"体感通胀"为什么常高于统计数字；③讲出通胀的三种成因解释（需求拉动、成本推动、货币现象）及各自的适用与争议；④解释央行为什么普遍设定温和通胀目标（美联储 2%、中国年度预期目标"3% 左右"）；⑤用"债务-通缩螺旋"说清通缩为什么更让经济学家警惕；⑥分析通胀对债权人/债务人、固定收入者/资产持有者的不对称影响。物价是五个核心变量中离你钱包最近的一个——<a href="../03-interest/">第3章</a>的利率、<a href="../06-monetary/">第6章</a>的货币政策都会用到本章。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>记住一个流程框（读 CPI 新闻四步法，第六节）和一句话（"通胀是分布问题，不只是总量问题"）。每月统计局发布 CPI 时，用四步法练一遍手。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、通胀是什么：三个温度计别混用</h2>
+    <p class="chapter-sub">CPI 测消费篮子、PPI 测工厂大门、平减指数测全部产出——数字打架往往只是测的东西不同</p>
+
+    <article class="view">
+      <h3>定义先行：通胀是"一般物价水平"的持续上涨</h3>
+      <p class="ctx">通货膨胀（inflation）的教科书定义：<strong>一般物价水平的持续上涨</strong>（曼昆《经济学原理（宏观分册）》第24章）。两个关键词都在防误读："一般"指的是<strong>整体价格水平</strong>，不是某样商品——猪肉涨价、机票涨价本身不叫通胀，那是相对价格变化（第5章讲供给需求时展开）；"持续"指的是<strong>一段时间的趋势</strong>，单月跳升可能是节假日或天气因素。衡量"一般物价水平"需要构造一篮子代表性商品与服务，跟踪篮子总价随时间的变化——这就是物价指数的原理。</p>
+      <p class="ctx">通胀率通常用指数的<strong>同比变化百分比</strong>表示："CPI 同比上涨 0.5%"意思是今年这个月的篮子价格比去年同月贵了 0.5%。中国月度 CPI、PPI 由国家统计局每月发布（一般每月 9-10 日左右，从<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>列表页可查当期数据与<a href="https://www.stats.gov.cn/sj/sjjd/">官方解读稿</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章"通货膨胀" · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（月度 CPI/PPI 发布入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（物价数据官方解读稿）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三个温度计对照表：CPI、PPI、GDP 平减指数</h3>
+      <table class="cmp">
+        <tr><th>指标</th><th>测什么</th><th>发布方与节奏</th><th>典型用途与局限</th></tr>
+        <tr><td><strong>CPI</strong><br>居民消费价格指数</td><td>城乡家庭购买的<strong>消费品与服务</strong>篮子价格</td><td>国家统计局，月度</td><td>最贴近"过日子"的体感；但篮子不含商品房购置价格，权重基于住户调查（会定期更新）</td></tr>
+        <tr><td><strong>PPI</strong><br>工业生产者出厂价格指数</td><td>工业企业<strong>出厂环节</strong>价格（生产资料+生活资料）</td><td>国家统计局，月度</td><td>观察上游冷热与工业景气；PPI 向 CPI 的传导不必然、有时滞</td></tr>
+        <tr><td><strong>GDP 平减指数</strong></td><td>境内生产的<strong>全部最终产品</strong>价格（含投资品、出口、政府服务）</td><td>随 GDP 核算发布（季度/年度）</td><td>覆盖最全；但发布频率低、修订多，不适合月度观察（详见<a href="../01-gdp/">第1章</a>第三节）</td></tr>
+      </table>
+      <p class="ctx">三个温度计读数不一致是常态而非异常：例如上游原材料涨价时可能 PPI 高企而 CPI 温和（中游企业利润被挤压、未传导到消费端）；反过来消费端服务涨价时 CPI 上行而 PPI 不动。新闻标题只挑一个数字时，你可以主动补齐另外两个再下判断——这就是"交叉验证"的第一次实战（方法论详见<a href="../16-indicator/">第16章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（CPI/PPI 口径官方说明入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · 曼昆《经济学原理（宏观分册）》第10版 第24章</div>
+    </article>
+
+    <article class="view">
+      <h3>核心 CPI：为什么要"去掉食品和能源"再看一眼</h3>
+      <p class="ctx">统计局每月同时发布 CPI 与<strong>核心 CPI</strong>（扣除食品和能源）。原因：食品（尤其猪肉，受养殖周期影响）与能源（受国际油价影响）价格波动剧烈，容易让总体 CPI 大起大落，掩盖价格的趋势性变化。核心 CPI 就是把这两个"大嗓门"请出去后，看剩下八成篮子的平均温度——它更接近通胀的"底色"。</p>
+      <p class="ctx">实用读法：总体 CPI 冲高时先看是不是食品能源拉的（若是，通胀压力可能没那么普遍）；总体 CPI 低迷时看核心 CPI 是否更弱（若是，说明需求端确实偏冷）。这不是本站的预测框架，只是统计局解读稿中常见的分析逻辑（见<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>栏目历月 CPI 解读稿）。美国对应指标是核心 PCE/CPI（美联储更看重 PCE 口径，见<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页</a>，英文）——中美指标体系不同，对比时注意口径。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（核心 CPI 口径与月度解读稿）</a> · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策框架页（英文，PCE 口径说明入口）</a> · 曼昆《经济学原理（宏观分册）》第10版 第24章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、CPI 篮子里装了什么</h2>
+    <p class="chapter-sub">八大类商品与服务、定期更新的权重、以及"篮子不代表你"的统计学真相</p>
+
+    <article class="view">
+      <h3>八大类与权重逻辑：篮子是全社会的"平均购物车"</h3>
+      <p class="ctx">中国 CPI 篮子按官方分类包含<strong>八大类</strong>：食品烟酒、衣着、居住、生活用品及服务、交通通信、教育文化娱乐、医疗保健、其他用品及服务（国家统计局 CPI 编制方案口径，方法说明可从<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>与统计局统计方法栏目检索）。权重来自<strong>全国住户收支与生活状况调查</strong>——统计上"平均"家庭把多少钱花在哪类商品上，并按基期定期更新（中国 CPI 基期每五年轮换一次，逢 0、逢 5 年份为新基期，权重结构随之调整；具体调整情况以统计局官方发布为准）。</p>
+      <p class="ctx">两个反直觉的事实：①食品烟酒的权重这些年持续下降（收入提高后吃饭占支出的比例下降，即恩格尔系数下降——统计局公报每年都发布该系数），所以"猪肉涨价拉高 CPI"的效应比十年前小；②<strong>居住类权重大约占两成多</strong>，但它是"虚拟房租"口径（自有住房按估算租金计入，商品房购置价格不计入 CPI——买房在统计上算投资不算消费，与<a href="../01-gdp/">第1章</a>支出法口径一致）。这条口径是"体感与统计"分歧的最大来源之一，第六节专门展开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（CPI 编制方案与基期轮换说明入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（年度统计公报恩格尔系数）</a> · 曼昆《经济学原理（宏观分册）》第10版 第24章（CPI 编制原理）</div>
+    </article>
+
+    <article class="view">
+      <h3>指数不是菜单：三个编制细节决定它"测不准你的日子"</h3>
+      <p class="ctx">即使篮子构造科学，CPI 也天然测不准"你的"生活成本，原因在指数编制的技术细节（曼昆教科书归纳的经典问题，结合中国口径）：①<strong>替代偏差</strong>——牛肉贵了你改吃鸡肉，但固定篮子假设你还在买牛肉，可能高估真实成本压力（编制中会用分类细化与权重更新部分缓解）；②<strong>新产品与质量变化</strong>——手机越来越强但价格没涨，指数难以完全剔除"质量提升"部分，可能高估通胀；③<strong>个体差异</strong>——篮子的权重是全社会平均，你的"个人篮子"（租房青年 vs 有房退休者、一线城市 vs 县城）与平均篮子差别可以非常大。</p>
+      <p class="ctx">统计局为此发布<strong>分类指数</strong>（食品、非食品、消费品、服务各自的价格变化）与部分城市数据，让你能拼出更接近自己的图景（<a href="https://www.stats.gov.cn/sj/zxfb/">最新发布</a>月度新闻稿附表可查）。记住结论：<strong>CPI 是全社会平均温度的体温计，不是你个人的账单</strong>——它没测错，是你在用错。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章"衡量生活费用的问题" · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（CPI 分类指数附表）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、通胀从哪来：三种解释与它们的边界</h2>
+    <p class="chapter-sub">需求拉动、成本推动、货币现象——每种解释都有适用场景，也都有失灵的时候</p>
+
+    <article class="view">
+      <h3>需求拉动与成本推动：一个从买家讲，一个从卖家讲</h3>
+      <p class="ctx"><strong>需求拉动型</strong>（demand-pull）："太多的钱追逐太少的商品"——总需求扩张快于供给能力，把价格拉上去。典型场景：经济过热期消费投资齐旺、政府大规模刺激、出口突然放量。<strong>成本推动型</strong>（cost-push）：供给端成本上升推高价格——油价暴涨、粮食歉收、工资快速上涨、供应链中断。典型场景：1970 年代石油危机引发的欧美滞胀（物价涨、经济反而停滞，教科书标准案例）。</p>
+      <p class="ctx">两种解释的诊断价值不同：需求拉动型通胀往往伴随经济过热（产出高于潜在水平），治理靠收紧需求（<a href="../06-monetary/">第6章</a>货币政策、<a href="../07-fiscal/">第7章</a>财政政策）；成本推动型通胀伴随供给受损，单纯紧缩需求可能"把婴儿和洗澡水一起倒掉"（压通胀的同时深度牺牲产出与就业），政策上更纠结。现实中一轮通胀常是两种力量混合，且学界对具体案例的归因常有分歧——如实标注：<strong>通胀成因是宏观经济学争论最多的话题之一，没有万能答案</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章、第35章（总需求-总供给框架） · 萨缪尔森、诺德豪斯《经济学》第19版（滞胀案例） · <a href="https://www.jstor.org/stable/2550759">Phillips（1958）原始论文（英文，失业与工资变化关系）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"通胀无论何时何地都是货币现象"：一句名言的正确打开方式</h3>
+      <p class="ctx">弗里德曼的名言"通胀无论何时何地都是一种货币现象"（弗里德曼，货币主义学派代表观点，出自其 1960-70 年代著作与演讲，文字引用）常被自媒体简化成"印钱=通胀"。严谨的版本是：<strong>持续的、高位的通胀，必然伴随货币供给的持续超发</strong>——恶性通胀案例（魏玛德国 1923、津巴布韦 2008、委内瑞拉 2010 年代）无一例外是财政崩溃后靠印钞填坑的结果（Sargent，"四大通胀的终结"系列研究，学术文献，英文；历史案例陈述，不构成对任何经济体的预测）。</p>
+      <p class="ctx">但反过来不成立：<strong>货币增发不必然带来通胀</strong>。传导链是"货币增加→支出增加→需求超过供给→价格上涨"，中间每一环都可能断：货币躺在银行体系里空转（流通速度下降）、经济本身有闲置产能（增发被产出吸收）、资金流向资产市场而非商品市场（表现为房价股价而非 CPI）。2008 年后主要央行大规模扩表而 CPI 长期温和，就是教科书级的反例场景（各央行公开报告可查，见<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页</a>，英文；<a href="https://www.pbc.gov.cn/">中国人民银行</a>《货币政策执行报告》季度发布）。记住这个不对称：<strong>恶性通胀必有钱多的影子，钱多却不必然有恶性通胀</strong>——货币与物价的关系详见<a href="../04-money/">第4章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：Friedman 货币主义经典论述（文字引用，1960-70 年代著作） · Sargent（1982）"The Ends of Four Big Inflations"（学术文献，英文） · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策页（英文）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国货币政策执行报告》入口）</a> · 曼昆《经济学原理（宏观分册）》第10版 第30章（货币数量论及其批评）</div>
+    </article>
+
+    <article class="view">
+      <h3>预期与惯性：通胀会"自我实现"</h3>
+      <p class="ctx">第三种力量是<strong>通胀预期</strong>：如果所有人都相信明年物价涨 5%，工人会要求涨薪 5%、企业会提前提价 5%——预期本身就制造了 5% 的通胀，这叫"工资-价格螺旋"（教科书概念，现实中螺旋的强度有争议）。这正是央行重视"锚定预期"的原因：一个可信的低通胀目标，能让公众预期稳定，物价就真的更稳定（时间不一致性与央行独立性的经典研究：Kydland & Prescott 1977，学术文献，英文）。</p>
+      <p class="ctx">对普通人的启示：读通胀新闻时留意"预期"二字。央行官员讲话里"保持物价预期稳定"不是套话，而是政策工具本身——语言即武器。同时警惕反方向的滥用：用"预期"解释一切（"都是你们预期不好才通缩"）同样是偷懒，预期只是三种力量之一。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kydland & Prescott（1977）时间不一致性研究（学术文献，英文） · Friedman（1968）"The Role of Monetary Policy"（自然失业率与预期增强的菲利普斯曲线，文字引用） · 曼昆《经济学原理（宏观分册）》第10版 第24、35章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、为什么央行的目标是"温和通胀"而不是零通胀</h2>
+    <p class="chapter-sub">美联储盯 2%、中国年度预期目标"3% 左右"——留一点缓冲垫是有原因的</p>
+
+    <article class="view">
+      <h3>目标制：给预期一个锚</h3>
+      <p class="ctx">主要经济体的央行普遍采用明确的低通胀目标：<strong>美联储</strong>的长期目标是 2%（2020 年起升级为"平均通胀目标制"——允许通胀在一段时间内适度高于 2% 以弥补低于期，官方声明见<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策框架页</a>，英文）；<strong>欧元区、日本、英国</strong>的目标也都在 2% 附近（各央行官网口径，英文）。<strong>中国</strong>没有立法式的固定数字目标，而是每年《政府工作报告》设定年度预期目标，多年来 CPI 涨幅目标通常表述为"3% 左右"（以当年报告原文为准，见<a href="https://www.gov.cn/">中国政府网</a>检索；历年实际 CPI 涨幅多数年份明显低于该上限，具体数字以<a href="https://www.stats.gov.cn/sj/zxfb/">统计局发布</a>为准——例如国家统计局数据显示 2024 年全年 CPI 比上年上涨 0.2%）。</p>
+      <p class="ctx">"3% 左右"是<strong>调控目标（上限约束）</strong>而非"要涨到 3%"，这与美联储"瞄准 2%"的框架性质不同——中美政策框架差异是每次对比都要提示的口径问题。目标制的意义在上一节讲过：公开的数字目标锚定公众预期，让"相信低通胀"变成自我实现的预言。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策框架（英文，2% 目标与平均通胀目标制声明）</a> · <a href="https://www.gov.cn/">中国政府网（历年《政府工作报告》CPI 预期目标检索入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（历年 CPI 实际数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么不留 0%：四个技术性理由</h3>
+      <p class="ctx">既然通胀侵蚀购买力，为什么不把目标定成 0 甚至负数？主流央行的理由（综合各央行公开框架文件与教科书归纳）：①<strong>离通缩太近</strong>——目标是 0 的话，一次需求冲击就能把经济推入通缩（第五节讲它多难缠），2% 是留出安全垫；②<strong>工资刚性润滑剂</strong>——名义工资很难下调（没人接受降薪），温和通胀让"实际工资"可以灵活调整而不动名义数字，减少劳动力市场的摩擦（学术文献，英文，Tobin 1972 提出的经典论点）；③<strong>测量偏差</strong>——CPI 因质量改进等因素可能系统性高估真实通胀约半个百分点到一两个百分点（各国统计机构的质量偏差研究），"测出来的 2%"真实体验可能接近 1%；④<strong>给利率留空间</strong>——名义利率大体=实际利率+通胀预期（费雪关系，<a href="../03-interest/">第3章</a>展开），通胀目标越高，正常时期的名义利率越高，降息应对危机的空间越大。</p>
+      <p class="ctx">这些理由并非无懈可击：也有经济学家主张更高目标（如 4%）或零通胀（价格水平目标制），属于学界持续讨论（如实标注争议）。但"温和低通胀优于零通胀与高通胀"是当前主要央行的<strong>操作性共识</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24、35章 · Tobin（1972）通货膨胀与劳动力市场（学术文献，英文） · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策框架（英文）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行（货币政策框架公开表述入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、通缩：为什么经济学家更警惕它</h2>
+    <p class="chapter-sub">物价下跌听起来是好事，但"债务-通缩螺旋"是宏观经济学最忌惮的剧本</p>
+
+    <article class="view">
+      <h3>债务-通缩螺旋：费雪 1933 年的洞察</h3>
+      <p class="ctx">1929 年大萧条后，经济学家欧文·费雪（Irving Fisher）提出了著名的<strong>债务-通缩理论</strong>（Fisher 1933，"The Debt-Deflation Theory of Great Depressions"，Econometrica，学术文献，英文；文字引用）：物价下跌→企业收入缩水但<strong>债务的名义金额不变</strong>→实际债务负担加重→被迫抛售资产、削减生产还债→资产价格与物价进一步下跌→螺旋加深。关键在"债务是名义的、收入是随物价走的"这个不对称——通缩等于悄悄给所有负债者加税。</p>
+      <p class="ctx">对家庭同样成立：背着房贷的人最怕的不是物价温和上涨，而是<strong>收入下降叠加物价下跌</strong>——月供数字不变，但工资和资产价格在缩水。这就是为什么各国央行对通缩信号的反应通常比对同等幅度的温和通胀更激烈（各央行公开政策讨论可查；本站不评论任何具体政策操作，只陈述框架逻辑）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fisher（1933）债务-通缩理论（Econometrica，学术文献，英文，文字引用） · 曼昆《经济学原理（宏观分册）》第10版（大萧条与通缩讨论） · 萨缪尔森、诺德豪斯《经济学》第19版</div>
+    </article>
+
+    <article class="view">
+      <h3>日本案例：失去的几十年（历史案例，非预测）</h3>
+      <p class="ctx">教科书级的通缩案例是日本 1990 年代后的长期低通胀/温和通缩：资产泡沫破裂后，企业与家庭转向"负债最小化"而非"利润最大化"（辜朝明提出的"资产负债表衰退"概念，商业科普性质的经济学著作，标注），需求长期疲软、物价多年在零附近徘徊；日本央行尝试了零利率、量化宽松、收益率曲线控制直到 2% 通胀目标，用了约三十年才在 2020 年代看到通胀明显抬头（日本央行公开政策记录，英文）。<strong>本节陈述的是历史过程与学界归纳，不构成对任何经济体未来的预测或类比暗示。</strong></p>
+      <p class="ctx">日本案例给宏观经济学留下的三条经验（学界广泛讨论、细节仍有争议）：①通缩一旦与高债务、老龄化叠加，治理难度远超温和通胀；②货币政策在利率降到零附近后空间受限（"流动性陷阱"，凯恩斯《通论》提出的概念，文字引用；<a href="../06-monetary/">第6章</a>展开）；③预期一旦"锚"在低通胀上，重新锚定需要极大的政策力度与时间。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：曼昆《经济学原理（宏观分册）》第10版（流动性陷阱与日本讨论） · 凯恩斯《就业、利息和货币通论》（1936，文字引用；网络电子版真伪混杂，请以正式出版物为准） · 辜朝明《大衰退》（商业科普著作，明确标注） · 日本银行公开政策记录（英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>但也要防另一个极端：良性降价不等于通缩</h3>
+      <p class="ctx">不是所有价格下降都可怕：<strong>技术进步带来的降价是好事</strong>——电子产品性能翻倍价格腰斩、光伏度电成本十年大幅下降（行业公开统计，以官方与行业数据为准），这类"供给侧改善型降价"提高实际购买力，与需求萎缩型通缩性质完全不同。判断标准（教科书归纳）：看降价伴随的是<strong>产出增长与收入上升</strong>（良性），还是<strong>需求疲软、企业利润萎缩、就业恶化</strong>（恶性信号）；看是<strong>个别行业</strong>（结构性、正常）还是<strong>普遍持续</strong>（总量性、需警惕）。</p>
+      <p class="ctx">这也是"通缩恐惧"类自媒体最常犯的错误：拿个别商品降价（如某类食品、汽车价格战）直接宣布"通缩来了"。个别价格变化是市场常态，通缩是总量概念——用局部证据推总量结论，逻辑不成立。</p>
+      <p class="ctx">给你一个可直接使用的观察习惯：当"通缩"话题上热搜时，先到<a href="https://www.stats.gov.cn/sj/zxfb/">统计局最新发布</a>查当月的三组数字——CPI 同比与核心 CPI 同比（消费端是否普遍走弱）、PPI 同比（生产端是否走弱）、以及新闻稿解读里对食品与能源分项的说明（涨跌是结构性的还是总量性的）。三组数字读完，你掌握的是一张有来源、有时点的证据地图，而不是一句情绪化的结论；这张地图未必让你"看对"未来——本站不预测，没有人能稳定预测——但它能保证你<strong>不被一句断言牵着走</strong>。这就是宏观素养的意义：不是获得水晶球，而是获得免疫力。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（实际变量与名义变量） · 萨缪尔森、诺德豪斯《经济学》第19版 · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（物价结构性变化的官方分析框架）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、体感通胀 vs 统计通胀：为什么你觉得涨得更凶</h2>
+    <p class="chapter-sub">不是统计撒谎，也不是你的错觉——两边都对，错位有五个可查的原因</p>
+
+    <article class="view">
+      <h3>五个错位来源</h3>
+      <p class="ctx">"CPI 才涨 0.2%，可我感觉什么都贵了"——这种撕裂感几乎每次数据发布都会出现。可查的原因至少有五个：①<strong>篮子错位</strong>：你的消费结构≠平均篮子（租房青年恩格尔系数低、居住支出占比高，而 CPI 居住权重与你的个人权重不同）；②<strong>房价口径</strong>：商品房购置价格不计入 CPI（虚拟租金口径，第二节），过去房价大涨的年份体感与 CPI 分歧最大；③<strong>损失厌恶</strong>：行为经济学的高置信结论——人对涨价的记忆强度远超降价（Kahneman 前景理论，学术文献，英文），葱姜蒜涨价上热搜、工业品降价无人问津；④<strong>高频感知偏差</strong>：你每周买菜（价格敏感），但电视冰箱十年一买（降价无感），高频商品权重与感知权重不匹配；⑤<strong>质量与新品</strong>：第二节讲过的测量偏差。</p>
+      <p class="ctx">结论不是"体感是假的"——你的生活成本确实可能涨了更多；而是<strong>"你的个人通胀率"与"社会平均通胀率"是两个都真实的数字</strong>。统计局的分类指数（食品、服务、居住分项）能帮你拼出自己的版本。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章（CPI 的衡量问题） · Kahneman & Tversky（1979）前景理论（学术文献，英文） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（CPI 口径答疑）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（分类指数）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>流程框：读一条 CPI 新闻的四步法</h3>
+      <blockquote class="q">
+        <strong>每月 CPI 发布，四步读完不慌：</strong><br>
+        第 1 步：<strong>看三个数</strong>——总体 CPI 同比、核心 CPI 同比（扣食品能源）、PPI 同比；三个温度计一起看，只报一个的标题要警惕；<br>
+        第 2 步：<strong>找结构</strong>——新闻稿附表看食品/非食品、消费品/服务分项：涨跌是普遍的还是个别类别拉的？（猪肉、油价、鲜菜是三大常见"噪音源"）；<br>
+        第 3 步：<strong>对目标</strong>——与当年《政府工作报告》的预期目标（近年通常"3% 左右"）对照，处在什么位置；与上月、去年同期比，方向是什么；<br>
+        第 4 步：<strong>停在描述</strong>——以上都做完，你掌握的是一组事实。"接下来会怎样"是预测问题：本站不预测，你也无需被任何"必涨必跌"的断言绑架（此类断言见<a href="../19-rumor/">第19章</a>集中粉碎）。<br>
+        <span class="qsrc">方法依据：国家统计局月度发布体例与解读稿分析框架（<a href="https://www.stats.gov.cn/sj/sjjd/">数据解读</a>）+ 本课程"不预测"纪律。</span>
+      </blockquote>
+      <div class="fig"><img src="../assets/img-02-1.png" alt="一个发光的购物车悬浮在橄榄绿背景中央，车内商品化为几何方块，购物车上方三支温度计分别指向不同高度刻度，一个无脸人物拿着放大镜核对温度计与购物车之间的数据连线，琥珀色光点点缀" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读（月度 CPI 解读稿体例）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布</a> · <a href="https://www.gov.cn/">中国政府网（《政府工作报告》预期目标检索入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>跨国对照：世行数据库看通胀的世界地图</h3>
+      <p class="ctx">想建立"什么算高、什么算低"的坐标系，用世界银行的通胀率数据库（<a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG">FP.CPI.TOTL.ZG 指标页</a>，英文，CPI 年增长率口径）：过去十年多数发达与新兴经济体的年通胀在 0-5% 区间波动；2021-2023 年欧美经历了一轮 40 年未见的 5-9% 高通胀（疫情后供需错配叠加能源冲击，各国央行与 IMF 的公开归因分析，英文，具体表述以官方报告为准）后逐步回落；同期也有土耳其、阿根廷等国长期维持两位数甚至恶性通胀（世行数据库可查）。中国同期 CPI 涨幅显著低于欧美（国家统计局历年数据）——各国通胀路径不同源于供需结构、政策框架、能源依赖度差异，简单横比需提示口径与国情差异。</p>
+      <p class="ctx">顺带建立一个历史纵深的坐标：中国 1990 年代中期曾经历两位数的高通胀（1994 年 CPI 涨幅达 24% 左右，国家统计局历史数据），随后通过紧缩调控实现"软着陆"（官方政策复盘表述）；2000 年代后多数年份 CPI 涨幅维持在 1%-3% 的温和区间（统计局历年发布可查）。这段历史说明：高通胀不是天灾而是可治理的宏观现象，治理有成本也有成功先例——把任何一轮物价波动直接外推成"崩溃"叙事的人，通常既不了解历史，也不了解政策工具箱（<a href="../06-monetary/">第6章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG">世界银行·CPI 通胀率数据库（英文）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（中国历年 CPI）</a> · IMF《世界经济展望》（<a href="https://www.imf.org/en/Publications/WEO">官网入口</a>，英文，每年 4 月/10 月更新，归因分析以官方报告为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、通胀是分布问题：谁得谁失</h2>
+    <p class="chapter-sub">同样 3% 的通胀，对不同人是完全不同的事——这是全章最重要的一节</p>
+
+    <article class="view">
+      <h3>债权人吃亏、债务人受益：通胀的再分配效应</h3>
+      <p class="ctx">教科书的核心结论（曼昆第24章"通胀的成本"）：<strong>未预期到的通胀把财富从债权人转移给债务人</strong>。你借出 10 万元、约定一年后还本付息 3%，如果这一年通胀 6%，收回的钱实际购买力缩水——你补贴了借款人。反过来，背着固定利率房贷的借款人在高通胀中实际负担变轻（示例说明，不构成任何借贷建议）。这就是为什么通胀预期是借贷合同定价的核心变量：<a href="../03-interest/">第3章</a>将讲"实际利率≈名义利率−通胀预期"，债权人会把预期通胀加进利率里自我保护——<strong>被预期到的通胀伤害小得多，真正伤人的是意外通胀</strong>。</p>
+      <div class="fig"><img src="../assets/img-02-2.png" alt="一座发光的巨大天平悬浮于橄榄绿背景，左盘托着上升的几何火焰与向上箭头代表通胀，右盘托着下落的雪花状几何块与向下箭头代表通缩，天平支点是一个货币圆盘，两个无脸人物分别站在两侧观察刻度，琥珀色光点点缀" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">同一条逻辑解释了很多制度设计：为什么养老金要谈"指数化调整"（挂钩物价，抵消侵蚀）、为什么恶性通胀会摧毁借贷市场（没人敢出借长期资金）、为什么存款利率与通胀的关系决定"存钱是赚是亏"（下一节展开）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章"通货膨胀的成本" · 萨缪尔森、诺德豪斯《经济学》第19版 · Fisher（1933）债务-通缩研究（学术文献，英文，反向情形的对照）</div>
+    </article>
+
+    <article class="view">
+      <h3>固定收入者最受伤：通胀的累退性</h3>
+      <p class="ctx">通胀的负担分布是<strong>累退的</strong>（对低收入者相对更重），原因有二：①低收入家庭消费占收入比例高、储蓄缓冲薄，物价上涨直接压缩实际生活水准；高收入者受影响的主要是资产回报而非日常开销；②消费结构差异——食品等必需品在低收入家庭篮子中权重更高，而食品价格波动往往大于总体 CPI（统计局分类数据可查）。养老金领取者、存款为主的家庭、工资议价能力弱的劳动者，是通胀再分配中的脆弱端（分配视角的学术研究，英文；<a href="../09-employment/">第9章</a>工资部分衔接）。</p>
+      <p class="ctx">这也是各国把"物价稳定"列为央行首要目标的分配学理由：物价稳定本质上是对最没有议价能力人群的保护。理解这一点，你就能看懂为什么"保物价"与"保就业"经常成为政策辩论的两端（菲利普斯曲线的权衡，<a href="../09-employment/">第9章</a>展开）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章 · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（食品/非食品分类价格数据）</a> · 通胀分配效应相关学术研究（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>对照表：温和通胀 vs 高通胀 vs 通缩，各伤害谁</h3>
+      <table class="cmp">
+        <tr><th>情形</th><th>相对受益者</th><th>相对受损者</th><th>典型政策反应（框架性描述，非预测）</th></tr>
+        <tr><td><strong>温和通胀</strong>（0-3%）</td><td>名义债务人（房贷等）、有定价权的经营者</td><td>现金与低息存款持有者（幅度轻微）</td><td>维持现状，目标制下被视为正常区间</td></tr>
+        <tr><td><strong>高通胀</strong>（两位数）</td><td>实物资产与浮动收益持有者（短期）</td><td>固定收入者、储蓄者、长期债权人；价格信号混乱伤害所有人</td><td>紧缩货币与财政（第6、7章工具）</td></tr>
+        <tr><td><strong>通缩</strong>（持续负值）</td><td>无负债的现金持有者（购买力上升）</td><td>负债者（实际债务加重）、企业利润与就业、延迟消费的连锁效应</td><td>宽松政策组合，零利率下限约束（第6章）</td></tr>
+      </table>
+      <p class="ctx">表格只给框架性认知：<strong>现实中没有"哪种情形对'我'最好"的通用答案</strong>——取决于你的资产负债结构与收入性质，而本站不提供任何个性化资产配置建议（课程纪律，<a href="../17-asset/">第17章</a>只讲传导机制）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章 · 萨缪尔森、诺德豪斯《经济学》第19版 · Fisher（1933）（学术文献，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>"存款利率跑不跑得过 CPI"：实际利率的直觉版</h3>
+      <p class="ctx">普通人最关心的通胀问题是："我的存款在缩水吗？"判断框架是<strong>实际利率≈名义存款利率−通胀率</strong>（费雪关系的简化版，精确版涉及预期，第3章展开）：一年期定存利率若为 1.5%（以各家银行挂牌利率为准，各银行与时期不同，此处为示例数量级）而 CPI 涨 0.2%，实际利率为正，存款购买力在缓慢上升；若 CPI 涨 5%，实际利率为负，存款的实际购买力在缩水。中国存款利率由利率自律机制与各银行挂牌决定（<a href="https://www.pbc.gov.cn/">央行</a>公开信息可查框架），近年多家银行多次下调挂牌利率（各行公告为准）——利率怎么定、LPR 是什么，是<a href="../03-interest/">第3章</a>的主题，此处只建立"名义−通胀=实际"的直觉。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行（利率政策框架公开信息入口）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局·最新发布（CPI 数据）</a> · 曼昆《经济学原理（宏观分册）》第10版 第24章（费雪效应）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于通胀的四大误区</h2>
+    <p class="chapter-sub">恐慌话术是流量生意，核查是免费的</p>
+
+    <article class="view">
+      <h3>谣言粉碎：通胀篇四连</h3>
+      <p class="ctx"><strong>误区一："央行印钱，恶性通胀马上来，钱要变废纸。"</strong>第三节已拆：货币超发与物价之间隔着流通速度、闲置产能、资金流向好几道闸门；2008 年后全球央行大规模扩表而 CPI 长期温和是公开记录（各国央行报告可查）。恶性通胀在历史上几乎全部是"财政崩溃+货币信用瓦解"的极端组合产物（魏玛、津巴布韦案例，Sargent 研究，英文），把它当作日常政策工具的必然结果，是对货币传导机制的无视。此类"货币崩溃论"话术的共同特征：只有断言没有传导链条、只有历史片段没有完整案例、结尾往往导向"快买黄金/外汇/某某资产"——<strong>恐慌是它的产品，带货是它的商业模式</strong>。编造、传播此类虚假经济信息本身涉嫌违法，本课程红线明确反对。</p>
+      <p class="ctx"><strong>误区二："CPI 是被操纵的假数字，真实通胀早就是两位数。"</strong>"体感高于统计"有五个可查的技术原因（第六节），不需要阴谋论解释。质疑数据质量的正确方式是交叉验证：分类指数、其他价格序列（PPI、房价指数）、非统计证据（居民收入名义增速、税收数据）相互印证（方法见<a href="../16-indicator/">第16章</a>）。至今没有出现经得起核查的系统性证据支持"真实通胀是官方数字数倍"的说法——这类断言本身也从不提供可验证的替代测量。</p>
+      <p class="ctx"><strong>误区三："物价下跌是好事，老百姓得实惠。"</strong>第五节：个别商品因技术进步降价是实惠；<strong>普遍、持续、伴随需求萎缩的物价下跌</strong>会通过债务-通缩螺旋伤害负债家庭与企业、拖累就业。"通缩让钱更值钱"只说对了无负债现金持有者的半边，漏掉了经济作为整体的另一半。</p>
+      <p class="ctx"><strong>误区四："通胀来了，赶紧把钱全换成实物资产。"</strong>这句"建议"错在三层：①温和通胀下现金类资产的实际侵蚀很小（实际利率为正时甚至没有侵蚀）；②"全换成"意味着放弃流动性与分散性，任何单一资产都有自身价格风险——本站不推荐任何资产类别，这是课程纪律；③它把"理解通胀"偷换成"押注通胀"——理解者看传导链与自身结构，押注者赌单一方向，而本课程不预测行情，也劝你不为任何"必涨"断言下注。识别这类话术的口诀：<strong>凡是用恐慌开场、以"赶紧买"收尾的经济内容，先默读第六节的四步法。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：Sargent（1982）四大通胀研究（学术文献，英文） · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储·货币政策页（英文，扩表历史公开记录）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行（货币政策执行报告入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局·数据解读</a> · 曼昆《经济学原理（宏观分册）》第10版 第24、30章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>通胀的定义里"一般"和"持续"两个词分别在防什么误读？</li>
+        <li>CPI、PPI、GDP 平减指数三个温度计各测什么？读数不一致为什么是常态？</li>
+        <li>核心 CPI 扣除了什么、为什么扣？总体与核心背离时怎么读？</li>
+        <li>中国 CPI 篮子的八大类是什么？权重从哪来、多久更新？</li>
+        <li>为什么商品房购置价格不计入 CPI？"虚拟租金"是什么意思？</li>
+        <li>替代偏差、质量偏差、个体差异三个编制问题各举一例。</li>
+        <li>需求拉动与成本推动两种通胀的治理思路为什么不同？</li>
+        <li>弗里德曼那句名言的严谨版本是什么？为什么"印钱必通胀"不成立？</li>
+        <li>通胀预期怎么"自我实现"？央行为什么说"语言即武器"？</li>
+        <li>美联储的通胀目标是多少、"平均通胀目标制"改了什么？中国的年度预期目标通常怎么表述？两者性质有何不同？</li>
+        <li>央行不把目标定在 0% 的四个技术性理由是什么？</li>
+        <li>用费雪的债务-通缩螺旋解释通缩为什么比温和通胀更难治理。</li>
+        <li>日本案例留下的三条经验是什么？（提示：历史案例，不是预测模板）</li>
+        <li>良性降价与恶性通缩怎么区分？</li>
+        <li>"体感通胀高于统计"的五个错位来源是什么？</li>
+        <li>默写读 CPI 新闻的四步法。</li>
+        <li>未预期通胀在债权人与债务人之间怎么再分配？为什么"意外"二字是关键？</li>
+        <li>为什么说通胀负担是累退的？哪三类人是脆弱端？</li>
+        <li>"实际利率≈名义利率−通胀率"怎么用一句大白话讲给父母听？</li>
+        <li>"恐慌开场、赶紧买收尾"的内容为什么可以直接降级处理？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>通胀＝一般物价水平的<strong>持续</strong>上涨，三个温度计（CPI 消费篮子/PPI 工厂大门/GDP 平减指数全部产出）读数不一致是常态；中国 CPI 篮子八大类、权重来自住户调查、每五年换基期，<strong>商品房购置价格不计入</strong>；成因三种解释——需求拉动、成本推动、货币现象（弗里德曼名言的严谨版：恶性通胀必有钱多影子，钱多不必然恶性通胀）+第四种力量"预期自我实现"；主要央行盯温和通胀目标（美联储 2%、中国年度预期目标通常"3% 左右"是上限约束），四个理由：离通缩太近、工资刚性润滑剂、测量偏差、给利率留空间；通缩更可怕是因为<strong>债务-通缩螺旋</strong>（费雪 1933；日本为历史案例非预测），但技术进步型降价是良性；体感高于统计的五个错位来源（篮子、房价口径、损失厌恶、高频感知、质量偏差）——你的个人通胀率与社会平均都是真的；通胀本质是<strong>分布问题</strong>：未预期通胀从债权人转移财富给债务人，固定收入者与低收入家庭是脆弱端；实际利率≈名义利率−通胀率；读 CPI 四步法：看三个数→找结构→对目标→停在描述。本站不预测物价走势，恐慌话术（"货币崩溃论"类）一律按第19章流程粉碎。
+  </div>
+
+  <nav class="pager">
+    <a href="../01-gdp/"><span class="dir">← 第1章</span>GDP：衡量一国的财富</a>
+    <a href="../03-interest/"><span class="dir">第3章 →</span>利率：资金的价格</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第2章 · 依据国家统计局月度物价发布与数据解读、中国人民银行公开政策信息、美联储货币政策框架（英文）、世界银行通胀数据库（英文）、Fisher（1933）、Sargent（1982）、Kahneman & Tversky（1979）、曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

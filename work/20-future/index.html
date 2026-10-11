@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第20章 AI时代的职业未来：十年规划 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:var(--accent-deep);border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第20章 · 变化与长线</div>
+  <h1>AI时代的职业未来：十年规划</h1>
+  <p>官方报告的口径怎么读、任务暴露度怎么算、技能半衰期怎么对冲、十年规划怎么落地——最后一章，把整个课程收进一个可执行的长期框架</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../19-balance/">← 第19章：工作生活平衡与倦怠</a>
+    <a href="../">课程完结 🎓</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">新同事是AI</a>
+    <a class="anchor" href="#s2">官方口径</a>
+    <a class="anchor" href="#s3">任务暴露度</a>
+    <a class="anchor" href="#s4">人机协作</a>
+    <a class="anchor" href="#s5">技能半衰期</a>
+    <a class="anchor" href="#s6">十年规划</a>
+    <a class="anchor" href="#s7">安全感迁移</a>
+    <a class="anchor" href="#s8">谣言总粉碎</a>
+    <a class="anchor" href="#s9">自测与行动</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章对未来就业趋势的讨论全部基于国际组织与政府部门的公开报告口径，旨在建立分析框架，<strong>不构成对任何具体职业前景的预测，也不构成投资或转行决策的唯一依据</strong>。技术变革的速度与方向存在真实的不确定性，各机构报告的口径与结论存在差异，本章如实呈现差异而不做裁剪。涉及法律法规以官方现行文本为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①读懂 WEF、IMF、OECD、ILO 四家机构关于 AI 与就业的报告口径，说清它们的共识与分歧；②用"任务暴露度"框架分析自己的岗位：被自动化的是任务不是职业；③列出 AI 时代仍然稀缺的四类人机协作能力，并知道怎么练；④理解技能半衰期的概念，把终身学习从口号变成年度制度；⑤用"三年盘点→一年实验→季度复盘"搭出自己的十年职业规划；⑥完成安全感的来源迁移：从"岗位"到"能力组合+关系网络+财务缓冲"；⑦一次性粉碎全课程六大谣言；⑧带走三个本周就能做的行动。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是课程的收官章。如果你只读一节，读 s6 的十年规划流程框——它是把前十九章所有工具（第2章简历、第11章向上管理、第15章人脉、第16章跳槽决策、第18章第二曲线、第19章可持续性）组装成一台长期机器的说明书。读完 s9 的三个行动项，这门课才算真正上完。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、你的新同事是 AI</h2>
+    <p class="chapter-sub">变化不是"将来时"，是"进行时"——问题不是会不会到来，而是你站在哪个位置</p>
+
+    <figure class="fig"><img src="../assets/img-20-1.png" alt="抽象插画：一张办公桌前，人类与一台发光的AI助手并肩而坐，两者之间的桌面上摊开任务清单，部分卡片被移向AI一侧，部分留给人，象征任务分工而非整体替代" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>茶水间的两种声音（示例）</h3>
+      <p class="ctx">公司引入了 AI 工具之后，茶水间出现了两种声音。老陈说："我做了十二年合同审核，现在系统三十秒扫出一份风险清单，我这饭碗还能端几年？"小唐说："我用同样的工具，一上午处理了以前三天的量，下午还能琢磨怎么把流程再造一遍——这东西就是我的杠杆。"两个人用的是同一个工具，同一个岗位序列，差距却在拉开。（示例为虚构场景，人物为合成形象。）</p>
+      <p class="ctx">老陈和小唐的区别不在智商、年龄或努力程度，而在<strong>看待 AI 的框架</strong>：老陈把它看成"来抢我岗位的竞争者"，于是每次工具升级都是一次威胁确认，焦虑消耗着他本可以用来学习的能量；小唐把它看成"接管我低价值任务的下属"，于是每次升级都腾出时间去做更值钱的事。这一章要给你的就是小唐的框架，但不是心灵鸡汤版的——它会先带你把国际组织的官方数据读一遍（s2），用任务粒度做一次冷静的暴露度分析（s3），然后落到具体的技能投资（s4、s5）与十年规划（s6）上。<strong>对 AI 焦虑的最好解药，不是乐观，是颗粒度</strong>：把"我会不会被取代"这个没法回答的问题，拆成"我的哪些任务会被接管、哪些反而更值钱、我下一步学什么"这些可以行动的问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF《未来就业报告 2025》官方发布页（英文，检索路径：weforum.org → Publications → The Future of Jobs Report 2025）</a> · <a href="https://www.imf.org/en/Publications/fintech-notes">IMF Fintech Notes 发布页（英文，Gen-AI: Artificial Intelligence and the Future of Work 相关研究入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么"这次不一样"值得认真对待，但不值得恐慌</h3>
+      <p class="ctx">每一次通用技术革命（蒸汽机、电力、计算机）都引发过"大规模失业"的预言，而历史结果是就业结构转型而非总量崩塌——这是"不必恐慌"的理由。但"这次不一样"也有严肃的版本：AI 冲击的主战场第一次落在<strong>认知型白领任务</strong>上，而以往自动化冲击的主要是体力与程序性任务；白领的转型通道（下一个岗位在哪里）不像蓝领转型那样有成熟的历史经验可循。所以正确的姿态在两个极端之间：<strong>既不否认结构性变化（那是鸵鸟），也不接受末日叙事（那是被流量收割）</strong>。</p>
+      <p class="ctx">对个人而言，宏观叙事其实不重要——无论 AI 对就业总量的净效应是正是负，具体到每个人，问题始终是三个：<strong>我的任务组合会怎么变？我需要新增什么能力？我的转型缓冲够不够厚？</strong>这三个问题是本章 s3、s4-s5、s7 的主线。把注意力从"人类会怎样"收回到"我该怎么办"，焦虑就自动降级成了待办清单。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html">OECD《就业展望 2024》（英文，AI 与劳动力市场专章；若链接失效请从 oecd.org 检索 Employment Outlook 2024）</a> · <a href="https://www.ilo.org/">ILO 国际劳工组织官网（英文/多语种，检索路径：首页搜索 "generative AI and jobs"，其全球研究给出与 WEF 不同的暴露度口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、官方口径：四家机构的报告怎么读</h2>
+    <p class="chapter-sub">共识在"任务重构"，分歧在"数量与速度"——读懂口径差异，就免疫了标题党</p>
+
+    <article class="view">
+      <h3>四家机构说了什么</h3>
+      <table class="cmp">
+        <tr><th>机构与报告</th><th>核心口径</th><th>关键数字/结论（以原文为准）</th></tr>
+        <tr><td><strong>WEF《未来就业报告 2025》</strong></td><td>雇主问卷调查，预测到 2030 年的岗位增减</td><td>预计到 2030 年技术进步与宏观趋势将创造约 1.7 亿个新岗位、取代约 9200 万个岗位，净增约 7800 万；AI 与信息技术是岗位创造的最大驱动，也是技能缺口最大的领域</td></tr>
+        <tr><td><strong>IMF（Gen-AI 研究系列）</strong></td><td>用任务级数据测算全球岗位的 AI 暴露度</td><td>全球约四成岗位受到 AI 影响，发达经济体约六成；关键区分：暴露度高≠被取代，高暴露岗位中相当部分属于"AI 增强型"（互补），其余才是"高替代风险型"</td></tr>
+        <tr><td><strong>OECD《就业展望》</strong></td><td>成员国面板数据，关注政策响应</td><td>口径比 WEF 更保守：短期内 AI 对就业总量的冲击有限，主要影响是任务重组与技能溢价变化；强调培训制度与社会保障的适配速度决定转型成败</td></tr>
+        <tr><td><strong>ILO 全球研究</strong></td><td>侧重职业级增补潜力与全球南北差异</td><td>大多数职业只有部分任务可被生成式 AI"增补"而非整体自动化；影响分布高度不均——高收入国家白领岗位暴露度最高，性别分布上女性就业的暴露度更高</td></tr>
+      </table>
+      <p class="ctx">四家机构的数字看起来打架（WEF 说净增 7800 万，OECD 说冲击有限，IMF 说四成岗位受影响），其实是因为<strong>测量的东西不同</strong>：WEF 测雇主预期的岗位数、IMF 测任务暴露比例、OECD 测已发生的就业变化、ILO 测职业级增补潜力。这给你一个通用的报告阅读法：<strong>先看口径（测什么、样本是谁、时间窗多长），再看数字</strong>。媒体标题只引用数字不引用口径，是所有焦虑流量的配方。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs Report 2025（英文，官方发布页）</a> · <a href="https://www.imf.org/en/Publications/fintech-notes">IMF Fintech Notes（英文，Gen-AI: Artificial Intelligence and the Future of Work）</a> · <a href="https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html">OECD Employment Outlook 2024（英文）</a> · <a href="https://www.ilo.org/">ILO 官网检索 "generative AI and jobs"（多语种）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>共识清单与分歧清单</h3>
+      <p class="ctx">把四份报告叠在一起，<strong>共识</strong>有五条，可以作为你规划的可靠地基：①AI 的影响以<strong>任务</strong>为单位发生，不是以职业为单位——几乎没有职业被整体取代，但几乎所有职业的部分任务被重构；②<strong>高暴露≠高替代</strong>——暴露度高的岗位里，互补型（AI 让你更强）与替代型（AI 直接做）并存，区别在于任务是程序性还是判断性；③<strong>技能重构的速度快于教育体系的重构速度</strong>——技能缺口是未来五年所有机构的共同关键词；④<strong>受影响最重的恰恰是受过高等教育的白领</strong>，这与以往自动化浪潮相反；⑤<strong>政策与制度响应</strong>（培训、社保、劳动法适配）决定转型的阵痛大小——这也是最高法把新就业形态劳动者权益案件写入典型案例的背景。</p>
+      <p class="ctx"><strong>分歧</strong>有三处，你应当知道它们存在而不是选边站：①净就业效应的大小（WEF 乐观 vs OECD 审慎）；②时间窗（五年内的重构 vs 十年后的跃迁）；③替代与增补的比例（IMF 的四成暴露里两类各占多少，各家测算方法不同）。对待分歧的正确姿势：<strong>规划按最坏情形做缓冲，行动按最可能情形下注</strong>——财务缓冲和技能冗余按"替代快于预期"准备，日常学习按"增补为主、任务重构"投入。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高人民法院发布第四批劳动人事争议典型案例（含新就业形态劳动者权益案件，司法制度响应口径）</a> · <a href="https://www.mohrss.gov.cn/">人力资源和社会保障部官网（职业技能提升与新就业形态劳动者保障政策口径，检索路径：首页→政策文件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国内口径：数字中国与技能型社会</h3>
+      <p class="ctx">看国际报告容易忘记一件事：中国的产业结构与政策语境有自己的节奏。官方口径的三条主线值得记住：<strong>第一</strong>，人社部持续推进"技能中国行动"与大规模职业技能培训，把劳动者技能重构当作与产业升级配套的国家工程——这意味着职业培训补贴、技能等级认定这些制度红利是真实存在的，具体申领以当地人社部门口径为准；<strong>第二</strong>，国家统计局的就业统计中，新就业形态（平台灵活就业）已成为重要的就业蓄水池，其规模统计口径在持续完善；<strong>第三</strong>，最高法与人社部通过典型案例持续明确新就业形态劳动关系的认定标准（2023 年第四批典型案例即包含此类案件），"不完全符合确立劳动关系情形"的第三类劳动者保护框架正在成型。</p>
+      <p class="ctx">对个人的翻译：AI 时代的国内机会不只在"会不会用 AI 工具"，还在<strong>制度转型期的新职业目录</strong>——人社部近年发布的多批新职业（人工智能训练师、数字化管理师等）就是官方给出的产业需求信号，比任何培训机构的招生文案都可信。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人社部官网（技能中国行动、新职业目录发布，检索路径：首页→新闻发布/政策文件）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（就业人员统计口径，检索路径：首页→统计数据）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高法第四批劳动人事争议典型案例（新就业形态劳动关系认定）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、任务暴露度：给自己的岗位做一次体检</h2>
+    <p class="chapter-sub">被自动化的是任务，不是职业——把岗位拆成任务清单，焦虑就变成了工程问题</p>
+
+    <figure class="fig"><img src="../assets/img-20-2.png" alt="抽象插画：一条十年长的路线图从脚下延伸到远方，路上依次立着三个里程碑标牌，分别画着放大镜盘点、烧杯实验、循环箭头复盘的图标，路旁有分岔小路通向不同的风景，象征十年规划的三个阶段与可选的第二曲线" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></figure>
+
+    <article class="view">
+      <h3>任务粒度：分析 AI 冲击的正确单位</h3>
+      <p class="ctx">"会计会不会被 AI 取代"是个坏问题，因为职业是任务的捆绑包，AI 拆的是包里的单个任务。好问题是："会计工作的各项任务里，哪些暴露度高？"学术上的标准做法（Frey &amp; Osborne 开创、后续研究修正）是把职业分解为任务，再评估每项任务的自动化可行性。修正后的共识是：<strong>程序性、规则明确、有大量结构化数据支撑的任务暴露度最高</strong>（凭证录入、初稿翻译、基础代码、合同条款比对、客服标准问答）；<strong>需要现场情境判断、复杂人际互动、责任承担与价值权衡的任务暴露度最低</strong>（危机谈判、跨部门协调、对结果签字负责、伦理判断、非结构化现场的应变）。</p>
+      <p class="ctx">注意暴露度分析的第二个维度——IMF 强调的<strong>互补 vs 替代</strong>：同一个高暴露任务，可能是"AI 做完你就没事了"（替代型），也可能是"AI 做完你才能做更高价值的事"（互补型）。分界线在于：这个任务是不是你价值创造的<strong>终点</strong>。初稿撰写如果是你的终点，它是替代型；如果初稿之上还有你的专业判断、客户信任与责任签字，它就是互补型——AI 越强你越值钱。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Frey &amp; Osborne, The Future of Employment（2013/2017，任务级自动化可行性研究开创之作，英文，文字引用） · <a href="https://www.imf.org/en/Publications/fintech-notes">IMF Gen-AI 研究（英文，暴露度=替代+互补的口径区分）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>动手：三十分钟的任务暴露度自查</h3>
+      <blockquote class="q">任务暴露度自查五步（拿出纸笔，全程约30分钟）：<br>① <strong>拆任务</strong>：把你上周实际做的事情逐条列出来（以小时为单位回忆日历），合并同类项，得到 10-20 项任务清单；<br>② <strong>标性质</strong>：每项标注——程序性（规则明确可复制）还是判断性（依赖情境、经验、责任）？产出是信息还是决策？<br>③ <strong>测暴露</strong>：对每项问"现在最好的 AI 工具能做到几成？"打分 0-10；8 分以上=高暴露，5-7=部分暴露，5 以下=低暴露；<br>④ <strong>分两类</strong>：高暴露任务里，区分替代型（这就是你的最终产出）与互补型（之上还有你的判断与责任）；<br>⑤ <strong>算比例</strong>：高暴露且替代型的任务占你周工时的百分比——&lt;20% 观察即可；20-40% 开始主动重构任务组合；&gt;40% 把技能投资（s4、s5）提到本季度最高优先级。<span class="qsrc">—— 综合 Frey &amp; Osborne 任务分析法与 IMF 互补/替代口径整理的自查流程（教学整理，工具口径以最新研究为准）</span></blockquote>
+      <p class="ctx">做完这个练习，你会发现两件事：第一，绝大多数人的"替代型高暴露"占比远低于自己的想象——焦虑来自模糊，量化是解药；第二，你的时间分布往往不合理——大量工时花在低价值高暴露任务上，这本身就是重构空间：<strong>把程序性任务尽快交给工具，把省出的时间投给判断性任务</strong>，这是普通人在 AI 时代最朴素也最有效的策略。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Frey &amp; Osborne（英文，任务分解方法） · <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs 2025（英文，技能缺口与任务重构数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>哪些能力反而更值钱了</h3>
+      <p class="ctx">任务暴露度分析的另一半，是识别<strong>互补品</strong>——AI 越强，什么东西越稀缺？四家机构的报告在这一点上罕见地一致，可以归纳为四类：<strong>①问题定义能力</strong>——AI 擅长回答问题，不擅长知道该问什么问题；把模糊的业务困境翻译成明确问题的人，是 AI 价值的总开关；<strong>②判断与责任能力</strong>——AI 输出需要人签字负责，能审核、能兜底、能对结果负责的人承接了 AI 无法承接的信任；<strong>③深度人际能力</strong>——谈判、辅导、说服、共情、跨文化协作，这些以真人与真人为介质的高带宽互动，是暴露度最低的任务簇；<strong>④跨域整合能力</strong>——AI 在单一领域内快速逼近专家水平，但把技术、业务、人性、监管四个维度拧在一起做权衡的人依然稀缺。</p>
+      <p class="ctx">注意这四类能力正是本课程前十九章的主题：问题定义（第6-8章的汇报与项目管理）、判断与责任（第9-10章的专业技能与晋升逻辑）、深度人际（第11-15章的关系模块）、跨域整合（第16-18章的转型与第二曲线）。<strong>AI 时代没有让"软技能"变得可有可无，恰恰相反——它把软技能变成了硬通货</strong>。被 AI 接管的是硬技能里的程序性部分，留给人的是硬技能里的判断性部分加上全部软技能。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs 2025（英文，2025-2030 增长最快技能清单：分析性思维、韧性、AI 与大数据素养等）</a> · <a href="https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html">OECD Employment Outlook 2024（英文，互补型技能溢价讨论）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、人机协作：把 AI 变成你的下属</h2>
+    <p class="chapter-sub">协作能力的核心不是会用工具，而是会分工、会验收、会担责</p>
+
+    <article class="view">
+      <h3>人机协作的三层能力</h3>
+      <p class="ctx">很多人把"会用 AI"理解成"会写提示词"，这只是最浅的一层。完整的人机协作能力分三层：<strong>第一层：工具操作</strong>——会选型、会提问、会迭代指令，能让 AI 产出 80 分的初稿。这一层门槛最低，也最快贬值，因为工具本身在变得越用越简单。<strong>第二层：任务分工设计</strong>——知道哪些任务交给 AI、哪些自己做、交接点在哪里、怎么验收。这是管理能力的迁移：你不会因为下属能力强就不需要管理，恰恰相反，下属越强，分工、验收、复盘的管理动作越值钱。会用 AI 的人正在变成"一个人的部门经理"。<strong>第三层：责任与判断</strong>——AI 的输出由你签字，错误由你兜底，所以你必须保留独立验证的能力：数据要核对来源、代码要能读懂逻辑、文案要经得起合规审查。<strong>没有第三层的人机协作，是把职业风险外包给一个不会坐牢的实习生。</strong></p>
+      <p class="ctx">本站另有一门面向大众的《AI自动化实践》课程，从工具选型到工作流搭建有二十章的系统教程，想动手深入的同学可以去读；本课只负责把职业框架讲清楚。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs 2025（英文，AI 与大数据素养列为企业培训投资首位）</a> · <a href="https://hbr.org/topic/subject/ai-and-machine-learning">HBR AI 与机器学习主题页（英文，人机协作组织实践研究入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>验收清单：AI 产出上线前的六道关</h3>
+      <p class="ctx">把第三层能力落成习惯，就是给 AI 产出设验收流程。六道关适用于几乎所有白领场景：<strong>①事实关</strong>——关键数据、引文、案例逐一回源核实，AI 编造引用的概率不为零，你的职业信誉经不起一次转发；<strong>②逻辑关</strong>——结论与论据之间有没有跳步？换个立场还成立吗？<strong>③合规关</strong>——内容是否符合行业监管与公司规定（金融、医疗、法律、广告等领域各有红线）；<strong>④权属关</strong>——输入 AI 的是不是公司机密或客户隐私数据？产出的知识产权归属是否清楚？<strong>⑤标识关</strong>——按《人工智能生成合成内容标识办法》（2025 年 9 月起施行），AI 生成的公开内容需要依规添加标识，媒体与平台内容生产岗位尤其要注意；<strong>⑥署名关</strong>——你的署名意味着你的判断背书，问自己一句"如果这份东西出错被追责，我认不认？"——认，才发出去。</p>
+      <p class="ctx">这六道关看起来繁琐，实际上是把"担责"从抽象焦虑变成了具体动作。做久了你会发现一个反直觉的事实：<strong>验收能力本身就是最难被自动化的能力</strong>——它要求你比 AI 更懂这个领域的对错标准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/">国家网信办官网（《人工智能生成合成内容标识办法》发布口径，检索路径：首页→政策法规）</a> · <a href="https://www.court.gov.cn/zixun/xiangqing/462311.html">最高法第四批典型案例（数字时代劳动权益与新问题司法口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、技能半衰期与终身学习的制度化</h2>
+    <p class="chapter-sub">学历是入场券不是保险单——把学习从"有空再说"变成年度预算</p>
+
+    <article class="view">
+      <h3>技能半衰期：你的知识在折旧</h3>
+      <p class="ctx">"技能半衰期"是个借自物理学的比喻：一项技能从掌握到价值折半所需的时间。工程师圈流传的说法是技术类技能半衰期约两到五年，而 AI 正在把它压得更短——WEF 的雇主调查预计，到 2030 年现有劳动者所具备的技能中将有相当大比例发生变化，几乎所有受访企业都计划对员工进行再培训。对你的含义很直接：<strong>二十岁前攒下的学历与证书，无法覆盖四十年的职业周期</strong>；毕业不是学习的终点，而是学习从"制度安排"（学校替你排课）变成"自主经营"（自己排课）的起点。</p>
+      <p class="ctx">但"终身学习"是被说滥的词，滥到只剩自我感动。有效的终身学习有三个反直觉要点：<strong>①学习要绑定产出</strong>——学完做一件真实的事（写篇文章、优化一个流程、接一个小项目），没有产出绑定的输入留存率极低；<strong>②优先学半衰期长的</strong>——写作、统计思维、财务常识、人际判断、领域底层原理，比追每一个新工具的每个新功能更划算；工具层的学习应该"用时现学"，因为有 AI 助手之后，工具操作的现学成本已经大幅下降；<strong>③学习要有预算</strong>——像编财务预算一样编年度学习预算：每年固定小时数、固定金额（书、课、认证）、固定复盘节奏，写进日历。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs 2025（英文，技能变化比例与企业再培训投入数据）</a> · <a href="https://www.mohrss.gov.cn/">人社部官网（职业技能提升行动与培训补贴政策口径，检索路径：首页→政策文件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>用好制度红利：补贴、认定与新职业信号</h3>
+      <p class="ctx">终身学习不必全自费，国内有三类制度工具常被忽略：<strong>①职业技能培训补贴</strong>——各地人社部门对参加目录内职业（工种）培训并取得证书的劳动者发放补贴，标准与目录以当地人社局发布为准，"技能中国行动"框架下覆盖面在扩大；<strong>②职业技能等级认定</strong>——经备案的评价机构开展的等级认定与职称贯通改革，让技能人才的成长通道有了官方刻度；<strong>③新职业目录</strong>——人社部历批发布的新职业（如人工智能训练师、数字化管理师、全媒体运营师等）是官方的产业需求信号，配套的职业技能标准会随之发布，早进入者享受人才稀缺期的溢价。</p>
+      <p class="ctx">使用建议：每年一次，花一个下午查三样东西——当地人社局当年的补贴目录、你所在行业新增的国家职业技能标准、最新一批新职业名单。这个下午的信息价值，超过刷十篇贩卖焦虑的公众号文章。<strong>官方口径的特点是枯燥、滞后，但免费、可信、指向真实的钱和岗位。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mohrss.gov.cn/">人社部官网（新职业发布、职业技能等级认定、培训补贴，检索路径：首页→新闻发布）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（分行业就业人员数据，判断行业趋势的基准数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>T 型之外：AI 时代的能力组合是"梳子型"</h3>
+      <p class="ctx">流行的 T 型人才模型（一竖：专业深度；一横：通用广度）在 AI 时代需要升级。当 AI 把"一横"的获取成本降到近乎免费（任何人都能借 AI 快速达到陌生领域的及格线），你的护城河只剩"一竖"——但单竖的风险是行业塌方时无处可逃。更稳健的结构是<strong>梳子型</strong>：两到三根深度的竖齿（主专业+第二专业），一根横杆把它们串成独特组合。第18章讲过这个逻辑：真正的稀缺不是"会 A"或"会 B"，而是"同时会 A 和 B 的人不足百分之一"——法律+AI、医疗+数据、财务+编程、销售+供应链，每一根组合齿都是对单一行业风险的保险。</p>
+      <p class="ctx">组合的选法遵循两个原则：<strong>相邻性</strong>（第二竖齿要能借力第一竖齿的积累，冷启动成本才低）与<strong>互补性</strong>（两根齿的价值周期最好错开——一个吃稳定需求，一个吃增长需求）。每年学习预算的分配参考：60% 加固主齿、30% 培育第二齿、10% 保持对新工具的最低跟进。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Ibarra, Working Identity（2003，职业身份转型与"先行动后认知"研究，英文，书籍文字引用） · <a href="https://hbr.org/topic/subject/career-transitions">HBR 职业转型主题页（英文，技能组合与转型路径研究入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、十年规划：三年盘点、一年实验、季度复盘</h2>
+    <p class="chapter-sub">十年太长没法直接规划——能规划的是节奏与流程</p>
+
+    <article class="view">
+      <h3>为什么传统的五年计划失效了</h3>
+      <p class="ctx">工业时代的职业规划假设环境稳定：选定赛道，五年一个台阶，按计划攀爬。AI 时代这个假设不成立了——不是"计划没有用"，而是<strong>长周期、单线程、精确到岗位名称的计划没有用</strong>。你无法知道五年后哪些岗位存在（十年前没有提示词工程师），也无法知道十年后自己想成为谁（职业身份是做出来的，不是想出来的——这是组织行为学者 Herminia Ibarra 的核心研究结论：转型者的新身份来自"先尝试可能的自我，再让认知跟上"，而不是"先想清楚再行动"）。</p>
+      <p class="ctx">替代方案是<strong>分层规划</strong>：十年只做方向（价值排序+能力组合的大方向），三年做盘点（资产与差距），一年做实验（可验证的小赌注），一季度做复盘（修正与加减仓）。层级越近颗粒度越细，层级越远留白越多——这不是偷懒，是对不确定性的诚实。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Ibarra, Working Identity（2003，"可能的自我"与转型实验方法论，英文，书籍文字引用） · <a href="https://hbr.org/topic/subject/career-transitions">HBR 职业转型主题页（英文，转型研究合集）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>十年规划流程框：四层的完整操作</h3>
+      <blockquote class="q">十年职业规划四层流程（每年走一遍，全程约一天）：<br>① <strong>十年方向（半天，每年一次）</strong>：写下三条——我最看重的工作价值排序（收入/自主/意义/稳定/影响力，只排前三）；我希望十年后靠什么能力组合吃饭（梳子的两三根齿）；我的不可接受底线（不接受的通勤、行业、文化各是什么）。方向允许模糊，但价值排序必须明确；<br>② <strong>三年盘点（两小时，每年一次）</strong>：资产清单（技能×3：熟练度与证据；人脉×3：第15章的弱关系盘点；财务×3：应急缓冲月数）对照方向找差距，差距按"可补/需投资/放弃"分类；<br>③ <strong>一年实验（一小时，每年一次）</strong>：从差距里挑 1-2 个设计成可验证的小实验——考一个证、做一个副业 MVP（第18章的五步验证）、申请一次内部轮岗、系统约十个目标行业的人喝咖啡（第15章）。实验必须预设"成功/放弃"的判断标准，避免无限拖延；<br>④ <strong>季度复盘（一小时，每季度一次）</strong>：实验进展如何？自评倦怠四问（第19章）曲线如何？暴露度自查（s3）需要重做吗？下季度加减什么仓？<span class="qsrc">—— 综合 Ibarra 转型实验方法与战略复盘框架整理的规划流程（教学整理）</span></blockquote>
+      <p class="ctx">这个流程的精髓在<strong>反馈回路</strong>：季度复盘的输出（数据与体感）逐年上修三年盘点与十年方向——规划不是先验蓝图，是持续更新的假设。第一版方向写错了没关系，它的使命是被修订。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Ibarra, Working Identity（2003，实验-认知循环，英文） · <a href="https://hbr.org/topic/subject/career-transitions">HBR 职业转型主题页（英文，职业路径规划案例）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三个常见规划错误</h3>
+      <p class="ctx"><strong>错误一：把规划写成许愿。</strong>"三年后做到总监"是愿望不是计划——计划必须回答路径（哪些能力+哪些机会+哪些人）、验证点（每年怎么知道自己 on track）与退路（路径断了换什么走）。检验标准：把目标句里的职位名换成别的职位，计划内容完全不用改——说明你规划的是头衔不是能力，头衔恰恰是 AI 时代最不稳定的东西。</p>
+      <p class="ctx"><strong>错误二：单点押注。</strong>把全部筹码押在一个岗位、一家公司、一个行业上，等于用职业生涯做无对冲的集中持仓。对冲的三层结构第18章给过：主业收入+可验证的第二曲线+财务缓冲；这里再补一层——<strong>人脉也要对冲</strong>：你的职业信息如果 100% 来自现同事，你对行业变化的感知会系统性滞后。</p>
+      <p class="ctx"><strong>错误三：规划不含恢复。</strong>十年是马拉松，规划里没有睡眠、运动、关系与倦怠监控（第19章全部工具），等于赛车计划里没有进站加油。可持续性是规划的前提条件，不是规划之外的奢侈品——多少雄心勃勃的五年计划，死于第三年的健康透支。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html">OECD Employment Outlook 2024（英文，职业流动频率与转型成本数据）</a> · <a href="https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo">WHO/ILO 长工时健康研究（英文，可持续性前提的量化依据）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、安全感的来源迁移</h2>
+    <p class="chapter-sub">从"岗位给我安全感"到"我的组合给我安全感"——这是十年规划的底层工程</p>
+
+    <article class="view">
+      <h3>旧安全感的三个支柱正在松动</h3>
+      <p class="ctx">工业时代的安全感建立在三个支柱上：<strong>岗位的稳定性</strong>（大公司终身雇佣的残余想象）、<strong>资历的确定性</strong>（熬年头就能升职加薪）、<strong>单一雇主的依附关系</strong>（社保、房贷、身份认同都系于一家公司）。AI 时代三个支柱同时松动：岗位重构加快（s2 的数据）、"资历溢价"在技能半衰期面前贬值（十年经验可能是同一年经验重复十次）、平台化就业让单一雇主关系不再是默认形态（新就业形态的司法与政策口径已在适配）。</p>
+      <p class="ctx">这不是悲观主义，是结构描述——旧支柱松动的同时，新支柱的建材已经在本课程里发过货了：<strong>能力组合</strong>（s5 梳子型）、<strong>关系网络</strong>（第15章弱关系）、<strong>财务缓冲</strong>（下面细讲）、<strong>可携带的声誉</strong>（作品、口碑、行业内的"提到这个名字大家知道"）。新安全感的特点是：<strong>它长在你身上，跟着你走，裁员裁不掉，跳槽带着走</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.oecd.org/en/publications/oecd-employment-outlook-2024_ac8b3538-en.html">OECD Employment Outlook 2024（英文，就业形态变化与非标准就业数据）</a> · Granovetter, The Strength of Weak Ties（1973，DOI: 10.1086/225469，英文，弱关系理论——可携带社会资本的学术基础）</div>
+    </article>
+
+    <article class="view">
+      <h3>财务缓冲：转型的弹药库</h3>
+      <p class="ctx">所有职业选项里，最贵的不是学费，是<strong>没有缓冲导致的贱卖</strong>：没有六个月应急金的人不敢拒绝坏工作、不敢谈判（第12章）、不敢做第二曲线实验（第18章）、被裁员后只能慌不择路（第17章）。财务缓冲的职业意义怎么强调都不过分——它不是理财问题，是<strong>议价权问题</strong>。</p>
+      <p class="ctx">缓冲的最低配置三层：<strong>①应急金</strong>——3-6 个月基本开支的活期或货币基金，失业风险高的行业取上限；<strong>②社保不断缴</strong>——养老、医疗的连续缴费年限直接关系待遇（购房购车资格在很多城市也挂钩社保连续性），离职空窗期优先处理社保衔接，具体以《社会保险法》与当地经办机构口径为准；<strong>③保障型保险</strong>——医疗险与重疾险防止"一场病清零全部缓冲"，先保障后理财是铁律。至于投资增值，本站的股票投资课程有系统的入门教程，这里只强调职业视角的一句话：<strong>投资是缓冲的放大器，不是缓冲本身——先有前三层，再谈其余</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国社会保险法》（养老/医疗保险缴费与待遇条款）</a> · <a href="https://www.mohrss.gov.cn/">人社部官网（社保关系转移接续经办口径，检索路径：首页→服务之窗）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>可携带声誉：把十年的工作变成资产</h3>
+      <p class="ctx">最后一种安全感建材最容易被忽视：<strong>可携带的声誉</strong>——离开公司抬头之后，市场还认不认你。声誉的三种沉淀形式：①<strong>作品化</strong>——把项目经验整理成可展示的东西（案例复盘、方法论文章、开源贡献、行业分享），注意脱敏与保密义务（第18章讲过边界）；②<strong>节点化</strong>——在行业社群里做"连接者"，帮人牵线、组织活动、回答问题，弱关系网络的密度决定机会的流量（第15章）；③<strong>证言化</strong>——维护好每一段离职关系，前同事与前领导是背调时代最有分量的证人（第2章讲过背景调查）。</p>
+      <p class="ctx">十年之后回头看，岗位、公司、行业都可能换了三轮，但"这人靠谱、能成事、值得合作"的口碑复利滚动——这是 AI 无法生成、猎头无法搬运、裁员无法没收的资产。本课程到此结束，愿你的十年，规划里有方向、盘点里有数据、实验里有勇气、复盘里有诚实。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Granovetter 1973（英文，弱关系与机会获取） · <a href="https://www.court.gov.cn/zixun/xiangqing/319161.html">最高法与人社部典型案例（合法维权与职业信誉的制度环境）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言总粉碎：全课程六大谣言一次清算</h2>
+    <p class="chapter-sub">收官福利——把二十章里遇到的最顽固谣言集中处决</p>
+
+    <article class="view">
+      <h3>谣言粉碎：从 AI 焦虑到职场迷思的六连破</h3>
+      <p class="ctx"><strong>谣言一："AI 会取代所有白领。"</strong>四家机构的口径没有一家支持这个说法：被自动化的是任务不是职业（s2 共识第一条），几乎所有职业都是部分任务重构；真正危险的不是"白领"这个身份，而是"只做程序性任务"的工作方式。取代论的流量密码是把暴露度偷换成失业率。</p>
+      <p class="ctx"><strong>谣言二："想不被 AI 淘汰就去学计算机。"</strong>混淆了"理解 AI"与"开发 AI"。绝大多数岗位需要的是 s4 的人机协作素养与 s3 的判断力升级，不是转码；而且初级编码恰是 AI 暴露度最高的任务之一——盲目涌入的"转码者"正在撞上行业自身的自动化。你的护城河是"你的专业+AI"，不是抛弃专业去换专业。</p>
+      <p class="ctx"><strong>谣言三："躺平是对抗内卷的理性选择。"</strong>躺平的合理内核是拒绝无效内卷（第7章讲过伪工作），但"全面躺平"混淆了两件事：对雇主的消极抵抗，代价是自己的技能折旧与安全感空心化（s5、s7）——公司不会为你的十年负责，你的能力组合只对你自己负责。理性版本不是躺平，是"精准努力"：把能量从表演性加班撤出，投给可携带的能力与声誉。</p>
+      <p class="ctx"><strong>谣言四："35 岁职场就完了。"</strong>年龄歧视是真实存在的违法现象（就业促进法明确禁止），但"35 岁=终点"的叙事把结构性问题偷换成了个人宿命。数据口径：国家统计局的就业人员中 35 岁以上占绝对多数；真正决定中年职业质量的是 s7 的四支柱——35 岁危机本质是"单一支柱（岗位）依赖者在支柱松动时的危机"，支柱多元化的人 45 岁照样从容。对抗年龄焦虑的答案不在情绪里，在本章的规划流程里。</p>
+      <p class="ctx"><strong>谣言五："‘职场PUA’式的打压是严格管理。"</strong>严格管理有明确特征：对事不对人、标准透明一致、批评附带具体改进路径、结果可验证；而精神打压的特征是：否定人格而非行为、标准随情绪漂移、只贬低不指导、隔离你的支持系统（第14章有完整识别清单）。把后者美化为"严格"，是让受害者替加害者辩护。识别的意义在于：前者值得留下改进，后者应该收集证据、依法维权、准备离开。</p>
+      <p class="ctx"><strong>谣言六："‘简历造假’很常见，不造白不造。"</strong>这是全课程法律后果最重的谣言：造假入职，用人单位可依《劳动合同法》主张劳动合同无效并解除且不支付补偿；造假骗取的薪酬可能引发返还争议；情节严重的"学历造假"涉伪造证件的行政乃至刑事责任；而且背调产业日益成熟（第2章讲过核验路径），造假的暴露只是时间问题——暴露时你失去的不是一份工作，是可携带声誉（s7）。真实履历+精准呈现（第2章的全部技术）才是正解：<strong>简历的功夫在筛选与表达，不在虚构。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF Future of Jobs 2025（英文，岗位增减与技能数据）</a> · <a href="https://www.stats.gov.cn/">国家统计局官网（就业人员年龄结构统计口径）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库检索《中华人民共和国劳动合同法》第26条、第39条与《中华人民共和国就业促进法》（合同无效情形与反就业歧视条款）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测与结课行动</h2>
+    <p class="chapter-sub">学完≠学会，学会≠行动——三个本周可做的动作收尾</p>
+
+    <div class="checklist">
+      <h4>📋 AI 时代职业规划自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>老陈和小唐的区别是什么框架差异？为什么"颗粒度是焦虑的解药"？</li>
+        <li>WEF、IMF、OECD、ILO 四家机构的报告各测什么？数字为什么看起来打架？</li>
+        <li>四份报告的共识五条是什么？分歧三处是什么？"最坏做缓冲、最可能下注"怎么用？</li>
+        <li>国内三条政策主线是什么？新职业目录为什么比培训机构文案可信？</li>
+        <li>暴露度最高的任务和最低的任务各有什么特征？替代型与互补型的分界线是什么？</li>
+        <li>任务暴露度自查五步怎么做？三档比例各触发什么行动？</li>
+        <li>AI 时代更值钱的四类能力是什么？为什么说它们是前十九章的主题？</li>
+        <li>人机协作三层能力是什么？为什么第三层最重要？</li>
+        <li>AI 产出上线前的六道验收关是什么？标识关的法律依据是什么？</li>
+        <li>终身学习三个反直觉要点是什么？年度学习预算怎么分配？</li>
+        <li>三类制度红利是什么？每年花一个下午查什么？</li>
+        <li>梳子型能力结构与 T 型的区别是什么？选齿的两个原则是什么？</li>
+        <li>为什么传统五年计划失效？Ibarra 的核心结论是什么？</li>
+        <li>十年规划四层流程各做什么、频率如何？精髓为什么是反馈回路？</li>
+        <li>三个规划错误（许愿/单点押注/不含恢复）各自的检验标准是什么？</li>
+        <li>旧安全感三支柱是什么？新四支柱是什么？为什么说新支柱"跟着你走"？</li>
+        <li>财务缓冲三层配置是什么？为什么说缓冲是议价权问题不是理财问题？</li>
+        <li>可携带声誉的三种沉淀形式是什么？</li>
+        <li>六大谣言各自的偷换概念点在哪里？</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <strong>📌 本章要点速览：</strong>AI 冲击以任务为单位——高暴露≠被替代，分界线是互补还是替代、你的价值有没有判断与责任兜底；四家机构口径差异（WEF 岗位净增 7800 万/IMF 四成暴露/OECD 审慎/ILO 增补为主）教你的读法是"先看口径再看数字"；更值钱的四类能力：问题定义、判断与责任、深度人际、跨域整合——软技能变硬通货；人机协作三层：工具操作（快贬值）→分工设计（管理迁移）→责任验收（六道关，含 AI 内容标识义务）；技能半衰期压缩→终身学习制度化：绑定产出、优先长半衰期、编年度预算（60/30/10），用足补贴/等级认定/新职业目录三类制度红利；能力结构从 T 型升级梳子型（相邻性+互补性选齿）；十年规划四层：十年方向（价值排序）→三年盘点（技能/人脉/财务）→一年实验（预设放弃标准）→季度复盘（含倦怠监控），规划是持续修订的假设不是蓝图；安全感四支柱迁移：能力组合+弱关系网络+财务缓冲（应急金3-6个月/社保不断缴/保障险）+可携带声誉（作品化/节点化/证言化）；六大谣言（AI 取代所有白领/转码保平安/躺平理性/35 岁完了/"职场PUA"是严格管理/"简历造假"无妨）的共同结构都是偷换概念+贩卖情绪，解药是口径、数据与法律条文；结课行动：本季度实测一个 AI 工具进工作流、按四层流程写第一版十年规划、约三个弱关系喝咖啡。
+    </div>
+
+    <div class="checklist">
+      <h4>🎓 结课行动清单（本周启动）</h4>
+      <ul>
+        <li>挑一个你工作中重复度最高的任务，用现有 AI 工具实测一遍，记录：省了多少时间、质量几成、验收要查什么——这是你的第一份人机协作笔记；</li>
+        <li>用 s3 的五步流程做一次完整的任务暴露度自查，算出你的"高暴露替代型"工时占比，存进年度盘点；</li>
+        <li>按 s6 的流程框写下第一版十年规划（允许粗糙，它的使命是被修订），日历里建好每季度的复盘提醒；</li>
+        <li>从第15章的人脉盘点里挑三个久未联系的弱关系，本周约一杯咖啡——顺便告诉他们你读完了这门课。</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a href="../19-balance/"><span class="dir">← 第19章</span>工作生活平衡与倦怠</a>
+    <a href="../"><span class="dir">课程完结 🎓</span>返回课程首页</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第20章 · 依据 WEF《未来就业报告 2025》、IMF Gen-AI 研究、OECD《就业展望》、ILO 全球研究、人社部政策口径、国家统计局就业统计、最高人民法院典型案例及 Ibarra《Working Identity》等资料整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业教育参考，不构成对任何职业前景的预测或决策建议 · 法律法规以官方现行文本为准 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

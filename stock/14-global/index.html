@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14章 全球视角：港股、美股与QDII — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第14章 · 第三部分 · 避坑与合规</div>
+  <h1>全球视角：港股、美股与QDII</h1>
+  <p>跨市场分散的逻辑与边界、港股通与QDII的规则细节、美股直投的合规与税务问题——只讲合法渠道，不预测汇率与海外市场</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../13-regulation/">← 第13章：监管与投资者保护</a>
+    <a href="../15-product/">第15章：其他理财产品全景 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">合规边界</a>
+    <a class="anchor" href="#s2">港股通</a>
+    <a class="anchor" href="#s3">港股风险</a>
+    <a class="anchor" href="#s4">QDII</a>
+    <a class="anchor" href="#s5">美股直投</a>
+    <a class="anchor" href="#s6">实务差异</a>
+    <a class="anchor" href="#s7">合规自查</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。<strong>本章特别声明：</strong>只介绍境内投资者参与境外市场的<strong>合法合规渠道</strong>（港股通、QDII、基金互认等），不介绍、不教授任何规避监管的跨境资金通道；不预测汇率走势与海外市场涨跌；涉及境外税务的口径以相关税务当局官方规定为准，重大税务安排请咨询专业人士。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清普通人参与境外市场只有哪几条合法渠道，以及为什么 2026 年八部门整治方案之后"出海炒股App"不能再碰；②记住港股通个人投资者的 50 万元门槛与适当性要求（三重官方来源），并能列出港股与 A 股的至少四项制度差异（涨跌幅、T+0、交易日历、结算与货币）；③解释 QDII 是什么、额度由谁管理、2026 年 5 月末的额度规模大致多少，以及 QDII 基金场内溢价为什么是风险信号而不是机会信号；④说出美股直投涉及的合规问题与税务要点（W-8BEN 表、股息预提税、资本利得口径），并知道为什么本课程只建议通过合规渠道参与；⑤用"跨境投资合规自查"流程框检验自己或家人的每一笔"海外投资"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章是"地图+护栏"：第二节到第六节是地图（每条合法通道的规则细节），第一节与第七节是护栏（合规边界与自查流程）。如果你暂时没有境外配置需求，重点读第一、二、七节即可；如果你已经或正打算通过 QDII 基金做全球配置，第四节的溢价与限购、第六节的汇率与结算实务请务必读完。所有门槛、额度、税率均标注官方来源与时效，以官方最新规定为准（截至 2026 年 10 月）。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、全球配置的逻辑，与一条不能越的合规边界</h2>
+    <p class="chapter-sub">先讲为什么，再讲凭什么渠道——顺序不能反</p>
+
+    <article class="view">
+      <h3>为什么要有全球视角：分散的逻辑与它的边界</h3>
+      <p class="ctx">资产配置部分（<a href="../03-allocation/">第3章</a>）讲过：分散化的收益来自"相关性低的资产放在一起"。把这个逻辑延伸到国界之外，就是全球配置的动机——不同经济体的增长周期、货币政策、产业结构并不同步，跨市场持有权益资产可以降低对单一市场单一周期的暴露；同时，一些你日常消费与工作中接触的全球性企业，其股票只在境外市场上市。这是教科书与经典投资教材的通行论述（马尔基尔《漫步华尔街》即有专章讨论国际分散化，书籍引用），也是养老金与主权财富基金的常规做法。</p>
+      <p class="ctx">但边界同样要讲清楚，有三条。<strong>第一条：分散不是免费的。</strong>跨市场配置会引入汇率波动、不同的税制、更高的信息获取成本与更陌生的公司治理环境——你在 A 股积累的经验（披露规则、监管口径、维权渠道）到了境外市场都要重新学一遍；危机时期全球市场相关性还会阶段性上升，"分散"的保护作用会打折扣（金融教材通行口径）。<strong>第二条：本课程不预测。</strong>我们不判断"美股还能涨多久""汇率往哪走""哪个国家是下一个风口"——任何做出这类判断并让你据此重仓的声音，都值得用<a href="../12-rumor/">第12章</a>的核查四步检验。<strong>第三条：合规优先于收益。</strong>参与境外市场的渠道是否合法，直接决定你的资金安全与法律保护水平——这是下一张卡的主题，也是本章最重要的一张卡。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：伯顿·马尔基尔《漫步华尔街》（国际分散化章节，书籍引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（资产配置与风险分散科普）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>合法渠道就这么几条：先画清"能走"与"不能走"的线</h3>
+      <p class="ctx">境内普通投资者参与境外证券市场，<strong>合法渠道主要是三条</strong>：①<strong>港股通</strong>（沪港通、深港通下的南向交易通道，通过境内券商买卖规定范围内的港股）；②<strong>QDII 基金</strong>（合格境内机构投资者制度下，购买公募基金的人民币份额，由持牌机构在批准额度内投资境外市场）；③<strong>基金互认</strong>（内地与香港基金互认安排下，经核准的香港基金可在内地销售）。此外，符合条件的境内企业员工参与本公司境外股权激励等有专门政策通道（以监管口径为准）。这张清单之外的路径——尤其是通过未经批准的境外券商 App 直接开户炒美股、港股——是本章的护栏重点。</p>
+      <p class="ctx">2026 年 5 月，证监会等八部门联合印发《综合整治非法跨境证券期货基金经营活动实施方案》，明确对<strong>未经我国监管部门批准、面向境内投资者跨境展业的证券期货基金经营活动</strong>依法整治取缔（官方文件链接见下）。用大白话说：一家没有境内牌照的境外券商，通过中文 App、中文客服、境内外社交媒体向内地居民招揽客户，这个行为本身就在被整治之列。为什么监管要管这件事？回到<a href="../13-regulation/">第13章</a>的逻辑：投资者保护是属地化的——你的资金一旦进入未经批准的境外通道，适当性保护、纠纷调解、先行赔付、代表人诉讼这些制度全部<strong>够不着你</strong>；出了事（平台跑路、账户冻结、无法出金），你连投诉的门都找不到。<strong>本章只讲合法渠道，也不会介绍任何"绕道"的方式</strong>——这不是保守，而是因为"绕道"的终点往往是三个：资金损失、法律风险、维权无门。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月，官方全文）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（合法机构名录与监管口径查询入口）</a> · <a href="https://www.investor.org.cn/">中国投资者网（跨境投资风险提示科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、港股通：规则与门槛</h2>
+    <p class="chapter-sub">50 万元门槛、适当性管理、与 A 股完全不同的交易制度</p>
+
+    <article class="view">
+      <h3>港股通是什么：一条"闭环"的合规通道</h3>
+      <p class="ctx">沪港通 2014 年 11 月开通、深港通 2016 年 12 月开通，其中供境内投资者买卖港股的南向通道俗称"港股通"。它的机制可以概括为<strong>"两地交易所互联、订单跨境撮合、资金闭环结算"</strong>：你通过境内券商下单，订单经上交所/深交所传至港交所撮合，成交后由中国结算与香港结算完成交收——全程用人民币交收，换汇环节由结算系统在后台完成，你不需要自己购汇，资金不出境内闭环体系。这个设计有三层含义：①它是<strong>监管认可的通道</strong>，你的交易行为受两地交易所规则约束，也受境内投资者保护制度覆盖（适当性、投诉渠道都适用）；②可买卖的标的<strong>限于规定范围内的港股</strong>（相关指数成份股及两地上市公司等，具体名单以交易所公布为准），不是"随便买港股"；③交易遵循<strong>两地规则的叠加</strong>——报价撮合按港交所规则，投资者管理与风控按内地规则。</p>
+      <p class="ctx">一个容易被忽略的实务细节是<strong>交易日历</strong>：港股通只在两地市场都开市、且结算银行都能服务的日子开放交易——内地长假或香港公众假期，港股通都会关闭（每年交易日历由交易所提前公布）。这意味着：你持有的港股通股票，在单边假期里可能"看得见行情、动不了手"——A 股或港股单边波动时你无法交易，这是持有港股通资产必须预算的流动性风险。规则细节（标的范围、订单类型、额度与风控机制）以上交所、深交所沪港通/深港通业务规则专栏为准（本讲引用的《上海证券交易所沪港通业务实施办法（2024年修订）》为现行文本之一，以官方最新修订为准）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sse.com.cn/services/hkexsc/rules/">上海证券交易所 · 沪港通业务规则专栏</a> · <a href="https://www.sse.com.cn/lawandrules/sselawsrules2025/global/hkexsc/c/c_20251017_10795123.shtml">《上海证券交易所沪港通业务实施办法（2024年修订）》</a> · <a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（中文PDF）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>50 万元门槛与适当性：为什么港股通"挑人"</h3>
+      <p class="ctx">港股通对个人投资者设有明确门槛：<strong>申请开通权限前，证券账户及资金账户内的资产合计不低于人民币 50 万元</strong>（不包括融资融券融入的资金和证券），并须通过适当性评估、签署风险揭示书。这个口径有三重官方来源可查：《上海证券交易所沪港通业务实施办法》的条文规定、港交所面向投资者的官方手册，以及交易所配套的投资者适当性管理指引（链接见下）——规则类数字请以官方最新规定为准（截至 2026 年 10 月）。风险揭示书在 2026 年的修订中进一步明确了必备条款，把港股特有风险（无涨跌幅限制、汇率、"老千股"等）逐项写入，要求投资者确认知悉。</p>
+      <p class="ctx">为什么要设门槛？逻辑与<a href="../13-regulation/">第13章</a>的适当性管理一脉相承：<strong>港股的波动特征与制度环境对经验不足的投资者更不友好</strong>——没有涨跌幅缓冲、小市值股票流动性极差、做空机制成熟、信息披露与维权环境陌生。监管的判断是：资产规模达不到一定水平的家庭，承受这类风险的能力可能不足，先用 QDII 基金等门槛更低、有专业管理与分散化的工具参与境外市场，是更稳妥的路径（这不构成对任何人的投资建议，只是制度设计的逻辑说明）。如果你满足 50 万门槛，开通流程在你的券商 App 内即可完成：资产核验→知识测试→签署风险揭示书→权限开通，全程留痕；不满足的投资者，任何声称"帮你绕开门槛"的中介都是骗局候选——门槛核验是券商的法定义务，绕不过，也不该绕。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sse.com.cn/lawandrules/sselawsrules2025/global/hkexsc/c/c_20251017_10795123.shtml">《上海证券交易所沪港通业务实施办法（2024年修订）》（个人投资者资产门槛条款）</a> · <a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（中文PDF，个人投资者资格官方口径）</a> · <a href="https://www.sse.com.cn/services/hkexsc/rules/">上交所沪港通业务规则专栏（投资者适当性相关规则）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>制度差异对照表：从 A 股切换到港股，哪些直觉会失灵</h3>
+      <p class="ctx">很多用 A 股经验炒港股的投资者，第一个月就会被制度差异"上课"。把最重要的几项列成对照表（教学性归纳，细节以两地交易所现行规则为准）：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>A 股</th><th>港股（经港股通）</th><th>对投资者的含义</th></tr>
+        <tr><td>涨跌幅限制</td><td>主板单日 ±10%（ST 等另有限制，以现行规则为准）</td><td>无涨跌幅限制（有市场波动调节机制）</td><td>单日大幅波动是常态，止损纪律更重要</td></tr>
+        <tr><td>回转交易</td><td>T+1（当日买入次日才能卖）</td><td>T+0 回转（当日可买卖多次）</td><td>交易更自由，也更容易过度交易（第12章的教训）</td></tr>
+        <tr><td>交易单位</td><td>100 股一手，统一</td><td>每手股数由各股票自定（可能几十到几千股）</td><td>下单前先看清每手数量与最小报价单位</td></tr>
+        <tr><td>交易日历</td><td>内地节假日休市</td><td>两地都开市且可结算的日子才开港股通</td><td>单边假期"看得见动不了"，预算流动性风险</td></tr>
+        <tr><td>货币与结算</td><td>人民币，T+1 交收（现行规则）</td><td>港币报价、人民币交收，港股 T+2 交收</td><td>存在汇率敞口与更长的在途时间</td></tr>
+        <tr><td>做空与衍生品</td><td>融券受限、散户基本单边做多</td><td>做空机制成熟、衍生品丰富</td><td>股价下跌可以"没有下限"地顺畅，别用单边牛市直觉抄底</td></tr>
+      </table>
+      <p class="ctx">特别提醒两条最反直觉的：<strong>其一，"没有跌停板"意味着极端行情一天走完</strong>——A 股里"跌停放几天慢慢跑"的经验在港股不成立，个股单日腰斩甚至更深的历史案例并不罕见；<strong>其二，T+0 不是福利是考验</strong>——<a href="../12-rumor/">第12章</a>引过 Barber & Odean 的证据：交易频率与收益负相关，T+0 把这个行为陷阱的闸门完全打开了。制度差异表的价值不在于背下来，而在于建立一个习惯：<strong>进入任何新市场前，先读它的官方投资者手册</strong>——港交所那份中文 PDF 手册，两个晚上就能读完。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（交易机制、交收与汇率安排官方说明，中文PDF）</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务（交易规则科普）</a> · Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、港股市场的特有风险</h2>
+    <p class="chapter-sub">流动性陷阱、"老千股"套路、税与汇——三堂必修课</p>
+
+    <article class="view">
+      <h3>流动性与"老千股"：低价不等于便宜</h3>
+      <p class="ctx">港股市场呈典型的"二元结构"：大市值蓝筹成交活跃、定价充分；而大量小市值股票成交极其清淡，有的全天成交额只有几万港币——买卖价差大、想卖卖不掉，是这类股票的常态。更危险的是被两地监管与投教材料反复警示的所谓<strong>"老千股"</strong>套路（批判语境）：一些公司以反复合股、供股、配售为名，持续摊薄中小股东权益，股价长期"阴跌归零"；配合拉高出货、频繁更名换故事等手法，专门收割"低价=便宜"的外来散户。识别要点（投教口径归纳）：市值极小而故事极大、频繁合股供股、审计意见非标、长期不分红且现金去向不明、股价与基本面严重脱节——遇到多条即远离。这也是港股通标的范围限定在指数成份与两地上市公司等相对规范品种的原因之一；即便在范围内，小票的流动性与治理风险仍显著高于 A 股同类。</p>
+      <p class="ctx">普通投资者的自保姿势与 A 股一致但要求更高：<strong>①看不懂的公司不碰</strong>——港股的信息获取、做空报告、维权渠道都比 A 股陌生，研究成本更高；<strong>②分散化优先</strong>——通过 QDII 基金或指数化工具持有港股市场，比单票押注安全得多（<a href="../04-index/">第4章</a>的逻辑在跨市场时同样成立）；<strong>③把流动性当成本</strong>——评估一笔港股投资时，先问"如果我错了，多快能退出、退出要付多大价差"。在港股，"便宜"是估值概念，"低价"只是每股面值游戏——合股可以把十股变一股，价格瞬间乘十，你的财富没有变多一分。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（风险提示与市场制度说明）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（跨市场风险科普）</a> · <a href="https://www.investor.org.cn/">中国投资者网（境外市场风险提示）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>税、费、汇：港股通收益的"隐形三扣"</h3>
+      <p class="ctx">跨境投资的净收益要在毛收益上连扣三层，这三层在 A 股经验里要么不存在、要么完全不同。<strong>第一层：股息税。</strong>先复习 A 股口径：上市公司股息红利实行差别化个人所得税——持股超过 1 年免征、1 个月至 1 年税负 10%、1 个月以内 20%（财税〔2015〕101 号，以官方现行规定为准）。而通过港股通取得的股息，个人投资者需要缴纳的所得税口径与 A 股不同（涉及内地税法与香港税制的衔接，扣缴方式也分 H 股与非 H 股情形），具体税率与扣缴安排以税务机关及中国结算的官方口径为准——本课程不给出可能过时的具体数字，只提醒：<strong>做股息类跨境投资前，必须先把税负算进预期收益</strong>。<strong>第二层：交易费用。</strong>港股通的费用结构比 A 股复杂：除券商佣金外，还有印花税、交易征费、交易费、交收结算费等多名目（以交易所与券商公示的现行费率为准），高频交易者请先算清费率账（<a href="../10-tax/">第10章</a>的方法完全适用）。</p>
+      <p class="ctx"><strong>第三层：汇率。</strong>港股通以港币报价、人民币交收，你的收益=股价涨跌+汇率变动的叠加——港币与美元联系汇率制度下，这个敞口实质上接近美元敞口。关于汇率，本课程立场一贯：<strong>不预测方向</strong>；你要做的是理解"它存在、它双向、它可能吃掉也可能增厚你的收益"，并把汇率波动纳入自己的风险承受力评估（<a href="../16-plan/">第16章</a>），而不是试图"赌对汇率"——那是投机，不是配置。三层扣完还剩什么？这取决于你的持有期与标的选择，但有一点是确定的：<strong>跨境投资的净收益永远比行情软件上显示的涨跌幅要复杂</strong>，做预期时请把"隐形三扣"放在毛收益的前面。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5203902/content.html">财政部 税务总局 证监会《关于上市公司股息红利差别化个人所得税政策有关问题的通知》（财税〔2015〕101号，A股股息税三档）</a> · <a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（费用、税项与汇率安排说明）</a> · <a href="https://www.chinatax.gov.cn/">国家税务总局官网（跨境所得个人所得税政策查询入口）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-14-1.png" alt="跨市场桥梁示意：两座几何风格的城市隔水相望，中间由一座发光的蓝色大桥连接，桥面上有抽象的箭头双向流动，水面倒映着货币符号的简化图形，扁平插画风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、QDII：普通人"出海"的主力通道</h2>
+    <p class="chapter-sub">持牌机构替你出海：额度、溢价、限购三个关键词</p>
+
+    <article class="view">
+      <h3>QDII 是什么：制度沿革与运作结构</h3>
+      <p class="ctx">QDII 是"合格境内机构投资者"（Qualified Domestic Institutional Investor）的缩写：在人民币资本项目尚未完全可兑换的背景下，经批准的境内金融机构（基金公司、券商、银行、保险等）可以在批准的外汇额度内，代表投资者投资境外证券市场。制度自 2006 年起实施（《合格境内机构投资者境外证券投资管理试行办法》，证监会发布，官方全文链接见下），额度由国家外汇管理局管理。对普通人来说，最常用的形态是<strong>QDII 公募基金</strong>：你用人民币申购基金份额（很多产品 10 元起投、无资产门槛），基金公司用自身的 QDII 额度换汇投资境外股票、债券、REITs 或指数，你分享净值涨跌——资金全程在境内持牌体系内闭环，受境内基金法规与投资者保护制度覆盖。</p>
+      <p class="ctx">把 QDII 与港股通放在一起看，两者的分工就清楚了：<strong>港股通是"自己开车"</strong>——你自己选股下单，门槛 50 万，制度风险自担；<strong>QDII 是"坐持牌司机的车"</strong>——你把钱交给专业机构，门槛极低，覆盖市场更广（美股、欧洲、日本、新兴市场、境外债券都能通过相应产品触达），代价是支付管理费并承受基金的跟踪与择时风险。从投资者保护的立场看，对绝大多数没有精力研究境外市场的普通人，QDII 基金（尤其是费率低廉的指数型产品）是参与全球配置更现实、更合规、更分散的方式——这个判断的依据是制度结构与成本比较，不构成对任何具体产品的推荐（本课程全程不出现任何基金代码与名称）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653919/content.shtml">《合格境内机构投资者境外证券投资管理试行办法》（证监会，官方全文）</a> · <a href="https://www.safe.gov.cn/hunan/2018/0528/674.html">国家外汇管理局湖南分局《扩大金融市场开放，稳步推进QDII制度实施》（制度沿革科普）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（公募基金登记备案与信息披露口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>额度管理：193 家机构、1761.69 亿美元，以及"额度紧张"意味着什么</h3>
+      <p class="ctx">QDII 额度实行行政审批/备案管理，外汇局定期公布各机构的获批额度。按外汇局广东分局公布的《QDII 投资额度审批情况表》，<strong>截至 2026 年 5 月 31 日，获批 QDII 资格的机构共 193 家，累计批准投资额度约 1761.69 亿美元</strong>（官方数据链接见下，以最新一期公布为准）。2026 年上半年额度出现明显扩容（上海市地方金融管理局官网刊文介绍，地方金融管理部门口径），市场普遍解读为金融开放持续推进的信号（此为媒体与机构的一般性解读，标注口径）。读懂这组数字的含义：额度是 QDII 产品的"油箱"——基金公司拿到多少美元额度，决定它能承接多少人民币申购、投向多少境外资产。</p>
+      <p class="ctx">额度与个人投资者的关系，体现在两个日常现象上：<strong>其一是限购</strong>——当某只 QDII 基金的额度接近用满，基金公司会公告暂停申购或限制大额申购（"每日限购 100 元"之类），这不是饥饿营销，而是额度约束的真实反映，公告在基金业协会与基金公司官网可查；<strong>其二是场内溢价</strong>——下一张卡专门讲，因为它是普通投资者在 QDII 上最容易踩的坑。理解额度机制的价值在于：当你在财经媒体上看到"QDII 额度扩容"的新闻时，你知道它影响的是供给端（更多资金可以合规出海），而不是任何"海外行情要来了"的预测信号——把制度新闻误读成行情信号，正是<a href="../12-rumor/">第12章</a>批判的叙事谬误。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.safe.gov.cn/guangdong/2026/0603/3228.html">国家外汇管理局广东分局《QDII投资额度审批情况表（截至2026-05-31）》（193家机构、累计1761.69亿美元）</a> · <a href="https://jrj.sh.gov.cn/ZXYW178/20260702/f50daaccdc6245c79565766396179567.html">上海市地方金融管理局《上半年QDII额度大扩容》（地方金融管理部门刊文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>场内溢价与限购：QDII 最常见的两个坑</h3>
+      <p class="ctx"><strong>坑一：高溢价追买。</strong>QDII 基金很多同时在交易所上市（场内交易）。场内价格由买卖供求决定，而基金净值由境外资产决定——当额度紧张、场外买不进时，资金涌向场内，就会把交易价格推到<strong>显著高于净值</strong>的水平（溢价）。此时买入，你等于花 1.1 元买价值 1 元的资产：一旦溢价回落（额度放开、申购恢复、情绪降温），即使境外资产没跌，你也先亏一截。识别与自保：交易软件里场内价格与"参考净值（IOPV）"并列显示，下单前看一眼溢价率；基金公司通常会对高溢价发布风险提示公告甚至停牌——<strong>看到"溢价风险提示"公告还在往里冲的，亏钱怨不得市场</strong>。<strong>坑二：把限购当利好。</strong>"这只基金限购了，说明它好，赶紧抢"——限购的直接原因是额度约束，与基金好坏没有必然关系；限购还会带来规模不稳定、被动卖出等管理难题。判断产品，永远回到费率、跟踪误差、规模与自己的配置需求（<a href="../04-index/">第4章</a>的框架），而不是排队情绪。</p>
+      <p class="ctx">顺带澄清一个高频疑问：<strong>"QDII 基金亏了找谁？"</strong>——QDII 是境内公募基金，你的权利与买任何境内基金相同：信息披露义务、适当性管理、12386 投诉、投服中心调解、代表人诉讼全部适用（<a href="../13-regulation/">第13章</a>的制度都在）。这正是合法渠道的价值：境外市场的风浪你照样要扛（市场风险不消失），但至少<strong>规则风险与对手方风险被制度兜住了</strong>。对照之下，把钱放进未经批准的境外 App，出了事连"找谁"这个问题都无法成立——两相对比，渠道选择的重要性不言自明。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sse.com.cn/assortment/fund/etf/home/">上海证券交易所 ETF 专栏（跨境ETF与溢价风险提示机制科普入口）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金公告与信息披露查询）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏（基金投资风险提示）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、美股直投与基金互认</h2>
+    <p class="chapter-sub">最多人问、也最容易违规的一条路——只讲合规与税务框架</p>
+
+    <article class="view">
+      <h3>"出海炒股App"为什么不能碰：合规视角的完整拆解</h3>
+      <p class="ctx">"我想直接买美股，用某某 App 开户行不行？"——这是跨境投资里被问得最多的问题，答案需要拆成三层。<strong>第一层：展业合法性。</strong>证券业务是持牌业务：境外券商未取得境内许可，通过中文互联网面向境内居民招揽客户、提供开户与交易服务，属于非法跨境展业，2026 年八部门《综合整治非法跨境证券期货基金经营活动实施方案》明确将其纳入整治取缔范围（官方全文链接见第一节）。<strong>第二层：资金合法性。</strong>个人购汇的年度便利化额度有明确规定（以国家外汇管理局现行口径为准），且购汇用途须符合规定——<strong>境外买房、证券投资等资本项目支出不在便利化额度允许用途之内</strong>；通过分拆购汇（"蚂蚁搬家"）等方式规避额度与用途管理，本身就是外汇管理法规禁止的行为，会被列入关注名单并影响后续购汇。</p>
+      <p class="ctx"><strong>第三层：保护真空。</strong>假设前两层你都"绕过去了"（本章不介绍任何方法，也不应该有人向你介绍），你的处境是：资金在境外不受境内投保制度覆盖，纠纷适用境外法律与仲裁，维权成本高到实际上放弃；平台若出现问题（跑路、冻结、被整治下架），你的资产处置将极其被动。历史上此类风险的警示案例，各地证监局与公安部门的风险提示中反复出现（<a href="../11-scam/">第11章</a>的虚拟盘骗局也大量伪装成"美股港股开户"形态）。所以本课程的立场明确：<strong>想配置美股资产，走 QDII 基金（包括跟踪美股指数的产品）这条持牌通道</strong>——它能给你的，是合规、分散、境内法律全覆盖的境外市场敞口；它给不了的是"亲手下单的参与感"，而这个"参与感"，恰恰是行为金融证据里最贵的东西（<a href="../05-behavior/">第5章</a>、<a href="../12-rumor/">第12章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月）</a> · <a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇管理政策与年度便利化额度口径查询入口）</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">青海证监局 · 打击非法证券活动专栏（跨境骗局风险提示案例）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>如果通过合规渠道持有美股资产：税务要点与基金互认</h3>
+      <p class="ctx">即便是完全合规的持有（如通过 QDII 基金），了解税务框架也有助于看懂产品说明与收益构成。<strong>美国端：</strong>非美国税务居民投资美股，通常需要向券商提交 W-8BEN 表格声明非居民身份；美国对非居民外国人的股息征收预提税，中美税收协定下的常用税率为 10%（具体适用以美国国税局 IRS 官方口径与税收协定文本为准），资本利得对非居民外国人的一般处理口径与居民不同——本课程不复述可能过时的细则，只强调：<strong>通过 QDII 基金持有时，这些税务处理由基金层面完成，体现在净值里</strong>；基金定期报告会披露相关税费影响。<strong>中国端：</strong>居民个人取得境外所得的个人所得税处理（申报义务、抵免规则）以国家税务总局官方口径为准，情况因人而异，重大金额建议咨询税务师——这是本课程"人工兜底"原则（<a href="../13-regulation/">第13章</a>）在跨境税务上的直接应用。</p>
+      <p class="ctx"><strong>基金互认</strong>是第三条官方通道：内地与香港基金互认安排自 2015 年实施，经两地监管机构核准的基金可以在对方市场向公众销售——内地投资者可以通过境内代销渠道购买获准北上的香港互认基金（以证监会与基金业协会公布的名录为准），其跨境税务与披露安排遵循互认框架的专门规定。互认基金的意义在于产品供给的多样化，但选择逻辑与 QDII 一致：先看费率与风险等级是否匹配你的适当性评估，再看历史口径完整的业绩（注明区间与基准），最后确认销售渠道在持牌名录内——<strong>任何"互认基金"如果通过私人转账、境外账户收款，那就是冒名的骗局</strong>。三条合法通道的共同检验标准，下一节给你一个流程框。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.irs.gov/">美国国税局 IRS 官网（英文，非居民预提税与 W-8BEN 表格官方口径）</a> · <a href="https://www.chinatax.gov.cn/">国家税务总局官网（境外所得个人所得税政策查询入口）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（内地与香港基金互认安排与名录发布渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、实务差异：时差、结算与汇率额度</h2>
+    <p class="chapter-sub">那些不写进宣传页、却天天影响你的细节</p>
+
+    <article class="view">
+      <h3>时区、假期与结算周期：一张实务对照表</h3>
+      <p class="ctx">跨境投资对普通人的日常影响，大部分来自这些"物理细节"（教学性归纳，具体以各市场现行规则为准）：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>A 股</th><th>港股（港股通）</th><th>美股（经QDII间接持有）</th></tr>
+        <tr><td>交易时段（北京时间）</td><td>9:30—15:00</td><td>9:30—16:00（午市至16:00，含收市竞价时段安排）</td><td>21:30—次日4:00（夏令时）/ 22:30—次日5:00（冬令时）</td></tr>
+        <tr><td>结算周期</td><td>资金 T+1、证券 T+1（现行规则）</td><td>T+2 交收</td><td>T+1 交收（2024年5月起，以 SEC 官方口径为准）</td></tr>
+        <tr><td>主要假期</td><td>内地法定节假日</td><td>内地+香港假期叠加影响港股通日历</td><td>美国假日（与内地完全错位）</td></tr>
+        <tr><td>报价货币</td><td>人民币</td><td>港币（人民币交收）</td><td>美元（QDII份额以人民币计价）</td></tr>
+      </table>
+      <p class="ctx">这些差异的三个实际含义：<strong>①你的反应时间被物理性拉长。</strong>美股主要交易时段是你的深夜——重大新闻发生时，直接持有者要么熬夜操作（情绪化决策高发），要么等次日开盘（价格已反映完毕）；QDII 基金把这层焦虑外包给了基金管理人，你看到的是每日更新的净值。<strong>②资金在途时间更长。</strong>T+2 交收、跨境结算、QDII 申赎确认与到账（部分产品赎回款到账需多个工作日，以基金合同为准）——跨境资产的流动性天然弱于境内活期类资产，应急金永远不要放在这里（<a href="../16-plan/">第16章</a>的三笔钱框架）。<strong>③日历错位制造"假机会"与"假风险"。</strong>内地长假期间海外市场照常波动，节后开盘的"跳空"是常态而非阴谋——理解结算与日历机制，就能免疫一半的"节后恐慌"叙事。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.hkex.com.hk/-/media/HKEX-Market/Mutual-Market/Stock-Connect/Getting-Started/Information-Booklet-and-FAQ/Information-Book-for-Investors/Investor_Book_Cn.pdf">港交所《沪港通/深港通投资者手册》（交易时段、交收周期与假期安排）</a> · <a href="https://www.sec.gov/">美国证券交易委员会 SEC 官网（英文，美股结算周期规则口径）</a> · <a href="https://www.sse.com.cn/services/hkexsc/rules/">上交所沪港通业务规则专栏（交易日历公布机制）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>汇率与外汇额度：不预测方向，只讲规则</h3>
+      <p class="ctx">关于汇率，把三句话钉死：<strong>第一，没有人能持续预测汇率</strong>——汇率受利差、贸易、资本流动、政策与预期多重驱动，学术界对短期汇率可预测性的结论长期悲观（国际金融教材通行口径）；任何"汇率要变天、赶紧换汇"的文章，用<a href="../12-rumor/">第12章</a>核查四步处理。<strong>第二，汇率敞口是配置的副产品，不是独立目标</strong>——持有 QDII 或港股通资产，你就自然持有了相应货币的敞口，它的作用是分散，不是投机筹码；为了"赌汇率"而配置资产，等于给投机找了个体面的名字。<strong>第三，个人外汇规则必须遵守</strong>——境内个人购汇实行年度便利化额度管理（现行额度以国家外汇管理局公布为准），购汇须如实申报用途，证券投资等资本项目用途不在便利化额度允许范围内；分拆购汇、地下钱庄、虚拟货币兑换等规避手段均属违法违规，且是各类资金骗局的高发温床（风险提示见证监局与公安部门通报口径）。</p>
+      <p class="ctx">把这三句话翻译成行动：普通人做全球配置的合规姿势，就是<strong>用人民币买 QDII 基金或开通港股通，让持牌机构在制度框架内完成所有换汇与结算</strong>——你不需要、也不应该自己去操作任何"换汇出海"的动作。如果某个渠道要求你"先换美元再转境外账户"，无论它包装成什么（留学、保险、"全球资产配置"），都触发了两条警报：外汇用途合规 + 资金脱离境内保护体系——对照第七节的自查流程，直接终止。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇管理政策、年度便利化额度与违规案例通报口径）</a> · <a href="https://www.safe.gov.cn/hunan/2018/0528/674.html">外汇局湖南分局 · QDII 制度科普（机构端换汇与投资机制）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门跨境整治实施方案（2026年5月）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-14-2.png" alt="全球配置仪表盘示意：一个蓝色几何风格的圆形仪表盘，刻度上分布着地球、桥梁、盾牌三个图标，指针停在中间区域，旁边有简化的柱状图与折线图元素，扁平插画风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、跨境投资合规自查：一张流程框管住所有渠道</h2>
+    <p class="chapter-sub">五步自查，每一步都有"不通过就终止"的红线</p>
+
+    <article class="view">
+      <h3>跨境投资合规自查五步：从渠道到税务的完整检验</h3>
+      <p class="ctx">把本章所有规则压缩成一个可执行流程。无论你是第一次考虑全球配置，还是已经在持有 QDII 或港股通资产，都可以用它做一次全面体检；帮父母检查"海外投资"时尤其有用：</p>
+      <blockquote class="q">跨境投资合规自查五步：<br>① <strong>渠道核验</strong>：这笔投资走的是港股通（券商权限内）、QDII 基金（基金业协会可查的公募产品）、还是互认基金（证监会名录内）？——三者皆非的（境外 App 直接开户、私人换汇出海、"全球资产配置"私募），立即终止并核实资金去向。<br>② <strong>资质核验</strong>：销售机构在证监会合法机构名录内吗？宣传渠道是官方渠道还是群聊私信？——查无此机构，终止。<br>③ <strong>适当性核验</strong>：产品风险等级与你的测评匹配吗？港股通权限是券商正规流程开的吗？——凡是"帮你绕过门槛/测评"的，终止并举报。<br>④ <strong>资金路径核验</strong>：钱是进入境内持牌机构的监管账户/基金托管账户，还是要求你购汇转境外、转私人账户？——后者一律终止（同时触发外汇合规与骗局警报）。<br>⑤ <strong>税务与披露核验</strong>：你了解这条渠道的股息税、费用与申报义务吗？产品定期报告在官方渠道可查吗？——完全说不清的，先补课再决定。<span class="qsrc">—— 本课程教学性归纳；制度依据为八部门跨境整治实施方案、外汇管理法规、证监会适当性管理与基金监管口径（截至 2026 年 10 月）</span></blockquote>
+      <p class="ctx">这个流程框的设计逻辑与<a href="../08-account/">第8章</a>开户核验、<a href="../13-regulation/">第13章</a>被销售自保五步完全同构：<strong>先验渠道与资质（对手方风险），再验匹配与路径（合规风险），最后验税务与披露（持有成本）</strong>。跨境场景下它更重要，因为一旦资金出境进入不受保护的区域，前面所有章节讲过的维权工具——12386、投服调解、代表人诉讼——都会失效。最后补一个正向清单：通过合规渠道做全球配置时，合理的自我要求是——全球权益只是组合的一部分而非全部（比例取决于你的目标与承受力，<a href="../17-portfolio/">第17章</a>的框架适用）、优先低费率指数化工具、把汇率波动计入风险预算、每季度用官方净值与报告复盘。做到这四条，"全球视角"才真正为你的组合服务，而不是为焦虑服务。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（合法机构名录核验入口）</a> · <a href="https://www.safe.gov.cn/">国家外汇管理局官网（个人外汇合规口径）</a> · <a href="../">本课程首页 · 编写原则与来源认证说明</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能帮家人把关一次"海外投资"，这一章就学成了</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于跨境投资的三个流行说法</h3>
+      <p class="ctx"><strong>说法一："出海炒股 App 又方便又便宜，大家都用，没事的。"</strong>——"大家都用"不构成合法性：未经批准面向境内投资者跨境展业属于八部门整治方案明确取缔的非法经营活动；"方便"的另一面是境内投资者保护制度全部失效，历史上此类平台跑路、无法出金的警示案例在各地证监局与公安通报中反复出现。便宜的是佣金，贵的是本金安全。<strong>说法二："QDII 出现高溢价，说明大家都在抢，是上车信号。"</strong>——溢价的成因是额度约束下的供需失衡，与境外资产价值无关；高溢价买入等于为情绪支付额外对价，溢价回落时你承受的亏损与标的涨跌无关。基金公司发布溢价风险提示公告、交易所实施停牌，都是制度在喊"别追"——听制度的。<strong>说法三："港股通 50 万门槛太高，普通人没法全球配置。"</strong>——混淆了通道：门槛高的只是"自己开车"的港股通；QDII 基金很多产品 10 元起投、无资产门槛，由持牌机构代你完成换汇与投资，覆盖市场还更广。全球配置的正确问题不是"够不够 50 万"，而是"我的组合需不需要、需要多少比例"——这是<a href="../16-plan/">第16章</a>与<a href="../17-portfolio/">第17章</a>的作业。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月）</a> · <a href="https://www.sse.com.cn/assortment/fund/etf/home/">上交所 ETF 专栏（跨境产品溢价风险提示机制）</a> · <a href="https://www.sse.com.cn/lawandrules/sselawsrules2025/global/hkexsc/c/c_20251017_10795123.shtml">《上海证券交易所沪港通业务实施办法（2024年修订）》（个人投资者门槛条款）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>全球配置分散化的逻辑是什么？它的三条边界（成本、不预测、合规优先）各指什么？</li>
+        <li>境内普通投资者参与境外市场的三条合法渠道是什么？各自的运作方式用一句话概括。</li>
+        <li>2026 年八部门整治方案针对的是什么行为？为什么"绕道出海"的终点是资金损失、法律风险、维权无门？</li>
+        <li>港股通的"闭环"机制指什么？为什么你不需要自己购汇？</li>
+        <li>港股通个人投资者的资产门槛是多少？三重官方来源分别是什么？风险揭示书起什么作用？</li>
+        <li>监管为什么给港股通设门槛？不满足门槛的投资者，制度设计的替代路径是什么？</li>
+        <li>不看课文，说出 A 股与港股的至少四项制度差异及其"对投资者的含义"。</li>
+        <li>为什么"没有跌停板"和"T+0"反而对散户更危险？</li>
+        <li>"老千股"的常见套路有哪些？识别要点五条你能说出几条？</li>
+        <li>港股通收益的"隐形三扣"是什么？A 股股息税三档（财税〔2015〕101号）的口径是什么？</li>
+        <li>QDII 的全称与制度起点是什么？额度由谁管理？</li>
+        <li>截至 2026 年 5 月末，QDII 获批机构数量与累计额度大致是多少？数据出处是哪里？</li>
+        <li>QDII 场内溢价是怎么形成的？为什么高溢价买入"境外资产没跌你也亏"？</li>
+        <li>W-8BEN 表是什么？中美税收协定下股息预提税的常用税率是多少（口径如何标注）？</li>
+        <li>基金互认安排是什么？识别"冒名互认基金"的关键检验点是什么？</li>
+        <li>关于汇率要钉死的三句话是什么？个人购汇年度便利化额度的用途限制为什么重要？</li>
+        <li>不看课文，背出"跨境投资合规自查五步"，并说明每一步拦截的是什么风险。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>全球配置=分散逻辑（跨周期、跨市场）+三条边界（成本更高、不预测汇率与海外行情、合规优先）；合法渠道三条——港股通（自己开车：门槛50万、适当性+风险揭示书、沪港通实施办法/港交所手册/适当性指引三重来源）、QDII 基金（坐持牌司机的车：人民币申购、机构额度内换汇出海、低门槛广覆盖）、基金互认（证监会名录内的北上基金）；2026年5月八部门《综合整治非法跨境证券期货基金经营活动实施方案》：未经批准面向境内投资者的跨境展业将被整治取缔，"出海炒股App"不是通道；港股制度差异——无涨跌幅限制（极端行情一天走完）、T+0（过度交易闸门）、每手股数自定、两地同开的交易日历（单边假期动不了手）、港币报价人民币交收、港股 T+2；港股特有风险——流动性二元结构与"老千股"套路（合股供股摊薄、更名换故事，识别五条即远离）、"隐形三扣"（股息税口径以税务官方为准、多名目交易费、汇率敞口）；A股股息税三档：超1年免征/1月—1年10%/1月内20%（财税〔2015〕101号）；QDII——2006年试行办法、外汇局额度管理、截至2026-05-31共193家机构累计约1761.69亿美元（外汇局广东分局审批情况表）；两个坑：额度紧张→场内高溢价（看IOPV、听风险提示公告）与限购（额度约束≠产品好）；美股直投三层问题：境外券商无牌跨境展业被整治、个人购汇便利化额度不含证券投资用途（分拆购汇违法）、资金出境即脱离境内保护体系；税务要点：W-8BEN、协定股息预提税常用税率10%（以IRS官方为准）、中国端境外所得申报以税务总局口径为准、重大金额咨询专业人士；实务：美股2024年5月起T+1（SEC口径）、深夜交易时段=反应时间被拉长、应急金永不放跨境资产；汇率三句话：没人能持续预测、敞口是配置副产品、个人外汇规则必须遵守；合规自查五步：渠道核验→资质核验→适当性核验→资金路径核验→税务披露核验，任何一步不通过即终止。
+  </div>
+
+  <nav class="pager">
+    <a href="../13-regulation/"><span class="dir">← 上一章</span>第13章 · 监管与投资者保护</a>
+    <a href="../15-product/"><span class="dir">下一章 →</span>第15章 · 其他理财产品全景</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第14章 全球视角：港股、美股与QDII · 依据《上海证券交易所沪港通业务实施办法（2024年修订）》、上交所沪港通业务规则专栏、港交所《沪港通/深港通投资者手册》、《合格境内机构投资者境外证券投资管理试行办法》、国家外汇管理局 QDII 投资额度审批情况表（截至2026年5月31日）、证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月）、财税〔2015〕101号、IRS 与 SEC 官方口径整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 只介绍合法合规跨境渠道，不预测汇率与海外市场走势 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

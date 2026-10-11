@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 同事相处与协作 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第12章 · 关系与权益</div>
+  <h1>同事相处与协作</h1>
+  <p>你不需要和同事成为朋友，但需要成为一个可靠的人——协作网络建立在信用账户之上</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../11-boss/">← 第11章：向上管理</a>
+    <a href="../13-conflict/">第13章：职场冲突处理 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">关系的本质</a>
+    <a class="anchor" href="#s2">信用账户</a>
+    <a class="anchor" href="#s3">跨职能协作</a>
+    <a class="anchor" href="#s4">功劳与署名</a>
+    <a class="anchor" href="#s5">办公室政治</a>
+    <a class="anchor" href="#s6">远程协作</a>
+    <a class="anchor" href="#s7">摩擦与谣言</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供职业发展教育与参考，不构成法律意见、投资建议或任何机构的商业推荐；文中出现的平台与书名仅用于教学说明，本站无商业合作、无推广链接。涉及劳动权益的问题，以《劳动法》《劳动合同法》等现行法律法规为准，通过劳动仲裁、劳动监察、工会与司法途径等官方渠道解决（详见<a href="../14-boundary/">第14章</a>）。本章不教授也不鼓励任何形式的权术操纵与办公室宫斗，相关内容仅作中立认知与自保警示。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清职场关系的本质是协作网络而不是友谊竞赛，理解"弱关系"为什么反而带来更多机会；②用"信用账户"模型解释为什么靠谱比讨人喜欢更值钱，并列出三个低成本存款动作；③在跨部门求人办事时，先看懂对方的 KPI，再组织一个"完整的请求包"；④在项目开始前就约定好分工与署名，被抢功时知道冷静处理的三步；⑤中立地认识办公室政治，掌握"留痕、不站队不树敌、信息核实"三条自保原则；⑥在远程与混合办公下遵守异步沟通礼仪、管理好自己的可见性；⑦对小摩擦用"48小时规则"当面处理，不积累、不背后议论。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章主线是组织行为学的协作研究（弱关系理论、心理安全）加上大量可直接套用的场景模板。第一次读建议通读；真正遇到"功劳被抢""被人站队拉拢""远程协作鸡同鸭讲"的具体处境时，回来翻第四节、第五节和第六节，照着模板准备一遍再行动。与<a href="../11-boss/">第11章</a>（向上管理）配合读效果最好——老板和同事，是职场关系的两条主线。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、职场关系的本质：协作网络，不是友谊竞赛</h2>
+    <p class="chapter-sub">同事不必是朋友，但值得成为"可靠的弱连接"——机会往往从不太熟的人那里来</p>
+
+    <article class="view">
+      <h3>把职场关系想成网络，而不是排行榜</h3>
+      <p class="ctx">很多人一进公司就下意识地给同事排序：谁对我好、谁跟我投缘、谁是"自己人"。这个框架来自学校和友谊，套在职场上会持续制造失望——因为职场关系的第一属性不是情感，而是<strong>协作</strong>：你和同事被同一个组织雇佣，是为了共同完成你们任何一个人单独完不成的事。社会学家格兰诺维特（Mark Granovetter）1973 年的经典研究《弱关系的力量》（The Strength of Weak Ties，American Journal of Sociology，英文）追踪了专业人士换工作的信息来源，发现一个反直觉的结果：<strong>帮你找到新机会的，多数不是密友，而是"不太熟的人"</strong>——前同事、只合作过一次的项目伙伴、行业活动上认识的人。原因很简单：密友的信息圈和你高度重叠，他们知道的你也知道；弱连接才通向你不认识的世界。</p>
+      <p class="ctx">这个研究给职场相处定了一个务实的基调：你不需要和每个同事成为朋友（那不现实，也不必要），但需要<strong>把尽量多的同事维持在"见面点头、合作愉快、关键时刻能开口"的弱连接状态</strong>。把职场关系理解成一张协作网络，你的目标就从"让所有人喜欢我"（不可能完成，且内耗巨大）变成"在网络里成为一个值得连接的节点"（完全可控，且复利明显）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Granovetter, The Strength of Weak Ties, American Journal of Sociology, 1973（doi:10.1086/225469，英文，文字引用） · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 协作研究栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>同事关系和朋友关系的四个区别</h3>
+      <p class="ctx">把同事当朋友相处，容易在四个地方受伤，看清区别就能提前免疫。<strong>第一，成立条件不同</strong>：友谊因吸引而成立，同事关系因组织而成立——你们是被"分配"到一起的，合得来是运气，合不来是常态。<strong>第二，退出成本不同</strong>：朋友合不来可以自然疏远，同事低头不见抬头见，还得在项目里互相依赖。<strong>第三，利益结构不同</strong>：朋友之间基本没有考核排名，同事之间可能存在晋升名额、绩效比例、项目归属这些真实的竞争结构。<strong>第四，信息披露的边界不同</strong>：对朋友可以畅所欲言，对同事的每句话都可能进入组织的信息流——不是同事都会告密，而是你无法控制信息在网络里怎么传播。</p>
+      <p class="ctx">结论不是"同事皆敌、不要交心"，而是<strong>分层相处</strong>：绝大多数同事维持友好、专业的弱连接；少数经过时间检验的同事可以升级为朋友（职场友谊真实存在，而且对留任和幸福感有正面作用）；但升级的前提是双方在利益冲突中互相当过"合格对手"，而不只是午餐搭子。判断标准很简单：<strong>你们有没有一起扛过一次有压力的交付？</strong>没有共同扛过事的关系，先按弱连接管理。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（职场关系与团队研究，英文）</a> · <a href="https://dictionary.apa.org/">APA 心理学词典（interpersonal relationships 词条，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>先分清：这是"协作问题"还是"相处问题"</h3>
+      <p class="ctx">同事让你不舒服时，先做一次归因分类，因为两类的解法完全不同。<strong>协作问题</strong>：对方响应慢、交付质量不稳、边界不清、流程卡壳——这类问题的解法是结构性的（明确分工、书面确认、调整流程），基本不需要动用情感账户。<strong>相处问题</strong>：语气冲、爱抢话、开过界的玩笑、价值观看不惯——这类问题多数不需要"解决"，需要的是管理接触面和设定边界。</p>
+      <p class="ctx">职场里大部分"合不来"的痛苦，来自把相处问题误判成协作问题（反复试图用流程改造一个人的性格），或把协作问题情绪化成相处问题（"他就是针对我"，于是不再书面确认，全靠猜）。一个实用的自检句式：<strong>"如果这个人性格完全合我口味，这件事还会让我难受吗？"</strong>会——说明是协作问题，去改结构；不会——说明是相处问题，去设边界、降期待。两类问题都不至于让你和对方"成为敌人"，职场关系的及格线从来不是互相喜欢，而是<strong>事情能推进、彼此不添堵</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，职场关系研究栏目，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、信用账户：靠谱比讨人喜欢更值钱</h2>
+    <p class="chapter-sub">职场社交货币的本质是"可预期的靠谱"——先存款，后取款</p>
+
+    <article class="view">
+      <h3>信用账户模型：每个同事都给你开了一个户</h3>
+      <p class="ctx">想象每个和你合作过的人心里都有一个你的账户：<strong>你答应的事做到了，是存款；你主动补位、分享信息、把对方介绍给能帮忙的人，是存款；你答应的事没做到还不提前说，是大额取款；你把对方的信息当谈资、在背后议论，是销户级操作。</strong>这个模型的价值在于它解释了两类常见困惑：为什么有的人平时不显山露水，关键时刻总有人帮他（账户余额高）；为什么有的人特别会来事、饭局从不缺席，需要帮忙时却没人接话（全是小额社交存款，没有大额履约存款）。</p>
+      <p class="ctx">信用账户有三个特点值得记住。<strong>其一，履约记录的权重远大于社交表演</strong>——组织行为学的研究反复发现，信任的核心成分是"可靠性"（reliability）与"善意"（benevolence），其中可靠性靠一次次兑现积累，无法靠一次饭局补齐。<strong>其二，取款容易存款难</strong>：一次重大失信（比如甩锅、泄密）需要几十次履约才能修复，有些干脆修复不了。<strong>其三，余额可以跨组织携带</strong>：行业圈子比想象中小，前同事会成为你未来项目的合作者、背调时的证明人、甚至你的新老板——第16章讲跳槽时会再遇到这一点。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Mayer, Davis &amp; Schoorman, An Integrative Model of Organizational Trust, Academy of Management Review, 1995（信任三成分模型，英文，文字引用） · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>靠谱的三要素：敢承诺、兑现承诺、兑现不了提前说</h3>
+      <p class="ctx">"靠谱"不是一种性格，是三个可练习的行为。<strong>第一，承诺留余量</strong>：答应之前先想清楚自己的产能，宁可说"我周五前给你初稿"也不说"明天就行"然后拖到周五——预期管理是靠谱的一半。<strong>第二，兑现闭环</strong>：做完主动说一声"那个事好了，在这里"，而不是等对方来问；每一件事都有明确的完成信号，别人才敢把事情交给你。<strong>第三，兑现不了第一时间说</strong>：这是三条里最反直觉也最值钱的一条——<strong>提前三天说"做不完了"，信用几乎无损，还能换来一起想办法的空间；拖到截止日才暴雷，一次就把前面十次履约清零。</strong></p>
+      <p class="ctx">把这三条合成一个工作习惯：<strong>接任务时复述一遍（确认理解一致）、给一个带余量的时间点、中间有变化立刻同步、完成时主动闭环。</strong>坚持一个季度，你在协作网络里的标签就会从"人不错"变成"找他靠谱"——后者才是能换来机会的标签。顺带说一句，这三条对上级同样成立，所以<a href="../11-boss/">第11章</a>讲的向上管理，本质也是经营同一个信用账户。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · Mayer 等组织信任模型（1995，英文，文字引用） · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，trust 主题，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <blockquote class="q">「信用存款」的五个低成本习惯（每周合计不超过一小时）：①<strong>及时转发</strong>——看到对某个同事有用的信息、机会、资料，顺手转给 ta 并加一句"看到这个想起你在做××"；②<strong>公开归功</strong>——在群里、会上、汇报里点名感谢帮过你的人（细节见第四节）；③<strong>小忙快帮</strong>——五分钟能解决的求助立刻回，帮不了的当天明确说"这个我帮不上，你可以找××"；④<strong>引荐连接</strong>——把你认识的、能互相帮上的两个人拉到一起，介绍清楚双方是谁、为什么值得认识；⑤<strong>离场维护</strong>——离职的同事好好告别，前同事网络是弱关系里含金量最高的部分。
+        <span class="qsrc">流程框 · 依据弱关系理论与组织信任研究整理（Granovetter 1973；Mayer 等 1995）</span>
+      </blockquote>
+      <p class="ctx">这五个习惯的共同点是：<strong>成本极低、不需要"会来事"、内向者完全可执行</strong>。它们不要求你参加饭局、活跃气氛或经营人设——恰恰相反，社交表演型的"人缘"如果缺乏履约支撑，在信用账户模型里几乎不产生余额。真正让人记住你的，是"上次我随口问了一句，他真的去帮我查了"这种时刻。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Granovetter, The Strength of Weak Ties, 1973（doi:10.1086/225469，英文，文字引用） · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、跨职能协作：先懂对方的 KPI，再谈你的需求</h2>
+    <p class="ctx chapter-sub">求人办事的正当形式是价值互换——让对方帮你的理由出现在对方的世界里</p>
+
+    <article class="view">
+      <h3>为什么"这事很重要"说服不了别的部门</h3>
+      <p class="ctx">跨部门协作最经典的挫败是：你觉得事情火烧眉毛，对方却慢悠悠地说"排期看下季度"。问题通常不在对方态度，而在你开口的框架——<strong>你用的是你的 KPI 在说话，而对方活在 ta 的 KPI 里。</strong>每个部门都有自己的考核指标、资源约束和风险清单：技术团队背着稳定性指标，任何"改动"在他们眼里首先是风险；法务的绩效是"不出事"，任何"灵活处理"都是隐患；市场预算按季度切块，你的"临时加个需求"意味着别的活动被砍。</p>
+      <p class="ctx">所以跨职能沟通的第一步不是表达 urgency，而是<strong>做功课：对方被考核什么、害怕什么、今年在推什么</strong>。然后把你的请求翻译成对方的语言——"这个改动对你的稳定性指标有什么影响、我们怎么一起把风险控制住"，而不是"这个对我很重要，帮个忙"。组织行为学里有个对应概念叫<strong>视角采择</strong>（perspective taking）：谈判与协作研究一致发现，能准确说出对方立场与约束的人，达成协议的比例显著更高。这不是话术，是信息工作：多问一句"你们这季度最重要的目标是什么"，比十句"真的特别急"管用。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（跨部门协作研究，英文）</a> · <a href="https://www.pon.harvard.edu/">哈佛谈判项目（Program on Negotiation，principled negotiation 资料，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>一个"完整的请求包"长什么样</h3>
+      <p class="ctx">向同事（尤其是不太熟的弱连接）求助时，最消耗信用的方式是丢一句"在吗？帮我看个东西"。对方不知道要花多久、不知道上下文、不好意思拒绝又不敢答应。<strong>高回复率的求助是一次性把决策所需的信息给全</strong>，让对方只需要回"可以"或"不行"。</p>
+      <blockquote class="q">请求包五件套（照着写，三十秒能发出去）：①<strong>背景一句话</strong>：我在做什么、为什么需要你的专业；②<strong>具体要什么</strong>：看一页方案/给十分钟电话/引荐某个人——动词明确、颗粒度小；③<strong>要花你多久</strong>：如实估计，"大约15分钟"比"很简单"诚实一百倍；④<strong>截止时间与弹性</strong>："周三前最好，如果紧张周四也行"；⑤<strong>回报与出口</strong>："下次你的××我来搭把手"，以及最重要的——"如果这周不方便，直接说没关系，我另想办法"。<span class="qsrc">模板 · 依据协作研究与求助沟通实践整理；给对方留退路，反而提高答应率</span></blockquote>
+      <p class="ctx">第⑤条的"出口"值得单独强调：心理学研究中的<strong>自主性原理</strong>指出，当人感到"我可以拒绝"时，答应帮助的概率反而更高——被堵死的请求会触发防御，有退路的请求才进入善意通道。同时记住求助的<strong>互惠节奏</strong>：这次别人帮了你，闭环之后一定要做两件事——告知结果（"上次你帮我看的那版方案过了"）和找机会回报。有来有回，弱连接才会保持通电；只取不存，账户很快就透支。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，helping &amp; altruism 研究栏目，英文）</a> · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>价值互换的正当边界：交换信息、精力与背书，不交换原则</h3>
+      <p class="ctx">"利益交换"这个词容易让人想到灰色操作，但跨部门协作里正当的交换形式其实很朴素：<strong>信息互换</strong>（你知道的行业动态、内部流程经验，对别的部门是真金白银）、<strong>精力互换</strong>（这次你帮我赶工，下次我帮你顶一个评审）、<strong>背书互换</strong>（在各自的老板面前如实为对方的工作说话）。这三种交换完全正当，而且越早开始越好——不要等到有求于人才第一次出现在对方的世界里。</p>
+      <p class="ctx">同样重要的是边界：<strong>不交换原则</strong>。不为了换人情而隐瞒风险、在评审里放水、泄露不该说的信息（薪酬细节、未公开决策、他人隐私），更不触碰法律红线（“回扣”“商业贿赂”属于违法犯罪，与"会做人"毫无关系，见<a href="../14-boundary/">第14章</a>的合规视角）。判断一次交换是否正当，有一个干净的测试：<strong>"如果这次交换的全部细节被写进邮件抄送给我们俩的老板，我还会做吗？"</strong>会——说明这是正常的协作互惠；犹豫——说明它已经滑向了见不得光的地方。健康的协作网络里，几乎所有互惠都经得起抄送测试。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国刑法》“商业贿赂”相关条文检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、功劳与署名：分蛋糕的学问</h2>
+    <p class="chapter-sub">事前约定分工与署名，事后大方归功——这是长期信用资产，不是一次性得失</p>
+
+    <article class="view">
+      <h3>事前约定：项目启动时把"谁的名字在哪"说清楚</h3>
+      <p class="ctx">功劳纠纷几乎从不在分蛋糕时爆发，而是<strong>在蛋糕还没烤出来时就埋下了</strong>：项目启动时没人谈分工与署名，结束时每个人对"谁贡献大"的记忆都自动偏向自己——心理学称之为自利偏差（self-serving bias），它是记忆的默认设置，不是人品问题。避免纠纷最便宜的方法，是在项目启动会上花五分钟做三件事：<strong>列分工</strong>（谁负责哪块交付物）、<strong>定署名规则</strong>（对外材料的作者顺序、汇报里谁讲哪部分）、<strong>说变更机制</strong>（中途有人加入或退出，署名怎么调整）。</p>
+      <p class="ctx">很多新人不好意思在项目开始时谈这些，觉得"还没干活就争功"。恰恰相反：<strong>事前谈署名是 professionalism，事后争署名才是尴尬</strong>。开口的方式也可以很自然："为了后面汇报和对外材料不搞混，我们先把分工和署名对一下吧，我来记个纪要。"——一句话把敏感话题变成了流程动作，而且顺手拿到了记录者的位置（记录者天然掌握着书面依据）。学术界的论文署名规范（贡献声明、作者排序规则）本质上就是把这套做法制度化，企业项目完全可以借用其思路。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://dictionary.apa.org/">APA 心理学词典（self-serving bias 词条，英文）</a> · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（团队协作研究，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>事后归功：把"感谢"说得具体，把"我们"换成名字</h3>
+      <p class="ctx">项目成功后在公开场合归功他人，是信用账户里回报率最高的存款之一：成本为零（功劳不会因为你分享而变少），收益是复利（被归功的人会记住，旁观者会给你贴上"厚道、能合作"的标签——这个标签会先于你到达你还没合作的团队）。反过来，公开场合把团队成果全说成"我"，短期风光，长期是在给未来的协作加价：没有人愿意和一个"功劳黑洞"组队。</p>
+      <p class="ctx">归功要归得具体才有分量：不说"感谢团队支持"，说"数据部分是小王连续三个晚上跑出来的，方案能立住全靠它"。具体的归功有三个效果——被感谢的人感到被真正看见、旁观者知道贡献的真实分布、你自己展示了"看得见别人工作"的能力（这恰是管理潜质的信号）。<strong>对上汇报时的归功还有个策略价值</strong>：老板从你嘴里第一次听说小王的贡献，小王会从别的渠道知道是你说的——一次汇报，两处存款。唯一要注意的分寸：归功要如实，不夸大别人的贡献来表演谦虚（"这全是小李做的"当小李只做了 10%），虚假的谦虚同样会被网络记住。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，gratitude 研究栏目，英文）</a> · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>被抢功了怎么办：核实、温和澄清、留痕三步</h3>
+      <p class="ctx">先做个心理准备：抢功的形态多数不是影视剧中那种"当众冒名顶替"，而是<strong>含糊其辞</strong>——汇报里用"我们"盖过你的名字、把你产出的方案换个模板继续讲、在老板路过的工位上"顺嘴"提了你的点子。应对分三步：<strong>第一步，核实事实再定性</strong>：对方是故意的，还是单纯不会汇报？很多"抢功"其实是表达能力差加上没意识，第一次可以用善意推定。<strong>第二步，温和而公开地澄清</strong>：不撕破脸，但把事实放回原位——在群聊或会议里自然补一句"补充下背景，这部分是我上周做的方案，当时的考虑是……"，语气平常、内容为王；对方若只是无意，会顺势把话接回去；若是有意，也知道你看得见、不好再犯。<strong>第三步，从机制上留痕</strong>：此后重要产出走邮件或文档（带时间戳和你的署名），周报里如实写自己的交付——不是为了防一个人，而是让你的贡献在组织的信息系统里有据可查。</p>
+      <p class="ctx">两个提醒：<strong>其一，不要在情绪峰值当众开撕</strong>——旁观者记不住谁有理，只记得谁失态；澄清的力量来自事实与平静，不来自音量。<strong>其二，如果抢功者是上级且成习惯</strong>，这就不是沟通问题而是环境问题了：先留痕自保，再评估去留（<a href="../11-boss/">第11章</a>与<a href="../16-change/">第16章</a>有对应的判断框架），不建议陷入长期的暗斗——暗斗没有赢家，只有两个消耗品。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+      <div class="fig"><img src="../assets/img-12-1.png" alt="两个抽象无脸人物共同托起一个发光的成果方块，其中一人把方块递向聚光灯下的另一人，象征公开归功与协作" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、办公室政治：中立认知与自保</h2>
+    <p class="chapter-sub">政治是资源分配的自然现象——本章只帮你认识它、不被它伤到，不教你玩它</p>
+
+    <article class="view">
+      <h3>祛魅：为什么只要有组织就有政治</h3>
+      <p class="ctx">"办公室政治"四个字自带贬义，但组织行为学对它的定义相当中性：<strong>在正式职权体系之外，影响资源分配与决策的活动</strong>。它为什么必然存在？因为任何组织的正式规则都不可能覆盖所有情况——晋升名额有限、预算要分先后、两个部门的目标天然打架，规则写到再细，总留下"谁来定、按什么标准定"的空间；有权决定的人也是人，会有信息偏好、关系远近和印象管理。于是非正式的影响活动就填进了这些空间。</p>
+      <p class="ctx">看清这一点有两个好处。<strong>第一，不再道德化地惊讶</strong>："居然有政治"的愤怒来自把组织想象成纯粹的能力竞技场，接受"政治是资源分配的伴生现象"，你才能冷静评估环境而不是持续失望。<strong>第二，区分两种参与</strong>：了解权力结构、让该看见你的人看见你的工作、在决策前把信息递给决策者——这些是正常的职业行为；拉帮结派、传播不实信息、用关系排挤他人——这是有毒的政治操作，长期看也是高风险行为（组织换届、审计、背调都可能翻旧账）。本课程的建议一以贯之：<strong>做前者的明白人，不做后者的参与者。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://dictionary.apa.org/">APA 心理学词典（organizational politics 相关词条，英文）</a> · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（组织与权力研究，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>自保三原则：留痕、不站队不树敌、信息核实</h3>
+      <p class="ctx"><strong>原则一：留痕。</strong>重要的承诺、分工、变更走书面（邮件、文档、会议纪要），敏感对话之后补一封"确认我们刚才对齐的内容"。留痕不是防同事，是让事实有处可查——政治操作最常见的武器就是"各说各话"，书面记录是最便宜的解毒剂。<strong>原则二：不站队、不树敌。</strong>派系斗争中急于表态的人，赢家通吃时沾光最少，风向变了时挨打最重；而"和谁都能合作、对事不对人"的中间位置，短期看似没靠山，长期是网络里最安全的节点。不站队不等于没有立场——对事的立场要清晰，对人的阵营要保持距离。同时不主动树敌：政治斗争里今天的对手可能是明天的评委，批评对事、留有余地，是给自己买保险。<strong>原则三：信息核实。</strong>政治环境里流通的信息，有相当比例是刻意投放的——断章取义的转述、半真半假的"内幕"、匿名渠道的坏话。听到任何影响你判断的消息，先问三个问题：来源是谁、ta 为什么告诉我、有没有第二个独立来源？<strong>不转发未经核实的信息</strong>，既是自保（传谣的锅会砸在传的人头上），也是信用（"从 ta 嘴里出来的话都靠谱"是极高的评价）。</p>
+      <blockquote class="q">被拉拢站队时的标准回应（示例）："谢谢信任。我的精力主要还在把××项目做好，那边的事我不太了解，就不掺和了——有需要协作的地方，对事我随时配合。"<span class="qsrc">模板 · 要点：感谢、说明重心在事、不参与对人的阵营、保留工作层面的合作</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · <a href="https://dictionary.apa.org/">APA 心理学词典（group dynamics 词条，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>遇到有毒政治环境：评估、自保、决定去留</h3>
+      <p class="ctx">有些环境的政治已经越过"自然现象"进入"有毒"区间：站错队就被系统性排挤、告密文化盛行、努力做事的人反而出局、管理层带头玩权术。身处其中，先做三件事：<strong>第一，降低暴露面</strong>——工作全部留痕、不参与私下议论、重要沟通尽量多人场合；<strong>第二，保住外部选项</strong>——维持弱关系网络、更新简历、了解市场行情（有毒环境最大的伤害是让你以为"这里就是全世界的规则"）；<strong>第三，设定观察期与退出线</strong>——给自己三到六个月观察：组织有没有自我纠错的迹象（换帅、审计、制度改革）？你的信用与能力在这里还能不能变现？到期没有改善就执行退出，不恋战。</p>
+      <p class="ctx">一个判断标准：<strong>在这个环境里，"把事做好"和"混得好"是正相关还是负相关？</strong>正相关的组织，政治只是噪音，值得留；负相关的组织，你的每一点努力都在给一套坏规则交税，离开不是逃避而是止损。去留的具体决策框架（推力拉力清单、72小时冷静规则）在<a href="../16-change/">第16章</a>展开。最后提醒：即使决定离开，也<strong>好好交接、不烧桥</strong>——行业圈子小，弱关系会一直跟着你。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · Edmondson 心理安全研究（1999，Administrative Science Quarterly，英文，文字引用）</div>
+      <div class="fig"><img src="../assets/img-12-2.png" alt="一个抽象无脸人物站在多条交错的路径中间保持直立，路径上有几个几何派系色块互相拉扯，人物手中握着一份带印章的文档，象征不站队与留痕自保" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+
+    <article class="view">
+      <h3>信息纪律：三类话不传，一种场合不多说</h3>
+      <p class="ctx">政治环境里的自保，一半在于管住信息的进出。<strong>三类话不传</strong>：其一，别人的隐私与私事——同事告诉你的家庭状况、健康情况、薪酬细节，未经允许不进入任何第二个耳朵，这是信用账户的底线资产；其二，未经核实的组织"内幕"——裁员名单、架构调整、高层变动，在小道消息阶段转发它，你就成了消息链上可追溯的一环，消息若被证实是谣言，锅往往砸在传的人头上；其三，对具体人的负面评价——对事可以尖锐，对人不下断语，"我觉得那个方案风险很大"可以说，"那个人不行"不出口。<strong>一种场合不多说</strong>：酒局与团建。放松场合的信息仍然在组织内流通，酒精会降低你对"这句话说出去会怎样"的预判能力——保持友好与幽默，但涉及人事评价、薪酬对比、公司抱怨的话题，笑着转移就好。</p>
+      <p class="ctx">信息纪律不是让你变成沉默的透明人——恰恰相反，一个"该说的说得清楚、不该说的守口如瓶"的人，会被网络赋予更高的信息地位：大家愿意把重要的事交给你，因为知道信息在你这里是安全的。这正是第15章要讲的"可预期的靠谱"在信息维度的版本：社交货币的本质，是别人对你行为的可预期性。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a> · <a href="https://dictionary.apa.org/">APA 心理学词典（confidentiality、gossip 相关词条，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、远程与混合办公下的同事关系</h2>
+    <p class="chapter-sub">看不见彼此的日子里，书面质量就是你的脸</p>
+
+    <article class="view">
+      <h3>异步沟通礼仪：把每条消息写成"自足"的</h3>
+      <p class="ctx">远程协作的第一杀手不是偷懒，是<strong>沟通损耗</strong>：办公室里的一个问题，转身问一句就解决了；远程状态下，一次表述不清就要来回三小时。所以异步沟通的核心纪律是<strong>消息自足</strong>——接收者不用追问就能明白并行动。具体做法：一条消息包含背景（在做什么事）、请求（要对方做什么）、材料（相关链接与文件直接附上，不说"我发你"然后等对方要）、时限（什么时候需要）与出口（不方便就直说）。反过来，作为接收者也遵守两条：<strong>收到即确认</strong>（哪怕只回"收到，明天上午给你"），<strong>不用已读不回制造焦虑</strong>——远程环境里，沉默会被放大解读成拒绝、不满或事故。</p>
+      <p class="ctx">第二条纪律是<strong>选对信道</strong>：简单确认用即时消息，复杂事项用文档（可协作、可留存、可异步评审），有情绪或谈不拢的事<strong>升级到语音或视频</strong>——文字承载不了语气，一来一回容易把分歧升级成对立（这也是第13章冲突处理的远程特例：感觉文字开始"上头"，立刻换信道）。第三条是<strong>时区与边界友好</strong>：非紧急消息不在对方的休息时间发（或善用定时发送），紧急事项打电话前先发消息说明"有急事，方便接电话吗"。这些细节单人看微不足道，累积起来就是"和 ta 远程协作很舒服"的口碑。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（远程协作研究，英文）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">美国心理学会 APA · Healthy Workplaces 专题（英文，官网栏目页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>可见性管理：远程时代的"被看见"是主动工程</h3>
+      <p class="ctx">混合办公研究里有一个需要正视的现象：<strong>物理可见性会悄悄影响评价</strong>——同样产出下，常去办公室的人更容易被想起、被分配机会（研究文献称之为邻近性偏差 proximity bias）。这不公平，但它是现实；对策不是抱怨，而是把"被看见"从偶然变成工程。三个动作：<strong>其一，产出可见</strong>——周报如实写清交付与进展（写给老板的周报同时是让协作方了解你状态的窗口），重要文档署名规范、放进团队可检索的位置；<strong>其二，过程适度可见</strong>——关键节点在群里同步（"方案初稿完成，链接在此，欢迎拍砖"），让协作方实时知道事情在推进，而不是交付日才冒出来；<strong>其三，会议高质量出席</strong>——远程会议里发言一次的质量，胜过挂机十次；提前看材料、带着问题或建议上线，摄像头能开就开（在团队惯例允许的范围内）。</p>
+      <p class="ctx">注意分寸：可见性管理是<strong>让真实的工作被看见</strong>，不是表演工作——刷屏式汇报、把小事包装成大事、专门在老板在线时"活跃"，这些动作旁观者一眼识破，信用账户大额取款。判断标准依然是那个测试：你展示的内容，经得起当面问细节吗？经得起——就是正常的职业习惯；经不起——那就是表演，停下来。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（混合办公与邻近性偏差研究，英文）</a> · <a href="https://www.apa.org/topics/healthy-workplaces">美国心理学会 APA · Healthy Workplaces 专题（英文，官网栏目页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>远程环境里维护关系温度：刻意的非正式接触</h3>
+      <p class="ctx">办公室自动提供的东西——茶水间闲聊、午饭搭子、下班顺路——远程状态下全部消失，而恰恰是这些非正式接触在维持关系的温度。研究发现远程团队的信任建立更慢、更容易把对方的沉默解读为敌意，解法是<strong>把非正式接触变成刻意安排</strong>：会议开始前留两分钟闲聊（不是浪费时间，是给关系充电）；一对一沟通时先问一句近况再谈正事；同事有值得祝贺的事（上线、获奖、生子）公开道贺；偶尔约一个纯社交的线上或线下聚会，频率不用高，季度一次就有锚定作用。</p>
+      <p class="ctx">对内向者的提示：这些动作都可以低强度执行——两分钟的闲聊不需要你活跃全场，一句真诚的"最近那个项目辛苦了"就够。<strong>关系温度的关键不是接触时长，而是接触的确定性与真诚度</strong>：每季度的固定问候，胜过一次用力过猛的酒局。远程协作的底层逻辑和本章开头一致：你不需要成为所有人的朋友，只需要让协作网络里的每个节点，都对你有一个稳定、正面、可预期的印象。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（远程团队信任研究，英文）</a> · <a href="https://greatergood.berkeley.edu/">Greater Good Science Center（伯克利，social connection 主题，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、日常摩擦处理与谣言粉碎</h2>
+    <p class="chapter-sub">小摩擦当面说、及时说；大冲突交给下一章的方法论</p>
+
+    <article class="view">
+      <h3>48小时规则：小摩擦当面谈，不积累、不背后议论</h3>
+      <p class="ctx">同事关系的溃败很少源于一次大冲突，多数是<strong>小摩擦的复利</strong>：对方开会打断你一次，你忍了；交付晚了一天，你没说；语气让你不舒服，你记在了心里。每一次"忍"都是一笔未入账的欠款，攒到某天因为一件小事总爆发——对方一脸茫然（"你怎么突然翻这么多旧账"），你觉得委屈（"我忍了多久你知道吗"）。更糟的路径是不当面说、转而去跟第三个人吐槽：信息在传播中变形，最后以你最控制不了的版本回到对方耳朵里，小摩擦升级成信任破裂。</p>
+      <p class="ctx">处理小摩擦的两个纪律：<strong>48小时规则</strong>——不舒服的事，要么在48小时内当面（或语音）平静地提出来，要么就主动选择放下，不允许"存着"；48小时的意义在于情绪已降温、事实还新鲜、对方还记得。<strong>只跟当事人说</strong>——需要倾诉时找组织外部的朋友，不在共同同事圈里议论；对事的最小表达公式："上次××的时候（事实），我有点为难（感受），下次能不能提前打个招呼（请求）？"三句话，不带评判，绝大多数小摩擦到此为止。如果摩擦超过"小"的范畴——涉及利益、原则或反复发生——那就进入正式的冲突处理流程，<a href="../13-conflict/">第13章</a>整章讲这件事。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.nonviolentcommunication.com/">CNVC 非暴力沟通中心官网（观察-感受-需要-请求框架，英文）</a> · <a href="https://hbr.org/topic/subject/difficult-conversations">Harvard Business Review · Difficult Conversations 栏目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于同事关系的三个流行误解</h3>
+      <p class="ctx"><strong>谣言一："同事都是竞争对手，不能交心。"</strong>粉碎：竞争结构确实存在于部分环节（晋升名额、绩效比例），但把全部同事预设为敌人，等于亲手拆掉自己的协作网络——而弱关系研究恰恰说明，职业机会多数来自这张网（Granovetter 1973）。正确姿势不是"全交心"或"全设防"，而是分层管理：默认友好专业，经检验后升级信任。<strong>谣言二："人缘好=混得好。"</strong>粉碎：信用账户模型说得很清楚——饭局型人缘是小额社交存款，履约型靠谱才是大额存款；组织在分配机会时，最终参考的是"这人能不能扛事"。人缘是润滑剂，不是发动机。<strong>谣言三："老实人吃亏，会来事的人占便宜。"</strong>粉碎：短期局部成立，长期数据不支持——背调常态化、行业圈子小、组织记忆长，靠表演获取的位置缺乏履约支撑，风一吹就倒；而"老实"如果指履约可靠、不占人便宜，它恰恰是信用账户的核心资产。真正吃亏的不是老实人，是<strong>不会保护自己的老实人</strong>——所以本章教留痕、教署名约定、教温和澄清：把厚道配上牙齿，才叫成熟的职业人格。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Granovetter 1973（doi:10.1086/225469，英文，文字引用） · Mayer 等组织信任模型（1995，英文，文字引用） · <a href="https://hbr.org/topic/subject/collaboration">Harvard Business Review · Collaboration 栏目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>弱关系理论的核心发现是什么？为什么帮你找到机会的多是"不太熟的人"？</li>
+        <li>把职场关系理解为协作网络而不是排行榜，你的目标发生了什么变化？</li>
+        <li>同事关系和朋友关系的四个区别是什么？"分层相处"怎么操作？</li>
+        <li>怎么判断眼前的烦恼是协作问题还是相处问题？那句自检问话是什么？</li>
+        <li>信用账户模型里，哪些行为是大额存款？哪些是销户级取款？</li>
+        <li>信用账户的三个特点（权重、不对称、可携带）分别是什么？</li>
+        <li>靠谱的三要素是什么？为什么"兑现不了提前说"最值钱？</li>
+        <li>五个低成本信用存款习惯，你能立刻开始做哪两个？</li>
+        <li>跨部门请求为什么"这事很重要"没用？视角采择要求你先搞清什么？</li>
+        <li>请求包五件套是哪五件？为什么"出口"反而提高答应率？</li>
+        <li>正当的价值互换有哪三种形式？"抄送测试"怎么用？</li>
+        <li>项目启动时约定署名的三个动作是什么？为什么事前谈比事后争体面？</li>
+        <li>被含糊其辞地抢功，三步应对分别是什么？为什么不当众开撕？</li>
+        <li>办公室政治的中性定义是什么？"正常的职业行为"与"有毒操作"的分界线在哪？</li>
+        <li>自保三原则是什么？被拉拢站队时的标准回应怎么说？</li>
+        <li>判断环境是否有毒值得留，那个"正相关/负相关"标准是什么？</li>
+        <li>异步沟通"消息自足"的要求有哪些？什么事必须升级到语音？</li>
+        <li>邻近性偏差是什么？可见性管理的三个动作与"表演工作"的界限在哪？</li>
+        <li>48小时规则和"只跟当事人说"分别防的是什么？最小表达公式的三句话是什么？</li>
+        <li>三个流行谣言各自的粉碎依据是什么？"把厚道配上牙齿"指哪些具体动作？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>职场关系=协作网络，弱关系带来多数机会（Granovetter 1973）；同事≠朋友，分层管理，及格线是"事情能推进、彼此不添堵"；信用账户=履约记录＞社交表演，取款容易存款难，余额跨组织携带；靠谱三要素=敢承诺（留余量）、兑现闭环、兑现不了第一时间说；跨部门=先懂对方 KPI，请求包五件套（背景/具体请求/时长/时限与弹性/回报与出口）；价值互换三形式=信息、精力、背书，抄送测试守边界；署名=事前约定（分工/规则/变更机制），事后具体归功，被抢功走"核实-温和澄清-留痕"三步；办公室政治=资源分配的伴生现象，自保三原则=留痕/不站队不树敌/信息核实；判断环境="把事做好"与"混得好"的相关性，负相关就止损；远程=消息自足、收到即确认、情绪上头换信道、可见性管理靠真实产出；小摩擦=48小时内当面说或主动放下，只跟当事人说；谣言粉碎=同事皆敌✗、人缘=混得好✗、老实人吃亏✗——把厚道配上牙齿。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-boss/"><span class="dir">← 第11章</span>向上管理：与老板协作</a>
+    <a href="../13-conflict/"><span class="dir">第13章 →</span>职场冲突处理</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第12章 · 依据 Granovetter《弱关系的力量》（1973）、Mayer 等组织信任模型（1995）、Edmondson 心理安全研究（1999）、Harvard Business Review 协作与高难度对话栏目及 CNVC 非暴力沟通框架整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业发展教育参考，不构成法律建议 · 劳动维权以《劳动法》《劳动合同法》与官方渠道为准 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

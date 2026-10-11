@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 职业是一场长跑 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--bg-soft);font-weight:700;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 导论 · 课程说明</div>
+  <h1>职业是一场长跑</h1>
+  <p>为什么职场需要"经营"而不是"熬"、三条职业曲线为什么不同步、职场真正的稀缺资源是什么——以及这门课打算怎么把职业发展系统讲给你</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-choose/">第1章：行业与岗位选择 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">长跑视角</a>
+    <a class="anchor" href="#s2">三条曲线</a>
+    <a class="anchor" href="#s3">三种稀缺</a>
+    <a class="anchor" href="#s4">AI时代</a>
+    <a class="anchor" href="#s5">课程地图</a>
+    <a class="anchor" href="#s6">怎么学</a>
+    <a class="anchor" href="#s7">谣言粉碎</a>
+    <a class="anchor" href="#s8">课程边界</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>职业发展教育与参考</strong>，不构成法律意见、投资建议或任何机构的商业推荐；文中出现的产品与平台名称仅用于教学说明，本站无商业合作、无推广链接。涉及劳动权益的问题，请以<strong>《劳动法》《劳动合同法》</strong>等现行法律法规为准，通过劳动仲裁、劳动监察、工会与司法途径等官方渠道维权（全国人社政务服务热线 <strong>12333</strong>、公共法律服务热线 <strong>12348</strong>）；本站不教授也不鼓励“简历造假”“学历造假”“商业贿赂”等违法行为，相关内容仅作风险警示与批判。薪资、晋升与就业市场数据均有<strong>统计口径与个体差异</strong>，文中数字注明来源与年份。职场压力与倦怠严重时，请寻求<strong>专业心理与医疗帮助</strong>（全国统一心理援助热线 <strong>12356</strong>）。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用"长跑视角"重新定义自己的职业：把工作当资产经营，而不是一单一结的交易；②画出三条职业曲线（技能、收入、市场价值），解释为什么"努力了却没涨薪"是常态而非意外；③说出职场三大稀缺资源（信任、注意力、可迁移技能），并对照检查自己过去半年的积累；④用世界经济论坛等权威口径讲清 AI 时代职业世界的"变与不变"；⑤拿到全课程的四部分地图，知道遇到什么问题该翻哪一章；⑥清楚这门课的边界——它不替你决策、不构成法律建议、什么时候必须找专业人士。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"总纲"。第一次学习建议通读；之后你可以随时回到第五节"课程地图"，按当下遇到的问题（要面试了、谈薪卡住了、和老板谈崩了、被裁员了）跳转到对应章节。第八节"课程边界"请务必读完——它决定了这门课什么时候该用、什么时候该放下课本去找律师、找心理咨询师、找官方渠道。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、先换个视角：职业是一场长跑，不是一连串冲刺</h2>
+    <p class="chapter-sub">用 40 年的时间尺度看，今天让你焦虑的多数事情会重新排序</p>
+
+    <article class="view">
+      <h3>一个常见场景：第三次跳槽后的困惑（示例）</h3>
+      <p class="ctx">先看一个虚构但典型的场景（示例）：小周工作第六年，跳了三次槽，每次涨薪 20% 左右，简历上看是漂亮的上升线。但他最近越来越困惑——第三家公司做的事情和第二家高度重复，薪水涨了，能力好像没涨；他想去的核心岗位，招聘方嫌他"经历杂而不深"；而当年入职第一家公司时坐他隔壁的同事，一直没动，如今成了那条业务线上最懂行的人，最近的晋升名单里有这个名字。小周开始怀疑：到底是跳槽错了，还是不跳错了？</p>
+      <p class="ctx">这个问题没有标准答案，但有一个更好的提问方式：<strong>如果把时间拉长到整个职业生涯——按 22 岁工作、60 岁退休算，将近 40 年、约 8 万个工作小时——你希望这 8 万小时最终沉淀成什么？</strong>这就是本课程的第一块基石：长跑视角。短跑选手关心起跑反应和冲刺速度，长跑选手关心配速、补给和心率；用短跑的打法跑马拉松，前五公里最风光，三十公里后最先崩。职业发展同理：单次的薪水、职级、某个项目的得失，都是分段计时；真正决定终点的，是你在整个赛程里积累了什么、消耗了什么、有没有中途退赛的风险。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：职业生涯的长度与阶段划分参见管理学经典的职业生涯发展理论（如 Super 的职业发展阶段模型，书籍与教材口径） · <a href="https://psycnet.apa.org/record/2002-10928-005">Locke & Latham（2002）目标设定理论综述，American Psychologist（英文）</a>——长期目标需要分解为具体、有反馈的子目标，这正是"长跑要配速"的心理学依据</div>
+    </article>
+
+    <article class="view">
+      <h3>把工作当资产管理，而不是一单一结的交易</h3>
+      <p class="ctx">长跑视角落到操作层面，是一次思维方式的切换：<strong>从"交易思维"切换到"资产思维"</strong>。交易思维问的是"这份工作给我多少钱、我付出多少时间，划不划算"；资产思维问的是"这份工作除了工资，还在我身上沉淀了什么可以带走的东西"——技能、作品、行业认知、信任你的同事与客户、可验证的战绩。工资是现金流，会被花掉；沉淀是资产，会复利。两份工作现金流相同，一份让你三年后市场价值翻倍、一份让你三年后原地踏步，长期差距是巨大的。</p>
+      <p class="ctx">资产思维也解释了小周和同事的分歧：频繁跳槽优化的是<strong>当期现金流</strong>（每次跳槽都是一次重新定价），深耕优化的是<strong>资产厚度</strong>（成为某条业务线上不可替代的懂行者）。两者都不是错，但很多人是在无意识的情况下选择了前者——被每一次涨薪的即时反馈带着走，从没算过资产这本账。本课程后面各章（技能、汇报、晋升、跳槽、副业）本质上都在回答同一个问题：<strong>怎么让你的职业资产稳定增值，同时现金流不至于长期被低估</strong>。</p>
+      <p class="ctx">还要补一句防止走极端的话：资产思维不等于"给钱少也愿意干"的自我剥削。劳动获得报酬是《劳动法》明确规定的基本权利，工资、加班费、社保都是法律底线而不是雇主的恩赐（详见<a href="../14-boundary/">第14章</a>）。资产思维是在"合法拿到该拿的钱"的基础上，额外算清"这份工作还给了我什么"，两本账都要算。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/fgwj/flfg/webinfo/2014-05-1601761496659330.htm">《中华人民共和国劳动法》全文（国家信访局网站转载版）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（现行法律文本权威检索入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么"熬"不是长跑：敬业度数据里的警示</h3>
+      <p class="ctx">有人会说：长跑视角我懂，不就是"忍"吗？不是。"熬"和"经营"的区别在于：<strong>熬是被动消耗，经营是主动配置</strong>。盖洛普（Gallup）连续多年的《全球职场状况》调查给出过一个反复被引用的事实：全球范围内，对工作"敬业"（engaged，即投入并从中获得能量）的员工长期只占约两成上下，相当比例的受访者在"假装上班"（quiet quitting 一类表述，调查原口径为 low engagement），还有少数处于"痛苦上班"状态（misery，即主动传播负面情绪）。这份调查的价值不在于具体数字——口径与年份不同数字会变——而在于它揭示的结构性事实：<strong>大多数职场人既没有主动经营职业，也没有果断离开，而是卡在中间状态里持续消耗</strong>。</p>
+      <p class="ctx">"卡在中间"恰恰是长跑里最糟糕的姿势：配速没规划、补给没安排、退赛没决心，每一公里都在硬扛。本课程反对两种极端——反对"职场就该拼命熬、吃苦就是成长"的苦难叙事，也反对"上班就是出卖时间、能摸就摸"的对抗叙事。前者透支你的健康与判断力，后者透支你的资产积累。第三种姿势是：<strong>清醒地经营</strong>——知道自己在积累什么、消耗什么、什么时候加速、什么时候该止损离场。这需要认知（看懂职场运行的规律）、方法（可操作的流程与话术）、底线（法律与道德边界），也就是这门课的四部分结构。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx">Gallup《State of the Global Workplace》年度调查（英文，商业机构调查，数据注明年份与样本口径）</a> · 敬业度与倦怠的组织行为学研究入口参见 <a href="https://www.apa.org/">美国心理学会 APA 官网（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>长跑者的三个自问：先定位你在赛道的哪一段</h3>
+      <p class="ctx">在开始这门课之前，建议你先花十分钟回答三个问题，给自己在赛道上定个位。这三个问题也是本课程后续所有章节的"总开关"——同一件事（比如要不要跳槽），处在不同阶段的人，答案可能完全相反。</p>
+      <p class="ctx"><strong>自问一：我现在最缺什么——机会、能力，还是定价？</strong>职业早中期（工作 0-5 年）多数人最缺的是能力与战绩，此时平台成长性优先于当期薪水；工作 5-10 年最常见的困境是"能力有了但定价没跟上"，重点转向让产出被看见、主动进入定价流程；而任何阶段如果连机会入口都没有（行业萎缩、岗位消失），第一优先级就变成了打开新的机会面——人脉、转型、第二曲线。<strong>自问二：过去半年，我的三条曲线各自往哪走了？</strong>技能曲线有没有新东西入账？收入曲线有没有经历或错过定价事件？市场价值曲线呢——试着在招聘平台搜一下你这个岗位的供需与薪酬带，那是最便宜的体检。<strong>自问三：我目前最大的消耗源是什么？</strong>是无成长的重复、是糟糕的关系、是失控的工时，还是对未来的模糊恐慌？消耗源决定了你该先翻哪一章：关系问题去第三部分，产出与晋升去第二部分，方向问题去第一部分和第四部分。</p>
+      <p class="ctx">把三个答案写下来（哪怕只写在一个备忘录里），你就完成了本课程的第一次"复盘归档"——这也是后面每一章都会反复用到的动作：先定位，再行动，后归档。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：职业阶段与自评框架参见 Bolles《你的降落伞是什么颜色？》（What Color Is Your Parachute?，求职与职业自评经典，年年更新版，书籍文字引用） · <a href="https://psycnet.apa.org/record/2002-10928-005">Locke & Latham（2002，英文）</a>——具体而清晰的自我定位是有效目标设定的前提</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、三条职业曲线：为什么努力和回报经常不同步</h2>
+    <p class="chapter-sub">技能、收入、市场价值是三条不同的线，看懂它们的错位，就懂了职场一半的委屈</p>
+
+    <article class="view">
+      <h3>技能曲线、收入曲线、市场价值曲线</h3>
+      <p class="ctx">职业发展不是一条线，而是三条线在同时走。<strong>第一条是技能曲线</strong>：你实际会做多少事、做得多好。它的特点是前期陡峭（新人进步飞快）、中期平台（熟练之后提升变慢）、遇到新领域又陡峭一次。<strong>第二条是收入曲线</strong>：公司每个月付你多少钱。它不是跟着技能实时走的，而是跟着<strong>定价事件</strong>走的——调薪窗口、晋升评审、跳槽重定价，一年往往只有一两次机会；两次定价事件之间，你的技能涨了，收入纹丝不动。<strong>第三条是市场价值曲线</strong>：如果明天你去市场上找下家，别人愿意付你多少。它跟着"可验证的能力+稀缺性"走，受行业景气度影响很大。</p>
+      <p class="ctx">三条线错位，就产生了职场最常见的几种委屈：技能涨了收入没涨（等定价事件，或用市场价值倒逼，见<a href="../10-promotion/">第10章</a>）；收入不低但市场价值在跌（在舒适区里技能过时，裁员时最危险，见<a href="../17-layoff/">第17章</a>）；市场价值高但技能是虚的（风口行业的水涨船高，潮水退了就现形）。<strong>长跑视角下的经营，就是让三条线大致同向、并且都不长期躺平</strong>：技能是根，收入是果，市场价值是体检指标。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="三条职业曲线示意：技能曲线持续爬升带平台期，收入曲线呈台阶状跳跃上升，市场价值曲线随行业波动，三条线在同一时间轴上错位前行" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：三曲线划分为本站教学性归纳，理论支点包括人力资本理论（Becker《Human Capital》，书籍）与目标-绩效的心理学研究 <a href="https://psycnet.apa.org/record/2002-10928-005">Locke & Latham（2002，英文）</a> · 工资水平的官方口径参见 <a href="https://www.stats.gov.cn/">国家统计局（城镇单位就业人员年平均工资发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对照表：三种典型错位与应对</h3>
+      <p class="ctx">把三条曲线的常见错位整理成一张对照表，你可以对号入座（本表为教学归纳，个体情况请结合行业与岗位判断）：</p>
+      <table>
+        <tr><th>错位类型</th><th>典型信号</th><th>主要风险</th><th>对应章节与思路</th></tr>
+        <tr><td>技能涨、收入平</td><td>干的活越来越多越来越难，工资条一年没变</td><td>怨气积累、被"好用不贵"锁定</td><td><a href="../10-promotion/">第10章</a>：量化贡献、选对定价窗口谈晋升加薪；谈不动再看外部机会</td></tr>
+        <tr><td>收入稳、市场价值跌</td><td>工作内容多年不变、行业在萎缩、新工具不会用</td><td>裁员时最被动，再就业折价</td><td><a href="../09-skill/">第9章</a>：技能投资组合、70/20/10 更新节奏；<a href="../16-change/">第16章</a>：主动转型</td></tr>
+        <tr><td>市场价值高、技能虚</td><td>行业风口上"人人都在涨薪"，个人贡献说不清</td><td>潮水退去现原形，面试深问就露馅</td><td><a href="../02-resume/">第2章</a>：用 STAR 与量化逼自己盘点真实战绩；<a href="../08-project/">第8章</a>：攒可验证的项目</td></tr>
+      </table>
+      <p class="ctx">注意这张表的用法：它不是让你焦虑地"对号入坑"，而是提示你<strong>每隔半年做一次三线体检</strong>——技能上我新会了什么？收入上我的定价事件什么时候来？市场上我这个岗位的需求和薪酬带在涨还是在跌？三个问题各花十分钟，查一查招聘平台的岗位数量与薪酬报告、和猎聊两句、看看行业报告，就够了。体检的意义是早发现错位：错位一年好纠正，错位五年就要付出转行的代价了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.stats.gov.cn/">国家统计局就业与工资数据（官方口径）</a> · <a href="https://www.zhaopin.com/">智联招聘就业市场景气报告（CIER 指数，商业平台数据，标🏷）</a> · <a href="https://www.liepin.com/">猎聘中高端人才薪酬报告（商业平台数据，标🏷）</a>——引用平台数据时须注明样本与年份</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、职场三大稀缺资源：信任、注意力、可迁移技能</h2>
+    <p class="chapter-sub">钱不是职场最稀缺的东西——这三样才是，而且都无法临时抱佛脚</p>
+
+    <article class="view">
+      <h3>稀缺之一：信任——职场最贵的隐形货币</h3>
+      <p class="ctx">职场里有一种资源，攒起来很慢、花起来很快、丢了极难找回：<strong>信任</strong>。它的具体形态是"靠谱"——交给你的事有回音、承诺的时间算数、出了错不甩锅。组织行为学里有个被反复验证的机制：信任决定别人愿意把多重要的事交给你，也就决定了你的机会半径。能力相同的两个人，领导会把关键项目给"放心"的那个；跨部门协作时，别人愿意配合的也是历史上没坑过人的那个。<strong>信任是复利资产：每一件按时闭环的小事都在存款，每一次推诿和失联都在巨额提款</strong>。</p>
+      <p class="ctx">这也解释了新人期的核心任务（详见<a href="../05-rookie/">第5章</a>）：不是惊艳亮相，而是攒信任的本金。反过来，职场最亏本的行为就是把信任当消耗品用——为一次汇报夸大成果、为一次失误编个理由、答应的事悄悄不做。短期看每次 đều"混过去了"，长期看你在这家公司的机会半径会越来越小，而背调和口碑传播会让这笔坏账跟到下一家。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：组织信任研究综述参见 Dirks & Ferrin（2002）"Trust in Leadership"，Journal of Applied Psychology（学术文献，英文） · <a href="https://hbr.org/">Harvard Business Review 组织与领导力文章库（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>稀缺之二：注意力——你和老板的都一样贵</h3>
+      <p class="ctx">第二种稀缺资源是<strong>注意力</strong>，它有两面。第一面是你自己的注意力：知识工作的产出几乎完全取决于专注的质量与时长，而现代办公环境（即时消息、连环会议、多线程任务）系统性地切碎它。第7章会完整讲时间精力管理，这里先立一个总纲：<strong>把整块的深度时间当作固定资产来保护，把碎片时间当作零钱来使用</strong>，而不是反过来。</p>
+      <p class="ctx">第二面更容易被忽视：<strong>你老板和组织的注意力也是稀缺资源</strong>。一个管理者每天要处理几十个信息源，你能分到的是其中很小一片。这片注意力决定了你的工作被看见的程度——做得好但从不汇报，等于资产没有记账；第6章讲汇报与表达，本质就是教你合法合规地"争取注意力"：结论先行、坏消息第一时间、用数据和事实而不是苦劳叙事。注意，争取注意力和表演型加班是两回事：前者以真实产出为底稿，后者以他人印象为产品。前者积累信任，后者透支信任。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Cal Newport《Deep Work》（2016，书籍，深度工作与注意力残留概念的普及读物） · <a href="https://book.douban.com/subject/1020644/">Barbara Minto《金字塔原理》（结构化表达经典，豆瓣条目）</a> · 多任务切换损耗的心理学研究参见 APA 相关综述入口（<a href="https://www.apa.org/">apa.org，英文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>稀缺之三：可迁移技能——裁员潮里唯一带得走的东西</h3>
+      <p class="ctx">第三种稀缺资源是<strong>可迁移技能</strong>：离开这家公司、这个行业之后仍然值钱的能力。判断标准很简单——把它写进简历，换一个雇主还认不认？"熟悉本公司内部审批系统"不可迁移；"能独立搭一套跨部门项目推进机制"可迁移。"认识我们部门的每个人"不可迁移；"能在陌生团队里三个月建立协作信任"可迁移。世界经济论坛《未来就业报告》系列反复强调的核心技能清单里，排前列的一直是分析性思维、创造性思维、韧性灵活、持续学习、技术素养这类通用能力，而不是某个具体软件的操作熟练度（英文报告，具体排名随年份变化，引用时以最新版为准）。</p>
+      <p class="ctx">可迁移技能的积累有个反直觉的规律：<strong>它主要产生于"有点超出当前岗位"的任务里</strong>。舒适区内的重复劳动攒的是熟练度（有价值，但会过时），新问题的解决过程攒的才是方法论（可迁移）。所以第8章讲跨部门项目、第9章讲技能投资组合，都会围绕一个原则：主动认领那些"难而可学"的任务，并且每做完一件就把它提炼成可复述、可验证的方法——这就是把经历变成资产的最后一道工序。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">世界经济论坛《未来就业报告 2025》（Future of Jobs Report 2025，英文，国际组织报告）</a> · <a href="https://www.mohrss.gov.cn/">人力资源和社会保障部（新职业目录与职业技能标准发布口径）</a> · <a href="https://www.oecd.org/en/topics/future-of-work.html">OECD Future of Work 专题（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、AI 时代的变与不变</h2>
+    <p class="chapter-sub">工具在剧烈变化，职场的基本规律没有变——变化的部分要用权威口径看，不变的部分恰恰是本课程的主干</p>
+
+    <article class="view">
+      <h3>变的部分：技能半衰期在缩短</h3>
+      <p class="ctx">先如实承认变化。世界经济论坛《未来就业报告 2025》的核心判断（英文，此处为本站概述，引用请以原文为准）：到 2030 年前后，全球相当大比例的现有工作技能将发生变化，AI 与信息技术是首要驱动因素；雇主最看重的能力清单里，"AI 与大数据"相关技能的排名显著上升，同时<strong>分析性思维、韧性、领导力、持续学习能力依然排在最前列</strong>。国际货币基金组织（IMF）2024 年的研究博客也给出过广为引用的估计：全球约四成工作岗位会受到 AI 的影响（affected，注意是"受影响"而非"被替代"，发达经济体比例更高）。这两类权威口径合起来说明一件事：<strong>具体工具技能的半衰期在缩短，"学会用新工具"的能力与通用软技能的价值在上升</strong>。</p>
+      <p class="ctx">对普通上班族的操作含义（第9章、第20章展开）：①把 AI 工具当作这一代办公员的"办公软件"来掌握——会用、知道边界、遵守公司数据规范；②技能更新按"70% 深化主业 + 20% 相邻技能 + 10% 探索新领域"的比例配置；③不追每一个热点工具，追"用工具解决真实问题"的作品与战绩。顺便提醒：市面上"不学 AI 就会被淘汰"的恐慌营销话术，多数在卖课——用 WEF、IMF、OECD 的原始口径替代二手焦虑，是本课程一贯的做法。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">WEF《未来就业报告 2025》（英文，国际组织报告）</a> · <a href="https://www.imf.org/en/Blogs/Articles/2024-01-14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF《Gen-AI: Artificial Intelligence and the Future of Work》（2024-01，英文）</a> · <a href="https://www.oecd.org/en/topics/future-of-work.html">OECD Future of Work 专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>不变的部分：组织还是人的组织</h3>
+      <p class="ctx">再看不变的部分，这恰恰是本课程敢用 20 章篇幅去讲的底气。无论工具怎么换代，职场的底层结构几十年没变过：组织依然靠<strong>分工与协作</strong>运转，所以跨部门推进、利益相关方管理永远是硬技能；决策依然靠<strong>信息与信任</strong>，所以汇报表达、靠谱口碑依然值钱；雇佣关系依然受<strong>劳动法</strong>调整，所以合同、试用期、加班费、经济补偿的规则依然要懂；人依然会<strong>倦怠、冲突、焦虑</strong>，所以情绪与精力管理依然是长跑的补给；职业依然有<strong>阶段与周期</strong>，所以入职、晋升、跳槽、裁员的应对套路依然有效。</p>
+      <p class="ctx">一句话总结变与不变：<strong>AI 改变的是"活儿怎么干"，没有改变"职场怎么运行"</strong>。会用 AI 的人替代不会用 AI 的人，前提是他先在职场的基本面上不输——看得懂期望、拿得出战绩、守得住边界、经营得了关系。本课程把 80% 的篇幅放在这些不変的基本面上，用两章（第9章 AI 工具合规使用、第20章 职业未来规划）专门处理变化的部分，这个比例本身就是一种立场：不追风口，修基本功。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：组织协作与领导力的经典研究参见 <a href="https://hbr.org/">Harvard Business Review 文章库（英文）</a> · <a href="https://www2.deloitte.com/us/en/pages/consulting/articles/global-human-capital-trends.html">Deloitte《Global Human Capital Trends》年度趋势报告（英文，商业机构报告，标🏷）</a> · 劳动关系的法律框架以 <a href="https://flk.npc.gov.cn/">国家法律法规数据库</a> 现行文本为准</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、课程地图：四部分 20 章</h2>
+    <p class="chapter-sub">按职业发展的真实顺序组织：先入职、再产出、后关系、终长线</p>
+
+    <article class="view">
+      <h3>第一部分 · 求职与入职（第1—5章）：第一步走对，少走三年弯路</h3>
+      <p class="ctx"><a href="../01-choose/">第1章 行业与岗位选择</a>：自评框架（兴趣×能力×价值观）、行业研究五步法、信息访谈怎么做、"先上车再换座"与"一步到位"两种策略的代价。<a href="../02-resume/">第2章 简历与作品集</a>：招聘方怎么筛简历、STAR 法则与量化表达、一页纸取舍、简历诚信的边界——"美化"与"造假"的法律分界线在哪。<a href="../03-interview/">第3章 面试攻防</a>：行为面试怎么答、陷阱题的诚实答法、薪资问题怎么谈、反问环节问什么、面试是双向调查。<a href="../04-offer/">第4章 Offer对比与合同陷阱</a>：总包怎么算、五险一金基数、劳动合同必备条款、试用期与竞业限制的合规常识。<a href="../05-rookie/">第5章 新人存活指南</a>：头 90 天的里程碑、接任务三确认、信任账户怎么开户、新人常见翻车点。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第一部分目录</a>（各章内容以对应章节为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>第二部分 · 做事与产出（第6—10章）：让工作被看见</h3>
+      <p class="ctx"><a href="../06-report/">第6章 汇报与表达</a>：金字塔原理、周报月报模板、坏消息怎么报、电梯陈述。<a href="../07-time/">第7章 时间与精力管理</a>：时间审计、四象限的正确用法、GTD、深度工作、精力四维、说"不"的技术。<a href="../08-project/">第8章 跨部门协作与项目推进</a>：干系人地图、立项三件套、无授权领导力、背锅场景应对、项目复盘。<a href="../09-skill/">第9章 核心技能</a>：职场写作三件套、数据素养、AI 工具的合规使用、技能投资组合。<a href="../10-promotion/">第10章 晋升与加薪</a>：晋升的真实逻辑、答辩三层证据、加薪谈判准备与话术、口头承诺落书面。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第二部分目录</a>（各章内容以对应章节为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>第三部分 · 关系与权益（第11—15章）：会协作，也守得住底线</h3>
+      <p class="ctx"><a href="../11-boss/">第11章 向上管理</a>：理解老板的压力与期望、对齐优先级、接受批评的正确姿势、向上管理与讨好操纵的区别。<a href="../12-peer/">第12章 同事相处与协作</a>：合作信用、功劳与署名、办公室政治的中立认知与自保、远程协作礼仪。<a href="../13-conflict/">第13章 职场冲突处理</a>：方案分歧、被甩锅的现场应对、道歉与修复、什么时候升级。<a href="../14-boundary/">第14章 界限与维权</a>：加班与加班费的法律规定、职场骚扰的识别与投诉渠道、"职场PUA"的识别与应对、劳动仲裁流程、证据留存习惯。<a href="../15-network/">第15章 人脉与个人品牌</a>：弱关系的力量、行业存在感、线上形象、人脉的本质是价值交换。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第三部分目录</a>（各章内容以对应章节为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>第四部分 · 变化与长线（第16—20章）：把职业当事业经营</h3>
+      <p class="ctx"><a href="../16-change/">第16章 跳槽与转行</a>：推力/拉力清单、跳槽尽调、背景调查怎么过、离职交接的职业素养、转行路径设计。<a href="../17-layoff/">第17章 裁员与低谷</a>：经济补偿的法律底线（N/N+1/2N 的适用条件）、协商解除怎么谈、空窗期安排、心理恢复、再就业节奏。<a href="../18-side/">第18章 副业与第二曲线</a>：副业与雇主的合规边界、技能变现路径、副业反哺主业、第二曲线的启动时机。<a href="../19-balance/">第19章 工作生活平衡与倦怠</a>：职业倦怠三维度、恢复的科学、远程边界、什么时候该停下来求助。<a href="../20-future/">第20章 AI时代的职业未来</a>：AI 对就业结构的官方与研究口径、抗替代能力、十年职业规划的写法、常见职场谣言集中粉碎。</p>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="课程地图示意：一条上升的长跑道分为四段，每段一个里程碑图标——起跑线处的公文包、途中的图表与话筒、关系段的握手、终点段的望远镜，一个抽象无脸人物正在奔跑" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第四部分目录</a>（各章内容以对应章节为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、怎么学这门课：方法与承诺</h2>
+    <p class="chapter-sub">职场知识是程序性技能：看懂不算会，做到才算</p>
+
+    <article class="view">
+      <h3>学习方法：场景触发 + 最小练习 + 复盘</h3>
+      <p class="ctx">先说清这类知识的性质：职业发展不是陈述性知识（背下来就行），而是<strong>程序性技能</strong>——和游泳、开车同类，看懂了不下水永远学不会。心理学的技能习得研究给出的路径是三件事：<strong>分解练习、即时反馈、真实情境</strong>（目标设定研究同样强调：具体、有难度、有反馈的目标才有效）。所以本课程的学习方法设计成一个循环，每章都适用：</p>
+      <blockquote class="q">本课程使用循环（每章通用）：<br>① <strong>场景触发</strong>——遇到真实场景再学对应章（要面试了→第3章；谈薪了→第10章），带着问题读效率最高；<br>② <strong>最小练习</strong>——每章挑一个成本最低的练习立刻做（如：用 STAR 重写简历里一段经历；下次周报改成"结果-进展-风险-请求"结构）；<br>③ <strong>要反馈</strong>——练习结果找信得过的人看一眼，或对照章内自查清单打分；<br>④ <strong>复盘归档</strong>——把有效的模板、话术、教训存进自己的"职业资产库"（一个笔记文件即可），下次直接调用。<span class="qsrc">—— 依据技能习得与目标设定研究的教学化归纳（Locke & Latham, 2002，英文）；各章末尾均附自查清单</span></blockquote>
+      <p class="ctx">配套建议：不要试图一周读完 20 章。更有效的节奏是<strong>通读导论建立框架，然后按场景跳读</strong>——这也是为什么每章开头都有"本章目标"、结尾都有"要点速览"，你可以只精读当下用得上的部分。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2002-10928-005">Locke & Latham（2002）"Building a Practically Useful Theory of Goal Setting and Task Motivation"，American Psychologist（英文）</a> · 刻意练习框架参见 Ericsson《Peak》（书籍，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>本课程的三条承诺</h3>
+      <p class="ctx">市面上的职场内容鱼龙混杂，本课程对自己立三条硬约束，也请你用它们监督每一章：</p>
+      <p class="ctx"><strong>承诺一：每个观点给来源。</strong>全站采用四级来源标注——🏛 官方文件（法律法规、人社部与统计局口径、国际组织报告）、📘 权威手册（经典管理与职业著作、教材）、📋 学术研究（组织行为学与职业心理学的同行评审论文，英文标注）、🏷 商业科普（招聘平台报告、商业媒体，明确标注且注明样本口径）。数字必须注明出处与年份，薪资与就业数据以官方统计为准。无权威出处的观点，要么不写，要么明确标注"本站归纳"。</p>
+      <p class="ctx"><strong>承诺二：不教坏，不贩卖焦虑。</strong>本站不教任何造假与违法手段（相关内容只讲法律后果与风险警示）、不教权术操纵（办公室政治只做中立认知与自保）、不靠"再不学就完了"的话术卖任何东西——本站没有任何商业合作与推广链接。同时如实呈现争议：比如"性格测试到底靠不靠谱""35 岁现象的成因"，会同时给出支持与质疑的证据。<strong>承诺三：讲边界。</strong>法律问题指向法条与官方渠道，心理问题指向专业帮助，个体差异如实标注——这门课是地图，不是替你做决定的司机。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库</a> · <a href="https://www.mohrss.gov.cn/">人力资源和社会保障部官网</a> · <a href="../">课程首页 · 免责声明</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、先粉碎几个流行说法</h2>
+    <p class="chapter-sub">长跑开始前，先把背上的错误包袱卸下来</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于职业发展的四个流行说法</h3>
+      <p class="ctx"><strong>说法一："第一份工作定终身。"</strong>不成立。职业流动是常态而非例外，人社部与各国劳动统计的口径里，职业生涯内更换工作与雇主的次数本来就多；真正影响长线的不是第一份工作的名头，而是前几年的<strong>技能积累斜率与职业习惯</strong>。第一份工作当然要认真选（第1章），但选错了也有系统的纠错路径（第16章转行），不必被"一步错步步错"的恐吓绑住。</p>
+      <p class="ctx"><strong>说法二："是金子总会发光，不用汇报。"</strong>半真半假，实践里偏假。发光的"金子"需要被看见才能进入定价流程：组织的注意力是稀缺资源（本章第三节），晋升评审依赖可验证的证据链（第10章）。结论先行的汇报不是表演，而是把真实产出翻译成组织能处理的格式——隐瞒产出不叫谦虚，叫浪费双方时间。<strong>说法三："35 岁就被淘汰。"</strong>这是把结构性压力简化成年龄判决。真实情况是：部分行业部分岗位存在年龄偏好（如实承认），但官方统计与研究中，经验与技能的溢价在多数技术和管理岗位上随年龄上升；被淘汰的不是"35 岁的人"，而是"市场价值曲线长期躺平的人"（本章第二节的错位二）。应对之道是技能更新与资产经营（第9、20章），不是提前恐慌。<strong>说法四："职场就是要会来事儿，实干没用。"</strong>把复杂系统简化成单变量。"会来事儿"如果指印象管理，它在信息不对称时确实影响短期评价（组织行为学有相应研究）；但长期看，雇佣关系的定价最终锚定在可验证的产出与稀缺性上——纯靠印象没有实绩支撑的人，在换领导、换公司、行业下行时最先暴露。本课程教"让工作被看见"（第6章），不教"没有工作也让人看见你"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.stats.gov.cn/">国家统计局就业统计（口径与年份以最新发布为准）</a> · <a href="https://www.mohrss.gov.cn/">人社部就业促进频道</a> · 印象管理与组织行为研究入口参见 <a href="https://hbr.org/">HBR（英文）</a> · <a href="https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx">Gallup 全球职场调查（英文，标🏷）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、先说边界：这门课解决不了什么</h2>
+    <p class="chapter-sub">把适用边界讲清楚，是对读者最大的负责</p>
+
+    <article class="view">
+      <h3>边界一：法律问题以法条和官方渠道为准，本站不是律师</h3>
+      <p class="ctx">本课程讲劳动合同、试用期、加班费、经济补偿、竞业限制时，依据的是<strong>现行法律法规的公开文本与官方解读</strong>（《劳动法》《劳动合同法》及其实施条例、最高法典型案例、人社部口径），并且每处都注明来源与"截至 2026 年 10 月"的时效。但法律适用高度依赖具体事实与地方裁审口径：同样的纠纷，不同城市的仲裁实践可能有差异。所以本站的定位是<strong>帮你"知道有这回事、大概的规则是什么、该去哪里问"</strong>，而不是替代法律意见。真要维权，走官方渠道：拨打 <strong>12333</strong>（人社政务服务热线）咨询、向当地劳动监察部门投诉、申请劳动仲裁、拨打 <strong>12348</strong>（公共法律服务热线）或咨询执业律师、向工会求助。证据怎么留存（考勤记录、聊天截图、邮件、工资条）在第14章有专门清单——那是你在任何渠道维权的基础。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《中华人民共和国劳动合同法》全文（2012修正，国家信访局网站转载版）</a> · <a href="https://xzfg.moj.gov.cn/front/law/detail?LawID=284">《劳动合同法实施条例》（司法部·国家行政法规库）</a> · <a href="https://www.12333.gov.cn/">全国人社政务服务平台（12333）</a> · <a href="https://www.court.gov.cn/fabu/xiangqing/472691.html">最高人民法院劳动争议典型案例发布页（2025）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>边界二：心理困扰严重时找专业帮助，本站不做诊断</h3>
+      <p class="ctx">职场压力、倦怠、焦虑是这门课绕不开的话题（第17章裁员低谷、第19章平衡与倦怠），但本站只做<strong>科普性的识别信号梳理与自助方法介绍</strong>，不提供任何诊断。如果你的状态已经出现以下信号：持续两周以上的情绪低落或耗竭感、睡眠与食欲显著改变、对原本能胜任的工作完全无法启动、频繁的躯体化症状（心悸、头痛、肠胃问题）而体检无异常——请把它当作身体在报警，寻求专业帮助：拨打全国统一心理援助热线 <strong>12356</strong>、前往医院精神心理科、或使用公司 EAP（员工帮助计划，多数大中型企业与工会提供，第19章有介绍）。<strong>把"扛不住"说出口不是职业能力问题，恰恰是长跑选手的专业素养</strong>——马拉松规则里，医疗站就是赛道的一部分。</p>
+      <p class="ctx">边界三顺带说清：本站不替你决策。选行业、跳不跳、要不要仲裁，课程给的是框架、清单和别人的证据，决定权与后果都在你手里；本站也无任何商业合作，不会向你推荐付费课程、中介服务或理财产品——凡是出现的产品与平台名，都只是教学举例。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：职业倦怠的研究框架参见 Maslach & Leiter 的三维度模型（学术文献，英文） · <a href="https://www.ilo.org/">国际劳工组织 ILO（体面劳动与工作质量国际口径，英文）</a> · 12356 全国统一心理援助热线（国家卫健委启用口径） · <a href="https://www.acftu.org/">中华全国总工会（工会维权与职工服务渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"长跑视角"和"熬"的区别是什么？为什么"卡在中间状态"是最差的姿势？</li>
+        <li>交易思维和资产思维各自问什么问题？为什么两本账都要算？</li>
+        <li>三条职业曲线分别是什么？各自的走势特点是什么？</li>
+        <li>"技能涨了收入没涨"背后的机制是什么？什么叫"定价事件"？</li>
+        <li>"收入不低但市场价值在跌"的人，在什么时刻最危险？</li>
+        <li>三线体检的三问是什么？建议多久做一次？</li>
+        <li>职场三大稀缺资源是什么？各自为什么无法临时抱佛脚？</li>
+        <li>信任为什么被称为"复利资产"？什么行为在"巨额提款"？</li>
+        <li>注意力稀缺的两面分别指什么？"争取注意力"和"表演型加班"的区别在哪？</li>
+        <li>判断一项技能"可迁移"的标准是什么？各举一个正反例。</li>
+        <li>WEF 与 IMF 关于 AI 与就业的核心口径分别是什么？"受影响"和"被替代"有什么区别？</li>
+        <li>本课程对 AI 时代"变与不变"的一句话总结是什么？</li>
+        <li>本课程的学习循环四步是什么？为什么职场知识属于程序性技能？</li>
+        <li>本课程的三条承诺你能复述出几条？</li>
+        <li>"第一份工作定终身""35 岁就被淘汰"这两个说法分别错在哪里？</li>
+        <li>遇到劳动纠纷，官方维权渠道有哪几个（至少说出三个号码或机构）？</li>
+        <li>出现哪些心理信号时，应该停止"自我调节"转而寻求专业帮助？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>职业是近 40 年、约 8 万小时的长跑，用资产思维经营（工资是现金流，技能/信任/战绩是资产），既反对苦难式硬熬也反对摸鱼式对抗；技能、收入、市场价值三条曲线经常错位——收入只在"定价事件"时更新，每半年做一次三线体检；职场三大稀缺资源：信任（复利资产，小事靠谱攒本金）、注意力（自己的要保护成整块，老板的要靠结论先行的汇报争取）、可迁移技能（产生于"难而可学"的任务）；AI 时代变的是工具与技能半衰期（WEF/IMF 口径：受影响≠被替代），不变的是分工协作、信息信任、劳动法框架与人的倦怠——本课程 80% 篇幅修基本功；学习靠"场景触发+最小练习+要反馈+复盘归档"的循环；三条承诺：每个观点给来源（四级徽章）、不教坏不贩卖焦虑、讲清边界——法律问题找法条与官方渠道（12333/12348/仲裁/工会），心理问题找专业帮助（12356/EAP），决策权永远在你手里。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>职场进阶课 · 全部目录</a>
+    <a href="../01-choose/"><span class="dir">第1章 →</span>行业与岗位选择：第一步怎么走</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 导论 · 依据《劳动法》《劳动合同法》及其实施条例、人社部与国家统计局官方口径、最高人民法院劳动争议典型案例、世界经济论坛《未来就业报告》、IMF/OECD/ILO 相关报告、Locke & Latham（2002）等组织行为学学术研究及经典管理著作整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业发展教育参考，不构成法律建议 · 劳动维权以官方渠道为准（12333 / 12348 / 劳动仲裁 / 工会） · 心理援助请拨打 12356 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

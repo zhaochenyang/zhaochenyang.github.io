@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第18章 记录、复盘与卖出 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:var(--accent-deep);border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第18章 · 第四部分 · 你自己的方案</div>
+  <h1>记录、复盘与卖出</h1>
+  <p>交易日志怎么记、复盘多久做一次、业绩归因怎么区分运气与判断、卖出有哪四种正当理由——让每一笔投资都成为可学习的经验，而不是情绪的轮回</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../17-portfolio/">← 第17章：构建你的组合</a>
+    <a href="../19-family/">第19章：家庭财务 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么要记录</a>
+    <a class="anchor" href="#s2">交易日志</a>
+    <a class="anchor" href="#s3">业绩归因</a>
+    <a class="anchor" href="#s4">复盘节奏</a>
+    <a class="anchor" href="#s5">卖出决策</a>
+    <a class="anchor" href="#s6">税与费用</a>
+    <a class="anchor" href="#s7">谣言粉碎</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供<strong>投资教育与参考</strong>，不构成投资建议或任何证券的买卖推荐；市场有风险，投资需谨慎。本课程<strong>不“荐股”、不预测行情、不承诺收益</strong>，不教授短线炒作、杠杆博弈与任何灰色操作；请警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局，合法证券业务只通过证监会许可的正规机构开展。本章涉及的税率、费率与规则以监管与税务机关官方口径为准（截至 2026 年 10 月）；文中所有数字与组合均为教学示例。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清"没有记录的投资等于蒙眼开车"的道理，并解释记忆为什么不可靠；②用"三个理由+一个卖出条件"模板建立自己的交易日志；③做诚实的业绩归因，把市场的钱和自己的判断分开；④定下"季度看结构、年度做再平衡、日度不盯盘"的复盘节奏；⑤背出卖出的四种正当理由，识别"回本了再卖"背后的处置效应；⑥算清股息红利税三档与卖出相关的税费成本；⑦用证据反驳关于复盘与卖出的五个流行误区。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是"你自己的方案"部分的执行章。读完建议立刻做一件事：翻出你最近一笔投资（无论赚亏），凭记忆写下"我当时为什么买"，再对照账户记录看看还剩多少能对上——这个落差，就是本章要解决的问题。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么要记录：没有记录的投资等于蒙眼开车</h2>
+    <p class="chapter-sub">你以为你记得，其实你只是"现在觉得"</p>
+
+    <article class="view">
+      <h3>一个常见场景：赚了钱，却学不到任何东西</h3>
+      <p class="ctx">小周（示例人物）炒股三年，账户总体小赚。朋友问他："你这三年最成功的一笔是什么？为什么成功？"他想了半天，说出一只股票代码，理由是"当时觉得行业要火"。再问："那你当时买了多少仓位？计划持有多久？如果跌两成你会怎么办？"他一个都答不上来。更尴尬的是，他隐约记得那笔其实是听群里有人提起后追进去的，赚的是那波行情的钱——但他已经把它记成了自己"看对行业"的功劳。</p>
+      <p class="ctx">这个场景里最危险的不是记不清，而是<strong>记错</strong>。赚了钱却归因错误，下次会用同样的姿势在错误的时机重仓；亏了钱却不知道错在哪，下次换个代码再亏一遍。投资和其他技能有一个残酷的区别：它的反馈极度延迟且充满噪音，一笔投资可能要几年后才能看出对错，而期间价格的每一次波动都在给你的记忆"重新配音"。</p>
+      <p class="ctx">记录的意义就在这里：它把"决策时的你"冻结下来，让"复盘时的你"有一个诚实的对话对象。没有这份冻结的记录，你复盘的从来不是当时的决策，而是记忆根据结果重新剪辑过的故事。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a>（"股市新手村"系列强调先建立方法与纪律） · <a href="https://www.investor.org.cn/">中国投资者网</a>（中证投服主办，投资者自我教育课程入口）</div>
+    </article>
+
+    <article class="view">
+      <h3>记忆是会撒谎的：后见之明偏差</h3>
+      <p class="ctx">行为经济学里有一个被反复验证的现象叫<strong>后见之明偏差</strong>（hindsight bias）：事情发生之后，人们会系统性高估自己"早就预料到"的程度。Kahneman 与 Tversky 一系的研究表明，人类决策依赖两套系统——快速直觉的系统1与缓慢理性的系统2，而记忆重构恰恰是系统1的拿手好戏：它会用结果去倒推动机，让偶然显得必然。</p>
+      <p class="ctx">放到投资里，后见之明偏差有两个方向的危害。涨了你记得"我当时就看好了"，于是过度自信，下次加大杠杆；跌了你记得"我当时就觉得不对劲"，于是自我安慰"判断没错只是没执行"——可事实上你当时买得心花怒放。两种记忆都在阻碍你从经验中学习，因为学习的原料是真实的决策过程，而不是被结果篡改过的版本。</p>
+      <p class="ctx">对策朴素得近乎无聊：<strong>在决策发生的当时，用文字把理由写下来</strong>。写下来的理由有两个特点：一是带时间戳，无法事后修改；二是可以被检验——半年后翻开，当时说的逻辑兑现了没有、前提还成不成立，一目了然。这就是交易日志存在的全部理由：不是为了记账（券商 App 已经替你记了成交明细），而是为了记下那些<strong>成交明细里没有的东西</strong>——你的理由、你的预期、你的卖出条件、你当时的情绪。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky (1979), Prospect Theory: An Analysis of Decision under Risk, Econometrica（英文）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（行为偏差类投教科普）</div>
+    </article>
+
+    <article class="view">
+      <h3>记录的三个功能：存档、镜子、锚</h3>
+      <p class="ctx">把投资记录的功能拆开，其实是三件不同的事。<strong>第一是存档</strong>：完整保存每笔投资的决策快照，包括当时掌握的信息、做出的判断和设定的条件，为未来的复盘提供不可篡改的原料。<strong>第二是镜子</strong>：一段时间后回看，你会惊讶地发现自己的行为模式如此稳定——总是在大涨后追买、总是拿不住盈利单、总是舍不得割亏损单。这些模式单靠"感觉"永远看不见，只有白纸黑字摆在一起才会现形。</p>
+      <p class="ctx"><strong>第三是锚</strong>：市场剧烈波动时，情绪会推着你做冲动决策。而一份写好的记录——尤其是买入时就写下的卖出条件——是把你拴回理性的锚。"我为什么买它？当时的理由破坏了吗？没有。那现在的手忙脚乱是价格引起的，不是逻辑引起的。"这个自问自答的过程，能挡掉大部分冲动交易。</p>
+      <p class="ctx">需要说明的是：记录不是自我审判。日志的目的不是羞辱过去的自己，而是把每一次决策变成一次可回收的学费。投资生涯几十年，真正拉开差距的往往不是某一次的聪明，而是<strong>从错误中提取教训的效率</strong>——而这个效率，几乎完全取决于你有没有记录。</p>
+      <p class="ctx">如果你此前从未记过日志，也不用懊悔，更不要试图"补写历史"——凭回忆补写的日志已经被结果污染过了，价值有限。可行的起点是两步：第一，从今天起，每一笔新决策都按模板记录，让日志从"现在"开始积累干净的样本；第二，把券商成交明细导出来，只做一件事——数一数过去一年的成交笔数和其中你完全想不起理由的笔数。这两个数字放在一起看一次，比任何说教都更能让你理解本章的必要性。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资纪律与自我管理课程） · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务</a>（风险提示与投教材料）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、交易日志：写什么、怎么写</h2>
+    <p class="chapter-sub">门槛低到"两分钟能写完"，才可能坚持</p>
+
+    <article class="view">
+      <h3>买前必写：三个理由 + 一个卖出条件</h3>
+      <p class="ctx">交易日志最重要的部分不在买后，而在<strong>买前</strong>。下单之前，强迫自己写满四个空：三个买入理由，一个卖出条件。写不满三个理由，说明你还没想清楚，这笔可以不下；写不出卖出条件，说明你把这笔投资当成了"永远不用负责的赌博"。这个动作只花两分钟，却能过滤掉大部分冲动单——很多追涨的念头，在"请写出三个理由"面前会自己消散。</p>
+      <blockquote class="q">📝 <strong>买前四空模板（每笔必填，两分钟）</strong><br>
+      ① 理由一（基本面/配置）：它在我的组合里承担什么角色？（例：宽基指数定投的一部分，承担权益类核心仓位——教学示例）<br>
+      ② 理由二（估值/时机）：现在的价格处于什么位置？我依据什么口径判断？<br>
+      ③ 理由三（替代比较）：为什么是它，不是别的？我放弃了哪些选项？<br>
+      ④ 卖出条件（前置）：出现什么情况我会卖？（例：配置比例偏离目标±5个百分点时再平衡；持有逻辑被证伪时；达到目标用途时间前两年开始逐步转为稳健资产——教学示例，非投资建议）<br>
+      <span class="qsrc">模板为教学示意；写不出④的单子，建议先不下。</span></blockquote>
+      <p class="ctx">注意第④条的写法：卖出条件应该是<strong>与逻辑挂钩的事件</strong>（比例偏离、前提证伪、用钱时点临近），而不是一个拍脑袋的价格（"涨到XX元就卖"）。价格目标不是不能有，但它应该是逻辑推导的结果，而不是愿望本身。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（投资决策流程类投教课程） · 《漫步华尔街》（伯顿·马尔基尔，机械工业出版社中译本）关于投资计划与纪律的论述（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>买后记什么：五个字段，别多</h3>
+      <p class="ctx">成交之后，日志补五个字段就够了：<strong>日期与价格</strong>（成交明细里有，抄过来即可）；<strong>仓位占比</strong>（这笔占你总投资的比例，这是未来复盘最关键的字段之一）；<strong>当时的情绪状态</strong>（用一个词：平静/兴奋/焦虑/不服气——别小看这个词，它和结果的对照往往最有教育意义）；<strong>信息来源</strong>（这个决定是你自己研究的，还是看了某篇文章、某个人说的？如实写）；<strong>预计持有期</strong>（三年？五年？到某个用钱时点？）。</p>
+      <p class="ctx">特意提醒"信息来源"这个字段：日后复盘时你会发现一个扎心的规律——<strong>来源是"群里的消息""某老师"的单子，亏损比例显著更高</strong>。这不是玄学，是结构性的：非法“荐股”与“带单”骗局的商业模型决定了它们不可能为你提供真实的价值（详见<a href="../11-scam/">第11章 防骗指南</a>）。日志会替你把这个结论用你自己的钱证明一遍，而这大概是它最值钱的功能。</p>
+      <p class="ctx">同样重要的是<strong>不记什么</strong>：不要每天记浮盈浮亏。日度净值是噪音，把它抄进日志只会给情绪偏差喂料。你的日志记录的是决策，不是行情。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">深圳证监局《关于警惕非法“荐股”骗局的风险提示》</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">青海证监局"打击非法证券活动"专栏</a>（典型案例）</div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-18-1.png" alt="抽象插画：一本摊开的日志，左侧是决策时刻被冻结在琥珀色方块里的快照，右侧是时间轴上依次点亮的复盘检查点，一个无脸的几何小人在两个时刻之间架起放大镜" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>介质选择：能坚持的才是好工具</h3>
+      <p class="ctx">日志用什么记？三个常见选项各有优劣。<strong>纸质本子</strong>：摩擦力最低、仪式感最强，写的时候不容易分心，缺点是难检索、难统计。<strong>电子表格</strong>：可以自动算比例、排序、筛选，适合喜欢量化回顾的人，缺点是打开电脑这个动作本身就可能诱发盯盘。<strong>笔记类 App</strong>：检索方便、手机随时可写，缺点是容易和无穷尽的信息流混在一起。</p>
+      <p class="ctx">选择的唯一标准是<strong>哪个你能坚持三个月以上</strong>。一个粗糙但持续在写的本子，胜过精美但荒废的表格。另一个实用建议：把日志和下单动作绑在一起——"先写完四空模板，再打开交易软件"，让记录成为流程的一部分而不是额外负担。等习惯成型后，你会发现自己下单的频率自然下降了：这不是记录的副作用，这正是记录的作用。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资者自我管理） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（"万事先求稳"入门系列）</div>
+    </article>
+    <article class="view">
+      <h3>日志怎么读：每季度和自己对一次账</h3>
+      <p class="ctx">写了不读的日志只是仪式。每季度复盘时，把当季所有日志条目摊开，做三个动作。<strong>第一，重读四空模板</strong>：逐笔检查"当时的三个理由"与"卖出条件"写得是否具体——"感觉会涨""别人都在买"这类理由一眼就能认出来，它们本身就是该季度决策质量的警报。<strong>第二，统计理由兑现率</strong>：几个季度积累下来，你会得到一个很有价值的个人指标——你写下的理由，事后被验证的比例有多高。兑现率长期很低，说明你的信息源或分析流程有问题；兑现率忽高忽低，说明你的判断依赖行情风格，顺境错觉要警惕。</p>
+      <p class="ctx"><strong>第三，数一数冲动单</strong>：没有对应日志的成交就是冲动单（券商成交明细与日志逐条对账即可）。冲动单占比是纪律的直接读数，目标是让它逐季下降直至为零。这三个动作加起来不过二十分钟，但它们把日志从"记录"变成了"反馈系统"——你终于有了一个不依赖盈亏数字的、关于自己决策质量的仪表盘。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资决策流程与自我管理课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（"股市新手村"纪律系列）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、诚实的业绩归因：运气还是判断</h2>
+    <p class="chapter-sub">赚的钱里有多少是市场给的，有多少是你挣的</p>
+
+    <article class="view">
+      <h3>先分清两种收益：市场的钱和你的钱</h3>
+      <p class="ctx">复盘的第一步不是看赚了多少，而是把收益拆成两部分。金融学用两个希腊字母命名它们：<strong>贝塔（beta）</strong>是市场整体运动带来的收益——大盘涨20%，你的组合跟着涨的部分，这部分是"坐在船上随水涨"，不需要判断力；<strong>阿尔法（alpha）</strong>是超出市场基准的部分——扣掉水涨船高之后，真正由你的选择（选了哪些资产、何时进出）创造或损耗的收益。</p>
+      <p class="ctx">为什么要拆？因为<strong>不拆开，你根本无法知道自己有没有进步</strong>。牛市里人人赚钱，账户+30%不能说明任何问题——如果同期基准涨了40%，你其实跑输了10个百分点，你的"判断"是负贡献。反过来，熊市里账户-8%看着难受，但如果基准跌了20%，你的防御其实相当出色。只看绝对数字做自我评价，等于用天气来考核船长的驾驶技术。</p>
+      <p class="ctx">对普通投资者，一个务实的基准选择是：拿你的组合和它实际对标的那类指数比（权益部分对宽基指数、整体组合对"股债混合"的参照），口径统一、区间一致。指数编制方案与历史数据可在中证指数有限公司官网查询。需要提醒：比较是为了归因，不是为了较劲——长期战胜基准本来就极难，这正是<a href="../04-index/">第4章</a>讲指数基金的原因。</p>
+      <table class="cmp">
+        <tr><th>归因视角</th><th>回答的问题</th><th>常见误区</th></tr>
+        <tr><td>绝对收益</td><td>我赚了多少钱？</td><td>拿它评价水平：牛市高估自己，熊市低估自己</td></tr>
+        <tr><td>相对基准（beta 修正）</td><td>扣掉市场的钱，我做得如何？</td><td>基准选错（拿小盘组合比大盘指数）、区间挑肥拣瘦</td></tr>
+        <tr><td>决策质量</td><td>当时的理由兑现了吗？流程执行了吗？</td><td>只看结果不看过程：赚钱的坏决策被强化</td></tr>
+        <tr><td>成本损耗</td><td>费率、税、频繁交易吃掉了多少？</td><td>忽略隐性成本（见<a href="../10-tax/">第10章</a>）</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1016/0304-405X(93)90023-5">Fama &amp; French (1993), Common risk factors in the returns on stocks and bonds, Journal of Financial Economics（英文）</a> · <a href="https://www.csindex.com.cn/#/indices/family/detail?indexCode=000300">中证指数有限公司 · 沪深300指数详情页</a>（指数编制与数据官方口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>为什么别和朋友比：幸存者偏差与风险不同级</h3>
+      <p class="ctx">"我同事去年翻倍了"是复盘季最有毒的参照系。原因有三。<strong>第一，你只听到赚钱的人说话</strong>：亏钱的人不晒账户，这是典型的幸存者偏差——样本被结果筛选过，结论必然失真。<strong>第二，风险水平不可比</strong>：满仓单一高波动品种的收益，和你分散配置的收益，是两种完全不同的东西的读数；前者翻倍的同时承担着腰斩的可能，比较收益而不比较承担的风险，等于比较两辆车谁快却不看谁没装刹车。</p>
+      <p class="ctx"><strong>第三，区间运气成分极大</strong>：一年期的收益排名几乎是随机排序，学术研究与基金行业的长期数据都反复印证这一点——上一年的冠军下一年大概率归于平庸。SPIVA 记分卡的长期统计显示，以15-20年维度看，约85%-93%的美国大盘主动基金跑输标普500基准（以 SPIVA 官方记分卡为准，截至2026年10月）；连专业机构在长周期都难以持续战胜指数，个人拿单年成绩给自己或朋友排名，统计上毫无意义。（如实说明：也有研究批评 SPIVA 的等权重口径夸大了主动基金的落后程度，按资产加权口径跑输比例约为56%——两种口径都远不足以支持"某年赚了=水平高"的结论。）</p>
+      <p class="ctx">正确的比较对象只有一个：<strong>昨天的自己</strong>。流程有没有更规范？冲动单有没有更少？理由的兑现率有没有更高？这些指标的改善，才是复盘应该追踪的进步。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">SPIVA 记分卡（S&amp;P Dow Jones Indices，英文，官方站对脚本访问有限制，浏览器可达）</a> · <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6710358">How the SPIVA U.S. Scorecard Understates Active Performance, SSRN（英文，SSRN 对脚本访问有限制，浏览器可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>样本量：多久才有资格评价自己</h3>
+      <p class="ctx">一个自然的追问：那到底多长周期的业绩才"算数"？诚实的答案是：<strong>对绝大多数个人投资者，永远不够长</strong>。统计上要把"能力"从"运气"里分离出来，需要跨越多个完整牛熊周期的大样本——专业研究者评估基金经理都要用十年以上的数据，且仍存在争议。你的三五笔交易、一两年记录，样本量小到任何结论都是过度解读。</p>
+      <p class="ctx">这不是让你放弃复盘，而是把复盘的重心从"结果指标"移到"过程指标"。结果（赚亏）需要十年才有统计意义，但过程（有没有写四空模板、有没有按计划再平衡、有没有追涨杀跌）当天就能评价。<strong>短期看过程，长期看结果</strong>——这是普通投资者唯一可行的复盘姿势。Barber 与 Odean 对美国上万个个人账户的研究发现，交易越频繁收益越差，交易最频繁的组年化收益显著低于市场平均（英文论文，见来源）：过程指标恶化（手痒、频繁换手）本身就是最值得警惕的复盘发现。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1111/0022-1082.00226">Barber &amp; Odean (2000), Trading Is Hazardous to Your Wealth, Journal of Finance（英文）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（频繁交易风险类投教）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、复盘的节奏：日度有害、季度够用、年度关键</h2>
+    <p class="chapter-sub">复盘不是盯盘的雅称</p>
+
+    <article class="view">
+      <h3>为什么日度复盘是自虐</h3>
+      <p class="ctx">先说结论：<strong>不要每天看账户</strong>。这不是养生建议，是行为金融学推导出的纪律。前景理论（Kahneman &amp; Tversky, 1979）的核心发现之一是损失厌恶：同等金额的亏损带来的痛苦，显著大于盈利带来的快乐，量级约在两倍上下。这意味着每天查看账户的人，在一个涨跌各半的市场里，体验到的痛苦总量系统性地大于快乐总量——你会越来越焦虑，而焦虑是冲动决策的温床。</p>
+      <p class="ctx">更糟的是，日度价格波动几乎全是噪音：单日涨跌里能被"信息"解释的比例很小，大部分是资金流动与情绪的随机摆动。每天复盘，等于每天对着一台随机数发生器做深刻反思——你总结出的"规律"全是幻觉，而基于幻觉的调整（追一下、砍一下）会实实在在损耗收益，这正是 Barber 与 Odean 研究中过度交易者的画像。</p>
+      <p class="ctx">一个可操作的建议：把行情 App 的通知关掉，把"看账户"降频到每周一次以内，把"复盘"留给季度和年度。你错过的不是机会——对以年为单位的配置型投资而言，日度信息里没有任何你需要响应的东西；你躲开的是噪音对你纪律的持续腐蚀。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky (1979), Prospect Theory, Econometrica（英文）</a> · <a href="https://doi.org/10.1111/0022-1082.00226">Barber &amp; Odean (2000), Trading Is Hazardous to Your Wealth, Journal of Finance（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>季度复盘：看三件事，半小时</h3>
+      <p class="ctx">季度复盘是"体检"，只看三件事。<strong>第一看结构漂移</strong>：各类资产的实际比例偏离目标多少？股涨债跌之后，权益占比可能已经从60%漂到68%——漂移本身不是错，但它是再平衡的信号灯（阈值与执行见<a href="../17-portfolio/">第17章</a>）。<strong>第二看纪律执行</strong>：本季度的每一笔买卖，有没有对应的日志？有没有计划外的冲动单？冲动单占比是最诚实的纪律指标。<strong>第三看理由存续</strong>：翻出持仓的买入理由，逐条问"这个逻辑还成立吗？"——注意，问的是逻辑，不是价格。</p>
+      <p class="ctx">三件事做完，半小时足够。季度复盘的产出应该非常克制：大多数季度的正确结论是"结构正常、纪律正常、理由存续——什么都不做"。<strong>"什么都不做"是复盘的常态而非失败</strong>；如果每次复盘都得出"要调仓"的结论，那说明你的初始计划太随意，或者你把复盘开成了交易的动员大会。</p>
+      <p class="ctx">给季度复盘加一个固定的收尾动作：用三行字写下本季度的结论存档（结构/纪律/理由各一行），日期落款。四个季度之后，这四张"三行纸条"连起来看，就是你投资体系第一份真正的年度证据——它们比任何一次账户截图都更能说明你在变成什么样的投资者。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（组合管理与再平衡课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a></div>
+    </article>
+
+    <article class="view">
+      <h3>年度复盘：再平衡 + 重测风险承受力</h3>
+      <p class="ctx">年度复盘是"大修"，在季度三件事之外加两件。<strong>第一件：执行年度再平衡</strong>——把偏离的资产比例调回目标，这是全课程反复强调的"机械化高抛低吸"（<a href="../03-allocation/">第3章</a>），一年一次足够，更频繁反而增加成本。<strong>第二件：重测风险承受能力</strong>——你的年龄、收入稳定性、家庭负担、投资经验都变了，一年前的风险测评结果可能已经过期。监管制度本身也把适当性管理设计为动态过程：《证券期货投资者适当性管理办法》（证监会令第130号）要求经营机构了解投资者信息的重大变化并持续评估，你自己对自己更应如此。</p>
+      <p class="ctx">年度复盘还适合做两个"大尺度"检查：一是<strong>目标进度</strong>——距离教育金、养老金等目标年份又近了一年，按当前的储蓄率和组合结构，倒推的缺口是扩大还是收窄（方法见<a href="../19-family/">第19章</a>）；二是<strong>成本审计</strong>——把全年支付的佣金、管理费、税费加总，算出它占组合的百分比，对照<a href="../10-tax/">第10章</a>的清单看有没有可优化的空间。这两个数字，比全年任何一笔交易的盈亏都更能预测你的长期结果。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（证监会令第130号）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局《关于减半征收证券交易印花税的公告》（2023年第39号）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、卖出：四种正当理由与一种最危险的理由</h2>
+    <p class="chapter-sub">买入决定你上不上车，卖出决定你能不能把车票变成钱</p>
+
+    <article class="view">
+      <h3>四种正当理由：再平衡、逻辑破坏、目标达成、真实用钱需求</h3>
+      <p class="ctx"><strong>理由一：再平衡。</strong>某类资产涨得太多导致比例超标，卖出一部分调回目标结构。这是纪律驱动的卖出，不涉及对后市的判断，恰恰因为"不判断"，它才能长期执行。</p>
+      <p class="ctx"><strong>理由二：买入逻辑被破坏。</strong>翻开日志，当初的三个理由还成立吗？如果你买一只行业基金的理由是"该行业渗透率提升的长期逻辑"，而后续数据显示逻辑证伪（不是价格下跌，是<strong>前提本身</strong>不成立了），卖出是执行原计划，不是认输。注意区分"逻辑破坏"和"价格下跌"：后者经常只是前者的假警报。</p>
+      <p class="ctx"><strong>理由三：目标达成。</strong>为特定目标（三年后的首付、五年后的教育金）持有的资产，到达预设的兑现节点就该按计划卖出转入稳健形态——目标型投资的成功标准是"用钱那天钱在"，不是"卖在最高点"。<strong>理由四：真实急用钱。</strong>应急场景下的卖出无可指摘，但它恰恰暴露了前置问题：应急金没备够（<a href="../16-plan/">第16章</a>的第一课）。让长期投资被迫为短期流动性买单，是结构错误，不是卖出错误。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资目标与退出规划） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（长期投资理念系列）</div>
+    </article>
+
+    <article class="view">
+      <h3>"回本了再卖"：处置效应，散户最贵的心理税</h3>
+      <p class="ctx">现在看那个最危险的理由。"再等等，回本就卖"——几乎每个亏过钱的人都说过这句话，它有一个学名：<strong>处置效应</strong>（disposition effect），由 Shefrin 与 Statman 在1985年的经典论文中命名：投资者系统性地倾向于<strong>过早卖出盈利的持仓、过久持有亏损的持仓</strong>。赚10%就落袋为安，亏30%反而拿得比谁都稳。</p>
+      <p class="ctx">背后的心理机制是前景理论：人在盈利区间风险厌恶（赶紧锁住确定的小赚），在亏损区间反而风险偏好（赌一把回本，不愿把浮亏变成实亏）。而"回本"这个锚定在<strong>你的买入价</strong>上的参照点，对市场来说毫无意义——资产未来的走势不记得你多少钱买的。以买入价决定卖出，等于让一个与资产质量无关的数字指挥你的决策。</p>
+      <p class="ctx">处置效应的代价是双重的：截断利润、放大亏损，组合里留下的越来越是"跌下来舍不得卖"的资产。破解方法正是本章的主题——<strong>前置的卖出条件</strong>：买的时候就写下"逻辑破坏即卖出"，把决策从"亏了多少"的参照系搬到"理由是否成立"的参照系。价格锚换成逻辑锚，处置效应就失去了抓手。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1111/j.1540-6261.1985.tb05002.x">Shefrin &amp; Statman (1985), The Disposition to Sell Winners Too Early and Ride Losers Too Long, Journal of Finance（英文）</a> · <a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky (1979), Prospect Theory, Econometrica（英文）</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-18-2.png" alt="抽象插画：一个岔路口，左侧路径立着四个发光的几何标志牌（天平、断裂的链条、旗帜、钱袋），右侧路径昏暗且被一个写着问号的锚形重物拖住，一个无脸小人站在岔口思考" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>关于"清仓离场"：只有两种情况值得整体撤退</h3>
+      <p class="ctx">比单笔卖出更大的决策是"全部清仓"。本课程不教择时——没有人能持续判断顶部和底部，这是<a href="../12-rumor/">第12章</a>用证据说清楚的事。因此"我觉得要大跌了所以清仓"不构成正当理由；事后看躲过一次下跌的择时，也大概率会在下一次错过反弹（错过少数几个最好的交易日，长期收益会被显著拉低，这是多家官方投教反复引用的统计现象）。</p>
+      <p class="ctx">真正值得考虑整体降低权益仓位的只有两种情况：<strong>其一，财务需求结构变了</strong>——两年内要用大钱、收入中断风险上升，按生命周期逻辑本来就该降低波动资产比例（<a href="../19-family/">第19章</a>）；<strong>其二，风险承受能力变了</strong>——健康、家庭、职业发生重大变化，或你发现自己实际的睡眠质量与组合波动严重不匹配，说明当初的测评高估了你，降到"晚上睡得着"的水平是理性的，这不是择时，是纠错。两种情况的共同点：触发因素在你的生活里，不在K线图里。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（风险承受能力动态评估依据）</a> · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（风险警示与理性投资投教）</div>
+    </article>
+    <article class="view">
+      <h3>卖出怎么执行：让规则替你按下按钮</h3>
+      <p class="ctx">确定了"该卖"之后，还有一道坎：执行。卖出比买入更难下手——买的时候有憧憬托底，卖的时候要么割肉痛、要么卖飞怕。降低执行难度的办法不是锻炼意志力，而是<strong>把执行规则化</strong>。三条实用规则：其一，<strong>触发即执行，不二次议价</strong>——卖出条件在买入时就写好了（s2 的第④空），条件触发时只需要核对事实（比例真的偏离了吗？逻辑真的被证伪了吗？），不需要重新预测行情，更不允许"再等两天看看"。</p>
+      <p class="ctx">其二，<strong>大额调整分批完成</strong>——再平衡或目标兑现涉及的金额较大时，按预先写好的批次和间隔执行（例如分三批、每批间隔固定周数——教学示例），分批的意义不是优化价格，而是防止"一次性全卖后行情反转"带来的情绪反噬，让决策可执行、可坚持。其三，<strong>卖出也要记日志</strong>：写下卖出的触发条款、执行情况和当时情绪。卖出记录是复盘里最锋利的教材——你会发现，按规则卖出的单子事后很少后悔，而"临时起意"卖出的单子才是懊恼的主要来源。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（投资纪律与执行） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（理性投资投教材料）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、税与费用的卖出时点：合规地省一点</h2>
+    <p class="chapter-sub">省下来的每一分费用，都是确定的收益</p>
+
+    <article class="view">
+      <h3>股息红利税三档：持股期限直接决定税率</h3>
+      <p class="ctx">卖出时点影响的第一项成本是<strong>股息红利差别化个人所得税</strong>。按财政部、国家税务总局、证监会《关于上市公司股息红利差别化个人所得税政策有关问题的通知》（财税〔2015〕101号，此前政策沿革见财税〔2012〕85号）：个人从公开发行和转让市场取得的上市公司股票，<strong>持股期限超过1年的，股息红利所得暂免征收个人所得税；持股1个月以上至1年（含）的，暂减按50%计入应纳税所得额（实际税负10%）；持股1个月以内（含）的，全额计入（实际税负20%）</strong>。持股期限按先进先出法计算。</p>
+      <p class="ctx">对复盘的含义：如果你持有分红型资产，卖出与分红的时点安排会产生真实的税负差异——长期持有不仅逻辑上更从容，税务口径上也更友好，这是制度设计上对长期投资的倾斜（政策以税务机关最新口径为准，截至2026年10月）。反过来，"分红前突击买入吃股息"的短线操作，扣除20%档税负与价格波动后往往得不偿失，官方投教对此有明确的风险提示。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5203902/content.html">财税〔2015〕101号《关于上市公司股息红利差别化个人所得税政策有关问题的通知》（国家税务总局法规库）</a> · <a href="https://www.mof.gov.cn/gkml/caizhengwengao/2012wg/wg201212/201302/t20130205_732225.htm">财税〔2012〕85号（政策沿革，财政部）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>卖出环节的其他成本：印花税、佣金与差价个税口径</h3>
+      <p class="ctx"><strong>印花税</strong>：证券交易印花税现行税率为0.05%（2023年第39号公告减半后），<strong>仅对卖方单边征收</strong>——也就是说，每一次卖出你都要付这笔钱，它是频繁交易成本清单上最显眼的一项（详见<a href="../10-tax/">第10章</a>的全景计算）。<strong>佣金</strong>：双向收取，卖出同样要付，费率以你与券商的约定为准。</p>
+      <p class="ctx"><strong>个人转让A股的差价所得</strong>：按现行有效口径暂免征收个人所得税（延续财税字〔1998〕61号以来的政策安排）。这是一个会被频繁误传的点——既有"炒股盈利要交20%个税"的谣言，也有把股息税三档误当成差价税的混淆。稳妥的做法：涉及具体税务安排时，以<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5203902/content.html">国家税务总局法规库</a>检索到的现行文件为准，或咨询税务师等持牌专业人士，不以自媒体解读为依据（截至2026年10月）。</p>
+      <p class="ctx">把这几项放进复盘：年度成本审计时，用"全年佣金+印花税+基金申赎费+税费"除以平均资产规模，得到你的<strong>年度摩擦成本率</strong>。对配置型的长期投资者，这个数字应该在很低的水平；如果它接近甚至超过1%，几乎可以断定问题出在换手率上——这时候该复盘的不是选股，是手痒。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局《关于减半征收证券交易印花税的公告》（2023年第39号）</a> · <a href="https://www.chinaclear.cn/">中国证券登记结算有限责任公司</a>（交易结算规则官方口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、复盘与卖出的常见误区</h2>
+    <p class="chapter-sub">五个流行说法，逐条对质</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于记录和卖出的五个流行说法</h3>
+      <p class="ctx"><strong>谣言一："赚了就是判断对，亏了就是运气差。"</strong>——这是结果论，用结果反推决策质量。低概率的冒险成功了依然是坏决策，严谨的计划遭遇坏运气依然是好决策。评价决策要看当时的信息与流程（s3），否则你会把赌性当能力培养。</p>
+      <p class="ctx"><strong>谣言二："亏损的票拿住总会回本。"</strong>——"总会"没有任何保证：个股可以退市，行业可以衰落，回本锚定的是你的买入价而市场不认识它。持有与否的标准是逻辑是否存续（s5），处置效应正是靠"回本执念"收割投资者（Shefrin &amp; Statman, 1985）。退市制度的官方规则见深交所风险警示板专页与交易所退市相关规则。</p>
+      <p class="ctx"><strong>谣言三："复盘越勤进步越快，最好每天总结。"</strong>——日度价格主要是噪音，日度"总结"产出的是幻觉规律与操作冲动（s4）；损失厌恶还会让每日查看变成情绪消耗。复盘的正确频率是季度体检、年度大修。</p>
+      <p class="ctx"><strong>谣言四："卖出是门技术，要跟着盘面信号走。"</strong>——本课程不教也不推荐任何基于盘面信号的择时卖出；对普通投资者，卖出应当是<strong>规则的执行</strong>（再平衡、逻辑破坏、目标达成、真实用钱），而不是对行情的又一次猜测。号称能教你"精准逃顶"的课程与群，请回到<a href="../11-scam/">第11章</a>的防骗框架里检验。</p>
+      <p class="ctx"><strong>谣言五："记日志没用，大钱都是靠胆量赚的。"</strong>——"靠胆量"在统计上就是高波动高换手的赌法，Barber 与 Odean 的大样本研究显示交易越频繁收益越差；而"没记录"意味着你连自己是胆量还是能力都无从分辨。日志不是致富工具，是防蠢工具——投资里防蠢的价值，长期高于逞能。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://doi.org/10.1111/j.1540-6261.1985.tb05002.x">Shefrin &amp; Statman (1985), Journal of Finance（英文）</a> · <a href="https://doi.org/10.1111/0022-1082.00226">Barber &amp; Odean (2000), Journal of Finance（英文）</a> · <a href="https://investor.szse.cn/disclosure/listed/warn/index.html">深交所风险警示板专页</a>（ST/*ST与退市整理官方定义）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">讲给朋友听试试：能讲明白的才算学会</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（15条）</h4>
+      <ul>
+        <li>为什么说"没有记录的投资等于蒙眼开车"？记录防住的到底是什么？</li>
+        <li>后见之明偏差是什么？它在你赚钱和亏钱时分别怎么篡改记忆？</li>
+        <li>记录的三个功能——存档、镜子、锚——各解决什么问题？</li>
+        <li>买前四空模板的四个空分别是什么？为什么写不出第④空就不要下单？</li>
+        <li>卖出条件为什么应该挂钩"逻辑事件"而不是拍脑袋的价格目标？</li>
+        <li>买后五个字段里，"信息来源"和"情绪状态"为什么值得单独记？</li>
+        <li>beta 和 alpha 分别是什么？为什么牛市赚30%可能是坏消息？</li>
+        <li>为什么不能拿同事的收益当参照系？三个理由各是什么？</li>
+        <li>SPIVA 的长期统计大致说明什么？SSRN 的批评口径又提醒我们什么？</li>
+        <li>为什么对个人的短期业绩"永远不够长"来评价能力？复盘重心应放在哪类指标？</li>
+        <li>日度盯盘的两个危害（情绪与噪音）分别对应哪些研究结论？</li>
+        <li>季度复盘的三件事、年度复盘加做的两件事分别是什么？</li>
+        <li>卖出的四种正当理由是哪四种？"回本了再卖"错在哪？</li>
+        <li>股息红利税的三档税率与持股期限如何对应？印花税现行税率是多少、向谁收？</li>
+        <li>整体清仓只有哪两种正当理由？它们的共同点是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>记忆会被结果篡改（后见之明偏差），所以决策当时就要写日志——买前四空：三个理由+一个前置卖出条件，买后补五字段（日期价格/仓位/情绪/信息来源/预计持有期），日度盈亏不记；复盘先做归因：beta 是市场给的，alpha 才是你的，基准选对、区间对齐，别和朋友比（幸存者偏差+风险不同级+短期排名近乎随机，SPIVA 长期85%-93%主动基金跑输，资产加权批评口径约56%，争议如实标注）；节奏=日度有害（损失厌恶×噪音）、季度体检三件事（漂移/纪律/理由存续）、年度大修（再平衡+重测风险承受力，130号令的动态适当性逻辑）；卖出四正当理由=再平衡/逻辑破坏/目标达成/真实用钱，"回本再卖"是处置效应（Shefrin & Statman 1985），用逻辑锚替换价格锚破解；整体清仓只因生活变了，不因K线变了；税费时点：股息税三档（超1年免/1月-1年10%/1月内20%，财税〔2015〕101号）、印花税0.05%卖方单边（2023年39号公告）、A股个人差价所得按现行口径暂免个税（以税务总局法规库为准）；年度算一次摩擦成本率，超过1%先反思换手率。
+  </div>
+
+  <nav class="pager">
+    <a href="../17-portfolio/"><span class="dir">← 第17章</span>构建你的组合：核心-卫星</a>
+    <a href="../19-family/"><span class="dir">第19章 →</span>家庭财务与生命周期</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第18章 · 依据财税〔2015〕101号与财税〔2012〕85号税收文件、证券交易印花税2023年第39号公告、证监会令第130号、上交所/深交所投资者教育材料、中证投服投教课程及 Shefrin &amp; Statman (1985)、Barber &amp; Odean (2000)、Kahneman &amp; Tversky (1979)、Fama &amp; French (1993) 等学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 不“荐股”、不预测行情、不承诺收益 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

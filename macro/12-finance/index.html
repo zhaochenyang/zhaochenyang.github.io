@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 金融体系与金融危机 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第12章 · 国际与结构</div>
+  <h1>金融体系与金融危机</h1>
+  <p>银行、证券、保险各干什么，危机为什么反复发生——看懂金融的三大功能与危机的共同剧本，学会防御而不是预测</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../11-trade/">← 第11章：国际贸易与全球化</a>
+    <a href="../13-growth/">第13章：经济增长与发展 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">金融体系干什么</a>
+    <a class="anchor" href="#s2">银行的脆弱性</a>
+    <a class="anchor" href="#s3">影子银行与杠杆</a>
+    <a class="anchor" href="#s4">2008危机复盘</a>
+    <a class="anchor" href="#s5">危机后的监管改革</a>
+    <a class="anchor" href="#s6">中国金融体系</a>
+    <a class="anchor" href="#s7">危机有没有规律</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章为大众向经济学科普，仅供经济教育与参考，不构成投资建议、政策预测或任何产品的商业推荐。本章<strong>不预测金融危机是否会到来、不预测具体行情</strong>——历史上"预言危机"的准确率极低，本站也不做此类断言；"必崩""必救"类说法只出现在谣言粉碎与批判语境。文中涉及的数据以官方统计口径为准并注明时点；历次危机的复盘依据官方调查报告与权威研究，不传播未经证实的"内幕消息"。本站不教授也不鼓励"市场操纵""内幕交易""编造传播"虚假经济信息等违法行为——相关内容只作法律与风险警示。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用"三大功能"（资金融通、风险管理、支付清算）说清金融体系到底在经济里干什么；②理解银行为什么天生脆弱（期限错配→挤兑原理），知道存款保险制度的来龙去脉与 50 万元偿付限额；③看懂 2008 年全球金融危机的四个环节（次贷、证券化、评级失灵、雷曼时刻）；④知道危机后巴塞尔协议 III 等监管改革改了什么；⑤掌握普通人的金融自保常识——只防御、不预测。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章是"防身课"而不是"预言课"。读的时候请始终带着两个问题：这个机制为什么存在？它失灵的条件是什么？看完你会发现，多数金融恐慌话术（第19章会集中粉碎）都经不起这两个问题的追问。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、金融体系干什么：把钱从"暂时富余"搬到"能用出效率"</h2>
+    <p class="chapter-sub">金融不是钱生钱的游戏，而是实体经济的循环系统——理解三大功能，就理解了它存在的全部理由</p>
+
+    <article class="view">
+      <h3>三大功能：资金融通、风险管理、支付清算</h3>
+      <p class="ctx">教科书对金融体系功能的经典概括有三个。<strong>第一，资金融通（把储蓄搬到投资）</strong>：你存进银行的 1 万元，可能当天就被贷给了一家要买设备的小工厂——你不认识厂长，厂长不认识你，金融体系让你们完成了合作。没有这个搬运机制，想投资的人借不到钱，有钱的人只能把现金放在床底。<strong>第二，风险管理（分散与转移风险）</strong>：保险公司把一万个人的小额保费汇成赔付池，让任何一个人遭遇不幸时不至于破产；基金把一百只股票装进一个组合，让单家公司倒闭不至于摧毁你的积蓄——风险没有被消灭，但被<strong>分散给了更愿意、更有能力承担它的人</strong>。<strong>第三，支付清算</strong>：你扫码买豆浆的 0.5 秒里，央行运营的支付系统完成了你的银行、商户的银行之间的账务划转。现代经济每天数以亿计的交易能瞬间结清，靠的就是这套"金融的水管"。</p>
+      <p class="ctx">三大功能合起来回答一个朴素的问题：<strong>为什么一个国家需要金融？</strong>因为实体经济里，钱、风险和信息在人群中的分布从来不均匀——有人有钱没项目，有人有项目没钱；有人怕风险，有人能扛风险。金融体系就是那套让资源流向用得最好的人手里的管道。管道通畅时你感觉不到它的存在，管道堵塞（金融危机）时全身器官都会缺氧——这就是为什么央行和监管者对金融稳定的重视近乎神经质。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》"储蓄与投资"章节（第8版中译本，📘教科书口径） · <a href="https://www.pbc.gov.cn/">中国人民银行官网（支付体系运行总体情况季度报告，官方发布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>一笔钱的一天：跟着 1 万元走完金融循环</h3>
+      <p class="ctx">用一个虚构场景（示例）把抽象功能走一遍。周一早上，你把工资里省下的 1 万元存入银行活期账户——这一步你成了<strong>资金的供给方</strong>。银行不会让这 1 万元躺在金库里：按现行存款准备金制度，银行留下一小部分作为准备金应对日常取款，其余可以贷出去。周二，一家制造企业的贷款申请获批，它用这笔钱买了新机床——你的储蓄变成了<strong>实体资本</strong>。周三，企业用机床生产出的货卖给经销商，经销商扫码付款——<strong>支付清算系统</strong>在几个银行之间划转了货款。周四，企业用回款支付贷款利息，银行用利息的一部分给你的存款计息、一部分覆盖运营成本和坏账准备。如果企业还给机床投了财产险，保险公司收取保费形成赔付池——<strong>风险管理功能</strong>也在这个循环里。</p>
+      <blockquote class="q">金融循环四步：①储蓄进入金融体系（存款/保费/买基金）→ ②金融中介配置资金（贷款/投资/承保）→ ③资金进入实体（设备/研发/贸易）→ ④实体回报回流（利息/分红/赔付），再进入下一轮。看任何金融新闻，先问：它说的是这四步里的哪一步？哪一步断了？<span class="qsrc">——依据教科书"金融体系"章节的通行框架整理（示例场景，非真实个案）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：米什金《货币金融学》"金融体系概览"章（第12版中译本，📘教科书口径） · <a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据新闻发布会实录，社融与信贷流向官方口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>金融体系地图：银行、证券、保险各站什么位</h3>
+      <p class="ctx">中国金融体系的主要玩家可以画成一张地图。<strong>银行业</strong>是绝对主力：吸收存款、发放贷款，属于"间接融资"——你把钱给银行，银行决定贷给谁，你不承担借款人的违约风险（银行承担）。<strong>证券业</strong>（股票市场、债券市场）是"直接融资"——你买了一家公司的股票或债券，就是直接把钱交给它用，盈亏也由你直接承担，券商和交易所提供撮合与规则。<strong>保险业</strong>经营风险本身：收保费、建资金池、出险赔付，同时保险资金是资本市场上重要的长期投资者。<strong>央行</strong>（中国人民银行）不在地图上"做生意"，而是管地图的人：发行货币、管理利率与准备金、维护支付系统，危机时充当"最后贷款人"。<strong>监管层</strong>负责立规矩：2023 年机构改革后，国家金融监督管理总局统一负责除证券业之外的金融业监管，证监会专司资本市场监管（机构职责以官方"三定"方案为准）。</p>
+      <table class="cmp">
+        <tr><th>角色</th><th>核心功能</th><th>你与它的关系</th><th>风险由谁承担</th></tr>
+        <tr><td>银行</td><td>存贷款、支付</td><td>存款人/借款人</td><td>存款保险限额内由制度兜底；银行自担信贷风险</td></tr>
+        <tr><td>证券市场</td><td>股票债券融资</td><td>投资者/发行人</td><td>投资者自担，"卖者尽责、买者自负"</td></tr>
+        <tr><td>保险</td><td>风险 pooling 与赔付</td><td>投保人/受益人</td><td>保险保障基金制度内按规则偿付</td></tr>
+        <tr><td>央行</td><td>货币、利率、最后贷款人</td><td>间接（政策环境）</td><td>—</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-12-1.png" alt="抽象金融循环示意图：几何化的银行、工厂、家庭建筑由发光的资金流线连接成循环网络，橄榄绿色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网政策文件库（2023 年党和国家机构改革方案，金融监管体制调整官方文本，站内检索）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（机构职能介绍）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、银行的特殊脆弱性：期限错配与挤兑原理</h2>
+    <p class="chapter-sub">银行的生意模式天生带一个"死穴"——理解了它，就理解了存款保险为什么存在</p>
+
+    <article class="view">
+      <h3>短借长贷：银行赚钱的模式，也是它的死穴</h3>
+      <p class="ctx">银行的核心生意是<strong>期限转换</strong>：吸收的存款随时可能被取走（活期），放出的贷款却要三五年才能收回（房贷甚至二三十年）。这种"短借长贷"（期限错配）正是银行的价值所在——你不需要为了存钱牺牲流动性，企业不需要为了借钱接受随时被抽贷——但它同时意味着一个残酷的事实：<strong>任何一家银行，在任何时候，都拿不出足够现金应付全部存款人同时取款</strong>。这不是因为银行经营不善，而是它的商业模式决定的。健康银行的资产（贷款、债券）长期看是值钱的，但资产是"慢钱"，取款要的是"快钱"。</p>
+      <p class="ctx">于是就有了<strong>挤兑（bank run）</strong>的经典逻辑：只要足够多的存款人<strong>相信</strong>银行要倒，他们的理性选择就是抢先取款（先取的拿全款，后取的血本无归）；而足够多人取款这件事本身，就足以让一家原本健康的银行真的倒下——因为银行不得不折价甩卖长期资产换取现金。经济学家 Diamond 与 Dybvig 在 1983 年的经典论文里证明：挤兑是一种"自我实现的预言"，与银行实际资产质量可以无关。这个洞见的政策含义极其重要：<strong>对付挤兑，信心比资本更有效</strong>——存款保险、央行最后贷款人，本质上都是"信心基础设施"。（Diamond 因银行与金融危机研究获得 2022 年诺贝尔经济学奖。）</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Diamond, D. & Dybvig, P. (1983). Bank Runs, Deposit Insurance, and Liquidity. <em>Journal of Political Economy</em> 91(3)（英文，银行挤兑理论奠基论文；DOI 10.1086/261155，官方真实、对抓取工具反爬，浏览器可达） · 米什金《货币金融学》"银行管理"章（📘教科书口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>存款保险：50 万元限额是怎么来的、保什么不保什么</h3>
+      <p class="ctx">既然挤兑源于信心，最直接的解药就是让存款人<strong>没有理由</strong>去挤：哪怕银行真倒了，我的存款也有人赔。这就是存款保险制度——2015 年 5 月 1 日起，国务院《存款保险条例》（国务院令第 660 号）正式施行，中国成为全球第 100 多个建立显性存款保险制度的经济体。要点五条：①<strong>强制投保</strong>：所有吸收存款的银行业金融机构都必须投保，不需要储户自己办理、不收费；②<strong>限额偿付</strong>：同一存款人在同一家银行的存款本息合计，<strong>50 万元以内全额赔付</strong>——按央行当时的测算，这一限额能为全国 99% 以上的存款人提供全额保护（口径：央行 2015 年答记者问）；③<strong>超出部分不是没了</strong>：50 万以上部分依法从该银行清算财产中受偿，实践中包商银行等风险处置案例里，个人储蓄存款本息得到了全额保障（个案以官方处置公告为准）；④<strong>只保存款</strong>：银行理财产品、基金、保险投资账户不在存款保险范围内；⑤保费由银行缴纳，基金由存款保险基金管理机构管理。</p>
+      <p class="ctx">为什么限额是 50 万而不是全额？这是各国存款保险的通行权衡：<strong>保得太少</strong>，中小储户没信心，挤兑防不住；<strong>保得太多甚至全额</strong>，大储户和银行都会松懈——反正出事有人兜底，银行就更敢冒险（经济学称之为"道德风险"）。限额偿付是在"防挤兑"和"防放纵"之间找的平衡点。美国联邦存款保险公司（FDIC）的标准限额是每人每行 25 万美元（2008 年危机时临时全额担保，属特殊时期的例外安排）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（《存款保险条例》国务院令第 660 号全文，站内检索"存款保险条例"）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（存款保险制度宣传与答记者问，站内检索"存款保险"）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>最后贷款人：央行为什么要在危机时"出手相救"</h3>
+      <p class="ctx">存款保险解决的是"存款人不慌"，最后贷款人（lender of last resort）解决的是"银行不断"。当一家银行资产质量其实健康、只是暂时周转不灵（流动性危机），却面临挤兑时，央行可以按合格抵押品向它提供紧急贷款，让它撑过恐慌期。这个思想来自英国经济学家白芝浩（Walter Bagehot）1873 年提出的著名原则：<strong>对有偿付能力但缺流动性的银行，央行应以惩罚性利率、针对优质抵押品大胆放款</strong>——后世称之为"白芝浩原则"，几乎所有现代央行的危机操作手册都从这一页开始。</p>
+      <p class="ctx">但最后贷款人有两条边界。第一，<strong>救流动性不救偿付能力</strong>：如果银行是真的资不抵债（坏账把资本亏穿了），央行不应该救——该破产破产、该重组重组，否则就是用全体纳税人的钱为股东和高管的错误买单。实践中两者很难当场分清，这正是危机处置最难的判断。第二，<strong>救助会强化道德风险</strong>："反正出事央行会救"的预期，会让金融机构平时更大胆地加杠杆冒险——所以现代监管的配套思路是"事前立规矩（资本要求）、事中盯风险（压力测试）、事后有处置（生前遗嘱）"，而不是单纯依赖危机时兜底。2023 年美国硅谷银行事件里，监管部门对存款的处置安排与"系统性风险例外"的使用，再次把这两条边界推到了聚光灯下（个案细节以美国官方机构通报为准，本站不展开评论）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Bagehot, W. (1873). <em>Lombard Street</em>（最后贷款人思想源头，📘经典著作标注） · <a href="https://www.imf.org/en/Publications/GFSR">IMF《全球金融稳定报告》GFSR 出版物页（银行流动性风险与政策框架权威口径，英文；对抓取工具限流，浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、影子银行与杠杆：危机如何被放大</h2>
+    <p class="chapter-sub">监管看得见的地方风险会收敛，看不见的地方会生长——这是金融史反复验证的规律</p>
+
+    <article class="view">
+      <h3>影子银行是什么：干银行的活，不受银行的管</h3>
+      <p class="ctx">"影子银行"（shadow banking）这个词听着吓人，定义其实中性：<strong>在正规银行体系之外，从事"类似银行"业务（期限转换、流动性转换、信用中介）却不受（或较少受）银行级监管的机构与活动</strong>。典型形态因国而异：美国 2008 年前主要是货币市场基金、投资银行的短期融资、资产证券化链条；在中国语境下，官方与研究口径常指部分资管产品、信托贷款、同业嵌套等"通道"业务（人民银行《中国金融稳定报告》历年版有专门讨论，口径以报告原文为准）。影子银行不等于违法，也不等于坏——它常常是金融创新的试验场，也填补了正规信贷覆盖不到的融资需求。</p>
+      <p class="ctx">问题在于它<strong>复制了银行的脆弱性，却没有复制银行的安全网</strong>：正规银行有存款保险、有央行贴现窗口、有资本充足率要求；影子银行体系里，投资者的钱往往是"用脚投票"的——产品净值一跌、传闻一起，资金可以在几天内大规模赎回或拒绝续作，而底层资产（长期贷款、非标债权）根本卖不掉。2008 年危机中，美国货币市场基金跌破面值引发挤兑式赎回，就是影子银行脆弱性的教科书案例。国际金融稳定理事会（FSB）与 BIS 此后建立了全球影子银行监测框架，定期发布规模测算（BIS 统计页可查，英文）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.bis.org/statistics/index.htm">BIS 国际清算银行统计页（全球信贷与非银行金融中介数据，英文）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国金融稳定报告》历年版，影子银行与资管业务官方讨论，站内检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>杠杆：收益的放大器，也是亏损的加速器</h3>
+      <p class="ctx">杠杆就是"借别人的钱来放大自己的头寸"。一个纯算术的示例（教学示例，非投资建议）：你有 10 万元，买了 10 万元的资产——资产涨 10%，你赚 1 万（收益率 10%）。改成借 90 万、买 100 万资产（10 倍杠杆）——资产涨 10%，你赚 10 万（收益率 100%）；但资产<strong>跌 10%，你的 10 万本金全部亏光</strong>；再跌一点，你倒欠债主的。杠杆对称地放大两个方向，而人对它的感受是不对称的：赚钱时觉得是自己聪明，亏钱时才发现是杠杆的功劳。</p>
+      <p class="ctx">把杠杆从个人放大到系统，就是危机的放大器机制：①<strong>资产价格上涨→抵押品更值钱→能借更多钱→买更多资产→价格进一步上涨</strong>，顺周期的正反馈让繁荣越来越脆；②一旦价格转头，同样的链条反向运转——抵押品缩水、被要求追加保证金、被迫抛售、价格再跌，这就是"抛售螺旋"（fire sale spiral）；③机构之间互相持有债权，一家被迫抛售会压低所有同类资产的价格，把损失传染给账面上健康的机构——<strong>系统性风险</strong>由此而来。经济学家明斯基（Hyman Minsky）把这套机制总结成著名的"金融不稳定假说"：稳定本身会诱发冒险，融资结构会从稳健（对冲性融资）滑向投机性、再滑向"庞氏融资"，直到某个触发点引发连锁崩塌——"明斯基时刻"一词由此进入财经新闻词汇（📘学术观点标注，属一家之言但影响深远）。</p>
+      <table class="cmp">
+        <tr><th></th><th>低杠杆环境</th><th>高杠杆环境</th></tr>
+        <tr><td>资产价格下跌 10%</td><td>账面缩水，多数机构扛得住</td><td>触发保证金追缴与强制平仓</td></tr>
+        <tr><td>机构行为</td><td>照常持有，等待回稳</td><td>被迫抛售→价格再跌→更多强平</td></tr>
+        <tr><td>系统结果</td><td>局部损失，可消化</td><td>损失传染，可能演变为系统性风险</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-12-2.png" alt="抽象杠杆放大示意图：一个小几何支点撬起巨大的发光资产块，另一端悬挂着锁链般的债务方块，橄榄绿色调配琥珀警示色" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Minsky, H. (1986). <em>Stabilizing an Unstable Economy</em>（金融不稳定假说，📘经典著作标注） · <a href="https://www.imf.org/en/Publications/GFSR">IMF《全球金融稳定报告》（杠杆与金融脆弱性章节的权威口径，英文；浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、2008 全球金融危机复盘：四个环节看懂危机剧本</h2>
+    <p class="chapter-sub">次贷、证券化、评级失灵、雷曼时刻——依据美国官方调查报告的复盘，不是阴谋论</p>
+
+    <article class="view">
+      <h3>环节一：次级贷款——把还款能力存疑的人请进楼市</h3>
+      <p class="ctx">2000 年代初的美国，低利率与"房价永远涨"的氛围催生了<strong>次级抵押贷款（subprime mortgage）</strong>大扩张：贷款机构把房贷发放给信用记录差、收入证明薄弱甚至无需收入证明的借款人（所谓 NINJA 贷款——no income, no job, no assets，时人戏称，见 FCIC 报告相关证词）。放贷机构为什么敢？因为它们的商业模式变了：不再是"放贷→持有到期收利息"，而是"放贷→立刻打包卖给华尔街"（originate-to-distribute）——贷款质量的好坏由接盘者承担，放贷者只赚手续费。<strong>激励机制一旦与风险脱钩，标准就会失守</strong>，这是整场危机的第一块多米诺。2004-2006 年美联储连续加息、房价见顶回落后，大批次贷借款人既还不起月供、又卖不掉房子，违约潮开始。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf">美国金融危机调查委员会（FCIC）最终报告（2011，美国政府出版局托管，英文 PDF）——次贷发放标准恶化与激励机制失灵的官方复盘</a> · 米什金《货币金融学》"2007-2009 年金融危机"章（📘教科书口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>环节二与三：证券化链条与评级失灵——风险被"分散"还是被"隐藏"？</h3>
+      <p class="ctx">如果只是次贷违约，损失本可以被吸收。让局部问题升级为全球危机的，是两层放大器。<strong>第一层是证券化</strong>：华尔街把成千上万笔房贷打包成抵押贷款支持证券（MBS），再把 MBS 中难卖的部分重新打包成担保债务凭证（CDO），层层切割转卖给全球投资者——德国的小银行、日本的保险机构都可能在不知情中持有了美国次贷的风险敞口。证券化理论上分散风险，实践中却<strong>拉长了链条、模糊了责任</strong>：放贷的不持有、持有的不了解底层、了解的已经赚了手续费离场。<strong>第二层是评级失灵</strong>：投资者看不懂复杂的 CDO，只好依赖评级机构给的 AAA 标签；而评级机构的收入来自发行人付费，大量结构复杂、底层脆弱的产品顶着最高评级流向市场。房价一跌，AAA 的幻觉集体破灭，投资者突然发现：自己根本不知道手里的"安全资产"值多少钱——<strong>不知道谁有毒，就只好假设人人有毒</strong>，机构间互信冻结，同业市场停摆。</p>
+      <blockquote class="q">2008 危机四环节速记：①次贷扩张（放贷标准失守）→ ②证券化（风险被打包卖向全球，链条拉长责任模糊）→ ③评级失灵（AAA 标签掩盖底层质量）→ ④雷曼时刻（2008 年 9 月 15 日雷曼兄弟破产，恐慌总爆发，货币市场基金跌破面值，全球流动性冻结）。每个环节单独看都是"小毛病"，串起来就是危机剧本。<span class="qsrc">——依据 FCIC 最终报告（2011）主线整理（英文，官方报告）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf">FCIC 最终报告（2011，英文）——证券化链条与评级机构利益冲突的官方认定</a> · IMF《全球金融稳定报告》历年版（结构化产品风险的机构复盘口径，英文；浏览器可达）</div>
+    </article>
+
+    <article class="view">
+      <h3>环节四：雷曼时刻与全球传染——为什么"大而不能倒"成了难题</h3>
+      <p class="ctx">2008 年 9 月 15 日，有着 158 年历史的投行雷曼兄弟申请破产保护，成为美国历史上规模最大的破产案（口径：当时媒体报道与法院文件）。此前数月，市场普遍相信政府"不会让大机构倒"；雷曼的倒下击穿了这一预期，恐慌以小时为单位蔓延：货币市场基金跌破 1 美元面值引发赎回潮，商业票据市场冻结（企业连发工资周转的钱都借不到），全球股市暴跌。此后美国政府推出问题资产救助计划（TARP），多国联合注资银行、提供担保——危机应对从"让市场出清"急转为"不惜代价保系统"。这场危机留下两个争论至今的问题：<strong>其一，"大而不能倒"（too big to fail）</strong>——大机构绑架了救助决策，事后各国推进"系统重要性金融机构"附加监管与处置机制（"生前遗嘱"），试图让大机构也能有序破产；<strong>其二，救助的公平性</strong>——"华尔街犯错、主街买单"的愤怒深刻改变了此后十几年的政治与监管气候。FCIC 报告的结论一句话可以概括：这场危机<strong>不是天灾，是人祸</strong>——是监管缺位、治理失灵与集体短视的合成结果，因此原则上可以避免。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf">FCIC 最终报告（2011，英文）——"危机可以避免"的官方结论与雷曼事件复盘</a> · <a href="https://www.bis.org/bcbs/basel3.htm">BIS 巴塞尔委员会 Basel III 框架页（危机后改革背景，英文，实测可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、危机后的监管改革：巴塞尔协议 III 与压力测试</h2>
+    <p class="chapter-sub">危机是最好的老师——2008 年之后，全球银行监管的"安全带"整体升级了一代</p>
+
+    <article class="view">
+      <h3>巴塞尔协议 III：资本更多、质量更高、流动性入表</h3>
+      <p class="ctx">巴塞尔委员会（设于 BIS 的跨国银行监管标准制定机构）在危机后推出第三版资本协议（Basel III），核心改革四条：①<strong>提高资本的数量与质量</strong>：普通股权益（CET1，最能吸收亏损的"真金白银"）最低要求从危机前的 2% 大幅提高至 4.5%，加上资本留存缓冲达到 7%，系统重要性银行还要加码（附加资本要求）；②<strong>首次引入杠杆率</strong>：不玩风险权重游戏的简单指标（一级资本/表内外总资产），堵住"把资产包装成低风险从而少提资本"的漏洞；③<strong>流动性监管入表</strong>：流动性覆盖率（LCR，优质流动资产要能撑过 30 天压力情景）与净稳定资金比例（NSFR，长期资产要用长期资金匹配）——直指"期限错配"这个死穴；④<strong>宏观审慎视角</strong>：逆周期资本缓冲等工具，要求银行在繁荣期多留余粮。中国银保监会（现国家金融监督管理总局）据此发布了《商业银行资本管理办法》等规则（以官方现行文本为准），中国大型银行的资本充足率长期高于国际最低标准（历年数据见央行《中国金融稳定报告》，官方口径）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.bis.org/bcbs/basel3.htm">BIS 巴塞尔委员会：Basel III 框架官方页（英文，实测可达）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国金融稳定报告》，银行业资本充足率官方数据，站内检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>压力测试常态化：定期给银行做"抗震体检"</h3>
+      <p class="ctx">2009 年美国对 19 家大银行做的资本评估计划（SCAP），是压力测试从内部工具变成公开监管制度的起点：监管者设定一个假想的极端情景（失业率飙升、房价深跌、股市腰斩），测算每家银行在该情景下的亏损与资本缺口，并把结果公开——公开本身就是稳定器，因为它把"不知道谁有毒"变成了"数据在此，欢迎检验"。此后压力测试成为美联储等央行的年度常规动作，欧洲（EBA）与中国监管当局也建立了各自的压力测试框架（中国央行在《金融稳定报告》中定期公布银行业压力测试结果，情景与口径以报告原文为准）。对普通读者的意义：看到"某国央行压力测试显示银行体系可抵御极端冲击"这类新闻时，要读懂它的两层含义——测试通过说明<strong>在设定情景下</strong>资本扛得住，但它不是对未来的保证书，情景之外的黑天鹅（比如疫情+高通胀+利率急升的组合）永远可能存在；同时它也说明监管思路已经从"事后救火"转向"事前体检"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国金融稳定报告》压力测试章节，站内检索）</a> · <a href="https://www.federalreserve.gov/supervisionreg/stress-tests-capital-planning.htm">美联储压力测试与资本计划官方页（CCAR/DFAST 制度说明，英文；站内导航可达，具体年度结果以官网发布为准）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、中国金融体系：银行主导的结构与官方风险口径</h2>
+    <p class="chapter-sub">理解"间接融资为主"这个底色，很多中国金融新闻就有了解释框架</p>
+
+    <article class="view">
+      <h3>银行主导：为什么中国企业缺钱首先想到贷款而不是发股</h3>
+      <p class="ctx">与美英等"市场主导"金融体系不同，中国是典型的<strong>银行主导（间接融资为主）</strong>结构：社会融资的主要渠道是银行贷款，股票债券等直接融资占比虽然在提升但仍相对有限（"社会融资规模"分结构数据由央行按月发布，官方口径）。这个结构的成因有历史路径（计划经济下财政与银行合一的遗产）、有发展阶段（追赶期靠银行动员储蓄配置资本效率高）、也有市场制度因素。它的两面性很清楚：<strong>好处</strong>是动员能力强、政策传导快——央行一放松，银行体系能迅速把信贷泵向实体；<strong>代价</strong>是风险集中于银行体系，且以债权融资为主会推高企业部门的杠杆率（债务/GDP）。这也是为什么"提高直接融资比重"连年出现在官方政策文件里（历年《政府工作报告》与中央金融工作会议表述，以官方发布文本为准）——股权融资共担风险，债权融资到期刚兑，结构决定了风险的分布方式。</p>
+      <p class="ctx">2023 年 10 月底召开的中央金融工作会议提出了"加快建设金融强国"的目标，并把防范化解金融风险列为永恒主题，会议通稿对房地产、地方债务、中小金融机构风险作出了部署（表述以新华社受权发布的官方通稿为准，gov.cn 可检索全文）。读这类文件时，本章第 18 章教的"文本细读"方法直接适用：看提法排序、看新增表述、看与上次会议的差异。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（中央金融工作会议新闻通稿，站内检索"中央金融工作会议"）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（社会融资规模统计月度发布，直接融资与间接融资结构官方数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>风险处置的官方口径：拆弹而不引爆</h3>
+      <p class="ctx">过去几年中国金融体系的风险处置，官方叙事可以概括为"精准拆弹"：对高风险中小银行（如包商银行、锦州银行等个案）实施市场化、法治化处置，个人储蓄存款得到保障；对房地产企业债务风险，官方口径是"保交楼、保民生、保稳定"，推动城市房地产融资协调机制（"白名单"制度，以住建部门与金融监管部门官方发布为准）；对地方政府债务，推出化债组合工具，严控新增隐性债务（财政部官方表述）。这些处置的共同特征：<strong>把风险隔离在机构与板块内部，阻断向储户和系统性层面传染</strong>；同时打破"刚性兑付"预期——2018 年资管新规要求理财产品净值化，就是明确告诉市场"卖者尽责、买者自负"（《关于规范金融机构资产管理业务的指导意见》，央行等四部门联合发布，官方文本可在中国政府网检索）。对普通人的含义在第 12 章末尾与 stock-course 反复强调的一致：<strong>净值化时代，"银行卖的"不再等于"银行担保的"</strong>，分清存款、理财、基金、保险的性质，是金融自保的第一课。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（《关于规范金融机构资产管理业务的指导意见》即资管新规官方文本，站内检索）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国金融稳定报告》高风险机构处置章节，站内检索）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、金融危机有没有规律：八百年危机史的启示</h2>
+    <p class="chapter-sub">危机不会按剧本重演，但人性的部分永远押韵——以及，别忘了学者的结论也会被推翻</p>
+
+    <article class="view">
+      <h3>"这次不一样"综合征：Reinhart 与 Rogoff 的八百年数据</h3>
+      <p class="ctx">经济学家莱因哈特（Carmen Reinhart）与罗格夫（Kenneth Rogoff）在《这次不一样：八百年金融危机史》（This Time Is Different, Princeton UP, 2009）里，用横跨 66 个国家、800 年的数据梳理了从货币贬值、外债违约到银行危机的历史记录。全书最重要的发现浓缩成书名本身：<strong>每一场大危机之前，社会都流行着"这次不一样"的信念</strong>——"我们有了新工具/新制度/新经济，旧规律不再适用"，正是这种信念为过度借贷和风险积累开了绿灯。而危机的代价高度一致且被系统性低估：银行危机后产出下降通常持续两三年，失业率上升近五年才回落，政府债务因救助与税收萎缩而大幅攀升（书中跨国统计口径）。<strong>金德尔伯格</strong>（Kindleberger）在《疯狂、恐慌与崩溃》里则从心理与制度角度给出了危机的"标准病程"：外部冲击→信贷扩张→投机狂热→财务困境→恐慌→传染，与明斯基的金融不稳定假说一脉相承（两书均为📘经典著作标注；观点属学术一家之言，但数据基础与史实框架被广泛引用）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Reinhart, C. & Rogoff, K. (2009). <em>This Time Is Different: Eight Centuries of Financial Folly</em>, Princeton UP（📘经典著作；数据与方法为学术公开出版） · Kindleberger, C. & Aliber, R. <em>Manias, Panics and Crises</em>（📘危机史经典，第7版）</div>
+    </article>
+
+    <article class="view">
+      <h3>90% 阈值公案：权威结论也会被本科生推翻</h3>
+      <p class="ctx">必须补上这桩著名的学术公案，它是"数据纪律"的活教材。Reinhart 与 Rogoff 2010 年的一篇论文发现：政府债务超过 GDP 的 90% 后，平均经济增长率会显著下降（中位数约 -0.1%）。这个"90% 阈值"迅速被多国紧缩政策引用为科学依据。2013 年，马萨诸塞大学阿默斯特分校的研究生 Herndon 等人在课程作业中复算原始数据，发现<strong>电子表格公式遗漏了部分国家的数据行</strong>，另有加权方法与选择性排除问题；修正后，高债务组平均增长率约为 +2.2%——仍低于低债务组，但"增长转负"与"90% 悬崖"不复存在（Herndon, Ash & Pollin, 2014, <em>Cambridge Journal of Economics</em>，英文）。两位原作者承认了表格错误但为方法辩护，学界与政策界的共识则明显转向。<strong>对普通读者的三条启示</strong>：①权威学者的结论也依赖数据处理，复核与质疑是科学的正常机制而非冒犯；②单一数字阈值（"债务超 90% 必出事"）本身就是危险的叙事简化；③新闻里"研究表明 X"值得追问一句"数据和方法谁能复核"——这正是第 16 章数据阅读方法的精神。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Herndon, T., Ash, M. & Pollin, R. (2014). Does High Public Debt Consistently Stifle Economic Growth? <em>Cambridge Journal of Economics</em> 38(2)（英文，DOI 10.1093/cje/bet075，官方真实、对抓取工具反爬，浏览器可达） · Reinhart & Rogoff (2010). Growth in a Time of Debt, <em>American Economic Review</em> 100(2)（英文，原始论文）</div>
+    </article>
+
+    <article class="view">
+      <h3>危机可以预警吗：预测的边界与"防御优于预言"</h3>
+      <p class="ctx">金融危机研究有一个令人清醒的共识：<strong>知道危机"为什么"发生，远不等于能预测危机"何时"发生</strong>。危机依赖触发点（trigger），而触发点本质上是随机事件——同一个火药桶，可能十年不炸，也可能因一条新闻引爆。IMF 等机构对全球金融风险的定期评估（GFSR）提供的是"脆弱性地图"（哪些部门杠杆高、哪些市场期限错配严重），而非时间表；个别以"预言危机"闻名的经济学家，其预测记录拉长看也远非百发百中（学界对预测记录的检验研究见📋文献，如 Loungani 对经济学家衰退预测记录的著名统计——"衰退预测的辉煌记录"多为事后追认，英文文献文字引用）。所以本站的立场一以贯之：<strong>普通人不需要、也不可能靠预测危机保护自己；能做的是让自己"在任何情景下都活得下去"</strong>——存款分散在限额内、不碰看不懂的高杠杆产品、保持应急金与收入韧性（详见第 17 章家庭财务韧性清单，与 stock-course 的防御性框架呼应，不构成投资建议）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.imf.org/en/Publications/GFSR">IMF《全球金融稳定报告》GFSR（全球金融脆弱性评估的机构口径，英文；浏览器可达）</a> · Loungani, P. (2001). How Many Recessions Did Economic Forecasters Forecast?（经济学界对预测记录的经典统计，英文，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：金融话题里的五个流行说法</h2>
+    <p class="chapter-sub">恐慌话术的共同配方：把机制讲一半，把条件全丢掉</p>
+
+    <article class="view">
+      <h3>谣言粉碎：五个经不起追问的金融说法</h3>
+      <p class="ctx"><strong>谣言一："存款超过 50 万就不安全，赶紧把钱都取出来分散。"</strong>——半对半错的典型。50 万是存款保险的<strong>限额偿付标准</strong>，不是银行的"生死线"；超限部分依法从清算财产受偿，且中国近年高风险机构的实际处置中，个人储蓄存款本息均获得保障（个案以官方处置公告为准）。把大额存款分存多家银行确实是稳妥的财务习惯，但"超限=血本无归"是对制度的误读；真正该警惕的是把存款搬去买"高息理财"——那才是脱离存款保险保护、进入"保本高息"话术圈套的开始（此类话术属非法集资常见特征，银保监部门多次风险提示，官方口径）。</p>
+      <p class="ctx"><strong>谣言二："银行要倒，先把钱转出来再说——听到风声就是赚到。"</strong>——这恰恰是挤兑的自我实现机制（第二节）：健康银行也会被谣言挤倒。对"某银行要出事"的网传消息，正确动作是查官方渠道（监管公告、银行公告、存款保险标识），而不是加入取款长队。特别提醒：<strong>"编造传播"虚假的金融机构风险信息进行扩散，可能触犯法律</strong>（《商业银行法》与刑法相关条文对编造并传播虚假险情、扰乱金融秩序行为设有责任条款，以 flk.npc.gov.cn 现行文本为准）；转发前想一想，你是在避险，还是在帮恐慌加速。</p>
+      <p class="ctx"><strong>谣言三："理财产品净值下跌，就是银行在坑人，刚兑时代随时会回来。"</strong>——方向搞反了。2018 年资管新规的核心就是打破刚性兑付、产品净值化：净值波动是"卖者尽责、买者自负"的正常表现，不是违约信号；指望回到"稳赚不赔"的刚兑时代，等于指望回到风险被隐藏、最终由更大危机买单的旧模式（第四节的教训）。正确的动作是买前看清产品说明书的风险等级与投向，而不是亏了就归咎"坑人"。</p>
+      <p class="ctx"><strong>谣言四："金融危机马上要来，赶紧换美元黄金避险。"</strong>——"货币崩溃论"式恐慌营销的标准话术（详见第 19 章集中粉碎）。它的套路是：用"马上""必然"制造紧迫感，用"避险资产"清单引导你行动，而行动的成本（汇兑损失、追高买入、流动性锁死）从来不会出现在话术里。主权货币体系的崩溃需要极端条件，历史上恶性通胀与货币危机都有清晰的宏观前提（财政失控、外储枯竭、政权动荡），与"某年必崩"的日历式预言是两回事。任何人向你兜售具体日期的危机预言，先怀疑其商业动机（卖课、带货、引流）。</p>
+      <p class="ctx"><strong>谣言五："金融都是虚的，对实体经济没有任何贡献。"</strong>——因噎废食的另一端。第一节讲过，金融的三大功能（资金融通、风险管理、支付清算）是实体经济的循环系统：没有信贷，工厂买不了设备；没有保险，创新者不敢冒险；没有支付系统，交易回到以物易物。危机暴露的是金融体系的<strong>失灵状态</strong>，不是它的全部存在意义。学术上对"金融深化与增长"关系的研究也提示的是倒 U 型而非全否——金融太少与过度膨胀都可能拖累增长（📋研究口径，各说并存，如实标注）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/zhengce/">中国政府网（《存款保险条例》与资管新规官方文本，站内检索）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国商业银行法》全文检索）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（非法集资与"保本高息"风险提示口径，站内检索"金融知识普及"）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>金融体系的三大功能是什么？各举一个你生活里的例子。</li>
+        <li>用"一笔钱的一天"讲清储蓄如何变成实体资本，中间经过了哪些环节。</li>
+        <li>直接融资与间接融资的区别是什么？你的存款和你的股票账户分别属于哪种？</li>
+        <li>什么是期限错配？为什么说任何银行都经不起全体存款人同时取款？</li>
+        <li>挤兑为什么是"自我实现的预言"？Diamond-Dybvig 模型的政策含义是什么？</li>
+        <li>存款保险的 50 万限额保什么、不保什么？为什么不是全额保险？</li>
+        <li>白芝浩原则的三要素（对象、利率、抵押品）是什么？最后贷款人的两条边界呢？</li>
+        <li>影子银行的定义是什么？它复制了银行的什么、没复制什么？</li>
+        <li>用一个 10 倍杠杆的算术例子说明：为什么杠杆对亏损的放大是致命的？</li>
+        <li>抛售螺旋与明斯基时刻分别描述了危机的哪个阶段？</li>
+        <li>2008 危机的四个环节（次贷、证券化、评级失灵、雷曼时刻）各用一句话讲给外行听。</li>
+        <li>originate-to-distribute 模式为什么会让放贷标准失守？</li>
+        <li>巴塞尔协议 III 的四项核心改革是什么？LCR 和 NSFR 分别针对什么风险？</li>
+        <li>压力测试为什么"公开结果"本身就是稳定器？测试通过等于未来安全吗？</li>
+        <li>中国金融体系"银行主导"的两面性是什么？为什么官方反复提"提高直接融资比重"？</li>
+        <li>"这次不一样"综合征指什么？90% 阈值公案给你的数据阅读启示有哪三条？</li>
+        <li>为什么"防御优于预言"？普通人的金融自保三件套是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张框架图带走）：</strong>金融三功能=资金融通+风险管理+支付清算；银行死穴=期限错配→挤兑是自我实现的预言（Diamond-Dybvig 1983）；信心基础设施=存款保险（50 万限额，2015 年国务院令第 660 号）+央行最后贷款人（白芝浩原则：有偿付能力+惩罚性利率+优质抵押品）；影子银行=干银行的活、没银行的安全网；杠杆=对称放大器，高杠杆下跌会触发抛售螺旋（明斯基时刻）；2008 剧本=次贷→证券化→评级失灵→雷曼时刻（FCIC：危机可以避免，是人祸不是天灾）；危机后改革=Basel III（CET1 4.5%+留存缓冲、杠杆率、LCR/NSFR）+压力测试常态化；中国底色=银行主导、间接融资为主，风险处置"精准拆弹"+资管新规打破刚兑；危机史启示="这次不一样"是危险信号，90% 阈值公案提醒我们复核一切单一数字；普通人立场=防御优于预言：存款在限额内、不碰看不懂的产品、留足应急金——不预测、不恐慌。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-trade/"><span class="dir">← 第11章</span>国际贸易与全球化</a>
+    <a href="../13-growth/"><span class="dir">第13章 →</span>经济增长与发展：国家为何贫富</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第12章 · 依据 FCIC 美国金融危机调查委员会最终报告（2011）、BIS 巴塞尔协议 III 官方框架、中国人民银行《中国金融稳定报告》、IMF《全球金融稳定报告》、《存款保险条例》（国务院令第 660 号）、Diamond & Dybvig (1983)、Herndon et al. (2014)、Reinhart & Rogoff《这次不一样》、Kindleberger《疯狂、恐慌与崩溃》及曼昆、米什金经典教科书整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

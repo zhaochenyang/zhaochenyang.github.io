@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 资产配置：别把鸡蛋放在一个篮子里 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第3章 · 建立投资认知</div>
+  <h1>资产配置：别把鸡蛋放在一个篮子里</h1>
+  <p>先决定"钱怎么分"，再考虑"买什么"：分散化的数学直觉、资产类别全景、股债比例与生命周期、再平衡纪律，以及中国家庭最常见的配置偏差——本章给你一个可以照着做的配置框架</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../02-risk/">← 第2章：风险与收益</a>
+    <a href="../04-index/">第4章：指数基金与ETF →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">配置决定成败</a>
+    <a class="anchor" href="#s2">分散化原理</a>
+    <a class="anchor" href="#s3">资产类别全景</a>
+    <a class="anchor" href="#s4">股债比例</a>
+    <a class="anchor" href="#s5">先保障后投资</a>
+    <a class="anchor" href="#s6">中国家庭偏差</a>
+    <a class="anchor" href="#s7">再平衡</a>
+    <a class="anchor" href="#s8">谣言粉碎与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本章内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何比例、组合与数字均为教学示例，据此操作风险自负。</li>
+      <li><strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作。</li>
+      <li>警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展，可在官方渠道核验资质。</li>
+      <li>费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。</li>
+      <li>本章依据官方法规、交易所与行业协会投教材料及学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①用自己的话解释"资产配置比选品更重要"这句话的依据与边界；②讲清分散化为什么被称为投资里少有的"免费午餐"，以及它什么时候会失灵；③说出存款、国债、货基、债基、股基、黄金、房产等主要资产类别各自的角色与代价；④用"生命周期"思路给自己估一个股票仓位的起点；⑤解释"先保障后投资"的顺序为什么不能颠倒；⑥描述中国家庭资产结构的典型偏差及其风险；⑦掌握再平衡的两种触发方式，理解它为什么是"纪律化的低买高卖"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是<a href="../16-plan/">第16章 个人投资计划</a>与<a href="../17-portfolio/">第17章 构建你的组合</a>的地基。第一次通读建立框架；之后做自己的配置方案时，回到第七节的"五步框架"逐条填空。文中所有比例都是教学示例，不是推荐值——你的比例应由你的目标、期限与承受力决定。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么配置比选品更重要</h2>
+    <p class="chapter-sub">同样一年，有人追热点原地踏步，有人按比例分仓睡得更香——差别往往不在"买了什么"，而在"钱怎么分"</p>
+
+    <article class="view">
+      <h3>两种投资者的同一年（示例）</h3>
+      <p class="ctx">先看一个虚构但极其常见的对照（示例）：上班族小周，2023 年初把 20 万元积蓄全部押在当年讨论度最高的某类主题基金上，年内板块轮动，他三次追热点换仓，每次都是"卖掉的开始涨、买入的开始跌"，年底一算亏了 15%，还搭进去几笔申赎费；他的同事老林，年初把同样一笔钱按"股票类四成、债券类四成、现金类两成"分了仓，设定每年年底调整一次比例，年中无论市场怎么吵闹都没动手，年底组合小赚，更重要的是他全年没有失眠过一次。</p>
+      <p class="ctx">这个对照里最值得注意的不是收益差，而是<strong>决策量的差别</strong>：小周一年做了十几笔交易，每一笔都要判断"接下来什么会涨"——这是连专业机构都做不稳的判断；老林只做了一个决策（比例），然后用纪律守住它。资产配置的本质，就是<strong>把"预测市场"这个几乎不可能稳定完成的任务，替换成"管理比例"这个完全可以由你自己控制的任务</strong>。本章要教的就是后者。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务</a>（投资者教育与风险警示栏目）</div>
+    </article>
+
+    <article class="view">
+      <h3>"90% 定律"：一个被广泛引用的研究，以及它的正确打开方式</h3>
+      <p class="ctx">资产配置为什么重要？最常被引用的证据是 Brinson、Hood 与 Beebower 发表于 1986 年的经典研究：他们分析了美国数十家大型养老基金多年间的收益数据，发现<strong>资产配置政策能解释组合收益波动的约九成</strong>——也就是说，这些大机构之间收益起伏的差异，主要不是由"选了哪只证券"或"何时买卖"造成的，而是由"钱在股票、债券、现金之间怎么分"造成的。</p>
+      <p class="ctx">但这句话在传播中经常被念歪成"配置决定了你 90% 的收益"，这是不对的。后续研究（Ibbotson 与 Kaplan，2000，《金融分析师杂志》，英文）专门做了澄清：这个"九成"指的是<strong>解释收益随时间的波动</strong>，而不是"决定收益水平"；同一篇研究还指出，对最终财富而言，配置政策、择时与选品三者共同起作用，配置是最重要的单一因素，但不是全部。正确的理解是：<strong>配置决定了你组合的"性格"——它有多颠簸、大概什么方向走；选品与择时决定你在这个性格下的成败细节</strong>。对没时间盯盘的普通人来说，把大头决策（配置）做对，比在小头决策（选品择时）上内卷性价比高得多。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Brinson, Hood &amp; Beebower（1986）"Determinants of Portfolio Performance"，Financial Analysts Journal（英文）：<a href="https://doi.org/10.2469/faj.v42.n4.39">https://doi.org/10.2469/faj.v42.n4.39</a> · Ibbotson &amp; Kaplan（2000）"Does Asset Allocation Policy Explain 40%, 90%, or 100% of Performance?"，Financial Analysts Journal（学术文献，英文；按篇名检索可得）</div>
+    </article>
+
+    <article class="view">
+      <h3>资产配置到底是什么：三个动作</h3>
+      <p class="ctx">把术语翻译成日常动作，资产配置只有三件事：<strong>①选类别</strong>——决定让哪几类资产进入你的组合（存款、国债、货币基金、债券基金、股票基金、黄金……）；<strong>②定比例</strong>——决定每类资产占多少钱（例如"股四债四现金二"这样的目标比例）；<strong>③守纪律</strong>——市场涨跌会让实际比例偏离目标，定期把它调回来（这就是第七节的"再平衡"）。</p>
+      <p class="ctx">注意这三件事里<strong>没有一件需要预测市场</strong>。选类别依据的是各类资产长期的角色分工；定比例依据的是你自己的目标、期限与承受能力（<a href="../02-risk/">第2章</a>讲过怎么评估）；守纪律恰恰是要你对抗"预测冲动"。这正是配置框架对普通人的最大善意：它不要求你聪明，只要求你诚实——诚实面对自己的风险承受力，诚实地执行自己定下的规则。</p>
+      <p class="ctx">还要划清一条边界：资产配置是一种<strong>风险管理方法，不是收益放大器</strong>。它不能保证赚钱，不能让你在熊市全身而退，它的作用是让你的组合波动落在你事先想清楚的范围内，让你"拿得住"——而拿得住，是普通人获得长期收益的前提。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov（英文，资产配置专题）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、分散化：投资里少有的"免费午餐"</h2>
+    <p class="chapter-sub">为什么"合起来"会比"单独拿"更稳——以及这句魔法在什么时刻会失灵</p>
+
+    <article class="view">
+      <h3>马科维茨的答案：看波动，更要看"步调"</h3>
+      <p class="ctx">1952 年，哈里·马科维茨（Harry Markowitz）在《金融学杂志》发表了仅十几页的论文《组合选择》，后来被称为"现代组合理论"的起点，他也因此获得 1990 年诺贝尔经济学奖。这篇论文回答的问题朴素得惊人：<strong>既然每只证券都有风险，为什么组合的风险不等于各证券风险的简单相加？</strong></p>
+      <p class="ctx">答案藏在"步调"（统计上叫相关性）里。组合的波动不取决于把每项资产的波动加起来，而取决于它们<strong>是否同时涨跌</strong>：如果两类资产步调完全一致（相关系数为 1），合起来没有任何好处；如果步调相反（相关系数为 -1），理论上可以构造出波动极低的组合；现实中大多数资产的相关系数在 0 到 1 之间——不同时涨跌，就存在"东边不亮西边亮"的互补空间。马科维茨的洞见是：<strong>评估一项资产，不该只看它自己有多颠簸，而该看它放进组合后让组合变得多颠簸</strong>。一个自身波动不小的资产，如果和组合里其他资产步调不一致，反而可能是降低整体波动的好材料。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Markowitz（1952）"Portfolio Selection"，Journal of Finance（英文）：<a href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x">https://doi.org/10.1111/j.1540-6261.1952.tb01525.x</a> · <a href="https://www.investor.gov/">investor.gov 资产配置与分散化专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>两类风险：能分散掉的与分散不掉的</h3>
+      <p class="ctx">金融教材把风险分成两类。<strong>非系统性风险</strong>（也叫特有风险）：只砸在某一家公司或某一个行业头上的坏消息——产品事故、财务造假、行业政策转向。这类风险可以通过"不把鸡蛋放一个篮子"大幅稀释：持有几十家不同行业公司的股票，任何一家出事对整体的冲击都有限。<strong>系统性风险</strong>（市场风险）：砸在整个市场头上的坏消息——经济衰退、利率大幅变化、全球性危机。这类风险<strong>分散不掉</strong>：再多的篮子，如果放在同一辆卡车上，卡车翻了全都翻。</p>
+      <p class="ctx">这个区分带来两个实用推论。第一，分散化能免费消灭的只有非系统性风险，所以<strong>只持有三五只股票的组合，白白承担着本可以稀释掉的风险</strong>——这是分散化被称为"免费午餐"的原因：不牺牲预期收益就能降低的那部分风险，市场不收你钱。第二，对系统性风险，分散化无能为力，能依靠的只有<strong>资产配置（跨大类）与仓位控制</strong>：股债搭配、留足现金，这也是<a href="../02-risk/">第2章</a>"高收益必然伴随高风险"的另一面——你无法靠分散化把股票组合变成无风险资产。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：《投资学》（博迪等著，大学教材）系统风险与非系统风险章节 · Fama &amp; French（1993）"Common risk factors in the returns on stocks and bonds"（英文）：<a href="https://doi.org/10.1016/0304-405X(93)90023-5">https://doi.org/10.1016/0304-405X(93)90023-5</a></div>
+    </article>
+
+    <article class="view">
+      <h3>分散化什么时候失灵：危机中的相关性飙升</h3>
+      <p class="ctx">分散化有一个必须坦白的软肋：<strong>相关性不是常数</strong>。平时步调不一致的资产，在极端市场压力下常常"手拉手一起跌"——恐慌的投资者抛售一切能卖的资产换取现金，统计上表现为危机期间资产间相关性普遍上升。2008 年全球金融危机中，多数风险资产的分散效果都明显弱于平时（相关研究见金融危机复盘文献，如美国金融危机调查委员会 FCIC 报告，英文）。</p>
+      <p class="ctx">这不意味着分散化没用，而是要摆正对它的预期：分散化改善的是<strong>长期、多数时候</strong>的组合体验，不是给你一张危机免死金牌。应对极端情形的正确工具不是"找到永远负相关的完美资产"（不存在），而是：控制总仓位（不满仓）、保留应急现金（第五节）、明确自己组合在坏年景可能亏多少并确认自己扛得住（<a href="../02-risk/">第2章</a>的最大回撤概念）。把分散化当安全带，别当保险箱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：《投资学》（博迪等著）相关性与分散化局限章节 · FCIC（2011）The Financial Crisis Inquiry Report（英文，书籍；官方报告全文可经美国政府出版渠道检索）</div>
+    </article>
+
+    <article class="view">
+      <h3>"假分散"的三个陷阱</h3>
+      <p class="ctx">陷阱一：<strong>数量多不等于分散</strong>。买了十只基金，打开持仓一看全是同几家龙头公司——你持有的是"同一个篮子的十个别名"。行业主题基金之间尤其容易高度重叠。检查方法：看基金定期报告的前十大重仓（披露口径见<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>），如果多只基金重仓雷同，分散效果大打折扣。</p>
+      <p class="ctx">陷阱二：<strong>跨市场不等于跨风险</strong>。同时买了 A 股基金、港股基金、美股基金，看似全球化，但三地市场在全球风险事件中的联动性并不低；真正的跨类别分散是"股票 + 债券 + 现金"这种大类层面的搭配，而不只是"这里的股票 + 那里的股票"。陷阱三：<strong>用加杠杆的方式"分散"</strong>——借钱买多种资产，杠杆放大的是整个组合的波动，分散的收益被杠杆的风险完全盖过，而且"场外配资"本身就是违法活动（证监会历年打击非法证券期货活动通报口径，见<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">证监会要闻</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金信息披露与产品分类） · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（打非与风险提示）</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-03-1.png" alt="资产配置示意图：多个大小不一的几何篮子由一个抽象人物分放到不同高度的架子上，篮子之间用细线连接成网络，蓝色主色调扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、资产类别全景：每类资产的角色与代价</h2>
+    <p class="chapter-sub">认识你可选的"篮子"们：现金类、债券类、权益类、实物与另类——各自适合装什么钱</p>
+
+    <article class="view">
+      <h3>现金类：应急与"子弹"，代价是被通胀慢慢磨</h3>
+      <p class="ctx">现金类资产包括活期与定期存款、货币基金等，特点是<strong>几乎不亏本金、随时可用</strong>。它们在组合里承担两个角色：应急金（第五节细讲）和"子弹"——市场大跌时你有钱可以按纪律补仓，而不是被迫在低点卖出其他资产换钱。货币基金投资于短期货币工具，风险很低但<strong>不等于零风险、也不等于存款</strong>，收益率随市场资金面浮动（产品定义与分类见<a href="https://www.amac.org.cn/">基金业协会</a>投教栏目）。</p>
+      <p class="ctx">现金类的代价是<strong>通胀侵蚀</strong>：当收益率跑不赢物价涨幅时，持有现金的实际购买力在缓慢缩水（<a href="../02-risk/">第2章</a>讲过"不投资也有代价"）。所以现金类的正确姿势是"够用就好"——按应急金目标与近期开支留出额度，超出部分不该长期趴在活期里。存款保险制度为单一银行存款提供限额保障（《存款保险条例》，国务院令，全文可经<a href="http://www.pbc.gov.cn/">中国人民银行</a>官网检索），注意保障是"限额内"的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行</a>（存款保险与货币统计口径） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（货币基金产品属性投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>债券类：组合的"压舱石"，但别以为它没有风险</h3>
+      <p class="ctx">债券是"你借钱给政府或企业，对方按约定付息、到期还本"的凭证。对组合来说，债券类的价值在于：收益相对平稳、与股票的步调经常（不是永远）不一致，能在股票下跌时提供缓冲——这就是"压舱石"的含义。常见工具包括国债、地方政府债、金融债、公司债，以及把它们打包的债券型基金（分类见<a href="https://www.amac.org.cn/">基金业协会</a>；国债发行信息见财政部渠道，可经<a href="https://www.stats.gov.cn/">国家统计局</a>与<a href="http://www.pbc.gov.cn/">央行</a>官网了解利率环境）。</p>
+      <p class="ctx">三个必须知道的债券风险：<strong>利率风险</strong>——市场利率上行时，已发行债券的价格下跌，久期越长跌得越多；<strong>信用风险</strong>——发行人还不上钱，公司债尤其需要看发行主体资质；<strong>流动性风险</strong>——部分债券成交清淡，急用时折价才卖得掉。"债券=保本"是危险误解：债基的净值同样会波动，2022 年末国内债市调整中不少稳健型理财与债基出现回撤，就是利率风险的一次集体演示（市场事件，见证监会与交易所当年风险提示口径）。另外记住资管新规后的基本事实：<strong>理财产品不再保本保息</strong>（打破刚性兑付，监管文件可经证监会、央行官网检索）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a> · <a href="http://www.pbc.gov.cn/">中国人民银行</a>（利率与债券市场口径） · 《固定收益证券》类大学教材（利率风险与久期概念）</div>
+    </article>
+
+    <article class="view">
+      <h3>权益类：增长的主引擎，也是波动的主来源</h3>
+      <p class="ctx">权益类资产指股票及股票型基金等，代表对企业的所有权（<a href="../01-basics/">第1章</a>讲过股票的本质）。它的角色是分享经济增长与企业盈利，长期预期收益在主要资产类别中最高；代价是波动也最大，单一年份两位数以上的涨跌都属常态（历史数据口径见<a href="https://www.csindex.com.cn/">中证指数有限公司</a>指数行情页，指数历史表现不代表未来）。</p>
+      <p class="ctx">普通人参与权益类的方式主要两种：直接买股票，或买股票型基金（含下一章要细讲的指数基金）。对多数上班族，教材与监管投教的通行建议是：<strong>如果没有时间与能力研究个股，通过分散化的基金参与优于自己押注单只股票</strong>——单只股票承担的是可分散的非系统性风险（第二节），而散户恰恰最容易在这上面吃大亏（<a href="../05-behavior/">第5章</a>会用研究数据展示频繁交易与集中押注的代价）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（指数与历史数据） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（股票与基金基础投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>实物与另类：黄金、REITs 和一切"看不懂的都不碰"</h3>
+      <p class="ctx"><strong>黄金</strong>：不生息的实物资产，长期角色是对冲极端情形（恶性通胀、货币信用危机）与分散组合，但注意它本身价格波动不小、且长期实际回报有限（不产生现金流，收益全靠价格变动）。常见的参与方式是黄金 ETF 与银行积存金，实物金条的买卖价差与保管成本较高（产品口径见交易所与<a href="https://www.amac.org.cn/">基金业协会</a>投教材料）。</p>
+      <p class="ctx"><strong>不动产类</strong>：除了直接买房，公募 REITs（不动产投资信托基金）让普通投资者能以较小金额参与基础设施与不动产项目的分红（国内公募 REITs 制度与产品说明见沪深交易所投教栏目：<a href="https://edu.sse.com.cn/">上交所</a>、<a href="https://www.szse.cn/investor/index.html">深交所</a>）。REITs 有分红机制也有价格波动，且底层资产质量差异大，绝非"稳赚"产品。</p>
+      <p class="ctx"><strong>另类资产的铁律</strong>：期货、期权、杠杆产品、虚拟资产等，本章一律不展开操作——它们对普通人首先意味着风险警示而非机会（<a href="../02-risk/">第2章</a>第五节讲过杠杆的危险；监管对非法虚拟货币交易活动有明确定性，见央行等部门公告口径）。一条实用的自保规则：<strong>说不清"它靠什么赚钱、我最多亏多少"的资产，一律不进你的组合</strong>。这句话能帮你过滤掉绝大多数披着"创新""原始股""高息"外衣的骗局（<a href="../11-scam/">第11章</a>细讲）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（REITs 与黄金产品投教） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a> · <a href="http://www.pbc.gov.cn/">中国人民银行</a>（虚拟货币交易活动监管口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>一张对照表：常见资产类别速查</h3>
+      <p class="ctx">下表把本节内容压缩成一张速查表（定性概括，非精确参数；各类产品内部差异大，具体以产品法律文件为准）：</p>
+      <table class="cmp">
+        <tr><th>类别</th><th>组合中的角色</th><th>流动性</th><th>波动/风险</th><th>主要代价与注意点</th></tr>
+        <tr><td>存款/货币基金</td><td>应急金、机动"子弹"</td><td>极高</td><td>很低（货基≠存款）</td><td>通胀侵蚀；存款保险限额内保障</td></tr>
+        <tr><td>国债/高等级债基</td><td>压舱石、缓冲股票波动</td><td>高</td><td>低到中</td><td>利率风险、信用风险；理财已打破刚兑</td></tr>
+        <tr><td>股票/股票基金</td><td>增长主引擎</td><td>高（个股有停牌等例外）</td><td>高</td><td>单只个股承担可分散风险；避免频繁交易</td></tr>
+        <tr><td>黄金</td><td>极端情形对冲、分散</td><td>中到高</td><td>中</td><td>不生息；买卖价差与保管成本</td></tr>
+        <tr><td>公募 REITs</td><td>不动产类分红暴露</td><td>中</td><td>中到高</td><td>底层资产质量差异大；价格会波动</td></tr>
+        <tr><td>期货/期权/杠杆/虚拟资产</td><td>（本课程不建议普通人参与）</td><td>不一</td><td>极高</td><td>只作风险警示；非法活动一律远离</td></tr>
+      </table>
+      <p class="ctx">用法提示：先问"这笔钱几年内要用"（期限），再问"亏两成我睡得着吗"（承受力），最后才轮到"哪类资产"。顺序反了，表就白看了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（产品分类口径） · <a href="https://www.investor.gov/">investor.gov（英文，资产类别入门）</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-03-2.png" alt="资产类别天平示意图：一架几何天平两端分别放着代表股票与债券的抽象几何块，支点处站着一个无脸小人在调节平衡，蓝色主色调扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、股债比例：生命周期与"100-年龄"法则</h2>
+    <p class="chapter-sub">股票仓位该设多少：几条经典经验法则的用法、依据和局限</p>
+
+    <article class="view">
+      <h3>核心权衡：增长潜力 vs 颠簸程度</h3>
+      <p class="ctx">对一个以"股 + 债 + 现金"为主体的普通人组合，最重要的单一决策就是<strong>股票类占比</strong>。这个比例几乎直接决定了组合的性格：股票占比越高，长期增长的潜力越大，途中的颠簸也越剧烈；股票占比越低，走势越平稳，长期收益的天花板也越低。<a href="../02-risk/">第2章</a>讲过的历史规律在这里再次生效——收益是对承担风险的补偿，没有"波动很小但收益很高"的正规配置（有的话大概率是骗局）。</p>
+      <p class="ctx">怎么定这个比例？教科书的答案是三个输入：<strong>投资期限</strong>（这笔钱多久不用——期限越长，扛波动能力越强，可承受的股票占比越高）、<strong>风险承受力</strong>（收入稳定性、家庭负担、心理承受力，问卷式评估见券商适当性管理流程，行业口径见<a href="https://www.sac.net.cn/">中国证券业协会</a>）、<strong>投资目标</strong>（养老、教育、购房的目标金额与时点）。三者的交集，就是你的股票仓位区间。任何跳过这三个输入直接给你"黄金比例"的说法，都可以直接扔进垃圾桶。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.sac.net.cn/">中国证券业协会</a>（投资者适当性管理口径） · 《投资学》（博迪等著，大学教材）生命周期投资章节</div>
+    </article>
+
+    <article class="view">
+      <h3>"100-年龄"法则：一个好用的起点，不是一条定律</h3>
+      <p class="ctx">流传最广的经验法则是：<strong>股票仓位 ≈（100 − 年龄）%</strong>——30 岁配七成股票，55 岁配四成半。它的直觉依据是生命周期理论：年轻时人力资本（未来工资收入的现值）雄厚，相当于持有巨额"类债券"资产，金融资产里可以多放股票；随年龄增长，人力资本耗尽，金融资产需要越来越稳。博格在《共同基金常识》中认可这类"随年龄递减权益仓位"的思路，但也强调比例因人而异（书籍，约翰·博格《共同基金常识》）。</p>
+      <p class="ctx">使用时必须知道它的三个局限：①"100"这个数字本身是拍出来的经验值，随着人均寿命延长，一些教材改用 110 或 120 作基数，这恰好说明<strong>它对基数并不敏感、对你的具体情况才敏感</strong>；②它没有区分"这笔钱什么时候用"——三年后要付的首付和三十年后的养老金，哪怕同属一个人，也该用完全不同的比例；③它假设你到了年纪会自动降低仓位，但现实中很多人在退休后反而因为"怕钱不够花"而不敢降。正确用法：把它当<strong>草稿纸上的第一行</strong>，再用期限、承受力、目标三个输入去修改它，而不是把它当答案抄进账户。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（Common Sense on Mutual Funds，书籍，英文原版/中译本） · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《国务院办公厅关于推动个人养老金发展的意见》（国办发〔2022〕7号，证监会转载全文）</a>（养老资金长期属性的政策口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>股债再平衡的隐藏收益：把"高抛低吸"变成机械动作</h3>
+      <p class="ctx">设定股债比例还有一个常被忽略的好处：它为"低买高卖"提供了一台<strong>不需要判断力的机器</strong>。设想目标比例是股六债四（教学示例，非投资建议）：某年股票大涨，实际比例漂移到股七债三——再平衡要求你卖掉一部分涨多了的股票、买入相对便宜的债券，把比例调回六四；反过来，股票大跌后比例变成股五债五，你再平衡时卖的正是跌少的债券、买的正是便宜的股票。<strong>方向上，这恰恰是多数散户靠意志力做不到的"涨多了卖、跌多了买"</strong>——只不过它由规则触发，不由情绪触发。</p>
+      <p class="ctx">需要说明的边界：再平衡改善的是组合的风险特征与持有体验，长期收益上是加分项还是减分项，学术上有细致讨论（股票长期收益更高，机械地"削股票补债券"理论上会牺牲一部分长期收益；但行为层面的"拿得住"收益往往更重要）。这个权衡没有标准答案——重要的是你明白自己在用什么换什么，而不是把再平衡当成稳赚技巧。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：约翰·博格《共同基金常识》（再平衡章节） · 《投资学》（博迪等著）组合再平衡口径 · Bernstein，"The Ages of the Investor"（书籍，英文；生命周期仓位讨论）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、先保障后投资：顺序错了，全盘皆输</h2>
+    <p class="chapter-sub">应急金、保险、负债、投资——一个不能颠倒的先后顺序</p>
+
+    <article class="view">
+      <h3>应急金：3-6 个月开支，放在随时能取的地方</h3>
+      <p class="ctx">在讨论任何配置比例之前，先回答一个问题：<strong>如果明天失业或突发大额支出，你能不动用投资账户撑多久？</strong>通行的建议是预留 3-6 个月的必要开支作为应急金（收入不稳定、家庭负担重则往上加），放在存款、货币基金这类随时可取、几乎不亏本金的地方。这个口径同时出现在个人理财教材与监管投教材料中（<a href="https://www.investor.gov/">investor.gov</a> 英文专题；国内口径见交易所投教与<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">个人养老金政策文件</a>中"先有基本保障、再做长期储备"的精神）。</p>
+      <p class="ctx">应急金的意义不是收益，而是<strong>切断"生活意外→被迫卖投资"的传导链</strong>。没有应急金的人，市场大跌时偏偏赶上要交学费、修车、看病，只能在最低点割肉——回头复盘会发现，亏钱的直接原因不是市场，而是没有缓冲垫。这也是为什么本课程的顺序永远是：应急金 → 保障（下一张卡）→ 高息负债 → 投资。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.gov/">investor.gov（英文，应急储备专题）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号个人养老金意见（证监会转载）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>保险与负债：先堵漏，再蓄水</h3>
+      <p class="ctx"><strong>保障优先于投资</strong>：一场大病或一次意外对家庭财务的破坏，远超投资收益能弥补的范围。通行的配置顺序是先配齐基础保障——基本医保之上，按家庭责任考虑百万医疗险、重疾险、定期寿险、意外险这类"出事才赔"的保障型产品，而不是先买"理财型"保险（产品属性与风险提示见<a href="https://www.csrc.gov.cn/">证监会</a>与国家金融监督管理总局的投保宣传口径；本课程不推荐任何具体产品与公司）。</p>
+      <p class="ctx"><strong>高息负债优先偿还</strong>：如果你背着年化利率两位数的消费贷或信用卡分期，"还债"就是你当下收益率最高、且确定无风险的投资——没有任何正规资产的长期预期收益能稳定跑赢高息负债的利息。先还清高息负债，再谈权益配置；至于利率较低的长期负债（如房贷）是否提前还，是比较"贷款利率 vs 你能获得的长期回报与流动性价值"的算术题，没有统一答案。</p>
+      <p class="ctx">把顺序整理成一句话：<strong>应急金垫底、保障网兜住意外、高息负债止血，剩下的钱才轮到"股债比例"这个话题</strong>。跳过前三步直接满仓股票，等于在漏水的船上研究航速。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网</a>（投资者保护栏目入口） · <a href="https://www.investor.gov/">investor.gov（英文，保险与投资顺序）</a> · 个人理财类大学教材（家庭财务顺序框架）</div>
+    </article>
+
+    <blockquote class="q">
+      <strong>资产配置五步框架（可直接照做）：</strong><br>
+      第一步 垫应急金：预留 3-6 个月必要开支，放存款/货币基金，未达标前不投资；<br>
+      第二步 补保障网：医保之外按家庭责任配齐保障型保险，不买"理财型"当投资；<br>
+      第三步 清高息负债：年化利率两位数的负债优先还清——这是确定性最高的"收益"；<br>
+      第四步 定股债比例：按"期限 × 承受力 × 目标"三输入定股票仓位（可用"100−年龄"打草稿），剩余部分在债券与现金类中分配；<br>
+      第五步 立再平衡规则：写下触发条件（每年一次或偏离 5 个百分点）与执行方式，签字画押，之后照做不讨论。
+      <span class="qsrc">—— 依据 investor.gov、交易所投教材料与生命周期投资通行框架整理；各步骤参数因人而异，本框为教学示例，不构成投资建议</span>
+    </blockquote>
+
+    <article class="view">
+      <h3>目标分桶：不同期限的钱，进不同的桶</h3>
+      <p class="ctx">比"一个总比例"更精细的做法是<strong>目标分桶</strong>：把钱按用途和时间分成几桶，各桶单独配置。例如（教学示例，非投资建议）：三年内要用的钱（首付尾款、学费）→ 现金与短债桶，几乎不碰股票；三到十年的钱（换房储备、子女教育中期）→ 均衡桶，股债大致对半；十年以上的钱（养老）→ 增长桶，股票占比可到七成上下。分桶的好处是把"期限"这个最重要的输入直接固化进结构：<strong>短期的钱永远不会因为长期的波动而被动受损</strong>。</p>
+      <p class="ctx">国内政策层面，个人养老金制度就是典型的"长期桶"设计：账户封闭至退休方可领取（特殊情形除外），税收优惠引导长期积累（制度要点：每年缴费上限 12000 元、领取时按 3% 计税——以官方最新口径为准，见<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号</a>与<a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">税务总局个人养老金税收政策文件</a>）。它提醒我们：<strong>桶不仅要按期限分，还要按"能不能管住手"分</strong>——封闭性本身就是一种保护。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《关于推动个人养老金发展的意见》（证监会转载全文）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">国家税务总局 · 个人养老金税收政策文件</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、中国家庭的配置偏差：房产过重、存款过多</h2>
+    <p class="chapter-sub">看看我们平均长什么样，再决定你要不要长得和平均数一样</p>
+
+    <article class="view">
+      <h3>数据画像：住房约占六成，金融资产只占两成</h3>
+      <p class="ctx">中国人民银行调查统计司 2020 年发布的《2019 年中国城镇居民家庭资产负债情况调查》给出过一幅被广泛引用的画像：城镇居民家庭总资产中，<strong>实物资产占约八成，其中住房资产约占家庭总资产的近六成；金融资产占比仅约两成</strong>；同时户均资产以房产为主体，住房拥有率超过九成（数据年份为 2019 年，调查口径见<a href="http://www.pbc.gov.cn/">中国人民银行</a>官网发布的调查通报；引用时注意这是<strong>城镇家庭、2019 年</strong>的口径，不代表当下全貌）。</p>
+      <p class="ctx">这幅画像的含义：中国普通家庭的资产配置实际上早已存在，只是高度集中于两处——<strong>一套（或几套）房产，加上银行里的存款</strong>。房产是单一资产、低流动性、高杠杆（房贷）的集中押注；存款则是被通胀缓慢磨损的低收益资产。两头都是"配置"的反面教材：一头过度集中，一头过度保守，中间本应由债券与权益类资产填充的地带几乎是空的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行</a>（2019 年中国城镇居民家庭资产负债情况调查，2020 年发布） · <a href="https://www.stats.gov.cn/">国家统计局</a>（居民收入与消费数据口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>集中押注一套房的三重风险</h3>
+      <p class="ctx">风险一：<strong>流动性风险</strong>。房子变现以月计，还要经历挂牌、议价、过户、税费；急用钱时"卖不掉"或"割肉卖"是常态。当家庭资产的六成锁在这里，等于把应急能力全押在"永远不急需钱"的假设上。风险二：<strong>单一资产风险</strong>。用第二节的语言说，一套房就是一个无法分散的巨大篮子——区域市场下行、学区政策调整、房屋质量问题，任何一项都直接冲击家庭总资产的最大组成部分。风险三：<strong>杠杆的双向性</strong>。房贷放大涨幅也放大跌幅：房价下跌一成，对首付三成的购房者而言，自有权益缩水约三成（算术示例，教学用途）。</p>
+      <p class="ctx">本节不是"劝你别买房"——自住房的居住属性、心理稳定价值与强制储蓄功能都是真实的。它想说的只是：<strong>如果你已经因为房贷而把大部分身家押在一处房产上，那么剩下的可投资资金恰恰应该更分散、更稳健</strong>，而不是再拿去集中押注另一个热点。已经高度集中的组合，增量资金的正确任务是"稀释集中度"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行</a>（家庭资产调查口径） · 《投资学》（博迪等著）流动性与集中风险章节 · <a href="https://www.investor.gov/">investor.gov（英文，住房资产与组合分散）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>存款过多的机会成本：算一笔温和的账</h3>
+      <p class="ctx">另一头的偏差同样值得算账。假设通胀长期温和为正、存款利率长期低于名义经济增长（这是各国金融史的常态而非预言），把十年以上不用的钱长期放存款，实际购买力就在被缓慢抽水。博格在《共同基金常识》里反复强调的一个视角是：<strong>储蓄不等于投资</strong>——储蓄是把钱存起来，投资是让钱参与经济增长并获得补偿；只储蓄不投资，等于放弃了风险补偿（书籍口径）。</p>
+      <p class="ctx">但请注意分寸：本节批评的是"长期闲置资金过度保守"，不是"持有现金"。应急金、三年内要用的钱、心理安全垫，放在存款与货基里完全正确（第五节的顺序不可跳过）。配置偏差不是一道"存款 vs 股票"的单选题，而是<strong>让每笔钱按期限站到自己该站的队伍里</strong>。具体的调整节奏建议循序渐进：先小比例试点（例如把长期桶的一小部分按目标比例配置），经历一轮波动确认自己拿得住，再逐步到位——用<a href="../05-behavior/">第5章</a>的话说，让行为能力跟上配置雄心。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（储蓄与投资之辨） · <a href="http://www.pbc.gov.cn/">中国人民银行</a>（居民金融资产结构统计口径） · <a href="https://www.stats.gov.cn/">国家统计局</a>（CPI 数据）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、再平衡：给组合定期"体检复位"</h2>
+    <p class="chapter-sub">两种触发方式、三个执行细节，和它对人性弱点的针对性</p>
+
+    <article class="view">
+      <h3>为什么需要再平衡：漂移是必然的</h3>
+      <p class="ctx">只要各类资产涨跌不一，你设定的目标比例就一定会漂移：股票涨得多，占比就悄悄升高，组合的实际风险随之超过你当初的设定——<strong>漂移的本质是风险失控</strong>，哪怕账户金额在涨。很多"高位站岗"的故事都有同一个剧本：牛市里股票占比从六成漂到八成，投资者乐见其成不做调整，随后市场转跌，组合跌幅远超预期，最后在恐慌中清仓。再平衡就是打断这个剧本的机械装置：定期把比例调回目标，等于定期强制"卖掉涨多的、买入跌多的"。</p>
+      <p class="ctx">再平衡的两种主流触发方式：<strong>定期式</strong>——固定频率（每半年/每年）检查并复位，优点是简单、不需要盯盘，适合上班族；<strong>阈值式</strong>——任一类别偏离目标超过设定值（常见如 5 个百分点）才动手，优点是对大波动反应更快，缺点是需要定期查看比例。两者也可结合（"每年检查一次，偏离超过 5 个点就调"）。选哪种不重要，<strong>重要的是提前写下规则并执行</strong>——临场决定的"再平衡"往往只是追涨杀跌换了个名字。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（再平衡方法章节） · <a href="https://www.investor.gov/">investor.gov（英文，rebalancing 专题）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a></div>
+    </article>
+
+    <article class="view">
+      <h3>执行细节：费用、税与"用新钱再平衡"</h3>
+      <p class="ctx">细节一：<strong>先算交易成本</strong>。每次卖出再买入都产生费用（股票卖出有印花税——2023 年 8 月起减半按 0.05% 单边征收，以官方最新口径为准，见<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部税务总局公告</a>；基金有申赎费，见<a href="../10-tax/">第10章</a>）。偏离一点点就频繁复位，省下的风险可能还不够付费用——这也是阈值不宜设太小的原因之一。</p>
+      <p class="ctx">细节二：<strong>优先用"新钱"和分红再平衡</strong>。对还在持续储蓄的人，最省钱的再平衡方式是<strong>把每月新增资金和组合分红优先投入占比偏低的类别</strong>——不卖出不产生费用，比例慢慢就回来了；只有漂移过大、新钱补不动时，才动用卖出。细节三：<strong>把动作和日程绑定</strong>。再平衡最大的敌人是遗忘与拖延，把它绑在一个固定日程上（生日、元旦、发年终奖那天），设日历提醒，十分钟做完，剩下的 364 天不看账户——这不是懒惰，是<a href="../05-behavior/">第5章</a>会详细论证的行为纪律。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局《关于减半征收证券交易印花税的公告》（2023年第39号）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金费用口径） · 约翰·博格《共同基金常识》</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">关于资产配置的五个流行说法，逐条过堂；然后是 15 道讲给朋友听的自测题</p>
+
+    <article class="view">
+      <h3>谣言粉碎：配置路上的五个流行误解</h3>
+      <p class="ctx"><strong>误解一："分散就是多买几只基金。"</strong>——错。分散看的是底层资产的相关性，不是产品数量。十只重仓雷同的行业基金是一个篮子；两只底层互补的基金可能已经足够。检查重仓重叠度，别数产品个数（<a href="https://www.amac.org.cn/">基金业协会</a>披露口径）。</p>
+      <p class="ctx"><strong>误解二："资产配置能保证不亏钱。"</strong>——错。配置管理的是波动的"量级与结构"，不消灭亏损；股票占比高的组合在坏年景照样两位数回撤，这是承担风险换取长期补偿的应有之义（<a href="../02-risk/">第2章</a>）。声称配置能保本保收益的，按<a href="../11-scam/">第11章</a>的防骗流程处理。</p>
+      <p class="ctx"><strong>误解三："年轻人就该满仓股票搏一把。"</strong>——"100−年龄"类法则只是草稿起点：它假设你有稳定的人力资本、拿得住高波动、且这笔钱十年以上不用。三个前提缺一个，比例就该下调；再叠加"满仓搏一把"的心态，那不是配置，是赌博（<a href="https://edu.sse.com.cn/">交易所投教</a>风险警示口径）。</p>
+      <p class="ctx"><strong>误解四："房产永远比金融资产安全。"</strong>——单一房产是集中度最高、流动性最差的押注之一（第六节三重风险）；"安全"来自分散与期限匹配，不来自资产的名字。历史上没有只涨不跌的资产类别，这个判断同样适用于房产（央行家庭资产调查口径，<a href="http://www.pbc.gov.cn/">pbc.gov.cn</a>）。</p>
+      <p class="ctx"><strong>误解五："再平衡就是高抛低吸，多做多赚。"</strong>——再平衡的价值在纪律与风险控制，频率过高会被交易成本吃掉收益，且它不保证提高长期收益率（第七节）。把再平衡当"稳定器"，别当"提款机"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a> · <a href="http://www.pbc.gov.cn/">中国人民银行</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 资产配置自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>Brinson 等人（1986）的"90%"到底指什么？Ibbotson 与 Kaplan 的澄清纠正了哪种流行误读？</li>
+        <li>资产配置的三个动作是什么？为什么这三个动作都不需要预测市场？</li>
+        <li>用"步调"（相关性）解释：为什么组合的波动不等于各资产波动之和？</li>
+        <li>系统性风险与非系统性风险的区别？分散化能消灭哪一个？</li>
+        <li>为什么说分散化是"免费午餐"？这个午餐在什么情形下会失效？</li>
+        <li>"假分散"的三个陷阱分别是什么？怎么检查你持有的基金是否高度重叠？</li>
+        <li>现金类资产在组合里的两个角色是什么？它的代价是什么？</li>
+        <li>债券类资产的三个主要风险？"债券=保本"为什么是危险误解？</li>
+        <li>权益类资产的角色与代价各是什么？为什么普通人通过基金参与通常优于押注单只股票？</li>
+        <li>黄金和 REITs 各自适合承担什么角色？"说不清怎么赚钱的资产不进组合"这条规则能帮你挡掉什么？</li>
+        <li>决定股票仓位的三个输入是什么？"100−年龄"法则的三个局限？</li>
+        <li>为什么顺序必须是"应急金→保障→高息负债→投资"？跳过前三步会发生什么？</li>
+        <li>目标分桶法怎么操作？个人养老金制度体现了"桶"的哪两层设计思想？</li>
+        <li>中国城镇家庭资产结构的典型画像（2019 年调查口径）是什么？"集中押注一套房"的三重风险？</li>
+        <li>再平衡的两种触发方式？为什么"用新钱再平衡"更省钱？把再平衡绑上日程针对的是什么人性弱点？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>资产配置＝选类别、定比例、守纪律三个动作，全程不需要预测市场——它把"猜行情"替换成"管比例"；Brinson 等（1986）发现配置政策解释大机构收益波动的约九成（是"解释波动"，不是"决定收益"，Ibbotson &amp; Kaplan 2000 已澄清）；分散化的原理是相关性：它免费消灭非系统性风险，但消灭不了系统性风险，危机中还会阶段性失灵——当安全带用，别当保险箱用；资产类别各有角色：现金垫底、债券压舱、股票驱动增长、黄金对冲极端、REITs 提供不动产暴露，杠杆与虚拟资产只作风险警示；股票仓位由期限、承受力、目标三输入决定，"100−年龄"只是草稿；顺序铁律：应急金（3-6 个月开支）→保障型保险→高息负债→投资；中国家庭典型偏差＝房产过重（约占六成，2019 年央行调查口径）+存款过多，增量资金的任务是稀释集中、按期限分桶；再平衡＝纪律化的高抛低吸，定期式或阈值式任选其一，优先用新钱执行，把动作绑上日程。下一章进入普通人的主力工具：<a href="../04-index/">指数基金与 ETF</a>。所有比例与数字均为教学示例，不构成投资建议。
+  </div>
+
+  <nav class="pager">
+    <a href="../02-risk/"><span class="dir">← 第2章</span>风险与收益：投资的第一课</a>
+    <a href="../04-index/"><span class="dir">第4章 →</span>指数基金与ETF：普通人的被动投资之路</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第3章 · 依据证监会与交易所官方投教材料、《证券法》等法规、经典金融教材及学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 投资者维权可拨打 12386 热线 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

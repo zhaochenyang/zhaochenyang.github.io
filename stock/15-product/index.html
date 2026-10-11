@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第15章 其他理财产品全景 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第15章 · 避坑与合规</div>
+  <h1>其他理财产品全景</h1>
+  <p>存款、国债、货基、银行理财、债基、黄金、保险、REITs——把股票之外的"工具箱"一次看全，再谈配置</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../14-global/">← 第14章：全球视角</a>
+    <a href="../16-plan/">第16章：个人投资计划 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">产品地图</a>
+    <a class="anchor" href="#s2">存款与国债</a>
+    <a class="anchor" href="#s3">货币基金</a>
+    <a class="anchor" href="#s4">债券与债基</a>
+    <a class="anchor" href="#s5">银行理财与信托</a>
+    <a class="anchor" href="#s6">黄金与REITs</a>
+    <a class="anchor" href="#s7">保险</a>
+    <a class="anchor" href="#s8">高风险警示与谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①画出家庭理财产品的"风险收益光谱"，说出每类产品由谁发行、归谁监管、风险来自哪里；②解释资管新规"打破刚兑"到底改变了什么，为什么"业绩比较基准"不等于"预期收益率"；③说清货币基金 T+0 快速赎回为什么有单日限额、储蓄国债提前兑取为什么要"分档扣息"；④分清保险的"保障"与"理财"两种角色，讲出"先保障后理财"的顺序逻辑；⑤知道公募 REITs 的强制分红规则与它的两类主要风险；⑥对期货、期权、"场外配资"与虚拟资产说出本课立场——只讲风险警示，不教任何操作；⑦用"买前核验五步"流程检查任何一款向你推销的理财产品。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"工具箱总览"。股票与基金在<a href="../01-basics/">第1章</a>到<a href="../08-account/">第8章</a>已经讲透，本章负责补齐光谱的另一半——那些你在银行 App、支付宝、保险公司业务员口中会遇到，却很少被系统讲清楚的产品。<a href="../17-portfolio/">第17章</a>构建组合时会反复回到本章：先认识每件工具，再谈怎么搭配。建议第一遍通读，之后当"字典"用：遇到某类产品，直接跳对应小节。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、先看地图：市面上的理财产品光谱</h2>
+    <p class="chapter-sub">在钻进任何一款产品之前，先给它找到"坐标"——发行主体、监管者、风险来源、流动性</p>
+
+    <article class="view">
+      <h3>一张光谱：从存款到衍生品，风险是连续的</h3>
+      <p class="ctx">想象一条从左到右逐渐变陡的光谱。最左端是<strong>银行存款与储蓄国债</strong>：收益低，但有国家信用或存款保险制度托底，几乎不会让你亏本金。往右是<strong>货币基金</strong>：投资于短期货币市场工具，历史上极少亏损，但法律上不保本。再往右是<strong>银行理财、债券基金</strong>：净值化之后，账面出现负收益已经不再稀奇。中间地带站着<strong>黄金、公募 REITs、混合型基金</strong>：波动更大，收益来源更复杂。右端是<strong>股票与股票型基金</strong>——本课程前十四章的主角。光谱最右端、也是本课程划出警戒线的地方，是<strong>期货、期权、"场外配资"、虚拟资产</strong>：高杠杆或高风险，普通人参与极易重大亏损，本章第八节只做风险警示。</p>
+      <p class="ctx">这条光谱对应着投资学的第一原理：<strong>风险与收益对等</strong>。任何产品声称自己"又安全又高收益"，都站在了光谱原理的对立面——要么它在撒谎，要么它把风险藏在了你看不见的地方（比如流动性锁死、信用下沉、杠杆嵌套）。你在<a href="../02-risk/">第2章</a>学过这句话，本章会看到它在每一款产品上重演。还有一个容易被忽略的维度：<strong>监管归属</strong>。存款与国债归央行、金融监管总局与财政部体系；银行理财、保险归国家金融监督管理总局；公募基金、股票、REITs 归证监会。记住"谁发的、谁管"，是识别野鸡产品的第一步——凡是说不清监管归属的"理财产品"，直接远离。</p>
+      <div class="fig"><img src="../assets/img-15-1.png" alt="抽象插画：一座从左到右逐级升高的阶梯金字塔，底层是代表存款与国债的厚实基座，顶层是细小而陡峭的高风险区域，几何风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育基地（产品与风险等级科普专栏）</a> · <a href="https://www.investor.org.cn/">中国投资者网（证监会主管，投资者教育官方平台）</a> · 马尔基尔《漫步华尔街》（机械工业出版社版）关于风险收益梯度的经典论述（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>资管新规：2018 年之后，"保本理财"这四个字消失了</h3>
+      <p class="ctx">很多长辈至今还在问："你们那个理财，保本吗？"这个问题在 2018 年之后就已经没有了合规答案。2018 年 4 月，中国人民银行、原银保监会、证监会、外汇局联合发布《关于规范金融机构资产管理业务的指导意见》（银发〔2018〕106 号，市场通称"资管新规"），确立了几条彻底改变行业格局的规则：<strong>金融机构不得承诺保本保收益</strong>，产品出现兑付困难时不得以任何形式垫资兑付（这就是"打破刚性兑付"）；资产管理产品实行<strong>净值化管理</strong>，净值及时反映基础资产的收益和风险；消除多层嵌套与通道业务；对合格投资者设置门槛。经过过渡期，存量保本理财在 2021 年底前后陆续清零，如今你在银行买到的理财产品，法律意义上都是<strong>不保本的净值型产品</strong>。</p>
+      <p class="ctx">这件事对普通投资者的意义远大于字面。第一，<strong>"银行卖的"不再等于"银行担保的"</strong>：银行只是代销渠道，理财子公司发行的产品盈亏由投资者自负。第二，<strong>看产品的姿势变了</strong>：过去看"预期收益率"，现在要看产品说明书里的投资范围、风险等级（R1 到 R5）、业绩比较基准与费率结构。第三，任何在 2026 年还向你口头承诺"保本保息"的理财推销，要么违反资管新规，要么根本就不是持牌金融机构的产品——两种情况都该扭头就走。资管新规全文可在中国证监会与国家外汇局等官方网站检索（银发〔2018〕106 号）。</p>
+      <blockquote class="q">
+        <strong>买任何理财产品前的"五步核验"流程：</strong>①<strong>验主体</strong>——发行机构是谁？在证监会/金融监管总局/央行官网能查到牌照吗？②<strong>验登记</strong>——银行理财可在中国理财网查产品登记编码，公募基金可在中国证监会基金电子披露网站与基金业协会查备案；③<strong>看投向</strong>——说明书里"投资范围"写了什么？钱到底去了存款、债券、股票还是说不清的地方？④<strong>算费用与流动性</strong>——申购费、管理费、托管费、销售费、超额业绩报酬各多少？封闭期多久？提前赎回扣多少？⑤<strong>对己</strong>——风险等级与我的风险承受能力测评匹配吗？这笔钱的用途与期限和产品流动性匹配吗？五步有任何一步说不清，就不买。
+        <span class="qsrc">流程依据：《证券期货投资者适当性管理办法》与资管新规的投资者保护框架整理（教学性归纳，非官方条文）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.safe.gov.cn/dalian/2018/0518/610.html">国家外汇局大连分局转发《关于规范金融机构资产管理业务的指导意见》（银发〔2018〕106号）全文</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（资管新规发布主体，文件检索口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>产品对照表：把本章剩下七节压缩成一张表</h3>
+      <p class="ctx">下表是本章的"目录式速查"。风险特征一栏为教学性定性归纳（低/中低/中/中高/高），不等于任何产品的官方风险等级；"是否保本"一栏均以现行法规与产品合同为准。建议收藏这张表，以后每遇到一款新产品，先问自己：它落在表里哪一行？如果哪一行都对不上，警惕。</p>
+      <table class="cmp">
+        <tr><th>类别</th><th>发行/管理主体</th><th>主要监管</th><th>风险特征（定性）</th><th>流动性</th><th>是否保本</th><th>组合中的角色</th></tr>
+        <tr><td>银行存款/大额存单</td><td>商业银行</td><td>央行、金融监管总局</td><td>低</td><td>活期随时；定期提前支取按活期计息</td><td>存款保险限额内实质保障</td><td>应急金、压舱石</td></tr>
+        <tr><td>储蓄国债</td><td>财政部</td><td>财政部、央行</td><td>低</td><td>可提前兑取但分档扣息</td><td>国家信用</td><td>中长期安全垫</td></tr>
+        <tr><td>货币基金</td><td>基金公司</td><td>证监会</td><td>低（不保本）</td><td>T+0 单日限额内快速赎回</td><td>否</td><td>现金管理</td></tr>
+        <tr><td>债券/债券基金</td><td>财政部/企业/基金公司</td><td>证监会、央行、交易所</td><td>中低—中</td><td>场内可交易；基金按净值申赎</td><td>否</td><td>组合稳定器</td></tr>
+        <tr><td>银行理财</td><td>理财公司/银行</td><td>金融监管总局</td><td>R1—R5 跨度大</td><td>现金管理类较快；封闭式到期才能取</td><td>否（资管新规后）</td><td>视风险等级而定</td></tr>
+        <tr><td>黄金（实物/积存金/黄金ETF）</td><td>金店/银行/基金公司</td><td>证监会（ETF）、央行（金市）</td><td>中高</td><td>实物变现折价；ETF 场内随时</td><td>否</td><td>抗通胀与避险配置</td></tr>
+        <tr><td>保险（保障型）</td><td>保险公司</td><td>金融监管总局</td><td>—（转移风险而非投资）</td><td>不适用</td><td>按合同赔付</td><td>家庭财务护城河</td></tr>
+        <tr><td>保险（理财型：年金/万能/投连）</td><td>保险公司</td><td>金融监管总局</td><td>中—中高（投连险投资风险自担）</td><td>差：早期退保损失大</td><td>合同有保底条款者部分保障</td><td>超长期养老规划</td></tr>
+        <tr><td>公募 REITs</td><td>基金公司+原始权益人</td><td>证监会、交易所</td><td>中高</td><td>场内交易，价格波动大</td><td>否</td><td>收租型卫星资产</td></tr>
+        <tr><td>期货/期权/"场外配资"/虚拟资产</td><td>—</td><td>—（配资与虚拟资产炒作属违规/不受保护）</td><td>极高</td><td>—</td><td>否</td><td><strong>本课只作风险警示，不建议普通人参与</strong></td></tr>
+      </table>
+      <p class="ctx">（教学示例表格，非投资建议；各类产品的具体规则以监管机构与发行合同为准，截至 2026 年 10 月。）</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/dalian/2018/0518/610.html">资管新规全文（外汇局大连分局转发页）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（各类产品投教科目）</a> · <a href="https://www.investor.org.cn/">中国投资者网（产品风险等级与适当性科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、存款与储蓄国债：金字塔的地基</h2>
+    <p class="chapter-sub">收益最低的两类产品，为什么反而是每个家庭都必须先配齐的</p>
+
+    <article class="view">
+      <h3>银行存款与存款保险：50 万元限额到底保什么</h3>
+      <p class="ctx">银行存款是绝大多数家庭金融资产的第一站。它的安全感有一个明确的制度来源：2015 年 5 月起施行的《存款保险条例》（国务院令第 660 号）规定，存款保险实行限额偿付，<strong>最高偿付限额为人民币 50 万元</strong>——同一家银行、同一存款人的本外币存款本息合计在 50 万元以内，受到全额保障；超出部分并不消失，而是依法从该银行清算财产中受偿。2020 年 11 月起，央行授权参加存款保险的机构使用统一的<strong>存款保险标识</strong>，你在银行网点门口或 App 首页看到这个绿色标识，就说明你的存款在制度保障范围内。</p>
+      <p class="ctx">三个常见误区顺手纠正。其一，<strong>银行理财、基金、保险产品都不是存款</strong>，不在存款保险范围内——哪怕它是在银行柜台买的。其二，50 万限额按"每家银行"分别计算，把钱分散在多家银行，每家都在限额内，是朴素但有效的做法。其三，<strong>存款的"安全"是名义安全</strong>：利率下行周期里，长期定存锁定的是越来越低的利率，而通胀仍在侵蚀购买力——这正是<a href="../00-intro/">导论</a>里"不投资也是一种有代价的选择"的另一面。存款的定位应当清醒：它保的是应急金与短期要用的钱，不是三十年后的养老金。大额存单是银行面向个人发行的记账式存款凭证，起点金额较高（历史上多为 20 万元起，以各银行现行公告为准），本质仍是存款、仍受存款保险保障，但可转让条款各行不同，购买前要看清说明书。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（《存款保险条例》与存款保险标识发布口径，检索"存款保险"）</a> · <a href="https://www.gov.cn/">中国政府网（国务院令第660号《存款保险条例》全文检索口径）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（银行业监管口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>储蓄国债：普通人能买到的"国家借条"</h3>
+      <p class="ctx">国债是财政部代表中央政府发行的债券，以国家信用为担保，通常被看作境内市场<strong>信用风险最低</strong>的投资品种。国债家族里与普通人关系最密切的是<strong>储蓄国债</strong>，它分两种：<strong>凭证式</strong>主要在银行柜台购买，拿到一张纸质凭证；<strong>电子式</strong>可通过承办银行柜台或网上银行购买，记录在你的国债托管账户里。储蓄国债期限一般为三年期和五年期，票面利率固定、按年或到期付息，发行安排以财政部每期<strong>发行公告</strong>为准（惯例上每年 3 月至 11 月的 10 日左右开售，额度紧俏时开售即罄，具体以当期公告为准）。</p>
+      <p class="ctx">储蓄国债最值得记住的规则是<strong>提前兑取的"分档扣息"</strong>：持有不满提前兑取规定期限（通常为 6 个月）的不计利息；满一定期限后提前兑取，按实际持有时间分档计息，并可能扣除一定天数的利息、收取少量手续费（各期条款以发行公告为准）。这个设计在提醒你：国债适合放"确定三年内不用的钱"。与柜台里可能亏本的"高收益产品"相比，储蓄国债收益不高，但规则透明、信用极高，适合作为家庭资产金字塔的地基、养老钱的安全垫。另有一类在交易所上市交易的<strong>记账式国债</strong>，价格随市场波动，可以像股票一样买卖，也就可能出现价差亏损——买它之前请先回到<a href="../03-allocation/">第3章</a>复习债券在资产配置中的角色，以及债券价格与市场利率"跷跷板"般反向变动的基本关系。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/">财政部官网（储蓄国债发行公告与国债知识专栏，检索"储蓄国债"）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行（储蓄国债代销与托管制度相关口径）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（债券品种科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、货币基金：会赚钱的"零钱罐"，但不是存款</h2>
+    <p class="chapter-sub">余额宝们改变了中国人的现金管理方式，也留下三个最常被误解的细节</p>
+
+    <article class="view">
+      <h3>货币基金投的是什么：短、稳、活</h3>
+      <p class="ctx">货币市场基金（简称货基）投资于<strong>短期货币市场工具</strong>：银行存款、同业存单、短期国债、央行票据、债券回购、高信用等级的短期融资券等，组合久期被监管严格限制在很短的范围内（现行规定组合前十大持有人比例、久期上限等以《货币市场基金监督管理办法》为准）。正因为"短"，它对利率波动不敏感；正因为投资对象信用等级高，历史上极少出现亏损。2013 年余额宝把货基接入了支付场景，"零钱也能每天有收益"从此成为国民级体验，中国也一度拥有了全球规模最大的货币基金。</p>
+      <p class="ctx">但请把三句话说清楚：<strong>第一，货基不是存款</strong>，不受存款保险保障，法律上不保本——2008 年美国就发生过机构货基净值跌破 1 美元的著名案例，中国货基虽以特殊会计处理保持净值稳定，"历史上未亏"不等于"制度上保本"。<strong>第二，货基的收益是浮动的</strong>，你看到的"七日年化收益率"是过去七天的年化水平，随市场资金面波动，不代表未来。<strong>第三，货基的角色是现金管理</strong>——放三个月内要用的钱、应急金的灵活部分，而不是追求收益的工具。用买货基的心态去对比股票收益，或者用炒股的心态来放应急金，都是角色错位。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（《货币市场基金监督管理办法》检索口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（货币基金基础知识投教栏目）</a> · 博格《共同基金常识》关于基金分类与现金管理工具的论述（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>T+0 快速赎回，为什么单日只能 1 万元</h3>
+      <p class="ctx">很多人以为货基"随存随取"是天经地义，其实你享受的是一个被严格规范的便利。货基的正常赎回本是 <strong>T+1</strong>：今天申请，下一个交易日资金到账。为了改善体验，一些平台曾垫资实现"T+0 实时到账"，垫资规模一度失控——若遭遇集中赎回，垫资方（往往是非银行机构）可能出现流动性风险，2018 年监管出手：中国人民银行与证监会联合发布《关于进一步规范货币市场基金互联网销售、赎回相关服务的指导意见》，明确<strong>单个投资者持有的单只货币基金单日"T+0 提现"上限为 1 万元</strong>，超出部分走 T+1 正常赎回，且垫资方原则上限定为非银行支付机构以外的合规主体、"T+0 赎回"服务不得由非持牌机构违规开展。这就是今天你转出余额宝超过 1 万元要等到明天的制度原因。</p>
+      <p class="ctx">同样的逻辑后来延伸到了银行<strong>现金管理类理财产品</strong>：2021 年发布的现金管理类理财新规（《关于规范现金管理类理财产品管理有关事项的通知》）要求这类产品对标货基监管口径，快速赎回（T+0）也设单日 1 万元上限。理解这条规则的价值在于举一反三：<strong>凡是"流动性好得反常"的产品，背后一定有垫资或结构设计，而垫资是有成本和风险的</strong>。监管给便利设上限，不是在为难你，是在防止所有人的便利在某一天同时挤兑成灾难。应急金的存放因此有个实务建议：小额日常周转放货基享受 T+0，较大额度用存款或接受 T+1——真遇到急事，1 万元限额内当天可取，其余次日到账，对绝大多数家庭场景已经够用（教学示例，非财务建议）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（《关于进一步规范货币市场基金互联网销售、赎回相关服务的指导意见》发布口径，检索文件名）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（同一指导意见联合发布方，货基监管规则检索口径）</a> · <a href="https://www.nfra.gov.cn/">国家金融监督管理总局（现金管理类理财产品监管口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、债券与债券基金：组合里的"稳定器"也会晃</h2>
+    <p class="chapter-sub">利率风险、信用风险、流动性风险——债基亏损的年份并不罕见</p>
+
+    <article class="view">
+      <h3>债券的风险从哪里来：利率与信用两只手</h3>
+      <p class="ctx">债券本质是一张借条：发行人承诺按期付息、到期还本。对持有人来说，风险主要有两只手。<strong>第一只是利率风险</strong>：市场利率上行时，存量债券的固定票息变得不香了，价格随之下跌——期限越长，跌得越狠。2022 年全球主要经济体激进加息，股债双双下挫，"股债双杀"让很多第一次见识债券波动的投资者错愕；这不是异常，而是债券定价的正常机制。<strong>第二只是信用风险</strong>：发行人还不起钱。国债、政策性金融债的信用风险极低；企业发行的信用债则取决于发行人资质，评级下调、违约都可能发生，个别高收益债的违约案例提醒我们：<strong>票息越高，往往意味着市场在为更高的违约概率定价</strong>。</p>
+      <p class="ctx">还有一只常被忽略的手：<strong>流动性风险</strong>。交易所债券市场以机构投资者为主，个人直接在二级市场买卖信用债并不方便，成交清淡时想卖未必卖得掉。这就是为什么普通人参与债券投资的主流方式是<strong>债券基金</strong>——把专业的事交给持牌机构，用申购赎回代替自己找对手盘。你只需要记住角色定位：债券资产在组合里的任务是<strong>降低整体波动、提供相对稳定的票息现金流</strong>（<a href="../03-allocation/">第3章</a>的配置逻辑），它不是"绝对不亏"的资产，只是波动通常小于股票的资产。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育基地（债券品种与债券风险专栏）</a> · <a href="https://www.investor.org.cn/">中国投资者网（债券投教：利率风险与信用风险科普）</a> · 马尔基尔《漫步华尔街》（机械工业出版社版）债券定价与利率关系章节（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>债券基金：纯债、一级债基、二级债基，名字里藏着风险等级</h3>
+      <p class="ctx">债券基金按"能不能碰股票"分成几档：<strong>纯债基金</strong>只投债券，波动最小；<strong>一级债基</strong>可参与可转债、可交换债等含权品种；<strong>二级债基</strong>可以直接用不超过两成的仓位买股票（具体比例以基金合同为准），因此股市大跌时它也会明显回撤。基金名称里的"增强""回报""灵活配置"等字眼不改变它的法律类型，<strong>判断风险请看基金合同的投资范围与招募说明书</strong>，以及销售页面依法展示的风险等级——这正是<a href="../04-index/">第4章</a>教你读基金档案的延续。</p>
+      <p class="ctx">2022 年 11 月前后，债市调整引发部分银行理财与债基净值快速回撤，"理财破净"（净值跌破 1 元面值）上了热搜，一些投资者恐慌赎回，反而把浮亏变成了实亏。这个事件值得记住两个教训：<strong>其一，净值化时代"破净"不是违约</strong>，它只是价格波动被如实展示出来了，多数持有到债市企稳的投资者后来修复了净值（历史情形回顾，不构成对未来的预测）；<strong>其二，恐慌赎回是行为偏差</strong>——<a href="../05-behavior/">第5章</a>讲过损失厌恶如何驱使我们"在最低点卖出"。买债基之前的正确姿势：确认这笔钱的期限至少覆盖一个完整的债市波动周期（通常一年以上），并想清楚自己看到负收益时的第一反应。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金分类标准与债基投教材料）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（《公开募集证券投资基金运作管理办法》检索口径）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（"理财破净"相关投资者教育口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、银行理财与信托：净值化之后的新世界</h2>
+    <p class="chapter-sub">"业绩比较基准"不是承诺，R1—R5 不是装饰，说明书才是合同</p>
+
+    <article class="view">
+      <h3>银行理财：读懂"业绩比较基准"与 R1—R5</h3>
+      <p class="ctx">资管新规后，银行理财业务的主体变成了<strong>理财公司</strong>（银行设立的专业子公司），产品全部净值化。你在银行 App 里看到的最醒目的数字通常叫"<strong>业绩比较基准</strong>"——请把它读准确：它是管理人根据投资组合特征设定的<strong>参考目标</strong>，用来给投资者一个"努力方向"，<strong>不是预期收益率，更不是承诺</strong>。监管明确要求业绩比较基准的设定有据可依、不得误导，产品实际收益完全可能高于或低于它。与它配套的是产品<strong>风险等级 R1（谨慎型）到 R5（激进型）</strong>：R1、R2 多以存款、债券等固收资产为主；R3 起通常含权益类资产或衍生品，波动明显放大；你的风险测评结果（C1—C5）决定你能买哪一级——这套"卖者尽责、买者自负"的匹配机制，来自《商业银行理财业务监督管理办法》与适当性管理框架。</p>
+      <p class="ctx">费用是银行理财的隐藏考点。一款产品的成本可能包括：<strong>固定管理费、托管费、销售费</strong>，部分产品还有<strong>超额业绩报酬</strong>（实际收益超过基准的某部分归管理人）。这些都在产品说明书的"费用"章节里写明，购买前把年化费率加起来，与你可比的公募基金对比一下——<a href="../10-tax/">第10章</a>讲过，费率差 1%，三十年复利下来的差距是惊人的。另外注意<strong>流动性条款</strong>：现金管理类产品可近似每日申赎（快赎单日限 1 万，前文已讲）；开放式产品有固定开放日；封闭式产品在到期前你基本无法退出。把"封闭 18 个月"的理财和"随时可能用钱"的现金流放在一起，是新手最常见的期限错配。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（《商业银行理财业务监督管理办法》与理财公司监管规则检索口径）</a> · <a href="https://www.safe.gov.cn/dalian/2018/0518/610.html">资管新规全文（银发〔2018〕106号，净值化与禁止保本保收益条款）</a> · <a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（证监会官网全文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>信托、保险资管与"非标"：高门槛世界的风险课</h3>
+      <p class="ctx">信托产品由信托公司发行，历史上以"非标资产"（非标准化债权，比如给某个房企或平台公司的定向融资）为重要投向，认购门槛高——按合格投资者标准，家庭金融资产与年收入都有硬性要求，单只产品起投通常百万级（以现行监管规定为准）。过去"刚性兑付"盛行的年代，信托被当作"高息存款"，2018 年之后随着打破刚兑落地与地产行业调整，<strong>部分信托产品出现延期兑付与实质性亏损</strong>，"信托=保本高息"的旧观念彻底破产。对普通读者，本章的结论很简单：<strong>达不到合格投资者门槛就不要想办法"凑单"参与</strong>；达到了，也要把每一只产品当作需要独立尽调的高风险投资，而不是存款替代品。</p>
+      <p class="ctx">顺着这个话题必须敲响一记警钟：正规持牌产品尚且如此，<strong>市面上打着"私募理财""资产托管""海外项目"旗号向大众推销的高息产品，相当比例是骗局</strong>。它们的共同话术你在<a href="../11-scam/">第11章</a>已经见过：年化 15%、20% 还"保本"，拉人头有返利，催促"额度紧张马上截止"。记住资管新规的铁律：<strong>持牌金融机构不得承诺保本保收益</strong>——所以任何机构或个人向你书面或口头承诺保本的"理财"，本身就暴露了它的非法性。老年人是这类骗局的重点目标，把这一节讲给父母听，可能比讲任何收益知识都值钱。维权与举报渠道：证监会 12386 服务平台、金融监管部门信访渠道，涉嫌犯罪的直接报警（渠道详见<a href="../13-regulation/">第13章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（信托公司监管规定与合格投资者标准检索口径）</a> · <a href="https://www.safe.gov.cn/dalian/2018/0518/610.html">资管新规全文（打破刚兑与合格投资者条款）</a> · <a href="https://www.investor.org.cn/">中国投资者网（非法金融活动风险提示专栏）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、黄金与公募 REITs：两类"另类"资产的正确打开方式</h2>
+    <p class="chapter-sub">一个不产生现金流却千年不衰，一个"收租"却随市波动</p>
+
+    <article class="view">
+      <h3>黄金：对冲工具，不是永动机</h3>
+      <p class="ctx">黄金在人类金融史上扮演过货币、储备与避险资产三重角色。现代投资组合语境下，它的主要功能是<strong>对冲</strong>：对冲高通胀时期的购买力缩水、对冲地缘政治与金融危机时刻的恐慌情绪、对冲单一货币（尤其美元）的信用担忧。但要诚实地说出它的短板：<strong>黄金不产生现金流</strong>——它不派息、不分红、不创造利润，长期回报完全依赖价格变化，这是它与股票、债券、REITs 的本质区别。经典教材对此有直白的提醒：不产生现金流的资产，估值只能建立在"下一个人愿意出多少钱"之上。</p>
+      <p class="ctx">普通人接触黄金的渠道差异极大，务必分清：<strong>实物金条金币</strong>（银行与正规金店，注意回购折价与保管成本）、<strong>黄金首饰</strong>（含高工艺溢价，本质是消费不是投资）、<strong>积存金</strong>（银行按克定期积存，可兑换实物或变现）、<strong>黄金 ETF 及其联接基金</strong>（跟踪上海黄金交易所现货合约价格，场内交易便捷，费率低，是配置型持有的主流工具之一；ETF 机制见<a href="../04-index/">第4章</a>）、<strong>纸黄金</strong>（银行记账式，注意各行交易规则与点差）。至于黄金期货、黄金租赁等带杠杆的玩法，与本章第八节的立场一致：只警示、不教学。配置比例上，主流机构的常见建议区间在家庭金融资产的 5%—10% 以内（教学示例区间，非投资建议），它的任务是"保险"，不是"进攻"。金价以美元计价为主，人民币投资者还要叠加汇率因素——这一点<a href="../14-global/">第14章</a>讲过原理。</p>
+      <div class="fig"><img src="../assets/img-15-2.png" alt="抽象插画：一座天平，左端放着代表金条与房屋的几何图标，右端放着代表保障的盾牌图标，深蓝主色" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/college/optional/etf/">上交所投资者教育基地 ETF 专栏（黄金 ETF 等产品机制科普）</a> · 马尔基尔《漫步华尔街》（机械工业出版社版）关于黄金与收藏品投资的论述（书籍引用） · <a href="https://www.sge.com.cn/">上海黄金交易所官网（现货黄金合约与市场规则发布渠道）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>公募 REITs：把"收租"变成可以买卖的份额</h3>
+      <p class="ctx">REITs（不动产投资信托基金）的逻辑是把能产生稳定现金流的不动产——产业园、仓储物流、高速公路、保障性租赁住房、消费基础设施等——证券化成可在交易所买卖的份额，投资者像股东一样分享底层资产的租金与运营收益。中国的<strong>基础设施公募 REITs</strong> 于 2020 年由证监会与国家发改委启动试点，2021 年 6 月首批产品在沪深交易所上市，此后品种逐步扩容（保租房、消费基础设施等相继纳入，扩容情况以监管公告为准）。制度上有两个关键设计：<strong>强制分红</strong>——按要求应将年度可分配金额的绝大部分（现行规则为 90% 以上）以现金形式分配给投资者；<strong>封闭运作+场内交易</strong>——份额在交易所像股票一样买卖，价格由市场决定。</p>
+      <p class="ctx">"强制分红 90%"听起来像"稳收租"，但两类风险必须讲透。<strong>其一，价格波动风险</strong>：上市后二级市场价格可以显著偏离基金份额参考净值——首批产品上市初期曾被爆炒，2022—2023 年部分产权类与经营权类 REITs 又出现深度回调，"高股息"无法对冲"本金下跌"（历史行情回顾，不构成预测）。<strong>其二，底层资产经营风险</strong>：产业园出租率下滑、高速公路车流量不及预期，都会直接压缩可分配金额；经营权类 REITs 还存在特许经营到期后价值归零的"递减"特性。因此 REITs 的合理定位是组合中的<strong>卫星资产</strong>：小比例配置、长期持有、赚"租金现金流+温和增值"的钱，把它当成"保本炒房替代品"的人，大概率会在第一次深度回撤中交学费。买入前请通读基金合同、招募说明书与<strong>可供分配金额测算报告</strong>——这三份文件在交易所官网与基金公司官网都能查到。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/">中国证监会官网（基础设施公募 REITs 试点通知与业务规则检索口径）</a> · <a href="https://www.sse.com.cn/">上海证券交易所官网（REITs 专栏：产品列表、规则与投教材料）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育基地（REITs 风险揭示科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、保险：先保障，后理财，顺序不能反</h2>
+    <p class="chapter-sub">保险在组合里的角色是"护城河"，把它当投资工具用，两头都会落空</p>
+
+    <article class="view">
+      <h3>保障型保险：家庭财务的第一道防线</h3>
+      <p class="ctx">把保险放进"理财产品全景"章，是因为它在银行与各类销售渠道里总被当成理财卖——而它最重要的功能恰恰<strong>不是理财</strong>。保险的本质是<strong>风险转移</strong>：用确定的小额保费，对冲不确定的大额损失。对家庭经济支柱来说，一场重大疾病或一次意外，足以让多年投资积累一夜清零，甚至让家庭背上债务——这正是投资解决不了、只有保险能解决的问题。主流的家庭保障配置顺序（教学性归纳）：<strong>先大人后小孩</strong>（经济支柱优先）、<strong>先保障后理财</strong>；四大基础险种为<strong>医疗险</strong>（报销大额医疗费用，注意免赔额与续保条款）、<strong>重疾险</strong>（确诊约定疾病一次性给付，弥补收入中断）、<strong>定期寿险</strong>（家庭经济支柱身故赔付，覆盖房贷与子女抚养责任期）、<strong>意外险</strong>（保费低杠杆高）。预算有限时，优先把保额做足、把消费型产品用好，而不是追求"返还"。</p>
+      <p class="ctx">在投资计划的语境里（<a href="../16-plan/">第16章</a>会展开），保障型保险与应急金、高息负债处理并列，是"开始投资之前必须先配齐的地基"。一个反直觉但重要的结论：<strong>没有保障托底的投资计划是脆弱的</strong>——它假设人生不会出意外，而这个假设恰恰是保险存在的理由。选购渠道上，保险公司、银行代理、独立经纪人均属合规渠道，关键看条款本身：保险责任、免责条款、等待期、现金价值表。所有保险产品都受国家金融监督管理总局监管，保单真伪可通过保险公司官方客服与"金事通"等官方渠道核验。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（保险产品监管与人身险产品信息查询口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（家庭风险管理相关投教内容）</a> · 《中华人民共和国保险法》（国家法律法规数据库检索口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>理财型保险：年金、万能、投连的边界在哪里</h3>
+      <p class="ctx">理财型保险把"保障"与"储蓄投资"打包，常见三类：<strong>年金险</strong>（约定时点起按期给付，常与养老场景绑定，给付金额写进合同，锁定的是超长期利率而非高收益）、<strong>万能险</strong>（设保底利率，结算利率每月公布、浮动变化）、<strong>投连险</strong>（设多个投资账户，<strong>投资风险完全由投保人承担</strong>，账户价值随市场波动，是三者中唯一可能出现本金亏损的）。此外，2022 年起落地的<strong>个人养老金制度</strong>里，符合规定的商业养老保险是四类产品之一（储蓄、理财、保险、公募基金），每年缴费上限与税收优惠以最新政策为准——这是官方为长期养老资金设计的账户框架，<a href="../19-family/">第19章</a>会细讲。</p>
+      <p class="ctx">理财型保险的三个"边界"必须看清。<strong>第一，流动性极差</strong>：前几年退保只能拿回"现金价值"，通常显著低于已交保费——销售演示表旁边的现金价值表才是真话，签字前请逐行看。<strong>第二，演示利率不是保证利率</strong>：分红、万能结算的中高档演示仅为假设情景，监管明确要求演示利益必须与保证利益分开列示。<strong>第三，期限必须匹配</strong>：年金适合放"确定二十年、三十年不动"的养老钱，拿三年后要用的购房首付买年金，是最典型的期限错配。一句话总结保险在家庭资产里的两副面孔：<strong>保障型是必需品，理财型是特定长期目标下的可选项</strong>——把它们与存款、基金放在一起比较时，比的应该是"确定性、期限、流动性"三个维度，而不是演示收益率。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nfra.gov.cn/">国家金融监督管理总局官网（人身险产品销售演示利率与信息披露监管规则检索口径）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《国务院办公厅关于推动个人养老金发展的意见》（国办发〔2022〕7号，证监会网站转载全文）</a> · 《中华人民共和国保险法》（国家法律法规数据库检索口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、高风险产品：只讲风险警示，不教任何操作</h2>
+    <p class="chapter-sub">期货、期权、"场外配资"、虚拟资产——本章对它们只有一个态度</p>
+
+    <article class="view">
+      <h3>衍生品与虚拟资产：为什么本课程把它们放在警戒线外</h3>
+      <p class="ctx"><strong>期货与期权</strong>是风险管理工具，也是高杠杆工具：期货按保证金交易，几倍到十几倍的杠杆会把收益和亏损同时放大，价格反向波动到一定程度会触发追加保证金乃至<strong>强制平仓</strong>，本金可能在极短时间内损失殆尽甚至穿仓（欠下超出本金的债务）。期权买方可能损失全部权利金，卖方则可能承担理论上不封顶的义务。境内期货期权业务由证监会监管、只能在持牌期货公司与交易所场内开展；对没有任何衍生品知识储备的普通人，本课程立场明确：<strong>不教操作，只讲清楚"为什么它容易让人破产"</strong>。至于各类平台招揽的"外盘期货""微盘交易"，多数属于未经批准的非法经营，资金安全毫无保障，直接远离。</p>
+      <p class="ctx"><strong>"场外配资"</strong>是给股票交易加杠杆的灰色生意：配资方出借资金、放大你的仓位，同时设置严格的平仓线——行情稍有不顺，你的本金先被强平清零。它游走在法律边缘、纠纷频发，且常与"老师带单"骗局共生：先劝你配资放大"收益"，再收割你的本金。<strong>虚拟资产</strong>方面，2021 年中国人民银行等十部门发布《关于进一步防范和处置虚拟货币交易炒作风险的通知》，明确虚拟货币相关业务活动属于非法金融活动，境外交易所向境内居民提供服务同样违法；虚拟资产价格剧烈波动、"空气币"与跑路事件层出不穷，境内投资者参与炒作<strong>不受法律保护</strong>。把这三类放在一起讲，是因为它们共享同一个陷阱结构：<strong>高杠杆或零保障 + "暴富"话术 + 不受监管的资金通道</strong>。识别了结构，就识别了九成的高风险骗局（话术拆解详见<a href="../11-scam/">第11章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行官网（十部门《关于进一步防范和处置虚拟货币交易炒作风险的通知》发布口径）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（期货与衍生品监管规则、非法证券活动风险提示检索口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（防范非法证券期货基金活动专栏）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：理财产品四大经典误会</h3>
+      <p class="ctx"><strong>谣言一："银行理财保本，亏了银行会兜底。"</strong>——错。2018 年资管新规（银发〔2018〕106 号）明文要求金融机构不得承诺保本保收益、不得垫资兑付，过渡期结束后保本理财已全部退出市场。银行是代销渠道，产品盈亏由投资者按合同自负。2022 年"理财破净"潮中，没有任何一家银行"兜底"，这就是现行制度的现实注脚。</p>
+      <p class="ctx"><strong>谣言二："货币基金随存随取、想取多少取多少。"</strong>——只对一半。T+0 快速赎回单只产品单日限额 1 万元（2018 年央行与证监会指导意见），超出部分 T+1 到账；银行现金管理类理财同口径。把大额应急资金全放货基又指望"秒到"，急用钱那天就会傻眼——应急金的正确放法见<a href="../16-plan/">第16章</a>。</p>
+      <p class="ctx"><strong>谣言三："黄金永远涨，买了就是保值。"</strong>——错。黄金不产生现金流，价格以美元计价、随实际利率与避险情绪大幅波动：1980 年高点之后金价经历了约二十年的低迷期，2011—2015 年也出现过深度回调（历史行情回顾，不构成预测）。黄金的合理角色是小比例对冲配置，"永远涨"三个字本身就是危险信号——记住本课程的铁律：凡是"稳赚"话术，先怀疑，再远离。</p>
+      <p class="ctx"><strong>谣言四："公募 REITs 强制分红 90%，等于躺着收租、旱涝保收。"</strong>——错。强制分红的对象是"年度可供分配金额"，底层资产经营恶化时可分配金额本身会缩水；更重要的是二级市场<strong>价格波动可能远大于分红收益</strong>——2022—2023 年部分 REITs 从高点回撤数成（历史行情回顾）。经营权类 REITs 还随特许经营期推进而价值递减。"收租"是真的，"旱涝保收"是假的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/dalian/2018/0518/610.html">资管新规全文（外汇局大连分局转发页，打破刚兑条款）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行官网（货基 T+0 赎回限额指导意见检索口径）</a> · <a href="https://www.sse.com.cn/">上海证券交易所官网（REITs 产品行情与规则发布渠道）</a> · 马尔基尔《漫步华尔街》（机械工业出版社版）黄金长期回报的历史数据章节（书籍引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能讲给朋友听，才算真的学会</p>
+
+    <div class="checklist">
+      <h4>📋 理财产品全景自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>家庭理财产品光谱从低风险到高风险大致怎么排？每类产品的发行主体与监管者分别是谁？</li>
+        <li>资管新规的三条核心要求是什么？"打破刚兑"具体指什么？</li>
+        <li>"买前核验五步"是哪五步？分别防住什么坑？</li>
+        <li>存款保险的偿付限额是多少？按什么口径计算？银行理财在不在保障范围内？</li>
+        <li>储蓄国债电子式与凭证式有何区别？提前兑取的代价是什么？</li>
+        <li>货币基金投的是什么？"七日年化收益率"为什么不代表未来收益？</li>
+        <li>货基 T+0 快速赎回的单日限额是多少？这条规则防的是什么风险？</li>
+        <li>债券的利率风险与信用风险分别是什么？为什么期限越长利率风险越大？</li>
+        <li>纯债基金、一级债基、二级债基的风险差异在哪里？</li>
+        <li>"业绩比较基准"和"预期收益率"的区别是什么？为什么前者不是承诺？</li>
+        <li>银行理财 R1—R5 与投资者 C1—C5 是怎么匹配的？依据哪部规章？</li>
+        <li>信托产品的合格投资者门槛说明了什么？为什么"凑单买信托"危险？</li>
+        <li>黄金为什么不产生现金流？普通人配置黄金的主流工具是什么？常见建议比例区间是多少（教学示例）？</li>
+        <li>公募 REITs 的强制分红规则是什么？它的两类主要风险是什么？</li>
+        <li>保障型保险的四大险种分别解决什么问题？"先大人后小孩、先保障后理财"的逻辑是什么？</li>
+        <li>年金、万能、投连三类理财型保险中，哪一类投资风险完全由投保人自担？退保为什么会亏？</li>
+        <li>期货的保证金交易为什么可能导致"穿仓"？本课程对衍生品与虚拟资产的态度是什么？</li>
+        <li>十部门 2021 年通知对虚拟货币相关业务活动的定性是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>理财产品是一条连续的风险光谱——存款与储蓄国债（存款保险 50 万限额内实质保障/国家信用）→ 货基（现金管理，T+0 单日限 1 万，银发〔2018〕128 号口径）→ 债券与债基（利率风险+信用风险，"破净"是净值化常态不是违约）→ 银行理财（资管新规后全部净值化，业绩比较基准≠承诺，R1—R5 与适当性匹配）→ 黄金（不产生现金流的对冲资产，工具以黄金 ETF/积存金为主，配置比例教学示例 5%—10% 以内）→ 公募 REITs（强制分红 90% 以上+场内交易，价格波动与底层经营风险并存）→ 保险（保障型是地基：医疗/重疾/定寿/意外，先大人后小孩、先保障后理财；理财型只适合超长期资金，投连险风险自担、早期退保亏现金价值）→ 期货/期权/"场外配资"/虚拟资产（本课只作风险警示：高杠杆、强平穿仓、配资违法纠纷多、虚拟货币业务活动属非法金融活动）。一切产品的共同铁律：谁发行、谁监管说不清的不碰；承诺"保本保息"的自 2018 年起即违规；"稳赚"话术等于骗局身份证；买前跑一遍"五步核验"。下一章我们把工具箱合上，开始写属于你自己的说明书——从应急金开始的个人投资计划。
+  </div>
+
+  <nav class="pager">
+    <a href="../14-global/"><span class="dir">← 第14章</span>全球视角：港股、美股与QDII</a>
+    <a href="../16-plan/"><span class="dir">第16章 →</span>个人投资计划：从应急金开始</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第15章 · 依据《关于规范金融机构资产管理业务的指导意见》（银发〔2018〕106号）、《存款保险条例》、《关于进一步规范货币市场基金互联网销售、赎回相关服务的指导意见》、《商业银行理财业务监督管理办法》、中国证监会公募 REITs 试点规则、十部门《关于进一步防范和处置虚拟货币交易炒作风险的通知》等法规与监管口径（均注明检索渠道），财政部储蓄国债发行公告口径，上交所/中国投资者网投教材料，博格《共同基金常识》、马尔基尔《漫步华尔街》等经典教材整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

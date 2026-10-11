@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 普通人为什么要学投资 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 导论 · 课程说明</div>
+  <h1>普通人为什么要学投资</h1>
+  <p>通胀、家庭资产、养老目标、行为偏差——以及这门课为什么坚持"不荐股、只教框架"</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-basics/">第1章：股票是什么 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么要学</a>
+    <a class="anchor" href="#s2">投资·投机·赌博</a>
+    <a class="anchor" href="#s3">为什么散户亏钱</a>
+    <a class="anchor" href="#s4">教什么不教什么</a>
+    <a class="anchor" href="#s5">四根支柱</a>
+    <a class="anchor" href="#s6">怎么学</a>
+    <a class="anchor" href="#s7">课程地图</a>
+    <a class="anchor" href="#s8">课程边界</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用通胀与家庭资产结构两个角度说清"不投资也是一种有代价的选择"；②分清投资、投机与赌博三件事，讲出格雷厄姆对"投资操作"的经典定义；③引用学术研究说明为什么频繁交易的散户长期跑输市场；④复述本课程的三条“不教”（“不荐股”、不预测行情、不教暴富技术）与“开户前的自我三问”；⑤说出支撑全课程的四根认知支柱（风险收益、资产配置、指数基金、行为纪律）；⑥知道这门课的边界——什么时候该合上课本去咨询持牌专业人士、被骗了该打哪个电话。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"总纲"。第一次学习建议通读；之后你可以随时回到第七节"课程地图"，按当下遇到的问题（想开户了、被套住了、被人拉进"老师带单"群了）跳转到对应章节。第四节的"三不教"与第八节的"边界"请务必读完——它们决定了这门课什么时候该用、什么时候必须求助专业与监管渠道。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么普通人也需要懂投资</h2>
+    <p class="chapter-sub">你不去理财，财也不一定会理你——但先把这句话里的道理拆开看清楚</p>
+
+    <article class="view">
+      <h3>通胀：躺着不动的现金，其实一直在"动"</h3>
+      <p class="ctx">很多人对投资的第一反应是："我不碰股票，钱放银行最安全。"这句话对了一半。银行存款确实几乎没有<strong>名义风险</strong>——账面上的数字不会变少；但它有一个安静的对手：<strong>通货膨胀</strong>。通胀意味着同样一张钞票能买到的东西在变少，也就是你的<strong>实际购买力</strong>在缩水。衡量它的最常用指标是居民消费价格指数（CPI），由国家统计局按月发布。把存款利率减去通胀率，得到的才是你财富的真实增速——这个数叫"实际利率"，它完全可能为负。</p>
+      <p class="ctx">举个教学示例（非投资建议）：假设你有 10 万元，某年 CPI 上涨 2%，而一年期存款利率只有 1.5%，那么这一年你的账面多了 1500 元，购买力却缩水了约 500 元——你"安全地"亏了一点。单看一年微不足道，但把时间拉长到十年、二十年，复利会同时放大两边的力量：通胀持续侵蚀现金，而合理的投资回报则可能跑赢它。这就是"不投资也是一种选择，而且是有成本的选择"的含义。需要强调的是：本课程讲这个道理，不是为了催促你去买股票——权益类资产短期可能大幅亏损（<a href="../02-risk/">第2章</a>会认真讲风险）——而是希望你<strong>把"现金的安全"看完整</strong>：它防的是波动，防不住购买力。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/">国家统计局（CPI 等价格数据官方发布渠道）</a> · <a href="http://www.pbc.gov.cn/">中国人民银行（利率与金融统计数据官方发布渠道）</a> · 曼昆《经济学原理》关于实际利率与名义利率的区分（经典教材，书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>中国家庭的资产结构：房产很重，金融资产很轻</h3>
+      <p class="ctx">第二个理由是结构性的。中国人民银行课题组 2020 年发布的城镇居民家庭资产负债情况调查曾给出一个被广泛引用的画像：中国城镇居民家庭资产中，<strong>实物资产占近八成，其中住房资产占比约六成</strong>；金融资产占比只有两成左右，而且金融资产里又以存款和低风险理财为主，直接持有股票、基金的比例不高（具体数字以官方最新发布口径为准）。对比之下，美国家庭的金融资产占比要高得多，其中养老金账户与权益类资产是重要组成部分。</p>
+      <p class="ctx">这个结构本身无所谓对错，但它意味着两件事。第一，<strong>多数中国家庭的"鸡蛋"已经高度集中在一个篮子里</strong>——房产。而<a href="../03-allocation/">第3章</a>会讲，分散化被称为投资中"唯一的免费午餐"：当一个家庭的财富几乎全部押在一套自住房上时，它其实承担着很高的单一资产风险，只是这种风险平时感觉不到。第二，随着利率环境、人口结构与房地产供需关系的变化，"房子永远涨"的经验正在接受时间检验，家庭财富更需要多条腿走路。学一点投资常识，不是让你去炒作，而是让你有能力思考：我的家庭资产负债表，风险集中在哪里？存款、债券、权益、保障型保险，各自该扮演什么角色？这正是<a href="../19-family/">第19章</a>家庭财务的主题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.pbc.gov.cn/">中国人民银行（城镇居民家庭资产负债情况调查发布渠道，数据年份以官方原文为准）</a> · <a href="https://www.stats.gov.cn/">国家统计局（居民收入与消费数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>投资的目的：财务目标，而不是暴富</h3>
+      <p class="ctx">第三个理由关于目的。普通人学投资，不是为了"财务自由"这种被短视频讲烂的词，而是为了几个具体、可计算的<strong>财务目标</strong>：几十年后的养老、孩子未来的教育支出、一笔购房首付、一场说走就走的旅行基金。目标不同，期限不同，能承受的波动就不同，工具也就不同——这套"从目标倒推方案"的思路，是贯穿本课程第四部分的主线。</p>
+      <p class="ctx">以养老为例，它是最典型的"必须靠投资参与"的目标：期限长达二三十年、金额大、单纯靠存款和第一支柱养老金往往不够。正因如此，国家在 2022 年出台了《关于推动个人养老金发展的意见》，建立个人养老金制度：参加人每年缴纳上限 12000 元（以最新政策为准），账户资金可自主选择购买符合规定的储蓄存款、理财产品、商业养老保险、公募基金等，并享受税收优惠——这是"养老金第三支柱"的中国方案（<a href="../19-family/">第19章</a>细讲）。注意这个制度设计透露的态度：<strong>官方鼓励的是长期、目标导向、分散化的投资参与</strong>，而不是短线炒作。把投资理解成"为人生目标工作的钱"，你就已经和市场上大部分噪音划清了界限。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《国务院办公厅关于推动个人养老金发展的意见》（国办发〔2022〕7号，证监会网站转载全文）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">国家税务总局法规库 · 个人养老金税收政策文件</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、先把概念掰正：投资、投机与赌博</h2>
+    <p class="chapter-sub">这三个词混着用，是绝大多数亏钱的开始</p>
+
+    <article class="view">
+      <h3>三个定义，一张对照表</h3>
+      <p class="ctx">"炒股"这个词本身就很有迷惑性——一个"炒"字，把两件完全不同的事揉在了一起。价值投资的开山之作、本杰明·格雷厄姆的《聪明的投资者》给出了一个流传近八十年的经典定义：<strong>"投资操作是经过透彻分析、承诺本金安全和满意回报的操作；不满足这些要求的操作就是投机。"</strong>（书籍引用，译文为通行口径）注意定义里的三个要件：分析、本金安全、合理回报——它们恰好对应着本课程反复强调的三件事：看懂你买的东西、认清风险、降低预期。</p>
+      <p class="ctx">赌博则更进一步：它押注的是<strong>纯粹的随机事件</strong>，长期期望值为负（庄家必须抽水），且除了输赢本身不创造任何价值。投机不一定违法，也不一定必然亏损，但它押的是短期价格波动，胜负很大程度上取决于运气与对手盘。下表把三者放在一起（教学性归纳）：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>投资</th><th>投机</th><th>赌博</th></tr>
+        <tr><td>押注对象</td><td>资产长期价值与现金流</td><td>短期价格波动</td><td>随机事件</td></tr>
+        <tr><td>决策依据</td><td>基本面分析、估值、配置</td><td>消息、盘感、技术图形</td><td>运气</td></tr>
+        <tr><td>长期期望</td><td>分享经济增长，期望为正但有波动</td><td>扣费后多数人为负</td><td>为负（庄家抽水）</td></tr>
+        <tr><td>时间尺度</td><td>数年到数十年</td><td>数天到数月</td><td>一瞬</td></tr>
+        <tr><td>本课程态度</td><td>系统教学</td><td>讲清风险，不教操作</td><td>批判与远离</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：本杰明·格雷厄姆《聪明的投资者》（The Intelligent Investor，经典著作，书籍引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（投资基础概念科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>股权思维 vs 筹码思维：你买的到底是什么</h3>
+      <p class="ctx">区分投资与投机，最实用的抓手是问自己一个问题：<strong>我买的东西，在我眼里是"公司的一小块所有权"，还是"一个会涨会跌的筹码"？</strong>《证券法》框架下，股票是股份有限公司发行的所有权凭证，股东依法享有资产收益、参与重大决策和选择管理者等权利——分红、投票、剩余财产分配，这些都是股东权利的组成部分（<a href="../01-basics/">第1章</a>细讲）。用股权思维看，股价下跌意味着"同样一块所有权变便宜了"，你的决策依据是公司的盈利与估值；用筹码思维看，价格本身成了唯一的信号，你的决策依据是"猜下一个人出多少钱"。</p>
+      <p class="ctx">两种思维会导出完全不同的行为：股权思维者关心财报、分红率、行业格局，交易频率低，睡得着觉；筹码思维者关心分时图、龙虎榜、群里的"消息"，交易频繁，情绪随行情起伏。学术研究（下一节展开）反复表明：<strong>频繁交易显著侵蚀收益</strong>。顺便粉碎一个双向的误解——"股票就是赌博"不对：长期持有分散化的权益资产，本质是分享经济增长与企业盈利，这与押大小有本质区别；但"买股票稳当赚钱"同样不对：股价短期波动可以非常剧烈，本金亏损是真实风险，任何把股票说成"稳赚不赔"的人，不是在骗你，就是在准备骗你。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（检索《中华人民共和国证券法》2019 年修订文本）</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务（投教科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、为什么大多数散户在亏钱</h2>
+    <p class="chapter-sub">先看清别人怎么亏的，再谈自己怎么不亏</p>
+
+    <article class="view">
+      <h3>学术证据：交易越勤快，收益越糟糕</h3>
+      <p class="ctx">"散户亏钱"不是段子，而是有严肃学术证据支撑的现象。加州大学学者 Barber 与 Odean 在 2000 年发表于《金融学杂志》的经典研究《交易有害你的财富》（Trading Is Hazardous to Your Wealth，英文）追踪了数万个美国家庭账户，发现<strong>交易最频繁的那组投资者，年化净收益显著低于市场基准</strong>，差距中相当一部分直接来自交易成本；两位学者后续研究还发现，个人投资者倾向于追买近期上涨的明星股票、杀跌卖出亏损股票，结果往往是买在高位。美国投资者教育权威渠道 investor.gov 也长期引用这类研究提醒散户：过度交易是收益的头号杀手之一。</p>
+      <p class="ctx">这个结论对中国市场同样有参照意义：A股个人投资者数量庞大，换手率长期高于成熟市场。请记住这条研究给出的朴素启示——<strong>在投资里，"少动"经常比"多动"赚钱</strong>。这不是说永远不动，而是说：每一次买卖都该有基于分析的理由，而不是基于情绪或消息。这也预告了<a href="../05-behavior/">第5章</a>行为金融与<a href="../18-review/">第18章</a>复盘的主题。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Barber & Odean (2000), "Trading Is Hazardous to Your Wealth", Journal of Finance（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a>（出版商页面对部分访问工具反爬，DOI 真实，浏览器可达） · <a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>散户亏钱的三个结构性原因</h3>
+      <p class="ctx">把"散户为什么亏"拆开，至少有三层原因。<strong>第一层是成本</strong>：每笔交易都有佣金，卖出还有印花税（2023 年 8 月起减半征收、税率 0.05%、卖方单边，以官方最新规定为准），频繁进出时费用会复利式地啃掉本金——<a href="../10-tax/">第10章</a>会算这笔账。<strong>第二层是信息与研究能力的不对称</strong>：机构有研究团队、数据终端与调研渠道，个人投资者靠刷短视频获取"逻辑"，这在短期价格博弈中几乎注定处于下风。<strong>第三层，也是最重的一层，是行为偏差</strong>：诺贝尔经济学奖得主卡尼曼与特沃斯基 1979 年提出的前景理论证明，人在面对收益与损失时的心理是不对称的——等额的亏损带来的痛苦，约是等额收益带来快乐的两倍。这种"损失厌恶"会系统性地让人<strong>拿不住盈利、死扛亏损、追涨杀跌</strong>，恰好与赚钱的动作相反。</p>
+      <p class="ctx">三层原因叠加，就能解释那个残酷的现象：某只基金三年涨了不少，但大多数持有人是亏的——因为他们高点涌进、低点割肉。工具的收益不等于持有人的收益，中间隔着的就是行为。好消息是：成本可以用低费率工具压缩，信息劣势可以用分散化的指数基金绕开，行为偏差可以用规则与纪律"捆住手"（<a href="../04-index/">第4章</a>、<a href="../05-behavior/">第5章</a>）。这正是本课程存在的意义：<strong>散户的解法不是变成机构，而是停止用散户的方式行动</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Kahneman & Tversky (1979), "Prospect Theory: An Analysis of Decision under Risk", Econometrica（英文） <a href="https://doi.org/10.2307/1914185">https://doi.org/10.2307/1914185</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局《关于减半征收证券交易印花税的公告》（2023年第39号）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>散户亏钱姿势图鉴：看看你中过几条</h3>
+      <p class="ctx">结合监管部门的案例通报与投资教育的常见提醒，普通投资者的典型亏损路径大致有五种（示例性归纳，均为批判语境）：①<strong>一把梭</strong>：把应急金甚至借来的钱全部押进一只热门股，涨了就加杠杆，跌了就装死；②<strong>追热点</strong>：什么板块上热搜买什么，永远在行情的尾巴上接盘；③<strong>信"大师"</strong>：被拉进各种"老师带单"群，跟着所谓"庄家带单"操作——而证监会历年打击非法证券期货活动的案例通报反复揭示，这类群里晒出的盈利截图，很多是虚拟盘骗局，你以为在炒股，其实钱根本没有进入真实市场；④<strong>杠杆赌命</strong>：参与违法的"场外配资"，放大杠杆后一次大跌就血本无归甚至倒欠；⑤<strong>频繁换手</strong>：每天买卖好几次，年底一算，佣金加印花税交了好几千块，本金还在原地。五种姿势的共同点是：<strong>决策由情绪和消息驱动，没有分析、没有配置、没有纪律</strong>。本课程第三部分（第11—13章）会系统讲防骗与监管，把③④两种最危险的路径彻底讲透。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（打击非法证券期货活动与风险提示发布渠道）</a> · <a href="https://www.spp.gov.cn/">最高人民检察院（证券期货犯罪典型案例发布渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、这门课教什么、坚决不教什么</h2>
+    <p class="chapter-sub">先立规矩，再开课</p>
+
+    <article class="view">
+      <h3>课程教什么：认知框架、实操流程、避坑能力</h3>
+      <p class="ctx">这门课教三样东西。<strong>第一是认知框架</strong>：风险与收益的真实关系、资产配置为什么比选股更重要、指数基金的逻辑、行为偏差的清单与对策——这些是"怎么想"。<strong>第二是实操流程</strong>：估值指标怎么看、财报三张表各自回答什么问题、券商怎么选、开户流程走一遍、费用与税怎么算、交易日志怎么记——这些是"怎么做"，全部基于交易所与监管机构的官方规则和公开材料，不涉及任何具体标的推荐。<strong>第三是避坑能力</strong>：各类投资骗局的话术拆解、投资谣言的证据核查、监管框架与维权渠道——这些是"怎么不上当"，在一个信息噪音极大的领域里，这可能是最值钱的部分。</p>
+      <p class="ctx">三样东西有一个共同特点：<strong>它们都不依赖预测</strong>。你不需要知道明天大盘涨还是跌，就能把配置做对、把成本压低、把骗局识破、把纪律建立起来。事实上，"承认自己无法预测短期市场"，正是本课程全部方法论的起点——这一点与交易所投资者教育的官方口径完全一致：先懂规则、再懂风险、后谈参与。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务</a></div>
+    </article>
+
+    <article class="view">
+      <h3>课程坚决不教的三件事（以及"开户前的自我三问"）</h3>
+      <p class="ctx"><strong>第一，“不荐股”。</strong>全站不会出现任何具体股票、具体基金的买卖建议；所有示例组合均明确标注"教学示例，非投资建议"。原因很简单：任何负责任的建议都必须基于对你的财务状况、风险承受力与目标的了解，而一门面向公众的课程不可能了解你——那些隔着屏幕就敢给你"代码+仓位"的人，恰恰是最该警惕的。<strong>第二，不预测行情。</strong>本课程不判断大盘点位、不解读"下周走势"，也不教你任何号称能预测涨跌的技术。学术界对短期价格可预测性的研究结论长期而一致：普通投资者做不到，多数专业投资者长期也做不到（<a href="../12-rumor/">第12章</a>细讲）。<strong>第三，不教暴富技术。</strong>短线炒作、杠杆博弈、跟风打板这些内容，课程只会出现在风险警示与批判语境里。想学"三天抓涨停"的读者，这里没有你要的东西——这是故意设计的。</p>
+      <blockquote class="q">开户前的自我三问（任何一条答不上来，就先别入金）：<br>① 这笔钱是"闲钱"吗？——亏掉三成以上，会不会影响你的生活与睡眠？应急金与高息负债处理好了吗（第16章）？<br>② 我能说清我买的是什么、为什么买、什么情况下卖吗？——说不清，就是筹码思维在替你做决定。<br>③ 我用的平台是证监会许可的正规机构吗？——资质可在官方渠道核验；核验不了的，无论话术多动人，都是骗局候选。<span class="qsrc">—— 本课程教学性归纳；适当性管理要求参见中国证券业协会与监管机构投资者适当性相关口径</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sac.net.cn/">中国证券业协会（投资者适当性管理与行业自律口径）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（合法机构名录与监管口径入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>课程的四条承诺</h3>
+      <p class="ctx">对应地，这门课向你做四条承诺。<strong>承诺一：每个观点都给来源</strong>。全站采用四级来源标注（🏛官方文件 / 📘权威手册 / 📋学术研究 / 🏷商业科普），法规与规则以监管机构和交易所官方口径为准，学术结论注明作者与年份，商业媒体内容明确标注——你随时可以顺着链接去核查我们。<strong>承诺二：所有数字给口径和时效</strong>。费率、税率、门槛、历史收益数据，一律注明"截至 2026 年 10 月"与统计口径，规则会变，请以官方最新规定为准；历史收益不推算未来。<strong>承诺三：争议如实呈现</strong>。比如"主动基金到底值不值得买"，我们会把 SPIVA 类长期研究的结论、也把它的方法论争议一起摆出来（<a href="../04-index/">第4章</a>），不为了叙事顺滑而裁剪证据。<strong>承诺四：零推广、零带货</strong>。本站无商业合作、无返利链接，提到任何机构都只作为类型示例，不构成推荐。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="../">课程首页 · 来源认证四级标注说明</a> · <a href="https://www.investor.org.cn/">中国投资者网（中证中小投资者服务机构，投教与维权科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、支撑全课程的四根认知支柱</h2>
+    <p class="chapter-sub">后面二十章，都是这四根支柱的展开</p>
+
+    <article class="view">
+      <h3>支柱一与支柱二：风险收益对等，配置先于选股</h3>
+      <p class="ctx"><strong>支柱一：风险与收益是一枚硬币的两面。</strong>金融学的奠基性成果之一——资本资产定价模型（CAPM）及其后的 Fama-French 多因子模型（1993）——用几十年的数据反复验证了一个朴素事实：资产的长期期望收益，是对承担风险的补偿；想要更高的长期回报，就必须接受更大的波动与更深的回撤，没有例外。任何宣称打破这条铁律的产品或"老师"，都可以直接拉黑（<a href="../02-risk/">第2章</a>细讲）。<strong>支柱二：资产配置比选个股更重要，分散化是"唯一的免费午餐"。</strong>组合理论的开创者马科维茨证明：把相关性低的资产组合在一起，可以在不牺牲期望收益的前提下降低整体波动。落到实操，就是先决定"股债比例、国内外比例、行业分布"，再考虑具体工具——顺序不能反（<a href="../03-allocation/">第3章</a>细讲）。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="四根认知支柱示意：一座简洁的建筑由四根柱子支撑，柱子上方托起一个发光的家庭财务目标图形，整体为蓝色几何扁平风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fama & French (1993), "Common risk factors in the returns on stocks and bonds", Journal of Financial Economics（英文） <a href="https://doi.org/10.1016/0304-405X(93)90023-5">https://doi.org/10.1016/0304-405X(93)90023-5</a> · Markowitz (1952), "Portfolio Selection", Journal of Finance（学术文献，英文，书籍与教材通行口径） · 约翰·博格《共同基金常识》（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>支柱三与支柱四：普通人用指数，纪律对抗天性</h3>
+      <p class="ctx"><strong>支柱三：对没有时间研究的普通人，低成本指数基金是被证据反复支持的路径。</strong>标普公司 SPIVA 记分卡系列研究（英文）长期追踪主动基金与基准指数的表现，历年报告的共同结论是：拉长到十年以上，<strong>多数主动管理基金跑输其基准指数</strong>，而且费用越高、差距越明显（引用时须注明具体期数，它不是永恒定律；方法论争议<a href="../04-index/">第4章</a>如实呈现）。指数基金的逻辑不神秘：既然战胜市场很难，就用最低的成本持有整个市场。这也是博格毕生布道的核心。<strong>支柱四：你最大的对手是自己的天性，用规则捆住手。</strong>前景理论揭示的损失厌恶、过度自信、羊群效应，会在每个关键节点把你推向错误动作；对策不是"修炼心态"，而是<strong>工程化的纪律</strong>——定投计划、再平衡日历、事前写下的投资纪律清单、交易日志（<a href="../05-behavior/">第5章</a>、<a href="../09-strategy/">第9章</a>细讲）。四根支柱合起来就是本课程的一句话总结：<strong>承认风险、做好配置、买得便宜、拿得住手</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：S&P SPIVA 记分卡（英文） <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">https://www.spglobal.com/spdji/en/research-insights/spiva/</a>（出版商页面对部分访问工具反爬，浏览器可达；引用其结论须注明期数） · Kahneman & Tversky (1979)（英文） <a href="https://doi.org/10.2307/1914185">https://doi.org/10.2307/1914185</a> · 伯顿·马尔基尔《漫步华尔街》（书籍引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、怎么学这门课</h2>
+    <p class="chapter-sub">方法不对，读得再多也只是收藏了焦虑</p>
+
+    <article class="view">
+      <h3>学习闭环：读 → 测 → 小额试 → 复盘</h3>
+      <p class="ctx">投资认知是一种程序性知识：光"知道"没用，要能"做到"。建议按四步闭环来学。<strong>第一步，读</strong>：按顺序通读，或按第七节课程地图按需跳读；每章约 25—30 分钟，不求快。<strong>第二步，测</strong>：每章末尾都有"理解性自测"，标准是"能用大白话讲给朋友听"——讲不出来的地方就是没懂的地方，回去重读。<strong>第三步，小额试</strong>：读完第 8 章（开户与交易规则）和第 16 章（个人投资计划）之后，可以用一笔"亏光了也不影响生活"的小钱体验完整流程：开户、买入、持有、记录感受。金额不重要，重要的是让真实市场给你的情绪上一次课——纸上谈兵永远学不会"回撤 20% 是什么体感"。<strong>第四步，复盘</strong>：从第一笔交易开始记日志（第 18 章给模板），每季度回看一次：我的动作符合当初的计划吗？偏离是为什么？</p>
+      <p class="ctx">特别提醒：<strong>在写出你自己的一页纸投资计划（第 16 章）之前，不要投入任何超过小额体验的资金</strong>。没有计划就入金，等于把方向盘交给情绪。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="../">课程首页 · 学习方法说明</a> · <a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov（英文，投资者入门路径参考）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>防骗三句话，现在就可以背下来</h3>
+      <p class="ctx">在开始二十章的学习之前，先把三句"保命口诀"装进脑子里——它们覆盖了绝大多数投资骗局的识别要点（<a href="../11-scam/">第11章</a>系统展开）。<strong>第一句：合法证券期货基金业务，只能由证监会许可的机构开展。</strong>任何拉你炒股的"老师""助理""客服"，先问一句"你们机构的许可证编号是多少"，然后到证监会官网核验；核验不了或者对方回避的，一律当骗子处理。<strong>第二句："稳赚不赔"四个字，就是骗局的身份证。</strong>前面讲过风险收益对等的铁律——在权益市场里承诺保本保收益，要么违法，要么撒谎，通常两者都是。<strong>第三句：钱不进正规账户，一律不打款。</strong>正规券商有第三方存管制度，你的资金在银行存管账户；凡是要你转账到"私人账户""机构专用账户""境外账户"的，无论前面的戏演得多真，都是收网时刻。被骗了怎么办：保留证据，拨打证监会 <strong>12386</strong> 服务平台热线，或通过中国投资者网、公安机关报案等正规渠道维权——不要相信网上"帮追回损失"的二次骗局。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（合法机构与打击非法证券活动口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（12386 热线与纠纷调解、维权渠道科普）</a> · <a href="https://www.chinaclear.cn/">中国证券登记结算有限责任公司（账户与第三方存管制度科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、课程地图：四部分，二十章</h2>
+    <p class="chapter-sub">先认知，再工具，再避坑，最后落到你自己的方案</p>
+
+    <article class="view">
+      <h3>第一部分 · 建立投资认知（第1—5章）：认知决定你亏不亏冤枉钱</h3>
+      <p class="ctx"><a href="../01-basics/">第1章 股票是什么</a>：股权、市场结构、交易常识，建立"买股票=买公司"的底层认知。<a href="../02-risk/">第2章 风险与收益</a>：波动与回撤、风险溢价、复利与72法则，看清"高收益必然高风险"为什么没有例外。<a href="../03-allocation/">第3章 资产配置</a>：分散化、股债平衡、再平衡纪律——比选股重要得多的决定。<a href="../04-index/">第4章 指数基金与ETF</a>：被动投资的逻辑、费用、跟踪误差，以及主动基金之争的如实呈现。<a href="../05-behavior/">第5章 行为金融</a>：损失厌恶、处置效应、羊群与锚定，以及用规则捆住自己手的对策。</p>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="课程地图示意：一条由左下向右上的四段路径，每段路径上有一个抽象图标（认知支柱、工具齿轮、防护盾牌、家庭房屋），一个几何小人正沿路径攀登，蓝色扁平风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第一部分目录</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第二部分 · 估值与实操工具（第6—10章）：看懂贵贱，跑通流程</h3>
+      <p class="ctx"><a href="../06-valuation/">第6章 估值常识</a>：市盈率、市净率、股息率、ROE 的直觉与边界，"低估值陷阱"是怎么回事。<a href="../07-financial/">第7章 财报入门</a>：三张报表各自回答什么问题，普通投资者"看懂+存疑+回避"的读表姿势。<a href="../08-account/">第8章 开户与交易规则</a>：券商怎么选、A股交易规则（T+1、涨跌幅、集合竞价）、账户安全与第三方存管。<a href="../09-strategy/">第9章 投资策略</a>：一次性投入 vs 定投的证据对比、仓位管理、卖出纪律。<a href="../10-tax/">第10章 费用与税</a>：佣金、印花税、红利税、基金费率全景，以及费用复利侵蚀的算术。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第二部分目录</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第三部分 · 避坑与合规（第11—15章）：先保住本金，再谈收益</h3>
+      <p class="ctx"><a href="../11-scam/">第11章 防骗指南</a>：非法"荐股"、"老师带单"群、虚拟盘、"杀猪盘"、原始股骗局的话术拆解与维权路径（只批判、不复述操作细节）。<a href="../12-rumor/">第12章 投资谣言粉碎</a>：技术图形迷信、"跟着主力走"、"A股只能投机"等流行说法的逐条证据核查。<a href="../13-regulation/">第13章 监管与投资者保护</a>：注册制、信息披露、退市规则、适当性管理，以及 12386、中证投服等维权渠道。<a href="../14-global/">第14章 全球视角</a>：港股通、美股、QDII 的规则差异与合规提醒。<a href="../15-product/">第15章 其他理财产品全景</a>：债券、货基、银行理财、黄金、保险、REITs 的定位，以及衍生品为什么对普通人只讲风险。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第三部分目录</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第四部分 · 你自己的方案（第16—20章）：从知识到你的账户</h3>
+      <p class="ctx"><a href="../16-plan/">第16章 个人投资计划</a>：应急金、负债、保险托底，风险承受力自测，写出一页纸计划。<a href="../17-portfolio/">第17章 构建你的组合</a>：核心-卫星结构、示例组合的构建过程（教学示例，非投资建议）、常见组合错误。<a href="../18-review/">第18章 记录、复盘与卖出</a>：交易日志、收益归因、卖出的正当理由与危险理由。<a href="../19-family/">第19章 家庭财务与生命周期</a>：不同人生阶段的配置重心、教育金与养老的目标倒推、个人养老金账户。<a href="../20-future/">第20章 长期主义</a>：把全课程压缩成 30 天四周行动方案，附谣言粉碎汇总与延伸学习资源。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="../">课程首页 · 第四部分目录</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、先说边界：这门课解决不了什么</h2>
+    <p class="chapter-sub">把课的适用边界讲清楚，是对读者最大的负责</p>
+
+    <article class="view">
+      <h3>两个边界：这门课解决不了什么</h3>
+      <p class="ctx"><strong>边界一：这是教育，不是投资建议；重大决策请咨询持牌专业人士。</strong>本课程提供的是<strong>通用的认知框架与官方规则口径</strong>，它无法也不应该替代针对你个人情况的专业服务。你的家庭负债、收入稳定性、税务状况、风险承受力、具体目标金额与期限，只有你自己（和你聘请的持牌专业人士）掌握。因此：涉及大额资金配置、税务规划、保险方案、遗产安排等重大财务决策时，请咨询<strong>有执业资质的专业人士</strong>（可通过证监会、行业协会官方渠道核验资质），并向其完整披露你的情况。同样重要的是姿态：<strong>任何人——包括本课程——告诉你"买这个准没错"的那一刻，你就应该转身离开</strong>。投资决策的最终责任人是且只能是你自己；这门课能做的是让你在签字之前，多问出几个对的问题。</p>
+      <p class="ctx"><strong>边界二：这门课不带你赚钱，只负责让你少上当、少犯常识性错误。</strong>把预期说透：读完这二十章，你<strong>不会</strong>获得任何"财富密码"，不会学会抓涨停，甚至不能保证下一笔投资一定盈利——市场波动是客观存在的，权益类资产完全可能在任何时间尺度上亏损。这门课的诚实承诺是三个"少"：<strong>少上当</strong>（骗局话术你都能对号入座）、<strong>少犯常识性错误</strong>（一把梭、追涨杀跌、杠杆赌命、过度交易）、<strong>少花冤枉钱</strong>（费率、税费、摩擦成本算得明明白白）。至于长期收益，它取决于经济增长、你的配置、你的成本与你的纪律——前两者你可以学习与选择，后两者你可以训练。巴菲特在给股东的信里那句被引用到磨损的话，值得作为整个课程的注脚："别人贪婪时我恐惧，别人恐惧时我贪婪"——但请注意，这句话的前提是几十年的研究功夫与极强的情绪纪律，而不是一句可以让你逆势梭哈的咒语。断章取义地使用名言，恰恰是散户亏钱姿势图鉴里的又一条。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.sac.net.cn/">中国证券业协会（从业人员与机构资质公示口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金从业资格与机构公示口径）</a> · <a href="https://www.berkshirehathaway.com/letters/letters.html">伯克希尔·哈撒韦 巴菲特致股东信（免费公开原文，英文）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（风险提示栏目）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于投资的四个最常见说法</h3>
+      <p class="ctx"><strong>谣言一："股市就是赌场，普通人进去只有亏。"</strong>——半对半错。短期频繁交易确实近似负和博弈（费用抽水），学术研究表明过度交易者长期跑输市场（Barber & Odean, 2000，英文）；但长期持有分散化的权益资产是分享经济增长与企业盈利，与押大小有本质区别。错的是"炒"，不是"市"。<strong>谣言二："有人能预测涨跌，只是不告诉你。"</strong>——如果真有人能稳定预测短期涨跌，他会安静地复利成世界首富，而不是开个群收你 299 会员费。证监会打击非法证券活动的案例通报里，"荐股大师"们的真实身份经常是诈骗团伙话务员，晒单来自虚拟盘。<strong>谣言三："钱少没必要投资，理财是有钱人的事。"</strong>——恰恰相反，复利最需要的本金之外的要素是时间；个人养老金等制度的设计初衷，就是让普通收入的年轻人以每年小额度（现行上限 12000 元，以最新政策为准）开始长期积累。钱少的时候建立纪律，比钱多了以后才学要便宜得多。<strong>谣言四："钱放银行绝对安全。"</strong>——名义安全，实际未必：通胀持续侵蚀购买力，实际利率可能为负。"绝对安全"的资产不存在，只有"风险你看得见"和"风险你看不见"的区别。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（打击非法证券活动案例通报口径）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《关于推动个人养老金发展的意见》全文（证监会转载）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"不投资也是一种选择，而且是有成本的选择"——这个成本指的是什么？名义利率与实际利率怎么区分？</li>
+        <li>中国城镇居民家庭资产结构的大致画像是什么？（提示：实物资产与金融资产的比例）这个结构意味着什么风险？</li>
+        <li>为什么说投资的目的应该是"财务目标"而不是"暴富"？个人养老金制度透露了官方鼓励什么样的投资参与？</li>
+        <li>格雷厄姆对"投资操作"的经典定义包含哪三个要件？投资、投机、赌博在"押注对象"和"长期期望"上有什么区别？</li>
+        <li>股权思维和筹码思维分别把股票看成什么？两种思维会导出哪些不同的行为？</li>
+        <li>Barber & Odean（2000）的核心发现是什么？它对普通投资者最直接的启示是哪句话？</li>
+        <li>散户亏钱的三个结构性原因是什么？哪一个最重、为什么？</li>
+        <li>前景理论说的"损失厌恶"大致是什么量级？它如何导致"拿不住盈利、死扛亏损"？</li>
+        <li>散户亏钱姿势图鉴的五种姿势，你能不看课文复述出几种？</li>
+        <li>本课程的三条"不教"分别是什么？各自背后的理由是什么？</li>
+        <li>"开户前的自我三问"是哪三问？分别在防什么？</li>
+        <li>支撑全课程的四根认知支柱是什么？用一句话概括每根支柱。</li>
+        <li>SPIVA 记分卡的长期结论是什么？引用它时必须注意什么（提示：期数与争议）？</li>
+        <li>学习闭环的四步是什么？在写出投资计划之前，资金投入的上限原则是什么？</li>
+        <li>防骗三句话口诀是哪三句？分别对应骗局的哪个环节？</li>
+        <li>被骗后应该通过哪些正规渠道维权？哪个电话号码是证监会服务平台热线？</li>
+        <li>这门课的两个"边界"分别是什么？出现什么情况必须去咨询持牌专业人士？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>普通人学投资的三个理由——通胀侵蚀现金的实际购买力（名义安全≠实际安全）、中国家庭资产结构中房产过重而金融资产过轻需要分散、养老教育等长期财务目标必须靠投资参与（个人养老金制度即官方给出的长期化、目标化通道）；投资＝分析＋本金安全＋合理回报（格雷厄姆定义），投机押短期波动，赌博押随机事件且期望为负；散户长期跑输有三层原因——成本、信息不对称、行为偏差，其中行为最重（前景理论：亏损痛苦≈两倍于等额盈利快乐；Barber & Odean 2000：交易越频繁收益越差）；本课程教认知框架、实操流程、避坑能力，坚决“不荐股”、不预测行情、不教暴富技术；四根支柱——风险收益对等（Fama-French）、配置先于选股（分散化是免费午餐）、普通人用低成本指数基金（SPIVA 长期结论，注明期数）、用纪律对抗天性；防骗三句话——只认证监会许可机构、"稳赚不赔"是骗局身份证、钱不进正规存管账户一律不打款；被骗打 12386 或走中国投资者网与司法渠道；两个边界——本站不是投资建议（重大决策咨询持牌人士）、不承诺赚钱只承诺"少上当、少犯错、少花冤枉钱"。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>股票投资课 · 全部目录</a>
+    <a href="../01-basics/"><span class="dir">第1章 →</span>股票是什么：股权、市场与交易常识</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 导论 · 依据中国证监会与沪深北交易所官方投教材料、《证券法》《证券投资基金法》等法规（国家法律法规数据库检索口径）、《关于推动个人养老金发展的意见》、财政部与税务总局印花税及养老金税收文件、Bogle《共同基金常识》、格雷厄姆《聪明的投资者》、马尔基尔《漫步华尔街》等经典教材，以及 Fama & French（1993）、Kahneman & Tversky（1979）、Barber & Odean（2000）等学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

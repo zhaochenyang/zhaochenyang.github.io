@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 指数基金与ETF：普通人的被动投资之路 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第4章 · 建立投资认知</div>
+  <h1>指数基金与ETF：普通人的被动投资之路</h1>
+  <p>不选股、不择时，买下"整个市场"：指数是怎么编出来的、主动为什么长期难赢被动、费率如何吃掉复利、ETF与场外基金怎么选、定投的真实逻辑与局限——本章给你一套完整的被动投资认知与筛选流程</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../03-allocation/">← 第3章：资产配置</a>
+    <a href="../05-behavior/">第5章：行为金融 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">什么是指数</a>
+    <a class="anchor" href="#s2">指数基金原理</a>
+    <a class="anchor" href="#s3">主动vs被动</a>
+    <a class="anchor" href="#s4">成本的复利侵蚀</a>
+    <a class="anchor" href="#s5">ETF与场外基金</a>
+    <a class="anchor" href="#s6">定投</a>
+    <a class="anchor" href="#s7">宽基与行业指数</a>
+    <a class="anchor" href="#s8">谣言粉碎与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本章内容仅供<strong>投资教育与参考</strong>，不构成投资建议或任何证券、基金的买卖推荐；文中出现的指数名称仅用于教学说明，不构成推荐；所有比例与数字均为教学示例，据此操作风险自负。</li>
+      <li><strong>市场有风险，投资需谨慎</strong>：指数基金与 ETF 同样可能亏损本金；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不推荐任何具体基金公司或产品。</li>
+      <li>警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展，基金产品可在官方渠道核验备案信息。</li>
+      <li>费率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。</li>
+      <li>本章依据官方法规、交易所与行业协会投教材料、指数公司编制方案及学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①用"全班平均分"的比喻解释指数是什么、怎么编制；②说出沪深300、中证500、标普500各自代表什么，以及指数会被定期调整这一事实；③解释"主动基金长期多数跑输基准"这一结论的证据、边界与争议；④算清 1% 的费差在几十年里会吃掉多大一块终值；⑤区分场内 ETF 与场外指数基金的适用场景；⑥讲清定投"平滑成本"的原理与"不保证盈利"的边界；⑦说出宽基与行业指数的风险差异；⑧照着五步流程筛掉不合格的产品。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章承接<a href="../03-allocation/">第3章</a>：配置框架决定你"股票桶里放什么"，本章介绍普通人执行股票桶最省力的主流工具。学完后配合<a href="../10-tax/">第10章</a>（费用与税）、<a href="../15-product/">第15章</a>（产品细类）使用。第八节的"筛选五步流程"可以直接抄下来当购物清单。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、指数是什么：市场的"平均成绩单"</h2>
+    <p class="chapter-sub">从"全班平均分"说起：指数的编制逻辑、加权方式与定期调整</p>
+
+    <article class="view">
+      <h3>一个比喻：不用认识每个学生，也能知道班级考得怎么样</h3>
+      <p class="ctx">想象你想知道一个几百人的年级考得好不好，不可能逐份看卷子——你会看年级平均分。<strong>指数就是股票市场的"平均成绩单"</strong>：按照一套公开的规则挑出一篮子股票，用一个数字概括这一篮子的整体涨跌。沪深300指数从沪深两市挑选规模大、流动性好的 300 只股票，代表大盘蓝筹的整体表现；中证500指数接着往下覆盖 500 只中等规模公司；标普500（S&amp;P 500，英文）则覆盖美国约 500 家大型上市公司（编制机构与规则见<a href="https://www.csindex.com.cn/">中证指数有限公司</a>官网的指数详情页，例如沪深300编制方案；标普道琼斯指数公司官网）。</p>
+      <p class="ctx">指数有两个关键属性。第一，<strong>规则公开、机械执行</strong>：选谁进指数、每只占多大权重，都写在编制方案里，由指数公司按规则维护，不依赖任何人的临场判断。第二，<strong>指数本身不可直接买卖</strong>——它是一个数字，你买不到"沪深300"这个东西；能买的是跟踪它的基金（本章的主角）。这就是"指数"与"指数基金"的区别：前者是成绩单，后者是照着成绩单抄作业的理财产品。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（沪深300指数详情：<a href="https://www.csindex.com.cn/#/indices/family/detail?indexCode=000300">csindex.com.cn 指数详情页</a>） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（指数基础投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>加权：为什么"平均"不是简单的除以个数</h3>
+      <p class="ctx">成绩单怎么算平均分？把每个学生分数加起来除以人数，是最直觉的"等权平均"。但主流指数用的是另一种算法——<strong>市值加权</strong>：公司越大（市值越高），在指数里说话的分量越重。沪深300、标普500都是市值加权类指数（中证指数编制方案口径），最大的几家公司可能合计占指数权重的一到两成，而排在末尾的公司权重不足千分之一。</p>
+      <p class="ctx">市值加权的逻辑是"让指数长得像市场本身"：市场里大公司的交易金额与经济影响力本来就更大。它的好处是基金照抄权重时交易成本低、容量大；争议是<strong>大公司涨得越多权重越高，指数会天然"追涨"</strong>，集中度随行情上升。等权指数（每只股票权重相同）是另一种选择，分散度更高但调仓成本也高。普通投资者需要知道的不是哪种更好，而是：<strong>你买的指数基金"平均"的是加权平均，不是人人平等</strong>——看指数的前十大权重股（编制方案与定期报告均有披露），你才知道自己实际押了什么。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（指数编制方案与加权方式） · Fama &amp; French（1993）"Common risk factors in the returns on stocks and bonds"（英文）：<a href="https://doi.org/10.1016/0304-405X(93)90023-5">https://doi.org/10.1016/0304-405X(93)90023-5</a></div>
+    </article>
+
+    <article class="view">
+      <h3>指数会"新陈代谢"：定期调整样本</h3>
+      <p class="ctx">指数不是一份永不更改的名单。指数公司会<strong>定期（常见为每半年）评审样本</strong>：市值缩水、流动性变差、被吸收合并的公司会被调出，新崛起的公司会被调入——沪深300、中证500等均有明确的定期调整安排（调整公告见<a href="https://www.csindex.com.cn/">中证指数官网</a>）。这个机制的含义常被误解为"指数自动帮你优胜劣汰、长生不老"。</p>
+      <p class="ctx">更准确的理解是：新陈代谢让指数<strong>跟随市场结构演变</strong>，但它不是免死金牌。调样有滞后（暴雷公司在被调出前你已承担其下跌）、有成本（基金跟着调仓产生交易费用，摊进跟踪误差，见第五节），而且指数覆盖的是"这一类公司"，如果整个类别长期表现不佳（比如某个市场的整体回报低于另一个市场），指数不会替你换赛道。马尔基尔在《漫步华尔街》中的经典论点是"买下整个市场、长期持有"胜过频繁挑选，但那是关于<strong>方法</strong>的论证，不是关于"任何指数任何时候都涨"的承诺（书籍，伯顿·马尔基尔《漫步华尔街》）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（样本定期调整公告与规则） · 伯顿·马尔基尔《漫步华尔街》（A Random Walk Down Wall Street，书籍，英文原版/中译本）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、指数基金：照着成绩单抄作业</h2>
+    <p class="chapter-sub">完全复制、抽样复制、增强型——被动投资的三种姿势，以及博格的那场革命</p>
+
+    <article class="view">
+      <h3>从博格的第一只零售指数基金说起</h3>
+      <p class="ctx">1976 年，约翰·博格（John Bogle）领导的先锋集团推出了面向普通投资者的第一只零售指数基金，跟踪标普500指数。当时华尔街的嘲讽铺天盖地——"放弃选股等于承认平庸"。博格的反驳后来成了被动投资的基石逻辑：<strong>所有投资者作为一个整体，拿到的就是市场总收益；扣掉成本之前，主动投资者整体只能等于市场平均，扣掉更高的成本之后，整体必然跑输被动</strong>——这是算术，不是观点（他称之为"成本重要假说"，书籍，约翰·博格《共同基金常识》）。</p>
+      <p class="ctx">注意这个论证的精妙之处：它不否认<strong>有</strong>主动管理者能长期跑赢——就像班里总有考第一的学生；它说的是<strong>你事先很难知道是哪一个</strong>，而且从整体算术上，主动阵营作为一个群体注定输给市场平均减去更低成本的被动阵营。对个人投资者的翻译：<strong>与其赌自己能挑中未来的第一名，不如直接买下全班的平均成绩</strong>。指数基金就是执行这个想法的工具：基金按指数权重买入一篮子股票，指数涨多少，基金（扣除费用后）大致涨多少。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：约翰·博格《共同基金常识》（Common Sense on Mutual Funds，书籍） · Sharpe（1991）"The Arithmetic of Active Management"，Financial Analysts Journal（英文；按篇名检索可得） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（公募基金分类投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>三种跟踪姿势：完全复制、抽样复制、增强型</h3>
+      <p class="ctx"><strong>完全复制</strong>：按指数成分与权重全部买入，跟踪最紧，适合成分股流动性好的宽基指数。<strong>抽样复制</strong>：只买入一部分有代表性的成分股来"模拟"指数走势，适合成分股太多或部分股票流动性差、交易受限的指数（不少跨境与债券指数基金采用），代价是跟踪误差通常更大（复制方式披露于基金合同与定期报告，口径见<a href="https://www.amac.org.cn/">基金业协会</a>）。<strong>指数增强型</strong>：以跟踪指数为基础，额外用一部分仓位做主动操作（打新、量化选股等）试图小幅跑赢——它本质上是"被动为主、主动为辅"的混合体，增强可能成功也可能失败，费率高于普通指数基金。</p>
+      <p class="ctx">选哪种？原则很简单：<strong>先理解再选择，理解不了就选最简单的</strong>。完全复制的宽基指数基金是三者中逻辑最透明的：你付最低的费用，拿"市场平均减去一点点成本"。增强型需要你判断"增强策略是否可信、费用是否值得"，这又回到了"挑主动管理者"的老问题——博格会说：别绕回去。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金产品备案与信息披露） · 约翰·博格《共同基金常识》（指数基金类型章节）</div>
+    </article>
+
+    <article class="view">
+      <h3>跟踪误差：为什么"复制成绩单"也会抄出差距</h3>
+      <p class="ctx">指数基金的收益率几乎永远不等于指数本身的涨跌幅，差距就是<strong>跟踪误差</strong>。来源有四：①<strong>费用</strong>——管理费、托管费每天都从基金资产里计提，这是最主要的稳定来源，意味着基金长期必然略输指数；②<strong>现金留存</strong>——基金必须留一部分现金应对赎回，市场上涨时这部分现金拖后腿；③<strong>复制方式</strong>——抽样复制天然有偏差（上一张卡）；④<strong>申赎冲击与调样成本</strong>——大额申购赎回、指数调整样本时的交易都会产生摩擦。</p>
+      <p class="ctx">跟踪误差在基金定期报告中披露（口径见<a href="https://www.amac.org.cn/">基金业协会</a>信息披露规则）。普通投资者的用法：同一指数有多只基金跟踪时，<strong>长期跟踪误差小 + 费率低</strong>是首要筛选标准（第八节流程会展开）；同时校准预期——"买了指数基金就能拿到指数涨幅"是错误预期，正确预期是"拿到指数涨幅减去费率与摩擦"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金定期报告与跟踪误差披露口径） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（ETF 与指数基金投教）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、主动 vs 被动：一场持续几十年的算术之争</h2>
+    <p class="chapter-sub">SPIVA 记分卡说了什么、没说说什么，以及主动派的合理反驳</p>
+
+    <article class="view">
+      <h3>SPIVA：给主动基金打分的官方记分卡</h3>
+      <p class="ctx">"主动基金长期跑不赢指数"这句话的证据基础，最主要来自标普道琼斯指数公司持续发布的 <strong>SPIVA 记分卡</strong>（SPIVA：S&amp;P Indices Versus Active，官网报告页为英文，建议浏览器访问：<a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">spglobal.com SPIVA 栏目</a>）。它定期统计各市场主动基金相对基准的表现，历年报告（例如 SPIVA 美国记分卡 2024 年度版，引用时以你查到的具体期数为准）反复呈现同一图景：<strong>把时间拉长到十年、十五年，大多数主动管理的美国大盘基金累计收益低于标普500基准</strong>；不同市场、不同年份的比例有起伏，但"多数跑输"的长期图景在多数发达国家市场成立。</p>
+      <p class="ctx">使用 SPIVA 结论的三个纪律：①<strong>注明期数</strong>——"SPIVA 2024 年报显示"而不是"永远如此"；②区分<strong>比例与个体</strong>——"多数跑输"不排除存在长期跑赢的少数；③注意<strong>基准匹配</strong>——大盘基金对大盘基准的结论不能随手套到小盘或债券基金上（SPIVA 对这些类别另有统计，结论并不总是同样一边倒）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">S&amp;P SPIVA 记分卡（英文，官网对自动化访问有反爬限制，建议浏览器打开；引用需注明具体期数）</a> · 伯顿·马尔基尔《漫步华尔街》（书籍）</div>
+    </article>
+
+    <article class="view">
+      <h3>公平起见：主动派的三点反驳</h3>
+      <p class="ctx">本课程坚持有争议处如实呈现。主动阵营的反驳里有三点值得认真对待：</p>
+      <p class="ctx"><strong>反驳一：加权口径偏袒被动。</strong>SPIVA 用资产加权汇总——管理规模巨大的基金表现差会拉高"跑输比例"的资产权重口径结论，而按简单基金只数统计，部分市场部分时期的跑输比例没那么夸张。<strong>反驳二：幸存者偏差是双向的。</strong>被动派批评主动基金名单里有大量"死掉清盘的基金被剔除"抬高了存活者成绩；主动派则指出指数本身也在不断剔除衰落公司，同样享受"事后视角"。<strong>反驳三：市场有效性有梯度。</strong>在研究覆盖少、定价效率低的市场与角落（部分新兴市场、小盘股），主动研究的理论空间更大——这恰是 Fama 有效市场假说与主动派争论了几十年的地带（Fama &amp; French 1992 对"低市盈率选股能稳定跑赢"提出了系统性挑战，英文：<a href="https://doi.org/10.1111/j.1540-6261.1992.tb04398.x">https://doi.org/10.1111/j.1540-6261.1992.tb04398.x</a>，Wiley 对自动化访问有反爬限制，DOI 真实有效）。</p>
+      <p class="ctx">这些反驳改变结论吗？对普通投资者的实际决策而言基本不改变：即便主动在某些角落有空间，<strong>事前挑中那个能持续利用空间的经理</strong>仍是小概率事件，而且你为这个"可能"支付的费率是确定的。但认知上要保持诚实：被动投资是"大概率更优的默认选项"，不是被证明的宇宙真理。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fama &amp; French（1992）"The Cross-Section of Expected Stock Returns"，Journal of Finance（英文）：<a href="https://doi.org/10.1111/j.1540-6261.1992.tb04398.x">https://doi.org/10.1111/j.1540-6261.1992.tb04398.x</a>（Wiley 反爬，浏览器可达） · <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">SPIVA 方法论说明（英文）</a> · 约翰·博格《共同基金常识》</div>
+    </article>
+
+    <article class="view">
+      <h3>被动的代价：你也买下了所有的"坏公司"</h3>
+      <p class="ctx">买指数就是买下整个市场，包括你道德上不喜欢、基本面上不看好的公司——被动投资放弃了"用脚投票"的权利。它还有两个结构性特点值得知道：其一，<strong>被动化程度过高时的定价问题</strong>是学界与业界的活跃争论（如果越来越多的人不研究基本面，价格由谁发现？——Grossman-Stiglitz 悖论的现代版，英文文献可检索"limits of passive investing"）；其二，指数基金在极端行情中<strong>不会主动降仓避险</strong>——市场跌多少它跟多少（减去费用），这就是为什么<a href="../03-allocation/">第3章</a>坚持股债配置：被动的风险敞口必须靠配置层来管理，不能指望基金自己躲。</p>
+      <p class="ctx">给普通人的落点：被动投资不是"躺赢"，而是"<strong>用最低成本持有市场，用配置与纪律管理风险</strong>"。它省掉的是选股与择时的徒劳内卷，省不掉的是配置决策与行为管理——后者正是<a href="../05-behavior/">第5章</a>的主题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：伯顿·马尔基尔《漫步华尔街》（书籍，被动投资边界讨论） · Grossman &amp; Stiglitz（1980）"On the Impossibility of Informationally Efficient Markets"，American Economic Review（英文；按篇名检索可得） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-04-1.png" alt="被动投资示意图：一个无脸小人推着一辆装满整齐几何方块的小车沿平缓上升的折线坡道前行，坡道旁另一条陡峭颠簸的曲线绕远路，蓝色主色调扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、成本：复利世界里最安静的收割者</h2>
+    <p class="chapter-sub">1% 的费差，几十年后差出一套房的首付——这笔账值得每个投资者亲手算一遍</p>
+
+    <article class="view">
+      <h3>算一笔账：费率如何吃掉终值</h3>
+      <p class="ctx">做一个纯算术演示（教学示例，非投资建议，非收益预测）：假设一笔钱按年化 7% 的毛收益滚动 30 年。产品 A 每年收 0.2% 费用，净收益 6.8%；产品 B 每年收 1.2% 费用，净收益 5.8%。1% 的年费差听起来微不足道——但 30 年复利之后，A 的终值约为本金的 7.2 倍，B 约为 5.4 倍，<strong>B 比 A 少了约四分之一的最终财富</strong>。费用没有"吃掉你 1%"，它吃掉的是"这 1% 在未来三十年里本该生出的所有利息"——这就是复利侵蚀的非直觉之处：<strong>费率差的影响随期限呈指数级放大</strong>。</p>
+      <p class="ctx">博格在《共同基金常识》里把这称为投资的铁律：<strong>你得到的是你不必付出的</strong>（In investing, you get what you don't pay for）。市场上同一指数的不同基金，费率可以差出数倍；费率是普通投资者为数不多能<strong>完全控制、立刻生效</strong>的变量——你控制不了市场涨跌，但你看得见每一只基金的费率数字。国内公募基金的费率结构（管理费、托管费、申赎费）在基金合同与产品资料概要中强制披露，可在<a href="https://www.amac.org.cn/">基金业协会</a>备案信息与基金公司官网核验；费用全景见<a href="../10-tax/">第10章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：约翰·博格《共同基金常识》（成本章节） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金费率披露口径） · <a href="https://www.investor.gov/">investor.gov（英文，复利与费用计算器专题）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>显性费用之外：隐性成本的三张暗账单</h3>
+      <p class="ctx"><strong>暗账单一：买卖价差与冲击成本。</strong>场内交易的 ETF 有买一卖一价差，冷门品种价差可达千分之几，频繁进出者每次都付；大额买卖还会推动价格（冲击成本）。<strong>暗账单二：换手与调仓摩擦。</strong>基金内部交易产生佣金与税费，高换手策略的隐性交易成本可能超过明示的管理费——看基金定期报告的换手率与费用附注（披露口径见<a href="https://www.amac.org.cn/">基金业协会</a>）。<strong>暗账单三：现金拖累与申赎时滞。</strong>场外基金申购赎回按未知价成交、有确认时滞，QDII 类产品还叠加汇率与时差因素。</p>
+      <p class="ctx">对普通人的三条实操结论：①优先选<strong>费率低、规模适中、跟踪误差小</strong>的产品，避开高换手高费率的"明星策略"；②<strong>降低交易频率</strong>是免费的收益增强——每少一次买卖就少付一次价差与申赎费（交易频率的代价在<a href="../05-behavior/">第5章</a>还有行为层面的证据）；③看产品别只看宣传单页上的管理费，去定期报告里翻<strong>费用附注与换手率</strong>——暗账单加起来常常比明账单大。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（信息披露与定期报告口径） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（ETF 交易机制投教） · <a href="https://www.investor.gov/">investor.gov（英文，投资费用专题）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、ETF 与场外指数基金：同一条路的两种走法</h2>
+    <p class="chapter-sub">交易方式、费率、门槛、纪律性——一张对照表加五个筛选维度</p>
+
+    <article class="view">
+      <h3>机制差异：场内买卖 vs 场外申赎</h3>
+      <p class="ctx"><strong>ETF（交易型开放式指数基金）</strong>在交易所上市，像股票一样盘中实时买卖，需要证券账户（开户流程见<a href="../08-account/">第8章</a>；ETF 制度与产品说明见<a href="https://edu.sse.com.cn/">上交所</a>、<a href="https://www.szse.cn/investor/index.html">深交所</a>投教栏目）。<strong>场外指数基金</strong>通过基金公司直销、银行、券商代销或第三方持牌销售平台按每日收盘后的净值申购赎回，无需盯盘。两者底层可以跟踪同一个指数，差异主要在交易机制与随之而来的费用结构、行为体验。</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>场内 ETF</th><th>场外指数基金</th></tr>
+        <tr><td>交易方式</td><td>证券账户盘中实时买卖，价格随行就市</td><td>按当日净值申赎（未知价），T 日或 T+1 确认</td></tr>
+        <tr><td>典型费用</td><td>券商佣金（双向，无印花税——基金交易免征印花税，以官方口径为准）+ 基金管理托管费</td><td>申购费（常有折扣）+ 赎回费（持有期越长越低）+ 管理托管费</td></tr>
+        <tr><td>门槛</td><td>以 100 份为一手，单价低时几百元即可</td><td>常见 1 元、10 元起，支持自动定投</td></tr>
+        <tr><td>定投便利</td><td>需手动或券商条件单</td><td>自动扣款定投成熟</td></tr>
+        <tr><td>行为体验</td><td>盘中可见价格跳动，诱惑多、容易手痒</td><td>每天只有一个净值数字，天然"钝感"</td></tr>
+        <tr><td>适合谁</td><td>有证券账户、能管住手、需要盘中灵活性者</td><td>定投族、怕自己乱操作者、无证券账户者</td></tr>
+      </table>
+      <p class="ctx">注意表中"行为体验"这一行——它常被忽略，却可能比费率差更影响你的实际收益。场内实时价格的诱惑叠加手机推送，对自控力的要求高得多（<a href="../05-behavior/">第5章</a>会解释为什么"少看盘"本身就是收益策略）。选择建议：<strong>如果你打算定投并且容易手痒，场外自动定投是对自己的保护</strong>；如果你已有证券账户且交易纪律好，ETF 的低成本与灵活性是加分项。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（ETF 投教） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金销售与费用口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>联接基金、LOF 与那些容易混淆的名字</h3>
+      <p class="ctx">还有几个常见名词，用一段话理清：<strong>ETF 联接基金</strong>是场外基金，把绝大部分资产投入目标 ETF，等于给没有证券账户的人搭了座桥，费率上比直接持有 ETF 略高一层（多一层基金的费用）；<strong>LOF</strong>（上市型开放式基金）既能场内买卖又能场外申赎，机制上是"两栖"产品，场内价格可能偏离净值，注意别在明显溢价时买入；<strong>A 类/C 类份额</strong>是同一只基金的不同收费模式——A 类收申购费、适合长期持有，C 类不收申购费但按日计提销售服务费、适合短期持有，长持 C 类反而更贵（分类与费率以基金合同为准，口径见<a href="https://www.amac.org.cn/">基金业协会</a>；A/C 类的盈亏平衡细节在<a href="../10-tax/">第10章</a>展开）。</p>
+      <p class="ctx">这些名字的共同启示：<strong>产品的法律文件（基金合同、招募说明书、产品资料概要）是唯一权威口径</strong>，销售页面的宣传语不是。买之前花十分钟读产品资料概要——它是监管要求用平实语言写的"产品说明书"，费率、风险等级、投资范围都在里面。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金备案信息与产品资料概要口径） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（LOF/联接基金投教）</div>
+    </article>
+
+    <blockquote class="q">
+      <strong>指数基金筛选五步流程（可直接照做）：</strong><br>
+      第一步 验身份：在证监会许可的正规渠道购买；到<a href="https://www.amac.org.cn/">基金业协会</a>官网核验产品备案与管理人资质，查无此"基金"的一律是骗局（<a href="../11-scam/">第11章</a>）；<br>
+      第二步 对指数：确认跟踪的是哪个指数，去<a href="https://www.csindex.com.cn/">中证指数官网</a>读编制方案——成分、加权、行业分布、前十大权重，想清楚"我买的是什么"；<br>
+      第三步 比成本：同一指数多只产品对比管理费+托管费（场外再比申赎费，场内再比佣金与价差），选便宜的那档；<br>
+      第四步 查跟踪：看定期报告里的跟踪误差与偏离度历史，长期越小说明管理越精细；顺手看规模——过小（如低于 5000 万元，以监管清盘口径为准）有清盘风险，过大对宽基无碍、对小容量指数可能拖累；<br>
+      第五步 试持有心态：问自己"这只基金跌 30% 我还拿得住吗"——拿不住就降低仓位或换更稳的配置（<a href="../03-allocation/">第3章</a>），别指望产品替你解决心理问题。
+      <span class="qsrc">—— 依据基金业协会备案信息、中证指数编制方案与交易所投教材料整理的教学流程，不构成任何产品推荐</span>
+    </blockquote>
+
+    <div class="fig">
+      <img src="../assets/img-04-2.png" alt="筛选漏斗示意图：一个无脸小人把许多大小不一的几何球倒入一个蓝色漏斗，漏斗分层过滤后底部落下几颗整齐的标准方块，蓝色主色调扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、定投：用纪律对抗人性，但不保证盈利</h2>
+    <p class="chapter-sub">微笑曲线的真实含义、定投的适用边界，以及它最大的敌人</p>
+
+    <article class="view">
+      <h3>定投在做什么：定期定额，摊平成本</h3>
+      <p class="ctx">定投（定期定额投资）的机制一句话就能说清：<strong>固定时间、固定金额买入</strong>，价格低时同样的钱买到更多份额，价格高时买到更少份额，长期下来持仓成本被摊平成一条比价格走势平缓的线。宣传材料里著名的"微笑曲线"说的是：市场先跌后涨时，定投者恰好在低位积累了大量便宜份额，曲线右端回到起点时账户已经盈利——听起来像免费午餐。</p>
+      <p class="ctx">但要把微笑曲线的<strong>前提条件</strong>看清楚：①它要求市场<strong>最终涨回来</strong>——如果标的长期不涨（比如某些陷入长期停滞的市场或单一行业），定投只是持续摊低一个没有回升的平均成本，"越跌越买"变成"越买越套"；②曲线右端的盈利来自<strong>低位积累的份额</strong>，而多数人在真正的低位恰恰停止了扣款（恐慌）——微笑曲线在纸面上完整，在人性面前经常断裂。所以定投的真正价值排序是：<strong>纪律性第一（强制储蓄、阻止你择时乱动），成本摊平第二，"低买"红利第三</strong>（定投投教口径见<a href="https://www.amac.org.cn/">基金业协会</a>与交易所投教材料）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（基金定投投教） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a> · <a href="https://www.investor.gov/">investor.gov（英文，dollar-cost averaging 专题）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>定投的适用边界：什么钱适合、什么钱不适合</h3>
+      <p class="ctx"><strong>适合定投的</strong>：期限长（五年、十年以上）、金额稳定（每月工资结余）、标的分散（宽基指数或均衡配置的组合，见<a href="../03-allocation/">第3章</a>）的钱——养老储备、子女教育金是典型场景，个人养老金制度的长期封闭属性天然匹配定投节奏（<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号</a>）。<strong>不适合定投的</strong>：三年内要用的钱（首付、学费——期限太短，摊平机制来不及发挥作用，本金安全优先）、波动极端或逻辑不明的标的（单一行业主题、看不懂的产品——定投救不了选错标的）、以及<strong>用"定投"名义加杠杆或借钱扣款</strong>的行为（杠杆的风险警示见<a href="../02-risk/">第2章</a>）。</p>
+      <p class="ctx">还有一个高频问题：<strong>一次性投入还是分批定投？</strong>学术与业界的历史数据回测大体同向：在长期上涨的市场里，一次性投入的期望收益通常高于分批（因为资金更早进入市场），但分批显著降低了"买在山顶"的懊悔与波动体验。这又是"期望值 vs 行为舒适度"的权衡——<strong>如果你会因为一次性买入后立刻下跌而恐慌割肉，那对你个人而言分批就是更优解</strong>（策略对比的完整展开在<a href="../09-strategy/">第9章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《关于推动个人养老金发展的意见》（证监会转载全文）</a> · <a href="https://www.investor.gov/">investor.gov（英文，一次性投入与分批投入比较）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a></div>
+    </article>
+
+    <article class="view">
+      <h3>定投最大的敌人：中断、加码与"止盈靠感觉"</h3>
+      <p class="ctx">定投的失败案例极少败在机制，几乎都败在执行。三种典型死法：<strong>死法一：跌到深处停了扣款</strong>——恰恰在微笑曲线最需要份额的左谷底断供，之前积累的成本优势付诸东流；对策是把扣款日设在发薪日后一两天、金额设为"没有它也不影响生活"的数目，让它像房租一样自动。<strong>死法二：涨起来后不断加大投入</strong>——牛市情绪驱使下把定投金额越调越高，成本重心被抬到高位，一次回撤抹平全部利润；对策是金额规则提前写死，调整（如有）一年只允许一次。<strong>死法三：没有退出规则</strong>——"定投只买不卖"是常见误解，长期目标（养老除外）需要止盈或按目标日期逐步转向稳健资产，否则坐过山车；对策是在开始定投前就写下退出条件（目标收益率、目标日期、资金用途时点），条件到了机械执行——具体的卖出纪律在<a href="../09-strategy/">第9章</a>展开。</p>
+      <p class="ctx">三种死法的共同解药只有一个词：<strong>事前规则化</strong>。定投是一台纪律机器，人是那台机器上最不稳定的零件——这正是下一章的主题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（定投风险提示投教） · 约翰·博格《共同基金常识》（纪律与长期持有章节） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、宽基与行业指数：分散度的两个档位</h2>
+    <p class="chapter-sub">沪深300 与"某行业指数"的风险差异，以及普通人的默认选择</p>
+
+    <article class="view">
+      <h3>宽基指数：买下"一片森林"</h3>
+      <p class="ctx">宽基指数跨行业覆盖整个市场或某个市值层级：沪深300（大盘蓝筹）、中证500（中盘）、中证1000（小盘）、中证A500（大中盘均衡覆盖的新宽基）等（指数目录与编制方案见<a href="https://www.csindex.com.cn/">中证指数有限公司</a>；境外宽基如标普500）。它的特点是：<strong>单一行业的坏消息对整体冲击有限</strong>——某个行业衰退，指数会通过定期调样逐渐降低其权重，你不需要自己判断行业轮动。</p>
+      <p class="ctx">宽基指数是<a href="../03-allocation/">第3章</a>分散化逻辑的直接产品：它把非系统性风险（单个公司、单个行业）稀释到最低，只留下无法分散的市场系统性风险。对没有时间研究行业的普通投资者，<strong>宽基 + 低费率 + 长期持有是被动投资的默认姿势</strong>——注意"默认"二字：它意味着除非你能说清理由，否则不该偏离。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（宽基指数目录与编制方案） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a></div>
+    </article>
+
+    <article class="view">
+      <h3>行业与主题指数：押注"一片树林"的代价</h3>
+      <p class="ctx">行业指数只覆盖单一行业（医药、白酒、半导体、新能源……），主题指数围绕某个概念跨行业选样。它们的问题用<a href="../03-allocation/">第3章</a>的语言一目了然：<strong>行业指数把分散化主动扔掉了</strong>——你承担了单一行业的政策风险、周期风险、技术替代风险，而这些恰恰是宽基本可以帮你稀释的非系统性风险。历史上单一行业指数在风口年份大涨、在退潮年份腰斩都不罕见（各类行业指数历史波动可在<a href="https://www.csindex.com.cn/">中证指数官网</a>查询，历史表现不代表未来）。</p>
+      <p class="ctx">更麻烦的是行为陷阱：散户买入行业主题基金的时点，统计上高度集中于该主题已经大涨、媒体热度最高之后——等于<strong>系统性地买在行业周期的情绪顶部</strong>（追涨行为的研究证据见<a href="../05-behavior/">第5章</a>；基金投资者申购行为的行业口径可参考<a href="https://www.amac.org.cn/">基金业协会</a>发布的公募基金市场数据）。本课程对行业主题基金的立场：<strong>不推荐作为普通人的配置主体</strong>；如果确有研究与信念，也应作为卫星仓位控制在小比例内（核心-卫星思路见<a href="../17-portfolio/">第17章</a>），并且问自己"我能说清这个行业的赚钱逻辑与退出条件吗"——说不清，就不买。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csindex.com.cn/">中证指数有限公司</a>（行业与主题指数目录） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a>（公募基金市场数据） · 伯顿·马尔基尔《漫步华尔街》（书籍，行业轮动难度）</div>
+    </article>
+
+    <article class="view">
+      <h3>跨境指数：分散地域的补充选项与三重注意点</h3>
+      <p class="ctx">通过 QDII 基金、互联互通机制下的跨境 ETF 等合规渠道，境内投资者可以获得对境外市场指数的暴露（制度说明见交易所投教与<a href="https://www.csrc.gov.cn/">证监会</a>监管口径；本课程只讲认知框架，不做产品推荐）。跨境配置的逻辑与<a href="../03-allocation/">第3章</a>一致：不同经济体的周期不完全同步，地域分散是资产分散之外的又一层分散——但注意"跨市场≠跨风险"，全球风险事件中各市场联动性会上升。</p>
+      <p class="ctx">三个注意点：①<strong>额度与溢价</strong>——QDII 有外汇额度限制，热门产品场内价格可能大幅高于净值（溢价），高溢价买入等于替别人的抢购买单，务必比较场内价格与净值（IOPV，交易所行情披露口径）；②<strong>汇率风险</strong>——人民币计价的境外指数基金收益包含汇率变动，这是额外的波动来源；③<strong>时差与费用</strong>——跨境产品的申赎确认更慢、综合费率通常更高。任何绕开合规渠道的"境外配资开户""地下钱庄换汇炒美股"都是违法活动，风险警示见<a href="../13-regulation/">第13章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（跨境投资监管口径）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（跨境 ETF 与 QDII 投教） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">关于指数基金的六个流行说法，逐条过堂；然后是 16 道讲给朋友听的自测题</p>
+
+    <article class="view">
+      <h3>谣言粉碎：指数投资路上的六个流行误解</h3>
+      <p class="ctx"><strong>误解一："指数基金稳赚不赔。"</strong>——错，而且是最危险的错。指数基金完整承担市场的系统性风险，指数跌多少它跟多少（<a href="../02-risk/">第2章</a>）。任何"稳赚不赔"话术都是骗局信号（证监会风险提示口径，<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">证监会要闻</a>）。</p>
+      <p class="ctx"><strong>误解二："买指数基金=拿到指数涨幅。"</strong>——错。费用、现金留存、复制偏差、申赎摩擦构成跟踪误差，长期结果是"指数涨幅减去费用与摩擦"（第二节）。选基金要看跟踪误差历史。</p>
+      <p class="ctx"><strong>误解三："主动基金跑输是暂时的，好经理总会赢。"</strong>——SPIVA 各期数据（注明期数引用）显示的恰是<strong>拉长期限后跑输比例上升</strong>的图景；且"事前挑中好经理"与"事后看到好经理"是两回事——过往业绩不代表未来（基金销售材料的法定提示语，口径见<a href="https://www.amac.org.cn/">基金业协会</a>）。</p>
+      <p class="ctx"><strong>误解四："费率都差不多，无所谓。"</strong>——第四节已算账：1% 年费差在 30 年复利下差出约四分之一的终值。费率是你能完全控制的变量，也是最该较真的变量。</p>
+      <p class="ctx"><strong>误解五："定投任何产品都行，反正是分批买。"</strong>——定投摊平的是成本，不改变标的的长期逻辑；对长期不涨的标的或高波动单一行业，定投同样亏钱（第六节）。定投适合的是"长期向上的分散标的+长钱"。</p>
+      <p class="ctx"><strong>误解六："ETF 比场外基金高级，懂行的人都买 ETF。"</strong>——两者可以跟踪同一指数、底层资产相同，差异在交易机制与费用结构（第五节对照表）。"高级"与否取决于是否匹配你的纪律与场景，不取决于名字。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻</a> · <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">S&amp;P SPIVA 记分卡（英文，注明期数引用）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 指数基金自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>用"全班平均分"的比喻解释指数是什么？指数和指数基金的区别？</li>
+        <li>市值加权和等权加权的区别？为什么说市值加权指数会天然"追涨"？</li>
+        <li>指数为什么要定期调整样本？"新陈代谢"能保护你不亏钱吗？</li>
+        <li>博格的"算术论证"：为什么主动投资者作为一个整体必然跑输被动？这个论证承认主动个体能赢吗？</li>
+        <li>完全复制、抽样复制、指数增强各适合什么情况？理解不了增强逻辑时该怎么选？</li>
+        <li>跟踪误差的四个来源？"买指数基金=拿指数涨幅"为什么是错误预期？</li>
+        <li>SPIVA 是什么、结论怎么用（期数、比例与个体、基准匹配三个纪律）？</li>
+        <li>主动派的三点合理反驳是什么？它们改变普通人的默认选择吗？</li>
+        <li>被动投资放弃了什么权利？为什么它必须配合资产配置使用？</li>
+        <li>亲手算一遍：7% 毛收益下 0.2% 与 1.2% 费率差 30 年的终值差多少？</li>
+        <li>隐性成本的三张暗账单是什么？降低交易频率为什么是"免费的收益增强"？</li>
+        <li>ETF 与场外指数基金的六维差异？"容易手痒的人"为什么更适合场外自动定投？</li>
+        <li>ETF 联接基金、LOF、A 类/C 类份额分别是什么？A/C 怎么选？</li>
+        <li>微笑曲线的两个前提条件？定投价值的真实排序（纪律、摊平、低买）？</li>
+        <li>定投的三种典型死法与对策？为什么"事前规则化"是共同解药？</li>
+        <li>行业指数为什么违背分散化逻辑？跨境指数的三个注意点（溢价、汇率、时差费用）？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>指数＝按公开规则编制的一篮子股票的"平均成绩单"，主流指数按市值加权并定期调样，指数本身不可买卖，可买的是跟踪它的基金；指数基金的逻辑基石是博格的算术：主动整体扣费后必输被动，SPIVA 历年记分卡（引用注明期数）显示长期多数主动基金跑输基准，但这是"大概率更优的默认选项"而非宇宙真理——主动派关于加权口径、双向幸存者偏差、市场有效性梯度的反驳应如实知晓；费率是复利世界最安静的收割者：1% 年费差 30 年吃掉约四分之一终值，显性费用之外还有价差、换手、现金拖累三张暗账单；ETF（场内实时、需证券账户、佣金制）与场外指数基金（净值申赎、自动定投、钝感保护）同途殊归，按纪律与场景选而非按"高级"选；筛选五步：验备案身份→读指数编制方案→比全口径成本→查跟踪误差与规模→自评持有心态；定投的价值排序是纪律第一、摊平第二，微笑曲线要求"市场涨回来+你没在谷底断供"，不保证盈利，短钱与单一行业不适合；宽基是分散化逻辑的直接产品、普通人的默认选择，行业主题指数主动扔掉分散且常买在情绪顶部，跨境配置注意溢价、汇率与合规渠道。下一章直面比选品更难的问题：<a href="../05-behavior/">你自己的大脑</a>。所有产品提及均为教学说明，不构成推荐。
+  </div>
+
+  <nav class="pager">
+    <a href="../03-allocation/"><span class="dir">← 第3章</span>资产配置：别把鸡蛋放在一个篮子里</a>
+    <a href="../05-behavior/"><span class="dir">第5章 →</span>行为金融：你最大的敌人是自己</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第4章 · 依据证监会与交易所官方投教材料、《证券法》等法规、经典金融教材及学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 投资者维权可拨打 12386 热线 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

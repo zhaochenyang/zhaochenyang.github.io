@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第19章 家庭财务与生命周期 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:var(--accent-deep);border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第19章 · 第四部分 · 你自己的方案</div>
+  <h1>家庭财务与生命周期</h1>
+  <p>两张表摸清家底、生命周期决定仓位、个人养老金与教育金怎么规划、保险的顺序为什么是"先大人后小孩"——把投资放回家庭生活的大图景里</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../18-review/">← 第18章：记录、复盘与卖出</a>
+    <a href="../20-future/">第20章：长期主义 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">两张表</a>
+    <a class="anchor" href="#s2">生命周期</a>
+    <a class="anchor" href="#s3">个人养老金</a>
+    <a class="anchor" href="#s4">产品与账户</a>
+    <a class="anchor" href="#s5">教育金</a>
+    <a class="anchor" href="#s6">保险与传承</a>
+    <a class="anchor" href="#s7">夫妻沟通</a>
+    <a class="anchor" href="#s8">谣言与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供<strong>投资教育与参考</strong>，不构成投资建议、税务建议或保险产品销售推荐；市场有风险，投资需谨慎。本课程<strong>不“荐股”、不预测行情、不承诺收益</strong>，不推荐任何具体金融机构与产品；请警惕以"荐股""养老理财稳赚"为话术的骗局，个人养老金等业务只通过具备相应资格的正规机构办理。本章涉及的个人养老金制度、税收优惠、费率等以人社部、税务总局等官方最新口径为准（截至 2026 年 10 月）；文中所有数字与测算均为教学示例。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用"家庭资产负债表+现金流量表"两张表摸清家底，算出自己的储蓄率；②理解人力资本与金融资本的跷跷板，解释为什么权益仓位应随年龄滑动；③说清个人养老金制度的四个关键数字（12000元/年、封闭运行、三种领取情形、3%领取税率）；④用"教育金倒推三步法"把目标变成每月储蓄额；⑤背出家庭保险配置的顺序原则（先大人后小孩、先保障后理财）；⑥设计一场不吵架的家庭财务对话。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章是<a href="../16-plan/">第16章</a>投资计划的"家庭版"：前面的章节解决"钱怎么投"，本章解决"哪些钱、以什么顺序、为谁投"。读完建议和家人一起把 s1 的两张表画出来——这张表比任何投资建议都更能改变一个家庭的财务轨迹。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、两张表摸清家底：多数家庭财务是"三不知"</h2>
+    <p class="chapter-sub">不知道有多少钱、每个月进多少出多少、能承受多大波动</p>
+
+    <article class="view">
+      <h3>场景：账户不少，家底不清</h3>
+      <p class="ctx">老陈夫妇（示例人物）都是普通上班族，工作十几年：一张工资卡、两个证券账户、三份保险、一笔放在父母那里的钱、还有房贷和车贷。某天晚上两人闲聊，发现谁也说不清"咱家现在到底有多少钱、欠多少钱、每个月能剩多少"。他们不是不理财——恰恰相反，他们买过基金、炒过股、被推销过保险，每一样都"理"过，但从来没有把整个家庭的财务放在一张纸上看过。</p>
+      <p class="ctx">这就是绝大多数家庭的真实状态，可以概括为"三不知"：不知家底（资产与负债的全貌）、不知流量（每月收入与支出的结构）、不知承受力（如果资产缩水两成，生活受多大影响）。"三不知"状态下做投资，等于不知道船有多大吃水多深就出海——行情好的时候看不出问题，风浪一来，被迫在最低点卖资产应急的，往往就是这类家庭。</p>
+      <p class="ctx">本章从两张表开始，因为它们是一切家庭财务决策的地基：资产负债表回答"我们现在站在哪里"，现金流量表回答"我们每月能往前走多远"。两张表都不难，难的是诚实——把所有账户、所有欠款、所有"不好意思算进来"的数字都放进去。第一次做，建议夫妻两人各列各的，再合并对账，这个"对不上"的过程本身就极有价值。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a>（家庭理财基础系列投教课程） · <a href="https://www.investor.org.cn/">中国投资者网</a>（中证投服主办，投资者自我教育课程入口）</div>
+    </article>
+
+    <article class="view">
+      <h3>第一张表：家庭资产负债表</h3>
+      <p class="ctx">企业有资产负债表，家庭也可以有一张，结构完全一样：左边（或上半部分）列<strong>资产</strong>——按变现速度排序：现金与活期、货币基金类、定期与债券类、基金与股票、房产（自住与投资分开列）、其他（保单现金价值、公积金余额等）；右边（或下半部分）列<strong>负债</strong>——房贷、车贷、消费贷、信用卡分期、向亲友的借款。资产减负债，就是<strong>家庭净资产</strong>——这是全表最重要的一个数字。</p>
+      <table class="cmp">
+        <tr><th>项目</th><th>列什么</th><th>常见遗漏</th></tr>
+        <tr><td>流动资产</td><td>现金、活期、货币基金类</td><td>散落各支付平台的零钱</td></tr>
+        <tr><td>投资资产</td><td>股票、基金、债券、理财产品</td><td>忘了密码的旧账户、父母代管的钱</td></tr>
+        <tr><td>使用资产</td><td>自住房、自用车</td><td>把自住房算进"可投资的钱"（不能）</td></tr>
+        <tr><td>负债</td><td>房贷、车贷、消费贷、分期</td><td>信用卡账单、人情借款</td></tr>
+        <tr><td>净资产</td><td>总资产 − 总负债</td><td>只算资产不算负债的"虚胖"</td></tr>
+      </table>
+      <p class="ctx">做这张表会立刻暴露两个关键比例：<strong>应急储备够不够</strong>（流动资产是否覆盖3-6个月家庭支出，这是<a href="../16-plan/">第16章</a>的第一步）；<strong>负债率危不危险</strong>（月还款额占月收入的比例，超过一半的家庭在收入中断时非常脆弱）。这两个比例不合格之前，谈任何"配置多少权益"都是空中楼阁。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育</a>（家庭资产配置基础） · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务</a>（理性投资与财务规划投教材料）</div>
+    </article>
+
+    <article class="view">
+      <h3>第二张表：家庭现金流量表与储蓄率</h3>
+      <p class="ctx">第二张表记录一个月的<strong>流入与流出</strong>：流入是税后工资、奖金、副业收入、投资分红；流出分四类——固定支出（房贷房租、保费、订阅）、必要生活支出（餐饮交通水电）、弹性支出（购物娱乐社交）、投资与储蓄（定投、还本）。只需要认真记一个月（支付软件账单可以导出大半），结构就会现形。</p>
+      <p class="ctx">这张表的核心产出是一个数字：<strong>储蓄率 =（流入 − 消费性流出）÷ 流入</strong>。为什么它是全章最重要的指标？因为长期财富积累的引擎不是收益率，而是储蓄率×时间的复利：一个储蓄率30%、配置稳健的家庭，长期结果大概率好过储蓄率5%、追逐高收益的家庭——后者的"高收益"往往只是高风险的另一个名字。储蓄率还决定了你的投资期限结构：每月能稳定投入的钱，才是真正可以承受长期波动的钱。</p>
+      <p class="ctx">两张表建议每半年更新一次资产负债表、每年做一次完整的现金流记录。它们不是会计作业，是家庭财务的仪表盘——第18章讲投资要有日志，家庭层面要有的是这两张表。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（财务规划与储蓄习惯课程） · <a href="https://www.stats.gov.cn/">国家统计局官网</a>（居民人均可支配收入与消费支出官方统计，作为对照口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、生命周期：人力资本与金融资本的跷跷板</h2>
+    <p class="chapter-sub">你最大的资产，可能还不在证券账户里</p>
+
+    <article class="view">
+      <h3>年轻人最值钱的资产是未来的工资</h3>
+      <p class="ctx">生命周期金融（life-cycle finance）是现代金融学的重要分支，Bodie、Merton 等学者的框架给出了一个反直觉但极其有用的视角：一个家庭的总财富由两部分组成——<strong>金融资本</strong>（账户里的钱和资产）和<strong>人力资本</strong>（未来劳动收入的现值，通俗说就是"这辈子还能挣多少钱"）。刚工作的年轻人金融资本接近零，但人力资本巨大——未来三十年的工资折成现值，往往远超同期任何一笔投资；临近退休则相反，人力资本所剩无几，金融资本成为生活的主要依靠（此为教材概念的文字转述，见来源）。</p>
+      <p class="ctx">这个视角立刻解释了"为什么年轻人可以多配权益"：你的总财富里有一大块"类债券"资产（未来工资流，相对稳定），金融账户里配高波动的股票，整体风险其实是平衡的。反过来，退休者的财富几乎全在金融账户里，再也"亏不起本金"，稳健就成了第一原则。所谓随年龄下滑的权益比例（"100减年龄"之类的拇指法则只是粗糙的起点，不是公式），本质上就是人力资本与金融资本的此消彼长。</p>
+      <p class="ctx">人力资本视角还有一个常被忽略的推论：<strong>你的职业本身就是持仓</strong>。收入高度依赖某个行业的人（比如金融从业者、地产从业者），其人力资本已经重仓了这个行业，金融账户再重仓同行业股票，等于双倍下注——分散配置时，这是应该刻意避开的重叠（见<a href="../17-portfolio/">第17章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：Bodie, Kane &amp; Marcus《投资学》与 Merton 生命周期金融框架（机械工业出版社中译本，文字引用） · <a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（长期投资与年龄配置类投教）</div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-19-1.png" alt="抽象插画：一个跷跷板，左端是一个发光的几何人形代表未来收入的人力资本，右端是堆叠的方块与圆币代表金融资本，跷跷板下方是一条从青年到老年的时间轴，两端高度随位置此消彼长" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>生命周期四阶段：财务任务各不相同</h3>
+      <p class="ctx">把生命周期粗略切成四段，每段的核心财务任务完全不同。<strong>起步期（工作头几年）</strong>：任务是建地基——应急金、社保医保确认、开始强制储蓄与指数定投，金额不重要，习惯重要；这个阶段最大的风险不是亏损，而是用杠杆消费透支未来。<strong>积累期（成家立业到子女独立前）</strong>：任务最重——房贷、育儿、赡养老人、养老储备四线并行，储蓄率达到峰值，配置以"目标分账户"方式管理（<a href="../16-plan/">第16章</a>）；这个阶段最大的风险是保障缺口（家庭经济支柱没有足够的保险，见 s6）。</p>
+      <p class="ctx"><strong>巩固期（子女独立后到退休前）</strong>：现金流压力下降，养老储备进入冲刺，权益比例开始系统性下调，个人养老金账户（s3）应充分利用；最大的风险是"临退休重仓博一把"——越接近用钱时点，一次大回撤的破坏力越大，因为它没有时间来修复。<strong>支取期（退休后）</strong>：任务从"积累"翻转为"有纪律地支取"，资产以稳健为主、保留一部分权益对抗长寿风险与通胀；最大的风险是金融诈骗——针对老年人的投资骗局占比极高，本章 s6 与<a href="../11-scam/">第11章</a>的防骗框架在这个阶段价值最大。</p>
+      <p class="ctx">对照四阶段，先回答一个问题：<strong>我现在处在哪个阶段，这个阶段的核心任务我完成了吗？</strong>绝大多数家庭财务焦虑的来源，是用积累期的仓位风险去解决起步期的问题，或者用起步期的激进心态对待巩固期的钱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（全生命周期投资者教育课程） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（老年投资者保护专题投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>风险承受能力会变：定期重测，别用五年前的问卷</h3>
+      <p class="ctx">生命周期视角还提醒我们：风险承受能力不是天生的性格，而是随人生状态变化的变量。结婚、生育、买房、换工作、父母生病、临近退休——每一个事件都在改写你"能承受多大波动"的真实答案。监管制度对此有明确呼应：《证券期货投资者适当性管理办法》（证监会令第130号）把适当性管理设计为持续过程，要求经营机构关注投资者信息的重大变化并及时更新评估——你在券商做过的风险测评问卷，本来就是有"保质期"的。</p>
+      <p class="ctx">给普通家庭的操作建议：把"重测风险承受力"写进年度复盘（<a href="../18-review/">第18章</a>），人生重大事件发生后随时加测一次。重测时警惕两个方向的失真：牛市里人人觉得自己能扛（高估），暴跌后人人觉得自己不能扛（低估）——真实的答案应该基于你的负债结构、用钱时点和收入稳定性来推，而不是基于最近的心情。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（证监会令第130号）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（风险测评与适当性投教）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、个人养老金：一项制度，四个数字</h2>
+    <p class="chapter-sub">12000元/年、封闭运行、三种领取情形、3%领取税率</p>
+
+    <article class="view">
+      <h3>制度是什么：国家搭台的个人养老第三支柱</h3>
+      <p class="ctx">我国的养老保障体系是"三支柱"结构：第一支柱是基本养老保险（社保），第二支柱是企业年金与职业年金（覆盖面有限），第三支柱就是个人养老金——个人自愿参加、市场化运营、国家给予税收优惠支持的补充养老制度。2022年4月国务院办公厅印发《关于推动个人养老金发展的意见》（国办发〔2022〕7号）确立制度框架，同年11月人力资源社会保障部等五部门发布《个人养老金实施办法》并启动试点。</p>
+      <p class="ctx">制度的四个关键设计，用四个数字和要点概括：<strong>其一，每年缴费上限12000元</strong>（可按月、分次或一次性缴，额度按年计算）；<strong>其二，账户封闭运行</strong>——个人养老金资金账户实行封闭管理，除另有规定外不得提前支取，这是制度替你锁住的"专款专用"；<strong>其三，三种主要领取情形</strong>——达到领取基本养老金年龄、完全丧失劳动能力、出国（境）定居等（以《实施办法》口径为准）；<strong>其四，账户余额可以继承</strong>——参加人身故后，资金账户内的余额可以依法继承，钱始终是你的（或你家人的）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号《关于推动个人养老金发展的意见》（证监会转载全文）</a> · <a href="https://rst.fujian.gov.cn/zw/zxwj/rsbwj/202211/t20221114_6046283.htm">《个人养老金实施办法》（福建省人社厅转载全文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>2024年12月起全面实施：从试点走向全国</h3>
+      <p class="ctx">个人养老金制度2022年11月起在36个先行城市（地区）试点，<strong>2024年12月15日起在全国范围全面实施</strong>：实施范围扩大到全国，税收优惠由试点地区同步扩展到全国，产品范围也在储蓄、理财、保险、公募基金四类基础上将国债、特定养老储蓄、指数基金等纳入（以官方公告口径为准）。这是理解这项制度的时间坐标——如果你看到的文章还在说"仅限36个城市"，它已经过时了。</p>
+      <p class="ctx">参加方式很简单：通过全国统一线上服务入口（电子社保卡、掌上12333、国家社会保险公共服务平台等）或商业银行渠道开立<strong>个人养老金账户</strong>（人社侧，记录缴费与税优）和<strong>个人养老金资金账户</strong>（银行侧，用于缴费、投资与领取），两个账户一一对应、互相绑定。开户本身免费；是否缴费、缴多少、买什么产品，完全自愿自主。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://shanghai.chinatax.gov.cn/zcfw/zcfgk/sbf/202412/t474529.html">《关于全面实施个人养老金制度的通知》（上海市税务局转发全文）</a> · <a href="https://www.news.cn/politics/2022-11/04/c_1129101319.htm">新华社：五部门发布《个人养老金实施办法》</a></div>
+    </article>
+
+    <article class="view">
+      <h3>EET 模式白话：现在少缴税、投资不缴税、领取缴3%</h3>
+      <p class="ctx">税收优惠是这项制度最实在的激励，模式上属于"EET"：缴费环节（E-xempt 免税）——按每年12000元限额标准据实在综合所得或经营所得中税前扣除；投资环节（E-xempt）——计入个人养老金资金账户的投资收益暂不征税；领取环节（T-axed 征税）——领取时按<strong>3%</strong>的税率单独计算缴纳个人所得税（不并入综合所得）。三个环节的口径均以税务总局现行文件为准。</p>
+      <p class="ctx">它到底省多少钱？取决于你的边际税率（教学示例，非税务建议）：边际税率越高，缴费抵税的即时收益越大——高税率人群缴满12000元，当年省下的税可能超过领取时按3%补缴的税；而目前不缴个税的人群（收入未达起征点），缴费环节没有抵税收益，领取时反而要缴3%，参加的意义就要重新权衡。另外别忘了<strong>流动性代价</strong>：钱要封闭到退休才能领，这对现金流紧张的家庭是真约束。"要不要参加"是一道算术题+流动性题，不是跟风题——具体测算建议咨询税务师等专业人士。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">财政部 税务总局个人养老金个人所得税优惠政策公告（国家税务总局法规库）</a> · <a href="https://shanghai.chinatax.gov.cn/zcfw/zcfgk/sbf/202412/t474529.html">《关于全面实施个人养老金制度的通知》（税收优惠全国实施口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、养老金产品与账户操作：四类产品和 Y 份额</h2>
+    <p class="chapter-sub">账户里能买什么、怎么挑、哪些坑要绕开</p>
+
+    <article class="view">
+      <h3>四类产品：储蓄、理财、保险、基金（含指数基金）</h3>
+      <p class="ctx">个人养老金账户里的钱不是只能躺着：参加人可以用账户资金购买符合规定的<strong>储蓄存款、理财产品、商业养老保险、公募基金</strong>四类养老金融产品，2024年全面实施时又将国债、特定养老储蓄、指数基金等纳入产品范围。四类产品风险收益特征差异很大——储蓄与国债最稳健、保险类产品带保障与长期领取安排、理财与公募基金（包括权益仓位较高的养老目标基金）波动更大但长期弹性也更大。所有产品都进入官方目录管理，在资金账户内以"养老产品"专区形式展示，目录可在人社部门与金融监管部门渠道查询。</p>
+      <p class="ctx">一个常见的困惑是"基金 Y 份额"：它是公募基金专为个人养老金账户设立的份额类别，<strong>管理费和托管费通常实行费率优惠（约为同名普通份额的一半左右，以各产品法律文件为准）</strong>，且只能通过个人养老金资金账户购买。挑产品的思路与<a href="../06-fund/">第6章</a>一致：先看类型与风险等级是否匹配自己的年龄和领取时点，再比费率，最后看产品要素（目标日期/目标风险、投资范围）——不追"去年收益冠军"，理由第18章刚讲过。</p>
+      <p class="ctx">按生命周期选产品的一般逻辑（教学示例，非投资建议）：距离领取还有二三十年的年轻人，账户内配置目标日期较远或权益仓位较高的养老目标基金/指数基金的比例可以更高；临近退休则应逐步转向储蓄、国债与目标风险稳健的产品。本课程不推荐任何具体机构与产品，目录内自主比较即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://shanghai.chinatax.gov.cn/zcfw/zcfgk/sbf/202412/t474529.html">《关于全面实施个人养老金制度的通知》（产品范围扩容口径）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号（账户资金自主投资、市场化运营原则）</a></div>
+    </article>
+
+    <div class="fig">
+      <img src="../assets/img-19-2.png" alt="抽象插画：一个带锁扣的半透明存钱罐矗立在时间轴末端，通向存钱罐的轨道上依次分布储蓄、理财、保险、基金四种几何形状的产品积木，一个无脸小人正把一块积木放上轨道" onerror="var f=this.closest('.fig');if(f)f.style.display='none';">
+      <div class="cap">插画 · AI 生成</div>
+    </div>
+
+    <article class="view">
+      <h3>操作要点与三个提醒</h3>
+      <p class="ctx">办理流程很短：线上入口或合作商业银行开户→绑定两个账户→缴费（可从工资卡转入，年度上限内自主安排）→在产品专区自主选购→到龄后按规定领取。三个提醒。<strong>提醒一：开户行只能选一家</strong>，资金账户具有唯一性，变更需要按规则办理销户换户，选之前比较一下各行的服务与产品货架丰富度。<strong>提醒二：缴费才能享受税优</strong>，只开户不缴费没有任何意义也不会扣费；申报抵扣可通过个人所得税 App 的"个人养老金"模块录入凭证，具体以税务部门指引为准。</p>
+      <p class="ctx"><strong>提醒三：警惕冒名营销</strong>。个人养老金全面实施后，"帮你开户送礼品""养老理财稳赚不赔"之类的话术随之出现——制度本身没有"代缴费返利"的设计，任何声称能"内部渠道多缴多赚"的都是骗局信号。办理只走官方入口与正规持牌机构，遇到疑似诈骗或违规营销，可拨打证监会12386服务平台热线或通过中国投资者网渠道反映（防骗完整框架见<a href="../11-scam/">第11章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://rst.fujian.gov.cn/zw/zxwj/rsbwj/202211/t20221114_6046283.htm">《个人养老金实施办法》（开户、缴费、领取全流程规则）</a> · <a href="https://www.investor.org.cn/">中国投资者网</a>（12386 服务平台与投资者维权渠道介绍）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、教育金：一场输不起的长跑</h2>
+    <p class="chapter-sub">期限很长，但兑现日期一天都不能延</p>
+
+    <article class="view">
+      <h3>教育金的双重性格：可以长期，但不能亏损兑现</h3>
+      <p class="ctx">子女教育金是家庭财务里一个特殊的存在：一方面它<strong>期限极长</strong>——从孩子出生到上大学有十八年，这么长的时间维度完全可以承受权益资产的波动，也最需要复利来对抗教育成本的上涨；另一方面它<strong>刚性极强</strong>——孩子十八岁那年学费必须在那里，兑现日期没有任何弹性，"再等两年回本"在教育金场景里不成立。这两个性格合在一起，决定了教育金管理的核心矛盾：<strong>前期要增长，后期要确定</strong>。</p>
+      <p class="ctx">标准解法是"下滑轨道"（glide path，与养老目标基金同一思想——教学示例，非投资建议）：距离用钱还很远时以权益类指数工具为主积累增长；随着兑现年份临近，逐年把资产向稳健形态转移；最后两年应基本完成向存款、国债等确定性资产的切换——绝不能让"大学学费"在入学前一年遭遇一次深度回撤。这条轨道要写进投资计划（<a href="../16-plan/">第16章</a>），并列入每年年度复盘的检查项。</p>
+      <p class="ctx">还要明确教育金的<strong>优先级边界</strong>：先保证应急金与家庭经济支柱的保障（s6），再做教育金储蓄；教育金不足时可以通过奖学金、助学贷款、半工半读等方式部分弥补，而夫妻自己的养老金没有"贷款"可借——"先养老后育小"是财务规划里一个反直觉但成立的次序，因为孩子可以借贷上学，你无法借贷养老。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（目标导向的家庭财务规划课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（长期投资与复利系列投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>教育金倒推三步法：把目标变成每月的数字</h3>
+      <p class="ctx">教育金规划最实用的工具是"倒推三步法"：从终点往回算，把一个大目标分解成每月可执行的小动作。以下流程框中的数字均为教学示例（非预测、非投资建议），实际测算请用官方口径并咨询专业人士。</p>
+      <blockquote class="q">📝 <strong>教育金倒推三步法（教学示例）</strong><br>
+      ① 定终点：孩子 N 年后上大学，届时四年学费+住宿+生活费目标金额 T（参考当前费用并留出上涨余地，口径以目标院校公开收费为准）；<br>
+      ② 定期限与方式：距离 N 年，选择每月定投金额 M——用"期限越长、每月越少"的直觉校验：同样目标，18年期限的每月投入远低于8年期限；<br>
+      ③ 画轨道：按下滑轨道设定各阶段资产形态（远期以宽基指数工具积累，临近兑现逐年转稳健，最后两年基本切换为确定性资产），每年年度复盘时检查"进度+轨道"两项。<br>
+      <span class="qsrc">示例仅演示流程结构，不构成任何收益测算或产品推荐。</span></blockquote>
+      <p class="ctx">三步法的关键不是算得准——没有人能准确预测十八年后的费用与收益——而是<strong>把模糊的焦虑变成具体的、可检查的动作</strong>：每月的 M 是否扣款成功、每年的轨道是否按计划滑动。目标管理的本质是进度管理，这与第18章"短期看过程、长期看结果"的复盘哲学一脉相承。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上交所投资者教育网站</a>（定投与长期规划投教课程） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（基金定投资讯与风险教育）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、保险的顺序、金融信息保护与传承基础</h2>
+    <p class="chapter-sub">先地基后楼层；保护好账户；把"身后事"也安排清楚</p>
+
+    <article class="view">
+      <h3>家庭保险顺序：先大人后小孩、先保障后理财</h3>
+      <p class="ctx">本课程不销售也不推荐任何保险产品，但配置的<strong>顺序原则</strong>属于财务常识，官方投教与主流教材口径一致：<strong>先大人后小孩</strong>——家庭的"印钞机"是经济支柱的收入能力，支柱倒下才是家庭财务的最大风险，因此优先给收入最高的成年人配足保障，孩子的保险在预算里排后；<strong>先保障后理财</strong>——先用小预算把重大疾病、意外、医疗、定期寿险（有房贷或未成年子女的家庭尤其重要）这类纯保障缺口补上，再考虑带储蓄理财性质的产品；顺序颠倒（先给孩子买大额教育年金、大人裸奔）是被推销场景里最常见的结构错误。</p>
+      <p class="ctx">保险与投资的关系一句话说清：<strong>保险是家庭资产负债表的地基，投资是地基上的楼层</strong>。没有足够的保障，一次大病或意外就能迫使你在最坏的时点清掉全部投资——保险买的不是收益，是"投资可以不被打断"的权利。保费预算的常见拇指法则是占家庭年收入的一成上下（示意值，按自家负债与缺口测算），保额逻辑是"覆盖缺口"而非"越多越好"：重疾险看治疗与收入损失，定期寿险看房贷余额加子女抚养成本。具体产品条款复杂，购买前应逐条阅读条款，重大决策咨询持牌专业人士。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（家庭保障与风险管理课程） · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（家庭财务规划系列）</div>
+    </article>
+
+    <article class="view">
+      <h3>金融信息保护：账户安全是家庭财务的城墙</h3>
+      <p class="ctx">家庭资产越多，金融消费者信息安全就越重要。《中国人民银行金融消费者权益保护实施办法》（央行令〔2020〕第5号）明确规定了金融消费者的八项基本权利，其中<strong>信息安全权</strong>要求金融机构不得非法收集、使用、加工、传输消费者个人金融信息，未经同意不得向第三方提供。对家庭而言，这意味着两件事：一是你的账户信息、交易信息受规章保护，机构泄露可以投诉追责；二是你自己也要尽到保管义务——密码分级管理、不向任何人（包括自称"客服""公检法"者）透露验证码、不出租出借账户。</p>
+      <p class="ctx">家庭层面特别要做的一件事：<strong>建立一份"金融信息清单"并让配偶知晓</strong>——所有证券/银行/基金账户开在哪、保单放在哪、还款日从哪张卡扣，汇总在一处并告知家人保管位置。这不是侵犯隐私，而是防止"人还在、钱找不到"或突发事件下家人对资产一无所知的常见悲剧。涉及继承与理赔时，这份清单能省去大量公证与查询的周折。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://jr.jl.gov.cn/jrzc/zcjd/202009/t20200921_338766.html">《中国人民银行金融消费者权益保护实施办法》答记者问（地方金融管理部门转发）</a> · <a href="https://www.investor.org.cn/">中国投资者网</a>（投资者信息安全与防非宣传）</div>
+    </article>
+
+    <article class="view">
+      <h3>传承基础：证券账户与资产的继承，别留难题给家人</h3>
+      <p class="ctx">一个极少被谈论但每个家庭都该了解的话题：证券账户里的资产<strong>可以依法继承</strong>，但流程有门槛。按中国结算与券商的现行操作规则，继承人一般需要提供被继承人死亡证明、亲属关系证明、继承权公证文书（或生效法律文书）等材料，办理非交易过户后处置资产；具体材料清单与流程以中国结算及开户券商的最新规定为准，涉及多继承人、遗嘱等复杂情形时建议咨询律师等专业人士。个人养老金账户的余额同样可以依法继承（s3）。</p>
+      <p class="ctx">普通家庭能做的三件实事：<strong>一</strong>，s6 上一卡说的金融信息清单——让家人知道资产在哪；<strong>二</strong>，重要财产的权属凭证（房产证、保单、账户协议）集中保管并告知位置；<strong>三</strong>，有明确分配意愿的，通过合法遗嘱形式固定下来（遗嘱的形式要件以《民法典》继承编为准，可在国家法律法规数据库检索原文）。这些安排的成本很低，但能把未来家人在悲痛中还要面对的行政难度降到最低——财务责任感的最后一环，是对身后事的清晰交代。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.chinaclear.cn/">中国证券登记结算有限责任公司</a>（证券非交易过户与继承业务规则官方口径） · <a href="https://flk.npc.gov.cn/">国家法律法规数据库</a>（《民法典》继承编原文检索）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、家庭财务沟通：夫妻不一致时怎么办</h2>
+    <p class="chapter-sub">钱的问题，八成是沟通问题</p>
+
+    <article class="view">
+      <h3>风险偏好不一致：不说服，做结构</h3>
+      <p class="ctx">"我老公要满仓，我只想存定期"——夫妻风险偏好不一致是家庭财务的头号冲突源。多数家庭的处理方式是说服对方，而说服几乎从不成功：风险偏好根植于成长经历与性格，不是辩论能改变的。更有效的思路是<strong>放弃说服，改做结构</strong>：第一，风险测评两人分别做（券商 App 都能做），把"感觉对方太激进/太保守"变成两个可对照的客观结果；第二，共同资产的目标配置按<strong>两人中较保守一方的可承受水平</strong>确定——家庭财务是合伙企业，合伙企业的风险上限由风险承受力最低的合伙人决定，因为一次超出承受力的亏损摧毁的是整个家庭的决策同盟。</p>
+      <p class="ctx">第三，给激进的一方留出<strong>有限度的自主空间</strong>：在共同配置之外，划出一笔双方都认可的"学习资金"（占家庭投资资产的小比例，亏光也不影响任何目标），由各自按自己的风格管理并自负盈亏。这个设计的妙处在于：它既尊重了个体差异，又用真金白银的小仓位给激进偏好上了一堂风险课——大多数情况下，"学习资金"的实际战绩会成为家庭里最有说服力的教育材料。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c106256/c1653849/content.shtml">《证券期货投资者适当性管理办法》（风险测评制度依据）</a> · <a href="https://edu.sse.com.cn/">上交所投资者教育</a>（理性投资与家庭财务沟通类投教）</div>
+    </article>
+
+    <article class="view">
+      <h3>家庭财务会议：每季度四十分钟</h3>
+      <p class="ctx">把沟通机制化，比每次"想起来才谈"有效得多。建议设立<strong>家庭财务季度会</strong>：固定时间（比如每季度第一个周末）、固定议程、两人都到场。议程就四项，共约四十分钟：<strong>①对表</strong>——资产负债表与现金流量表更新，净资产与储蓄率读数（s1）；<strong>②对进度</strong>——教育金、养老金等目标的当期投入是否到位，个人养老金年度额度用了多少；<strong>③对纪律</strong>——翻双方的交易日志（<a href="../18-review/">第18章</a>），有没有计划外的大额操作；<strong>④对日历</strong>——未来一年的大额支出（保费、学费、还贷计划）提前排入，避免"突然要用钱"。</p>
+      <p class="ctx">三条会议纪律：只谈结构与进度，不互相指责历史操作（复盘对事不对人）；所有结论落纸面（一页纪要即可），下次会议先核对上次结论；涉及单笔超过约定金额（比如家庭月支出的一半）的投资决策，必须双方知情同意后才执行。财务会议坚持一年以上的家庭，最大的变化往往不是收益率，而是"钱"从吵架话题变成了共同项目——这本身就是家庭抗风险能力的一部分。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地</a>（家庭财务规划与投资者自我管理） · <a href="https://www.szse.cn/investor/index.html">深交所投资者服务</a>（长期投资理念投教）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、常见误区与本章自测</h2>
+    <p class="chapter-sub">四个流行说法逐条对质，再自测15题</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于家庭财务规划的四个流行说法</h3>
+      <p class="ctx"><strong>谣言一："个人养老金就是延迟版的社保，钱交进去就归国家了。"</strong>——完全不符。制度设计上它是<strong>个人自愿参加的个人账户制</strong>：账户封闭运行但资产归个人，投资收益归个人，<strong>余额可依法继承</strong>，账户资金由参加人自主选择购买目录内的产品（国办发〔2022〕7号与《实施办法》白纸黑字）。它与社保（第一支柱，现收现付+统筹账户）是两套完全不同的制度。</p>
+      <p class="ctx"><strong>谣言二："孩子最重要，保险和理财都先紧着孩子买。"</strong>——方向反了。家庭收入靠大人的劳动能力创造，经济支柱没有保障时，孩子的保单照样交不上续期保费。"先大人后小孩、先保障后理财"是官方投教与教材的一致口径（s6），给孩子堆理财型保险而大人裸奔，是结构性的错误。</p>
+      <p class="ctx"><strong>谣言三："教育金必须买某某教育金保险，别的都不安全。"</strong>——把"工具"偷换成"唯一解"。教育金的核心是期限匹配与下滑轨道（s5），可用定投指数工具、储蓄、国债等多种合规方式实现，教育金保险只是带强制储蓄属性的选项之一，且往往流动性差、费用不透明——任何声称"只有买它才安全"的话术都应触发<a href="../11-scam/">第11章</a>的防骗警觉。</p>
+      <p class="ctx"><strong>谣言四："家里谁挣得多谁管钱，另一方不用知道。"</strong>——单点故障设计。管钱方突发疾病或意外时，另一方对资产一无所知的家庭会立刻陷入被动（账户找不到、还款逾期、理赔无从办起）。s6 的金融信息清单与 s7 的财务会议，正是为了消除这个单点：家庭财务要的是<strong>冗余</strong>，不是集权。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">国办发〔2022〕7号《关于推动个人养老金发展的意见》</a> · <a href="https://jr.jl.gov.cn/jrzc/zcjd/202009/t20200921_338766.html">央行金融消费者权益保护实施办法答记者问</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（15条）</h4>
+      <ul>
+        <li>家庭财务"三不知"指什么？为什么"三不知"状态下不该先谈配置？</li>
+        <li>家庭资产负债表左右两边各列什么？全表最重要的数字是哪个？</li>
+        <li>自住房为什么不能算进"可投资的钱"？做表时最容易遗漏什么？</li>
+        <li>储蓄率怎么算？为什么它比收益率更能决定长期财富？</li>
+        <li>人力资本与金融资本分别是什么？年轻人"最值钱的资产"为什么不在证券账户里？</li>
+        <li>"你的职业本身就是持仓"是什么意思？它如何影响你的配置决策？</li>
+        <li>生命周期四阶段（起步/积累/巩固/支取）各自的核心任务与最大风险是什么？</li>
+        <li>为什么风险测评有"保质期"？130号令的哪条逻辑支持定期重测？</li>
+        <li>个人养老金的四个关键设计（额度/封闭/领取情形/继承）分别是什么？</li>
+        <li>制度什么时候试点、什么时候全面实施？实施后产品范围有何扩容？</li>
+        <li>EET 三个环节各是什么口径？哪类人群参加要重新权衡、为什么？</li>
+        <li>基金 Y 份额是什么？挑养老产品的顺序应该是什么？</li>
+        <li>教育金"前期要增长、后期要确定"的矛盾用什么方法解决？下滑轨道怎么画？</li>
+        <li>保险配置的顺序原则有哪两条？保险与投资的关系用哪个比喻？</li>
+        <li>夫妻风险偏好不一致时，"做结构"的三步是什么？季度财务会议的四项议程是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>家庭财务从两张表开始——资产负债表（资产按变现速度列、负债别漏、净资产是核心数字、应急金与负债率两项体检）+现金流量表（四类支出、储蓄率=长期财富的主引擎）；生命周期视角：总财富=金融资本+人力资本，年轻人人力资本巨大所以能配权益、退休者只剩金融资本所以要稳健，"100减年龄"只是粗糙起点，职业本身是持仓要避免行业双倍下注；四阶段（起步建地基/积累四线并行/巩固冲刺降波动/支取防诈骗）各有任务，风险承受力随人生事件变化、按130号令逻辑定期重测；个人养老金=第三支柱，四个数字：12000元/年上限、封闭运行、达龄/完全丧失劳动能力/出国定居等领取、余额可继承，2022年11月试点（7号文+实施办法）→2024年12月全国全面实施（产品扩容国债/特定养老储蓄/指数基金），EET税优=缴费12000内扣除+收益暂不征+领取3%单独计税，高税率人群获益大、不缴个税人群要权衡流动性；账户内四类+产品自主选、Y份额费率优惠，办理只走官方入口，警惕"代缴费返利"话术；教育金=期限长+刚性强的矛盾体，解法是下滑轨道（远期权益、临近转稳健、最后两年确定性资产）+倒推三步法，优先级上"先养老后育小"；保险顺序=先大人后小孩、先保障后理财，保险是地基投资是楼层；央行5号令信息安全权+家庭金融信息清单让配偶知晓；证券资产可继承但需公证等手续（以中国结算与券商规则为准）；夫妻不一致不说服做结构（分别测评/共同配置按保守方/学习资金小仓位自主），季度财务会议四项议程（对表/对进度/对纪律/对日历）。
+  </div>
+
+  <nav class="pager">
+    <a href="../18-review/"><span class="dir">← 第18章</span>记录、复盘与卖出</a>
+    <a href="../20-future/"><span class="dir">第20章 →</span>长期主义：30天行动方案</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第19章 · 依据国办发〔2022〕7号、《个人养老金实施办法》、《关于全面实施个人养老金制度的通知》、税务总局个人养老金个税优惠公告、央行令〔2020〕第5号、证监会令第130号、上交所/深交所/中证投服官方投教材料及 Bodie《投资学》、Merton 生命周期金融等经典教材整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · 不“荐股”、不预测行情、不承诺收益 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 教育是科学，不是塑造 — 儿童教育课</title>
+<style>
+  :root{--accent:#047857;--accent-deep:#065f46;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">儿童教育课 · 导论 · 课程说明</div>
+  <h1>教育是科学，不是塑造</h1>
+  <p>孩子不是等待被塑形的泥，而是按自己的节奏生长的人——这门课想教你的，是看懂生长规律的眼睛</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-brain/">第1章：发展中的大脑 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">讲证据不站队</a>
+    <a class="anchor" href="#s2">科学的发展观</a>
+    <a class="anchor" href="#s3">能与不能</a>
+    <a class="anchor" href="#s4">依法带娃</a>
+    <a class="anchor" href="#s5">三个原则</a>
+    <a class="anchor" href="#s6">课程边界</a>
+    <a class="anchor" href="#s7">课程地图</a>
+    <a class="anchor" href="#s8">底线与谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>家庭教育参考</strong>，不构成医疗、心理或法律建议；孩子的个体情况请咨询医生、心理师或学校专业人士。</li>
+      <li>每个孩子都不同：年龄、气质、家庭环境差异很大，文中方法需要<strong>个体化调整</strong>；对发育迟缓、情绪行为问题等疑虑，请及时到正规医疗机构寻求<strong>专业评估</strong>，本站只科普识别信号，不做任何诊断。</li>
+      <li>本站<strong>不推荐</strong>任何具体培训机构、教辅产品、付费课程或商品；提到的研究与方法均注明出处与已有争议，无商业合作、无带货链接。</li>
+      <li>性教育内容遵循<strong>科学、适龄</strong>原则，旨在帮助孩子建立身体边界与自我保护意识。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清"塑造观"与"发展观"的区别，明白为什么孩子不是产品、家长不是工程师；②讲出发展科学能告诉家长什么（规律、方向、风险信号）、不能告诉什么（你孩子的最优解）；③知道《家庭教育促进法》把带娃从"家事"变成"国事"的核心要求；④掌握本课程的三个使用原则与"四步使用法"；⑤记住课程的医疗心理边界——什么时候该合上这门课去就医；⑥看懂四部分二十章的课程地图，会按年龄段、按问题两种方式查找。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"总纲"。第一次学习建议通读；之后你可以随时回到第七节"课程地图"，按孩子当下的年龄段或你正遇到的问题（发脾气、写作业、玩手机、青春期）跳转到对应章节。第八节的"底线与谣言"请务必读完——它决定了你能不能躲开育儿市场上最贵的坑。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、先说清楚：这门课讲证据，不站队</h2>
+    <p class="chapter-sub">焦虑型和放养型家长各有各的困境，本课程不做裁判，只做证据的搬运工</p>
+
+    <article class="view">
+      <h3>两种家长，同一种疲惫（示例）</h3>
+      <p class="ctx">先看两个虚构但常见的场景（示例）。<strong>场景一</strong>：晚上十点，二胎妈妈林女士的手机备忘录里还躺着四件事——给五岁的女儿复习识字卡、看看"幼小衔接"直播课要不要续报、把儿子幼儿园的成长档案补完、转发家族群里那篇《三岁前不看手机，否则毁了大脑》。她自己也说不清哪条是真的，但"万一是真的呢"这五个字，让她一件都不敢落下。<strong>场景二</strong>：同小区的赵先生走了另一条路——"孩子嘛，开心就好，树大自然直"。可儿子上小学后作业拖拉、上课坐不住，老师三次请家长，赵先生开始怀疑：快乐教育是不是害了孩子？现在收紧还来得及吗？</p>
+      <p class="ctx">这两位家长的困境看起来相反，底层却是同一个：<strong>他们手里都没有可靠的判断标准</strong>。育儿市场每天生产海量信息，焦虑型家长被"再不……就晚了"的话术推着跑，放养型家长被"你这样会耽误孩子"的指责追着跑。两边的共同点是疲惫——不是养育本身让人疲惫，而是<strong>在真假难辨的信息里反复摇摆</strong>让人疲惫。更麻烦的是，两种策略还会互相指责：焦虑型觉得放养型不负责任，放养型觉得焦虑型在害孩子，双方都拿个别案例当证据。这门课想做的，就是把判断标准交回到你手里——标准不是立场，是可以核查的证据。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/publications/i/item/9789241514064">WHO/UNICEF/世界银行《养育照护框架——促进儿童早期发展》（2018，英文）</a> · <a href="https://www.unicef.cn/media/8456/file/%E3%80%8A3%E2%80%946%E5%B2%81%E5%84%BF%E7%AB%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%8F%91%E5%B1%95%E6%8C%87%E5%8D%97%E3%80%8B.pdf">教育部《3-6岁儿童学习与发展指南》全文（UNICEF 中国官网转载 PDF）</a>（后者明确反对"拔苗助长"式的超前教育与强化训练）</div>
+    </article>
+
+    <article class="view">
+      <h3>本课程的知识底座：循证，而不是经验或立场</h3>
+      <p class="ctx">"循证"（evidence-based）这个词来自医学：治疗方案要靠严格的证据说话，而不是靠某个名医的直觉。教育领域也有同样的基础设施——美国教育部的<strong>《什么有效信息交换所》（What Works Clearinghouse, WWC）</strong>专门对教育干预研究做系统审查与评级，回答"这个教学方法到底有没有证据支持"；<strong>APA 心理学词典</strong>则为依恋、最近发展区、成长型心态这类核心概念提供学界定义口径。本课程全部内容的取材顺序是：<strong>官方指南与法规 → 学会与研究机构手册 → 同行评审研究 → 明确标注的商业科普</strong>，越靠前权重越高。</p>
+      <p class="ctx">对应的四级来源徽章贯穿全站：<span class="c-badge c-v">🏛 官方文件</span>教育部/卫健委指南、《家庭教育促进法》、WHO/UNICEF 报告；<span class="c-badge c-m">📘 权威手册</span>发展心理学教材、学会指南、经典养育著作；<span class="c-badge c-a">📋 学术研究</span>同行评审论文（注明作者与年份）；<span class="c-badge c-p">🏷 商业科普</span>育儿媒体与畅销书观点，仅作补充并明确标注。每张卡片末尾都有来源行，<strong>无权威出处的观点不写，宁缺毋滥</strong>；研究结论有争议的（比如成长型心态的干预效果），我们两种证据都摆出来，让你自己看清"确定的部分"和"还在吵的部分"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://ies.ed.gov/ncee/wwc/">美国教育部 IES《What Works Clearinghouse》循证教育实践数据库（英文）</a> · <a href="https://dictionary.apa.org/zone-of-proximal-development">APA 心理学词典 zone of proximal development 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、孩子不是产品：科学的发展观</h2>
+    <p class="chapter-sub">"塑造"隐喻错在哪里，"发展"视角又对在哪里——这是全课程的世界观</p>
+
+    <article class="view">
+      <h3>"塑造观"的三个隐含假设，个个都站不住</h3>
+      <p class="ctx">"把孩子培养成……"这个句式背后是一套<strong>塑造观</strong>：孩子像泥，家长像工程师，投入决定产出。它隐含三个假设。假设一：<strong>孩子是空白石板</strong>，写什么是什么——但发展心理学一百年来的研究反复证明，孩子带着自己的气质类型出生：有的婴儿天生易养，有的天生反应强烈，同样的养育方式落在不同气质的孩子身上，效果可以完全不同。假设二：<strong>投入与产出成正比</strong>，报的班越多孩子越强——但教育部《3-6岁儿童学习与发展指南》明确警告"拔苗助长"式的超前教育与强化训练会损害学习兴趣；世界卫生组织的养育照护框架也把"回应性照护"放在昂贵早教产品之前。假设三：<strong>存在统一的最优模具</strong>，别人家孩子怎样你家就该怎样——但发展里程碑从来是一个<strong>正常范围</strong>而不是一条线，指南里的年龄参考描述的是"大多数孩子"，不是你眼前这一个。</p>
+      <p class="ctx">塑造观还有一个更隐蔽的代价：它把养育变成一场<strong>结果问责</strong>。孩子表现好=家长成功，孩子表现差=家长失职。这种归因让父母活在持续的自我审判里，也让亲子关系变成一场漫长的绩效考核——而关系恰恰是教育发生的前提（第三部分会反复讲这一点）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》（edu.cn 正式颁发稿）</a> · <a href="https://dictionary.apa.org/piaget">APA 心理学词典皮亚杰（Jean Piaget）词条（英文）</a>——发展阶段论：儿童按可预测但存在个体差异的顺序建构认知</div>
+    </article>
+
+    <article class="view">
+      <h3>"发展观"：家长是园丁，不是木匠</h3>
+      <p class="ctx">发展视角把养育重新定义为：<strong>提供一个能让生长发生的条件系统</strong>。木匠按图纸把木头做成桌子，尺寸不对就是失败；园丁无法"做成"一朵花，他能做的是土壤、水分、光照、除虫，然后尊重这株植物自己的花期。这个"园丁式养育"的比喻在发展科学里有严格的对应物——WHO/UNICEF/世界银行 2018 年联合发布的<strong>《养育照护框架》</strong>给出了儿童早期发展的五个要素：<strong>良好健康、充足营养、回应性照护、早期学习机会、安全保障</strong>。请注意这个清单里没有"昂贵早教班"，也没有"识字量"；排在前面的反而是健康、营养和"孩子发出信号—照护者恰当回应"的日常互动。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="发展观与塑造观对比示意：左侧是流水线上的模具试图把方块压成统一形状，右侧是园丁浇灌一株按自己节奏生长的植物，植物周围有阳光、水滴与守护的栅栏" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">发展观不承诺"照做就能上名校"，它承诺的是三件更实在的事：①你知道<strong>什么年龄该期待什么</strong>，不再为正常范围的个体差异恐慌；②你知道<strong>哪些投入性价比高</strong>（回应、陪伴、共读、游戏），哪些是智商税；③你知道<strong>哪些信号需要警惕</strong>，该就医时不拖延。把"塑造一个完美产品"的目标换成"支持一个具体的人生长"，焦虑会下降一大截——因为前者永远不达标，后者每天都有反馈。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.who.int/publications/i/item/9789241514064">WHO/UNICEF/世界银行《养育照护框架》（2018，英文）</a> · <a href="https://www.unicef.org/early-moments-matter">UNICEF"Early Moments Matter"早期发展专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>早期很重要，但"重要"不等于"只此一次"</h3>
+      <p class="ctx">必须诚实地说：早期经历确实重要。诺贝尔经济学奖得主赫克曼（James Heckman）团队的研究发现，对 disadvantaged 家庭儿童的<strong>高质量早期干预，其长期回报率高于任何后续阶段的教育投入</strong>——这是"重视早期"最硬的经济学证据。但市面上大量营销把这个结论偷换成"错过早期就完了"，用来贩卖 0-3 岁天价课程，这是对研究的滥用。</p>
+      <p class="ctx">两个纠偏。第一，赫克曼研究里起作用的"高质量早期干预"，核心是<strong>稳定的回应性照护与语言互动</strong>，不是商品化的早教班——你自己在家能做的部分，恰恰是研究里最关键的部分（第2、4章展开）。第二，大脑的<strong>可塑性终身存在</strong>：哈佛儿童发展中心对"毒性压力"（长期、强烈、缺乏成人缓冲的逆境压力）的研究说明，早期逆境确实增加风险，但同一研究也指出，<strong>在生命任何阶段引入稳定、支持性的成人关系，都能改善发展轨迹</strong>。所以正确的结论是：早做早受益，晚做也有用；"来不及了"这四个字，在发展科学里基本不成立。</p>
+      <p class="ctx">顺便说清一个常被混淆的概念：早期研究里还有个词叫"关键期"，指某些能力（如视觉）发育的确存在错过就难以弥补的窗口；但育儿营销把它泛化成了"智力关键期""性格关键期""英语关键期"，宣称过了某岁某月就来不及——这是把有限的神经科学结论无限放大。发展心理学更常用的概念是"敏感期"：某个阶段学习某类东西效率更高，但窗口不是闸门，过了敏感期依然学得会，只是路径和节奏不同。一门诚实的课程会把这两个词分清楚，一个贩卖焦虑的市场不会——这也是第八节谣言粉碎的第一个靶子。</p>
+      <p class="ctx">所以请把这一节记住三句话：<strong>早期投入回报率高，值得认真对待</strong>；<strong>起作用的核心是回应性照护与语言互动，不是商品</strong>；<strong>可塑性终身存在，任何年龄开始改变都算数</strong>。带着这三句话再去看市面上的早教营销，你会发现绝大多数"最后机会"话术都经不起推敲。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://heckmanequation.org/">Heckman Equation 官网：早期干预回报率研究（诺奖得主赫克曼团队，英文）</a> · <a href="https://developingchild.harvard.edu/resources/toxic-stress/">哈佛儿童发展中心《毒性压力》专题（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、发展科学能告诉你什么、不能告诉你什么</h2>
+    <p class="chapter-sub">把科学的"能力圈"画清楚，你才知道哪些话术在冒充科学</p>
+
+    <article class="view">
+      <h3>能告诉你的：规律、方向与风险信号</h3>
+      <p class="ctx">发展科学一百多年积累了三类可靠知识。<strong>第一类是发展规律</strong>：动作、语言、认知、情绪能力大致按什么顺序出现、各年龄段的正常范围是什么（第1、4章）；依恋如何形成、游戏为什么是幼儿的学习方式、青春期大脑在经历什么重组（第2、3、13章）。<strong>第二类是方向性证据</strong>：哪些做法在群体统计上与更好的结果相关——及时回应婴儿、亲子共读、充足睡眠与户外活动、父母关系稳定、管教不用暴力；哪些做法与更差的结果相关——长期忽视、频繁更换照护者、体罚、睡眠剥夺。注意"方向性"三个字：证据告诉你风往哪边吹，不保证每一艘船都到同一个港口。<strong>第三类是风险信号</strong>：哪些表现超出正常波动、值得去儿童保健科或发育行为儿科做专业评估（第4、5、13章都会给出"何时该就医"清单）。这三类知识足以让家长避开绝大多数大坑，这就是本课程的内容主体。</p>
+      <p class="ctx">这三类知识合起来，构成家长日常判断的"最小够用集"。给你一个随手可用的信息质检三问，之后每章都会示范它的用法：<strong>一问出处</strong>——这个说法有没有官方指南、学会立场或同行评审研究支撑，还是只有"某专家说"？<strong>二问范围</strong>——研究说的是"平均而言、在什么条件下"成立，文章有没有把概率说成必然、把相关说成因果？<strong>三问利益</strong>——说这话的人是否在卖与结论直接相关的商品（课程、教具、保健品）？三问过不了两问的信息，直接降级为"广告"处理。这套质检查不出所有问题，但足以滤掉育儿信息流里最有害的那部分。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://developingchild.harvard.edu/resources/enhancing-and-practicing-executive-function-skills-with-children-from-infancy-to-adolescence/">哈佛儿童发展中心《执行功能技能：从婴儿期到青春期的培养与实践》（英文）</a> · 国家卫健委《0-6岁儿童健康管理技术规范》（含心理行为发育评估与预警征象；官网 <a href="https://www.nhc.gov.cn/">nhc.gov.cn</a> 检索"0-6岁儿童健康管理"）</div>
+    </article>
+
+    <article class="view">
+      <h3>不能告诉你的：你孩子的最优解，以及一劳永逸的定论</h3>
+      <p class="ctx">发展科学有三个诚实的局限。<strong>局限一：群体规律推不出个体最优</strong>。研究说"平均而言亲子共读促进语言发展"，但你的孩子可能今晚只想搭积木——科学给的是概率与方向，具体到今晚八点怎么安排，需要你对孩子的了解来裁决。<strong>局限二：结论会被更好的研究修正</strong>。这不是科学的缺陷，而是科学的工作方式。两个著名例子：成长型心态干预曾被畅销书描述为"改变成绩的神奇信念"，但 2018 年 Sisk 等人的元分析发现，干预的整体效应量其实很小，只是对低收入与高风险学生有相对明显的帮助；经典的"棉花糖实验"曾被视为"延迟满足决定人生"的证据，2018 年 Watts 等人的再研究控制家庭社会经济背景后发现，幼儿期延迟满足对青少年期表现的预测力大幅缩水——<strong>不是意志力不重要，而是家庭环境这个变量当初没被充分控制</strong>。</p>
+      <p class="ctx"><strong>局限三：研究之间存在真实分歧</strong>，比如屏幕时间的具体阈值、表扬的最优话术。本课程的处理方式是统一的三段式：<strong>最初研究发现 X（附来源）→ 后来更大规模的检验发现 Y（附来源）→ 对你来说意味着 Z</strong>。会这样写的课程看起来"不够斩钉截铁"，但斩钉截铁恰恰是伪科学和营销号的特征——它们从不提研究的边界条件。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Sisk et al.（2018）成长型心态干预元分析，<a href="https://doi.org/10.1177/0956797617739704">doi:10.1177/0956797617739704（英文）</a> · Watts, Duncan & Quan（2018）棉花糖实验再研究，<a href="https://doi.org/10.1177/0956797618761661">doi:10.1177/0956797618761661（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、"依法带娃"：《家庭教育促进法》说了什么</h2>
+    <p class="chapter-sub">2022 年起，家庭教育从"家事"变成了有法律框架的"国事"</p>
+
+    <article class="view">
+      <h3>这部法律给家长划了什么线、托了什么底</h3>
+      <p class="ctx">《中华人民共和国家庭教育促进法》自 <strong>2022 年 1 月 1 日</strong>起施行，是我国第一部专门针对家庭教育的法律，媒体俗称"依法带娃"。对家长而言，这部法律有两面。<strong>一面是底线</strong>：法律明确要求家庭教育应尊重未成年人身心发展规律与个体差异，<strong>禁止任何形式的家庭暴力</strong>，禁止歧视、侮辱、虐待——"打是亲骂是爱""棍棒底下出孝子"从民间俗语变成了与法律抵触的说法（第12章会给出体罚危害的研究证据与替代方法）。<strong>另一面是支持</strong>：法律的名字里"促进"二字是重心——它要求政府与社会为家庭提供指导服务，比如婚姻登记、医疗保健等机构提供家庭教育指导，社区建立家长学校，学校通过家长学校与家访提供指导。换句话说：<strong>国家承认"当父母需要学习"，并承诺提供学习资源</strong>——这门课算是这条线上的一份民间补充。</p>
+      <p class="ctx">法律第十六条、第十七条还罕见地正面列举了家庭教育"教什么"（道德品质、身体素质、生活技能、行为习惯等）和"怎么教"（尊重差异、科学引导、潜移默化、言传身教），其中"潜移默化、言传身教"八个字，几乎是对本课程第20章"父母自身的成长"的官方背书。</p>
+      <p class="ctx">为什么国家要为"怎么带孩子"立法？因为前面第二、三节讲的证据已经足够清楚：家庭养育质量对儿童发展的影响，远大于任何外部培训投入；而大量家庭缺的不是爱，是方法与资源。立法的目的不是监视家长，而是<strong>把"养育需要学习"这件事制度化</strong>：社区要有家长学校，医院孕产保健要顺带做育儿指导，学校要开家长课堂。对家长来说，这意味着你去找帮助时，这些服务是你的法定权利而不是恩惠——当地社区、妇幼保健机构、学校家长学校提供什么家庭教育指导，你可以直接去问。本课程第15章讲家庭生态、第16章讲教育焦虑时会再回到这部法律的支持性条款。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（检索"家庭教育促进法"查看全文）</a> · <a href="https://www.npc.gov.cn/">全国人民代表大会官网（法律文本与解读入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>政策背景一句话：从"双减"到家校社协同</h3>
+      <p class="ctx">这部法律不是孤立出现的，它处在一组政策脉络里：2021 年"双减"政策（减轻义务教育阶段学生作业负担与校外培训负担）压缩了"疯狂补课"的制度空间；2023 年教育部等十三部门发布《关于健全学校家庭社会协同育人机制的意见》，把"家校社协同"写进机制设计。这些政策传递的共同信号是：<strong>教育竞争的外挂式加码（超前学、题海、天价培训）被系统性降温，育人的重心回到学校主阵地与家庭的日常质量</strong>。对家长的实际含义：拼金钱投入的赛道在收窄，拼"家庭内部质量"（关系、习惯、情绪环境）的赛道在变宽——而后者恰恰是研究证据最充分、也最不花钱的部分。政策框架的完整解读放在<a href="../17-choice/">第17章</a>，这里只需要记住方向。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gov.cn/">中国政府网（检索"双减 意见""家庭教育促进法"）</a> · <a href="http://www.moe.gov.cn/">教育部官网（检索"协同育人机制 意见"，2023 年十三部门文件）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、本课程的三个使用原则</h2>
+    <p class="chapter-sub">同一套方法在不同年龄、不同气质、不同家庭里，效果可以完全不同</p>
+
+    <article class="view">
+      <h3>原则一：看年龄段；原则二：看孩子气质</h3>
+      <p class="ctx"><strong>原则一，看年龄段。</strong>发展是分阶段的：0-3 岁的核心任务是安全感与语言输入，3-6 岁是游戏与规则萌芽，6-12 岁是学习习惯与同伴关系，12-18 岁是自主性与身份认同。同一个问题在不同年龄段的解法不同——两岁孩子抢玩具和十四岁孩子顶嘴，表面都是"不听话"，背后的发展任务完全不同，应对方式也完全不同。本课程涉及年龄分段时，会按 <strong>0-3 / 3-6 / 6-12 / 12-18</strong> 四档给出差异化表述。<strong>原则二，看孩子气质。</strong>心理学把婴儿期的活动水平、规律性、趋避性、反应强度等稳定的行为风格称为气质——它是发展的"原材料"，不是缺陷也不是优点。反应强烈的孩子需要更多的情绪教练（第5章），慢热的孩子需要更长的预热时间（第2、14章），活动量大的孩子需要更多的户外出口（第3章）。方法跟着气质走，而不是让孩子跟着方法走。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.unicef.cn/media/8456/file/%E3%80%8A3%E2%80%946%E5%B2%81%E5%84%BF%E7%AB%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%8F%91%E5%B1%95%E6%8C%87%E5%8D%97%E3%80%8B.pdf">教育部《3-6岁儿童学习与发展指南》（按 3-4/4-5/5-6 岁三档给目标，"尊重幼儿发展的个体差异"为其首要教育原则）</a> · <a href="https://dictionary.apa.org/attachment">APA 心理学词典 attachment 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>原则三：看家庭现实——以及"四步使用法"</h3>
+      <p class="ctx"><strong>原则三，看家庭现实。</strong>任何方法都有前提条件：双职工家庭的共读时间可能就是睡前十五分钟，隔代养育家庭可能需要先统一两代人的口径（第15章），单亲家庭的优势视角与资源分配又不一样（第15章）。"理想方法"与"你家的可行版本"之间永远需要一次翻译——本课程每章的方法框都设计成可裁剪的模板，而不是必须整套执行的仪式。还有一句想放在课程开头的话：<strong>方法失效不代表家长失败</strong>。研究里的效应量都是概率性的，具体到某个孩子某一周，波动是常态；换方法、调剂量、等发育追上，都比自我指责有用。</p>
+      <blockquote class="q">本课程四步使用法：①<strong>定位</strong>——按孩子年龄段圈出相关章节（见第七节地图）；②<strong>对号</strong>——按你正遇到的问题找到对应卡片，先读"证据"再读"方法"；③<strong>小步</strong>——每章只挑一个最小可行的做法先试一到两周（例如只加"睡前共读15分钟"），不要一次上全套；④<strong>复盘</strong>——记录孩子的反应，有效就固化成家庭惯例，无效就回来看"边界条件"那一段，调整而不是自责。<span class="qsrc">—— 本站根据循证实践"小步试点—反馈—调整"的通用逻辑归纳（教学性模板，参见 <a href="https://ies.ed.gov/ncee/wwc/">WWC 循证审查方法，英文</a>）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://ies.ed.gov/ncee/wwc/">美国教育部 IES《What Works Clearinghouse》（英文）</a> · <a href="https://casel.org/fundamentals-of-sel/">CASEL 社会情感学习框架（五大能力：自我觉察/自我管理/社会觉察/人际技能/负责任决策，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、课程边界：什么时候合上这门课去找专业人士</h2>
+    <p class="chapter-sub">科普的价值之一是告诉你它的尽头在哪里</p>
+
+    <article class="view">
+      <h3>边界一：本站只科普识别信号，不做诊断</h3>
+      <p class="ctx">发育迟缓、孤独症谱系、注意缺陷多动障碍（ADHD）、情绪障碍——这些词会在本课程出现，但只以"识别信号+就医指引"的方式出现。原因很直接：<strong>诊断需要专业评估</strong>，由儿童保健科、发育行为儿科或精神科医生结合面诊、量表与观察做出；网上的任何自测清单（包括本站的内容）都不能替代。国家卫健委《0-6岁儿童健康管理技术规范》本身就要求基层儿保在定期健康检查中做心理行为发育评估、识别"预警征象"——也就是说，<strong>官方体系已经内置了筛查环节，你要做的是按时带孩子体检，并对下面的信号保持敏感</strong>：明显落后于同龄范围的语言或运动能力、对呼名与互动长期缺乏回应、能力"倒退"（曾经会的突然不会了）、持续两周以上的情绪低落或异常烦躁、突然的拒绝上学。出现这些信号，尽早到正规医疗机构评估；<strong>早发现早干预的收益，远大于"再等等看"</strong>——这和第五节"晚做也有用"并不矛盾：前者说的是别错过可干预的窗口，后者说的是别因错过某个营销节点而绝望。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：国家卫健委《0-6岁儿童健康管理技术规范》（官网 <a href="https://www.nhc.gov.cn/">nhc.gov.cn</a> 检索，含发育预警征象清单） · <a href="https://developingchild.harvard.edu/resources/toxic-stress/">哈佛儿童发展中心《毒性压力》专题（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>边界二：家长自己也需要被照护</h3>
+      <p class="ctx">这门课写给家长，所以还有一条常被忽略的边界：<strong>当家长自己的状态撑不住时，先处理大人的问题</strong>。持续的情绪耗竭、对孩子的愤怒失控、睡眠与食欲的显著改变、"活着没意思"的念头——这些信号意味着你需要的不是更多育儿技巧，而是专业支持：可以拨打 <strong>12356 心理援助热线</strong>（全国统一），或前往医院精神心理科；养育倦怠的识别与自救在第20章有专节。研究依据也很朴素：哈佛儿童发展中心反复强调，<strong>照护者自身的稳定，是儿童发展环境里最重要的"基础设施"</strong>——你不需要做完美的父母，你需要做一个还在被支持着的父母。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://developingchild.harvard.edu/resources/serve-and-return/">哈佛儿童发展中心"发球与回球"互动专题（英文）</a>——照护者回应质量依赖照护者自身状态 · <a href="https://www.who.int/publications/i/item/9789241514064">WHO《养育照护框架》（2018，英文）</a>（"照护者的健康与支持"为框架组成部分） · 12356 心理援助热线（国家卫健委开通，全国统一）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、课程地图：四部分二十章</h2>
+    <p class="chapter-sub">先懂孩子，再谈方法；先稳关系，再做规划</p>
+
+    <article class="view">
+      <h3>四个部分各回答什么问题</h3>
+      <p class="ctx"><strong>第一部分"理解孩子的发展"（第1-5章）</strong>回答"孩子是怎么长大的"：大脑发育与谣言核查、依恋与安全感、游戏、语言与亲子阅读、情绪与情绪教练。这部分是全课程的地基——很多方法之争，其实是对发展规律的认知之差。<strong>第二部分"学习能力培养"（第6-10章）</strong>回答"比分数更底层的东西怎么练"：学习习惯与作业陪伴、阅读能力、思维与成长型心态、屏幕时间与数字素养、动机与鼓励。<strong>第三部分"关系与沟通"（第11-15章）</strong>回答"教育在什么容器里发生"：亲子沟通、规则与界限、青春期、家校合作与校园问题（含欺凌应对）、家庭生态（夫妻关系/二胎/隔代）。<strong>第四部分"规划与安心"（第16-20章）</strong>回答"怎么把焦虑变成计划"：教育焦虑的识别与安顿、择校与升学的决策框架、兴趣班与优势发现、生活教育（家务/金钱观/性教育/安全）、父母自身的成长。四部分的顺序就是逻辑顺序：<strong>懂孩子 → 会方法 → 稳关系 → 不慌张</strong>。</p>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="课程地图示意：一条四段的上升路径，四段分别标记植物幼苗、打开的书本、两只相握的几何手、山顶的旗帜，一个抽象的成人形象牵着一个小几何人沿路攀登" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://developingchild.harvard.edu/resources/enhancing-and-practicing-executive-function-skills-with-children-from-infancy-to-adolescence/">哈佛儿童发展中心执行功能培养专题（英文）</a>（第二部分能力培养的科学依据之一） · <a href="https://www.edu.cn/xue_qian_779/20121016/t20121016_856526_1.shtml">教育部《3-6岁儿童学习与发展指南》（五大领域框架与第一部分对应）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>两种查法：按年龄段找，按问题找</h3>
+      <p class="ctx">这张对照表建议收藏：左边按孩子年龄段列出优先章节，右边按高频问题直达对应章。找不到对应问题时，从第一部分的对应发展阶段读起——<strong>大多数"怎么办"的答案，藏在"为什么"里</strong>。</p>
+      <table class="tb">
+        <tr><th>按年龄段</th><th>优先章节</th><th>按问题</th><th>直达章节</th></tr>
+        <tr><td>0-3 岁</td><td>第1、2、4、5章（大脑/依恋/语言/情绪）</td><td>哭了要不要抱</td><td>第2章</td></tr>
+        <tr><td>3-6 岁</td><td>第2、3、4、5、9章（游戏/语言/情绪/屏幕）</td><td>发脾气、撒泼打滚</td><td>第5章</td></tr>
+        <tr><td>6-12 岁</td><td>第6、7、8、9、10、11、12、14章（习惯/阅读/思维/动机/沟通/规则/家校）</td><td>写作业拖拉磨蹭</td><td>第6章</td></tr>
+        <tr><td>12-18 岁</td><td>第13、11、16、17、20章（青春期/沟通/焦虑/升学/父母成长）</td><td>手机停不下来</td><td>第9章</td></tr>
+        <tr><td>全年龄段</td><td>第15、16、19、20章（家庭生态/焦虑/生活教育/父母成长）</td><td>顶嘴、对抗、不听话</td><td>第11、12章（青春期加第13章）</td></tr>
+        <tr><td>—</td><td>—</td><td>不想上学、疑似被欺凌</td><td>第14章</td></tr>
+        <tr><td>—</td><td>—</td><td>要不要报班、择校纠结</td><td>第17、18章</td></tr>
+      </table>
+      <p class="ctx">使用节奏上给一个参考：每章按"约25分钟通读"设计，但更推荐的用法是<strong>问题导向的跳读</strong>——遇到具体的养育难题时，按上表直达对应章，读完方法框先试一周，有效果再回头补读该章的证据部分；孩子跨入新年龄段时（比如入园前、入学前、青春期前），把该年龄段的优先章节通读一遍，相当于提前做一次"发展预习"。两种用法可以叠加：预习给你地图，跳读解决当下的路障。不必按 1 到 20 的顺序硬啃——这门课是工具书，不是小说。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.unicef.cn/media/8456/file/%E3%80%8A3%E2%80%946%E5%B2%81%E5%84%BF%E7%AB%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%8F%91%E5%B1%95%E6%8C%87%E5%8D%97%E3%80%8B.pdf">教育部《3-6岁儿童学习与发展指南》（年龄分段目标的官方范本）</a> · <a href="https://www.who.int/publications/i/item/9789241549974">WHO《5岁以下儿童身体活动、久坐行为和睡眠指南》（2019，英文）</a>（第3、9章的时长口径来源）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、开学前必须知道的三条底线</h2>
+    <p class="chapter-sub">育儿市场的坑再多，守住这三条就能躲开最贵的几个</p>
+
+    <article class="view">
+      <h3>底线一：凡是承诺"速成"和"包治"的，先当骗局处理</h3>
+      <p class="ctx">发展没有速成通道，这是本课程反复出现的第一原理。因此，凡是营销话术里出现以下特征的，无论包装多么"科学"，都请先当骗局处理：<strong>承诺短时间见效</strong>（"三天纠正叛逆""七天专注力翻倍"）、<strong>神秘化术语</strong>（用量子、脑波、能量场包装的培训课程）、<strong>要求隔离孩子</strong>（把"全封闭""军事化管理"当卖点，家长不能探视）、<strong>恐吓式话术</strong>（"不报这个班孩子就毁了"）。这些特征在"戒网瘾学校""量子波动速读""全脑开发"等被市场监管部门与媒体多次曝光的乱象中反复出现——其中"戒网瘾学校"类机构甚至伴随过体罚与伤害事件，官方已多次整治通报（识别清单与正规求助渠道见<a href="../09-screen/">第9章</a>；伪科学话术的证据核查见<a href="../01-brain/">第1章</a>）。记住一个免费的验证工具：任何声称"有效"的教育方法，都可以到 WWC 这类循证数据库或学术文献里查一查有没有经过检验——<strong>查不到的，就当广告看</strong>。</p>
+      <p class="ctx">一句话总结这条底线：<strong>正规的教育改变是渐进的、可解释的、欢迎家长参与和监督的；凡是急的、玄的、藏着掖着的，转身就走。</strong>守住这条，你已经比大多数家长少花很多冤枉钱，更重要的是，孩子少受很多不必要的罪。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://ies.ed.gov/ncee/wwc/">美国教育部 IES《What Works Clearinghouse》循证数据库（英文）</a>——检验教育干预证据的免费工具 · <a href="https://www.samr.gov.cn/">国家市场监督管理总局官网（检索"量子波动速读""违法广告典型案例"，相关乱象的官方通报口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>底线二：暴力不是管教，是违法</h3>
+      <p class="ctx">"打骂体罚"在很多家庭里还被当作"管教手段"的最后一招，本课程必须把话说死：<strong>它是法律明确禁止的家庭暴力形式，也是研究证据最一致的有害养育行为之一</strong>。《家庭教育促进法》要求家长"依法带娃"，禁止家庭暴力；《未成年人保护法》同样明令禁止对未成年人的体罚与变相体罚。研究层面的结论在第三部分第12章完整展开，这里只给方向：大量研究发现体罚与孩子的攻击行为增加、亲子关系恶化、心理健康风险上升相关，且<strong>没有任何研究发现体罚比非暴力管教更有效</strong>。"我小时候就是被打大的，不也挺好"是最常见的反驳——第12章会解释这句话里的幸存者偏差，以及"不打孩子到底怎么管"的可操作替代（自然结果、逻辑后果、暂停的正确用法）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（检索"家庭教育促进法""未成年人保护法"）</a> · <a href="https://www.unicef.org/early-moments-matter">UNICEF"Early Moments Matter"专题（英文）</a>——回应性照护与暴力环境对早期发展影响的对照证据</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：四句最贵的育儿谣言，一次拆完</h3>
+      <p class="ctx">导论就先拆四句流传最广、商业代价最高的说法，完整弹药库在各章谣言粉碎卡与<a href="../01-brain/">第1章</a>。<strong>谣言一："错过三岁就晚了。"</strong>不成立。敏感期是效率窗口不是关闭的大门，大脑可塑性终身存在；哈佛毒性压力研究反而支持"任何阶段引入稳定支持性关系都有改善作用"。这句话的真实功能是给天价早教班制造紧迫感。<strong>谣言二："听莫扎特能让孩子变聪明。"</strong>不成立。原始 1993 年实验只测了大学生折纸任务的短暂空间表现；Pietschnig 等人 2010 年的元分析未发现对智力的实质提升——给胎儿和婴儿放音乐没有坏处，但指望它提升智商，不如把同样的时间用来跟孩子说话。<strong>谣言三："孩子哭了不能抱，抱了就惯坏。"</strong>与证据相反。一岁内对哭泣的及时回应与更安全型依恋相关；"惯坏"论把婴儿的生理与情感需求误读为"操纵"（第2章详解依恋研究的完整口径）。<strong>谣言四："别人家孩子都会了，你家还不会，就是落后。"</strong>这是把发展里程碑的"正常范围"误当成"及格线"——官方指南给的年龄参考描述的是大多数孩子的分布，个体差异是常态而不是异常（当然，超出正常范围的信号要认真对待，见第六节就医指引）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Pietschnig, Voracek & Formann（2010）"莫扎特效应"元分析，<a href="https://doi.org/10.1016/j.intell.2009.04.002">doi:10.1016/j.intell.2009.04.002（英文）</a> · <a href="https://developingchild.harvard.edu/resources/toxic-stress/">哈佛儿童发展中心《毒性压力》专题（英文）</a> · <a href="https://dictionary.apa.org/attachment">APA 心理学词典 attachment 词条（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"塑造观"的三个隐含假设是什么？各自被什么证据或官方文件反驳？</li>
+        <li>WHO《养育照护框架》的五个要素是哪些？为什么清单里没有"昂贵早教班"？</li>
+        <li>赫克曼的早期干预回报率研究说明了什么？营销话术是怎么偷换它的？</li>
+        <li>"早做早受益，晚做也有用"的科学依据是什么？（提示：可塑性终身存在）</li>
+        <li>发展科学能告诉家长的三类知识是什么？不能告诉的局限又有哪些？</li>
+        <li>成长型心态与棉花糖实验的"修正口径"分别是什么？三段式争议写法长什么样？</li>
+        <li>《家庭教育促进法》什么时候施行？它对家长划了什么底线、托了什么底？</li>
+        <li>"双减"与家校社协同政策传递的共同信号是什么？对家庭的实际含义呢？</li>
+        <li>本课程的三个使用原则是什么？"四步使用法"你能复述吗？</li>
+        <li>出现哪些信号应该带孩子去专业机构评估，而不是继续查资料？</li>
+        <li>家长自己的哪些状态说明"先处理大人的问题"？12356 是什么热线？</li>
+        <li>四个部分各自回答什么问题？"懂孩子→会方法→稳关系→不慌张"分别对应哪部分？</li>
+        <li>按年龄段查，3-6 岁优先读哪几章？按问题查，"写作业拖拉"去哪章？</li>
+        <li>识别伪科学培训的四个话术特征是什么？免费的验证工具是哪个？</li>
+        <li>为什么说"打骂体罚"既违法又无效？"我就是被打大的"错在哪种偏差？</li>
+        <li>四句育儿谣言（错过三岁/莫扎特/哭了不抱/别人家孩子）各自的证据反驳是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>孩子不是泥、家长不是工程师——塑造观的三个假设（空白石板/投入产出成正比/统一模具）都站不住，发展观=园丁式养育，对应 WHO 养育照护五要素（健康/营养/回应性照护/早期学习机会/安全）；早期投入回报率高（赫克曼），但可塑性终身存在，"来不及了"基本不成立；发展科学给你规律、方向与风险信号，不给你孩子的最优解，且结论会被更好的研究修正（成长型心态、棉花糖实验均已修正口径）；2022 年起《家庭教育促进法》"依法带娃"：禁止家庭暴力、要求尊重差异科学引导，配套"双减"与家校社协同——拼家庭内部质量的时代在变宽；使用三原则：看年龄段（0-3/3-6/6-12/12-18）、看气质、看家庭现实，配合"定位→对号→小步→复盘"四步法；两条边界：本站只科普识别信号不做诊断（预警征象→儿童保健科/发育行为儿科），家长自己撑不住先求助（12356）；三条底线：承诺速成包治的先当骗局（免费验证工具 WWC）、暴力是违法不是管教、四句最贵谣言已拆（敏感期非关门/莫扎特无智力提升/哭了要回应/里程碑是范围不是及格线）。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>儿童教育课 · 全部目录</a>
+    <a href="../01-brain/"><span class="dir">第1章 →</span>发展中的大脑：从0岁到18岁</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>儿童教育课 · 导论 · 依据 WHO/UNICEF/世界银行《养育照护框架》（2018）、WHO《5岁以下儿童身体活动、久坐行为和睡眠指南》（2019）、教育部《3-6岁儿童学习与发展指南》、《中华人民共和国家庭教育促进法》、国家卫健委《0-6岁儿童健康管理技术规范》、哈佛儿童发展中心专题（毒性压力/执行功能/发球与回球）、APA 心理学词典、美国教育部 WWC、CASEL 框架、Heckman Equation 及 Sisk（2018）、Watts（2018）、Pietschnig（2010）等同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供家庭教育参考，不构成医疗、心理或法律建议 · 发育与心理疑虑请及时到正规医疗机构寻求专业评估 · 心理援助热线 12356 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #047857;border-radius:12px;background:#ecfdf5;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#065f46;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#047857;border:1.5px solid #047857;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/edu/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#047857;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#047857;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#ecfdf5;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#065f46;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #047857;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#ecfdf5;}
+.sr-item .sr-c{display:block;font-size:12px;color:#047857;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/edu\/.*/,'/edu/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.EDU_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#047857;border:1.5px solid #047857;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#ecfdf5;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 费用与税：看不见的成本 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第10章 · 估值与实操工具</div>
+  <h1>费用与税：看不见的成本</h1>
+  <p>收益靠市场给，成本由自己省——佣金、印花税、五类基金费、红利税、个人养老金优惠，一次算清</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../09-strategy/">← 第9章：投资策略</a>
+    <a href="../11-scam/">第11章：防骗指南 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">成本为什么重要</a>
+    <a class="anchor" href="#s2">交易费用全景</a>
+    <a class="anchor" href="#s3">基金费用</a>
+    <a class="anchor" href="#s4">红利税</a>
+    <a class="anchor" href="#s5">个人养老金</a>
+    <a class="anchor" href="#s6">省成本习惯</a>
+    <a class="anchor" href="#s7">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①用复利数学说清"每年 1%-2% 的成本差，三十年后是四成的终值差"，理解为什么成本是投资中<strong>唯一确定可控</strong>的变量；②列出一笔 A 股买卖要付的全部费用（佣金、印花税、过户费）及各自的征收方与方向，知道费率去哪里查官方口径；③分清基金的五类费用（申购、赎回、管理、托管、销售服务），识破"免申购费＝免费"的话术，会算 A 类与 C 类份额哪个更适合你的持有期；④复述红利税差别化征收的三档规则（1 个月内、1 个月至 1 年、超 1 年），理解"为免税而长期持有"的制度导向；⑤说清个人养老金 EET 模式的三段税收安排（缴费抵扣、投资免税、领取 3%），判断自己是否适合参加；⑥把"交易前三问"变成本能，用低换手、低成本把省下的钱留给复利。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>第二节的费用明细表和第三节的五费对照表建议收藏，下单前可以直接对照；第四、五节涉及税率与额度，全部以官方文件原文为准并标注了查询渠道，政策如有调整请以最新官方口径为准。本章所有计算均为教学示例，不构成税务或投资建议，复杂税务情形请咨询持牌税务师。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么成本值得单独讲一章</h2>
+    <p class="chapter-sub">收益是市场给的，你控制不了；成本是规则收的，你控制得了——这就是全部理由</p>
+
+    <article class="view">
+      <h3>唯一确定的变量：收益不可控，成本可控</h3>
+      <p class="ctx">投资结果由四个变量决定：市场回报、你的配置、你的成本、你的行为。其中市场回报完全不可控——没有人能持续预测；配置和行为可以优化但充满不确定性；<strong>只有成本，是白纸黑字、百分之百确定会发生在你身上的</strong>。每一笔佣金、每一个百分点的管理费、每一次卖出触发的税，都在成交那一刻锁定。博格在《共同基金常识》里把这个逻辑称为"成本重要假说"（Costs Matter Hypothesis）：既然投资者作为整体在扣除成本前只能获得市场平均回报，那么<strong>成本就是投资者之间长期收益差异的最可靠解释变量之一</strong>——你多付的每一分费用，都是从你的复利里精确扣走的一分。SPIVA 记分卡十几年的追踪也提供了旁证：长期跑输基准的主动基金占绝大多数（各期口径不同，引用时需注明期数，详见<a href="../05-index/">第5章</a>），而费用差异是解释跑输的重要因素。</p>
+      <p class="ctx">更麻烦的是成本的隐蔽性。佣金在成交回执上看得见，你会本能地心疼；但管理费是从基金净值里<strong>每天无声扣除</strong>的，你的账户对账单上永远不会出现"今日管理费支出"这一行；红利税在派发时自动代扣，多数人从未算过自己被扣了多少；至于买卖价差和冲击成本，连名字都很少有人提起。这一章的任务就是把所有"看不见的成本"摆到台面上，逐项标价。请先建立一个心态：<strong>谈成本不是抠门，是专业</strong>。机构投资者的尽调清单里费率永远在前列，而散户往往只盯着收益率排行——这正是"基金赚钱、基民不赚钱"现象的另一半原因（前一半是追涨杀跌，<a href="../04-behavior/">第4章</a>讲过）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：博格《共同基金常识》"成本重要假说"相关章节（书籍引用，注明版本） · SPIVA 记分卡（标普道琼斯指数公司机构研究，英文） <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">https://www.spglobal.com/spdji/en/research-insights/spiva/</a>（引用需注明期数） · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金费率信息披露规范口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>复利侵蚀计算器：1% 的年费，三十年后值多少钱</h3>
+      <p class="ctx">做一个教学示例（数字纯属假设，非投资建议）：两位投资者各投入 10 万元，持有 30 年。甲的组合法定前年化回报 7%，年综合成本 0.5%（低费率指数基金为主）；乙的组合同样 7% 的税前回报，但年综合成本 2.5%（高费率产品+频繁交易摩擦）。甲的实际年化 6.5%，30 年后 10 万变成约 <strong>66.1 万元</strong>（1.065³⁰≈6.61）；乙的实际年化 4.5%，30 年后约 <strong>37.5 万元</strong>（1.045³⁰≈3.75）。两者税前回报完全相同，<strong>仅仅因为每年 2 个百分点的成本差，30 年后终值相差约 28.6 万元——差了近四成半</strong>。每年 2%听起来微不足道，30 年累计的侵蚀却接近总终值的一半，这就是复利对成本的放大效应：时间越长，成本的小差距被指数级拉开。</p>
+      <div class="fig"><img src="../assets/img-10-1.png" alt="费用侵蚀复利示意图：两条从同一起点出发的增长曲线，上方曲线粗壮完整，下方曲线被沿途多个标注着硬币图标的小缺口不断削减，终点差距显著，深蓝 #1d4ed8 扁平几何风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">这个示例还有一层更隐蔽的含义：<strong>成本不只吃掉"钱"，还吃掉"时间的礼物"</strong>。被扣掉的费用本可以继续复利滚动，所以你损失的不是"那 2%"，而是"那 2% 及其未来三十年的全部子孙"。把这笔账翻译成行动语言就是三条：选产品先看费率栏（同类宽基指数基金的费率差异可以达到每年 1 个百分点以上）；控制换手（每次买卖都是一次性的成本事件，第9章讲过的频繁交易之害，一半来自行为偏差，另一半就来自这里）；用好制度红利（个人养老金的税收优惠本质上是国家替你"降费"，第五节细讲）。博格的那句名言值得抄在本子上：<strong>"在投资的复利世界里，你得到的，恰恰是你没付出去的那部分。"</strong></p>
+      <blockquote class="q">交易前三问：①这一单的全部摩擦成本是多少？（佣金＋印花税＋过户费，基金再加申购/赎回费）②这笔交易是我书面策略里的既定动作，还是今天的情绪？③如果这笔钱买入后三年不许动，我还愿意买吗？——三问有一问答不上来，就不下单。<span class="qsrc">—— 依据交易所投教材料"理性投资、了解费用"原则整理的教学总结（非官方口诀）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》关于费用长期侵蚀的测算方法（书籍引用） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（交易成本与理性投资投教材料）</a> · 本节测算为教学示例，回报率纯属假设</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、股票交易费用全景：每一笔买卖的三张账单</h2>
+    <p class="chapter-sub">佣金给券商、印花税给国家、过户费给登记结算——方向和费率各有规矩</p>
+
+    <article class="view">
+      <h3>显性费用三件套：佣金、印花税、过户费</h3>
+      <p class="ctx"><strong>其一，券商佣金。</strong>你付给证券公司的交易通道服务费，买卖双向收取，费率由券商公示（市场上常见万分之几的水平，多数券商设有每笔最低收费，如 5 元起——具体以你所用券商的官方公示为准，开户时可以比较，<a href="../08-account/">第8章</a>讲过）。佣金还包含代收的规费成分，普通投资者只需要记住：这是<strong>双向收取、可以比较、可以谈</strong>的一项。<strong>其二，证券交易印花税。</strong>这是国家税收，<strong>只对卖方单边征收</strong>。2023 年 8 月起，印花税率实施减半征收，由成交金额的千分之一降至<strong>万分之五（0.05%）</strong>，以财政部、税务总局公告原文为准（官方文件见下方来源链接，可在国家税务总局政策法规库检索核对）。印花税的存在本身就带有政策导向：单边征收、税率可调，既筹集财政收入，也提示交易是有社会成本的。<strong>其三，过户费。</strong>股票成交后变更股权登记的手续费，由中国结算收取，沪深两市股票均按成交金额的一定比例双向征收（现行口径为极低的万分比水平，具体费率以<a href="https://www.chinaclear.cn/">中国结算</a>官网公示为准）。</p>
+      <p class="ctx">把三件套放进一个教学示例：假设佣金费率万分之二点五（双向、无最低收费简化处理）、印花税卖方万分之五、过户费双向合计约十万分之二，买卖各 10 万元股票一次的<strong>总摩擦成本约：买入端 2.5 元佣金＋1 元过户费≈3.5 元；卖出端 2.5 元佣金＋50 元印花税＋1 元过户费≈53.5 元；一买一卖合计约 57 元，占成交额的万分之五点七左右</strong>。看起来不多？把它乘以换手率：一个每年把本金完整换手 10 次的账户，一年光交易摩擦就烧掉本金的约 5.7%——超过绝大多数基金的全年管理费。这就是第9章"不推荐短线交易"的成本学注脚：<strong>短线交易者的第一对手不是市场，是收费窗口</strong>。（示例费率为教学假设，实际以券商与官方公示为准。）</p>
+      <table class="cmp">
+        <tr><th>费用</th><th>收取方</th><th>方向</th><th>现行口径（截至2026-10，以官方为准）</th><th>能否降低</th></tr>
+        <tr><td>券商佣金</td><td>证券公司</td><td>买卖双向</td><td>券商公示费率，常见万分之几，多有每笔最低收费</td><td>✅ 可比较、可协商</td></tr>
+        <tr><td>印花税</td><td>国家税务</td><td>仅卖方</td><td>2023年8月起减半至 0.05%（财税公告原文可查）</td><td>❌ 法定，只能靠减少卖出次数</td></tr>
+        <tr><td>过户费</td><td>中国结算</td><td>双向</td><td>极低万分比，以中国结算官网公示为准</td><td>❌ 统一标准</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局关于减半征收证券交易印花税的公告（国家税务总局政策法规库原文）</a> · <a href="https://www.chinaclear.cn/">中国证券登记结算有限责任公司（过户费等结算收费官方公示渠道）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（交易费用投教材料）</a> · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（交易规则与费用栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>隐性费用：价差、冲击成本与"免费的午餐"陷阱</h3>
+      <p class="ctx">账单上看不见的成本才是深水区的。<strong>第一项：买卖价差（bid-ask spread）。</strong>任何时刻，市场上最高的买价和最低的卖价之间有一个缺口，你"立刻买入"付的是卖价、"立刻卖出"得到的是买价，一买一卖之间天然损失一个价差。大盘蓝筹股价差极小，但小盘、冷门、流动性差的股票价差可能达到百分之一甚至更多——<strong>流动性差是隐性收费最狠的地方</strong>。<strong>第二项：冲击成本。</strong>大额买卖单会推动价格朝不利方向移动：你买得越多、价格被你自己抬得越高。散户单笔金额小，冲击成本通常有限，但这解释了为什么机构如此在意执行算法，也提醒你：在流动性差的小票里进出，成本远不止佣金那点。<strong>第三项：机会成本形态的摩擦</strong>——限价单没成交错过行情、为了"省佣金"凑单交易反而增加了交易次数，都属于成本的变体。</p>
+      <p class="ctx">还要特别警惕各种"免费"话术。"零佣金"平台往往靠订单流安排、利差或增值服务盈利，天下没有免费的通道；"免费"的投顾群，商业模式可能是把你导流成付费会员甚至更深的陷阱（<a href="../11-scam/">第11章</a>整章讲这个）。<strong>判断任何"免费"，只问一句话：它靠什么赚钱？</strong>答案如果不透明，成本只是换了个地方躲起来。对普通投资者，隐性成本的应对极其简单：<strong>优先交易流动性好的品种（宽基指数基金、大市值股票），减少交易次数，不碰自己看不懂流动性的品种</strong>。价差与冲击成本无法谈判、无法减免，唯一的省钱办法就是——少经过那扇收费的门。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（流动性与交易机制投教材料）</a> · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（交易机制与价差相关知识栏目）</a> · 马尔基尔《漫步华尔街》关于交易成本的论述（书籍引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、基金的费用：五费全解与"免佣"陷阱</h2>
+    <p class="chapter-sub">申购、赎回是"过路费"，管理、托管、销售服务是"年租"——两种收法都要算</p>
+
+    <article class="view">
+      <h3>一次性费用：申购费与赎回费</h3>
+      <p class="ctx"><strong>申购费</strong>是买入基金时的一次性费用，按申购金额的比例收取。权益类基金的标准费率历史上常见 1.5% 一档，但如今通过互联网直销和代销平台申购普遍享有大幅折扣（常见一折，即 0.15% 上下）——<strong>同一只基金在不同渠道买入，申购费可以相差十倍以上，这是最容易省的一笔钱</strong>。部分基金还分前端收费（申购时扣）与后端收费（赎回时按持有年限递减收取），后端模式的设计意图是鼓励长持，但品种较少，遇到时看清条款即可。<strong>赎回费</strong>是卖出基金时的一次性费用，核心特征是<strong>随持有时间递减</strong>：持有时间越长费率越低，多数产品持有满一定年限（常见两年）后为零。特别重要的一条监管安排：<strong>对持续持有期少于 7 日的赎回，监管要求收取不低于 1.5% 的惩罚性赎回费并全额计入基金资产</strong>——这条规则专治"把基金当股票炒"的短炒行为，费率之高足以让任何七天内的进出都得不偿失。它和印花税一样，是制度在明确告诉你：这里欢迎长期资金，不欢迎频繁倒手。</p>
+      <p class="ctx">把两笔"过路费"放进教学示例：申购 10 万元某权益基金，打折后申购费 0.15% 即 150 元；如果 5 天后急用钱赎回，触发 1.5% 惩罚性赎回费 1500 元（且其中大部分归入基金资产补偿留守持有人）——一出一进，还没算净值波动，1650 元已经蒸发，占本金 1.65%。同一笔钱如果按计划持有三年后赎回，赎回费通常已降为零，总过路费只有那 150 元。<strong>持有期限本身就是费率</strong>，这是基金费用结构里最值得记住的设计。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金销售费用与赎回费自律规则口径）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会（开放式基金销售费用监管规定的发布渠道）</a> · <a href="https://www.investor.org.cn/">中国投资者网（基金费用结构投教栏目）</a> · 本节费率为常见口径的教学示例，具体以基金法律文件为准</div>
+    </article>
+
+    <article class="view">
+      <h3>持续性费用：管理费、托管费与销售服务费</h3>
+      <p class="ctx">这三项是<strong>按日从基金资产中计提</strong>的"年租"，你看到的基金净值已经是扣完之后的结果——这正是它们"看不见"的原因。<strong>管理费</strong>付给基金公司，是最大的一项：主动管理的权益类基金年费率历史上常见 1.2%-1.5% 一档，近年降费改革后不少产品已降至更低；而宽基指数基金的管理费可以低至每年 0.15% 甚至更低一档——<strong>主动与被动之间每年可达约 1 个百分点的费率差，套用第一节复利计算器，30 年就是四成上下的终值差</strong>。这不是说主动基金不能买，而是说：你为"可能存在的超额收益"支付的是确定的高费率，而 SPIVA 的长期数据显示多数主动产品并未持续跑赢（各期口径不同）。<strong>托管费</strong>付给托管银行，负责保管资产、监督运作，年费率通常在 0.05%-0.25% 区间。<strong>销售服务费</strong>是 C 类份额特有的年费，代替申购费按日计提，常见每年 0.2%-0.8%。</p>
+      <p class="ctx">于是有了著名的 <strong>A/C 类份额选择题</strong>：同一只基金，A 类收申购费（打折后约 0.15%）、无销售服务费；C 类免申购费、按日收销售服务费（示例 0.4%/年）。哪类划算取决于持有期：粗略的平衡点算法是"申购费 ÷ 年销售服务费率"——0.15% ÷ 0.4% ≈ 0.375 年，即<strong>持有不足四五个月选 C，超过则 A 类更省</strong>（教学示例算法，实际按产品费率精确计算）。这个结论再次指向同一个主题：费用结构在系统性地奖励长期持有者。另有一个更隐蔽的持续性成本值得知道：<strong>基金的内部换手成本</strong>。一只年换手率 300% 的主动基金，其组合内的佣金与价差摩擦同样从净值中扣除，却不体现在费率表上——挑选主动基金时，年报里的换手率与费率一样值得看一眼。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会（公募基金费率改革相关官方信息发布渠道）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金产品费率信息披露口径）</a> · SPIVA 记分卡（英文） <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">https://www.spglobal.com/spdji/en/research-insights/spiva/</a> · 博格《共同基金常识》费率对比章节（书籍引用） · 本节费率为区间性教学示例，以基金合同与招募说明书为准</div>
+    </article>
+
+    <article class="view">
+      <h3>"免佣＝免费"？货币基金与"零费率"的真相</h3>
+      <p class="ctx">"这只基金申购赎回全免费"——听到这句话请先冷静，<strong>免佣从来不等于免费</strong>。最典型的例子是货币基金：它确实不收申购费和赎回费，但管理费、托管费、销售服务费一分不少地按日从收益里扣除。你看到的"七日年化收益率"已经是<strong>扣完全部费用之后的净收益</strong>——货基的费用不是不存在，而是藏在收益数字的上游，让你感觉不到"付费"这个动作。同理，一些平台的"零申购费"活动，往往只是把成本转移到了更高的销售服务费份额、或者用你后续的交易行为赚钱。<strong>判断任何产品贵不贵，别看营销活动，翻到基金法律文件（招募说明书、基金合同）的"基金费用与税收"章节，把五项费率加总成年化综合成本再比较</strong>——这是唯一不会被话术骗到的方法。</p>
+      <p class="ctx">还有一个高频误区要拆：<strong>"费率低的一定是指数基金里的清一色好货，费率高的都是坑"</strong>——两头都不对。费率低是必要条件不是充分条件：同为宽基指数基金，还要比较跟踪误差、规模与流动性、清盘风险（<a href="../05-index/">第5章</a>讲过挑选维度）；而一些高费率产品（如某些 QDII、特殊策略基金）承担着真实的投研与跨境成本，贵得有理由，关键看你需不需要它的功能。正确的姿势是把费率当作<strong>同类比较</strong>的第一过滤器：先圈定同类（如"沪深300 指数基金"），再在圈内比费率、比跟踪误差，跨类比费率没有意义。记住博格公式：<strong>净收益 ≈ 市场回报 − 成本</strong>。市场回报对所有人一样，长期看，选低成本产品就是普通投资者最确定的"超额收益"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：博格《共同基金常识》关于费用与净收益关系的章节（书籍引用） · <a href="https://www.investor.org.cn/">中国投资者网（基金费用认知与误区投教栏目）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（基金信息披露与法律文件查询口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、红利税：差别化征收的三档规则</h2>
+    <p class="chapter-sub">持股一个月、一年、一年以上，同一笔分红的税负完全不同——制度在为长期投票</p>
+
+    <article class="view">
+      <h3>三档税率：1 个月内 20%，1 个月至 1 年 10%，超 1 年免征</h3>
+      <p class="ctx">上市公司给你发的现金分红要交个人所得税，但税率不是固定的，而是<strong>按你的持股期限差别化征收</strong>。现行规则框架（以财政部、税务总局官方文件为准，政策如有调整以最新公告为准）：<strong>持股期限在 1 个月以内（含）的，股息红利所得全额计入应纳税所得额，实际税负 20%；持股 1 个月以上至 1 年（含）的，暂减按 50% 计入，实际税负 10%；持股超过 1 年的，暂免征收</strong>。执行方式也值得知道：分红派发时通常先不扣或按低档预扣，等你<strong>卖出股票时</strong>，券商和登记结算系统根据你的实际持股期限计算应补税额，从资金账户中代扣——所以有时你会发现"卖出后钱少了一点"，那可能就是补缴的红利税。</p>
+      <p class="ctx">把规则放进教学示例：某公司每 10 股派现 5 元（示例），你持有 1 万股，获分红 5000 元。若你在分红后第 20 天卖出，补缴 20% 即 1000 元；持有 8 个月卖出，补缴 10% 即 500 元；持有 1 年零 1 天卖出，税款为零。三档之间每档差 500 元，占分红的一成——<strong>持股期限直接决定了分红的到手率</strong>。这项差别化制度的政策意图非常清晰：用税收杠杆抑制"分红前突击买入、除权后立刻卖出"的短线套利，奖励长期持有。它与惩罚性赎回费、单边印花税构成了同一套制度语言：<strong>中国的交易税制整体上是"长持友好、短炒收费"的</strong>，顺着制度设计的方向走，你的成本天然更低。顺带说明：个人投资者从公募基金分配中取得的收入，现行口径下暂不征收个人所得税（以官方文件为准）——这也是通过基金间接持股在税务上的一个小便利。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/">国家税务总局政策法规库（"差别化个人所得税"相关公告检索入口，持股期限三档规则的官方原文）</a> · <a href="https://www.chinaclear.cn/">中国证券登记结算有限责任公司（红利税代扣代缴的结算业务口径）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（分红与除权除息投教材料）</a> · 本节税率为现行文件口径整理，具体以最新官方公告为准，示例为教学假设</div>
+    </article>
+
+    <article class="view">
+      <h3>除权除息与"抢权"：分红不是白给的钱</h3>
+      <p class="ctx">新手常有一个激动人心的错觉："分红前一天买入，白拿一笔现金！"这个操作有个名字，叫"抢权"，而它是行不通的。原因在于<strong>除权除息机制</strong>：分红派息的本质是把公司的一部分资产以现金形式发给股东，发放当日（除息日）股价会相应下调——每股派 0.5 元，除息日开盘参考价就自动减去 0.5 元。<strong>你的总资产在分红瞬间不变：现金多了，股价低了，左口袋进右口袋</strong>。真正让"抢权"变成亏钱的是税：你在分红前突击买入、除息后短期内卖出，分红要按 20% 的最高档补税，而股价下调的损失是实打实的——等于<strong>用最高税率给自己发了一笔要交税的"红包"</strong>。教学示例：分红前 10 元买入 1 万股，每股派 0.5 元获现金 5000 元，除息后股价参考 9.5 元，市值 9.5 万＋现金 0.5 万＝10 万不变；若次日卖出，补缴红利税 1000 元，再加佣金印花税，总资产净亏。抢权唯一的赢家是税务局和你的券商。</p>
+      <p class="ctx">那么分红的意义是什么？对<strong>长期持有者</strong>，分红是真实回报的组成部分：除息造成的股价下调会由公司未来的盈利增长逐步填回（这正是"填权"的含义，但它依赖公司经营，不是自动发生），而你因为持股超过一年享受免税，现金分红落袋零成本。所以税务上最优的分红策略朴素得令人失望：<strong>如果你本来就打算长期持有，分红规则对你全是利好；如果你为了分红做短线，规则会让你付出最高代价</strong>。这也解释了一个常见现象：红利指数类基金（以高分红率为选样标准，见<a href="../05-index/">第5章</a>与<a href="../17-portfolio/">第17章</a>的组合应用）之所以适合作为长期底仓的一部分，税制友好是原因之一。最后提醒两个查询习惯：每家上市公司的分红方案（每 10 股派多少、股权登记日、除息日）都在交易所指定信息披露渠道公告；红利税的具体征收口径以国家税务总局政策法规库的现行文件为准——本章所有税率数字，请在做实际决策前到官方渠道复核一遍时效性。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（除权除息机制官方投教材料）</a> · <a href="https://www.szse.cn/investor/">深圳证券交易所 · 投资者教育（分红派息与税收知识栏目）</a> · <a href="https://fgk.chinatax.gov.cn/">国家税务总局政策法规库（股息红利差别化税收政策原文检索）</a> · 本节示例为教学假设</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、个人养老金：EET 模式的税收红包</h2>
+    <p class="chapter-sub">缴费时抵扣、投资时免税、领取时 3%——国家用税制帮你强制长期储蓄</p>
+
+    <article class="view">
+      <h3>EET 三段拆解：每年 12000 元额度的税务账</h3>
+      <p class="ctx">个人养老金制度（2022 年《关于推动个人养老金发展的意见》建立，先行城市试点后逐步推开，以最新政策为准）采用国际通行的 <strong>EET 税收模式</strong>：Exempt（缴费环节免税）— Exempt（投资环节免税）— Taxed（领取环节征税）。三段的具体安排：<strong>缴费环节</strong>，参加人每年缴费上限 <strong>12000 元</strong>，缴费额可在综合所得或经营所得中据实扣除——对缴个税的人来说，这等于当年少缴一笔税，边际税率越高省得越多：适用 10% 税率的人每年最多省 1200 元，适用 20% 的省 2400 元，适用 45% 的省 5400 元（示例测算）。<strong>投资环节</strong>，账户资金可自主选择购买符合规定的储蓄存款、理财产品、商业养老保险、公募基金等，<strong>投资产生的收益在积累期暂不征税</strong>——复利在"免税温室"里滚几十年，这是 EET 模式最值钱的部分。<strong>领取环节</strong>，达到领取条件（退休等）后领取时，<strong>不并入综合所得，单独按 3% 的税率计算缴纳个人所得税</strong>。政策原文均可在下方来源链接核对（财政部、税务总局公告及国务院意见全文）。</p>
+      <div class="fig"><img src="../assets/img-10-2.png" alt="个人养老金 EET 模式示意图：一条三段式管道，入口段标注减税图标，中段是一个透明温室里滚大的雪球代表免税积累，出口段是一个小额税单图标，深蓝 #1d4ed8 扁平风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">算一笔完整的教学示例账：一位边际税率 10% 的上班族，连续 30 年每年缴满 12000 元。缴费环节每年省税 1200 元；假设账户内投资年化 5%（纯假设），30 年后账户约 79.8 万元（12000×年金终值系数），积累期收益全程免税；领取时按 3% 缴税约 2.4 万元。对比同样金额放在普通账户：投资收益可能涉及应税项目、且没有缴费抵扣，30 年下来税差可达数万元。<strong>但请先看清代价再算收益：个人养老金账户是封闭的</strong>——缴费额度内资金原则上要到退休等法定条件才能领取，中途只有在特定情形（如完全丧失劳动能力、出境定居等，以官方文件为准）下可提前支取。它是"强制长期储蓄"，流动性几乎为零。所以适配判断很简单：<strong>这笔钱必须是三十年级别的养老钱，且你的个税税率越高、参加的动力越足；如果你连应急金还没备齐、或近几年要买房，先去做那些，再来领这个税收红包</strong>（财务地基顺序见<a href="../16-plan/">第16章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《关于推动个人养老金发展的意见》全文（证监会网站转载）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">财政部 税务总局关于个人养老金有关个人所得税政策的公告（政策法规库原文：缴费抵扣与领取 3% 口径）</a> · 本节测算为教学示例，投资回报纯属假设，非收益承诺</div>
+    </article>
+
+    <article class="view">
+      <h3>账户里的选择：养老目标基金、储蓄、保险与理财</h3>
+      <p class="ctx">个人养老金账户不是一只产品，而是一个<strong>货架</strong>：账户里的钱可以在符合规定的四类资产中选择——特定养老储蓄、养老理财产品、商业养老保险、公募基金（含养老目标基金、以及后续纳入的指数基金等产品，名单以官方公布为准）。四类资产的风险收益特征差异巨大：储蓄和保险偏保本稳收益，权益仓位高的养老目标基金波动大但长期期望更高。挑选思路可以直接复用本课框架：<strong>先看期限匹配</strong>——距退休越远，可承受的权益比例越高（<a href="../19-family/">第19章</a>生命周期配置的应用场景）；<strong>再看费用</strong>——养老目标基金设有专门的 Y 类份额，管理费和托管费通常有折扣，这是个人养老金制度在费用端的又一层让利，比较时用本章第三节的方法把年化综合成本算出来；<strong>最后看目标日期还是目标风险</strong>——"目标日期 2050"这类产品会随年份自动降低权益仓位（下滑轨道），适合不想操心的人；"目标风险稳健/平衡/积极"则仓位风格固定，适合自己把控节奏的人。</p>
+      <p class="ctx">两个常见操作误区顺手拆掉。<strong>误区一："开户就等于参加了。"</strong>开户只是拿到货架钥匙，不缴费、不购买，税收优惠一分钱都不会发生——不少人开了户就忘了，白白放着额度。每年额度 12000 元当年有效、不结转，用不用满是一道每年一次的选择题。<strong>误区二："个人养老金稳赚不赔。"</strong>请对说出这四个字的人提高警惕：税收优惠是确定的，<strong>但账户内产品的投资回报完全不确定</strong>，养老目标基金照样会浮亏，2022-2023 年部分养老 FOF 的净值回撤就教育过市场。制度的红利在税务与纪律，不在收益保证——任何把个人养老金包装成"保本高息"的销售话术，都符合<a href="../11-scam/">第11章</a>危险信号清单的第一条。正确的预期是：这是一个国家补贴你长期储蓄的工具，你负责选对风险等级并坚持几十年，剩下的交给复利和时间。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/c2349140/content.shtml">《关于推动个人养老金发展的意见》（账户制度与产品范围官方口径）</a> · <a href="https://www.amac.org.cn/">中国证券投资基金业协会（养老目标基金与 Y 份额的登记公示口径）</a> · <a href="https://www.investor.org.cn/">中国投资者网（个人养老金投教专题栏目）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、把省成本变成习惯：换手率与费用清单</h2>
+    <p class="chapter-sub">省钱的本质不是挑最便宜的通道，而是少做多余的动作</p>
+
+    <article class="view">
+      <h3>换手率：散户最贵的一项"隐形费率"</h3>
+      <p class="ctx">把你的账户想象成一家店：每次买卖都过一次收费闸机（佣金＋印花税＋价差），那么这家店的"年过闸费"＝换手次数 × 单次摩擦成本。Barber & Odean（2000）对数万个家庭账户的经典研究给出了直白的结论：<strong>交易最频繁的组，年化收益显著低于最不频繁的组，也大幅低于市场基准</strong>——频繁交易者的亏损有相当部分不是"看错了"，而是"过路费"交掉的（研究为英文文献，结论被后续多国市场数据反复复现）。把这项"隐形费率"显性化的方法：每年年底打开交割单，统计全年佣金＋印花税＋过户费总额，除以平均账户资产——多数活跃散户算出来的数字会让自己大吃一惊，年换手十几次的账户，这项费率轻松超过 5%，比任何基金的管理费都高一个数量级。</p>
+      <p class="ctx">对策在第9章已经给过，这里从成本角度再串一遍：<strong>定投＋年度再平衡＋清单化卖出</strong>的组合，天然把换手率压到极低——定投是买入端唯一动作（场内定投可合并成大单减少最低佣金损耗），再平衡一年一次，卖出只按正当理由清单执行。同样的组合，"手痒版"投资者每月调仓、追热点、听消息，十年下来两人的市场暴露几乎相同，终值却可能差出一倍以上，<strong>差距的全部来源就是换手率与费率</strong>。这也是为什么说本章和上一章是姐妹章：策略决定你经过收费闸机的次数，费用决定每次过闸的单价——两边都省，复利才能完整地为你工作。给一个可执行的小仪式：<strong>每年做一次"成本审计"</strong>，五分钟统计全年摩擦成本占比，超过 1% 就对照第9章危险信号清单自查交易行为。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a>（交易频率与收益关系的奠基研究） · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（换手率与交易成本投教材料）</a> · <a href="https://www.investor.org.cn/">中国投资者网（理性交易与成本意识栏目）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>一张随身费用清单：下单前的最后五秒</h3>
+      <p class="ctx">把全章压缩成一张下单前可以过一遍的清单。<strong>买股票前</strong>：①佣金费率与最低收费是多少（券商 App 里查得到）？②这是流动性好的品种吗（价差大不大）？③这笔买入是书面计划里的动作吗？<strong>买基金前</strong>：①申购费打几折、这个渠道是不是最低？②管理费＋托管费＋销售服务费的年化总和是多少（翻招募说明书"基金费用与税收"章）？③持有期打算多久——决定选 A 类还是 C 类、会不会撞上惩罚性赎回费？④有没有跟踪同类指数的更低费率产品？<strong>卖出前</strong>：①触发卖出的是正当理由清单还是情绪（第9章第七节）？②卖出会补缴红利税吗（持股是否满一年）？③基金赎回费现在处于哪一档、再等一个月会不会降档？④卖出的钱去哪里——如果只是趴在账上等待"更好的机会"，注意你正在同时支付踏空风险与闲置成本。<strong>每年一次</strong>：成本审计五分钟，个人养老金额度用满了吗、抵扣申报做了吗。</p>
+      <p class="ctx">最后交代本章没展开的两块拼图，供延伸阅读。<strong>其一，个人转让上市公司股票的所得，现行口径下暂免征收个人所得税</strong>（以官方文件为准）——这意味着 A 股散户的股价买卖差价目前不缴资本利得税，是普通投资者的一项重大制度红利，也常被拿来与其他市场对比（<a href="../14-global/">第14章</a>讲美股时会对比资本利得税的差异）。<strong>其二，税费政策是会变的</strong>：印花税 2023 年减半、基金费率改革推进、个人养老金额度与试点范围调整，都发生在最近几年。本章所有数字都标注了"截至 2026 年 10 月"的时效和官方查询渠道——<strong>把"去哪查现行规则"记牢，比背下任何一个具体数字都重要</strong>。这也正是本课一贯的态度：给你渔具地图，而不是刻舟求剑。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/">国家税务总局政策法规库（证券交易印花税、股息红利税、个人股票转让所得等现行文件的统一检索入口）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局关于减半征收证券交易印花税的公告（原文）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（费率改革与制度调整发布渠道）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、本章自测</h2>
+    <p class="chapter-sub">能把每笔费用算出来，才算真正拿回了账户的主动权</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于费用与税的四个流行说法</h3>
+      <p class="ctx"><strong>谣言一："印花税马上就要取消了，等等再卖。"</strong>——典型的政策谣言。印花税是法定税种，调整（如 2023 年减半）须经财政部、税务总局正式公告，历史上从无"取消"安排；"马上取消/马上大涨"类小道消息是市场情绪的经典放大器，也常被不法分子用作诱导交易的由头，一切以国家税务总局政策法规库原文为准。<strong>谣言二："免申购费的基金就是免费基金。"</strong>——错。C 类份额免申购费但按日收销售服务费，货币基金申赎全免但管理托管费照扣；费用只会换地方藏，不会消失，年化综合成本加总才是真价格。<strong>谣言三："分红是白给的钱，抢权稳赚。"</strong>——错。除息日股价相应下调，总资产瞬间不变，短线抢权反而触发 20% 最高档红利税，是制度专门惩罚的行为。<strong>谣言四："个人养老金保本保息、稳赚不赔。"</strong>——错，且危险。税收优惠确定，投资回报不确定，账户内基金产品照样浮亏；用"稳赚不赔"包装任何产品的销售话术，直接触发<a href="../11-scam/">第11章</a>的危险信号第一条。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局关于减半征收证券交易印花税的公告（现行印花税官方口径原文）</a> · <a href="https://fgk.chinatax.gov.cn/zcfgk/c100013/c5236500/content.html">财政部 税务总局关于个人养老金有关个人所得税政策的公告（原文）</a> · <a href="https://www.chinaclear.cn/">中国结算（除权除息与红利税代扣业务口径）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>投资结果的四个变量中，为什么说只有成本是"百分之百确定可控"的？"成本重要假说"的逻辑是什么？</li>
+        <li>复利侵蚀示例：2 个百分点的年成本差，30 年后终值差多少？为什么损失的不只是那 2%？</li>
+        <li>A 股一笔买卖的三张显性账单是什么？各自收给谁、什么方向？哪一项可以协商？</li>
+        <li>现行证券交易印花税的税率和征收方向是什么？去哪里核对官方原文？</li>
+        <li>把"年换手 10 次"折算成年化摩擦成本，大约是多少？这个数字说明了什么？</li>
+        <li>买卖价差和冲击成本分别在什么品种上最伤？散户的应对为什么只有"少经过收费的门"？</li>
+        <li>基金五费分别是什么？哪两项是"过路费"、哪三项是"年租"？年租为什么看不见？</li>
+        <li>7 日内赎回的惩罚性费率是多少、钱去了哪里？这条规则在防什么行为？</li>
+        <li>A 类与 C 类份额怎么选？写出平衡点的粗略算法并用示例数字算一遍。</li>
+        <li>"免佣＝免费"为什么是话术？判断任何"免费"产品的那一句话是什么？</li>
+        <li>红利税三档规则分别是什么？税款在哪个时点、由谁代扣？</li>
+        <li>用示例数字说明"抢权"为什么必然亏钱（除息机制＋最高档税）。</li>
+        <li>个人养老金 EET 三个环节各自的税务安排是什么？边际税率 10% 的人每年最多省多少？</li>
+        <li>个人养老金账户最大的代价是什么？哪两类人应该先缓一缓？</li>
+        <li>养老目标基金"目标日期"与"目标风险"的区别？Y 份额的费率优惠是什么？</li>
+        <li>"交易前三问"和"卖出前四查"分别是什么？年度成本审计怎么做？</li>
+        <li>个人转让上市公司股票所得的现行税务口径是什么？为什么说记住"去哪查"比背数字重要？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>成本是投资四变量中唯一确定可控的——收益是市场给的、成本是规则收的，博格"成本重要假说"＋SPIVA 长期数据＋复利计算器（2% 年成本差 × 30 年 ≈ 四成多终值差，教学示例）；股票交易三张显性账单——券商佣金（双向、可比可谈、多有最低收费）、印花税（仅卖方、2023 年 8 月起减半至 0.05%、以财税公告原文为准）、过户费（中国结算双向收取、极低万分比）；隐性成本——买卖价差（流动性差最伤）、冲击成本（大额单推动价格）、"免费"话术（只问一句：它靠什么赚钱）；基金五费——申购费（渠道折扣可差十倍）、赎回费（随持有期递减，7 日内惩罚性 1.5% 计入基金资产）、管理费（主动与指数年差可达约 1 个百分点）、托管费、销售服务费（C 类特有），A/C 类用"申购费÷销售服务费率"算平衡点；货币基金申赎全免但三项年费照扣——免佣≠免费，年化综合成本加总才是真价格；红利税差别化三档——持股 1 个月内 20%、1 个月至 1 年 10%、超 1 年免征，卖出时按实际持股期补缴；除息日股价相应下调，"抢权"必然倒贴最高档税；个人养老金 EET——年缴上限 12000 元缴费抵扣、积累期免税、领取单独按 3%，Y 份额费率打折，但账户封闭、产品不保本，边际税率越高越划算；个人股票转让所得现行暂免个税（以官方文件为准）；换手率是散户最贵的隐形费率（Barber & Odean 2000：越频繁越亏），对策＝定投＋年度再平衡＋清单化卖出＋每年五分钟成本审计；所有税率费率以监管与税务官方现行口径为准，本章数字截至 2026 年 10 月。
+  </div>
+
+  <nav class="pager">
+    <a href="../09-strategy/"><span class="dir">← 第9章</span>投资策略：一次性投入与定投</a>
+    <a href="../11-scam/"><span class="dir">第11章 →</span>防骗指南：“荐股大师”“带单”“杀猪盘”</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第10章 · 依据财政部与税务总局证券交易印花税及股息红利差别化税收政策公告、个人养老金个人所得税政策公告（国家税务总局政策法规库原文）、中国证监会与沪深交易所投资者教育材料、中国结算收费口径、中国证券投资基金业协会费率披露规范、博格《共同基金常识》等经典教材，以及 Barber & Odean（2000）、SPIVA 记分卡等公开研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议或税务建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

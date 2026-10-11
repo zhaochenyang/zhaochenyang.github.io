@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7章 财政政策与政府债务 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    nav.pager{flex-direction:column;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第7章 · 第二部分 政策与周期</div>
+  <h1>财政政策与政府债务</h1>
+  <p>政府的钱从哪来、花到哪去：四本预算、赤字率、国债与专项债，以及"乘数"的真实边界</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../06-monetary/">← 第6章：货币政策</a>
+    <a href="../08-cycle/">第8章：经济周期 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">四本预算</a>
+    <a class="anchor" href="#s2">收入端</a>
+    <a class="anchor" href="#s3">支出端</a>
+    <a class="anchor" href="#s4">赤字与赤字率</a>
+    <a class="anchor" href="#s5">政府债务</a>
+    <a class="anchor" href="#s6">财政工具箱</a>
+    <a class="anchor" href="#s7">乘数与争论</a>
+    <a class="anchor" href="#s8">实操与谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为宏观经济科普，仅供经济教育与参考，不构成投资建议或政策预测。本站不预测具体行情与政策走向，"必涨""必跌""崩溃"类断言只出现在谣言粉碎与批判语境。文中涉及的数据以官方统计口径为准（财政部、国家统计局等），标注数据时点或注明"以官方最新发布为准"；不传播未经证实的"内幕政策消息"，重大政策一律以官方发布为准。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出中国政府"四本预算"分别是什么、各管什么钱；②看懂财政收入端（税收结构）与支出端（民生占比）的官方数据从哪里查；③理解赤字、赤字率的计算方法，知道"3% 红线"的真实来历与性质；④分清国债、地方政府一般债、专项债与"隐性债务"四个概念；⑤了解减税降费、转移支付、特别国债三类财政工具的历史用法；⑥理解财政乘数是什么、为什么会"挤出"、以及 MMT 之争双方的主要论点；⑦掌握查财政数据与读预算报告的官方渠道。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>上一章讲央行的"水龙头"，本章讲政府的"钱袋子"——两者合称宏观政策的两大工具。每年 3 月两会期间（政府工作报告公布赤字率与专项债额度）和财政部每月发布财政收支数据时，回到第八节按清单自查一遍，你就能读懂大部分财政新闻；涉及地方债风险的讨论，先看第五节的官方口径再下判断。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、政府的账本：四本预算</h2>
+    <p class="chapter-sub">"财政"不是一个口袋，而是四个各有规则的口袋</p>
+
+    <article class="view">
+      <h3>四本预算：一般公共、政府性基金、国有资本、社保基金</h3>
+      <p class="ctx">中国的全口径政府预算由<strong>四本账</strong>构成：<strong>①一般公共预算</strong>——以税收为主，覆盖教育、医疗、国防、行政等一般性收支，是新闻里"财政收入/支出"的默认口径；<strong>②政府性基金预算</strong>——"以收定支、专款专用"，最大的两项是<strong>国有土地使用权出让收入</strong>（俗称卖地收入）和地方政府专项债收入（<a href="../10-housing/">第10章</a>讲土地财政时会回到这里）；<strong>③国有资本经营预算</strong>——国企上缴利润及其再分配，规模相对小，部分调入一般公共预算；<strong>④社会保险基金预算</strong>——养老、医疗等社保收支，专款专用，与前三本相对隔离（口径以财政部预算报告为准）。</p>
+      <p class="ctx">为什么要先讲账本结构？因为<strong>财政新闻的大多数混乱来自口径错配</strong>：有人说"财政收入下降"（指一般公共预算），有人同一天说"政府收入创新高"（把四本账加总）；讨论地方债时，一般债计入一般公共预算、专项债计入政府性基金预算，混着算就会得出离谱的负债率。每年 3 月财政部向全国人大提交的<strong>预算报告</strong>会把四本账的收支安排逐一列明，决算报告在年中公布上一年执行数——这两份文件是财政数据的"宪法级"出处。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（预算报告与决算报告入口）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（两会预算报告发布聚合）</a> · 萨缪尔森、诺德豪斯《经济学》第19版 公共财政相关章节</div>
+    </article>
+
+    <article class="view">
+      <h3>中央与地方：钱和事怎么分</h3>
+      <p class="ctx">四本账之外还有一个维度：<strong>中央与地方的财政关系</strong>。1994 年分税制改革后，主要税种收入在中央与地方之间按规则划分（如增值税央地分享，具体比例以现行规定为准），形成了"中央拿大头、地方承担大量支出责任"的格局——地方政府要办教育、医疗、基建，自有收入不够，缺口靠两块补：<strong>中央对地方的转移支付</strong>（每年规模在十万亿元量级，具体数额以财政部当年预算报告为准）和<strong>地方举债</strong>（一般债+专项债，见第五节）。转移支付又分一般性转移支付（地方统筹使用）与专项转移支付（指定用途）。</p>
+      <p class="ctx">这个结构解释了财政新闻里的两个高频词：<strong>"财政事权与支出责任划分改革"</strong>（调整哪级政府管什么事、出什么钱）与<strong>"地方财政收支矛盾"</strong>（土地收入波动+刚性支出不减带来的压力，官方表述见财政部新闻发布会与预算报告）。也解释了为什么中央加杠杆（发国债转移给地方用）会成为政策选项之一——第七节的乘数讨论与第八节的谣言粉碎都会用到这个背景。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（中央对地方转移支付分地区决算表）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部政策发布栏目（分税制与财政体制改革文件）</a> · 曼昆《经济学原理（宏观分册）》第10版 公共部门相关章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、收入端：钱从哪来</h2>
+    <p class="chapter-sub">税收结构、非税收入与"减税降费"的账</p>
+
+    <article class="view">
+      <h3>税收结构：第一大税种是谁</h3>
+      <p class="ctx">一般公共预算收入约八成以上来自税收，其余是非税收入（国有资源资产收入、罚没收入等）。税收内部，长期排前几位的税种是：<strong>增值税</strong>（对商品与服务增值额征收，第一大税种，覆盖几乎全部经济活动）、<strong>企业所得税</strong>（法定税率一般 25%，高新技术等适用优惠税率）、<strong>国内消费税</strong>（烟、酒、成品油、汽车等特定商品）、<strong>个人所得税</strong>（综合与分类相结合的税制，2018 年改革后基本减除费用为每年 6 万元并设专项附加扣除）。各税种每年收多少、占比多少，财政部月度发布"财政收支情况"、年度发布决算，都能直接查到——<strong>不必依赖任何自媒体的转述</strong>。</p>
+      <p class="ctx">读税收数据有三个技巧：<strong>一看与经济的名义增速是否匹配</strong>——税收大体跟随名义 GDP（物价+实际增长），税收增速明显低于名义 GDP 增速时，往往有减税政策或经济结构变化在起作用；<strong>二看分税种的背离</strong>——例如进口环节税收反映外贸景气度，个人所得税反映就业与收入面；<strong>三注意口径提示</strong>——留抵退税等政策会阶段性造成某税种收入大幅下降，这是"退给企业的钱"，不是经济突然变差（财政部发布会通常会说明，如 2022 年大规模留抵退税期间的口径提示）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（月度财政收支情况发布）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengxinwen/">财政部财政新闻栏目（收支数据的官方解读与口径说明）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（名义 GDP 对照）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>减税降费：政策工具还是收入变量</h3>
+      <p class="ctx">"减税降费"是近十余年财政政策的常驻词：从 2016 年营改增全面推开，到 2019 年更大规模减税降费（增值税税率下调、个税改革），再到 2022 年"组合式税费支持政策"（退税+减税+缓税，规模以当年财政部与税务总局公布为准），每年政府工作报告都会给出当年新增减税降费及退税缓费的规模目标或执行数。<strong>它的宏观逻辑是"放水养鱼"</strong>：短期内财政收入减少（机会成本），换取企业现金流与居民可支配收入增加，寄望中长期把税基做大——效果如何，学界用不同数据与方法评估，结论存在分歧（如实并列：有研究发现对投资与就业有正向效应，也有研究认为部分红利被价格或利润消化）。</p>
+      <p class="ctx">对个人而言，减税降费最可感知的是<strong>个人所得税专项附加扣除</strong>（子女教育、赡养老人、住房贷款利息或租金、大病医疗、3 岁以下婴幼儿照护等，扣除标准历经上调，以国家税务总局现行规定为准）——这是财政工具直接进你工资条的通道。查询渠道：个人所得税 App 与国家税务总局官网；宏观层面的规模数据查询渠道：财政部月度发布与年度决算报告。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部政策发布栏目（减税降费政策文件）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（政府工作报告中的减税降费目标）</a> · 曼昆《经济学原理（宏观分册）》第10版 税收与激励相关章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、支出端：钱花到哪去</h2>
+    <p class="chapter-sub">民生支出的占比，和"财政供养"的真实构成</p>
+
+    <article class="view">
+      <h3>支出结构：教育、社保、医疗是大头</h3>
+      <p class="ctx">看一般公共预算支出的科目结构，排前列的长期是：<strong>教育</strong>（国家财政性教育经费占 GDP 比例连续多年不低于 4%，这是有官方监测口径的硬指标）、<strong>社会保障和就业</strong>、<strong>卫生健康</strong>、<strong>农林水</strong>、<strong>城乡社区</strong>、<strong>交通运输</strong>、<strong>科学技术</strong>、<strong>国防</strong>与<strong>债务付息</strong>等（各科目每年金额与占比以财政部决算为准）。一个常见的误读是把"财政支出"想象成主要是行政开支——实际上教育+社保就业+卫生健康三项民生类支出合计长期占一般公共预算支出的三分之一以上（用财政部决算数据可自行加总核对）。</p>
+      <p class="ctx">支出端还有一个容易被忽略的科目：<strong>债务付息</strong>。政府债务存量越大，每年要付的利息越多，这部分是刚性支出——它不创造新的公共服务，却占用预算空间。付息规模及其占财政收入的比重，是评估债务可持续性时比"债务总额"更有信息量的指标之一（财政部决算逐年公布债务付息数额；国际比较可用 IMF 与世界银行的公开数据库，注意口径差异，IMF 网站对部分访问有反爬限制，浏览器可达）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（全国一般公共预算支出决算分科目表）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局《中国统计年鉴》在线版（财政收支历年序列）</a> · <a href="https://data.worldbank.org/">世界银行数据平台（政府支出跨国对比，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>转移支付：中央的钱怎么到基层</h3>
+      <p class="ctx">第二节讲过中央对地方转移支付的规模是十万亿元量级，这里看它的运行逻辑：<strong>中国地区间财力差距极大</strong>（东部沿海省份自有财力充沛，中西部与东北地区大量县乡依赖转移支付发工资、保运转、保民生——官方口径称"三保"：保基本民生、保工资、保运转）。中央把集中起来的收入按公式与政策因素分配给地方，均衡地区间基本公共服务能力，这是单一制大国财政的通行做法（国际对照：联邦制国家同样有联邦对州的拨款体系）。</p>
+      <p class="ctx">转移支付新闻的读法：<strong>看结构比看总量重要</strong>——一般性转移支付占比提高意味着地方统筹权更大；专项转移支付则要看投向（当年重点支持什么领域）。还有一个衔接概念：<strong>直达资金机制</strong>，2020 年起对部分新增财政资金建立"一竿子插到底"的直达机制，中央直接监控资金到市县基层的进度，减少中间截留（财政部有专门的直达资金监控口径与发布）。基层财政是否紧张，看官方渠道的转移支付下达进度与"三保"表述，比看自媒体的"某地发不出工资"传闻可靠得多——对后者，按第19章纪律：核实官方通报，不转发未经证实的信息。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（中央对地方转移支付分地区决算表）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengxinwen/">财政部财政新闻栏目（直达资金机制相关发布）</a> · 萨缪尔森、诺德豪斯《经济学》第19版 联邦制财政相关章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、赤字与赤字率：3% 红线的真相</h2>
+    <p class="chapter-sub">赤字不是会计失误，是政策选择；红线也不是物理定律</p>
+
+    <article class="view">
+      <h3>赤字怎么算：中国的官方口径</h3>
+      <p class="ctx"><strong>财政赤字=支出大于收入的差额</strong>，用债务收入弥补；<strong>赤字率=赤字规模÷GDP</strong>。中国的官方赤字口径有一个特点：只统计<strong>一般公共预算的赤字</strong>（中央赤字+地方赤字），国债与地方一般债的发行额与之对应；专项债因为"以项目收益偿还、列入政府性基金预算"，不计入赤字——这就是为什么新闻里会出现"赤字率 3%，但当年新增政府债券总规模远大于赤字额"的现象，两个数不矛盾，是口径不同（每年两会公布赤字率与专项债额度，均以预算报告原文为准；历史各年数值可在财政部决算与中国政府网查询）。</p>
+      <p class="ctx">国际比较时必须提示口径差异：<strong>IMF 等国际组织计算各国"广义财政赤字"时，会把中国的专项债、部分政府性基金收支等纳入调整口径</strong>，得出的数字通常高于中国官方公布的赤字率——两套数字各自内部一致，但互相不可替代。看到"某机构算出中国真实赤字率是 X%"的文章，第一件事是确认它用的口径，第二件事是确认它是否同时用同一口径算了其他国家（多数耸动文章做不到第二点）。这就是<a href="../16-indicator/">第16章</a>要讲的"口径意识"的最典型例子。</p>
+      <div class="fig"><img src="../assets/img-07-2.png" alt="一支巨大的发光几何温度计立在抽象城市天际线旁，刻度线上标有三格分区的色带，无脸人物站在梯子中段读取数值，橄榄绿主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（历年预算报告与决算报告）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（政府工作报告赤字率表述）</a> · IMF《财政监测报告》(Fiscal Monitor，每年 4 月/10 月更新，英文；官网对 curl 反爬，浏览器可达）</div>
+    </article>
+
+    <article class="view">
+      <h3>"3% 红线"从哪来：一段历史，不是一条定律</h3>
+      <p class="ctx">"赤字率不应超过 3%"的说法流传极广，它的真实出处是<strong>1992 年《马斯特里赫特条约》为欧盟成员国设定的趋同标准之一</strong>（另一条是政府债务率不超过 GDP 的 60%）。需要澄清三点：<strong>其一，这是政治谈判的产物，不是经济学推导的定理</strong>——当年参与制定的经济学家公开回忆，3% 并无精确的科学依据，接近一个"便于记忆的参考值"；<strong>其二，欧盟自己也多次突破</strong>——多国在多轮危机中赤字率超过 3%，2020 年后欧盟一度激活《稳定与增长公约》的例外条款暂停约束（以欧盟官方发布为准）；<strong>其三，中国从未把 3% 作为法定上限</strong>——历史上多数年份赤字率在 3% 以内或附近，但 2020 年（抗疫特别国债年份，官方赤字率安排 3.6% 以上）、2023 年（年中增发国债后赤字率上调至 3.8% 左右）都突破了 3%，均以全国人大批准的预算调整方案为准。</p>
+      <p class="ctx">所以正确的理解是：<strong>赤字率是"政策力度温度计"，不是"合规红线"</strong>。看赤字率变化，读的是政府当年逆周期发力的姿态（扩张还是收敛）；而赤字是否可持续，取决于债务结构、利率与增长的关系、资金用途（消费性支出还是形成资产），这些在第五、七节展开。把"突破 3%"直接渲染成"财政失控"，属于第八节要粉碎的谣言类型。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（历年赤字率与预算调整方案）</a> · <a href="https://www.gov.cn/shuju/">中国政府网（2023 年增发国债与预算调整的官方发布）</a> · 《马斯特里赫特条约》趋同标准（1992，文字引用；欧盟现行财政规则以欧盟官方文件为准）· 曼昆《经济学原理（宏观分册）》第10版 政府赤字相关章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、政府债务：国债、地方债与"隐性债务"</h2>
+    <p class="chapter-sub">四个概念分清，地方债的讨论就成功了一半</p>
+
+    <article class="view">
+      <h3>债务的四个概念：一张对照表</h3>
+      <table class="cmp">
+        <tr><th>概念</th><th>谁借的</th><th>记在哪本账</th><th>靠什么还</th></tr>
+        <tr><td>国债（含特别国债）</td><td>中央政府</td><td>一般公共预算（特别国债另按批准方案管理）</td><td>中央信用与税收</td></tr>
+        <tr><td>地方政府一般债</td><td>省级政府代发</td><td>一般公共预算</td><td>一般财政收入</td></tr>
+        <tr><td>地方政府专项债</td><td>省级政府代发</td><td>政府性基金预算</td><td>对应项目的政府性基金或专项收入</td></tr>
+        <tr><td>"隐性债务"</td><td>地方融资平台等以企业名义举借、实际由财政兜底预期的债务</td><td>不在政府法定债务限额内</td><td>化解中：置换、重组、压缩（以官方化债政策为准）</td></tr>
+      </table>
+      <p class="ctx">前三类是<strong>法定政府债务</strong>：有全国人大批准的限额管理（每年新增限额在两会公布），余额、期限、利率结构由财政部定期公布，透明度较高。<strong>隐性债务</strong>是历史形成的灰色地带：2014 年修订的《预算法》确立"地方政府举债只能发债券"的法定形式后，存量平台债务被逐步甄别处置，新增隐性债务被明令禁止并问责——但存量化解是一个多年过程，官方口径（财政部新闻发布会与预算报告）用"制定实施一揽子化债方案""压降存量隐性债务"等表述，具体规模数字官方未按单一口径逐年全量公布，网络上流传的"隐性债务总额"多为研究机构估算，<strong>引用时必须标注估算性质与口径来源，不能当官方数据用</strong>。</p>
+      <div class="fig"><img src="../assets/img-07-1.png" alt="四个发光几何账本并排悬浮，每个账本上方有不同形状的抽象硬币流注入，一个无脸人物手持放大镜逐一核对，橄榄绿主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部政策发布栏目（地方政府债务管理文件与《预算法》相关制度）</a> · <a href="https://www.gov.cn/shuju/">中国政府网（地方政府性债务管理相关官方发布）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（国债与地方政府债务余额公布）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>化债：2024 年的一揽子方案在做什么</h3>
+      <p class="ctx">2024 年 11 月，全国人大常委会审议批准了地方政府债务限额置换存量隐性债务的议案：一次性增加地方政府债务限额 6 万亿元、分三年安排，并连续五年每年从新增专项债中安排 8000 亿元用于化债，合计 10 万亿元（方案全文与官方解读见中国政府网与财政部发布；此处按官方口径复述，数字为方案公布时的安排数）。它的机制用一句话说清：<strong>用利率低、期限长、透明度高的政府法定债券，去置换利率高、期限短、不透明的隐性债务</strong>——债务总量没有凭空消失，但利息负担下降、还款期限拉长、风险从"随时可能爆的暗雷"变成"账面上可管理的明债"。</p>
+      <p class="ctx">评估化债方案的三个角度：<strong>看财务账</strong>（官方说明中给出了节约利息支出的估算，可对照财政部数据核验）；<strong>看行为账</strong>（置换是否伴随对新增隐性债务的问责机制，防止"一边化旧一边借新"——官方同步强调了监管与问责）；<strong>看体制账</strong>（根本上要靠央地财政关系改革与融资平台转型，这是多年期的结构工程）。对化债新闻的常见两种极端——"债务危机要爆"与"化债=问题全解决"——都不符合方案本身的定位：它是一次<strong>以时间换空间的风险缓释</strong>，配套改革仍在路上（此为对官方方案的通识性转述，不构成任何预测）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/shuju/">中国政府网（2024 年 11 月全国人大常委会批准化债方案的官方发布与解读）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengxinwen/">财政部财政新闻栏目（化债方案新闻发布会实录相关报道）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部政策发布栏目（地方政府债务限额管理文件）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>债务可持续性：利息率与增长率的那道比较题</h3>
+      <p class="ctx">"政府债务多少算危险"没有统一答案，经济学提供了一个基础判断框架：<strong>比较债务的实际利率（r）与经济实际增长率（g）</strong>。直觉版解释：如果经济增长率持续高于债务利息率，政府即使维持一定赤字，债务占 GDP 的比重也可以稳定甚至下降（分母涨得比分子快）；反之，利率高于增长率时，债务比重会自动滚大，需要财政紧缩才能稳住。这一框架有严肃的学术支撑，也有著名争论（2019 年美国国会听证会上有经济学家以"r&lt;g 时债务无需过度担忧"的表述引发广泛讨论；学术文献对 r-g 框架的适用条件有严格限定，包括利率与增长的内生性、主权货币与外币债务的区别）。</p>
+      <p class="ctx">对中国政府债务的可持续性，官方与学界的基本事实是：<strong>中央政府债务负担率在国际比较中处于较低水平</strong>（以财政部公布的国债余额与 GDP 之比对照 IMF 数据库口径）；<strong>地方政府法定债务可控、隐性债务是主要风险点</strong>（官方定性与化债安排见上一卡）；同时债务资金大量形成基础设施等实物资产，与纯粹消费性举债性质不同（此为常见论点，评估时应同时计入资产质量与收益率的不确定性）。本站不做任何"会不会出事"的预测——判断框架给你，数据出处给你，结论请基于官方数据自行形成。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nber.org/">NBER 工作论文库（政府债务动态与 r-g 框架相关研究入口，英文）</a> · <a href="https://data.worldbank.org/">世界银行数据平台（各国政府债务指标，英文）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（国债余额官方数据）</a> · Blanchard 关于 r 与 g 的论述（2019，AEA 主席演讲，文字引用，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、财政工具箱：历史上的几次大动作</h2>
+    <p class="chapter-sub">特别国债、增发国债与"积极财政政策"的用法演变</p>
+
+    <article class="view">
+      <h3>特别国债时间线：四次标志性操作</h3>
+      <p class="ctx"><strong>特别国债</strong>是为特定目标、经特别程序发行的国债，历史上几次标志性操作（均为公开史实，以财政部与官方媒体当年发布为准）：<strong>1998 年</strong>，发行 2700 亿元特别国债补充四大国有银行资本金，配合金融风险处置；<strong>2007 年</strong>，发行 1.55 万亿元特别国债用于组建中国投资有限责任公司（外汇储备多元化运用）；<strong>2020 年</strong>，发行 1 万亿元抗疫特别国债，建立直达资金机制（第三节）；<strong>2023 年四季度</strong>，增发 1 万亿元国债支持灾后恢复重建与防灾减灾能力建设，赤字率相应上调；<strong>2024 年起</strong>，开始连续几年发行超长期特别国债，支持"两重"（国家重大战略实施和重点领域安全能力建设）等，规模与安排以当年政府工作报告和预算报告为准。</p>
+      <p class="ctx">从这条时间线能读出财政工具的演进逻辑：<strong>特别国债从"救急"（补银行资本、抗疫）走向"谋长"</strong>（超长期限匹配重大项目的回报周期）。期限结构的含义值得注意——50 年期特别国债用未来几十年的财政收入为当下投资融资，隐含的判断是"这些投资的增长回报能覆盖长期利息"，这与第七节的乘数和债务框架直接相关。历次特别国债的发行条件、资金用途与绩效情况，财政部均有公告与报告可查。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部政策发布栏目（历次特别国债发行公告）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（历年政府工作报告相关安排）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（国债发行与余额数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"积极的财政政策"：措辞里的政策姿态</h3>
+      <p class="ctx">每年 12 月中央经济工作会议为次年定调，财政政策表述在"<strong>积极</strong>""稳健"之间选择；2008 年底以来长期使用"积极的财政政策"，并常搭配力度修饰语（如"加力提效""适度加力、提质增效"等，历年措辞以官方通稿为准）。读懂这套措辞的两个方法：<strong>纵向对比</strong>——今年与去年的修饰语变化反映力度取向（这属于<a href="../18-policy/">第18章</a>"政策信号阅读"的入门练习）；<strong>落到数字</strong>——措辞最终要体现在次年预算报告的赤字率、专项债限额、转移支付规模上，数字比形容词可靠。</p>
+      <p class="ctx">2008 年应对国际金融危机时出台的"四万亿投资计划"（官方表述为扩大内需十项措施，两年约 4 万亿元投资安排）是最常被引用的财政刺激案例：它迅速扭转了当时的经济下滑（2009 年 GDP 增速回升至 9% 上方，以国家统计局修订后数据为准），但也留下了产能过剩、地方融资平台扩张与隐性债务积累等后续问题（官方文件与学界对此均有复盘表述）——<strong>刺激的收益与成本是同一枚硬币的两面</strong>，这个案例会在第七节乘数讨论与<a href="../08-cycle/">第8章</a>周期复盘里再次出现。对历史政策的完整评价应交给时间与数据，本站只做事实性复盘，不做情绪化定性。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/shuju/">中国政府网（历年中央经济工作会议通稿与政府工作报告）</a> · <a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局《中国统计年鉴》在线版（2008-2010 年 GDP 增速修订数）</a> · 《中国货币政策执行报告》（宏观政策配合的央行视角描述）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、乘数、挤出与 MMT：财政刺激的边界之争</h2>
+    <p class="chapter-sub">一块钱的政府支出能撬动几块钱的 GDP？答案取决于条件</p>
+
+    <article class="view">
+      <h3>乘数效应：凯恩斯的直觉与它的条件</h3>
+      <p class="ctx">凯恩斯框架（《通论》，1936，文字引用）的核心直觉：政府支出 1 元修路，工人拿到工资后消费其中一部分，商家收入增加再消费……一轮轮传递下去，GDP 的最终增量是初始支出的若干倍，这个倍数就是<strong>财政乘数</strong>。教科书里的简化公式（乘数=1/(1−边际消费倾向)）只是教学示意；现实中乘数大小是实证问题，研究给出的数值范围很宽：IMF 与各国央行的研究显示，发达经济体乘数多在 0.5-1.5 区间浮动，<strong>经济萧条期与货币政策受零下限约束时乘数偏大，经济接近充分就业时乘数偏小甚至趋零</strong>（英文文献，以 IMF WEO 相关章节与各央行工作论文为准；IMF 官网对 curl 反爬，浏览器可达）。</p>
+      <p class="ctx">乘数的对立面是<strong>挤出效应</strong>：政府大规模举债可能推高利率，挤占私人投资——利率市场化程度、央行是否配合（货币政策姿态）、资金是否来自闲置储蓄，都会改变挤出力度。此外还有<strong>李嘉图等价</strong>假说（居民预期今天赤字=明天加税，于是增加储蓄抵消刺激——理论上成立的条件苛刻，实证上部分成立、不完全成立）。把这些放在一起，准确的通识结论是：<strong>乘数不是常数，而是取决于经济状态、政策配合与资金用途的条件变量</strong>——"财政刺激必有效"与"财政刺激必无效"同样武断。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第34章（乘数与挤出）· 凯恩斯《就业、利息和货币通论》（1936，文字引用）· IMF《世界经济展望》财政乘数相关章节（每年 4 月/10 月更新，英文；浏览器可达）· <a href="https://www.nber.org/">NBER 工作论文库（财政乘数实证研究入口，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>MMT 之争：如实呈现双方论点</h3>
+      <p class="ctx"><strong>现代货币理论（MMT）</strong>是近年网络热度很高的异端经济学流派，其核心主张：拥有主权货币且不外债的政府"不可能破产"，财政赤字本身不是问题，<strong>真正的约束是通胀</strong>——只要经济有闲置资源，政府就可以持续支出；税收的功能不是筹钱而是调节需求与赋予货币价值；主张用"就业保障"计划作为自动稳定器（代表人物 Kelton 等，文字引用，英文著作）。</p>
+      <p class="ctx"><strong>主流经济学对 MMT 的批评</strong>（同样如实记录）：①"通胀是唯一约束"低估了金融市场的约束——债券投资者对债务可持续性的信心一旦动摇，利率与汇率可能先于通胀恶化（新兴市场货币危机即为反例，MMT 对开放经济的适用性存疑）；②政治上难以执行"通胀一来就及时加税收缩"的纪律，通胀约束在现实中是滞后的、代价高昂的；③历史上接近 MMT 实践的财政货币化案例（部分拉美与津巴布韦等极端案例）以恶性通胀收场（此为对历史案例的通识性描述，非对任何国家的预测）。本站立场与全站纪律一致：<strong>把争议双方论点摆出来，标注出处，不替读者选边</strong>——尤其不基于任何流派做"货币崩溃论"式的恐慌推演（这类话术的识别见<a href="../19-rumor/">第19章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kelton《赤字迷思》(The Deficit Myth, 2020，文字引用，英文）· Mankiw 等主流经济学家对 MMT 的公开批评（2019-2020 年多篇评论文章，文字引用，英文）· 曼昆《经济学原理（宏观分册）》第10版 货币与通胀相关章节 · <a href="https://www.nber.org/">NBER 工作论文库（财政主导与通胀研究入口，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、实操与谣言粉碎</h2>
+    <p class="chapter-sub">财政数据的官方查询路线，和三个高频误读</p>
+
+    <article class="view">
+      <h3>流程框：查一项财政数据的官方路线</h3>
+      <blockquote class="q">①<strong>定位口径</strong>：你要查的是四本预算里的哪一本？中央还是地方？含税还是含非税？——先在财政部官网"财政数据"栏目找对应的决算/月度表。<br>②<strong>月度看趋势</strong>：财政部每月发布"财政收支情况"（含全国一般公共预算与政府性基金预算收支），当月数与累计数都有。<br>③<strong>年度看决算</strong>：每年年中的决算报告给出上一年完整执行数与分科目、分地区明细，这是最权威的存量数据。<br>④<strong>政策看原文</strong>：涉及赤字率、专项债限额、特别国债安排，一律以两会预算报告与人大常委会批准的官方文件原文为准。<br>⑤<strong>国际对比换口径</strong>：跨国比较用 IMF Fiscal Monitor 或世界银行数据库，并注明其口径与中国官方口径的差异。<span class="qsrc">——依据财政部官网栏目结构与历年预算/决算报告发布惯例整理（示例模板）</span></blockquote>
+      <p class="ctx">这条路线的价值在于<strong>把"看结论"变成"查原始表"</strong>：绝大多数耸动的财政文章，都是在②③④某一步换掉了口径或年份。养成"先问口径、再问时点、最后看数字"的习惯，财政新闻的噪音会自动过滤掉一大半。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengxinwen/">财政部财政新闻栏目（月度收支情况发布）</a> · <a href="https://data.worldbank.org/">世界银行数据平台（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："赤字率破 3%，财政要出大事"？</h3>
+      <p class="ctx">第四节已给出证据链：3% 出自 1992 年《马斯特里赫特条约》的政治谈判参考值，无精确科学依据；欧盟成员国自身多次突破并一度暂停该约束；中国历史上 2020 年（3.6% 以上）与 2023 年（约 3.8%）经全国人大法定程序突破 3%，对应的是疫情冲击与灾后重建的特殊需要，且当年宏观经济运行平稳（以国家统计局数据为准）。"破 3=出事"的推理把参考值当成了物理定律，既不符合该指标的来历，也不符合各国实践。<strong>真正需要盯的不是某个整数关口，而是债务结构、付息负担与资金使用效率</strong>（第五节框架）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（历年赤字率）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（同期经济运行数据）</a> · 《马斯特里赫特条约》趋同标准（1992，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："地方债是个无底洞，马上要爆"？</h3>
+      <p class="ctx">地方债务风险值得严肃对待，但"马上要爆"式断言不符合事实结构：<strong>其一，法定债务有限额管理与公开数据</strong>（全国人大批准限额、财政部公布余额，透明度可查证）；<strong>其二，主要风险点隐性债务正在按官方方案系统性化解</strong>（2024 年 10 万亿元置换方案的机制见第五节：高息短期暗债换低息长期明债，官方估算显著节约利息支出）；<strong>其三，中国地方政府债务以本币计价、国内持有为主</strong>，与依赖外币外债的经济体在违约机制上有本质区别（这是债务研究的通识性结论，非对任何风险的担保）；<strong>其四，"爆"这个词本身没有定义</strong>——主权本币债务不存在"还不上钱"的技术性违约场景，真实的风险形态是利息负担挤占民生支出、金融机构资产质量承压，这些是管理问题而非爆炸问题。渲染"崩溃"叙事的流量文章，通常既不区分法定与隐性债务，也不引用官方数据与时点——两个特征足以将其归入第19章的谣言清单。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/shuju/">中国政府网（化债方案官方发布）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（地方政府债务余额与限额）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS 统计栏目（各国债务口径的国际对照，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："发国债就是把负担甩给子孙"？</h3>
+      <p class="ctx">这个说法有一半直觉（债务确实要还本付息）、一半谬误（忽略了资金用途与代际资产）。经济学的标准分析：国债融资的支出如果形成<strong>长期资产</strong>（基础设施、教育、科研、防灾能力），子孙继承的不只是债务，还有债务对应形成的资产与服务能力——如同家庭贷款买房，孩子继承房贷的同时也继承了房子；反之，若举债仅用于当期消耗，负担转移的批评才完全成立。此外还有两个技术性事实：<strong>内债的债权人是本国居民与机构</strong>，付息在国内循环（分配效应真实存在，但不是财富流出国外）；<strong>债务可持续的关键条件在 r 与 g 的比较</strong>（第五节），而非债务绝对额。把"政府借债"直接类比"家庭透支信用卡"，忽略了用途、期限与主权货币三个维度——这是财经评论里最常见的错误类比之一（教科书通识，见曼昆政府赤字章节的专门讨论）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 政府赤字与代际负担章节 · 萨缪尔森、诺德豪斯《经济学》第19版 公共债务分析 · <a href="https://www.nber.org/">NBER 工作论文库（政府债务代际核算研究入口，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"四本预算"分别是哪四本？卖地收入和专项债记在哪一本里？</li>
+        <li>为什么财政新闻里的"收入下降"和"收入新高"可能同时为真？</li>
+        <li>分税制之后，地方财政缺口靠哪两块弥补？转移支付分哪两类？</li>
+        <li>中国第一大税种是什么？个税专项附加扣除包含哪些项目（说出三个）？</li>
+        <li>"三保"指什么？直达资金机制解决什么问题？</li>
+        <li>官方赤字口径统计哪本账？为什么"赤字率 3%"与"新增债券规模"对不上是正常现象？</li>
+        <li>IMF 口径的中国广义赤字为什么通常高于官方公布值？比较时要注意什么？</li>
+        <li>"3% 红线"出自哪份文件？它是经济学定理吗？中国哪几年突破过、程序是什么？</li>
+        <li>国债、一般债、专项债、隐性债务四者的举债主体、入账方式与偿还来源各是什么？</li>
+        <li>2024 年化债方案的总规模与机制是什么？评估它的三个角度是哪些？</li>
+        <li>r-g 框架的直觉是什么？它的主要限定条件有哪些？</li>
+        <li>历史上四次标志性特别国债各自的目的与年份？超长期特别国债"超长期"的含义是什么？</li>
+        <li>"积极的财政政策"措辞怎么读？2008 年"四万亿"的收益与成本各是什么？</li>
+        <li>财政乘数为什么不是常数？萧条期与充分就业期的乘数各偏大还是偏小？</li>
+        <li>挤出效应与李嘉图等价分别指什么？</li>
+        <li>MMT 的核心主张与主流的三条主要批评各是什么？</li>
+        <li>查一项财政数据的五步官方路线是什么？耸动文章通常在哪一步换口径？</li>
+        <li>"地方债马上要爆"的说法在事实结构上有哪四处漏洞？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>四本预算=一般公共预算（税收为主）+政府性基金（卖地+专项债）+国有资本经营+社保基金；央地关系=分税制+转移支付（十万亿量级，以当年预算报告为准）+"三保"；税收前几位=增值税、企业所得税、消费税、个税（专项附加扣除直接进工资条）；赤字率=赤字÷GDP，官方口径只含一般公共预算，专项债不计入；3% 红线=1992 年马约政治参考值，非定律，中国 2020/2023 依法定程序突破过；债务四概念=国债/一般债/专项债（法定，限额管理）+隐性债务（化解中，2024 年 10 万亿置换：高息暗债换低息明债）；可持续性框架=r-g 比较+付息负担+资金用途；特别国债时间线=1998 补银行、2007 中投、2020 抗疫、2023 增发 1 万亿、2024 起超长期；乘数=条件变量（萧条期大、充分就业期小），挤出与李嘉图等价是反向力量；MMT=通胀唯一约束论，主流批评=金融市场约束、政治纪律、货币化历史案例；查数路线=定位口径→月度趋势→年度决算→政策原文→国际口径换算；三个谣言=破 3 就出事、地方债马上爆、发国债坑子孙。
+  </div>
+
+  <nav class="pager">
+    <a href="../06-monetary/"><span class="dir">← 第6章</span>货币政策：央行的水龙头</a>
+    <a href="../08-cycle/"><span class="dir">第8章 →</span>经济周期：繁荣、衰退与复苏</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第7章 · 依据财政部财政数据与政策发布栏目、中国政府网官方发布、国家统计局统计年鉴与数据解读、IMF《财政监测报告》与世界银行数据库（口径注明）、曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版及相关学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

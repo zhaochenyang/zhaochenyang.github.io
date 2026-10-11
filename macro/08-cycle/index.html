@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8章 经济周期：繁荣、衰退与复苏 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    nav.pager{flex-direction:column;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第8章 · 第二部分 政策与周期</div>
+  <h1>经济周期：繁荣、衰退与复苏</h1>
+  <p>经济为什么会有四季：库存、设备、信贷几种主流解释，以及面对周期的正确心态</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../07-fiscal/">← 第7章：财政政策与政府债务</a>
+    <a href="../09-employment/">第9章：就业与工资 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">周期与衰退</a>
+    <a class="anchor" href="#s2">库存周期</a>
+    <a class="anchor" href="#s3">中长波周期</a>
+    <a class="anchor" href="#s4">金融周期</a>
+    <a class="anchor" href="#s5">中国波动复盘</a>
+    <a class="anchor" href="#s6">逆周期与跨周期</a>
+    <a class="anchor" href="#s7">指标实操</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为宏观经济科普，仅供经济教育与参考，不构成投资建议或政策预测。本章讨论经济周期是为了理解经济运行规律，<strong>不用于也不应被用于预测行情与择时交易</strong>；"必涨""必跌""崩溃"类断言只出现在谣言粉碎与批判语境。历史复盘均为公开史实与官方表述，数据以官方统计口径为准并注明时点。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清"衰退"的技术定义、美国的 NBER 认定机制与中国口径的区别；②理解库存周期（基钦周期）的四阶段及其对应指标；③知道朱格拉周期与康波假说的内容，以及为什么它们是"假说"而非精确时钟；④了解 BIS 口径的金融周期（信贷与房价的长波动）为什么在 2008 年后被高度重视；⑤用官方表述中性复盘改革开放以来几轮大的经济波动与调控；⑥分清"逆周期调节"与"跨周期调节"两个政策词；⑦掌握领先/同步/滞后指标的组合读法，并明白美林时钟类框架"预测力有限"的原因。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是"政策与周期"部分的收束：第6、7章讲了两大政策工具，本章讲它们要对抗的对象——经济波动本身。第一次读建议通读；以后每次看到"经济处于周期什么位置"的讨论，回到第七节的指标表核对数据出处，回到第八节核对那些断言是否越过了"预测"的红线。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、什么是周期：繁荣与衰退为什么交替</h2>
+    <p class="chapter-sub">先定义清楚"衰退"，再谈原因</p>
+
+    <article class="view">
+      <h3>周期的定义与"衰退"的技术口径</h3>
+      <p class="ctx"><strong>经济周期</strong>指经济活动沿着总体增长趋势出现的扩张与收缩交替：从谷（低点）到峰（高点）是扩张期，从峰到谷是收缩期。教科书强调两点：周期是<strong>普遍现象</strong>（市场经济体几乎都经历过），但<strong>长度与幅度高度不规则</strong>——没有两轮完全一样的周期，因此任何"精确时钟"式的周期理论都只能是近似。</p>
+      <p class="ctx">"衰退"最常被引用的官方定义来自美国<strong>国民经济研究局（NBER）</strong>的商业周期测定委员会：<strong>经济活动出现显著下降，扩散到经济体的多个部门，并持续数月以上</strong>。委员会综合实际 GDP、实际收入、就业、工业生产、批发零售销售等多指标判定峰谷，<strong>事后追认</strong>（往往滞后数月至一年才正式宣布）。媒体常说的"连续两个季度 GDP 负增长"只是一条流行的经验法则，并非 NBER 的正式标准——2022 年上半年美国 GDP 曾连续两个季度环比负增长而 NBER 并未认定衰退，就是两者区别的现成案例（历史事实，NBER 官网可查其认定说明，英文）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nber.org/">NBER 官网（Business Cycle Dating Committee 认定机制说明入口，英文）</a> · 曼昆《经济学原理（宏观分册）》第10版 经济波动相关章节 · 萨缪尔森、诺德豪斯《经济学》第19版 商业周期章节</div>
+    </article>
+
+    <article class="view">
+      <h3>中国口径：没有官方"衰退认定"，读增速有方法</h3>
+      <p class="ctx">需要先明确一个口径事实：<strong>中国没有类似 NBER 的官方衰退认定机制</strong>。国家统计局按季度发布 GDP 及增速（中国习惯用<strong>同比增速</strong>为主口径，与美国常用的环比折年率不同——两者不可直接换算比较，这是第16章口径课的重点案例），官方对经济状态的描述使用"经济运行总体平稳""面临下行压力""恢复基础尚不牢固"等定性表述。因此，把英文新闻里的 recession 定义直接套在"中国是否衰退"的讨论上，从口径层面就不成立；严肃的做法是引用统计局的增速与分项数据，说清自己用的是哪套定义。</p>
+      <p class="ctx">为什么经济会有波动？宏观经济学没有唯一定论，主流解释可归为两大家族：<strong>外生冲击说</strong>（技术变革、油价、疫情、战争、政策变化等外部扰动引发波动，真实经济周期学派强调技术冲击，凯恩斯主义强调需求冲击）与<strong>内生机制说</strong>（经济体系内部的加速器-乘数互动、信贷扩张与收缩、库存调整会自我放大波动）。现实中的每一轮波动几乎都是"冲击+内生放大"的合成——这也是为什么接下来三节要分别介绍三种主流的内生机制：库存、设备投资与信贷。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（季度 GDP 数据发布）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（增速口径的官方说明）</a> · 曼昆《经济学原理（宏观分册）》第10版 总需求-总供给与波动理论章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、库存周期：最短也最常用的那把尺子</h2>
+    <p class="chapter-sub">基钦周期：3-4 年一轮的四阶段循环</p>
+
+    <article class="view">
+      <h3>基钦周期：企业库存的四步舞</h3>
+      <p class="ctx">英国统计学家基钦（Kitchin）在 1923 年根据英美数据提出：经济中存在约 <strong>3-4 年</strong>一轮的短周期，驱动力是企业库存调整（文字引用：Kitchin, 1923, Review of Economics and Statistics）。机制用大白话讲：企业观察到需求变好，但补库存有决策与生产时滞——等库存补上来，需求可能已经放缓；于是减产去库存，等库存去化完，需求又恢复了。<strong>信息与时滞造成了"追涨杀跌"式的过冲</strong>，库存就成为放大器。</p>
+      <p class="ctx">四阶段的经典划分（用"需求"与"库存"两个变量的升降组合定义）：<strong>①主动补库存</strong>——需求上行、企业主动加库存，经济热度上升；<strong>②被动补库存</strong>——需求开始放缓但生产计划有惯性，库存被动堆积，是过热转向的信号；<strong>③主动去库存</strong>——需求走弱、企业主动减产清库存，经济降温最明显的阶段；<strong>④被动去库存</strong>——需求开始回暖而企业还没敢扩产，库存被动消化，复苏的起点。必须强调：<strong>阶段判定是事后的</strong>——身处其中时，"需求回暖"还是"反弹诱多"需要多期数据确认，用单月数据宣布"进入补库周期"是媒体常见错误。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kitchin (1923) 库存周期原始研究（Review of Economics and Statistics，文字引用，英文）· 萨缪尔森、诺德豪斯《经济学》第19版 商业周期类型章节 · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（规模以上工业企业利润与产成品存货月度数据入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>用官方数据观察库存周期：三组指标</h3>
+      <p class="ctx">在中国数据语境下观察库存周期，常用的三组官方指标都来自统计局月度发布：<strong>①需求端</strong>——工业增加值同比、社会消费品零售总额、出口交货值（外需）；<strong>②库存端</strong>——规模以上工业企业产成品存货同比增速；<strong>③价格与盈利端</strong>——PPI（工业品出厂价格，第2章）与工业企业利润累计同比。价格是关键中介变量：PPI 上行期企业名义盈利改善、补库意愿强；PPI 深度负增长往往对应去库存压力（这套指标组合是宏观研究的标准做法，指标定义以统计局口径为准）。</p>
+      <p class="ctx">操作上的三个纪律：<strong>只用官方原始数据</strong>（统计局月度发布与数据查询平台，不用自媒体转画的图）；<strong>看趋势不看单月</strong>（至少三个数据点确认方向，警惕基数效应——第16章专门讲）；<strong>只描述不预测</strong>——把"当前处于什么阶段"作为理解经济的坐标可以，把"库存周期到点了所以下季度必涨/必跌"作为交易依据，则越过了本课的红线：阶段判定本身有滞后与反复，历史上"补库周期落空"与"去库超期"都出现过（历史事实，不构成对当前周期的任何判断）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（工业增加值、社零、工业企业利润与产成品存货月度发布）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（指标口径说明）</a> · 萨缪尔森、诺德豪斯《经济学》第19版 指标体系章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、中波与长波：朱格拉周期与康波假说</h2>
+    <p class="chapter-sub">它们提供了视角，但没有提供时钟</p>
+
+    <article class="view">
+      <h3>朱格拉周期：设备投资的 7-11 年节律</h3>
+      <p class="ctx">法国医生出身的经济学家朱格拉（Juglar）在 1860 年提出：资本主义经济存在约 <strong>7-11 年</strong>一轮的中周期，驱动力是设备投资的更新换代（文字引用：Juglar, 1860）。机制直觉：一轮设备投资形成产能→产能过剩、盈利下滑→投资停滞、设备老化→需求恢复叠加设备到寿命期→新一轮投资。熊彼特（Schumpeter）后来把朱格拉周期与他的<strong>创新理论</strong>结合：重大创新引致投资浪潮，浪潮消退带来萧条，"创造性破坏"是周期的深层动力（文字引用：Schumpeter《经济周期》1939、《资本主义、社会主义与民主主义》1942）。</p>
+      <p class="ctx">朱格拉周期的证据基础比基钦周期更弱：样本内能数出的"轮次"有限，每轮长度差异大，且设备投资数据的历史序列在各国口径不一。它的正确用法是<strong>提供"产能视角"</strong>——分析制造业投资、产能利用率（统计局与央行都有相关数据）时想到"设备更新有其自身节奏"，而不是掐着年份表预测"第 X 年必有拐点"。中国语境下常有人把"朱格拉周期启动"用作看好制造业投资的标题，看到这类断言应当先问：用的是哪套投资数据、产能利用率处于什么水平、订单与盈利是否配合（第16章的交叉验证方法）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Juglar (1860) 中周期假说（文字引用，法文原著，英译本通行）· Schumpeter《经济周期》(1939，文字引用，英文）· 萨缪尔森、诺德豪斯《经济学》第19版 长短期波动分类章节 · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（固定资产投资与产能利用率数据入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>康波与技术长波：最容易被神化的假说</h3>
+      <p class="ctx">俄国经济学家康德拉季耶夫（Kondratieff）在 1925 年提出：资本主义经济存在 <strong>40-60 年</strong>的长波，与重大技术革命的引入-扩散-耗尽过程对应（文字引用：Kondratieff, 1925）。后世研究者把历次长波与蒸汽机、铁路、电气化、汽车石化、信息技术对应起来。需要如实说明其学术地位：<strong>长波假说从未成为经济学主流共识</strong>——样本只有四五轮、每轮的起止点研究者之间都对不齐，熊彼特支持它，多数计量经济学家认为统计证据不足；它更多作为一种<strong>长时段经济史叙事</strong>被使用（学术争议如实并列，本课立场：了解它、不依赖它）。</p>
+      <p class="ctx">康波在中文互联网上被大量神化（"人生发财靠康波"之类口号），这类表述把历史叙事包装成了择时工具，与本课"不预测行情"的纪律直接冲突——第八节谣言粉碎会处理。对普通读者，长波视角的合理用途是<strong>理解技术扩散的慢节奏</strong>：一项通用目的技术（如电力、信息技术、AI，<a href="../15-newtech/">第15章</a>展开）从发明到全面改造生产率，历史经验是以十年计的——这有助于对冲两种情绪：对新技术的短期过度兴奋，与对转型的长期悲观。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kondratieff (1925) 长波假说（文字引用，英文译本 The Long Waves in Economic Life）· Schumpeter 对长波的创新解释（1939，文字引用，英文）· 曼昆《经济学原理（宏观分册）》第10版 长期经济增长章节（生产率与技术进步的通识框架）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、金融周期：信贷与房价的长波动</h2>
+    <p class="chapter-sub">2008 年之后，宏观分析不能再忽略金融变量</p>
+
+    <article class="view">
+      <h3>BIS 的金融周期框架</h3>
+      <p class="ctx"><strong>国际清算银行（BIS）</strong>的研究团队提出了"金融周期"（financial cycle）概念：以<strong>信贷与房价</strong>为核心变量的长波动，跨度通常比商业周期长（研究者常用 15-20 年左右的量级描述，属经验估计而非精确值）。机制核心是<strong>金融加速器</strong>：经济上行期，抵押品（尤其房产）升值→银行更愿意放贷→信贷扩张推高资产价格→抵押品进一步升值，循环放大；下行期同一机制反向运转，去杠杆的过程痛苦且漫长（学术研究脉络：Bernanke-Gertler-Gilchrist 1990 年代的金融加速器模型，文字引用，英文）。</p>
+      <p class="ctx">金融周期为什么重要？BIS 的跨国研究给出的经验事实是：<strong>金融周期顶点之后的经济调整（尤其伴随信贷收缩与房价下跌时）比一般衰退更深、更久</strong>；2008 年全球金融危机正是多发达国家金融周期同步见顶的结果（BIS 年报与季度评论有系统论述，英文；bis.org 可查）。可操作的观察指标在 BIS 统计数据库公开维护：<strong>信用缺口</strong>（信贷/GDP 对趋势的偏离）与<strong>债务偿付率</strong>（DSR，还本付息占收入比），多国多年份序列可直接下载对照——这是普通读者能接触到的最规范的金融周期数据。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.bis.org/statistics/index.htm">BIS 统计栏目（信用缺口与债务偿付率数据库，英文）</a> · <a href="https://www.bis.org/">BIS 官网（金融周期相关年报与工作论文入口，英文）</a> · Bernanke, Gertler & Gilchrist 金融加速器研究（1990s，文字引用，英文）</div>
+    </article>
+
+    <article class="view">
+      <h3>中国语境：宏观杠杆率与金融周期的官方坐标</h3>
+      <p class="ctx">把金融周期落到中国数据上，最常用的官方坐标是<strong>宏观杠杆率</strong>——非金融部门（居民+企业+政府）债务余额与 GDP 之比。中国官方对该指标的运用有两个特点：<strong>其一，它被明确写入政策语言</strong>——"宏观杠杆率基本稳定"多次出现在政府工作报告与央行《中国金融稳定报告》的表述中，2020 年疫情期官方接受杠杆率阶段性上行、此后强调"稳杠杆"，这一取舍本身就是跨周期调节（第六节）的实例；<strong>其二，结构比总量更受关注</strong>——居民部门杠杆率中与住房按揭相关的部分、企业部门中地方融资平台的历史存量、政府部门中显性与隐性债务的区分（<a href="../07-fiscal/">第7章</a>），各自的金融周期含义不同。国际可比的宏观杠杆率序列在 BIS 统计数据库维护（英文），中国人民银行《中国金融稳定报告》（年度）给出官方口径的系统分析。</p>
+      <p class="ctx">使用这组数据的纪律与本章其他指标一致：<strong>看趋势与结构，不掐点位</strong>——杠杆率上行期信贷对经济的边际拉动、下行期去杠杆的收缩压力，都是慢变量，用单季数字宣布"债务周期见顶/见底"并推导行情，属于第七节批评过的滥用；官方对风险的定性（如"总体可控""有序化解"）以央行与金融管理部门发布为准，本站不复述任何未经官方确认的风险传闻。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国金融稳定报告》年度发布入口）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS 统计栏目（各国信用总量与债务序列数据库，英文）</a> · <a href="https://www.gov.cn/shuju/">中国政府网（历年政府工作报告中宏观杠杆率表述）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三种周期叠加：波动为什么"看不清"</h3>
+      <p class="ctx">把前三节合起来：<strong>库存周期（3-4 年）、设备投资周期（7-11 年）、金融周期（15-20 年量级）与外生冲击同时作用</strong>，实际观察到的经济波动是这些力量叠加的合成结果——同向共振时波动被放大（如库存回补撞上信贷宽松），反向错位时波动被钝化（如去库存撞上宽货币）。这就是为什么任何单一周期理论都无法"算出"经济的下一步：合成结果取决于各分量的相位与外部冲击，而这两者都不可精确预测。</p>
+      <p class="ctx">对中国读者还有一层本土因素：<strong>政策周期</strong>（第6、7章的逆周期调节）本身是叠加在波动上的重要力量——政策对冲会改变周期的形态与长度，使得"纯市场周期"的规律更难直接套用。学术上这叫政策的内生反应，通俗说法是"经济一冷就有暖风、一热就有凉风"。理解这一点，就理解了为什么用美国周期经验直接推演中国经济，经常两头落空（口径与方法差异提示，非对任何一方的预测）。</p>
+      <div class="fig"><img src="../assets/img-08-1.png" alt="三条不同波长的发光正弦波叠加合成一条复杂波形，波峰波谷处有无脸人物立标尺观察，橄榄绿主色调，深色背景" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：萨缪尔森、诺德豪斯《经济学》第19版 商业周期合成与政策稳定化章节 · 曼昆《经济学原理（宏观分册）》第10版 第35章（稳定化政策之争）· <a href="https://www.pbc.gov.cn/">中国人民银行官网（《中国货币政策执行报告》中的周期与政策表述）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、中国宏观波动复盘（官方表述版）</h2>
+    <p class="chapter-sub">用公开史实与官方口径，看几轮大的波动与应对</p>
+
+    <article class="view">
+      <h3>1988-2002：从价格闯关到软着陆再到积极财政</h3>
+      <p class="ctx">以下复盘全部采用公开史实与官方表述，数据以国家统计局历史资料为准：<strong>1988 年</strong>，价格改革"闯关"引发抢购与较高通胀（当年 CPI 涨幅处于历史高位，统计局历史数据可查），随后实施"治理整顿"，紧缩措施使通胀回落但增长也明显放缓；<strong>1992 年</strong>南方谈话后经济进入高速增长，投资扩张伴随 1993-1994 年高通胀（1994 年 CPI 涨幅达 24% 左右，为改革开放以来最高，统计局历史数据），中央实施适度从紧的财政货币政策，到 1996-1997 年实现<strong>"软着陆"</strong>——通胀显著回落而经济保持较快增长，这是官方与学界都认可的成功案例；<strong>1997-1998 年亚洲金融危机</strong>冲击外需，叠加国内洪灾与国企改革阵痛，中国承诺人民币不贬值（官方立场，历史事实），并于 1998 年起实施<strong>积极的财政政策</strong>：发行长期建设国债、加强基础设施投资，配合稳健的货币政策，经济增速在 2000 年前后企稳回升。</p>
+      <p class="ctx">这一段历史的通识价值：①高通胀的治理在中国语境下有成功先例，工具是财政货币双紧（第6章"货币政策对通胀有效"的中国注脚）；②"软着陆"说明剧烈紧缩不是唯一选项，政策节奏本身是艺术；③积极财政政策从 1998 年起成为应对需求不足的标准工具（第7章），其当年载体（长期建设国债）与今天的专项债、特别国债一脉相承。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局《中国统计年鉴》在线版（历年 CPI 与 GDP 增速序列）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（历史数据口径说明）</a> · 《中国货币政策执行报告》与财政部历年决算（政策操作记录）</div>
+    </article>
+
+    <article class="view">
+      <h3>2008 至今：强刺激、新常态与多重挑战叠加</h3>
+      <p class="ctx">继续用官方表述复盘：<strong>2008 年</strong>国际金融危机冲击出口，增速快速下滑，年底出台扩大内需十项措施（媒体通称"四万亿"，第7章已复盘其两面性），2009 年增速回到 9% 上方（统计局修订后数据）；<strong>2012 年前后</strong>官方作出"三期叠加"（增长速度换挡期、结构调整阵痛期、前期刺激政策消化期）与随后的<strong>"新常态"</strong>判断——增速中枢下移、转向高质量发展成为官方主线；<strong>2015-2016 年</strong>推进供给侧结构性改革（"三去一降一补"官方表述），同期工业品价格走出深度通缩（PPI 连续 50 余个月负增长后转正，统计局数据可查）；<strong>2020 年</strong>疫情冲击下 GDP 增速 2.2%（统计局公报），是改革开放后少见的低增速年份，配合一揽子纾困政策；<strong>2021 年后</strong>面对需求收缩、供给冲击、预期转弱"三重压力"（2021 年中央经济工作会议官方表述）、房地产深度调整与外部环境变化，政策持续加码，官方对经济形势的定性表述以历年中央经济工作会议通稿与统计局发布为准。</p>
+      <p class="ctx">复盘的方法论提示（也是本站纪律）：<strong>只陈述"发生了什么+官方怎么表述+数据哪里查"</strong>，不做"接下来会怎样"的推断——对当前经济状态的任何判断，请读者用第七节的指标组合自行核对最新官方数据后形成。把复盘写成"危机叙事"或"盛世叙事"，都是本站反对的情绪化框架（第19章展开）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（历年统计公报与季度 GDP）</a> · <a href="https://www.gov.cn/shuju/">中国政府网数据频道（历年中央经济工作会议通稿与政府工作报告）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（历年财政安排）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、逆周期调节与跨周期调节</h2>
+    <p class="chapter-sub">两个官方政策词，一种政策哲学</p>
+
+    <article class="view">
+      <h3>逆周期：顶着风向踩油门刹车</h3>
+      <p class="ctx"><strong>逆周期调节</strong>（counter-cyclical adjustment）是凯恩斯主义稳定化政策的中国官方表述：经济下行时财政货币双宽松托底，过热时双紧缩降温——"顶着风向"操作，目标是熨平短期波动。第6章的降准降息、第7章的提高赤字率与专项债额度，都是逆周期工具的具体形态。它的经典难题也如前所述：<strong>时滞</strong>（政策见效时经济可能已自行转向，顺风向操作反而火上浇油或雪上加霜）与<strong>力度</strong>（过轻无效、过重留下后遗症——"四万亿"的产能与债务遗留常被引用为例证）。</p>
+      <p class="ctx">围绕"政府该不该主动稳定经济"，教科书级别的争论从未停止：支持方指出大萧条（政策失误放大波动）与 2008 年（强力干预避免了更深衰退）的对照；反对方（货币主义与理性预期学派）指出时滞误判的反复出现、政策被政治周期绑架的风险，以及微观主体会预期到政策而抵消其效果（卢卡斯批判，文字引用：Lucas, 1976，英文）。中国的政策实践总体选择"有为政府"路线，但表述中越来越多出现"不搞大水漫灌""珍惜政策空间"等自我约束语言（历年《政府工作报告》与央行报告的公开表述）——这本身就是对逆周期政策副作用的承认与修正。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第35章（稳定化政策的正反方论证）· Lucas (1976) 政策评价批判（文字引用，英文）· <a href="https://www.gov.cn/shuju/">中国政府网（历年政府工作报告中逆周期调节表述）</a> · 《中国货币政策执行报告》（"不搞大水漫灌"等官方口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>跨周期：既管这一程，也留下一程的余力</h3>
+      <p class="ctx"><strong>跨周期调节</strong>（cross-cyclical adjustment）是 2020 年 7 月中央政治局会议首次正式提出的政策概念，此后与"逆周期调节"并用于官方文件（表述以历年中央经济工作会议与政府工作报告为准）。通俗解释：逆周期只看"当前这个波动怎么对冲"，跨周期则要<strong>统筹当前与中期</strong>——宽松时不透支未来的政策空间与债务可持续性，收紧时不为短期数据牺牲中长期的结构调整（如供给侧改革、化债、绿色转型）。它对应的现实处境是：政策工具是有限资源（第6章政策空间、第7章债务约束），在多重目标之间要"细水长流"。</p>
+      <p class="ctx">读政策新闻时，这两个词的组合方式有信息量：强调"加大逆周期调节"通常意味着短期稳增长权重上升；强调"跨周期"则提示政策会为中长期目标保留余地、避免强刺激（此为对官方措辞的通识性解读方法，具体政策取向以官方文件为准，本站不预测）。这个"措辞信号学"的入门到此为止，系统方法留给<a href="../18-policy/">第18章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gov.cn/shuju/">中国政府网（2020 年 7 月 30 日中央政治局会议通稿与历年中央经济工作会议通稿）</a> · 《中国货币政策执行报告》（跨周期调节的央行阐述）· 曼昆《经济学原理（宏观分册）》第10版 第35章</div>
+    </article>
+
+    <article class="view">
+      <h3>自动稳定器：不需要开会的逆周期调节</h3>
+      <p class="ctx">逆周期调节还有一类"沉默的队员"——<strong>自动稳定器</strong>（automatic stabilizers）：不需要任何新决策、随经济状态自动发挥对冲作用的制度安排。教科书的标准清单有三项：<strong>累进税制</strong>（收入下降时适用税率自动下移，税收降幅大于收入降幅，等于自动减税；收入上升时反向）、<strong>失业保险与社会救助</strong>（失业增加时支出自动扩大，托住部分消费）、<strong>农产品价格支持等转移支付制度</strong>。它们的优点是<strong>没有时滞</strong>（第二节讲的内部时滞完全消失，制度触发即生效）、不依赖预测（不需要判断"衰退是否已开始"）；缺点是<strong>力度不可调</strong>——只能按既定参数运行，无法针对冲击大小加码。</p>
+      <p class="ctx">把政策工具按"是否需要相机决策"分成两类，是理解宏观政策辩论的关键框架：<strong>自动稳定器+规则型政策</strong>（预先承诺的反应函数）对阵<strong>相机抉择</strong>（discretionary，根据当期判断临时出手）。前者的支持者强调时间不一致性问题（政策制定者事后总有放松承诺的诱惑，公众预期到这一点会削弱政策公信力——Kydland &amp; Prescott 1977 年因此获诺奖的研究脉络，文字引用，英文）；后者强调冲击的多样性无法预先写进规则。现实中各国都是混合体：中国的税制与社保体系内含自动稳定器成分，同时大量使用相机抉择（专项债额度、特别国债、政策性金融工具都需逐年决策）；官方表述中"跨周期调节"对政策空间的强调，正是对相机抉择副作用的一种制度化约束（此为通识性解读，以官方文件为准）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第35章（自动稳定器与相机抉择之争）· Kydland &amp; Prescott (1977) 时间不一致性研究（文字引用，英文）· <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部财政数据栏目（税收与社保收支的自动变化数据）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、实操：用公开指标判断"经济在哪个阶段"</h2>
+    <p class="chapter-sub">只教读法，不给结论</p>
+
+    <article class="view">
+      <h3>领先、同步、滞后指标组合表</h3>
+      <table class="cmp">
+        <tr><th>类型</th><th>指标（官方出处）</th><th>发布节奏</th><th>读什么</th></tr>
+        <tr><td>领先</td><td>制造业 PMI（统计局，50% 为荣枯线）；社会融资规模存量增速（央行）</td><td>PMI 每月月末；社融每月中旬</td><td>方向与连续变化，不解读单月</td></tr>
+        <tr><td>领先偏同步</td><td>M1 增速与 M1-M2 增速差（央行，第4章）；新订单指数（PMI 分项）</td><td>月度</td><td>资金活化程度、需求端边际变化</td></tr>
+        <tr><td>同步</td><td>工业增加值、社会消费品零售总额、固定资产投资（统计局）</td><td>月度（投资为累计同比）</td><td>生产、消费、投资三驾马车的当期状态</td></tr>
+        <tr><td>滞后</td><td>CPI、PPI（统计局）；城镇调查失业率（统计局，第9章）</td><td>月度</td><td>确认前期波动的传导结果</td></tr>
+        <tr><td>金融维度</td><td>信用缺口、债务偿付率（BIS 跨国数据库）</td><td>季度/年度更新</td><td>金融周期位置的长尺度参照</td></tr>
+      </table>
+      <p class="ctx">使用方法（示例流程框）：</p>
+      <blockquote class="q">判断"经济在哪个阶段"的五步读法：①先看<strong>领先指标的连续方向</strong>（PMI 连续 3 个月在荣枯线同侧？社融增速拐头？）；②用<strong>同步指标确认</strong>（工业增加值与社零是否同向）；③用<strong>滞后指标校准</strong>（PPI 与失业率还在消化哪个阶段的压力）；④叠加<strong>金融维度</strong>（信贷与房价是顺风还是逆风）；⑤写下你的<strong>证据清单与时点</strong>——每一步都注明数据发布日期，下月数据出来后回头修正。全程只描述状态，不做点位与时间的预测。<span class="qsrc">——依据统计局、央行月度发布节奏与 BIS 数据库口径整理的读法模板（示例）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（PMI、工业增加值、社零、CPI/PPI、失业率月度发布）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据与社会融资规模月度发布）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS 统计栏目（信用缺口与 DSR，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>美林时钟：一个必须标注"预测力有限"的流行框架</h3>
+      <p class="ctx"><strong>美林投资时钟</strong>（Merrill Lynch Investment Clock）出自美林证券 2004 年的一份研究报告：用"增长"与"通胀"两个维度把周期分为复苏、过热、滞胀、衰退四阶段，并给出各阶段"历史上表现较好"的资产类别排序（股票→商品→现金→债券的轮动；原始报告基于美国数十年数据的回测，文字引用，英文）。因为简洁直观，它成为中文财经圈流传最广的周期框架。</p>
+      <p class="ctx">但本站必须如实标注它的局限，这也是学术与业界的普遍共识：<strong>①预测力有限</strong>——它是事后归纳的历史统计规律，回测好不等于样本外有效；阶段切换点的识别本身依赖滞后数据，"时钟"经常需要事后才能看清走到了几点。②<strong>对中国市场的适用性存疑</strong>——中国的政策对冲（第六节）会改变周期形态，多轮"复苏"阶段资产表现与原框架排序明显不符，业界公开复盘多有讨论。③<strong>资产轮动结论被滥用为择时工具</strong>，而原报告本身附有大量限定条件。结论：把它当"帮助记忆周期与资产关系的教学示意"可以，把它当"照着买就赚钱的操作指南"，就违背了本站红线——本站不提供任何投资建议，对"按时钟抄底逃顶"类内容一律按第19章的谣言标准处理。</p>
+      <div class="fig"><img src="../assets/img-08-2.png" alt="一个抽象圆形时钟盘面分为四个发光扇区，每个扇区内有不同几何图标（上升曲线、火焰状多边形、雪花状多边形、下行曲线），指针停在扇区分界线上并带有问号形状的光晕，橄榄绿主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：美林证券 The Investment Clock 研究报告（2004，文字引用，英文）· 曼昆《经济学原理（宏观分册）》第10版 通胀与资产价格通识框架 · <a href="https://www.bis.org/statistics/index.htm">BIS 统计栏目（周期与资产价格的跨国数据参照，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎</h2>
+    <p class="chapter-sub">关于周期的三个流行说法，逐条对证据</p>
+
+    <article class="view">
+      <h3>谣言粉碎："连续两个季度负增长就是衰退，中国已经/即将衰退"？</h3>
+      <p class="ctx">两处口径错误叠加：<strong>第一，"连续两个季度负增长"不是官方定义</strong>——它只是媒体经验法则，美国衰退的正式认定权在 NBER 委员会，且其综合多指标、事后追认；2022 年美国曾出现连续两季环比负增长而 NBER 未认定衰退（历史事实）。<strong>第二，中国的 GDP 主口径是同比</strong>，与"环比折年率"规则根本不可直接套用；中国没有官方衰退认定机制（第一节），官方表述体系用"下行压力""波浪式发展、曲折式前进"等定性语言（以统计局与中央经济工作会议表述为准）。用一把美国媒体的经验尺子去量中国的同比数据，得出的任何"已进入衰退"断言都在方法上不成立——这类标题的识别特征：不注明口径、不引用统计局原文、把定义当结论。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.nber.org/">NBER 官网（衰退认定方法说明，英文）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（同比与环比口径的官方说明）</a> · 曼昆《经济学原理（宏观分册）》第10版 经济波动章节</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："人生发财靠康波，现在是 X 年一遇的机会窗口"？</h3>
+      <p class="ctx">这句话把一个学术假说直接改装成了择时口号，三个环节全部断裂：<strong>其一，康波本身证据不足</strong>——长波假说未获主流共识，样本仅四五轮、起止点研究者都对不齐（第三节），它连"周期存在性"都还在争论，更谈不上给出"机会窗口"的年份；<strong>其二，从"周期阶段"推不出"买什么、何时买"</strong>——阶段判定是事后的、有争议的，历史上按长波叙事择时而失败的案例远多于成功案例（此为经验性描述，不构成对任何策略的评价）；<strong>其三，这类话术的最终落点往往是带货</strong>——课程、社群、"内部策略"，其商业模式依赖你相信"错过等一生"的稀缺焦虑。识别方法：凡是从"历史大周期"直接跳到"你现在应该买 X"的推理链，中间的每一个"因此"都经不起追问；本站红线明确——不提供投资建议，此类内容按第19章恐慌与焦虑话术处理。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Kondratieff (1925) 长波假说及其学术争议（文字引用，英文）· 萨缪尔森、诺德豪斯《经济学》第19版（对长波证据的教科书评价）· <a href="https://www.nber.org/">NBER 工作论文库（资产择时有效性研究入口，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："周期是宿命，普通人只能躺平或疯狂囤货"？</h3>
+      <p class="ctx">这是周期讨论引出的两种情绪化极端，都不成立：<strong>"躺平"版本的错误</strong>在于把"不可精确预测"偷换成"完全不可应对"——周期知识恰恰是有用的：知道信贷收缩期就业市场偏紧（<a href="../09-employment/">第9章</a>），可以提前做技能与现金流的准备；知道房地产与金融周期的关联（第四节、<a href="../10-housing/">第10章</a>），可以理解家庭杠杆的顺周期风险。<strong>"疯狂囤货"版本的错误</strong>在于把"理解通胀"（第2章）扭曲成"抢购保值"——历史数据反复表明，恐慌性囤积商品或资产的行为，其亏损概率远高于按计划的长期安排（此为通识性结论；具体到任何资产的买卖判断，本站不提供建议）。周期的正确打开方式是第17章的主题：理解传导机制、做与自身风险承受力匹配的安排、拒绝一切"押注单一情景"的方案——既不宿命，也不赌命。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章（通胀的成本与应对）· 萨缪尔森、诺德豪斯《经济学》第19版 风险与不确定性章节 · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（CPI 与就业数据的官方口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>NBER 对"衰退"的定义有哪三个要素？为什么"连续两个季度负增长"不是官方标准？2022 年的美国案例说明了什么？</li>
+        <li>中国为什么不能直接套用美国的衰退定义？官方描述经济状态用什么语言？</li>
+        <li>经济波动解释的"外生冲击说"与"内生机制说"分别强调什么？</li>
+        <li>基钦周期的长度与驱动机制是什么？为什么库存会成为波动的放大器？</li>
+        <li>库存周期四阶段怎么用"需求×库存"两个变量的升降组合定义？为什么阶段判定是事后的？</li>
+        <li>在中国数据里观察库存周期用哪三组官方指标？PPI 在其中扮演什么角色？</li>
+        <li>朱格拉周期的长度与机制是什么？它的证据基础为什么比基钦周期弱？</li>
+        <li>康波假说为什么"从未成为主流共识"？对普通人它唯一的合理用途是什么？</li>
+        <li>BIS 金融周期的核心变量与机制（金融加速器）是什么？常用的两个观察指标是什么？</li>
+        <li>为什么金融周期顶点后的调整往往更深更久？2008 年提供了什么证据？</li>
+        <li>三种周期叠加为什么让经济波动"看不清"？中国的政策周期又叠加了什么？</li>
+        <li>1994 年通胀与"软着陆"的经过说明了什么政策经验？</li>
+        <li>1998 年积极财政政策的背景与载体是什么？它和今天的专项债有什么关系？</li>
+        <li>"三期叠加""新常态""三重压力"分别是哪个阶段的官方定性表述？</li>
+        <li>逆周期调节的经典难题是什么？卢卡斯批判说了什么？</li>
+        <li>宏观杠杆率的官方定义是什么？"结构比总量更受关注"指哪三类结构区分？</li>
+        <li>跨周期调节与逆周期调节的区别是什么？官方措辞的组合方式有什么信息量？</li>
+        <li>自动稳定器的三项标准安排是什么？它们相对相机抉择的优点与缺点各是什么？</li>
+        <li>领先、同步、滞后指标各举两个，并说明各自的发布节奏。</li>
+        <li>美林时钟出自哪里？为什么本站强调它"预测力有限"？三条局限分别是什么？</li>
+        <li>"人生发财靠康波"话术在哪三个环节断裂？它的商业落点通常是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>衰退定义=NBER"显著下降+多部门扩散+持续数月"，事后追认；"连续两季负增长"仅是媒体经验法则；中国无官方衰退认定、主口径为同比；周期成因=外生冲击+内生放大；三把尺子=库存周期（基钦，3-4 年，四阶段：主动补库→被动补库→主动去库→被动去库，观察指标：工业增加值/社零、产成品存货、PPI 与利润）+设备周期（朱格拉，7-11 年，产能视角）+金融周期（BIS，信贷与房价，15-20 年量级，观察指标：信用缺口、DSR；顶点后调整更深更久）；康波=40-60 年长波假说，非主流共识，只用于理解技术扩散的慢节奏；波动=多周期叠加+政策周期，不可精确预测；逆周期=顶风对冲（难题：时滞与力度），跨周期=统筹当前与中期、保留政策空间（2020 年政治局会议首次提出）；自动稳定器=累进税制+失业保险+转移支付（零时滞、力度不可调）；宏观杠杆率=官方金融周期坐标，看趋势与结构不掐点位；指标组合五步读法=领先定方向→同步确认→滞后校准→金融参照→记录证据与时点；美林时钟=2004 年美林报告，教学示意可用，预测力有限、对中国适用性存疑、不用于择时；三个谣言=两季负增长即衰退（口径错误）、人生发财靠康波（假说改口号、落点带货）、周期宿命论（躺平与囤货都是情绪极端，正确姿势是理解传导+量力安排）。
+  </div>
+
+  <nav class="pager">
+    <a href="../07-fiscal/"><span class="dir">← 第7章</span>财政政策与政府债务</a>
+    <a href="../09-employment/"><span class="dir">第9章 →</span>就业与工资</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第8章 · 依据 NBER 商业周期测定机制公开资料、国家统计局月度发布与统计年鉴、中国人民银行金融统计数据、BIS 统计数据库与年报、Kitchin (1923)、Juglar (1860)、Kondratieff (1925)、Bernanke-Gertler-Gilchrist (1990s)、Lucas (1976)、美林证券 The Investment Clock (2004) 等学术研究、曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

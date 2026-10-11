@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 投资谣言粉碎 — 股票投资课</title>
+<style>
+  :root{--accent:#1d4ed8;--accent-deep:#1e40af;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">股票投资课 · 第12章 · 第三部分 · 避坑与合规</div>
+  <h1>投资谣言粉碎</h1>
+  <p>"跟着指标短线稳赚""有内幕消息渠道""这次不一样"——用官方口径、学术研究与可核查的数据，逐条粉碎流传最广的投资谣言</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../11-scam/">← 第11章：防骗指南</a>
+    <a href="../13-regulation/">第13章：监管与投资者保护 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">谣言为何专章</a>
+    <a class="anchor" href="#s2">交易与收益谣言</a>
+    <a class="anchor" href="#s3">市场与制度谣言</a>
+    <a class="anchor" href="#s4">新型谣言</a>
+    <a class="anchor" href="#s5">信息食谱</a>
+    <a class="anchor" href="#s6">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>本章及全站内容仅供<strong>投资教育与参考</strong>，不构成投资建议、财务规划建议或任何证券的买卖推荐；文中出现的任何标的、组合与数字均为教学示例，据此操作风险自负。<strong>市场有风险，投资需谨慎</strong>：股票等权益类资产可能造成本金亏损；本站坚持<strong>“不荐股、不预测行情、不承诺收益”</strong>，也不教授短线炒作、杠杆博弈与任何灰色操作，相关内容仅作风险警示与批判。警惕以"荐股""带单""内幕消息""稳赚不赔"为话术的骗局：合法证券期货基金业务只能通过<strong>证监会许可的正规机构与渠道</strong>开展。费率、税率、交易规则等数字以<strong>监管机构与交易所官方口径</strong>为准（截至 2026 年 10 月）；重大财务决策建议咨询持牌专业人士。各节观点均标注来源，以来源原文为准。本章为"谣言粉碎"专章：所有被粉碎的说法均以引号或"谣言粉碎"标题呈现，仅作批判与风险警示，不构成对任何行为的指导。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清投资谣言传播快、有人信背后的三个心理机制（确认偏误、叙事谬误、身份背书）；②背下"谣言核查四步"流程框，遇到任何"财富密码"都能先核查再决定；③用 Barber & Odean（2000）、Sharpe（1991）、SPIVA 记分卡（含方法论争议）等证据，逐条粉碎"短线稳赚""内幕消息""自己炒股比买基金强""只涨不跌""一夜暴富"等高频谣言；④认出"AI量化选股""跟着主力走"等新型话术的骗局特征；⑤给自己的信息源做一次"食谱清理"：建立以官方披露与权威投教为主的信息金字塔，退出“荐股”群与行情直播间。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章每一张"谣言粉碎"卡都是"说法→证据→行动"三段式：先看谣言原话，再看反驳证据（注明来源与口径），最后是你可以立刻执行的动作。第一次学习建议通读；之后当你在群聊、短视频里遇到似曾相识的说法时，直接回到对应卡片，把证据部分转给对方——或者更好的做法是，用第三节"信息食谱"从源头清理你的信息环境。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么投资谣言值得单独一章</h2>
+    <p class="chapter-sub">谣言跑得比行情快，因为钱的焦虑给它装了加速器</p>
+
+    <article class="view">
+      <h3>一个场景：谣言比行情先到你家餐桌</h3>
+      <p class="ctx">先看一个虚构场景（示例）：周日晚上，家庭群里二舅转发了一条短视频，标题是"重大利好即将落地，这个板块下周必涨"，配文写着"内部消息，速看，马上删"。你的表弟跟了一句："我同事上个月跟着一个'老师'做，赚了 30%。"你妈问你："咱们要不要也买点？"——注意这个场景里的三个细节：<strong>第一，信息源是匿名的</strong>（"内部消息""马上删"）；<strong>第二，证据是个案的</strong>（"我同事赚了"）；<strong>第三，情绪是急迫的</strong>（"下周必涨""速看"）。这三个细节，几乎就是投资谣言的标准配方。</p>
+      <p class="ctx">投资领域的谣言之所以比养生谣言传播得更快、更顽固，是因为它同时踩中了人性最强的两个按钮：<strong>贪婪</strong>（万一是真的，我就错过了）与<strong>恐惧</strong>（万一是真的，别人赚了我没赚，等于我亏了）。再加上"钱"这个话题自带社交货币属性——转发一条"财富密码"看起来像是在关心家人——谣言就获得了免费的分发网络。本章要做的，就是把流传最广的一批投资说法逐条拉出来，用三类可核查的材料对照：<strong>监管机构与交易所的官方口径、经过同行评审的学术研究、有明确统计口径的市场数据</strong>。粉碎谣言不是为了显得聪明，而是为了保住真金白银——每一条被广泛相信的谣言背后，都有一批按它行动的亏损者。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（谣言识别与投资常识科普）</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务（风险提示与投教材料）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏</a></div>
+    </article>
+
+    <article class="view">
+      <h3>为什么我们会信谣言：三个心理机制</h3>
+      <p class="ctx"><strong>机制一：确认偏误。</strong>人倾向于相信"自己已经想相信的东西"。如果你重仓了某个板块，你会自动放大所有利好它的说法、忽略所有不利的证据——谣言不需要说服你，它只需要迎合你。这就是为什么"你持有的股票永远有'必涨'的理由"。<strong>机制二：叙事谬误。</strong>诺贝尔经济学奖得主丹尼尔·卡尼曼在《思考，快与慢》（书籍引用，中信出版社中译本）中指出，人类大脑天然偏爱连贯的故事，胜过复杂而零碎的事实。"主力借利好出货""国家要牛市所以会涨"这类说法之所以有市场，是因为它们把混乱的价格波动包装成了一个有主角、有动机、有结局的故事——而真实的市场，多数时候并没有剧本。</p>
+      <p class="ctx"><strong>机制三：身份背书。</strong>"老师""操盘手""内部人士"这些头衔自带说服力光环，而心理学中著名的达克效应（Dunning-Kruger effect，英文，Kruger & Dunning 1999）提醒我们：越是不了解一个领域的人，越容易高估自己的判断力——这既解释了"老师"们的自信，也解释了跟单者"我听得懂、我能行"的错觉。三个机制合起来，就构成了一条完整的谣言食物链：<strong>有人制造故事（为了流量或为了收割），有人转发故事（为了社交货币），有人相信故事（因为故事迎合了自己）</strong>。理解了这条链，你就明白：对抗谣言不能只靠"记住正确答案"，还要靠一套可执行的核查流程——这就是下一张卡的内容。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：丹尼尔·卡尼曼《思考，快与慢》（Thinking, Fast and Slow，书籍引用） · Kruger & Dunning (1999), "Unskilled and Unaware of It", Journal of Personality and Social Psychology（英文，学术文献通行口径） · <a href="https://www.investor.gov/">美国 SEC 投资者教育站 investor.gov（英文，行为偏差与骗局心理科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言核查四步：一个可以终身使用的流程框</h3>
+      <p class="ctx">在逐条粉碎谣言之前，先交给你一个通用工具。它不需要金融知识，只需要四步和大约两分钟：</p>
+      <blockquote class="q">谣言核查四步：<br>① <strong>找源头</strong>：这个说法最早出自哪里？是监管文件、交易所公告、上市公司披露，还是匿名群聊、短视频口播？源头无法独立查证的信息，默认降级为"传闻"。<br>② <strong>查数字</strong：凡是带数字的说法（"赚了30%""成功率90%"），追问三件事——统计口径是什么？时间区间多长？样本是谁选的？"我同事赚了"不是数据，是幸存者故事。<br>③ <strong>搜反面</strong>：用"说法关键词 + 风险提示 / 辟谣 / 研究"再搜一遍，看监管机构、交易所投教或学术研究有没有相反口径。只看到一面之词的，基本都是故事。<br>④ <strong>缓决策</strong>：凡是催你"马上行动、过时不候"的，先睡一觉再说。真正值得参与的长期机会，不会因为你晚了一夜就消失；怕你思考的，才有鬼。<span class="qsrc">—— 本课程教学性归纳；风险识别口径可参照证监会与各地证监局历年风险提示专栏</span></blockquote>
+      <p class="ctx">用这四步过一遍开头的场景（示例）："重大利好下周必涨"——①源头：匿名短视频，无法查证；②数字："同事赚30%"无口径无区间；③搜反面：证监会风险提示专栏常年提醒"跟着消息炒股"是亏损高发区，各地证监局多次曝光以"利好消息"引流的话术；④缓决策：对方越催"速看"，越说明它需要你冲动。四步走完，结论只有一个：不理会，并提醒家人。还要补一句立场：<strong>谣言粉碎不是"什么都不信"，而是"让证据的强度配得上断言的强度"</strong>——断言越惊人（稳赚、必涨、只赚不赔），要求的证据等级就越高；拿不出匹配证据的，一律按谣言处理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏（风险提示与辟谣口径入口）</a> · <a href="https://www.investor.org.cn/">中国投资者网（中证中小投资者服务中心主办，投教与谣言识别科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、高频谣言粉碎（上）：关于交易与收益</h2>
+    <p class="chapter-sub">四句流传最广的话，四组最扎实的反证</p>
+
+    <article class="view">
+      <h3>谣言粉碎："跟着技术指标短线操作，稳赚不赔"</h3>
+      <p class="ctx">这个谣言的变体极多："金叉买入死叉卖出""三分钟学会抓涨停""这套指标胜率90%"——共同点是承诺短线操作可以稳定盈利。反驳它最有力的证据来自学术界：加州大学学者 Barber 与 Odean 2000 年发表于《金融学杂志》的经典研究《交易有害你的财富》（Trading Is Hazardous to Your Wealth，英文），追踪了约 6.6 万个美国家庭账户多年数据，发现<strong>交易越频繁的投资者，年化净收益越差：换手率最高的那一组，年化净收益显著低于市场基准，差距达数个百分点，其中很大一部分可以直接归因于交易成本</strong>（具体数字以论文原文为准）。两位学者的后续研究进一步发现，个人投资者系统性地追买"吸引眼球"的热门股票，结果往往买在阶段高点。也就是说：不是"指标不灵"这么简单，而是<strong>高频操作这件事本身，就在数学上吞噬你的本金</strong>。</p>
+      <p class="ctx">把这笔账换算到 A 股（教学示例，非投资建议）：假设 10 万元本金，一年完整买卖 60 次，每次往返的综合成本（佣金、卖出印花税 0.05%、冲击成本等，以官方与券商实际口径为准）哪怕只有 0.15%，一年的费用就是 60 × 0.15% × 2 ≈ 18%——你的选股必须先跑赢这个数，才谈得上赚钱。这还没算频繁决策带来的行为偏差成本（<a href="../05-behavior/">第5章</a>、<a href="../10-tax/">第10章</a>细讲）。至于那些售卖"必胜指标"的人：技术指标作为描述历史价格的工具本身不违法，但<strong>把历史图形包装成对未来的确定性预测来卖钱</strong>，要么是骗术，要么已经涉嫌非法证券投资咨询——无牌照有偿“荐股”本身就是监管打击的对象（<a href="../11-scam/">第11章</a>）。行动建议：看到任何"胜率""稳赚"字眼的课程与软件，直接执行核查四步，然后关掉。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Barber & Odean (2000), "Trading Is Hazardous to Your Wealth", Journal of Finance 55(2)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a>（出版商页面对部分访问工具反爬，DOI 真实，浏览器可达） · <a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211343/content.html">财政部 税务总局《关于减半征收证券交易印花税的公告》（2023年第39号，现行印花税口径）</a> · <a href="https://www.csrc.gov.cn/hunan/c105691/c7595044/content.shtml">湖南证监局《非法“荐股”典型案例和形式》（无牌照“荐股”违法的监管口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："有人手里有'内幕消息'渠道，付费就能进"</h3>
+      <p class="ctx">"内幕消息"是投资骗局里最古老也最持久的道具。粉碎它需要两层证据。<strong>第一层是法律：真实的"内幕交易"是违法犯罪。</strong>《证券法》明确禁止证券交易内幕信息的知情人和非法获取内幕信息的人利用内幕信息从事证券交易，《刑法》设有相应罪名，最高可处十年以上有期徒刑（具体条款以国家法律法规数据库现行文本为准）——也就是说，如果你真拿到了内幕消息并据此交易，你自己就在违法；而愿意把"违法机会"以几百元会员费卖给陌生人的，你觉得是送钱还是收网？<strong>第二层是案例：卖"消息"的绝大多数就是骗局。</strong>证监会系统各地证监局历年曝光的非法“荐股”案例反复呈现同一套路：青海证监局专栏收录的 3·15 晚会案例里，"荐股分成"骗局的股票干脆是编的——涨了分成、跌了就消失；中国证券业协会公布的典型案例中，有团伙冒充持牌机构人员提供"投资咨询"，2025 年上海警方破获的案件涉案金额 5600 余万元。</p>
+      <p class="ctx">再用逻辑补一刀：假如某人真的掌握能稳定赚钱的信息，他的最优策略是自己安静地复利，而不是冒着坐牢的风险把信息贱卖给几千人——信息一旦扩散，价格瞬间就会把它消化掉，"知道的人越多越值钱"在金融市场里不成立。真实的“内幕交易”案件（证监会每年公布处罚决定）里，获利者往往是少数接近信息源的人，而链条末端的跟风者大多亏损且同样被追责。行动建议：任何以"内幕消息""精准牛股"为卖点拉你付费入群的，保留聊天记录与转账凭证，拨打证监会 <strong>12386</strong> 服务平台热线举报，涉嫌诈骗的直接向公安机关报案（<a href="../11-scam/">第11章</a>、<a href="../13-regulation/">第13章</a>细讲维权路径）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（检索《中华人民共和国证券法》《中华人民共和国刑法》现行文本）</a> · <a href="https://www.csrc.gov.cn/qinghai/c105504/common_list.shtml">青海证监局 · 打击非法证券活动专栏（含 3·15 晚会"荐股分成"骗局案例）</a> · <a href="https://www.sac.net.cn/sjb/wlzf/zfdxal/202009/t20200929_30034.html">中国证券业协会《非法证券投资咨询典型案例》（2025年上海破案，涉案5600余万元）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："A股全是'庄家带单'，散户根本没有活路"</h3>
+      <p class="ctx">"Everything is rigged（一切都被操纵）"是一种很有诱惑力的世界观：它把亏损的责任推给一个看不见的"庄家"，把自己塑造成无辜的受害者，还顺带给了你加入"跟庄群"的理由。事实层面，监管对市场操纵从来不是默许，而是<strong>零容忍的高压打击</strong>：《证券法》明确禁止操纵证券市场行为，《刑法》设有操纵证券、期货市场罪；证监会每年公布大量操纵市场行政处罚与移送司法的典型案例，处罚金额动辄数亿元、市场禁入与刑责并举（案例可在证监会官网处罚决定与要闻栏目检索）；2026 年证监会等八部门还联合印发了综合整治非法跨境证券期货基金经营活动的实施方案，把打击面扩展到了跨境非法展业。说"市场里存在资金博弈与违法行为"是事实，说"所有涨跌都是庄家剧本、散户必死"则是既不符合数据、也无法证伪的阴谋论叙事。</p>
+      <p class="ctx">这个谣言有两重实际危害。<strong>第一重对内：它让你停止复盘。</strong>如果你坚信亏损全是"庄家收割"，你就永远不会检视自己真正的问题——过度交易、追涨杀跌、仓位失控、听消息建仓。行为金融的证据（<a href="../05-behavior/">第5章</a>）显示，散户亏损的最大来源恰恰是这些自身行为，而不是某个神秘对手。<strong>第二重对外：它是骗局的开场白。</strong>"散户斗不过庄家，只有跟着我们才有活路"——几乎所有非法"带单"群的话术都从这个前提出发，先制造绝望，再兜售救星；而所谓"庄家内部渠道"，本身就是"杀猪盘"与虚拟盘骗局的标准剧本（<a href="../11-scam/">第11章</a>拆过：你以为在跟庄，其实钱根本没进真实市场）。行动建议：当你发现自己在用"庄家"解释一切时，停下来，把最近十笔交易拉出来做归因——这是<a href="../18-review/">第18章</a>的作业，也是治这个谣言的特效药。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/csrc/c100028/common_list.shtml">中国证监会 · 证监会要闻（操纵市场行政处罚与打击非法证券活动案例发布渠道）</a> · <a href="https://www.csrc.gov.cn/csrc/c100028/c7634326/content.shtml">证监会等八部门《综合整治非法跨境证券期货基金经营活动实施方案》（2026年5月）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《证券法》《刑法》操纵市场相关条款检索入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："买基金不如自己炒股，专业机构都是收智商税的"</h3>
+      <p class="ctx">这句话把两个问题混在了一起："主动基金能不能跑赢指数"与"个人自己炒股能不能跑赢基金"。先看第一个问题，证据链有两环。<strong>数学环：Sharpe（1991）《主动管理的算术》</strong>（Arithmetic of Active Management，英文）证明了一个近乎恒等式的结论：全体主动投资者的税前总收益必然等于市场总收益，扣除主动管理更高的成本后，<strong>作为一个整体，主动投资者必然跑输被动投资者</strong>——这与基金经理聪明与否无关，是算术。<strong>数据环：SPIVA 记分卡</strong>（标普道琼斯指数公司出品，英文）长期追踪主动基金对基准的表现，按其官方口径：2026 年上半年约 67% 的美国大盘主动基金跑输标普500指数；把时间拉长到 15—20 年，跑输比例达到 85%—93%（以 SPIVA 官方记分卡为准，截至 2026 年 10 月，引用须注明期数）。</p>
+      <p class="ctx">但本课程承诺过"争议如实呈现"，这里必须补上反方证据：有发表于 SSRN 的研究（英文）批评 SPIVA 的统计口径——例如其按基金数量等权统计、未剔除合并清盘等因素——认为在<strong>资产加权</strong>口径下，长期跑输的主动基金比例约为 56% 而非九成。两个数字口径不同、并不互相否定：等权口径回答"随机挑一只主动基金，跑输概率多大"，资产加权口径回答"多少钱跑输了"。诚实的结论是：<strong>无论按哪个口径，长期维度上多数或约半数的主动基金未能跑赢基准，且费用越高差距越明显</strong>。再看第二个问题——"自己炒股能更强吗"：证据一致指向反方向。个人投资者面对的是与机构相同的市场，却带着更高的成本、更少的研究资源和更多的行为偏差（Barber & Odean 的系列研究，见本章第一张卡）；"连专业机构整体都跑不赢的游戏，业余选手赤手空拳能赢"在逻辑上就不成立。这个谣言的真实功能，往往是给"重仓单票、频繁操作"提供心理许可证。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：Sharpe (1991), "Arithmetic of Active Management", Financial Analysts Journal（英文） <a href="https://doi.org/10.2469/faj.v47.n1.7">https://doi.org/10.2469/faj.v47.n1.7</a> · S&P SPIVA 记分卡（英文） <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">https://www.spglobal.com/spdji/en/research-insights/spiva/</a>（出版商页面对部分访问工具反爬，浏览器可达；结论须注明期数） · SSRN《How the SPIVA U.S. Scorecard Understates Active Performance》（英文，方法论批评，争议并呈） <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6710358">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6710358</a> · Barber & Odean (2000)（英文） <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、高频谣言粉碎（下）：关于市场与制度</h2>
+    <p class="chapter-sub">"这次不一样""退市翻本""一夜暴富"——三句老话，三套制度事实</p>
+
+    <article class="view">
+      <h3>谣言粉碎："这次不一样，XX概念只涨不跌"</h3>
+      <p class="ctx">"这次不一样"（This time is different）被称为投资史上最昂贵的几个词——这句警语常被归于投资家约翰·邓普顿（归属说法，注明）。从 17 世纪荷兰郁金香狂热、18 世纪英国南海泡沫，到 2000 年互联网泡沫（金融史教材通行口径，可参阅金德尔伯格《疯狂、恐慌与崩溃》、马尔基尔《漫步华尔街》，均为书籍引用），每一轮泡沫都配着一句"这次不一样"：这次的资产是"新时代"的、估值方法是"旧框架装不下"的、接盘的人是"源源不断"的。事后看，泡沫的共同规律惊人地一致：<strong>故事往往是真的（铁路、互联网、人工智能都是真实且伟大的技术趋势），但"好行业"不等于"好股价"——价格里已经预支了多少未来，才决定你的回报</strong>。这正是<a href="../06-valuation/">第6章</a>估值常识的全部意义。</p>
+      <p class="ctx">制度层面也有一道防波堤值得你知道：针对经营或合规出现重大问题的公司，交易所设有<strong>风险警示制度</strong>——被实施其他风险警示的股票标记为 ST、被实施退市风险警示的标记为 *ST，深交所还设有专门的风险警示板，对这类股票实行更严格的交易与披露安排（官方定义与现行规则见深交所风险警示板专页与《证券交易业务指南第2号——风险警示板交易事项（2026年修订）》，以官方最新规定为准）。换句话说：<strong>监管用制度反复告诉你"这家公司有问题"，而"只涨不跌"的谣言却在告诉你"问题就是机会"</strong>——两者相遇时，请相信制度。本课程不预测任何板块的涨跌，只提醒一个动作：当有人对你说出"只涨不跌"四个字时，先检查两件事——你的仓位占家庭资产的比例，和你有没有动用杠杆。这四个字出现的地方，通常两者都出了问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://investor.szse.cn/disclosure/listed/warn/index.html">深圳证券交易所 · 风险警示板专页（ST、*ST 与退市整理股票官方定义）</a> · <a href="https://www.szse.cn/lawrules/service/member/t20260630_621404.html">深交所《证券交易业务指南第2号——风险警示板交易事项（2026年修订）》发布通知</a> · 金德尔伯格《疯狂、恐慌与崩溃》、伯顿·马尔基尔《漫步华尔街》（书籍引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："退市了钱就全没了"与"退市股便宜，赌重组能翻本"</h3>
+      <p class="ctx">关于退市，坊间流传着两个方向相反的谣言，需要一起粉碎。<strong>谣言A："公司退市，我的股票就清零了。"</strong>——不对。退市不等于股份消失：公司股票终止上市后，按规定转入相应的股份转让场所继续转让，你的股东权利仍然存在；但必须诚实告知后半句——退出主板市场后，这类股票的流动性、定价与信息披露水平通常大幅下降，账面价值缩水是常态，"还在"与"值钱"是两回事。<strong>谣言B："退市股跌到底了，赌一把重组就能翻身。"</strong>——这是更危险的说法。注册制改革后，退市已呈常态化（监管口径为"应退尽退"，案例与数据见证监会官网发布渠道），绝大多数退市公司的问题是基本面恶化甚至财务造假，而不是"被错杀"；所谓"重组翻本"的想象，本质是押注小概率事件的投机，而交易所对风险警示板股票还设置了投资者门槛与交易限制（如签署风险揭示书、满足资产与交易经验要求等，以深交所现行规则为准）——制度设计本身就在提醒：<strong>这不是普通投资者该去的区域</strong>。</p>
+      <p class="ctx">给普通人的正确姿势有三条：①对看不懂的公司，尤其是已经戴上 ST、*ST 帽子的公司，默认远离，不赌自己看不懂的故事；②理解单一股票的极端风险（退市、造假、黑天鹅）正是分散化的意义所在——持有低费率的宽基指数基金，单一个股退市对你的组合影响可以忽略不计（<a href="../04-index/">第4章</a>）；③如果已经持有退市风险股票，与其幻想翻本，不如按<a href="../18-review/">第18章</a>的框架做一次诚实的归因与决策：沉没成本不是持有理由，"回本了再卖"恰恰是行为金融里著名的处置效应陷阱（Shefrin & Statman 1985，英文，学术文献通行口径）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://investor.szse.cn/disclosure/listed/warn/index.html">深圳证券交易所 · 风险警示板专页（退市整理与风险警示股票官方口径）</a> · <a href="https://www.szse.cn/lawrules/service/member/t20260630_621404.html">深交所《证券交易业务指南第2号——风险警示板交易事项（2026年修订）》（投资者门槛与交易安排，以官方最新规定为准）</a> · Shefrin & Statman (1985), "The Disposition to Sell Winners Too Early and Ride Losers Too Long", Journal of Finance（英文，学术文献通行口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："炒股能一夜暴富，就看你敢不敢"</h3>
+      <p class="ctx">"一夜暴富"是所有投资谣言里对普通人伤害最大的一条，因为它直接把投资重新定义成了买彩票。先看数据怎么说话：股票市场长期回报的來源，是企业盈利的增长与分红——把时间拉长到几十年，主要股市的长期年化回报（名义口径，不同市场、不同区间数字不同，引用必须注明指数、区间与口径）大致处于个位数到低两位数的区间；这个速度足以让坚持储蓄与分散投资的家庭在三十年后积累可观的养老资金，但它在任何一年都造不出"一夜暴富"。你在短视频里看到的暴富故事，几乎全部经过了三重筛选：<strong>幸存者偏差</strong>（亏掉的人不发视频）、<strong>时间窗口裁剪</strong>（只展示赚钱的那三个月）与<strong> outright 造假</strong>（虚拟盘截图，<a href="../11-scam/">第11章</a>拆过）。上交所投资者教育"股市新手村"系列给新手的第一课标题就叫"万事先求稳"——官方的入门教育与"暴富"叙事，方向完全相反。</p>
+      <p class="ctx">再算一笔数学账（教学示例，非投资建议）：10 万元本金想一年变 100 万，需要连续翻十倍；即便靠连续涨停（主板单日 10% 上限，以交易所现行规则为准），也需要约 25 个连续涨停且中途不打开、不出利空——这在真实市场里是极小概率且完全不可复制的事件。而为了追逐这个小概率，"暴富"叙事的信徒们通常要走的路是：加杠杆→参与违法的"场外配资"→一次回撤就血本无归甚至倒欠，或者落入承诺高收益的集资骗局。注意这条危害链的规律：<strong>"一夜暴富"的谣言本身不直接骗钱，它是给后续所有骗局与危险行为发放的心理通行证</strong>。把预期收益从"暴富"调回"跑赢通胀+合理增值"，你会发现自己瞬间对市面上八成的"机会"免疫了——这不是悲观，这是护甲。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（"股市新手村"系列，第1期"万事先求稳"）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏（收益预期与风险提示口径）</a> · <a href="https://www.szse.cn/investor/index.html">深圳证券交易所投资者服务（交易规则科普：涨跌幅限制等以现行规则为准）</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-12-1.png" alt="谣言粉碎机示意：一台蓝色几何风格的机器，左侧投入写着问号的碎片纸片，右侧输出整齐的事实方块，机器上方有一个放大镜图标，扁平插画风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、新型谣言：AI 话术与"韭菜"叙事</h2>
+    <p class="chapter-sub">老剧本换了新道具，识别逻辑不变</p>
+
+    <article class="view">
+      <h3>谣言粉碎："'AI量化选股'稳定跑赢市场，普通人也能用"</h3>
+      <p class="ctx">近两年，"AI""量化""大数据选股"成了“荐股”话术的新皮肤。监管已经点名：深圳证监局 2025 年发布的风险提示中，曝光的四类非法“荐股”骗局套路就包括<strong>以"AI量化选股"为噱头招揽客户</strong>——用科技感包装的，往往还是无牌照“荐股”、收取会员费、拉群"带单"的老三样（官方风险提示链接见下）。识别逻辑与本章所有谣言一致：①查资质——提供投资建议的机构与人员必须持有证监会许可的相应资质，可在官方渠道核验名录，核验不了的"AI投顾"直接按骗局候选处理；②查话术——展示"历史战绩"却不说明统计口径、是否可审计、有没有剔除失败账户的，是标准的幸存者偏差陈列；③查资金去向——要求转账到私人账户或来路不明 App 的，无论界面多像正规券商，都是收网信号。</p>
+      <p class="ctx">也要给 AI 一个公道，避免从"迷信"滑向"妖魔化"：人工智能在投资领域的真实用途，是信息处理（快速阅读公告与研报）、组合分析工具、客服与流程自动化——这些是效率工具，不是水晶球。至于"AI 能不能预测股价"，回到本章的算术：如果某个模型真能稳定跑赢市场，它的最优商业策略是自己管理资金复利滚大，而不是打包成 2998 元的年费软件卖给几十万人——量化机构之间恰恰是军备竞赛式的相互竞争，超额收益随参与者增多而衰减，这是行业常识口径。一句话总结：<strong>把 AI 当工具可以学，把 AI 当"股神"就是交智商税</strong>。（想系统了解 AI 工具的正确用法，可参考本站姊妹课程《AI自动化实践》。）</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.csrc.gov.cn/shenzhen/c105615/c7638512/content.shtml">深圳证监局《关于警惕非法“荐股”骗局的风险提示》（2025年，四类套路含"AI量化选股"话术）</a> · <a href="https://www.csrc.gov.cn/">中国证监会官网（合法机构名录与资质核验入口）</a> · <a href="https://www.investor.org.cn/">中国投资者网（投教与骗局识别科普）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："A股只能投机不能投资，散户天生就是被收割的"</h3>
+      <p class="ctx">这条谣言比"一夜暴富"更隐蔽，因为它听起来像清醒的愤世嫉俗，实际效果却一样糟糕。先拆事实层：<strong>股票投资的长期回报来自企业盈利与分红，这与市场上有多少投机者无关</strong>。监管层面的制度导向也很明确：《证券法》与近年监管口径持续强调长期投资、价值投资理念，上市公司现金分红制度不断完善，A股上市公司年度现金分红总额逐年上升（具体数据以证监会与交易所年度发布口径为准）；股息红利差别化个人所得税政策（持股超过一年免征，财税〔2015〕101号）本身就是用税收杠杆鼓励长期持有。"只能投机"的说法，无视了整个制度设计正在奖励的行为。</p>
+      <p class="ctx">再拆心理层："散户天生被收割"是一种<strong>自我实现预言</strong>。相信它的人有两条路：要么彻底离开权益市场（代价是放弃长期抗通胀的工具，导论算过这笔账），要么"既然反正被收割，不如赌一把"——转向短线、追热点、找"老师"，用投机者的方式行动，然后果然亏钱，反过来"验证"了谣言。更值得警惕的是，这个叙事正是各类非法“荐股”群的标准开场白："散户单打独斗只会被收割，跟着我们才有出路"——先给你绝望，再卖你希望。诚实的结论是：市场里确实有信息、研究与资金实力的差距（导论第三节讲过三个结构性原因），但差距的正确用法不是投降或赌博，而是<strong>换一种不参与博弈的玩法</strong>：低成本、分散化、长期持有、纪律执行——这套打法不需要战胜任何人，只需要经济增长与企业盈利站在你这边（<a href="../04-index/">第4章</a>、<a href="../17-portfolio/">第17章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5203902/content.html">财政部 税务总局 证监会《关于上市公司股息红利差别化个人所得税政策有关问题的通知》（财税〔2015〕101号，长期持有税收优惠）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏（长期投资、价值投资监管口径）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站（投资理念系列科普）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、信息食谱：给自己建一套防谣言系统</h2>
+    <p class="chapter-sub">粉碎十条谣言，不如换掉一个信息源</p>
+
+    <article class="view">
+      <h3>信息源金字塔：你的投资决策该吃哪一层</h3>
+      <p class="ctx">身体是吃出来的，判断力是"信息食谱"喂出来的。把常见信息源按可靠性分成五层，并给每层规定用途（教学性归纳）：</p>
+      <table class="cmp">
+        <tr><th>层级</th><th>信息源</th><th>特点</th><th>正确用途</th></tr>
+        <tr><td>① 法定披露</td><td>巨潮资讯网、沪深北交易所官网的上市公司公告、定期报告</td><td>有法律责任背书，造假要担责</td><td>投资决策的事实依据</td></tr>
+        <tr><td>② 监管与交易所投教</td><td>证监会及各地证监局、交易所投教基地、中国投资者网</td><td>公益属性，讲规则与风险</td><td>规则口径、风险提示、骗局预警</td></tr>
+        <tr><td>③ 学术与经典</td><td>同行评审论文、经典教材（格雷厄姆、博格、马尔基尔、卡尼曼）</td><td>慢，但经过时间与同行检验</td><td>认知框架与长期规律</td></tr>
+        <tr><td>④ 权威财经媒体</td><td>有采编责任与更正机制的财经媒体</td><td>快，但质量参差，须标注（🏷）</td><td>了解事件线索，回①②层核实</td></tr>
+        <tr><td>⑤ 自媒体与群聊</td><td>短视频"股神"、“荐股”群、匿名爆料</td><td>噪音与骗局的集散地</td><td>默认不采信；作为防骗案例学习</td></tr>
+      </table>
+      <p class="ctx">使用规则只有一条：<strong>凡是要动用真金白银的决策，依据必须来自①或②层；③层用来搭框架；④⑤层看到的信息，一律回到①②层核实后才算数</strong>。你会发现一个有趣的现象：本章粉碎的所有谣言，源头无一例外都在第⑤层，而所有反驳证据都来自①—③层。这就是"信息食谱"的力量——谣言进不了你的输入端，就不需要每次都动用核查四步。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.cninfo.com.cn/">巨潮资讯网（中国证监会指定的信息披露平台，上市公司公告法定渠道）</a> · <a href="https://www.investor.org.cn/learning_center/investor_education_base/">中国投资者网 · 投教基地（官方投教课程入口）</a> · <a href="https://edu.sse.com.cn/">上海证券交易所投资者教育网站</a></div>
+    </article>
+
+    <article class="view">
+      <h3>今天就做的信息大扫除：一张行动清单</h3>
+      <p class="ctx">读完本章，建议立刻执行一次"信息大扫除"（清单可直接照做）：</p>
+      <ul style="font-size:14.5px;">
+        <li>退出所有"荐股""带单""牛股分享"微信群、QQ群——无论群里"战绩"多热闹（那可能是虚拟盘或托）；</li>
+        <li>取关所有承诺收益、展示"实盘战绩"却说不清口径的短视频账号与直播间；</li>
+        <li>关闭行情软件的"涨停推送""异动弹窗"类通知，把打开软件的频率降到与你的投资周期匹配（长期投资者每周看一次足够）；</li>
+        <li>把"谣言核查四步"截图存进手机备忘录，放在能随手调用的地方；</li>
+        <li>收藏三个官方渠道替代原有信息源：巨潮资讯网（查公告）、证监会投资者教育专栏（查规则与风险提示）、中国投资者网（查投教课程与维权入口）；</li>
+        <li>如果已经因听信谣言产生亏损或正在被某个群"服务"：保留聊天记录、转账凭证，拨打 12386 或向公安机关报案，不要因为"怕丢人"而沉默——骗子最怕的就是报案（<a href="../11-scam/">第11章</a>、<a href="../13-regulation/">第13章</a>）。</li>
+      </ul>
+      <p class="ctx">最后提醒一个心理陷阱：清理信息源的头两周，你可能会觉得"错过了很多机会"——这是戒断反应，不是损失。回想核查四步的第②步：那些"机会"从来就没有过口径完整的数字，它们只是故事。把省下来的刷群时间，投给<a href="../16-plan/">第16章</a>的一页纸投资计划，你会第一次感觉到：<strong>账户的安静，是纪律的声音</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 本站编写原则</span>来源：<a href="https://www.investor.org.cn/">中国投资者网（12386 热线与维权渠道科普）</a> · <a href="https://www.csrc.gov.cn/csrc/c100211/common_list.shtml">中国证监会 · 投资者教育专栏</a> · <a href="../">本课程首页 · 来源认证四级标注说明</a></div>
+    </article>
+
+    <div class="fig"><img src="../assets/img-12-2.png" alt="信息金字塔示意：五层蓝色渐变的金字塔，顶部两层发光且清晰，底部两层布满噪点与问号，一个几何小人正沿着阶梯向上攀登，扁平插画风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、本章自测</h2>
+    <p class="chapter-sub">能把证据讲给朋友听，才算真的粉碎了谣言</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于"辟谣"本身的三个误区</h3>
+      <p class="ctx"><strong>误区一："官方渠道说的就一定对、永远对。"</strong>——不对。官方口径也有时效与适用范围：规则会修订（本章引用的风险警示板业务指南就是 2026 年修订版），数据有统计区间，投教材料讲的是原则而非个案预测。正确姿势是"信官方口径 + 核对发布日期 + 以最新规定为准"，这也是本站所有规则类内容标注"截至 2026 年 10 月"的原因。<strong>误区二："学术研究就是永恒真理。"</strong>——也不对。本章 SPIVA 与 SSRN 的口径之争就是现成的例子：同一批基金、不同的统计方法（等权 vs 资产加权、是否处理幸存者偏差），得出 56% 与 85%—93% 两个都"对"的数字。学术的价值在于可重复、可争论、可修正，引用时要带口径——这恰恰是它比"大师"可信的原因，而不是它不会错。<strong>误区三："我不信谣言，就不会亏钱。"</strong>——最危险的一个。本章粉碎的是"说法"，但亏钱的主力是"行为"：知道过度交易有害的人，照样会在大跌那天手痒。知识到行为之间隔着纪律，纪律要靠工程化的规则（定投计划、再平衡日历、事前写下的卖出条件）来搭桥——这是<a href="../05-behavior/">第5章</a>与<a href="../18-review/">第18章</a>的任务。谣言粉碎是护城河的第一道，不是最后一道。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：S&P SPIVA 记分卡（英文） <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/">https://www.spglobal.com/spdji/en/research-insights/spiva/</a>（引用须注明期数） · SSRN 方法论批评（英文，争议并呈） <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6710358">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6710358</a> · <a href="https://www.szse.cn/lawrules/service/member/t20260630_621404.html">深交所风险警示板业务指南（2026年修订）发布通知（规则时效示例）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>投资谣言的"标准配方"三要素是什么？开头场景里的短视频分别踩中了哪三条？</li>
+        <li>让人相信谣言的三个心理机制（确认偏误、叙事谬误、身份背书）各自如何起作用？达克效应解释了什么？</li>
+        <li>不看课文，背出"谣言核查四步"，并说明第②步要追问数字的哪三件事。</li>
+        <li>Barber & Odean（2000）追踪了多少个家庭账户？核心发现是什么？它对"跟着指标短线操作"的反驳逻辑是什么？</li>
+        <li>用 A 股成本结构算一笔账（教学示例）：10 万元本金一年完整买卖 60 次、单次往返成本 0.15%，一年费用大约吃掉多少？</li>
+        <li>为什么说"买内幕消息"是双重陷阱——法律层面与骗局层面各是什么？</li>
+        <li>"真有内幕消息的人为什么不会卖给你"——把这个逻辑复述一遍。</li>
+        <li>"A股全是庄家"这个叙事的对内危害与对外危害分别是什么？</li>
+        <li>Sharpe（1991）"主动管理算术"的核心结论是什么？它为什么被称为近乎数学恒等式？</li>
+        <li>SPIVA 记分卡 2026 年上半年与 15—20 年维度的跑输比例各是多少？SSRN 的批评口径给出的数字又是多少？引用时必须注意什么？</li>
+        <li>"这次不一样"在金融史上对应哪些著名泡沫？"好行业≠好股价"的道理是什么？</li>
+        <li>ST 与 *ST 分别代表什么？风险警示板对这类股票有哪些额外安排（以官方现行规则为准）？</li>
+        <li>退市谣言 A 与谣言 B 分别错在哪里？注册制后退市的监管口径是什么？</li>
+        <li>"一夜暴富"叙事里的短视频故事经过了哪三重筛选？为什么它被称为后续骗局的"心理通行证"？</li>
+        <li>深圳证监局 2025 年点名的四类非法“荐股”套路中，哪一类与 AI 有关？识别"AI股神"的三个查是什么？</li>
+        <li>"散户天生被收割"为什么是自我实现预言？非法“荐股”群如何利用这个叙事开场？</li>
+        <li>信息源金字塔五层分别是什么？"动用真金白银的决策依据必须来自哪两层"这条规则，你能解释为什么吗？</li>
+        <li>关于"辟谣"本身的三个误区是什么？各自对应本课程的哪条编写原则？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>投资谣言的标准配方=匿名源头+个案证据+急迫情绪；人会信谣是因为确认偏误、叙事谬误（卡尼曼）与身份背书（达克效应）；通用解法是"谣言核查四步"——找源头、查数字（口径/区间/样本）、搜反面、缓决策；七大高频谣言的反证：短线稳赚→Barber & Odean（2000）交易越频繁收益越差+A股成本算术；"内幕消息"→《证券法》《刑法》禁止"内幕交易"+各地证监局案例证明卖消息者多为骗局；"全是庄家"→监管对市场操纵零容忍（处罚案例+八部门整治方案），阴谋论让你停止复盘且是"带单"群开场白；"自己炒股强过基金"→Sharpe（1991）算术+SPIVA（2026H1 约67%跑输、15—20年85—93%跑输，SSRN 资产加权口径约56%，争议并呈、引用注明期数）；"只涨不跌"→泡沫史规律+ST/*ST 风险警示板制度；退市谣言→股份不消失但流动性大降、"赌重组翻本"是危险投机，分散化是正解；"一夜暴富"→长期年化回报为个位数到低两位数（名义、注明口径），暴富故事=幸存者偏差+裁剪+造假；新话术"AI量化选股"被深圳证监局 2025 年点名，识别三查：查资质、查话术、查资金去向；"散户天生被收割"是自我实现预言，正解是换玩法——低成本、分散、长期、纪律；信息食谱五层金字塔：决策依据只认①法定披露（巨潮资讯）与②监管投教（证监会/交易所/中国投资者网/12386），⑤自媒体群聊默认不采信并主动退出；辟谣三误区：官方口径有时效、学术研究有口径之争、知识≠行为（纪律才是最后一公里）。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-scam/"><span class="dir">← 上一章</span>第11章 · 防骗指南："荐股大师""带单""杀猪盘"</a>
+    <a href="../13-regulation/"><span class="dir">下一章 →</span>第13章 · 监管与投资者保护</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>股票投资课 · 第12章 投资谣言粉碎 · 依据中国证监会及各地证监局官方风险提示与投资者教育材料、沪深交易所规则与投教口径（风险警示板专页、业务指南2026年修订）、《证券法》《刑法》（国家法律法规数据库检索口径）、财税〔2015〕101号、Barber & Odean（2000）、Sharpe（1991）、Shefrin & Statman（1985）、SPIVA 记分卡与 SSRN 方法论批评（争议并呈）、卡尼曼《思考，快与慢》、马尔基尔《漫步华尔街》等经典教材整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供投资教育参考，不构成投资建议 · 市场有风险，投资需谨慎 · “不荐股”、不预测行情、不承诺收益 · 维权请拨打证监会 12386 服务平台热线或访问中国投资者网 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #1d4ed8;border-radius:12px;background:#eff6ff;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#1e40af;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/stock/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#1d4ed8;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#1d4ed8;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#eff6ff;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正在犹豫要不要入场，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#1e40af;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #1d4ed8;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#eff6ff;}
+.sr-item .sr-c{display:block;font-size:12px;color:#1d4ed8;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 工具，如：指数基金、估值、防骗、资产配置…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/stock\/.*/,'/stock/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.STOCK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#1d4ed8;border:1.5px solid #1d4ed8;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#eff6ff;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宏观经济课 — 写给每个人的经济学通识课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:48px 20px;text-align:center;}
+  header .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:10px;}
+  header h1{margin:0 0 10px;font-size:32px;letter-spacing:1px;}
+  header p{margin:4px 0;font-size:15px;opacity:.95;}
+  header a{color:#fff;}
+  .layout{max-width:1150px;margin:0 auto;padding:36px 20px 60px;display:flex;gap:34px;align-items:flex-start;}
+  nav.toc{width:240px;flex-shrink:0;position:sticky;top:20px;font-size:14px;}
+  nav.toc .toc-title{font-weight:700;font-size:15px;color:var(--accent);margin:0 0 10px;letter-spacing:1px;}
+  nav.toc .toc-part{font-size:12px;color:var(--muted);letter-spacing:2px;margin:12px 0 2px;padding-left:10px;font-weight:700;}
+  nav.toc ul{list-style:none;margin:0 0 6px;padding:0;}
+  nav.toc a{display:block;color:var(--ink);text-decoration:none;padding:5px 10px;border-left:3px solid transparent;border-radius:0 6px 6px 0;}
+  nav.toc a:hover{color:var(--accent);background:var(--bg-soft);border-left-color:var(--accent);}
+  main{flex:1;min-width:0;}
+  .intro{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:20px 24px;}
+  .intro p{margin:8px 0;font-size:15px;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:14px;}
+  .disclaimer strong{color:var(--red);}
+  .disclaimer ul{margin:6px 0 0;padding-left:20px;}
+  h2{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:38px 0 6px;}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 18px 18px;}
+  .part-title{font-size:16px;color:var(--accent-deep);letter-spacing:2px;margin:30px 0 0;font-weight:700;}
+  article.card{border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:18px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:16px;transition:box-shadow .15s;}
+  article.card:hover{box-shadow:0 3px 10px rgba(27,31,36,.09);}
+  article.card h3{margin:0 0 8px;font-size:18px;}
+  article.card h3 a{color:var(--ink);text-decoration:none;}
+  article.card h3 a:hover{color:var(--accent);}
+  article.card p{margin:6px 0;color:var(--ink);font-size:15px;}
+  .badge{display:inline-block;background:var(--accent);color:#fff;font-size:12px;border-radius:5px;padding:1px 8px;margin-right:8px;vertical-align:2px;}
+  ul.topics{padding-left:20px;font-size:14px;color:var(--muted);margin:8px 0 0;}
+  .meta-row{font-size:13.5px;color:var(--muted);margin-top:10px;}
+  .meta-row a{color:var(--accent);}
+  .conf-legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px;font-size:13.5px;}
+  .c-badge{display:inline-block;font-size:12px;border-radius:5px;padding:1px 8px;margin-right:4px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:var(--accent-deep);border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  footer{max-width:1150px;margin:0 auto;padding:22px 20px 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;width:auto;margin-bottom:24px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;}
+    nav.toc a{border-left:none;padding:4px 8px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header>
+  <div class="tag">看懂GDP · 通胀利率 · 政策周期 · 宏观与你</div>
+  <h1>宏观经济课</h1>
+  <p>写给每个人的经济学通识课：看懂新闻里的经济逻辑，看清宏观与你钱包的关系</p>
+  <p>内容底本：国家统计局 / 中国人民银行 / 财政部 · IMF / 世界银行 / BIS · 曼昆等经典教科书 · 经济学学术论文 ｜ 每个观点都标注权威来源</p>
+</header>
+
+<div class="layout">
+
+<nav class="toc" id="toc">
+  <p class="toc-title">📑 目录</p>
+  <ul>
+    <li><a href="#intro">课程说明</a></li>
+    <li><a href="00-intro/">导论 · 为什么要懂宏观</a></li>
+  </ul>
+  <p class="toc-part">第一部分 · 基础概念</p>
+  <ul>
+    <li><a href="01-gdp/">第1章 · GDP：衡量一国的财富</a></li>
+    <li><a href="02-inflation/">第2章 · 通胀与紧缩</a></li>
+    <li><a href="03-interest/">第3章 · 利率：资金的价格</a></li>
+    <li><a href="04-money/">第4章 · 货币与信用</a></li>
+    <li><a href="05-exchange/">第5章 · 汇率与国际收支</a></li>
+  </ul>
+  <p class="toc-part">第二部分 · 政策与周期</p>
+  <ul>
+    <li><a href="06-monetary/">第6章 · 货币政策</a></li>
+    <li><a href="07-fiscal/">第7章 · 财政政策与政府债务</a></li>
+    <li><a href="08-cycle/">第8章 · 经济周期</a></li>
+    <li><a href="09-employment/">第9章 · 就业与工资</a></li>
+    <li><a href="10-housing/">第10章 · 房地产与宏观经济</a></li>
+  </ul>
+  <p class="toc-part">第三部分 · 国际与结构</p>
+  <ul>
+    <li><a href="11-trade/">第11章 · 国际贸易与全球化</a></li>
+    <li><a href="12-finance/">第12章 · 金融体系与金融危机</a></li>
+    <li><a href="13-growth/">第13章 · 经济增长与发展</a></li>
+    <li><a href="14-demography/">第14章 · 人口结构与经济</a></li>
+    <li><a href="15-newtech/">第15章 · 新经济：科技与AI</a></li>
+  </ul>
+  <p class="toc-part">第四部分 · 宏观与你</p>
+  <ul>
+    <li><a href="16-indicator/">第16章 · 看懂经济指标</a></li>
+    <li><a href="17-asset/">第17章 · 宏观与家庭资产</a></li>
+    <li><a href="18-policy/">第18章 · 政策信号怎么读</a></li>
+    <li><a href="19-rumor/">第19章 · 宏观谣言粉碎</a></li>
+    <li><a href="20-future/">第20章 · 未来趋势与行动方案</a></li>
+    <li><a href="../">← 返回博客首页</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="intro" id="intro">
+    <p>新闻里每天都在说 GDP、CPI、降息、汇率、专项债、人口结构——这些词决定着你手里的钱值多少、工作好不好找、房贷月供是升是降、存款利息是多是少。可是关于"宏观经济到底怎么运行"的系统知识，要么躺在大学教科书里，要么被碎片化的自媒体解读切割得面目全非：有人把通胀说成"钱马上变毛"制造恐慌，有人用"内幕消息"包装预测，还有人把复杂的经济因果简化成一句口号。大多数人对宏观的态度，要么彻底放弃理解，要么全盘相信某个"大师"。</p>
+    <p>本专题的目标，是把<strong>「宏观经济」</strong>这门课系统讲清楚：先建立基础概念（GDP、通胀、利率、货币与信用、汇率五个核心变量），再理解政策与周期（货币政策、财政政策、经济周期、就业、房地产），然后拓展国际与结构视野（贸易、金融体系、长期增长、人口、新经济），最后落到"宏观与你"（数据怎么读、周期如何传导到你的资产与工作、政策信号怎么看、谣言怎么粉碎）——<strong>是什么、为什么、跟你有什么关系</strong>。全课程面向大众，以概念、逻辑链条和生活案例为主，<strong>不推公式、不堆术语、不预测行情、不贩卖焦虑</strong>；每个观点都给出来源与认证标注，数据一律注明官方口径与统计时点。</p>
+    <p><strong>来源认证四级标注</strong>（全站统一，宁可少写、不写无据之言）：</p>
+    <div class="conf-legend">
+      <span><span class="c-badge c-v">🏛 官方文件</span>国家统计局 / 中国人民银行 / 财政部 / IMF / 世界银行 / BIS 等官方数据、报告与文件</span>
+      <span><span class="c-badge c-m">📘 权威手册</span>曼昆、萨缪尔森等经典教科书，央行货币政策执行报告，大学公开课</span>
+      <span><span class="c-badge c-a">📋 学术研究</span>经同行评审的经济学论文（注明作者与年份，英文来源标注）</span>
+      <span><span class="c-badge c-p">🏷 商业科普</span>财经媒体与机构研究报告，仅作补充、明确标注</span>
+    </div>
+    <p style="color:var(--muted);font-size:13.5px;">时效说明：经济数据随时间更新，全部内容以官方统计口径为准，正文标注数据时点（更新至 2026 年 10 月）；中外数据对比会提示统计口径差异。英文版来源会注明语言。</p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本站内容仅供<strong>经济教育与参考</strong>，不构成投资建议、政策预测或任何产品的商业推荐；本站无商业合作、无推广链接。</li>
+      <li>本站<strong>不预测具体行情与政策走向</strong>："必涨""必跌""崩溃"类断言只出现在谣言粉碎与批判语境；不教授也不鼓励市场操纵、内幕交易、编造传播虚假经济信息等违法行为。</li>
+      <li>数据以<strong>官方统计口径</strong>为准：国家统计局、中国人民银行、财政部、IMF、世界银行等，正文注明统计时点；中外数据对比提示口径差异，不拿不同口径的数字强行下结论。</li>
+      <li>不传播未经证实的"内幕政策消息"；重大政策一律以<strong>官方发布</strong>为准，本站只教"怎么读公开发布的文件"。</li>
+      <li>各章依据官方文件、权威教科书与学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <h2 id="chapters">课程导航</h2>
+  <p class="sub">导论 + 四部分共 20 章：先建立基础概念（GDP、通胀、利率、货币与信用、汇率五个核心变量），再理解政策与周期（货币、财政、经济周期、就业、房地产），然后拓展国际与结构视野（贸易、金融、增长、人口、新经济），最后落到宏观与你（指标解读、家庭资产传导、政策信号、谣言粉碎与行动方案）</p>
+
+  <article class="card" id="ch00">
+    <h3><span class="badge">导论</span><a href="00-intro/">普通人为什么要懂宏观经济</a></h3>
+    <p>宏观经济与你的工资、物价、工作、房贷的关系；这门课怎么安排；以及正确的学习姿势——理解原理而不是背结论，看懂逻辑而不是赌预测。</p>
+    <div class="meta-row"><a href="00-intro/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第一部分 · 基础概念 —— 五个核心变量，看懂经济的基本盘</p>
+
+  <article class="card" id="ch01">
+    <h3><span class="badge">第1章</span><a href="01-gdp/">GDP：衡量一国的财富</a></h3>
+    <p>GDP 到底在算什么：生产、收入、支出三种视角，名义与实际的区别，人均 GDP 怎么读，以及 GDP 不衡量的东西（家务、环境、幸福感）。</p>
+    <ul class="topics">
+      <li>三种算法为什么结果一样：一块钱的循环之旅</li>
+      <li>名义 vs 实际：为什么"涨了"不一定是真涨了</li>
+      <li>中国 GDP 数据的官方发布节奏与查询方法</li>
+    </ul>
+    <div class="meta-row"><a href="01-gdp/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch02">
+    <h3><span class="badge">第2章</span><a href="02-inflation/">通货膨胀与紧缩：钱为什么变毛</a></h3>
+    <p>CPI 与 PPI 是什么、通胀从哪来、温和通胀为何被视为正常，通缩为什么更让经济学家警惕，以及通胀对存款、工资和不同人群的非对称影响。</p>
+    <ul class="topics">
+      <li>CPI 篮子里装了什么：为什么"体感通胀"和统计数字不一样</li>
+      <li>央行为什么普遍盯住 2% 左右的通胀目标</li>
+      <li>"印钱必然恶性通胀"是误解：货币流通速度与传导条件</li>
+    </ul>
+    <div class="meta-row"><a href="02-inflation/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch03">
+    <h3><span class="badge">第3章</span><a href="03-interest/">利率：资金的价格</a></h3>
+    <p>存款利率、贷款利率、LPR、国债收益率——一张利率地图；名义利率与实际利率的区别；为什么说利率是所有资产价格的"锚"。</p>
+    <ul class="topics">
+      <li>利率的传导链：央行政策利率 → 市场利率 → 你的房贷</li>
+      <li>实际利率 = 名义利率 − 通胀：存款到底赚没赚</li>
+      <li>降息与加息分别意味着什么、影响谁</li>
+    </ul>
+    <div class="meta-row"><a href="03-interest/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch04">
+    <h3><span class="badge">第4章</span><a href="04-money/">货币与信用：钱从哪里来</a></h3>
+    <p>M0/M1/M2 分层、部分准备金制度下银行如何"创造"货币、读懂央行资产负债表、社会融资规模怎么读——搞懂"钱从哪来"，很多争论就不攻自破。</p>
+    <ul class="topics">
+      <li>货币创造的两层结构：央行发基础货币，银行放大信用</li>
+      <li>M1 与 M2 增速差为什么被当作经济活力的温度计</li>
+      <li>"钱都被谁拿走了"：货币流向的官方数据怎么查</li>
+    </ul>
+    <div class="meta-row"><a href="04-money/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch05">
+    <h3><span class="badge">第5章</span><a href="05-exchange/">汇率与国际收支</a></h3>
+    <p>汇率怎么形成、升值贬值各影响谁、经常账户与资本账户是什么、外汇储备的作用，以及人民币汇率形成机制的官方口径。</p>
+    <ul class="topics">
+      <li>一价定律与购买力平价：巨无霸指数的正确用法</li>
+      <li>汇率波动对留学、海淘、出口企业的不同影响</li>
+      <li>"汇率保七还是破七"式焦虑为什么没必要</li>
+    </ul>
+    <div class="meta-row"><a href="05-exchange/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第二部分 · 政策与周期 —— 看不见的手与看得见的手</p>
+
+  <article class="card" id="ch06">
+    <h3><span class="badge">第6章</span><a href="06-monetary/">货币政策：央行的水龙头</a></h3>
+    <p>央行手里的工具箱（公开市场操作、存款准备金率、政策利率）、货币政策怎么传导到实体经济、美联储与中国人民银行的框架异同，以及货币政策的局限。</p>
+    <div class="meta-row"><a href="06-monetary/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch07">
+    <h3><span class="badge">第7章</span><a href="07-fiscal/">财政政策与政府债务</a></h3>
+    <p>政府的钱从哪来、花到哪去：税收、国债与专项债、赤字率与债务率的官方口径、转移支付，以及财政刺激的乘数效应与边界。</p>
+    <div class="meta-row"><a href="07-fiscal/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch08">
+    <h3><span class="badge">第8章</span><a href="08-cycle/">经济周期：繁荣、衰退与复苏</a></h3>
+    <p>经济为什么会有周期：库存、资本开支、信贷几种主流解释；领先/同步/滞后指标；衰退的官方判定口径；以及面对周期的正确心态——不恐慌、不狂欢。</p>
+    <div class="meta-row"><a href="08-cycle/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch09">
+    <h3><span class="badge">第9章</span><a href="09-employment/">就业与工资</a></h3>
+    <p>调查失业率怎么统计、结构性失业与周期性失业的区别、工资与生产率的关系、青年就业的官方口径，以及技术进步对就业的影响之争。</p>
+    <div class="meta-row"><a href="09-employment/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch10">
+    <h3><span class="badge">第10章</span><a href="10-housing/">房地产与宏观经济</a></h3>
+    <p>房子的双重属性（居住与投资）、土地财政的来龙去脉、房价收入比与租金收益率两个常用尺度、房地产对上下游产业的传导，以及风险与调控的官方口径。</p>
+    <div class="meta-row"><a href="10-housing/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第三部分 · 国际与结构 —— 把镜头拉远，看长期变量</p>
+
+  <article class="card" id="ch11">
+    <h3><span class="badge">第11章</span><a href="11-trade/">国际贸易与全球化</a></h3>
+    <p>比较优势为什么让贸易双赢、关税与贸易摩擦的代价、经常账户与资本账户的镜像关系、外汇储备的作用，以及全球化退潮的讨论。</p>
+    <div class="meta-row"><a href="11-trade/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch12">
+    <h3><span class="badge">第12章</span><a href="12-finance/">金融体系与金融危机</a></h3>
+    <p>银行、证券、保险各自的角色，影子银行是什么，历次金融危机的共同剧本（1929、1997 亚洲、2008），系统性风险的逻辑，以及存款保险与投资者保护制度。</p>
+    <div class="meta-row"><a href="12-finance/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch13">
+    <h3><span class="badge">第13章</span><a href="13-growth/">经济增长与发展：国家为何贫富</a></h3>
+    <p>增长的三大来源（劳动、资本、全要素生产率）、索洛模型的通俗版、"国家为何贫富"的制度与地理之争、中等收入陷阱，以及中国经济增长的转型话题。</p>
+    <div class="meta-row"><a href="13-growth/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch14">
+    <h3><span class="badge">第14章</span><a href="14-demography/">人口结构与经济</a></h3>
+    <p>生育率、老龄化、人口红利与抚养比的官方数据，养老金体系的现收现付逻辑，各国应对老龄化的政策比较，以及人口对长期经济的慢变量影响。</p>
+    <div class="meta-row"><a href="14-demography/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch15">
+    <h3><span class="badge">第15章</span><a href="15-newtech/">新经济：科技、AI与数字化</a></h3>
+    <p>技术如何进入增长账本：通用目的技术的扩散规律、AI 与自动化对就业和生产率的官方与研究口径、数字经济的统计难题，以及新经济与传统经济的关系。</p>
+    <div class="meta-row"><a href="15-newtech/">阅读本章 →</a></div>
+  </article>
+
+  <p class="part-title">第四部分 · 宏观与你 —— 把知识装回自己的生活</p>
+
+  <article class="card" id="ch16">
+    <h3><span class="badge">第16章</span><a href="16-indicator/">看懂经济指标：数据怎么读</a></h3>
+    <p>经济数据的官方发布日历（统计局、央行、海关）、同比与环比的坑、基数效应、口径变更提示、交叉验证的方法，以及为什么不要过度解读单月数据。</p>
+    <div class="meta-row"><a href="16-indicator/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch17">
+    <h3><span class="badge">第17章</span><a href="17-asset/">宏观与家庭资产：周期如何影响你的钱和工作</a></h3>
+    <p>宏观变量如何传导到家庭资产负债表：利率与存款/房贷、通胀与实际购买力、周期与就业收入；分散化与量力而行的通识原则（不推荐任何产品、不构成投资建议）。</p>
+    <div class="meta-row"><a href="17-asset/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch18">
+    <h3><span class="badge">第18章</span><a href="18-policy/">政策信号：重要会议与文件怎么读</a></h3>
+    <p>中央经济工作会议、政治局会议、两会政府工作报告的官方发布渠道与阅读方法；措辞变化的信号学常识；不猜测"内幕消息"、不过度解读的纪律。</p>
+    <div class="meta-row"><a href="18-policy/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch19">
+    <h3><span class="badge">第19章</span><a href="19-rumor/">宏观谣言粉碎与反焦虑</a></h3>
+    <p>"钱要变毛了""XX 必然崩盘""恶性通胀要来了"——常见宏观恐慌话术集中粉碎，逐条给证据；以及一套对抗经济焦虑的信息节食原则。</p>
+    <div class="meta-row"><a href="19-rumor/">阅读本章 →</a></div>
+  </article>
+
+  <article class="card" id="ch20">
+    <h3><span class="badge">第20章</span><a href="20-future/">未来趋势与学习行动方案</a></h3>
+    <p>人口、技术、绿色转型、债务周期几个长期变量的官方与研究口径；普通人的宏观素养路线图；30 天学习行动计划与资源清单。</p>
+    <div class="meta-row"><a href="20-future/">阅读本章 →</a></div>
+  </article>
+
+</main>
+</div>
+
+<footer>
+  <p>宏观经济课 · 个人整理的公益经济科普资料 · 非官方、无商业合作、无任何带货链接 · 内容以各节标注的权威来源为准</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · 来源标注：🏛 官方文件 ｜ 📘 权威手册 ｜ 📋 学术研究 ｜ 🏷 商业科普（标注） · <a href="../">返回博客首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

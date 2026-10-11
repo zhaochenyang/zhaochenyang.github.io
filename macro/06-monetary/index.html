@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6章 货币政策：央行的水龙头 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    nav.pager{flex-direction:column;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第6章 · 第二部分 政策与周期</div>
+  <h1>货币政策：央行的水龙头</h1>
+  <p>降准、降息、公开市场操作——央行的工具箱里到底有什么，水是怎么流到你钱包里的</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../05-exchange/">← 第5章：汇率与国际收支</a>
+    <a href="../07-fiscal/">第7章：财政政策与政府债务 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">央行是什么</a>
+    <a class="anchor" href="#s2">数量型工具</a>
+    <a class="anchor" href="#s3">价格型工具</a>
+    <a class="anchor" href="#s4">结构性工具</a>
+    <a class="anchor" href="#s5">传导与时滞</a>
+    <a class="anchor" href="#s6">美联储对照</a>
+    <a class="anchor" href="#s7">政策的局限</a>
+    <a class="anchor" href="#s8">实操与谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为宏观经济科普，仅供经济教育与参考，不构成投资建议或政策预测。本站不预测具体行情与政策走向，"必涨""必跌""崩溃"类断言只出现在谣言粉碎与批判语境。文中涉及的数据以官方统计口径为准（中国人民银行、国家统计局等），标注数据时点或注明"以官方最新发布为准"；不传播未经证实的"内幕政策消息"，重大政策一律以官方发布为准。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清央行的三个身份（发行的银行、银行的银行、政府的银行）和它与商业银行的根本区别；②分清数量型工具（降准、公开市场操作）与价格型工具（政策利率、LPR）各自在调什么；③看懂"降准0.5个百分点"这类新闻的四步读法；④理解货币政策从央行到实体经济再到你钱包的传导链条与"时滞"；⑤说出美联储与中国央行在目标、工具、发布机制上的主要异同；⑥明白货币政策不是万能的——什么是流动性陷阱、为什么"宽货币"不等于"宽信用"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是"政策与周期"部分的第一章，建立在<a href="../03-interest/">第3章（利率）</a>和<a href="../04-money/">第4章（货币与信用）</a>的基础上；第一次读建议按顺序通读。以后每次看到央行新闻（降准、降息、LPR 调整），回来翻第八节的四步读法，照着查一遍官方原文，你会发现大多数"重大信号"解读都可以自己完成，不需要等任何人替你翻译。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、央行是什么：一个特殊的"银行"</h2>
+    <p class="chapter-sub">它不吸收你的存款、不给你放贷，却决定着你存款的利息和房贷的月供</p>
+
+    <article class="view">
+      <h3>三个身份：发行的银行、银行的银行、政府的银行</h3>
+      <p class="ctx">教科书对中央银行的经典定义是三句话：<strong>发行的银行</strong>——垄断法定货币的发行权，你钱包里的现金（M0）都出自它；<strong>银行的银行</strong>——它的客户不是企业和个人，而是商业银行，它为银行体系提供资金清算与最后贷款人支持；<strong>政府的银行</strong>——它代理国库、管理外汇储备与黄金储备、代表国家参与国际金融事务。这三个身份合起来说明一件事：<strong>央行处在整个货币体系的源头</strong>。第4章讲过"央行发基础货币、商业银行放大信用"的两层结构，本章讲的就是源头那一层怎么用政策工具调节水流。</p>
+      <p class="ctx">中国人民银行是中国的中央银行，其地位由《中华人民共和国人民银行法》确立：在国务院领导下制定和执行货币政策、防范和化解金融风险、维护金融稳定。需要说明的是，2023 年党和国家机构改革后，金融管理体制有重要调整（组建中央金融委员会与中央金融工作委员会、组建国家金融监督管理总局等），人民银行的职责聚焦进一步突出，具体职责划分以官方发布的机构改革方案与"三定"规定为准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（机构职能栏目）</a> · <a href="https://www.gov.cn/shuju/">中国政府网（2023 年机构改革方案相关发布入口）</a> · 曼昆《经济学原理（宏观分册）》第10版 货币体系相关章节</div>
+    </article>
+
+    <article class="view">
+      <h3>央行的目标：为什么中国是"多重目标"，美国是"双重使命"</h3>
+      <p class="ctx">《人民银行法》第三条写明货币政策目标是<strong>"保持货币币值的稳定，并以此促进经济增长"</strong>——注意语序：币值稳定在前，增长在后，这是一个"以稳促增"的表述。实践中，历任央行负责人多次公开阐述中国货币政策实际上是<strong>多重目标制</strong>：物价稳定、经济增长、就业充分、国际收支大体平衡，还要兼顾金融改革与金融稳定——这与转轨经济体的现实有关（口径见央行历任负责人在公开论坛的演讲与《中国货币政策执行报告》）。</p>
+      <p class="ctx">美国美联储的目标则由法律确定为<strong>"双重使命"（dual mandate）</strong>：最大化就业与稳定物价（《联邦储备改革法》，1977 年）。两个框架的差异直接影响你读新闻的方式：同样一个数据，美联储主要对着"就业与通胀"两条线做反应，而中国央行的考量维度更多，所以用"美联储的反应函数"直接套用中国央行，经常得出错误结论。第六节有中美框架的对照表。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（《中华人民共和国人民银行法》相关表述与货币政策栏目）</a> · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（dual mandate 官方口径，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"水龙头"这个比喻：水塔、水渠与农田</h3>
+      <p class="ctx">把货币体系想象成一套灌溉系统：<strong>央行是水塔</strong>，里面装的是基础货币；<strong>商业银行是水渠</strong>，通过放贷把水放大后输送出去（第4章的存款派生）；<strong>企业与住户是农田</strong>，水最终要落到投资与消费上才算灌溉成功。央行的货币政策就是操作水塔的阀门：<strong>降准</strong>是放宽水渠的流量限制，让商业银行有能力放更多的水；<strong>降政策利率</strong>是把水的价格调低，让农田更愿意用水；<strong>公开市场操作</strong>是日常微调水塔的水位，让水压（市场利率）稳定在目标附近。</p>
+      <p class="ctx">这个比喻的要害在最后一环：<strong>阀门开多大是央行决定的，但农田用不用水是企业和住户决定的</strong>。如果经济预期偏弱、大家不想借钱投资消费，水塔开闸也可能出现"水流不到田里"的情况——这就是第七节要讲的货币政策局限，也是为什么政策制定者反复强调货币政策与财政政策要配合发力。比喻只是入门脚手架：真实的货币创造是会计过程而非物理过程，第4章已给出更准确的机制。</p>
+      <div class="fig"><img src="../assets/img-06-1.png" alt="抽象灌溉系统示意：发光的几何水塔通过主干水渠向多块农田输水，阀门处有无脸人物操作轮盘，橄榄绿主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第29-30章（货币体系与货币增长）· <a href="https://www.pbc.gov.cn/">中国人民银行官网（货币政策执行报告发布入口）</a> · 萨缪尔森、诺德豪斯《经济学》第19版 货币与银行相关章节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、数量型工具：调"水量"</h2>
+    <p class="chapter-sub">存款准备金率与公开市场操作——最常被新闻提到的两件工具</p>
+
+    <article class="view">
+      <h3>存款准备金率：水渠的流量限制</h3>
+      <p class="ctx">商业银行不能把吸收的存款全部贷出去，必须按央行规定的比例交一部分给央行封存，这个比例就是<strong>存款准备金率</strong>。它最初的功能是保证银行有钱应对储户取款（审慎监管意义），后来成为强有力的货币政策工具：<strong>降准</strong>（下调准备金率）意味着银行被封存的钱变少、可放贷的资金变多，是一次性释放长期流动性的"大动作"；<strong>全面降准</strong>影响所有金融机构，<strong>定向降准</strong>只针对特定机构或领域（如小微企业贷款达标的银行），体现"精准滴灌"思路。</p>
+      <p class="ctx">降准的力度怎么感知？看央行公告里的两个数：<strong>下调幅度</strong>（如 0.5 个百分点）与<strong>释放资金量</strong>（央行通常给出估算，如"释放长期资金约 1 万亿元"）。例如 2024 年 9 月，央行宣布下调金融机构存款准备金率 0.5 个百分点（不含已执行 5% 档的机构），按当时口径估算释放长期流动性约 1 万亿元——这是一次有明确公告、有资金量估算的标准操作（以央行当时发布会与公告口径为准）。近年来中国金融机构加权平均存款准备金率的具体水平，以央行最新公布为准。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目（2024 年 9 月 24 日国新办发布会实录入口）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（货币政策司栏目）</a> · 曼昆《经济学原理（宏观分册）》第10版 第29章（准备金与货币乘数）</div>
+    </article>
+
+    <article class="view">
+      <h3>公开市场操作：每天微调水位的日常工具</h3>
+      <p class="ctx"><strong>公开市场操作（OMO）</strong>是央行与商业银行之间"有来有回"的短期资金买卖：央行向一级交易商<strong>买入</strong>证券（或开展逆回购），就把资金投放给银行体系；<strong>卖出</strong>（或正回购到期不续），就收回资金。中国央行日常最常做的是<strong>7 天期逆回购</strong>——每个工作日开展，公告利率与规模，既调节短期资金面，也向市场传递政策利率信号（见第三节）。此外还有面向中期的<strong>MLF（中期借贷便利）</strong>、常备性的<strong>SLF（常备借贷便利）</strong>，分别提供中期资金与"利率走廊上限"的应急资金。</p>
+      <p class="ctx">2024 年起，央行还恢复了<strong>公开市场国债买卖</strong>操作，把国债纳入日常流动性管理工具箱（以央行公告与《中国货币政策执行报告》口径为准）。读公开市场新闻有个常见误区：把单日"净投放/净回笼"的规模直接解读为"放水/收水"的方向信号。实际上日常 OMO 大量是<strong>对冲性操作</strong>——对冲税期、政府债发行、到期量等扰动，单日数字的货币政策含义有限；更有信息量的是<strong>操作利率的变化</strong>与<strong>持续多日的净投放/回笼趋势</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行公开市场业务公告栏目（每日操作利率与规模）</a> · 《中国货币政策执行报告》（季度，央行官网出版物栏目）· 曼昆《经济学原理（宏观分册）》第10版 第34章（货币政策工具）</div>
+    </article>
+
+    <article class="view">
+      <h3>数量型 vs 价格型：中国货币调控框架的转型</h3>
+      <p class="ctx">货币调控有两种基本思路：<strong>数量型</strong>直接管"水量"（准备金率、信贷规模），<strong>价格型</strong>通过调"水价"（利率）让市场主体自己决定用多少水。成熟经济体的央行普遍以价格型为主；中国长期是"数量型与价格型并重"，并处在从数量型为主向价格型为主的转型过程中。这一转型有公开的官方表述：2024 年 6 月陆家嘴论坛上，央行主要负责人提出逐步淡化数量目标、把<strong>7 天期逆回购操作利率作为主要政策利率</strong>、收窄利率走廊等方向（以央行公开发布与《中国货币政策执行报告》为准）。</p>
+      <p class="ctx">为什么转型？因为随着金融创新与直接融资发展，货币总量与经济增长的关系变得不稳定（第4章讲过货币流通速度的问题），"管住水量"越来越难精确对应"管住经济冷热"；而利率作为资金价格，能同时影响储蓄、投资、资产价格与汇率预期，传导更市场化。对读者的含义：<strong>看货币政策，"利率的变化"比"总量的数字"更值得盯</strong>——数量指标（M2、社融）仍要看，但要结合利率一起看。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会与公开讲话栏目（2024 年陆家嘴论坛主题演讲入口）</a> · 《中国货币政策执行报告》（利率走廊与调控框架演进的官方描述）· 曼昆《经济学原理（宏观分册）》第10版 第34章</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、价格型工具：调"水价"</h2>
+    <p class="chapter-sub">政策利率如何一路引导到你的房贷利率</p>
+
+    <article class="view">
+      <h3>政策利率体系：7 天逆回购利率是"锚"</h3>
+      <p class="ctx">中国的政策利率体系经过多轮改革后，主线已经清晰：<strong>7 天期逆回购操作利率是主要政策利率</strong>，央行通过每个工作日的公开市场操作把它"钉"在目标水平；银行间市场的隔夜/7 天质押式回购利率（如 DR007）围绕它波动；<strong>MLF 利率的政策利率色彩逐步淡化</strong>，更多作为中期资金投放的价格（以上口径以央行公告与《中国货币政策执行报告》为准）。围绕政策利率还有一个"利率走廊"机制：上限附近有 SLF 利率（银行缺钱时的应急价格），下限附近是超额准备金利率（银行把钱存央行的价格），把市场利率的波动框在走廊之内。</p>
+      <p class="ctx">理解这个体系后，"降息"新闻的读法就明确了：<strong>看 7 天逆回购利率有没有下调</strong>——它下调，才是政策利率层面的降息；随后观察 LPR 是否跟进（下一卡）、存款利率是否联动调整。如果只有 MLF 利率动了而逆回购没动，性质与力度都不同。所有历史操作利率都能在央行公开市场业务公告栏目逐日查到，这是普通人能直接核对的一手来源。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行公开市场业务公告栏目（逐日操作利率）</a> · 《中国货币政策执行报告》（利率走廊机制的官方阐述）· 曼昆《经济学原理（宏观分册）》第10版 第34章（利率作为政策工具）</div>
+    </article>
+
+    <article class="view">
+      <h3>LPR：连接政策利率与你房贷的那座桥</h3>
+      <p class="ctx"><strong>贷款市场报价利率（LPR）</strong>由报价行在公开市场操作利率基础上加点形成，每月 20 日（遇节假日顺延）发布，分 1 年期与 5 年期以上两个品种：1 年期主要影响企业短期贷款定价，<strong>5 年期以上是房贷定价的基准</strong>。2019 年 LPR 改革后，新发放商业性个人住房贷款利率采用"LPR+基点"方式定价，并约定重定价周期（常见每年 1 月 1 日或放款对应日）——这意味着 <strong>LPR 下调会在重定价日自动传导到存量浮动利率房贷的月供</strong>（加点部分不变；具体转换与重定价规则以央行公告及贷款合同为准，2024 年还推出过存量房贷利率批量调整安排，以各银行公告为准）。</p>
+      <p class="ctx">把第三、四章与本章串起来，一条完整的利率传导链是：<strong>央行下调 7 天逆回购利率 → 银行间市场利率中枢下移 → LPR 报价随之下行 → 新发房贷/企业贷款利率下降、存量房贷在重定价日下调 → 居民利息支出减少、企业融资成本下降</strong>。每一环都有官方数据可查（逆回购利率与 LPR 见央行公告栏目，贷款利率平均水平见《中国货币政策执行报告》）。链条不是瞬间完成的，时滞见第五节。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行 LPR 公告栏目（每月 20 日报价）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（2019 年 LPR 改革公告与存量房贷利率调整相关公告入口）</a> · 《中国货币政策执行报告》（贷款利率传导的季度数据）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、结构性工具：精准滴灌</h2>
+    <p class="chapter-sub">中国货币政策的一个特色：不只调总量，还引导流向</p>
+
+    <article class="view">
+      <h3>再贷款与再贴现：给特定领域"开小灶"</h3>
+      <p class="ctx"><strong>再贷款</strong>是央行借钱给商业银行、并指定用途的工具。中国有一套历史悠久的支农支小再贷款体系，近年又陆续创设了多项结构性工具：科技创新和技术改造再贷款、碳减排支持工具、保障性住房再贷款等（工具名单、额度与利率以央行最新公告和《中国货币政策执行报告》为准）。运作逻辑大致是：商业银行先向指定领域放贷，再凭贷款台账向央行申请低成本资金，央行"报销"一部分——用激励相容的方式引导信贷流向，而不是行政命令式的额度分配。</p>
+      <p class="ctx">结构性工具解决的是"总量工具够不着"的问题：全面降准降息是"大水漫灌"，资金会自然流向收益高、抵押足的行业（历史上常是房地产与基建），而小微、科创、绿色领域的融资难有信息不对称与风险定价的结构性原因，光靠降利率未必能把水引过去。批评意见也要如实记录：有学者担心结构性工具过多会让货币政策"财政化"（替财政做定向补贴的事）、增加资源配置的行政色彩——这是宏观政策框架内长期存在的讨论（学术争议如实并列，见《中国货币政策执行报告》专栏与相关学术文献）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网（结构性货币政策工具介绍与公告栏目）</a> · 《中国货币政策执行报告》（结构性工具专栏与余额数据，季度更新）</div>
+    </article>
+
+    <article class="view">
+      <h3>与美联储的非常规工具对照：QE 与"中国版 QE"是两回事</h3>
+      <p class="ctx">2008 年全球金融危机后，美联储在政策利率降到零附近后启用了<strong>量化宽松（QE）</strong>：直接大规模购买国债与抵押贷款支持证券，扩张央行资产负债表压低长期利率；2020 年疫情冲击时还推出了面向企业与市政主体的多项紧急信贷便利（英文资料见美联储货币政策页）。新闻里有时把中国央行的某些操作称为"中国版 QE"，这个类比通常不成立：<strong>中国央行的资产负债表扩张主要来自外汇占款与各类借贷便利（再贷款、MLF 等"有借有还"的债权形式），而非在二级市场无限量买断债券</strong>；工具的目标、规模与法律约束都不同（第4章"印钞迷思"一卡有展开，口径见《中国货币政策执行报告》）。</p>
+      <p class="ctx">读国际新闻时还有一组必须区分的概念：<strong>常规工具</strong>（政策利率、准备金率、公开市场操作）与<strong>非常规工具</strong>（QE、收益率曲线控制 YCC、前瞻指引、负利率）。负利率是部分欧洲央行与日本央行历史上用过的极端工具，中国未实行负利率政策；把国外非常规工具的新闻直接套到中国语境，是财经自媒体常见的"移花接木"手法——识别方法很简单：先看主语是哪家央行。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（QE 与非常规工具官方资料，英文）</a> · 《中国货币政策执行报告》（中国央行资产负债表结构的官方说明）· 曼昆《经济学原理（宏观分册）》第10版 第34章（零下限与非常规政策）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、传导机制与时滞：水从水塔流到农田要多久</h2>
+    <p class="chapter-sub">货币政策不是开关，是一根有长度的链条</p>
+
+    <article class="view">
+      <h3>传导链条的五个环节</h3>
+      <p class="ctx">教科书把货币政策的传导拆成大致五个环节：<strong>①政策行动</strong>（央行调整政策利率或准备金率）→ <strong>②金融市场反应</strong>（货币市场利率、债券收益率、股市汇市预期调整）→ <strong>③金融机构定价</strong>（存贷款利率、信贷标准变化）→ <strong>④实体经济行为</strong>（企业投资、居民消费与购房决策）→ <strong>⑤目标变量</strong>（产出、就业、物价）。每个环节都可能"漏"：金融机构惜贷会在③卡住，预期偏弱、企业不想扩产会在④卡住——第4章讲的"宽货币≠宽信用"就是③④环节堵塞的通俗说法。</p>
+      <p class="ctx">传导还分几条并行渠道：<strong>利率渠道</strong>（借钱成本变化）、<strong>资产价格渠道</strong>（利率影响股票房产估值，进而影响消费投资的"财富效应"）、<strong>汇率渠道</strong>(利率差影响资本流动与汇率，进而影响进出口，与<a href="../05-exchange/">第5章</a>衔接）、<strong>信贷渠道</strong>（银行可贷资金与资产负债表状况）、<strong>预期渠道</strong>（央行沟通本身就在影响行为——这也是为什么央行发布会措辞会被逐字分析）。</p>
+      <blockquote class="q">传导链拆解模板（示例）：新闻说"LPR 下调 10 个基点"→ ①谁动了：LPR 报价（上游是政策利率还是银行加点？）→ ②金融端：债券收益率、银行间利率怎么反应 → ③定价端：新发房贷/企业贷利率降多少、存量房贷何时重定价 → ④行为端：购房与企业投资的融资成本变化多大 → ⑤目标端：对增长与物价的影响是季度级的慢变量，不要期待当月见效。<span class="qsrc">——依据曼昆《经济学原理》货币政策传导框架与《中国货币政策执行报告》口径整理的读新闻模板</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第34章（货币政策传导）· 《中国货币政策执行报告》（传导机制专栏）· <a href="https://www.pbc.gov.cn/">中国人民银行官网</a></div>
+    </article>
+
+    <article class="view">
+      <h3>时滞：为什么"政策见效"总是迟到</h3>
+      <p class="ctx">货币政策从出台到充分影响实体经济存在<strong>"长期且可变的时滞"</strong>（long and variable lags）——这是弗里德曼的著名论断（Friedman，货币主义框架的核心观点之一，文字引用）。时滞分两段：<strong>内部时滞</strong>（识别问题、决策、行动需要时间——数据是滞后的，GDP 是季度数据，决策者看到的永远是"过去的经济"）与<strong>外部时滞</strong>（政策影响行为需要时间——企业调整投资计划、房贷重定价、订单周期都不是即时的）。多数实证研究认为货币政策对产出的影响高峰在若干季度之后、对物价的影响更晚（具体长度因经济体与时期而异，学界有持续争论）。</p>
+      <p class="ctx">时滞有两个重要的现实含义：<strong>其一，政策必须"向前看"</strong>——央行今天调的是对未来一到两年的判断，这就是"预期管理"与前瞻指引存在的原因；<strong>其二，公众不该用"当月数据"检验政策效果</strong>——降息后下个月经济数据没有立刻好转就宣布"政策无效"，是对时滞的无知。反过来，政策也不该在效果未显时反复加码，历史上"刹车过猛/油门过猛"造成的大起大落，很多与时滞误判有关（第八节谣言粉碎会再回到这一点）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第35章（政策时滞与预期）· Friedman 关于货币政策时滞的论述（1970 年代，文字引用）· <a href="https://www.nber.org/">NBER 工作论文库（货币政策传导实证研究入口，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、美联储对照：另一套框架怎么读</h2>
+    <p class="chapter-sub">读懂 FOMC、点阵图与"加息降息"新闻的正确姿势</p>
+
+    <article class="view">
+      <h3>FOMC 与联邦基金利率：美国的决策机制</h3>
+      <p class="ctx">美国的货币政策由联邦公开市场委员会（<strong>FOMC</strong>）决定：每年 8 次例行议息会议，会后发布声明（statement），宣布<strong>联邦基金利率目标区间</strong>（如"上调 25 个基点至 X%-X.25%"），主席召开新闻发布会。声明措辞的微小变化（对通胀、就业的评估用语）被全球市场逐字解读；决议本身的历史记录全部公开在美联储官网货币政策页，任何人可查。与中国对照：中国的政策利率调整由人民银行在国务院领导下决定，不采用委员会投票+即时发布的模式，发布形式多为官网公告或新闻发布会（两国决策机制的法律与制度基础不同，读新闻时不宜互相套用）。</p>
+      <p class="ctx">还有一个高频概念要分清：<strong>联邦基金利率是银行间隔夜拆借利率</strong>，中国的对应物更接近 DR001/DR007 所处的货币市场利率层，而不是 LPR。新闻里"美联储加息 25 个基点"与"中国 LPR 下调 10 个基点"不是同一层的价格：前者是政策利率（目标区间），后者是报价利率（在政策利率基础上加点形成）。层级对应关系搞错，中美利差的计算就会错（利差影响汇率的逻辑见<a href="../05-exchange/">第5章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（FOMC 声明与历史决议，英文）</a> · <a href="https://fred.stlouisfed.org/">FRED 经济数据库（联邦基金利率历史序列，英文；curl 反爬，浏览器可达）</a> · 曼昆《经济学原理（宏观分册）》第10版 第34章</div>
+    </article>
+
+    <article class="view">
+      <h3>点阵图与 SEP：是"个人观点"，不是"政策承诺"</h3>
+      <p class="ctx">FOMC 每年 4 次发布《经济预测摘要》（SEP），其中最受媒体关注的是<strong>点阵图（dot plot）</strong>：每位与会官员匿名标出自己认为合适的年末利率水平。必须强调官方口径的三点限定：点阵图<strong>反映的是个人判断</strong>，会随数据变化；它<strong>不是委员会的集体计划</strong>，更不构成承诺；历史点阵图与实际路径经常偏离。把点阵图当成"美联储已宣布的加息/降息时间表"来报道，是财经新闻常见的过度解读（美联储官网对 SEP 的性质有明确说明，英文）。</p>
+      <p class="ctx">对普通读者的实用建议：看美联储，<strong>优先看声明正文与主席发布会的"反应函数"表述</strong>（例如"若通胀持续向 2% 回落，将考虑调整利率"这类条件句），而不是数点子的位置；条件句告诉你的是"什么数据会引发什么动作"，这才是可跟踪、可验证的信息。数据本身用 FRED 或官方统计核对，别转引自媒体的二手数字。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（SEP 与点阵图官方说明，英文）</a> · <a href="https://fred.stlouisfed.org/">FRED 经济数据库（英文；浏览器可达）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>一张表看懂中美货币政策框架差异</h3>
+      <p class="ctx">把本节与前几节的对照集中成一张表（口径截至 2026 年 10 月，以两国央行官方发布为准）：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>中国人民银行</th><th>美联储</th></tr>
+        <tr><td>法定目标</td><td>保持货币币值稳定，并以此促进经济增长；实践中多重目标（物价/增长/就业/国际收支/金融稳定等）</td><td>双重使命：最大化就业＋稳定物价（2% 平均通胀目标，2020 年框架修订）</td></tr>
+        <tr><td>主要政策利率</td><td>7 天期逆回购操作利率（2024 年起明确为主要政策利率）</td><td>联邦基金利率目标区间（隔夜）</td></tr>
+        <tr><td>对贷款利率的传导</td><td>LPR 报价（每月 20 日发布），房贷挂钩 5 年期以上 LPR</td><td>最优惠利率（prime）随联邦基金利率联动；房贷以 30 年期固定利率为主、跟随长期国债收益率</td></tr>
+        <tr><td>数量工具地位</td><td>存款准备金率仍是重要工具，另有国债买卖、MLF 等</td><td>准备金率作用有限；危机期用过大规模 QE 扩表</td></tr>
+        <tr><td>结构性工具</td><td>再贷款体系丰富（支农支小、科技创新、碳减排等）</td><td>以普适性工具为主，紧急情况下设临时信贷便利</td></tr>
+        <tr><td>决策与发布</td><td>在国务院领导下决策；公告、发布会、季度《货币政策执行报告》</td><td>FOMC 会议投票；每次会后声明＋发布会，年度 4 次 SEP/点阵图，8 次例会全部公开日程</td></tr>
+      </table>
+      <p class="ctx">表格的用途不是背，而是提醒：<strong>两国框架的每一行都不同，所以"美联储降息，中国必须跟进"这类推论在机制上就不成立</strong>。中美利差与汇率压力确实会进入中国央行的考量（第5章不可能三角的语境），但"考量"与"自动联动"是两回事——2022-2024 年美联储激进加息期间，中国政策利率保持独立性并有所下行，就是现成的例子（历史事实，以两国央行公告为准）。</p>
+      <div class="fig"><img src="../assets/img-06-2.png" alt="两套几何工具箱并排对照：左侧中式工具箱内有水闸与定向管道图标，右侧美式工具箱内有天平与利率刻度盘图标，中间一条发光的对照虚线，橄榄绿主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行官网</a> · <a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（英文）</a> · 《中国货币政策执行报告》（中美框架对照的官方描述）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、货币政策不是万能的</h2>
+    <p class="chapter-sub">流动性陷阱、信贷需求与"推绳子"难题</p>
+
+    <article class="view">
+      <h3>流动性陷阱：利率降到地板之后</h3>
+      <p class="ctx">凯恩斯在《就业、利息和货币通论》（1936，文字引用；注意网上流传的电子版真伪混杂，本课一律按印刷书引用）中提出：当利率低到一定程度，人们宁愿持有现金也不愿持有债券，货币政策刺激投资的效果可能大幅衰减——后世称之为<strong>流动性陷阱</strong>，其极端形态是"零利率下限"（ZLB）。日本 1990 年代后的长期低增长与超低利率常被作为案例讨论（历史案例，非预测）：利率降至零附近后，日本央行先后尝试了零利率、QE、收益率曲线控制、负利率与"通胀目标制"等非常规组合，学界对其效果评价分歧很大——这段经验恰恰说明：<strong>货币政策有能力对抗高通胀，但单靠它把经济从需求不足中"推"出来，力量有限</strong>。</p>
+      <p class="ctx">有个形象的比喻叫<strong>"推绳子"</strong>：货币政策像一根绳子，拉（收紧）很有效——绳子一紧，信贷立刻收缩；推（放松）却可能使不上劲——绳子推出去是软的，如果企业和居民没有借钱意愿，再便宜的钱也未必被借走。这就是为什么在需求不足阶段，教科书与政策实践都强调<strong>财政政策要挑大梁</strong>（下一章展开），以及为什么"宽货币"要配合改善预期、稳定收入的政策才能变成"宽信用"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：凯恩斯《就业、利息和货币通论》（1936，文字引用）· 曼昆《经济学原理（宏观分册）》第10版 第34章（流动性陷阱与零下限）· <a href="https://www.bis.org/">国际清算银行 BIS（非常规货币政策评估相关工作论文入口，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>其他边界：结构性问题、汇率约束与政策空间</h3>
+      <p class="ctx">货币政策的局限不止流动性陷阱。<strong>其一，它解决不了结构性问题</strong>：人口老龄化带来的潜在增速下移（<a href="../14-demography/">第14章</a>）、产业升级中的技术瓶颈，都不是降利率能变出来的——用总量工具对付结构问题，结果往往是资产价格先涨、结构依旧。<strong>其二，开放经济下有汇率约束</strong>：不可能三角（第5章）意味着资本流动、汇率稳定与货币政策独立性之间存在取舍，中美利差倒挂时期，宽松的空间与节奏要顾及汇率与资本流动压力（官方表述为"兼顾内外均衡"）。<strong>其三，政策空间是有限资源</strong>：利率不可能无限下调（银行净息差约束、存款利率下限、零下限），准备金率也有下限（中国部分机构已执行 5% 档不再下调，以央行口径为准）——空间要用在刀刃上，这就是"跨周期调节"的思路（<a href="../08-cycle/">第8章</a>展开）。</p>
+      <p class="ctx">还要防一种反向误解：把货币政策说成"毫无用处"。对抗恶性通胀，紧缩的货币政策是唯一有效的主力工具（多国历史反复验证）；在金融危机中，央行的最后贷款人行动是阻断恐慌蔓延的关键（<a href="../12-finance/">第12章</a>详述）。准确的表述是：<strong>货币政策是必要的，但不总是充分的</strong>——它像汽车的油门与刹车，能调速，但决定不了车往哪里开。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第34-35章 · 《中国货币政策执行报告》（"兼顾内外均衡""跨周期调节"等官方表述）· <a href="https://www.pbc.gov.cn/">中国人民银行官网</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、实操与谣言粉碎</h2>
+    <p class="chapter-sub">读懂一次央行新闻的标准动作，和三个流传最广的误读</p>
+
+    <article class="view">
+      <h3>流程框：读懂一次"降准/降息"新闻的四步</h3>
+      <blockquote class="q">①<strong>核动作</strong>：这次动的到底是什么——存款准备金率（数量）、7 天逆回购利率（政策利率）、LPR（报价利率）还是结构性工具？幅度多大、何时生效？以央行官网公告原文为准，不采信转述。<br>②<strong>核规模</strong>：官方公告是否给出资金量估算（如"释放长期资金约 X 亿元"）？没有给出就自己别瞎算。<br>③<strong>看搭配</strong>：是不是"组合拳"（降准+降政策利率+存量房贷调整一起出）？搭配往往比单项力度更能说明政策取向。<br>④<strong>读解释</strong>：央行在发布会或《货币政策执行报告》里怎么解释这次操作的目的（对冲税期？支持实体？稳预期？）——官方解释是判断"例行操作还是方向性动作"的最可靠依据。<span class="qsrc">——依据央行公开市场业务公告栏目与新闻发布会实录的公开口径整理（示例模板）</span></blockquote>
+      <p class="ctx">四步走完，多数"重磅解读"会现出原形：相当一部分被自媒体渲染为"大放水"的操作，对照第②③④步后发现只是<strong>对冲性投放或例行调整</strong>。所有核对材料都是一手的：央行公告栏目逐日可查、发布会实录全文公开、《中国货币政策执行报告》每季度一期——这套自查动作花不了十分钟。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行公开市场业务公告栏目</a> · <a href="https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html">中国人民银行新闻发布会栏目</a> · 《中国货币政策执行报告》（季度）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："降准=大放水=房价必涨"？</h3>
+      <p class="ctx">这条传言把三个环节各自当成必然。逐条看证据：<strong>降准不等于"大放水"</strong>——降准释放的是银行体系内被封存的流动性，多数时候用于对冲到期量与政府债发行（央行公告常写明"对冲"目的），基础货币总量未必净增，更不等于第4章说的"央行直接发钱"；<strong>流动性增加不等于流向房地产</strong>——房贷有差别化信贷政策、首付比例与利率下限等约束（以央行与金融管理部门现行规定为准），资金流向受监管政策强力引导；<strong>房价更不由单一货币变量决定</strong>——人口、土地供给、住房存量、预期都在方程里（<a href="../10-housing/">第10章</a>专章讨论）。历史数据也提供反例：多轮降准期间部分城市房价并未上涨（可用国家统计局 70 城房价指数自行核对，月度发布）。"必涨"式断言在证据面前站不住。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（70 个大中城市商品住宅销售价格指数，月度）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（降准公告与官方解释）</a> · 曼昆《经济学原理（宏观分册）》第10版 第29章（准备金与货币供给的区别）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："央行印钱，货币要崩溃了"？</h3>
+      <p class="ctx">每逢降准或央行扩表新闻，"货币崩溃论"就会在部分自媒体上复活。用第2章与第4章的工具即可拆解：<strong>其一，"印钱"是误称</strong>——央行投放基础货币主要通过借贷便利与公开市场操作等"有借有还"的债权形式，商业银行拿到资金后是否形成广义货币，取决于信贷需求（乘数不是固定倍数，第4章已述）；<strong>其二，货币扩张与恶性通胀之间没有自动等号</strong>——通胀是"过多的货币追逐过少的商品"，还要看产出、货币流通速度与传导条件，日本长期超宽松却低通胀是现成反例（历史案例）；<strong>其三，币值稳定的最终锚是产出与信心</strong>——人民币对内购买力（CPI）与对外汇率（第5章）的长期决定因素是生产率与供需，而非某一次公告。中国 CPI 近年总体温和（以国家统计局月度发布为准），与"崩溃"叙事完全对不上。渲染恐慌换取流量的内容，按第18-19章的纪律识别：查官方数据、看数据时点、拒转发未经证实的"内幕政策消息"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局最新发布（CPI 月度数据）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网（货币当局资产负债表与金融统计数据）</a> · 曼昆《经济学原理（宏观分册）》第10版 第30章（货币增长与通胀）</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎："降息了，赶紧贷款囤货"？</h3>
+      <p class="ctx">第三种误读把政策信号直接翻译成行动指令："既然放水，借钱买什么都赚。"三个漏洞：<strong>第一，降息降低的是名义融资成本，决策要看实际利率与回报率</strong>——第3章的费雪逻辑：如果资产回报跑不赢利息+风险，降息 10 个基点不改变亏损的本质；<strong>第二，"政策底"不等于"市场底"</strong>——政策与资产价格之间隔着第五节的完整传导链与时滞，历史上政策出台后市场继续调整的案例并不少见（历史事实，不构成对任何行情的预测）；<strong>第三，杠杆放大的是双向波动</strong>——借钱囤货在价格下行时亏损同样被放大，这是<a href="../17-asset/">第17章</a>风险通识的内容，本站不给任何投资建议。把"政策新闻"当成"交易信号"，正是本课反复提醒要避免的思维习惯。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第24章（实际利率与费雪效应）· <a href="https://www.pbc.gov.cn/">中国人民银行官网（政策利率公告）</a> · 萨缪尔森、诺德豪斯《经济学》第19版（利率与投资决策）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>央行的三个身份是什么？它和商业银行的客户有什么不同？</li>
+        <li>《人民银行法》规定的货币政策目标怎么表述？"多重目标"指哪些？</li>
+        <li>用"水塔-水渠-农田"比喻说出降准、降政策利率、公开市场操作各自动的是哪一环。</li>
+        <li>存款准备金率下调为什么能释放长期资金？定向降准和全面降准的区别是什么？</li>
+        <li>7 天逆回购、MLF、SLF 各自的期限与功能是什么？"利率走廊"的上下限分别由谁构成？</li>
+        <li>为什么说"看利率比看总量更重要"？中国货币调控框架转型的官方表述是什么？</li>
+        <li>LPR 怎么形成、每月几号发布？房贷挂钩的是哪个品种？重定价日意味着什么？</li>
+        <li>从政策利率下调到存量房贷月供下降，完整传导链有哪几环？</li>
+        <li>结构性货币政策工具解决什么问题？对它的批评意见是什么？</li>
+        <li>中国的央行资产负债表扩张与美联储 QE 的主要区别在哪里？</li>
+        <li>货币政策传导的五条并行渠道分别是什么？"宽货币≠宽信用"卡在哪个环节？</li>
+        <li>"长期且可变的时滞"是谁的论断？时滞对央行决策和公众评价各意味着什么？</li>
+        <li>美联储的双重使命是什么？FOMC 一年开几次会？点阵图的三条官方限定是什么？</li>
+        <li>联邦基金利率在中国体系里更接近哪一层价格？为什么不能和 LPR 直接对比？</li>
+        <li>流动性陷阱是什么？"推绳子"比喻说明了货币政策的什么局限？</li>
+        <li>"降准=房价必涨"的推理在哪三个环节断裂？各自用什么数据可以核对？</li>
+        <li>面对"货币崩溃论"式恐慌内容，本章给出的三步自查动作是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>央行=发行的银行+银行的银行+政府的银行；中国目标="保持货币币值稳定，并以此促进经济增长"+多重目标，美国=就业+物价双重使命；数量型工具=准备金率（大动作、看公告资金量）+公开市场操作（日常微调、对冲为主）；价格型工具=7 天逆回购利率（主要政策利率，2024 年起）→LPR（每月 20 日，5 年期以上挂钩房贷）；结构性工具=再贷款体系精准滴灌（支农支小/科技创新/碳减排等，以央行最新公告为准）；传导链=政策利率→市场利率→信贷定价→企业居民行为→产出物价，时滞以季度计；美联储读法=声明条件句优先于点阵图，点阵图是个人观点非承诺；局限=流动性陷阱与"推绳子"、结构性问题、汇率约束（兼顾内外均衡）、政策空间有限；四步读新闻=核动作、核规模、看搭配、读解释；三个谣言=降准必涨房价（传导链断裂）、"货币崩溃论"（数据不支持）、降息即囤货信号（实际利率与双向风险）。
+  </div>
+
+  <nav class="pager">
+    <a href="../05-exchange/"><span class="dir">← 第5章</span>汇率与国际收支</a>
+    <a href="../07-fiscal/"><span class="dir">第7章 →</span>财政政策与政府债务</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第6章 · 依据中国人民银行官网公告与新闻发布会实录、《中国货币政策执行报告》、美联储货币政策页官方资料、曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版及相关学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

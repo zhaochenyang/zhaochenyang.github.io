@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 简历与作品集 — 职场进阶课</title>
+<style>
+  :root{--accent:#be185d;--accent-deep:#9d174d;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">职场进阶课 · 第2章 · 求职与入职</div>
+  <h1>简历与作品集：让经历说话</h1>
+  <p>简历不是自传，是证据清单：STAR 写法、量化表达、作品集形态、机器筛选常识，以及"美化"与"造假"之间那条有法律后果的红线</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-choose/">← 第1章</a>
+    <a href="../03-interview/">第3章：面试攻防 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">简历的本质</a>
+    <a class="anchor" href="#s2">结构与排版</a>
+    <a class="anchor" href="#s3">STAR 法</a>
+    <a class="anchor" href="#s4">数字语言</a>
+    <a class="anchor" href="#s5">作品集</a>
+    <a class="anchor" href="#s6">美化与造假</a>
+    <a class="anchor" href="#s7">AI 辅助</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为职业发展教育科普，仅供求职方法参考，不构成法律建议。文中引用的《劳动合同法》条文以国家法律法规数据库现行有效版本为准（截至 2026 年 10 月）；初筛时长等招聘行为描述来自招聘平台公开口径，属商业科普性质，存在个体与公司差异。本课程坚决不教"简历造假""学历造假"等欺骗手段，相关内容仅作法律后果警示；遇到劳动争议请通过 12333、劳动仲裁、工会等合法渠道维权。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清简历的本质是"证据清单"，并按 JD（职位描述）反推需要准备的证据；②用 STAR 四要素把一段平淡的工作经历改写成有结果的证据条目；③掌握量化的三个来源，并在"实在没数字"时给出诚实的替代表达；④按岗位类型搭出一个作品集框架，并守住保密边界；⑤讲清"简历造假"在法律上的后果（合同无效、无偿解除、判例口径）与背调的基本机制；⑥给 AI 辅助写简历画出"润色可以、虚构不行"的边界。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是动手章：读到第三节时建议你打开自己现在的简历，边读边改一段经历；第六节的法律边界务必读完——它保护的不只是雇主，更是你自己。<a href="../01-choose/">第1章</a>的自评三圈与行业调研产出，在这里会被翻译成招聘方看得懂的语言；改完的简历将在<a href="../03-interview/">第3章</a>成为你面试故事库的目录。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、简历的本质：证据清单，不是自传</h2>
+    <p class="chapter-sub">初筛只有几十秒，招聘方找的不是"完整的你"，而是"胜任的证据"</p>
+
+    <article class="view">
+      <h3>几十秒初筛：简历是一场开卷的匹配游戏</h3>
+      <p class="ctx">先接受一个现实：你的简历在被人类认真阅读之前，很可能只被扫了几十秒。招聘平台多次发布的调研报告口径显示，HR 初筛一份简历的平均停留时间以十秒计（商业科普口径，各平台样本与方法不同，仅取数量级参考）。这不是招聘方不敬业，而是筛选漏斗的物理约束：一个岗位收到几百份简历，初筛的任务不是"找出最好的人"，而是"快速排除明显不匹配的"。理解这一点，简历的写法就完全变了——它不是自传（按时间讲完你的一生），而是<strong>证据清单</strong>（针对这个岗位的要求，逐条出示你能干成的凭证）。</p>
+      <p class="ctx">由此推出简历写作的第一原则：<strong>先读 JD，再动笔</strong>。把目标岗位的职位描述拆成三类信息：①硬性门槛（学历、证书、年限、必备技能）——缺了大概率初筛即出局，如果缺得离谱说明你投错了岗位，回到<a href="../01-choose/">第1章</a>重选；②高频动词与名词（"搭建""从0到1""跨部门""数据驱动"）——这些词暴露了岗位的真实工作内容，你的经历里凡是能对应上的，优先写、放前面；③加分项（行业背景、特定工具）——有就写，没有不必硬凑。<strong>一份简历打天下是初筛通过率低的头号原因</strong>：同一份经历，投递不同岗位时应该换标题、换顺序、换强调点——这不是投机，而是把匹配证据放到招聘方最容易看见的位置。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.zhaopin.com/">智联招聘求职行为调研报告（初筛时长口径，商业平台数据，注明样本）</a> · <a href="https://www.liepin.com/">猎聘《求职行为洞察报告》系列（商业平台数据）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>证据思维：每写一行都问"这句能被追问吗"</h3>
+      <p class="ctx">"证据清单"思维还有一层自我保护的含义：<strong>简历上的每一行，都是你给面试官的追问许可</strong>。写了"负责千万级预算项目"，就要经得起"预算怎么拆的、超支怎么处理、结果如何"的连环追问；写了"精通数据分析"，就要当场接得住一道分析题。所以检验简历质量有一个残酷但有效的标准：逐行自问"这句话被追问三层，我还站得住吗？"——站得住的留下，站不住的删掉或改弱。夸大其词的简历即使通过初筛，也会在面试环节以更难堪的方式暴露，这正是第六节要讲的法律与信用风险的日常版。</p>
+      <p class="ctx">证据思维同时解决"没东西可写"的困境。很多人觉得经历平平，是因为只用"职位头衔"的眼光看自己——其实证据的形态远比头衔丰富：一次把混乱流程理顺的改造、一份被沿用的模板、一场从筹备到落地零事故的活动、连续三年的全勤带教记录，都是证据。把它们从记忆里翻出来的方法，与<a href="../01-choose/">第1章</a>能力盘点的"证据三列法"完全一致：能力项—具体事件—证据强度。简历写作的实质，就是把那张三列表翻译成招聘方的语言。</p>
+      <div class="fig"><img src="../assets/img-02-1.png" alt="简历筛选示意：一摞文件经过一个放大镜形的初筛关口，少数带着对勾标记的文件进入下一环节，一个无脸人物在旁边整理自己的证据文件夹" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Richard Bolles《你的降落伞是什么颜色？》成就盘点方法（书籍文字引用） · <a href="https://www.apa.org/">美国心理学会 APA：结构化面试与选拔证据的研究入口（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、结构与排版：一页纸原则与机器筛选常识</h2>
+    <p class="chapter-sub">结构为"快速找到证据"服务，排版为"机器与人都不添堵"服务</p>
+
+    <article class="view">
+      <h3>一页纸原则、倒叙结构与模块顺序</h3>
+      <p class="ctx"><strong>一页纸原则</strong>适用于绝大多数社会招聘与全部校园招聘：招聘方没有义务读完三页纸，写不满一页说明证据不足，超过一页说明没有取舍。例外只有两类：学术求职（CV 需要完整发表清单）与资深管理岗（十年以上经历可放宽到两页）。<strong>倒叙结构</strong>：教育与工作经历都从最近的写起——招聘方最关心你"现在能干什么"，而不是你大一做过什么。<strong>模块顺序</strong>按证据价值排列：社招顺序是基本信息→工作/实习经历→项目经历→技能→教育背景；应届生把教育背景提前（学校与专业是此刻最强的证据），有高质量实习的把实习放经历第一位。基本信息只留姓名、电话、邮箱、城市与求职意向；照片按行业惯例决定（多数岗位可不放）；政治面貌、婚育状况、身份证号等与岗位无关的信息一律不写——它们不加分，还可能引入你不希望的筛选维度。</p>
+      <p class="ctx">排版的唯一标准是<strong>降低阅读成本</strong>：单栏布局、常见字体、清晰的层级（公司-岗位-时间一行放齐）、条目化表达（每段经历 3-5 个要点）、文件名规范（"姓名-岗位-电话.pdf"）。花哨模板的风险大于收益：双栏、图表、特殊符号在下一节的机器筛选里经常变成乱码，在人眼初筛里则分散对内容的注意力。PDF 格式发送几乎是通用安全解——它锁定版式，避免 Word 文档在不同电脑上排版跑掉。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：Richard Bolles《你的降落伞是什么颜色？》简历章节（书籍文字引用） · <a href="https://hbr.org/">Harvard Business Review 求职与招聘主题文章库（英文，入口页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>机器筛选（ATS）常识：让真实关键词被找到</h3>
+      <p class="ctx">大中型公司的招聘系统普遍带<strong>简历解析与关键词匹配</strong>功能（业内常称 ATS，Applicant Tracking System）：系统把简历文本化，按 JD 中的技能词、岗位词做匹配度打分，供 HR 排序参考。应对原则只有一条：<strong>诚实匹配</strong>——JD 里反复出现的技能词，只要你真实具备，就用行业通行的写法原样出现在简历里（招聘方写"用户增长"，你不要只写"拉新"；对方用英文缩写，你可中英并列一次）。技能栏用具体名词（工具名、方法论名、证书名），不要用"沟通能力强""吃苦耐劳"这类无法被匹配也无法被验证的形容词——形容词是面试里用故事证明的东西，不是简历里自我宣告的东西。</p>
+      <p class="ctx">格式上配合机器解析：避免用图片承载文字信息（截图版技能证书文字无法被解析，证书编号写在文本里）、避免复杂表格与文本框嵌套、保证 PDF 里的文字可复制选中。网上流传的一些"骗过机器筛选"的技巧——比如把关键词用白色小字堆砌在页面底部——属于典型的投机手段：现代解析系统会将其识别为异常并直接标记，即便侥幸通过，面试时对不上号就是当场出局，还可能进入该公司的人才黑名单。<strong>机器筛选是放大器，不是守门员</strong>：它放大的是你简历与岗位的真实匹配度，投机技巧骗得过打分，骗不过任何一个活人面试官。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.liepin.com/">猎聘企业招聘流程公开介绍（简历筛选机制，商业平台口径）</a> · <a href="https://hbr.org/">Harvard Business Review：算法招聘与简历筛选研究文章库（英文，入口页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>投递细节：渠道、时机与跟进</h3>
+      <p class="ctx">简历改好了，投递环节的细节能再拉开一档通过率。<strong>渠道优先级</strong>：内推＞官网/官方招聘号＞招聘平台海投。内推的价值不是"走后门"，而是让你的简历跳过最粗的那层漏斗、直达用人部门，同时内推人以自己的信用为你的基本真实性背书——所以只找真正共事过或了解你的人内推，泛泛之交的"弱内推"效果有限还可能消耗人情。这与<a href="../01-choose/">第1章</a>信息面试的弱关系逻辑一脉相承：平时经营的关系，此刻兑现为渠道。<strong>时机</strong>：社招黄金期通常在春节后与金三银四、金九银十（企业预算与编制释放节点，招聘平台流量数据口径），但对你个人而言，"完成一个拿得出手的项目之后"永远是最好的投递时机——简历刚更新、故事库正热、面试状态最好。<strong>跟进</strong>：投递后一到两周无音讯，可以礼貌跟进一次（简短、不施压、附上岗位编号）；再无回音就放下，把精力投向下一个匹配岗位——跟进一次是诚意，连环追问是消耗。</p>
+      <p class="ctx">两个容易忽视的技术细节：<strong>①投递邮箱与联系方式的专业度</strong>——用一个不含奇怪昵称的邮箱地址，手机号保持畅通并及时处理陌生来电（错过面试邀约电话是真实的淘汰原因之一）；<strong>②每投一家做十秒定制</strong>——至少把简历文件名与求职意向改成对方岗位的名称，有余力就把经历条目的排序按 JD 调整一次。海投一百份通用简历，通常不如精投二十份定制简历——这是所有招聘方受访者共同的口径（商业科普，平台调研）。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.zhaopin.com/">智联招聘求职渠道与投递行为调研（商业平台口径）</a> · Granovetter（1973）"The Strength of Weak Ties"，American Journal of Sociology（学术文献，英文，文字引用：机会信息经由弱关系流动）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、STAR 法：把经历写成证据</h2>
+    <p class="chapter-sub">情境-任务-行动-结果：招聘方法论里最经得起时间考验的四要素</p>
+
+    <article class="view">
+      <h3>STAR 四要素与一次完整改写</h3>
+      <p class="ctx">STAR 是行为面试与简历写作的通用结构：<strong>S（Situation）情境</strong>——事情发生的背景；<strong>T（Task）任务</strong>——你在其中承担的职责与目标；<strong>A（Action）行动</strong>——你具体做了什么（重点是你，不是"团队"）；<strong>R（Result）结果</strong>——可验证的产出。它源于组织心理学对结构化选拔方法的研究共识：基于具体行为事例的评估，比基于印象与自我宣称的评估更能预测未来工作表现（结构化面试效度研究，英文文献口径）。</p>
+      <p class="ctx">看一次改写（示例为教学虚构）。改写前："负责公司社群运营，工作认真负责，得到领导好评。"——三个问题：没有情境规模、没有具体行动、没有结果，"认真负责"是自我宣称不是证据。改写后："负责 3 万用户的教育产品社群运营（S）：接手时月活跃率不足 10%，目标是提升活跃与转化（T）；重构内容日历，设计每周固定的答疑与打卡活动，建立 12 人用户志愿者体系（A）；六个月后月活跃率提升至 31%，社群渠道课程转化率环比提升 40%（R）。"同一段经历，后者让招聘方看见了规模、方法、结果三层证据，也给了面试官清晰的追问路径——而每一处追问你都有真实细节可答，这才是"写得具体"的底气。</p>
+      <blockquote class="q"><strong>STAR 条目自查模板（每条经历过一遍）：</strong>①S/T 是否交代了规模与难度（用户量/预算/周期/跨几个部门）？②A 是否以"我"为主语、用了具体动词（搭建/重构/谈判/排期），而不是"参与""协助"？③R 是否落在可验证的产出上（数字、交付物、后续采用情况）？④整条被追问三层细节，我是否都答得上来？⑤这条证据与目标 JD 的哪条要求对应？——五问全过，才算一条合格证据。<span class="qsrc">—— 模板为本课程依据行为面试方法论整理的教学工具</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.apa.org/">APA：结构化面试与人员选拔效度研究入口（英文）</a> · <a href="https://hbr.org/">Harvard Business Review 行为面试经典文章库（英文，入口页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>故事库：一次准备，三处复用</h3>
+      <p class="ctx">不要等到投每份简历时才回忆经历——建立一份<strong>个人故事库</strong>：用 STAR 结构写下 5-8 个你的代表性事件，覆盖四类主题：一次做成的难事（能力上限）、一次失败与修复（复盘与韧性）、一次跨团队协作或冲突处理（合作能力）、一次主动改进（主人翁意识）。每个故事写全 STAR 四段，附上能证明结果的"证据锚点"（数据截图、作品链接、可提及的证明人角色——注意只写角色如"时任直属主管"，公开简历上不留他人联系方式）。故事库建好后三处复用：<strong>简历</strong>从库里挑与 JD 最匹配的 3-5 个压缩成条目；<strong>面试</strong>的行为题直接从库里调取完整版本（第3章细讲）；<strong>晋升答辩</strong>与年终总结同样从库里取材（第10章复用）。</p>
+      <p class="ctx">挑选故事的两条标准：<strong>相关性</strong>（与目标岗位的证据需求对应）与<strong>区分度</strong>（别人也能写的通用经历价值低——"参与公司年会"没有信息量，"用两周零预算把年会流程从三小时压到一小时四十分钟"才有）。故事库要定期更新：每完成一个有结果的项目就补一条，让"整理经历"从求职前的考古工程，变成日常的十分钟记录。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：Barbara Minto《金字塔原理》（<a href="https://book.douban.com/subject/1020644/">豆瓣条目</a>，结构化表达的通用方法，书籍） · <a href="https://www.zhaopin.com/">智联招聘求职调研：简历与面试准备行为（商业平台口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>常见败笔：职责清单化、形容词化、流水账化</h3>
+      <p class="ctx">初筛淘汰的简历大多败于三种写法。<strong>①职责清单化</strong>：把岗位说明书抄一遍——"负责客户接待、负责文件整理、负责会议纪要"。职责人人相同，证据才区分人：同样做会议纪要，"把纪要模板改造为决议-负责人-截止日三栏结构，部门执行跟进率显著提升"就是证据。<strong>②形容词化</strong>：用"极强""精通""资深"堆砌自我评价，却没有一条经历支撑。形容词的正确位置是面试里的故事结论，而不是简历里的自我宣告；招聘方的默认心理是"自称精通者按需验证"——你写得越满，被验证得越狠。<strong>③流水账化</strong>：按时间顺序事无巨细罗列所有做过的事，重点被淹没。取舍的原则回到第一节：只保留与目标 JD 对应的证据，其余删掉或一行带过。</p>
+      <p class="ctx">还有一个高频细节问题：<strong>时间线完整性</strong>。工作经历的时间要连续、可解释，超过三个月的空窗期主动准备一句诚实的说明（备考、家庭事务、gap 期项目），不要试图用改日期来掩盖——日期属于事实项，改动即落入下一节"造假"的范畴，而背调环节恰恰重点核对任职时间。空窗期本身不致命，招聘方真正在意的是空窗期里你是否保持了状态与技能，以及你对它的解释是否坦然——这份坦然来自诚实，而不是话术。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.liepin.com/">猎聘简历质量与筛选标准公开分享（商业平台口径）</a> · Richard Bolles《你的降落伞是什么颜色？》成就条目写法（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、数字语言：量化与它的诚实边界</h2>
+    <p class="chapter-sub">结果必须可验证；实在没有数字时，诚实的替代表达远好过编造</p>
+
+    <article class="view">
+      <h3>量化的三个来源：业务结果、效率、规模</h3>
+      <p class="ctx">"结果要量化"人人会背，卡壳的是"我的工作没有数字怎么办"。其实可量化的维度远不止营收：<strong>①业务结果类</strong>——直接挂钩经营指标的产出（转化率、留存率、营收、成本节约、缺陷率下降），市场、销售、运营、产品、技术岗通常有；<strong>②效率类</strong>——时间与流程的改善（周期从几天缩到几小时、会议从每周三次减到一次、模板让新人上手时间减半），职能岗、行政岗、支持岗的主战场；<strong>③规模类</strong>——你经手的体量（服务的用户数、管理的预算、协调的部门数、组织的活动人次、带教的新人数），规模本身就是难度证据。三个维度对号入座后，绝大多数岗位都能找到自己的数字。</p>
+      <p class="ctx">量化还有两个技术要点。<strong>对比出价值</strong>：孤立数字没有意义，"转化率 8%"是好是坏取决于基线——"从 5% 提升至 8%""高于团队均值两个百分点""行业公开基准之上"，对比结构让数字开口说话。<strong>口径要经得起问</strong>：写"提升 40%"就要能回答"基数是什么、周期多长、怎么归因到你的动作"；归因不纯粹的（团队共同成果）用"参与推动""我所负责的模块贡献了其中……"的诚实表述——把团队成果全部揽到自己名下，是最容易被面试官识破的夸大。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：Barbara Minto《金字塔原理》（<a href="https://book.douban.com/subject/1020644/">豆瓣条目</a>，结论与证据的组织方法） · <a href="https://www.zhaopin.com/">智联招聘简历写作调研（商业平台口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>没有数字怎么办：诚实的替代表达</h3>
+      <p class="ctx">有些工作确实难以精确量化（部分行政、客服、研发探索期工作），此时的诚实替代方案按优先级排列：①<strong>范围与频率</strong>——"日均处理 40+ 工单，满意度回访零投诉""每月支持 3 场跨部门评审"；②<strong>交付物与采用情况</strong>——"输出的操作手册沿用至今/被推广到其他两个团队""方案一次通过评审"；③<strong>比较级事实</strong>——"同期入职四人中唯一提前转正""连续两年考核优秀（前 10%）"；④<strong>第三方反馈</strong>——"获客户书面致谢两次"。这些表达的共同点是<strong>全部可验证</strong>：有交付物、有记录、有证明人。</p>
+      <p class="ctx">必须划清的边界：<strong>估算可以，编造不行</strong>。"约提升三成（依据活动前后两周的后台数据对比）"是诚实的估算——给出方法与依据；凭空虚报一个漂亮数字则是造假，它在背调与面试追问下极易穿帮，且性质从"能力不足"升级为"诚信问题"，后者的后果在下一节展开。一个自检办法：写下任何数字后问自己"如果对方要求出示原始记录或请证明人核实，我能否坦然配合？"——能，才写。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.apa.org/">APA：诚信与组织行为研究入口（英文）</a> · Richard Bolles《你的降落伞是什么颜色？》成就描述方法（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、作品集：让成果自己站出来</h2>
+    <p class="chapter-sub">文字简历说你做过什么，作品集证明你做成什么样</p>
+
+    <article class="view">
+      <h3>分岗位的作品集形态</h3>
+      <p class="ctx">作品集不是设计岗专利，而是所有"产出可展示"岗位的通用武器，形态各异：<strong>设计类</strong>——精选 5-8 个案例的在线作品集或个人网站，每个案例配"背景-我的角色-方案-结果"的简短说明（只放图不解释是最常见的失误）；<strong>技术类</strong>——代码仓库（整理过 README 的代表项目，而非全部练习堆砌）、技术博客、开源贡献记录；<strong>文案与内容类</strong>——发表链接合集、代表性稿件的"写作背景+效果数据"说明；<strong>数据类</strong>——完整分析报告（从问题定义到结论建议）、可视化仪表盘截图与思路说明；<strong>产品与运营类</strong>——需求文档节选（脱敏后）、活动策划案与复盘、自己运营的账号数据。</p>
+      <p class="ctx">作品集的三个通用原则：<strong>少而精</strong>——放三个能讲透的案例胜过十个平庸的，招聘方只会认真看前一两个；<strong>过程可见</strong>——展示思考路径（为什么这么做、迭代了几版、放弃了什么方案），过程比成品更能证明能力归属；<strong>入口顺手</strong>——一个稳定链接或一份 PDF 随简历附上，不要让对方索要三次才看到。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.liepin.com/">猎聘中高端岗位求职材料公开分享（作品集口径，商业平台）</a> · <a href="https://hbr.org/">Harvard Business Review：招聘评估证据类文章库（英文，入口页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>没有现成作品：补作与保密边界</h3>
+      <p class="ctx">转行者与应届生的解法是<strong>补作</strong>：针对目标岗位做一个"命题作品"——想去的公司在投什么广告，就为它写一份投放分析；目标产品有个明显的体验问题，就写一份改进方案（附用户调研与竞品对照）；想做数据分析，就选一份公开数据集完成从清洗到结论的完整报告。补作的价值不在方案被采纳，而在它证明了三件事：你理解这个岗位的真实工作、你有主动完成的执行力、你能为面试提供可深挖的素材。命题作品在面试里往往比实习经历更能引发深度对话，因为它百分之百属于你。</p>
+      <p class="ctx"><strong>保密边界是作品集的红线</strong>：在职者的作品集只放可公开的内容——公司未公开的战略文档、客户名单、财务数据、源代码，一律不得外示，哪怕打了马赛克也可能违反劳动合同中的保密条款；展示在职项目时用"角色+方法+脱敏结果"的结构（"负责某千万级用户产品的推送策略，点击率相对提升 15%"），具体产品名与内部数据按公司制度决定能否披露。违反保密义务的代价是双向的：既可能承担违约与侵权责任，也会让新雇主推断"此人以后也会泄露我们的东西"——在招聘方眼中，泄露前雇主机密不是能力证明，而是信用减分。涉及竞业限制协议的作品边界，见<a href="../18-side/">第18章</a>。</p>
+      <div class="fig"><img src="../assets/img-02-2.png" alt="作品集示意：一个打开的文件夹里整齐排列着设计稿、代码窗口、图表报告、文档等抽象作品卡片，一个无脸人物正把一枚新的几何作品放入其中" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《中华人民共和国劳动合同法》全文（第23条保密义务与竞业限制）</a> · <a href="https://www.12333.gov.cn/">全国人社政务服务平台（劳动关系政策查询）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、美化与造假：那条有法律后果的红线</h2>
+    <p class="chapter-sub">重新组织真实经历叫美化，虚构事实叫造假——后者的代价写在法律条文与判例里</p>
+
+    <article class="view">
+      <h3>边界对照：哪些算美化，哪些算造假</h3>
+      <p class="ctx">两者的分界线只有一条：<strong>事实是否真实</strong>。美化是对真实经历的重新组织与强调——调整表述顺序突出与岗位相关的部分、用更专业的行业语言重写同一事实（"发传单"写成"线下地推获客，单日触客 200+"）、对模糊记忆做保守估算并注明口径。造假是虚构或篡改事实——虚构从未任职的公司或拉长的任职时间、编造学历与证书、把别人的成果写成自己的、伪造数据与证明人。灰色地带的判断同样用"可验证性"标准：任何"如果背调或追问就露馅"的表述，都属于造假，无论包装得多像美化。</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>美化（合法合规）</th><th>造假（法律与信用风险）</th></tr>
+        <tr><td>事实基础</td><td>真实发生，重新组织与强调</td><td>虚构、篡改、张冠李戴</td></tr>
+        <tr><td>数据表述</td><td>保守估算并注明口径依据</td><td>凭空编造或夸大倍数</td></tr>
+        <tr><td>时间线</td><td>如实呈现，空窗期坦然解释</td><td>改日期掩盖空窗或拼凑履历</td></tr>
+        <tr><td>成果归属</td><td>写明个人角色与团队边界</td><td>把团队或他人成果据为己有</td></tr>
+        <tr><td>可验证性</td><td>经得起背调与三层追问</td><td>一经核实即穿帮</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《中华人民共和国劳动合同法》全文（第26条欺诈致合同无效）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（现行法律文本权威检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>"简历造假"的法律后果：合同无效、无偿解除、判例口径</h3>
+      <p class="ctx">先看条文（以国家法律法规数据库现行有效版本为准，截至 2026 年 10 月）：<strong>《劳动合同法》第26条</strong>规定，以欺诈、胁迫的手段或者乘人之危，使对方在违背真实意思的情况下订立或者变更劳动合同的，劳动合同无效或者部分无效——虚构学历、虚构工作经历入职，正属于典型的欺诈订立；<strong>第39条</strong>规定，因第26条第一款第一项规定的情形致使劳动合同无效的，用人单位可以解除劳动合同，且依据第46条的反面解释，此种解除<strong>无需支付经济补偿</strong>；<strong>第86条</strong>还规定，劳动合同被确认无效给对方造成损害的，有过错的一方应当承担赔偿责任。换言之，靠造假入职的人，哪怕已经工作数年、业绩不错，一旦查实，公司可以立即解除、不付补偿，造成损失的还要赔偿。</p>
+      <p class="ctx">司法实践同样清晰：最高人民法院发布的劳动人事争议典型案例中，明确包含劳动者提供虚假学历或虚假工作经历、用人单位据此解除劳动合同获支持的案例（2025 年发布的司法解释与典型案例口径）；在中国裁判文书网检索"简历虚假 劳动合同解除"，可以看到大量同类判决——法院审查的重点是虚假内容是否足以影响录用决定（学历、任职单位、任职时间、资格证书通常都被认定为关键项）。还有一层条文之外的代价：<strong>行业信用</strong>。背调结果与解除记录可能影响后续求职，而圈子比你想象的小——用一次造假去换一份工作，押上的是整个职业生涯的信用记录，这笔账无论如何算不过来。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《劳动合同法》第26/39/46/86条（全文链接）</a> · <a href="https://www.court.gov.cn/fabu/xiangqing/472691.html">最高人民法院劳动争议司法解释（二）及典型案例发布页（2025）</a> · <a href="https://wenshu.court.gov.cn/">中国裁判文书网（判例检索入口，深页需登录）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>背调是怎么做的：机制常识与正确心态</h3>
+      <p class="ctx">背景调查在中高端岗位与大厂招聘中已是常规环节，基本机制值得了解：<strong>①必须经你书面授权</strong>——正规背调以候选人签署授权书为前提，未授权的私自调查涉嫌侵犯个人信息（《个人信息保护法》口径）；<strong>②核实项以事实项为主</strong>——任职单位、职位、时间、汇报关系、有无违纪解除记录，学历学位通过学信网核验，证明人通常由你提供或经你确认后联系；<strong>③评价项仅供参考</strong>——前同事的主观评价一般不作为单独定论依据。对诚实的求职者，背调是<strong>保护而非威胁</strong>：它同时挡住了那些靠造假挤掉你的竞争者。</p>
+      <p class="ctx">正确心态有三条：其一，<strong>提前对齐</strong>——离职前与直属上级、HR 好聚好散，证明人提前打招呼，既是礼貌也是给自己留好退路；其二，<strong>主动披露</strong>——履历里有硬伤（短期任职、被优化、证书在考）与其等背调挖出来，不如在面试阶段主动、简短、不诉苦地说明；其三，<strong>发现问题依法应对</strong>——若背调结论失实（前雇主恶意差评、记录错误），你有权要求用人单位出示核实渠道并申辩；因不实信息被撤回 Offer 造成损失的，可咨询专业律师评估维权路径（12348 公共法律服务热线），但不要采取网络曝光施压等激化手段——合法渠道永远优先。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库：《个人信息保护法》（背调授权的法律基础）</a> · <a href="https://www.12333.gov.cn/">全国人社政务服务平台（劳动关系与维权渠道）</a> · 背调行业机制描述为公开招聘服务口径（商业科普，无统一官方规范）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、AI 辅助写简历与新形态</h2>
+    <p class="chapter-sub">AI 能帮你把真实经历写得更好，不能帮你变成另一个人</p>
+
+    <article class="view">
+      <h3>AI 辅助的边界：润色可以，虚构不行</h3>
+      <p class="ctx">用 AI 工具辅助写简历已经非常普遍，合理用法与危险用法要分清。<strong>合理用法</strong>：把你的真实经历要点丢给 AI，让它按 STAR 结构重组语言；让它针对具体 JD 指出你的经历里哪些证据被埋没了；让它把"负责社群运营"改写成更有信息量的表达；让它模拟面试官对每条经历做三层追问，帮你提前发现站不住的表述。<strong>危险用法</strong>：让 AI"帮我编一段大厂实习经历""把我的项目数据写得好看点"——AI 生成的虚构内容读起来流畅自信，恰恰因此更危险：它没有你的记忆，追问第三层你就会现场卡壳，而卡壳的瞬间招聘方会意识到整份简历都可能是生成的。</p>
+      <p class="ctx">两条配套纪律：<strong>①信息安全</strong>——不要把现雇主的内部数据、客户信息、保密项目细节投喂给公共 AI 模型，投喂即泄露，这可能直接违反你的保密义务（脱敏是底线，能不投就不投）；<strong>②真实性责任在你</strong>——简历上的每个字由你署名负责，"是 AI 写的"不构成任何抗辩理由；AI 是打字员与编辑，不是证人。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《劳动合同法》第23条（保密义务）</a> · <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">世界经济论坛《未来就业报告 2025》：AI 素养与求职技能变迁（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>新形态：在线简历、视频简历与 AI 面试初筛</h3>
+      <p class="ctx">简历的形态正在多样化：<strong>在线简历/个人主页</strong>（个人网站、职业社交平台档案）的优势是可承载作品集与持续更新，注意保持与投递版简历的信息一致——两处版本对不上（时间、职位、数据任何一项），在背调视角下等同于存疑；<strong>视频简历</strong>在部分创意与前台岗位流行，原则同文字简历：脚本围绕证据展开，时长控制在一两分钟，别把它拍成生活 Vlog；<strong>AI 初筛面试</strong>（录制视频回答预设问题，系统辅助评估）在校园招聘与大企业批量招聘中渐多，应对要点是提前测试设备与光线、对着镜头而非屏幕自言自语、每题先用十秒列 STAR 提纲再开口。</p>
+      <p class="ctx">无论形态怎么变，三条底层逻辑不变：<strong>证据密度</strong>（单位篇幅里的可验证信息量）、<strong>匹配度</strong>（与目标岗位的对应关系）、<strong>一致性</strong>（简历、作品集、面试口径、背调信息四者互洽）。工具越新，一致性越重要——AI 时代招聘方的核查成本也在下降，前后矛盾被发现的概率在上升。把这三条守住，形态变化对你只是渠道变化。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.zhaopin.com/">智联招聘 AI 招聘应用公开介绍（商业平台口径）</a> · <a href="https://www.mohrss.gov.cn/SYrlzyhshbzb/jiuye/">人社部就业促进频道：新就业形态与招聘服务规范（官方口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：简历篇</h2>
+    <p class="chapter-sub">四条流传最广的说法，每一条都在坑人</p>
+
+    <article class="view">
+      <h3>谣言粉碎：简历篇四连</h3>
+      <p class="ctx"><strong>谣言一："简历越长越显诚意，把所有经历都写上。"</strong>恰恰相反：初筛以十秒计（招聘平台口径），信息密度低的长简历让真正的证据被淹没；一页纸原则的本质是逼你做取舍——取舍能力本身就是岗位能力的一部分。<strong>谣言二："技能栏写'精通 Office、沟通能力强'能加分。"</strong>无法匹配、无法验证的形容词在机器筛选里是无效字符，在人工筛选里是减分项（人人都写等于没写）；技能栏只放具体、可验证、与 JD 对应的名词，"精通"二字留给面试官来验证——写了就必被考。</p>
+      <p class="ctx"><strong>谣言三："空窗期必须想办法掩盖，改改日期就行。"</strong>任职时间是背调的核心核对项，改日期属于篡改事实，性质等同造假（第26条欺诈口径），而真实空窗期本身远没有那么可怕——备考、家庭事务、主动休整加自费学习，坦然解释加上"空窗期我保持了什么状态"的证据，多数招聘方完全可以接受。掩盖一个小问题的代价是制造一个大问题。<strong>谣言四："AI 生成的简历更专业，整份交给 AI 写就行。"</strong>AI 不知道你真正做过什么，全权代写的简历通篇"正确的空话"，追问两层即穿帮；AI 的正确角色是编辑与陪练——事实与判断必须来自你，责任也只能由你承担。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016-03-1460585589931971.htm">《劳动合同法》第26条（欺诈订立的法律后果）</a> · <a href="https://www.court.gov.cn/fabu/xiangqing/472691.html">最高人民法院劳动争议典型案例（2025 发布页）</a> · <a href="https://www.zhaopin.com/">智联招聘简历筛选行为调研（商业平台口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>为什么说简历是"证据清单"而不是自传？初筛漏斗的物理约束是什么？</li>
+        <li>读 JD 要拆出哪三类信息？各自怎么用？</li>
+        <li>"每写一行都问能否被追问三层"这个标准在保护谁？</li>
+        <li>一页纸原则的两类例外是什么？社招与应届生的模块顺序有何不同？</li>
+        <li>哪些个人信息不该出现在简历上？为什么？</li>
+        <li>机器筛选（ATS）的基本原理是什么？"诚实匹配"的两条具体做法？</li>
+        <li>白色小字堆砌关键词这类投机技巧为什么必然失败？</li>
+        <li>STAR 四要素各是什么？把"负责社群运营，认真负责"完整改写成一条 STAR 证据。</li>
+        <li>故事库要覆盖哪四类主题？"证据锚点"指什么、为什么不留证明人电话？</li>
+        <li>挑故事的两条标准是什么？为什么"参与公司年会"没有信息量？</li>
+        <li>简历三大败笔（职责清单化/形容词化/流水账化）各举一例并改写。</li>
+        <li>量化的三个来源是什么？职能岗最常用哪一个？</li>
+        <li>"估算可以，编造不行"的分界标准是什么？写数字前的自检问题是什么？</li>
+        <li>没有现成作品怎么补作？命题作品的三重证明价值是什么？</li>
+        <li>作品集的保密边界为什么是红线？在职项目怎么用"角色+方法+脱敏结果"结构展示？</li>
+        <li>美化与造假的分界线是什么？对照表五行分别怎么判断？</li>
+        <li>《劳动合同法》第26、39、86条对"简历造假"分别意味着什么后果？</li>
+        <li>背调的三个机制常识是什么？为什么说背调对诚实者是保护？</li>
+        <li>发现背调信息失实，合法的应对路径是什么？为什么不走网络曝光？</li>
+        <li>AI 辅助写简历的合理用法与危险用法各举两例；两条配套纪律是什么？</li>
+        <li>逐条驳斥：简历越长越好/形容词加分/空窗期改日期/整份交给 AI。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>简历是证据清单不是自传——初筛以十秒计（平台口径），先读 JD 拆出硬性门槛/高频词/加分项，再按岗位定制证据顺序；结构上一页纸+倒叙+模块化（社招经历优先、应届生教育优先），排版为降低阅读成本服务，PDF 发送、文件名规范；机器筛选（ATS）用"诚实匹配"应对——JD 技能词真实具备就原样写，投机技巧（白字堆词）必被识别；写经历用 STAR（情境-任务-行动-结果），配五问自查模板，建 5-8 个故事库一次准备三处复用（简历/面试/晋升答辩）；量化三来源（业务结果/效率/规模），对比出价值、口径经得起问，没数字用范围频率、交付物、比较级事实替代——估算可以编造不行；作品集少而精、过程可见，补作命题项目证明能力，保密是红线（劳动合同法第23条）；美化=重组真实，造假=虚构事实——"简历造假"的后果是合同无效（第26条）、无偿解除（第39条）、损害赔偿（第86条），最高法典型案例与裁判文书网判例口径一致；背调经授权、核事实、看关键项，诚实者应欢迎它；AI 是编辑与陪练不是代笔，事实责任在你，公司机密不投喂公共模型；空窗期坦然解释优于改日期。下一章：简历帮你拿到面试，面试怎么打——面试攻防与反问清单。
+  </div>
+
+  <nav class="pager">
+    <a href="../01-choose/"><span class="dir">← 第1章</span>行业与岗位选择：第一步怎么走</a>
+    <a href="../03-interview/"><span class="dir">第3章 →</span>面试攻防：常见问题与反问</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>职场进阶课 · 第2章 · 依据《中华人民共和国劳动合同法》（国家信访局网站转载全文版）、最高人民法院劳动人事争议司法解释（二）及典型案例（2025）、国家法律法规数据库、人力资源和社会保障部公开口径及 Bolles《你的降落伞是什么颜色？》、Minto《金字塔原理》等经典著作整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供职业发展教育参考，不构成法律建议 · 劳动保障维权请拨打 12333 · 公共法律服务请拨打 12348 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #be185d;border-radius:12px;background:#fdf2f8;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#9d174d;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/work/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#be185d;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#be185d;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fdf2f8;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被职场消耗，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#9d174d;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #be185d;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fdf2f8;}
+.sr-item .sr-c{display:block;font-size:12px;color:#be185d;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 方法，如：面试、晋升、裁员、跳槽、汇报…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/work\/.*/,'/work/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WORK_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#be185d;border:1.5px solid #be185d;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fdf2f8;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

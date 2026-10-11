@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 普通人为什么要懂宏观经济 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table.cmp{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:#3f6212;border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .disclaimer ul{margin:6px 0 0;padding-left:20px;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 导论 · 课程总览</div>
+  <h1>普通人为什么要懂宏观经济</h1>
+  <p>GDP、通胀、利率、汇率——新闻里的每个词，都在悄悄改写你的工资、房贷与菜价</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-gdp/">第1章：GDP——衡量一国的财富 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么要学</a>
+    <a class="anchor" href="#s2">三大总量</a>
+    <a class="anchor" href="#s3">传导链地图</a>
+    <a class="anchor" href="#s4">看懂≠预测</a>
+    <a class="anchor" href="#s5">数据从哪来</a>
+    <a class="anchor" href="#s6">数据的坑</a>
+    <a class="anchor" href="#s7">误区预告</a>
+    <a class="anchor" href="#s8">怎么学</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）</strong>
+    <ul>
+      <li>本站内容仅供<strong>经济教育与参考</strong>，不构成投资建议、政策预测或任何产品的商业推荐；本站无商业合作、无推广链接。</li>
+      <li>本站<strong>不预测具体行情与政策走向</strong>：“必涨”“必跌”“崩溃”类断言只出现在谣言粉碎与批判语境；不教授也不鼓励“市场操纵”“内幕交易”“编造传播”虚假经济信息等违法行为。</li>
+      <li>数据以<strong>官方统计口径</strong>为准：国家统计局、中国人民银行、财政部、IMF、世界银行等，正文注明统计时点；中外数据对比提示口径差异，不拿不同口径的数字强行下结论。</li>
+      <li>不传播未经证实的“内幕政策消息”；重大政策一律以<strong>官方发布</strong>为准，本站只教“怎么读公开发布的文件”。</li>
+      <li>各章依据官方文件、权威教科书与学术研究整理，来源见每节标注；如有疏漏欢迎指正。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用自己的话说清宏观经济学的研究对象与微观经济学的区别（“天气”与“一滴雨”的比喻）；②说出宏观经济的三大总量（产出、就业、物价）分别用什么指标衡量、由谁发布；③画出至少一条“宏观变量→你的生活”的传导链（比如政策利率→LPR→你的房贷月供）；④讲清本课程为什么坚持“只教看懂、不教预测”，并能识别“货币崩溃论”式恐慌话术的三个特征；⑤复述“读懂一条经济数据的五步法”，知道同比与环比、名义与实际的差别；⑥会查四个官方数据入口（统计局、央行、财政部、外汇局），知道数据“打架”时以什么为准。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的“总纲”与“地图”。第一次学习建议通读；之后你可以随时回到第三节“课程地图”，按当下遇到的新闻（央行降准了、CPI 公布了、汇率破某个关口了）跳转到对应章节。第四节“看懂≠预测”与第七节“常见误区”请务必读完——它们决定了这门课能帮你做什么、不能帮你做什么。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么普通人也需要懂宏观经济</h2>
+    <p class="chapter-sub">你以为宏观新闻是“国家的大事”，其实每一条都在给你的生活悄悄改价</p>
+
+    <article class="view">
+      <h3>开场场景：一个普通周三，你和宏观经济的五次相遇</h3>
+      <p class="ctx">早上七点，你在早餐店发现豆浆从三块涨到了三块五，老板嘟囔着“什么都贵了”——这是<strong>物价</strong>。中午刷手机，新闻推送“本季度 GDP 同比增长若干，经济运行总体平稳”——这是<strong>产出</strong>。下午公司例会上，老板说今年行业不景气、冻薪不裁员——这是<strong>就业与收入</strong>。晚上收到银行短信，房贷利率随 LPR 下调、月供少了两百多——这是<strong>利率</strong>。睡前你想给在国外读书的妹妹汇点生活费，发现同样的人民币换到的外币比上个月多了——这是<strong>汇率</strong>。（以上为示例场景，人物情节均为虚构。）一天之内，宏观经济的五个核心变量全部和你打了照面，只是新闻里它们穿着术语的外衣：CPI、GDP、城镇调查失业率、LPR、人民币对美元中间价。宏观经济学的任务，就是帮你把这层外衣脱掉，看清每个词背后“它是什么、怎么传导、跟你有什么关系”。</p>
+      <p class="ctx">很多人觉得“宏观”离自己很远：那是新闻联播里的事，是经济学家吵架的事。但真相是——你无法选择是否生活在宏观经济里，就像你无法选择是否生活在天气里。你可以不看天气预报，但出门淋湿的是你。懂宏观，不是为了在饭桌上赢过别人，而是为了在自己的生活里少淋几场“莫名其妙的雨”：明白菜价为什么涨、月供为什么变、工作为什么难找、以及——为什么总有人靠贩卖“经济要崩”的恐慌赚你的流量和钱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第1章“经济学十大原理”框架（北京大学出版社中文版，文字引用） · <a href="https://www.gov.cn/shuju/">中国政府网 · 数据（宏观数据速查入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>宏观经济学研究“天气”，不研究“一滴雨”</h3>
+      <p class="ctx">经济学分两个大视角。<strong>微观经济学</strong>研究单个决策者：这家奶茶店怎么定价、这个家庭怎么花钱、这家企业雇多少人——它关心的是“一滴雨怎么落”。<strong>宏观经济学</strong>研究经济整体的总量与平均：全国一年生产了多少东西（产出）、多少人没有工作（就业）、东西整体贵了多少（物价）——它关心的是“天气怎么样”。两者用的问题清单完全不同：微观问“为什么这家店的豆浆涨五毛”，宏观问“为什么全国的商品和服务整体贵了百分之几”。曼昆在《经济学原理》里把宏观经济学的三大研究对象概括为产出、就业与物价的总量变化，萨缪尔森的《经济学》则强调宏观政策的核心目标是充分就业、价格稳定与经济增长——两本经典教科书的表述略有差异，但骨架一致。</p>
+      <p class="ctx">为什么“总量”值得单独研究？因为整体不等于个体之和。经济学里有个著名的“合成谬误”：对一个人成立的道理，对所有人同时做未必成立。一个人提前取出存款没问题，所有人同时挤兑银行就会出事；一家企业降价能多卖货，所有企业一起降价往往意味着需求萎缩、大家更不敢花钱。宏观经济学正是研究这些“加总之后才出现”的现象：经济周期、通货膨胀、失业潮、金融危机——没有一个是单看某个人、某家企业能理解的。这也是它和你切身相关的原因：加总层面的波动，会不由分说地落到每一个个体头上。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：曼昆《经济学原理（宏观分册）》第10版（文字引用，宏观经济学研究对象框架） · 萨缪尔森、诺德豪斯《经济学》第19版（文字引用，宏观政策目标表述）</div>
+    </article>
+
+    <article class="view">
+      <h3>学宏观的三个理由：守住钱包、读懂新闻、看穿恐慌</h3>
+      <p class="ctx"><strong>理由一：守住钱包的购买力与决策质量。</strong>你的工资是名义数字，能买多少东西取决于物价水平；你的存款利率是名义利率，扣掉通胀才是实际回报；你买房的月供跟着 LPR 走，而 LPR 背后是央行的政策取向。不懂这些变量，你连“自己的钱在变多还是变少”都算不清。<strong>理由二：读懂新闻，不被标题牵着走。</strong>“降准了！”“CPI 转正了！”“赤字率提高了！”——这些标题在说什么、意味着什么传导路径、哪些是常见的误读，本课程会给你一套稳定的读法，让你从“看不懂所以转发”变成“看得懂所以淡定”。<strong>理由三：看穿恐慌话术，不被情绪收割。</strong>每逢经济数据波动，总有自媒体用“钱要变毛了”“经济要崩了”“赶紧换成黄金美元”这类断言收割流量与销量。恐慌话术有固定的套路（后面第七节会拆），拆穿它需要的不是内幕消息，恰恰是最基础的宏观常识。国家统计局在“数据解读”栏目长期发布对官方数据的解释性文章，是校准认知的最好免费资源——这门课想做的，就是把你带到这类一手资源面前，并教你怎么用。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读</a> · 曼昆《经济学原理（宏观分册）》第10版（文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、宏观经济的三大总量：产出、就业、物价</h2>
+    <p class="chapter-sub">所有宏观新闻，本质上都是这三个数字的排列组合</p>
+
+    <article class="view">
+      <h3>产出的体温计：GDP，一国的“年度总账单”</h3>
+      <p class="ctx">GDP（国内生产总值）衡量一个国家（或地区）在一定时期内生产的全部<strong>最终</strong>产品和服务的市场价值，可以理解成整个经济体开出的“年度总账单”。它由国家统计局核算并发布：季度数据有初步核算与后续核实，年度数据以每年 2 月末左右发布的《国民经济和社会发展统计公报》和后续修订为准（发布与修订节奏以统计局官网当期公告为准）。新闻里说的“GDP 增速”，通常指不变价 GDP 的同比增速——也就是剔除了物价变化之后、实际多生产了多少东西。为什么强调“剔除物价”？因为如果全国物价翻倍、产量不变，按当年价格算的 GDP 也会翻倍，但没有人因此变得更富裕。名义 GDP 与实际 GDP 的区别，是读懂一切产出新闻的第一道门槛，第 1 章会完整展开。</p>
+      <p class="ctx">GDP 和你有什么关系？长期看，一国居民收入水平的增长根本上依赖产出的增长——蛋糕做大了，分到的才可能变多；GDP 增速放缓的年份，往往对应着企业利润承压、招聘收缩、涨薪变难。它不预测你个人的命运，但它描述了你所处的“水温”。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布（GDP 及统计公报发布入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（核算口径说明）</a> · 曼昆《经济学原理（宏观分册）》第10版 第10章“一国收入的衡量”（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>物价的体温计：CPI，以及“体感”和“统计”的温差</h3>
+      <p class="ctx">CPI（居民消费价格指数）衡量一篮子消费品和服务的价格随时间的变化，是“东西整体贵了多少”的官方答案，由国家统计局按月发布（当期数值以统计局“最新发布”栏目为准）。关键在“一篮子”三个字：统计局按照居民消费支出结构，把食品烟酒、衣着、居住、生活用品及服务、交通通信、教育文化娱乐、医疗保健、其他用品及服务八大类按权重放进篮子，定期更新权重（篮子构成与更新机制见统计局数据解读栏目）。你的“体感通胀”和统计数字经常对不上，原因通常有三：第一，你的个人消费篮子和全国平均篮子不一样——如果你在外就餐多、育儿支出重，你感受到的涨幅自然和指数不同；第二，人对涨价的记忆远深于对降价的记忆（心理学上叫损失厌恶，行为经济学有大量研究）；第三，房价按口径不计入 CPI 的消费品篮子（居住类权重里反映的是租金与自有住房折算等口径，而非资产价格），而买房恰恰是许多家庭感受最强的支出。这三条温差，第 2 章会逐一拆开。</p>
+      <p class="ctx">与 CPI 常一起出现的还有 PPI（工业生产者出厂价格指数），衡量工厂出厂环节的价格，它是观察上游成本压力的窗口；两者的剪刀差变化，经常被用来讨论企业利润被哪一头挤压。记住一个原则：任何“物价”新闻，先问它说的是哪个指数、什么口径、什么时间范围。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布（CPI/PPI 月度发布入口）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（CPI 篮子与权重口径）</a> · 曼昆《经济学原理（宏观分册）》第10版 第24章“生活费费用的衡量”（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>就业的体温计：失业率，以及它统计不到的角落</h3>
+      <p class="ctx">就业是宏观经济的第三大总量。中国官方主用的指标是<strong>城镇调查失业率</strong>：通过劳动力抽样调查获得，按国际通行的“就业/失业/非劳动力”三分法统计——调查参考周内为取得收入工作一小时以上算就业，未工作、近三个月找过工作且随时能上岗的算失业，两者之外（如在校生、退出求职的人）算非劳动力。此前的“登记失业率”只统计去政府部门登记求职的人，口径更窄，现已不作为主要发布指标（两种口径的沿革见统计局数据解读）。每月发布的还有分年龄组数据：2023 年起青年失业率统计口径完善为不含在校生（以统计局官方说明为准）。失业率数字背后有统计不到的角落：灵活就业者、想工作但放弃找的人（“丧气工人”）、以及“有工作但收入不足”的隐性不充分就业——所以读就业新闻，除了失业率，还要看城镇新增就业完成进度、劳动参与率等一组指标，第 9 章会给出完整的指标看板。</p>
+      <p class="ctx">就业为什么排进三大总量？因为它同时是经济结果与社会民生：产出下滑传导为企业缩招，失业上升又反过来压制消费——三个总量之间彼此咬合，这正是宏观经济学研究“加总现象”的核心所在。历史上，菲利普斯（1958）发现英国近百年数据里失业与工资变动存在此消彼长的经验关系，弗里德曼（1968）则论证这种权衡长期不成立——这段学术公案是第 9 章的主菜，这里只需记住：失业、产出、物价三个体温计的读数，永远要放在一起看。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（调查失业率口径说明）</a> · Phillips (1958), <em>Economica</em>（英文）<a href="https://www.jstor.org/stable/2550759">https://www.jstor.org/stable/2550759</a> · Friedman (1968), “The Role of Monetary Policy”, <em>American Economic Review</em>（英文，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、从国家大事到你的钱包：宏观→个人的传导链</h2>
+    <p class="chapter-sub">宏观变量不会瞬移进你的生活，它沿着一条条可辨认的链条传导——看懂链条，就看懂了新闻</p>
+
+    <article class="view">
+      <h3>一条利率传导链：央行的决定，怎么变成你的月供</h3>
+      <p class="ctx">举一条本课程最重要、也最常被新闻提及的链条。中国的利率体系大致是三层：<strong>政策利率</strong>（央行通过公开市场操作等引导的短期利率，如 7 天期逆回购利率）→ <strong>市场利率</strong>（银行间市场形成的资金价格，如 DR007、国债收益率）→ <strong>LPR（贷款市场报价利率）</strong>。2019 年 LPR 改革后，报价行在政策利率基础上加点报出 LPR，每月 20 日左右由央行授权全国银行间同业拆借中心公布（发布日程与数值以央行官网 LPR 公告栏目为准），新发房贷普遍以“LPR+基点”定价，存量房贷也已完成转换——于是链条通了：<strong>央行政策取向 → 政策利率 → LPR → 你的房贷利率 → 月供</strong>。同一根链条的另一端连着你的存款：贷款利率下行往往伴随存款利率下调，钱放银行的利息变少，这就是“利率是资金的价格”的字面含义——它同时给借钱和存钱定价。第 3 章会把这条链的每个环节、每次“加息/降准”新闻的读法完整拆开。</p>
+      <p class="ctx">请注意这条链的两个性质：其一，它有<strong>时滞</strong>——政策落地到月供变化可能间隔数月，到实体经济反应更久；其二，它<strong>不是精确机器</strong>——传导会因银行定价策略、市场预期、你所在城市的首套二套政策差别而打折。教科书把货币政策传导概括为利率渠道、信贷渠道、资产价格渠道、汇率渠道等多条路径（曼昆第10版第34章框架），现实中它们同时起作用、互相干扰。所以本课程反复强调：学传导链是为了“看懂方向与机制”，不是为了“算准时间与幅度”。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/index.html">中国人民银行 · LPR 公告栏目</a> · 中国人民银行《中国货币政策执行报告》（季度发布，LPR 形成机制与传导的一手权威描述，文字引用） · 曼昆《经济学原理（宏观分册）》第10版 第34章（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>一条财政传导链：政府的账本，怎么变成你的社保与个税</h3>
+      <p class="ctx">第二条链来自财政。政府的“账本”在中国是四本预算：一般公共预算（税收为主、教育社保医疗等支出）、政府性基金预算（含土地出让收入与专项债对应项目）、国有资本经营预算、社会保险基金预算（口径说明以财政部预决算公开为准）。链条是这样传导的：<strong>财政收支安排 → 税收与缴费（你的个税起征点、社保缴费比例）→ 转移支付与公共服务（养老金上调、医保报销范围、义务教育投入）→ 家庭可支配收入与预期</strong>。每年 3 月全国两会批准的预算报告，会给出当年的赤字率、新增专项债额度等关键安排（以财政部与新华社受权发布的报告原文为准）；财政部按月发布财政收支数据，你可以在“财政数据”栏目追踪税收与支出的最新进度。减税降费、提高个税专项附加扣除标准、上调退休人员基本养老金——这些新闻全是这条链上的节点。第 7 章会教你读四本预算，看懂“积极财政政策”到底积极在哪里。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部 · 财政数据（月度收支发布入口）</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/zhengcefabu/">财政部 · 政策发布（预算与政策文件原文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>课程地图：二十章如何拼成“概念→政策→周期→你”</h3>
+      <p class="ctx">这门课的二十章，就是把这些传导链一条条铺开。<strong>第一部分·基础概念（1-5章）</strong>：五个核心变量各一章——GDP（产出）、通胀（物价）、利率（资金价格）、货币与信用（钱的源头）、汇率与国际收支（对外的价格）。这是全课程的地基。<strong>第二部分·政策与周期（6-10章）</strong>：两只“看得见的手”——货币政策（央行的水龙头）与财政政策（政府的账本），加上经济周期（繁荣衰退复苏的节律）、就业与工资、房地产与宏观经济。<strong>第三部分·国际与结构（11-15章）</strong>：把镜头拉远——国际贸易与全球化、金融体系与金融危机的历史案例、国家为何贫富的增长理论、人口结构这个慢变量、科技与数字化这个快变量。<strong>第四部分·宏观与你（16-20章）</strong>：落地——一张经济指标读法总表、宏观周期如何影响你的钱和工作、重要会议与政策文件怎么读、宏观谣言粉碎与反焦虑手册、以及一份把学习变成习惯的行动方案。学习顺序建议照章节走（前面是后面的地基）；查阅顺序建议从第 16 章的指标总表反查。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="宏观经济传导链总览插画：中央一个抽象几何地球与齿轮组代表宏观变量，几条发光的链条分别延伸向代表工资单、房屋、购物车、存钱罐与旅行箱的几何图标，一个无脸抽象人物站在链条交汇处仰望，橄榄绿色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（概念→政策的教学框架，文字引用） · <a href="https://www.stats.gov.cn/">国家统计局（指标发布总入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、“看懂”与“预测”是两件事</h2>
+    <p class="chapter-sub">本课程教你读天气图，不教你当先知——这不是谦虚，是学科的事实</p>
+
+    <article class="view">
+      <h3>为什么连专业机构都难以准确预测</h3>
+      <p class="ctx">宏观经济学有一门“预测”的生意：IMF 每年 4 月和 10 月发布《世界经济展望》（WEO），给出全球与各经济体的增长、通胀预测（以官网当期发布为准）；各国央行、券商研究所也各有预测团队。但预测的 track record 并不光彩：IMF 自身的工作论文研究曾系统评估过 WEO 预测的误差，结论是短期预测有一定信息量、但大幅转折（危机、衰退）几乎总是预测不到；对美国衰退的官方认定，甚至采取“事后追认”机制——NBER（美国国民经济研究局）的商业周期测定委员会在经济活动见顶或见底之后数月乃至更久，才正式认定拐点日期（NBER 官网对其认定机制有公开说明）。连“衰退从哪天开始”都要事后认定，足见实时判断之难。原因不难理解：经济是亿万人预期的加总，而预期会因预测本身而改变（预测到堵车就会改道，改道了就不堵了）；冲击（疫情、地缘冲突、技术革命）本质上不可预知。凯恩斯在《就业、利息和货币通论》（1936，文字引用）里对“用精确数字伪装确定性”的批评，至今仍是这门学科的自我提醒。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.nber.org/">NBER · Business Cycle Dating Committee（衰退事后认定机制，英文）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF《世界经济展望》（每年4月/10月更新，英文；反爬页面，具体数值以官网当期为准）</a> · Keynes (1936), <em>The General Theory of Employment, Interest and Money</em>（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>本课程的红线：不预测行情、不给投资建议、不传“内幕消息”</h3>
+      <p class="ctx">基于同样的诚实，本课程立下三条边界。<strong>第一，不预测。</strong>本站不预测股指点位、房价涨跌、汇率走向，也不预测“下半年会不会降准”——凡是把这类断言说得斩钉截铁的内容，你都应该提高警惕（对方要么在骗你，要么在骗自己）。“必涨”“必跌”“崩盘”式断言在本站只会出现在谣言粉碎的引号里。<strong>第二，不给投资建议。</strong>第 17 章讲宏观周期如何影响家庭资产时，只讲通识性的传导逻辑与分散化原则，不推荐任何股票、基金、房产或机构；想学投资实操认知，请移步本站的“股票投资课”专题，那是另一门课的分工。<strong>第三，不传播未经证实的“内幕政策消息”。</strong>重大政策一律以国务院、央行、财政部等官方渠道的公开发布为准，本站只教你“怎么读公开发布的文件”（第 18 章）。“编造传播”虚假经济信息不仅误导决策，而且违法——本课程对该类行为只做批判，绝不复述其话术细节。这三条边界不是免责声明的套话，而是贯穿二十章的写作纪律：每当你看到本站讨论某个变量，它讨论的一定是“机制与读法”，而不是“走势与买卖点”。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行（货币政策公开发布入口）</a> · <a href="https://www.gov.cn/shuju/">中国政府网 · 数据（宏观数据与政策发布聚合）</a> · 萨缪尔森、诺德豪斯《经济学》第19版（文字引用，关于经济学实证与规范之分的框架）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、数据从哪里来：官方统计的公信力与局限</h2>
+    <p class="chapter-sub">信数据的唯一正确姿势：知道它怎么生产出来的</p>
+
+    <article class="view">
+      <h3>中国宏观数据的四个官方入口</h3>
+      <p class="ctx">中国宏观数据有明确的“生产者分工”，记住四个入口，你就超过了绝大多数转发者。<strong>国家统计局（stats.gov.cn）</strong>：GDP、CPI、PPI、失业率、居民收入、70 城房价指数、人口数据——一切“经济社会统计”的总出口，月度数据看“最新发布”栏目，口径疑问看“数据解读”栏目，长时段数据查“年度数据”（统计年鉴在线版）。<strong>中国人民银行（pbc.gov.cn）</strong>：M2 与社会融资规模等金融统计数据、LPR 公告、货币政策执行报告（季度）、金融统计数据新闻发布会实录。<strong>财政部（mof.gov.cn）</strong>：财政收支月度数据、预决算报告、税收政策文件。<strong>国家外汇管理局（safe.gov.cn）</strong>：人民币汇率中间价、外汇储备规模、国际收支平衡表（季度）。这四个网站的发布节奏是公开且规律的（具体日程以各官网公告为准），所有数据免费——任何向你收费提供“同样数据”的人，卖的不是数据，是信息差幻觉。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布</a> · <a href="https://www.pbc.gov.cn/">中国人民银行</a> · <a href="https://www.mof.gov.cn/zhengwuxinxi/caizhengshuju/">财政部 · 财政数据</a> · <a href="https://www.safe.gov.cn/">国家外汇管理局</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国际数据：IMF、世界银行、BIS 各管一摊</h3>
+      <p class="ctx">跨国比较要用国际组织的数据库。<strong>IMF《世界经济展望》（WEO）</strong>：全球与各经济体的增长、通胀数据与预测，每年 4 月、10 月更新两版（英文；引用时务必注明是哪一版）。<strong>世界银行数据平台（data.worldbank.org）</strong>：各国指标的可比数据总入口，例如现价 GDP（指标代码 NY.GDP.MKTP.CD）、CPI 通胀率（FP.CPI.TOTL.ZG），按年份排列、免费下载。<strong>国际清算银行（BIS）</strong>：跨国信贷、房价、实际有效汇率的专业统计，研究金融周期常用（英文）。使用国际数据有两个纪律：第一，注明口径——世界银行的各国数据往往来自各国官方报送再统一转换，与该国官方直接发布的数值可能有出入（汇率折算、财年差异等）；第二，注明时点——同一指标不同年份的数据会在后续版本中被修订，引用时写清数据所属年份与数据库版本。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD">世界银行 · GDP 指标页（英文）</a> · <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG">世界银行 · CPI 通胀指标页（英文）</a> · <a href="https://www.bis.org/statistics/index.htm">BIS · 统计栏目（英文）</a> · <a href="https://www.imf.org/en/Publications/WEO">IMF WEO（英文，反爬页面，以官网为准）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>数据也会“出错”：修订、口径调整与抽样误差</h3>
+      <p class="ctx">官方数据不是刻在石头上的。三类“变动”是正常的：<strong>修订</strong>——GDP 核算有初步核算、最终核实等环节，掌握更全的财务资料后数字会修订，各国皆然（美国 GDP 的例行修订制度同样公开透明）；<strong>口径调整</strong>——统计定义会与时俱进，例如中国 M1 口径的调整、青年失业率不含在校生的口径完善、CPI 篮子权重的定期更新，调整时官方都会说明，新旧口径不能直接混比；<strong>抽样误差</strong>——调查失业率、居民收入等来自抽样调查，天然带有置信区间，小数点后的波动常常不具实质意义。所以“数据打架”时的处理原则是：以官方最新修订与口径说明为准，不把不同口径、不同时点、不同来源的硬凑在一起下结论；对无法核实的“某内部数据”，一律按“编造传播”类谣言处理——不信、不传。国家统计局“数据解读”栏目对每次重要口径调整都有解释文章，遇到疑问先查它。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（修订制度与口径调整说明）</a> · 国家统计局《国民经济和社会发展统计公报》（年度，从“最新发布”列表页进入）</div>
+    </article>
+
+    <article class="view">
+      <h3>流程框：读懂一条经济数据的五步法</h3>
+      <p class="ctx">把本节压缩成一个可随身携带的流程。以后看到任何经济数据新闻（“上月 CPI 同比上涨 X%”“本季度 GDP 同比增长 X%”），按五步走一遍，三十秒内你就能判断这条新闻的真实信息量：</p>
+      <blockquote class="q">
+        <strong>第一步·认指标：</strong>这是什么指标？谁发布的？（CPI/GDP/失业率/社融……发布机构是统计局、央行还是财政部？）<br>
+        <strong>第二步·看口径：</strong>同比还是环比？名义还是实际（不变价）？全国还是分地区？含不含在校生这类口径细节？<br>
+        <strong>第三步·查时点：</strong>数据属于哪个月/季/年？是不是最新一期？历史上是否修订过？<br>
+        <strong>第四步·找基准：</strong>和历史同期比（去年同期、近三年均值）、和目标比（当年政府工作报告的年度目标）、和国际比（注意口径差异）——没有基准的数字没有意义。<br>
+        <strong>第五步·追原文：</strong>标题党层层转手后信息必然失真，养成回官方发布页看原文与解读的习惯（统计局“数据解读”、央行发布会实录、财政部数据说明）。
+        <span class="qsrc">—— 本课程通用流程框，第 16 章将按指标逐个展开</span>
+      </blockquote>
+      <p class="ctx">这五步同样适用于识破坏数据新闻：凡是“认不出指标、说不清口径、找不到时点、给不出基准、追不到原文”的报道，无论标题多惊悚，都可以直接降级处理。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布（一手发布页）</a> · 曼昆《经济学原理（宏观分册）》第10版（实际变量与名义变量之分的教学框架，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、先打三针疫苗：数据新闻里最常见的坑</h2>
+    <p class="chapter-sub">同比环比、名义实际、总量人均——三对概念混一次，结论就反一次</p>
+
+    <article class="view">
+      <h3>三对易混概念对照表</h3>
+      <p class="ctx">下面这张表值得截图保存。左侧是概念对，中间是区别，右侧是混用后的典型错误——这三种错误覆盖了日常财经新闻误读的大多数场景：</p>
+      <table class="cmp">
+        <tr><th>概念对</th><th>区别</th><th>混用的典型错误</th></tr>
+        <tr><td><strong>同比 vs 环比</strong></td><td>同比＝和去年同一时期比（2026年8月 vs 2025年8月），剔除季节因素；环比＝和上一个相邻时期比（8月 vs 7月），更灵敏但受季节干扰</td><td>用环比的跳变当趋势（春节月份的消费环比大跌是季节规律，不是“消费崩了”）；或把环比增速（经季节调整后的年化率，美国常用）与同比增速直接对比</td></tr>
+        <tr><td><strong>名义 vs 实际</strong></td><td>名义＝按当期价格算；实际＝剔除价格因素（不变价）。GDP 增速通常指实际增速，收入增长要对比 CPI 才知道购买力变化</td><td>“今年工资涨了5%，日子应该更好过了”——若同期物价涨幅更高，实际购买力反而下降</td></tr>
+        <tr><td><strong>总量 vs 人均 / 全国 vs 地区</strong></td><td>总量描述经济体量，人均描述平均富裕程度；全国数据是平均数，掩盖地区与行业分化</td><td>用总量排名推断个人收入水平（“全球第二大经济体”≠人均高收入）；或拿一个城市的房价指数代表“全国房价”</td></tr>
+      </table>
+      <p class="ctx">还有一个隐藏坑：<strong>平均数与中位数</strong>。居民收入数据里，平均数容易被高收入组拉高，统计局同时发布的中位数往往更贴近“普通人”的位置——两个数一起看，才不会被平均。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（名义与实际的区分框架，文字引用） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（同比环比、平均数中位数等口径解释）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>清单：常用指标去哪里查、看什么</h3>
+      <p class="ctx">按“五步法”的第一步与第五步，给你一张速查清单——遇到指标名，直接对号入座找官方入口（发布频率以各官网当期为准）：</p>
+      <ul>
+        <li><strong>GDP</strong>：国家统计局“最新发布”/年度《统计公报》——看不变价同比增速、分产业结构；</li>
+        <li><strong>CPI / PPI</strong>：统计局月度发布——看同比、环比、核心 CPI（剔除食品与能源）与八大类分项；</li>
+        <li><strong>城镇调查失业率</strong>：统计局月度发布——看全国值、31 个大城市值、分年龄组（注意不含在校生口径）；</li>
+        <li><strong>M2 / 社会融资规模</strong>：央行“金融统计数据”月度发布——看 M2 同比增速、社融存量增速与新增结构；</li>
+        <li><strong>LPR</strong>：央行 LPR 公告栏目每月发布——看 1 年期与 5 年期以上两个品种的变动；</li>
+        <li><strong>财政收支 / 赤字率</strong>：财政部月度数据与年度预算报告——看税收增速、支出进度、当年赤字安排；</li>
+        <li><strong>70 城房价指数</strong>：统计局月度发布——看环比同比、新建与二手分开、一二三线分层；</li>
+        <li><strong>汇率 / 外汇储备 / 国际收支</strong>：外汇局——看中间价走势、储备规模、经常账户差额；</li>
+        <li><strong>进出口</strong>：海关总署月度发布——看美元计与人民币计两套口径、出口进口分项；</li>
+        <li><strong>跨国对比</strong>：世界银行数据平台、IMF WEO——看年份、版本与口径说明。</li>
+      </ul>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布</a> · <a href="https://www.gov.cn/shuju/">中国政府网 · 数据（各部委数据聚合速查）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、常见误区预告：三个几乎人人踩过的坑</h2>
+    <p class="chapter-sub">先打个预防针——第 19 章《宏观谣言粉碎与反焦虑》会把它们连同更多话术一起彻底拆解</p>
+
+    <article class="view">
+      <h3>误区一：“GDP 增长＝国家变富＝我变富”？</h3>
+      <p class="ctx">GDP 衡量的是<strong>一年内新生产的最终产品与服务的流量</strong>，不是财富存量，更不是幸福指数。三个反例：重复建设修了又挖的路，每一铲子都计入 GDP；家务劳动、志愿服务创造真实福祉却不计入 GDP（因为不通过市场交易）；污染企业在创造 GDP 的同时透支环境，治理污染的花费又再次计入 GDP。此外，GDP 总量大不等于人均高，人均高也不等于分配均匀——统计局同时发布居民收入的中位数与分组数据，就是为了呈现分布而不只是平均。所以正确姿势是：GDP 是重要的“生产体温计”，但要和居民收入、就业、物价、环境等指标放在一起读。把 GDP 当成财富本身，是流传最广的宏观误区，第 1 章会用“存量与流量”的框架根治它。</p>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="三个宏观误区插画：左侧一个发光几何账单符号被无脸人物误当成金币山，中间一台几何印钞机与失控的价格螺旋被同一个人物用放大镜审视，右侧一艘几何货轮载着单向箭头被误读为天平两端失衡，橄榄绿主色配琥珀色警示点缀" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第10章（GDP 衡量的局限，文字引用） · <a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局 · 年度数据（居民收入中位数与分组数据入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>误区二：“央行印钞＝物价必然失控”？</h3>
+      <p class="ctx">“通胀无论何时何地都是一种货币现象”——弗里德曼的这句名言（1968 年前后多次阐述，属学术上有争议的著名论断）常被断章取义成“印钞必致恶性通胀”。真实的机制要复杂得多：央行扩表增加的是<strong>基础货币</strong>，而社会上的购买力主要靠商业银行信贷派生形成（第 4 章的“水塔-水管”模型）；货币增多若对应着产出增长与流通速度下降，物价未必同步上涨——2008 年后主要经济体大规模量化宽松并未立即引发高通胀，而 2021-2022 年全球通胀高企又是供给冲击、需求恢复与货币宽松多因素叠加（各国央行事后复盘口径公开可查）。“央行一印钞，你的钱就变毛”式的“货币崩溃论”，忽略了传导的中间环节与历史证据，属于典型的单因恐慌叙事。反过来，“通胀与货币完全无关”同样不成立。这门课的做法是：给你完整的货币→信贷→物价链条（第 2、4、6 章），让你自己有能力对这类断言作出判断，而不是替你下结论。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：曼昆《经济学原理（宏观分册）》第10版 第29-30章（货币制度与货币增长框架，文字引用） · Friedman (1968), “The Role of Monetary Policy”, <em>American Economic Review</em>（英文，文字引用；该论断的学术争议如实标注）</div>
+    </article>
+
+    <article class="view">
+      <h3>误区三：“贸易顺差＝赚钱，逆差＝吃亏”？</h3>
+      <p class="ctx">把国际贸易当成做买卖、顺差是“赚”逆差是“赔”，是重商主义时代的旧地图（经济学史上有名的一场大论战，亚当·斯密与后来的经济学家对重商主义的批判是教科书标配内容）。现代核算视角下，国际收支平衡表的经常账户与资本金融账户互为镜像：一国的顺差，对应的必然是对外净资产的增加或资本的净流出——钱没有“赚没了”，而是换了存在形式。美国长年贸易逆差与其美元储备货币地位、国内储蓄投资结构相关；中国的顺差结构也在随产业升级与内需扩大而演变（国际收支数据以国家外汇管理局季度发布为准）。简单地把顺差等同于“赢”，就会推导出“出口越多越好、进口越少越好”的错误结论，也看不懂“扩大进口”“内需主导”类政策的逻辑。第 11 章会用比较优势与国民储蓄恒等式（示意级）把这笔账算清楚。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.safe.gov.cn/">国家外汇管理局（国际收支平衡表季度发布入口）</a> · 萨缪尔森、诺德豪斯《经济学》第19版（比较优势与国际贸易框架，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、怎么学这门课：结构、徽章与三条建议</h2>
+    <p class="chapter-sub">二十章的固定体例，是为了让你把精力留给内容本身</p>
+
+    <article class="view">
+      <h3>每章的固定结构：九段式流水线</h3>
+      <p class="ctx">每一章都遵循同一结构，读熟一章就读熟了全部：<strong>①免责红框</strong>（边界声明，每章开头）→<strong>②本章目标黄框</strong>（学完你能做什么，约25分钟）→<strong>③正文卡片</strong>（每章 6-9 节、15-20 张卡片，每张卡片讲透一个小问题，卡末标注来源）→<strong>④流程框与对照表</strong>（每章至少一个可直接套用的流程或表格）→<strong>⑤自查清单</strong>（“讲给朋友听试试”的理解性问题）→<strong>⑥谣言粉碎卡</strong>（每章至少拆解一个流行错误说法，话术全部放进引号批判）→<strong>⑦要点速览</strong>（一段话压缩全章）→<strong>⑧翻页导航</strong>（上一章/下一章）→<strong>⑨页脚版本说明</strong>（依据与时点）。这个结构的设计意图：目标框让你带着问题读，流程框让你读完能用，清单和谣言卡让你自检，速览让你复习。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版（概念→应用→争议的教学编排参照，文字引用） · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（“先给口径再给结论”的官方解读范式）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>四级来源徽章：每个说法都能查户口</h3>
+      <p class="ctx">本课程所有卡片末尾都标注来源，按可信层级分四级徽章：<strong>🏛 官方文件（c-v）</strong>——国家统计局、中国人民银行、财政部、海关总署、外汇局，以及 IMF、世界银行、BIS、OECD 的官方数据与报告，是数字与事实的最终依据；<strong>📘 权威手册（c-m）</strong>——曼昆《经济学原理》、萨缪尔森《经济学》等经典教科书，央行《货币政策执行报告》，用于概念定义与教学框架；<strong>📋 学术研究（c-a）</strong>——同行评审论文（NBER 工作论文、AER/QJE/Economica 等），注明作者年份，英文来源标注“（英文）”，用于争议与前沿问题；<strong>🏷 商业科普（c-p）</strong>——财经媒体与机构报告，明确标注，只用于呈现“媒体如何报道”，事实与数字一律回到前三级。使用规则：每张卡片至少两个权威来源；有学派争议的问题（通胀成因、房价长期走势、MMT 等）如实并列双方；所有数据注明官方来源与统计时点；中外对比提示口径差异。你可以用这套徽章体系去检验任何一篇财经文章——“查户口”的能力，比记住任何一个结论都值钱。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/">国家统计局</a> · <a href="https://www.pbc.gov.cn/">中国人民银行</a> · 曼昆《经济学原理（宏观分册）》第10版、萨缪尔森《经济学》第19版（教科书口径，文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>三条学习建议：通读一遍、按新闻查阅、讲给别人听</h3>
+      <p class="ctx"><strong>建议一：先通读一遍第一部分（1-5章）。</strong>五个核心变量是全课程的地基，尤其“名义与实际”“存量与流量”“传导链”三个思维工具，后面每一章都在复用。地基期大约两个晚上。<strong>建议二：之后按新闻查阅。</strong>这门课的常态用法不是“上课”，而是“查字典”：看到降准新闻翻第 6 章，看到 CPI 公布翻第 2 章，看到汇率波动翻第 5 章，看到“重磅政策信号”翻第 18 章，看到恐慌刷屏翻第 19 章。第 16 章的指标总表就是为你设计的“新闻→章节”索引。<strong>建议三：每章读完做“讲给朋友听”测试。</strong>自查清单的问题全部是理解性而非记忆性的——能用自己的话、不带术语地讲清楚，才算真的学会；讲不清楚的卡片，回去重读。学习经济学的最大回报不是谈资，而是一副“不慌”的心肠：数据有波动、政策有调整、周期有起落，看懂机制的人，才不会被每一次标题党牵着情绪走。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：曼昆《经济学原理（宏观分册）》第10版 第1章（“像经济学家一样思考”的方法论，文字引用） · <a href="https://www.gov.cn/shuju/">中国政府网 · 数据（按新闻反查数据的官方聚合入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+
+    <article class="view">
+      <h3>谣言粉碎：关于宏观经济的三个最常见说法</h3>
+      <p class="ctx"><strong>谣言一：“GDP 增速跟我没关系，那是国家的事。”</strong>——恰恰相反，GDP 增速是就业与收入环境的总背景板：产出扩张期企业扩招、涨薪普遍，产出收缩期招聘冻结、议价能力下降，你换工作与谈薪的时机选择都受它影响。它不决定你的个体命运，但决定你逆风还是顺风。<strong>谣言二：“官方数据都是编的，你看菜价就知道。”</strong>——这是把“体感与统计的温差”偷换成“数据造假”。温差有明确的技术解释：个人消费篮子与全国篮子不同、涨价记忆强于降价记忆、房价不计入 CPI 等（第二节讲过）；而统计体系有公开的核算方法、修订制度与口径说明（统计局“数据解读”栏目全部免费可查）。当然，任何统计都有局限，本课程第五节教你用“五步法”核数据——但“有局限”与“编造传播”是两回事，用前者证明后者，是恐慌话术的惯用偷换。<strong>谣言三：“经济要崩了，赶紧把钱都换成黄金美元。”</strong>——“崩溃”叙事是流量生意的标准配方：先渲染极端结局（“货币崩溃论”式断言），再制造紧迫感（“最后窗口期”），最后导流变现（卖课、卖金、开户返利）。拆解它只需三问：断言者给出可核查的传导机制了吗？“崩溃”定义与历史基准是什么？他最后让你买什么？宏观数据有波动是常态，用波动论证“崩溃”、再用“崩溃”向你兜售资产，这套组合拳在第 19 章会被逐式拆解。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局 · 数据解读（核算方法与口径公开说明）</a> · <a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 · 最新发布（月度数据一手发布页）</a> · 曼昆《经济学原理（宏观分册）》第10版（体感通胀与统计通胀差异的教学解释，文字引用）</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>宏观经济学与微观经济学的研究对象有什么区别？“天气”与“一滴雨”的比喻分别指什么？</li>
+        <li>什么是“合成谬误”？举一个挤兑或降价的例子说明为什么整体不等于个体之和。</li>
+        <li>宏观经济的三大总量是什么？分别用什么指标衡量？各由哪个机构发布？</li>
+        <li>GDP 的定义里“最终产品”“市场价值”“一定时期”三个限定词分别在排除什么？</li>
+        <li>名义 GDP 与实际 GDP 的区别是什么？为什么新闻里的“GDP 增速”通常指实际增速？</li>
+        <li>你的“体感通胀”与 CPI 统计数字对不上的三个常见原因是什么？房价为什么不在 CPI 篮子里？</li>
+        <li>城镇调查失业率与原来的登记失业率口径差在哪？“非劳动力”指哪些人？</li>
+        <li>画出利率传导链：央行政策取向 → ？→ ？→ 你的房贷月供。LPR 每月什么时候发布、在哪查？</li>
+        <li>中国财政的“四本预算”是哪四本？个税起征点、养老金上调分别落在哪条财政传导链节点上？</li>
+        <li>为什么说“衰退从哪天开始”在美国是事后认定的？NBER 的认定机制说明了什么？</li>
+        <li>本课程的三条边界（不预测、不荐股、不传内幕消息）分别防的是什么？</li>
+        <li>中国宏观数据的四个官方入口分别是什么网站、各管哪些指标？</li>
+        <li>“读懂一条经济数据的五步法”是哪五步？每一步分别在防哪种误读？</li>
+        <li>同比与环比、名义与实际、总量与人均三对概念各是什么区别？混用会得出什么典型错误结论？</li>
+        <li>官方数据的三类正常“变动”（修订、口径调整、抽样误差）各是什么？数据“打架”时的处理原则是什么？</li>
+        <li>“GDP＝财富”“印钞＝物价必然失控”“顺差＝赚钱”三个误区，各用一句话指出错在哪。</li>
+        <li>四级来源徽章分别代表什么？遇到“🏷 商业科普”级来源引用数字时，正确的动作是什么？</li>
+        <li>恐慌话术的“三步配方”（渲染极端结局→制造紧迫感→导流变现）是什么？拆解“经济要崩”类断言的三问是哪三问？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>宏观经济学研究经济整体的“天气”而非单滴雨，核心是三大总量——产出（GDP，国家统计局核算，实际增速剔除价格因素）、物价（CPI 八大类篮子按月发布，体感与统计的温差来自篮子差异、记忆偏差与房价口径）、就业（城镇调查失业率按国际三分法抽样，青年组 2023 年起不含在校生）；宏观通过可辨认的链条传导进你的生活——央行政策取向→政策利率→LPR（每月 20 日左右发布）→房贷月供，财政收支→税收缴费→转移支付→可支配收入；本课程只教“看懂”不教“预测”，因为连 IMF、NBER 都只能事后认定拐点——三条边界：不预测行情、不给投资建议、不传播“内幕政策消息”；数据只认四个官方入口（统计局、央行、财政部、外汇局）与三大国际库（IMF WEO 每年4月/10月版、世界银行、BIS），修订、口径调整与抽样误差是正常现象，处理原则是以官方最新口径为准；读任何数据新闻走五步法——认指标、看口径、查时点、找基准、追原文；三针疫苗——GDP≠财富（存量流量之分）、印钞≠必然失控（基础货币与信贷派生之分，“货币崩溃论”属单因恐慌叙事）、顺差≠赚钱（国际收支镜像核算）；四级来源徽章🏛📘📋🏷让每个说法都能查户口；恐慌话术三步配方（渲染崩溃→制造紧迫→导流变现）用三问拆解；学习路径：通读第一部分打地基→按新闻查字典→讲给朋友听自检。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>宏观经济课 · 全部目录</a>
+    <a href="../01-gdp/"><span class="dir">第1章 →</span>GDP：衡量一国的财富</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 导论 · 依据国家统计局、中国人民银行、财政部、国家外汇管理局、IMF、世界银行、BIS 等官方数据与报告，曼昆《经济学原理》、萨缪尔森《经济学》等经典教科书，中国人民银行《中国货币政策执行报告》，以及 Phillips（1958）、Friedman（1968）、Keynes（1936）等相关学术研究整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 不预测具体行情与政策走向 · 数据以官方统计口径为准并注明时点 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

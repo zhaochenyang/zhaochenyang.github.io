@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第16章 看懂经济指标：数据怎么读 — 宏观经济课</title>
+<style>
+  :root{--accent:#4d7c0f;--accent-deep:#3f6212;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  article.view h4{margin:14px 0 6px;font-size:15px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--bg-soft);color:var(--accent-deep);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#f7fee7;color:var(--accent-deep);border:1px solid #d9f99d;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">宏观经济课 · 第16章 · 宏观与你</div>
+  <h1>看懂经济指标：数据怎么读</h1>
+  <p>GDP、CPI、PMI、M2、社融——新闻标题里每个缩写都在争夺你的注意力。本章给你一张指标地图、一本发布日历、一套口径常识和一个五问框架，让你读数据不再靠感觉</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../15-newtech/">← 第15章：新经济：科技、AI与数字化</a>
+    <a href="../17-asset/">第17章：宏观与家庭资产 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">指标地图</a>
+    <a class="anchor" href="#s2">发布日历</a>
+    <a class="anchor" href="#s3">同比与环比</a>
+    <a class="anchor" href="#s4">PMI</a>
+    <a class="anchor" href="#s5">CPI</a>
+    <a class="anchor" href="#s6">货币与社融</a>
+    <a class="anchor" href="#s7">数据修订</a>
+    <a class="anchor" href="#s8">五问框架</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为经济教育科普，仅供学习与参考，不构成投资建议或政策预测；本章教"怎么读官方数据"，不据此对行情与政策走向做任何预判；数据以国家统计局、中国人民银行、海关总署及 IMF 等官方统计口径为准并注明时点；不传播未经证实的"内幕数据"，一切以官方正式发布为准。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用一张地图说清八个核心指标各自回答什么问题，不再把它们混为一谈；②知道中国主要经济数据的官方发布节奏与查询入口，养成"等官方数据"的习惯；③分清同比、环比、季调、折年率四种口径，识破"换个口径换个结论"的把戏；④读懂 PMI 的荣枯线与"调查指标"属性；⑤理解 CPI 篮子的构成逻辑与"体感通胀"背离的原因；⑥分清 M0/M1/M2 与社融的关系，知道"M2 高≠通胀"；⑦把"数据修订"理解为统计常态而非造假信号；⑧掌握一套拿到任何数据都能套用的"五问"框架。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>第一节的指标地图建议收藏当速查表；第八节的五问框架是全章的浓缩，也是第18章读政策文本、第19章粉碎谣言的通用工具。学完本章，你可以试着做一次实操：在统计局发布月度数据的当天，亲自读一遍新闻稿，再用五问走一遍——这比读十篇解读文章更有效。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、指标地图：每个数字回答什么问题</h2>
+    <p class="chapter-sub">经济指标不是成绩单上的总分，而是一组各司其职的仪表盘——先搞清每块表量的是什么，再谈读数高低</p>
+
+    <article class="view">
+      <h3>一张表看懂八个核心指标</h3>
+      <p class="ctx">普通人常看的宏观数据大致八个，每个回答一个不同的问题。把它们放进一张表，混用指标的错误就会少一大半：</p>
+      <table>
+        <tr><th>指标</th><th>回答的问题</th><th>量纲</th><th>发布方与频率</th></tr>
+        <tr><td>GDP</td><td>经济总量在变大还是变小</td><td>流量（季度/年度）</td><td>国家统计局，季度初值+年度核算</td></tr>
+        <tr><td>CPI</td><td>居民消费价格在涨还是跌</td><td>价格指数（月度）</td><td>国家统计局，每月上旬</td></tr>
+        <tr><td>PPI</td><td>工厂出厂价格在涨还是跌</td><td>价格指数（月度）</td><td>国家统计局，与 CPI 同期</td></tr>
+        <tr><td>PMI</td><td>企业经理人对下个月景气的感受</td><td>扩散指数（月度）</td><td>统计局与物流采购联合会、财新（两个体系）</td></tr>
+        <tr><td>M2</td><td>经济体里的货币存量有多少</td><td>存量（月度）</td><td>中国人民银行，每月中旬金融数据</td></tr>
+        <tr><td>社融</td><td>实体经济从金融体系拿到了多少钱</td><td>存量+当月增量（月度）</td><td>中国人民银行</td></tr>
+        <tr><td>城镇调查失业率</td><td>劳动力市场松还是紧</td><td>比率（月度）</td><td>国家统计局</td></tr>
+        <tr><td>进出口</td><td>对外贸易的规模与方向</td><td>流量（月度）</td><td>海关总署</td></tr>
+      </table>
+      <p class="ctx">这张表里藏着两条常用分类线。第一条：<strong>价格指标与数量指标</strong>——CPI/PPI 量价格，GDP/进出口量数量；新闻说"经济数据超预期"，你要先分清超的是哪类。第二条：<strong>存量与流量</strong>——M2 是存量（某个时点上有多少钱），GDP 和进出口是流量（一段时期内发生了多少）；拿存量的增速去比流量的增速，是最常见的张冠李戴。</p>
+      <div class="fig"><img src="../assets/img-16-1.png" alt="一块抽象的几何仪表盘，上面分布着八个形状各异的发光表盘，每个表盘指针指向不同方向，一个无脸人物正逐一查看，象征经济指标各司其职" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布栏目</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.pbc.gov.cn/">中国人民银行官网（金融统计数据发布）</a> · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》"宏观经济数据"章（教科书对三大指标的标准讲法）</div>
+    </article>
+
+    <article class="view">
+      <h3>指标之间的关系：一条产业链式的逻辑链</h3>
+      <p class="ctx">八个指标不是孤立读数，它们之间有传导关系，串起来就是一条观察经济的逻辑链：<strong>货币与社融（钱的供给）→ PMI（企业的当下感受与预期）→ 进出口与生产（订单与产出）→ GDP（总量的结果）→ CPI/PPI（价格的反应）→ 失业率（劳动力市场的滞后确认）</strong>。链条的顺序大体对应"领先—同步—滞后"的关系：金融数据与 PMI 偏领先，生产与 GDP 偏同步，失业率偏滞后——第8章讲经济周期时已经铺垫过这个结构。</p>
+      <p class="ctx">理解链条有两个实用价值。其一，<strong>看数据要看"接力"而不是看"单棒"</strong>：单月社融放量说明不了趋势，要看它有没有接力传导到 PMI 回升、再到生产与就业改善；链条断了哪一环，问题就在哪一环。其二，<strong>识破"挑指标"话术</strong>：同一时期，悲观者挑下滑的指标、乐观者挑回升的指标，各自都能拼出"证据确凿"的故事。完整链条摆在那里，谁在挑数据一目了然。这不是要求你成为经济学家，而是要求你至少知道每块仪表盘量的是什么、彼此怎么咬合。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：曼昆《宏观经济学》领先/同步/滞后指标章节（教科书口径） · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（官方对数据关系的解释文章）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、发布日历：去哪里等官方数据</h2>
+    <p class="chapter-sub">与其在自媒体里等二手解读，不如记住官方发布节奏——数据出来的那一刻，你和所有分析师站在同一起跑线</p>
+
+    <article class="view">
+      <h3>中国数据的月度节奏</h3>
+      <p class="ctx">中国主要宏观数据的发布有稳定的月度节奏（以官方当年发布日程为准，统计局官网每年公布数据发布日程表）：<strong>每月上旬</strong>，国家统计局发布上月 CPI、PPI；<strong>每月中旬</strong>，中国人民银行发布上月金融统计数据（M2、社融、信贷），国家统计局发布上月经济数据（工业生产、消费、投资、城镇调查失业率——俗称"月度经济数据一揽子"）；<strong>每月中下旬</strong>，海关总署发布上月进出口数据（实际上海关数据常在每月上旬至中旬先行发布）；<strong>每月月末</strong>，统计局与物流采购联合会发布当月官方制造业与非制造业 PMI，财新 PMI 则在次月初发布（两套体系，样本不同，见第四节）；<strong>每季度</strong>，统计局发布 GDP 初步核算与居民收入支出数据；<strong>每年年初</strong>，发布上一年度国民经济和社会发展统计公报——这是全年数据的权威汇总。</p>
+      <p class="ctx">查询入口只需要记三个：<strong>国家统计局</strong>（stats.gov.cn，数据发布栏目发新闻稿，国家数据平台 data.stats.gov.cn 可查历年序列，官网真实、访问需浏览器）、<strong>中国人民银行</strong>（pbc.gov.cn，金融数据与货币政策执行报告）、<strong>中国政府网</strong>（gov.cn，政策文件与重大发布汇总）。把统计局的发布日程存进日历，你就拥有了和机构研究员同等的"第一时间"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布栏目（含年度数据发布日程）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://data.stats.gov.cn/">国家数据平台（官方统计数据库，可查月度/年度序列；官网真实，需浏览器访问）</a> · <a href="https://www.pbc.gov.cn/">中国人民银行官网</a></div>
+    </article>
+
+    <article class="view">
+      <h3>国际对照：美国数据的"高光时刻"</h3>
+      <p class="ctx">读财经新闻绕不开美国数据，因为美联储的政策反应会外溢到全球（第6章讲过传导）。美国数据同样有固定日历：<strong>每月第一个周五</strong>，劳工统计局发布上月非农就业报告——全球金融市场最紧张的半小时之一；<strong>每月中旬</strong>，劳工统计局发布 CPI；<strong>每年 1、2、3、4、6、7、9、11 月</strong>，美联储召开八次议息会议，会后发布声明、季度发布经济预测（点阵图），声明全文与发布会实录都在美联储官网公开（英文；官网真实可达）；<strong>每季度</strong>，经济分析局（BEA）发布 GDP 的初值、修正值与终值——注意"同一季度发三次、每次数字可能不同"，这正是第七节"修订是常态"的活教材。</p>
+      <p class="ctx">中外数据对比时，口径提示不可省略：美国失业率与我国城镇调查失业率都遵循国际劳工组织（ILO）的就业统计框架，但劳动力范围、抽样框与发布细节存在差异；美国 GDP 常报"环比折年率"，我国常报"同比"——两种口径的数字不能直接比大小（第三节详细讲）。IMF Data Mapper 提供各国主要指标的同框对比（英文；官网真实，抓取工具限流，浏览器可达），是免费的国际比较工具。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策声明与纪要页（英文）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.imf.org/external/datamapper/">IMF Data Mapper 跨国指标对比（英文；官网真实，抓取限流，浏览器可达）</a> · <a href="https://www.ilo.org/">国际劳工组织 ILO（就业统计国际框架，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、同比、环比、季调与折年率：同一个经济的四张面孔</h2>
+    <p class="chapter-sub">"增速回落"还是"动能增强"？两种说法可能出自同一组数据——差别只在口径</p>
+
+    <article class="view">
+      <h3>四种口径分别量什么</h3>
+      <p class="ctx"><strong>同比</strong>：和去年同月/同季比。优点是自动消除季节性（今年 2 月比去年 2 月，春节因素两边都有），缺点是反应迟钝——今年的数字背着去年全年的"旧行囊"。<strong>环比</strong>：和上个月/上季度比。优点是灵敏、能第一时间看到拐点，缺点是受季节性干扰大（2 月春节放假，环比几乎所有工业指标都下滑，这不代表经济变差）。<strong>季节调整</strong>：统计上用模型把季节性规律剥掉之后再算环比，"环比（季调后）"才是可用的月度动能指标。<strong>折年率</strong>：美国习惯把季调后的季度环比"假设按这个速度跑满一年"换算成年化数字（季调环比×4 的复利版），所以美国"GDP 环比折年率 2%"与中国"GDP 同比 5%"是两个量纲，直接比大小毫无意义。</p>
+      <p class="ctx">中国官方口径的习惯：CPI/PPI、工业增加值、社零、GDP 增速日常以<strong>同比</strong>为主；统计局同时发布部分指标的环比（季调后）数据；央行金融数据看<strong>当月增量</strong>（社融增量、新增信贷）与<strong>存量同比增速</strong>。读新闻稿时留意标题用的是哪个口径——同一份数据，同比在降、环比季调在升的情况完全可能同时出现，两者说的都是真话，只是各自回答不同的问题：同比答"和去年比怎么样"，环比答"最近的势头怎么样"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：曼昆《宏观经济学》宏观经济数据的测量章节（教科书口径） · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（同比/环比口径的官方解释文章检索入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>基数效应：同比数字里的"幽灵"</h3>
+      <p class="ctx">同比口径有个陷阱叫<strong>基数效应</strong>：今年的同比增速，一半取决于今年，一半取决于去年同期的"底子"。示例（纯教学算例）：某指标去年 1 月因特殊原因暴跌 10%，今年 1 月只是平平恢复，同比却可能显示"大涨 11%"——增长的"功劳"一大半是去年跌出来的坑。反过来，去年高增长的行业，今年哪怕绝对水平不差，同比也可能难看。2020—2022 年全球疫情期间的数据把基数效应演绎到极致：各国月度数据大幅跳水又反弹，同比数字忽高忽低，两年平均增速（几何平均）因此成为那段时间更可靠的读法——这也是官方解读中当年反复出现的口径。</p>
+      <p class="ctx">实操纪律有三条：看到异常漂亮或异常难看的同比数字，<strong>先查去年同期发生了什么</strong>；关注官方是否同时给出"两年平均""季调环比"等辅助口径；对单月同比的波动保持钝感，<strong>用三个月以上的连续读数判断趋势</strong>。基数效应不是数据质量问题，而是同比口径的固有属性——理解它，就免疫了一半的标题党。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（基数效应与两年平均增速的官方解释口径）</a> · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》实际变量与名义变量章节（教科书口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、PMI：荣枯线 50 的正确打开方式</h2>
+    <p class="chapter-sub">它是每个月最早出炉的经济数据，也因此是最容易被过度解读的数据</p>
+
+    <article class="view">
+      <h3>PMI 是"调查"不是"实测"</h3>
+      <p class="ctx">采购经理指数（PMI）的做法是：向企业采购经理发问卷，问五类问题——新订单、生产、从业人员、供应商配送时间、原材料库存——比上月"增加/持平/减少"，再把答案加权成 0—100 之间的扩散指数。关键在于它的本质：<strong>PMI 量的不是经济活动的绝对水平，而是受访者对"比上月好还是差"的主观判断的分布</strong>。50 的分界线（荣枯线）意味着：指数高于 50，回答"变好"的企业多于回答"变差"的；低于 50 则相反。所以"PMI 49.8"不表示经济萎缩了 0.2%，只表示感受转差的企业略占多数——把荣枯线两侧的数字当成增长率来读，是最常见的误读。</p>
+      <p class="ctx">中国有两套广受关注的 PMI 体系：<strong>官方 PMI</strong>（国家统计局与中国物流采购联合会联合发布，样本约数千家企业，大中型企业占比高）与<strong>财新 PMI</strong>（财新与标普全球联合编制，样本偏向出口型与中小企业）。两套体系样本结构不同，同一个月一个高于 50、一个低于 50 并不奇怪——它们分别反映大企业部门与中小出口型企业的景气感受，拼在一起才是完整图景。看到"两套 PMI 打架"的新闻，先想样本差异，再想谁在挑数据。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 PMI 月度发布（官方新闻稿含编制说明链接）</a> · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》领先指标章节（教科书口径；扩散指数的标准解释）</div>
+    </article>
+
+    <article class="view">
+      <h3>PMI 的长处与短处：快的代价</h3>
+      <p class="ctx">PMI 的最大长处是<strong>快</strong>：月末发布、覆盖当月，比 GDP（季度、滞后）和工业数据（月中、滞后）都早，因此被称作经济的"前哨"。分项指数还能提供结构信息：新订单分项反映需求端，生产分项反映供给端，新出口订单反映外需，购进价格分项常常领先 PPI——分析师用分项拼出"需求在恢复还是库存在堆积"的判断。</p>
+      <p class="ctx">短处同样来自它的方法：<strong>主观调查+扩散指数</strong>决定了它只适合看方向、看动能，不适合算规模、算增速；情绪因素会放大它的短期波动——政策利好频出的月份，经理人的乐观会直接抬升指数，与经济实况存在温差。因此机构的标准用法是把 PMI 当"初筛信号"：连续三个月同向变动才有趋势含义，单月穿越荣枯线（尤其是 49.x 与 50.x 之间）基本没有信息量。给普通人的纪律：<strong>看 PMI 的三个月移动方向，别看单月与 50 的距离</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（PMI 编制方法与解读口径）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.imf.org/external/datamapper/">IMF Data Mapper（国际指标对比，英文；官网真实，抓取限流，浏览器可达）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、CPI 的篮子：为什么"体感通胀"和统计数字不一样</h2>
+    <p class="chapter-sub">"统计局说物价没涨，可我买菜明明贵了"——这场永恒的争论，一半是口径问题，一半是心理问题，两边都值得讲清楚</p>
+
+    <article class="view">
+      <h3>篮子里有什么：权重、更新与"猪周期"</h3>
+      <p class="ctx">CPI（居民消费价格指数）量的是一个固定"消费篮子"的价格变化。中国的篮子按居民消费支出调查确定八大类：食品烟酒、衣着、居住、生活用品及服务、交通通信、教育文化娱乐、医疗保健、其他用品及服务（国家统计局编制方案口径，各类权重以官方最新公布为准；官方每五年做一次基期轮换、结合住户调查更新权重）。两个中国特色的看点：其一，<strong>食品权重相对较高</strong>，而食品价格里猪肉波动最剧烈——"猪周期"因此能显著推动 CPI 单月起伏，官方解读常用"扣除食品和能源的核心 CPI"来剥离这种噪音；其二，<strong>居住类不含购房支出</strong>——买房在统计上算投资不算消费，CPI 里的"居住"主要是房租、水电燃料与自有住房的虚拟租金。"房价涨了 CPI 怎么没反应"的疑问，答案就在口径里。</p>
+      <p class="ctx">读 CPI 的三个习惯：看<strong>同比</strong>判断物价总水平的大方向；看<strong>核心 CPI</strong>（扣除食品能源）判断需求侧的真实冷暖；看<strong>分项表</strong>找涨跌的具体来源（新闻稿附表列出各大类涨跌）。三个数字合起来，比任何一个孤立的标题都完整。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局 CPI 月度发布（新闻稿含八大类分项数据）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（CPI 编制方案与基期轮换的官方说明检索入口）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>体感背离的四个原因：每个人都有自己的 CPI</h3>
+      <p class="ctx">统计口径之外，"体感"与"数字"的背离还有四个机制。<strong>其一，个人篮子≠平均篮子</strong>：CPI 是全国居民的平均权重，你的支出结构是你自己的——家有学龄儿童，教育支出权重远高于平均，教育涨价时你的"个人 CPI"就会跑赢官方数字。<strong>其二，损失厌恶</strong>：行为经济学的大量研究显示，人对涨价的记忆强度远大于降价（Kahneman 与 Tversky 的前景理论口径，学术研究，英文）——猪肉涨了记一年，手机降了理所当然。<strong>其三，高频品放大感受</strong>：蔬菜水果天天买，价格波动被反复感知；家电汽车几年买一次，降价再多也难进记忆。<strong>其四，质量调整不可见</strong>：同价位的手机性能翻倍，统计上算"价格没涨、质量提升"，体感上你根本注意不到这笔隐形收益。</p>
+      <p class="ctx">结论不是"体感都是错觉"或"统计都是粉饰"，而是：<strong>CPI 回答的是"全国平均篮子贵了多少"，你的体感回答的是"我的篮子贵了多少"——两个问题本来就不是一个问题</strong>。成熟的读法是：用自己的大额支出（房租、教育、医疗）对照官方分项数据交叉验证，而不是用平均数否认个人经验，也不是用个人经验否认平均数。官方对 CPI 编制方法的说明是公开的（统计局官网可检索"居民消费价格调查方案"），有质疑先查方法，再下判断。</p>
+      <div class="fig"><img src="../assets/img-16-2.png" alt="一个大购物车与一个小购物车并排，两个车里装着不同比例的食物、书本与房屋几何模型，上方各悬着一个发光的百分比气泡，数值不同，象征平均篮子与个人篮子的差异" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：Kahneman, D. & Tversky, A. (1979). Prospect Theory: An Analysis of Decision under Risk. <em>Econometrica</em>, 47(2)（学术研究，英文；损失厌恶的经典出处） · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（"体感通胀"与 CPI 口径的官方科普文章检索入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、M1、M2 与社融：钱的存量与钱的流向</h2>
+    <p class="chapter-sub">第4章讲过货币从哪里来，这一节讲数据发布里的三个高频名词怎么读</p>
+
+    <article class="view">
+      <h3>M0/M1/M2：三圈同心圆</h3>
+      <p class="ctx">货币统计按"流动性"分层，像三圈同心圆：<strong>M0</strong> 是流通中的现金——最活跃的钱；<strong>M1</strong> 在 M0 基础上加单位活期存款等（中国人民银行口径，2025 年起 M1 统计口径修订，纳入个人活期存款与非银行支付机构客户备付金，以央行公布的口径说明为准）——企业随时可以动用的钱；<strong>M2</strong> 在 M1 基础上加定期存款、居民储蓄存款等——包含"趴着不动"的钱的全口径。M2 增速代表货币存量扩张的速度，M1 增速则被看作"钱活化程度"的近似：企业对未来有信心，会把定期转成活期随时准备投资采购；预期转弱，钱就回定期"冬眠"。所以"M1 与 M2 增速的剪刀差"常被解读为经济活力的温度计——注意，这是经验规律不是物理定律，口径修订后尤其要重新校准解读习惯。</p>
+      <p class="ctx">还要防一个高频误解：<strong>M2 增速高≠通胀马上来</strong>。第4章讲过，货币要推升物价，得真的流进商品与服务市场；如果新增货币沉淀在存款与金融资产里（流通速度下降），物价可以长期温和。"M2 破百万亿"式的标题把存量数字当洪水猛兽，混淆了存量与流量、货币与物价两层关系——第19章的谣言粉碎会正面处理这个说法。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行金融统计数据发布（M0/M1/M2 官方口径与修订说明检索入口）</a> · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》货币体系章节（教科书口径）</div>
+    </article>
+
+    <article class="view">
+      <h3>社融：从"银行放了多少"到"实体拿了多少"</h3>
+      <p class="ctx">社会融资规模（社融）是中国人民银行 2010 年前后创设的统计框架，视角与传统信贷统计相反：信贷统计看<strong>金融机构资产端</strong>（银行放出去多少贷款），社融看<strong>实体经济负债端</strong>（企业和个人从整个金融体系拿到了多少钱）。它的构成包括：人民币贷款、外币贷款、委托贷款、信托贷款、未贴现银行承兑汇票（这三项合称"表外融资"）、企业债券、政府债券、非金融企业境内股票融资等（央行口径说明，构成会随金融创新调整）。</p>
+      <p class="ctx">读社融的三个要点：<strong>一看结构不看总量</strong>——同样的社融增量，靠政府债券撑起与靠企业中长期贷款撑起，含义完全不同：前者是财政发力，后者是实体融资需求回暖；新闻稿附表列出各分项，结构比总量更有信息量。<strong>二看当月增量与存量增速的配合</strong>——增量波动大（有月度节奏与季节性），存量同比增速更平滑、适合看趋势。<strong>三记住它是"金融对实体的输血记录"</strong>——社融持续走弱意味着实体融资需求或金融供给出了问题，是观察经济动能的重要窗口；但社融强也不等于经济立刻强，从融资到产出有时滞（第一节逻辑链）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.pbc.gov.cn/">中国人民银行社会融资规模统计发布与口径说明（官网检索"社会融资规模"）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布（社融数据与实体数据交叉验证的入口）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、数据修订是常态：初值、终值与普查</h2>
+    <p class="chapter-sub">"上次不是说 5.2% 吗，怎么改成 5.0% 了？"——修订不是丑闻，是所有严肃统计体系的标配</p>
+
+    <article class="view">
+      <h3>为什么要修订：快与准的两难</h3>
+      <p class="ctx">统计机构面临一个天然的两难：<strong>时效性与准确性的取舍</strong>。政策与市场需要尽快拿到数据（月后十几天的 GDP 初值），但完整的基础资料要等更久（企业年报、税务记录、普查数据）。所有国家的通行做法都是"先发布、后修订"：用可得资料快速给出初值，随资料补齐逐步修正。美国 BEA 的季度 GDP 发布初值、修正值、终值三轮；中国季度 GDP 实行初步核算与最终核实两步，最终核实数可能调整（国家统计局核算制度口径）；每五年一次的经济普查年度，GDP 历史数据还会做系统修订——普查把平时抽样覆盖不到的部分（大量小微单位）查了个遍，修订幅度自然更大。</p>
+      <p class="ctx">判断修订是否正常的两个标准：<strong>方向是否随机</strong>（有上有下、幅度对称，是资料更新的自然结果；只朝一个方向持续修，才值得追问方法）、<strong>规则是否公开</strong>（核算制度、修订时点、修订说明是否对外公布——中国 GDP 核算方法与美国三轮修订制度都是公开文件）。用"数据被修订了"直接推出"数据是假的"，等于用"论文出了勘误"推出"论文是编的"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（GDP 核算制度与修订办法的官方说明检索入口）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.federalreserve.gov/monetarypolicy.htm">美联储货币政策页（英文；FOMC 引用的 BEA 三轮修订数据背景）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>统计局限的诚实清单：哪些真的量不准</h3>
+      <p class="ctx">严肃的态度既不神化也不虚无化官方统计，而是知道它公认的局限在哪里。教科书与统计机构自己承认的清单大致包括：<strong>地下经济与非正规就业</strong>难以完整覆盖（现金交易、零工）；<strong>质量改进</strong>折算不完全（第15章讲过的数字经济难题）；<strong>地区数据加总与全国数据的衔接</strong>历史上曾有出入，中国 2020 年起实施地区生产总值统一核算改革予以解决（官方改革口径）；<strong>抽样误差</strong>永远存在，月度调查数据自带置信区间。学术界还用交叉方法验证增长数据质量——比如用夜间灯光卫星数据、用电量、货运量等物理指标与官方增速做相关性检验，多数研究结论是相关关系总体成立（学术研究口径，英文；对个别地区个别年份存在争论，如实标注）。</p>
+      <p class="ctx">这份清单的用途是校准信任度：<strong>把官方数据当"目前可得的最佳近似"，而不是"精确真理"或"宣传数字"</strong>。做个人判断时，用多指标交叉验证（GDP 增速对照用电量、货运量、税收、就业数据的走势是否自洽）比纠结单点数字可靠得多——这也是下一节五问框架的第五问。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（地区生产总值统一核算改革说明检索入口）</a> · <span class="c-badge c-a">📋 学术研究</span>来源：Henderson, Storegard & Weil (2012). Measuring Economic Growth from Outer Space. <em>American Economic Review</em>, 102(2)（夜光数据交叉验证的代表性研究，英文）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、实操框架：拿到任何数据的五问</h2>
+    <p class="chapter-sub">本章所有细节浓缩成一个可以随身带的检查程序——五问走完，绝大多数数据新闻会现出原形</p>
+
+    <article class="view">
+      <h3>五问框架：从标题到判断的过滤程序</h3>
+      <blockquote class="q">
+        <strong>读懂任何一条经济数据的五问：</strong><br>
+        <strong>① 谁发布的？</strong>——统计局、央行、海关，还是自媒体转引的"外媒报道"？第一手来源永远优先，转引链越长失真越大。<br>
+        <strong>② 什么口径？</strong>——同比还是环比（季调）？存量还是流量？名义还是实际（扣没扣价格）？全国还是城镇？口径不明，数字无意义。<br>
+        <strong>③ 和什么比？</strong>——和市场预期比（"超预期"的"预期"是谁的调查）？和上月比？和历史区间比？单点数字不构成信息，比较对象才构成。<br>
+        <strong>④ 趋势还是单点？</strong>——连续三个月同向才叫趋势，单月波动多半是噪音（基数效应、季节因素、短期冲击）。<br>
+        <strong>⑤ 和其他数据自洽吗？</strong>——出口大增则货运、PMI 新出口订单应同向；生产回升则用电、信贷应呼应；孤立暴涨暴跌的指标先怀疑口径，再怀疑数据。<br>
+        <span class="qsrc">—— 本节归纳，方法依据国家统计局数据解读栏目的官方分析框架与教科书对统计测量的标准讨论</span>
+      </blockquote>
+      <p class="ctx">五问的价值不在难，而在"每次都问"。示例（虚构教学场景）：某自媒体标题"惊爆！某指标暴跌 30%，经济要出大事"。五问走一遍：①来源是自媒体转引，未链到官方新闻稿——存疑；②口径是单月环比，且上月有节假日错位——季节性因素未剥离；③和去年同期比其实是正增长——标题选择性使用了最吓人的口径；④过去六个月该指标一直在 ±5% 区间波动，本月 -30% 更像一次性因素；⑤关联指标（生产、就业、价格）均无异动——不支持"出大事"结论。五问走完，一条惊悚标题降级为一条无需行动的噪音。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读栏目（官方分析师的解读范式）</a> · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》宏观经济数据章节（教科书对测量问题的标准讨论）</div>
+    </article>
+
+    <article class="view">
+      <h3>把数据变成习惯：一页纸的个人看板</h3>
+      <p class="ctx">指标素养最终要落成习惯。一个低成本的做法是给自己建一页"个人宏观看板"（纸质或表格软件都行）：<strong>纵列是八个核心指标</strong>（GDP、CPI、PPI、PMI、M2、社融、失业率、进出口），<strong>横列是最近十二个月</strong>，每月官方发布日花二十分钟把新闻稿里的数字抄进去——只抄数、不写预测。三个月后你会发现自己开始"看见"结构：CPI 与 PPI 的剪刀差在收敛还是扩大、社融增量靠什么分项撑起、PMI 在荣枯线哪一侧待了几个月。这张看板不帮你择时买卖（本课不讨论也反对任何基于单一指标的择时神话），它帮你建立对经济节奏的<strong>体感</strong>——第17章讲周期如何影响家庭时，这份体感就是理解力。</p>
+      <p class="ctx">配套的三个纪律：<strong>只从官方渠道抄数</strong>（第一问的极致执行）；<strong>抄数时同时记下口径</strong>（同比/环比、名义/实际）；<strong>每季度回看一次自己的误判</strong>——上月你以为的趋势，三个月后被证实还是证伪了？这个复盘动作，是区分"积累判断力"与"积累偏见"的分水岭，也是 IMF 等机构对自身预测做误差回顾的同一逻辑（机构口径：展望数据不构成预测承诺，定期回顾修订）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://data.stats.gov.cn/">国家数据平台（官方历史序列查询入口；官网真实，需浏览器访问）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://www.imf.org/en/Publications/WEO">IMF《世界经济展望》（英文；机构预测与误差回顾的方法参照，官网真实，抓取限流，浏览器可达）</a></div>
+    </article>
+    <article class="view">
+      <h3>"超预期"的超的是谁的预期：市场调查数据的读法</h3>
+      <p class="ctx">财经新闻里最常见的句式是"某数据超预期"或"不及预期"。这里的"预期"不是记者的感觉，而是有具体出处的<strong>市场一致预期</strong>：数据发布前，彭博、路透等机构会向数十位经济学家发调查，把各家预测值汇总取中位数，作为"预期基准"；数据公布后与这个基准比，才有"超"与"不超"的说法（商业数据服务口径，明确标注）。理解这一点，就能看穿两个常见误导：其一，"超预期"只说明实际值高于发布前的调查中位数，<strong>不说明数据本身好坏</strong>——预期极低时，一个平庸的数字也能"大超预期"；其二，各家预测的离散度信息量很大：分歧小说明形势明朗，分歧大（有人预测增长、有人预测收缩）说明连专业经济学家都看不清，此时任何单一解读都应该打对折。</p>
+      <p class="ctx">对普通人还有一层实用意义：<strong>市场价格反映的是预期差，不是数据本身</strong>。为什么"利好数据发布，股市反而跌"？常见解释是数据虽好但没好过预期，或者市场早已把好消息提前消化——这正是五问框架第三问"和什么比"的进阶版：和数据的历史比是初级读法，和市场预期比才是理解价格反应的关键。本课不讨论也不预测任何价格反应，但知道这层机制，你就不会再被"数据大好、市场大跌，说明有黑幕"式的粗糙叙事带走。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span>来源：彭博/路透经济学家预期调查机制（商业数据服务口径，明确标注） · <span class="c-badge c-m">📘 权威手册</span>曼昆《宏观经济学》理性预期与数据发布章节（教科书口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测与谣言粉碎</h2>
+    <p class="chapter-sub">用谣言粉碎卡检验本章的核心结论，再讲给朋友听试试</p>
+
+    <article class="view">
+      <h3>谣言粉碎："数据都可以随便编"与它的三个变体</h3>
+      <p class="ctx"><strong>说法一："同比环比随便换，数据想怎么编就怎么编。"</strong>口径确实可以选择性呈现（这正是五问要防的），但口径本身是公开的核算规则，不是任意的化妆术——同一份新闻稿里同比、环比、分项数据并列可查，国家数据平台的历史序列人人可核。"有人挑口径说话"是传播问题，"数据可以随便编"是另一个严重得多、也缺乏证据的指控。</p>
+      <p class="ctx"><strong>说法二："CPI 不包含房价，所以通胀数据都是假的。"</strong>前半句是对的——购房按国际核算惯例计入投资不计入消费，CPI 居住类含房租与虚拟租金；后半句推不出来——CPI 的定义就是"消费篮子"的价格指数，它从来不承诺衡量包括资产价格在内的一切涨价。买房贵了是资产价格问题，属于第10章房地产与第17章家庭资产的讨论范围，把它算作 CPI 造假，是拿体温计没量出骨折来指控体温计。</p>
+      <p class="ctx"><strong>说法三："数据一修订，就说明原来在说谎。"</strong>修订是全球统计体系的公开标配：美国 GDP 一季度发三遍、数字三次不同，无人指控其造假；中国 GDP 初步核算与最终核实的制度公开成文。判断修订是否可疑的标准是方向是否随机、规则是否公开（第七节），而不是"改过数字"这个动作本身。</p>
+      <p class="ctx"><strong>说法四："单月数据暴跌，经济马上要硬着陆。"</strong>单月数据受基数效应、季节因素、一次性冲击干扰极大，官方与机构判断形势都看季度以上的连续读数与多指标交叉。用单月数据推"硬着陆"，与用单月数据推"全面复苏"是同一种懒惰——趋势需要时间来证明，这正是第四节 PMI 纪律与第八节第四问的共同结论。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.stats.gov.cn/sj/zxfb/">国家统计局数据发布（新闻稿多口径并列可查）</a> · <a href="https://www.stats.gov.cn/sj/sjjd/">国家统计局数据解读（CPI 口径与修订制度官方说明检索入口）</a> · <span class="c-badge c-v">🏛 官方文件</span><a href="https://data.stats.gov.cn/">国家数据平台（历史序列公开查询；官网真实，需浏览器访问）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 指标阅读自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>八个核心指标各自回答什么问题？哪些是价格指标、哪些是数量指标？</li>
+        <li>存量与流量的区别是什么？M2 和 GDP 各属于哪个？</li>
+        <li>指标逻辑链"货币→PMI→生产→GDP→价格→就业"中，谁偏领先、谁偏滞后？</li>
+        <li>中国 CPI、金融数据、官方 PMI 分别在每月的什么时段发布？三个官方查询入口是哪三个？</li>
+        <li>美国非农就业报告什么时候发布？美联储一年开几次议息会议？</li>
+        <li>同比与环比各自的优缺点是什么？什么叫"季调后环比折年率"？</li>
+        <li>美国"GDP 环比折年率 2%"能和中国"GDP 同比 5%"直接比吗？为什么？</li>
+        <li>基数效应是什么？举一个"同比大涨其实是去年挖坑"的例子。</li>
+        <li>PMI 的荣枯线 50 是什么意思？"PMI 49.8"表示经济萎缩 0.2% 吗？</li>
+        <li>官方 PMI 与财新 PMI 的差异主要来自哪里？两套数据"打架"说明什么？</li>
+        <li>CPI 篮子的八大类是什么？为什么房价上涨不直接推高 CPI？</li>
+        <li>核心 CPI 扣除了什么？为什么官方解读常用它？</li>
+        <li>"体感通胀"高于统计数字的四个机制是什么？</li>
+        <li>M0、M1、M2 各包含什么？"M1 与 M2 剪刀差"通常被解读为什么？</li>
+        <li>社融与信贷统计的视角差异是什么？为什么"看社融要看结构"？</li>
+        <li>数据修订的两个正常性标准是什么？美国 GDP 一个季度发布几轮数字？</li>
+        <li>官方统计公认的局限有哪些？夜光数据交叉验证是什么方法？</li>
+        <li>五问框架的五问分别是什么？用一条惊悚标题演练一遍。</li>
+        <li>个人宏观看板怎么建？三个配套纪律是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>八个核心指标各司其职：GDP 量总量、CPI/PPI 量价格、PMI 量企业感受、M2/社融量钱、失业率量劳动力市场、进出口量外需；先分价格与数量、存量与流量，再谈读数。中国数据有稳定的月度发布节奏，官方入口三个：统计局、央行、中国政府网；美国看非农、CPI 与一年八次议息会议。同比稳但钝、环比灵但吵、季调环比看动能、折年率是美国口径——不同量纲不能直接比大小；基数效应让同比数字自带"去年的幽灵"，看三个月以上连续读数才算趋势。PMI 是主观调查的扩散指数，50 是"变好变差"的分界不是增长率，看方向别看单月。CPI 量的是平均消费篮子，房价不入篮、食品权重高、核心 CPI 剥离噪音；"体感通胀"背离来自个人篮子、损失厌恶、高频品放大与质量调整不可见。M2 是货币存量，高增速不等于高通胀；社融看结构（政府债还是企业中长贷）、看存量增速趋势。数据修订是全球统计标配，判断可疑与否看方向是否随机、规则是否公开；官方统计有公认局限，多指标交叉验证是正道。五问框架随身带：谁发布、什么口径、和什么比、趋势还是单点、与别的数据自洽吗。最后，建一页个人看板，每月抄数二十分钟，把指标素养变成体感。
+  </div>
+
+  <nav class="pager">
+    <a href="../15-newtech/"><span class="dir">← 第15章</span>新经济：科技、AI与数字化</a>
+    <a href="../17-asset/"><span class="dir">第17章 →</span>宏观与家庭资产：周期如何影响你的钱和工作</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>宏观经济课 · 第16章 · 依据国家统计局数据发布与解读栏目、中国人民银行金融统计数据发布、海关总署、美联储与 IMF 官方数据平台及曼昆《宏观经济学》等经典教科书整理 · 数据时点与内容更新至 2026 年 10 月</p>
+  <p>本站仅供经济教育参考，不构成投资建议或政策预测 · 数据以官方统计口径为准并注明时点 · 不预测行情、不传播内幕消息 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #4d7c0f;border-radius:12px;background:#f7fee7;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#3f6212;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/macro/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#4d7c0f;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#4d7c0f;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f7fee7;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁看不懂新闻里的经济词，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#3f6212;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #4d7c0f;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f7fee7;}
+.sr-item .sr-c{display:block;font-size:12px;color:#4d7c0f;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 概念 / 指标，如：GDP、通胀、利率、汇率、周期…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/macro\/.*/,'/macro/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.MACRO_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#4d7c0f;border:1.5px solid #4d7c0f;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f7fee7;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
