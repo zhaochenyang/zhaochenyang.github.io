@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 API 与集成：软件世界的正式接口 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第12章 · 工作流与 Agent 编排</div>
+  <h1>API 与集成：软件世界的正式接口</h1>
+  <p>让数据在软件之间体面地流动：从餐厅点单比喻到密钥管理，一次讲清"集成"这件事</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../11-workflow/">← 第11章：工作流工具入门</a>
+    <a href="../13-agent/">第13章：AI Agent 是什么 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">API 是什么</a>
+    <a class="anchor" href="#s2">两种集成方向</a>
+    <a class="anchor" href="#s3">官方集成与页面抓取</a>
+    <a class="anchor" href="#s4">密钥管理</a>
+    <a class="anchor" href="#s5">速率限制</a>
+    <a class="anchor" href="#s6">数据流动全链路</a>
+    <a class="anchor" href="#s7">合规与隐私</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成法律意见、企业合规建议或任何产品的商业推荐；文中出现的工具与产品名称仅用于教学说明，本站无商业合作、无推广链接。使用任何自动化技术前，请遵守目标平台的服务条款以及《个人信息保护法》《数据安全法》等法律法规；本站不教授也不鼓励“绕过反爬”“破解验证码”、规避账号风控等灰产行为。自动化决策需要人工兜底：涉及资金支付、数据删除、对外发送、法律文件等关键操作，务必设置人工确认环节；不要向公共 AI 服务投喂敏感个人信息、公司机密与未公开数据；AI 生成合成内容对外提供时，按《人工智能生成合成内容标识办法》履行标识义务。各节观点均标注来源，以来源原文为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用餐厅点单的比喻向任何人解释清楚什么是 API；②分清两种集成方向："你主动去问"的 API 调用与"对方主动来推"的 webhook，并知道各自的适用场景；③理解为什么官方集成永远优先于页面抓取，以及页面抓取在什么条件下才算合规谨慎的选择；④掌握 API 密钥的四条保管纪律，明白"密钥泄露=别人花你的钱、看你的数据"；⑤看懂自动化任务里最常见的报错之一——429 速率限制，知道正确的应对是退避等待而不是 harder 重试；⑥独立拆解一条"邮件→AI 摘要→群通知"的完整数据链路，说出每一环可能卡住的点；⑦在把账号数据接给第三方工具之前，知道按《个人信息保护法》的要求先检查什么。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是第三部分"神经系统"的地基：第11章教你把工作流串起来，本章教你让数据在软件之间正式、安全、合规地流动，第13章的 Agent 调工具本质上也是在调 API。第一次读建议通读；动手搭第一条跨软件流程之前，回来翻第四节的密钥纪律和第七节的合规清单，照做一遍再接线。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、API 是什么：软件世界的正式接口</h2>
+    <p class="chapter-sub">你不用进厨房，按菜单点单就行——这就是软件之间打交道的正式方式</p>
+
+    <article class="view">
+      <h3>餐厅点单比喻：菜单、服务员与厨房</h3>
+      <p class="ctx">想象你去一家餐厅吃饭。你不需要走进厨房自己炒菜，也不需要认识厨师——你只需要看<strong>菜单</strong>（上面写着有什么菜、什么价格、可以怎么定制），告诉<strong>服务员</strong>你要什么，厨房做好后再由服务员端给你。整个过程中，你和厨房之间隔着一个标准化的服务流程：菜单规定了"能点什么"，服务员负责"传话和上菜"，厨房负责"真正干活"。</p>
+      <p class="ctx">API（Application Programming Interface，应用程序编程接口）就是软件世界的这套服务流程。一个软件把"我能提供什么服务"写成一份<strong>接口文档</strong>（相当于菜单），外部程序按文档规定的格式发出<strong>请求</strong>（相当于点单），软件处理完把<strong>结果</strong>按约定格式返回（相当于上菜）。你查天气不需要自己发射气象卫星，查快递不需要自己跑物流仓库，翻译一段话不需要自己训练模型——因为这些服务都开放了 API，你的程序（或者你使用的工作流工具）可以像点单一样向它们请求服务。这也是为什么 API 被称为"软件世界的正式接口"：它是软件官方对外开放的、有文档、有规则、有保障的打交道方式。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">MDN Web Docs《HTTP 概述》（中文版，请求-响应模型）</a> · <a href="https://developer.mozilla.org/en-US/docs/Glossary/API">MDN Web Docs API 词条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>你每天都在用 API，只是看不见</h3>
+      <p class="ctx">普通人容易觉得 API 是程序员的专业词汇，跟自己无关。事实是：<strong>你每天用手机做的很多事，背后都是一连串 API 调用</strong>。打开天气 App，它向气象服务的数据接口请求了你所在城市的数据；扫码付款，支付软件通过银行和清算机构的接口完成了扣款与记账；查快递物流，购物 App 调用了物流公司的轨迹接口；发一条带定位的朋友圈，地图服务的位置接口被调用了一次。你没有"编程"，但你的每一次点击都在触发程序之间的正式对话。</p>
+      <p class="ctx">理解这一点对学自动化很重要：<strong>自动化的本质，就是让机器代替你去做这些"点单"动作，并且按你的规则串起来</strong>。你手动查天气再手动把结果发到家庭群，是两个动作；用工作流工具把"每天早上七点→调用天气接口→把结果发到群里"连成一条流程，就是一次最典型的 API 自动化。你不需要会写代码——第11章讲过的可视化工作流工具，已经把"点单"动作封装成了可以拖拽的节点，你要做的是想清楚流程、填好参数。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/en-US/docs/Glossary/API">MDN Web Docs API 词条（英文，"API 是浏览器与网站之间的接口"科普）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，工作流工具通过集成节点调用各服务 API）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>请求-响应：一次 API 调用的解剖</h3>
+      <p class="ctx">几乎所有网络 API 都遵循同一个基本模型：<strong>请求-响应</strong>（request-response）。你的程序发出一个请求，里面包含三样东西——<strong>要什么</strong>（接口地址，相当于"去哪个窗口点单"）、<strong>怎么要</strong>（请求方法与参数，相当于"要几分熟、加不加辣"）、<strong>你是谁</strong>（身份凭证，相当于会员卡，见第四节）。对方的服务器处理后返回一个响应，包含<strong>状态码</strong>（成功还是失败，失败是哪种失败）和<strong>数据本体</strong>（通常是一种叫 JSON 的结构化文本格式，长得像带层级的清单，机器和人都能读）。</p>
+      <p class="ctx">大众向理解到这里就够了，你不需要背任何语法。值得记住的是两个概念：<strong>状态码</strong>是排查问题的第一线索——200 开头表示成功，400 开头表示"你的请求有问题"（比如 401 是没带对身份凭证、404 是地址不存在、429 是请求太频繁，第五节细讲），500 开头表示"对方服务器出问题了"；<strong>结构化格式</strong>（JSON）是自动化的好朋友——正因为返回的是规整的结构化数据而不是随意的网页排版，工作流工具才能稳定地从中取出"温度""价格""姓名"这些字段继续往下处理。这也是 API 集成优于页面抓取的核心原因之一（第三节展开）。</p>
+      <div class="fig"><img src="../assets/img-12-1.png" alt="抽象示意图：左侧一个几何小人通过一条规范通道向右侧的服务建筑发出请求卡片，建筑处理后沿同一通道返回整齐的数据方块，通道上有检查闸门，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">MDN Web Docs《HTTP 概述》（中文版，请求与响应结构）</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/JSON">MDN Web Docs JSON 入门（中文版）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、两种集成方向：你主动去问，还是对方主动来推</h2>
+    <p class="chapter-sub">API 调用与 webhook 是互补的两条路——分清它们，流程设计就成功了一半</p>
+
+    <article class="view">
+      <h3>API 调用：你主动去问（拉取模式）</h3>
+      <p class="ctx">第一节讲的"点单"是最常见的集成方向：<strong>你的程序在需要的时候主动发起请求</strong>，对方返回数据。这种模式俗称"拉取"（pull）。它的典型用法是<strong>定时轮询</strong>：工作流工具每隔一段时间（比如每 15 分钟）去问一次"有没有新邮件""库存变没变""汇率现在多少"。轮询的逻辑简单直接，绝大多数工作流工具的"定时触发"节点做的就是这件事。</p>
+      <p class="ctx">拉取模式的优点是<strong>主动权在你</strong>：什么时候问、问多频繁、问完怎么处理，都由你的流程决定；实现门槛也低，几乎所有服务都提供查询类接口。缺点同样明显：<strong>时效性受轮询间隔限制</strong>（15 分钟问一次，最坏情况要等 15 分钟才知道变化），而且<strong>大量轮询是浪费</strong>——十次里有九次答案是"没变化"，这九次请求既消耗你的调用配额（第五节），也给对方服务器添负担。当你需要"一发生就立刻知道"时，就该请出第二种方向。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">MDN Web Docs《HTTP 概述》（中文版）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，Schedule Trigger 定时触发节点）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>webhook：对方主动来推（推送模式）</h3>
+      <p class="ctx">webhook 把方向反了过来：<strong>事件一发生，对方立刻把消息推送到你指定的地址</strong>。GitHub 官方文档的定义很直白：webhook 提供了一种机制，当 GitHub 上发生特定事件时，通知会被发送到外部 Web 服务器——并且官方明确说明，相比轮询，webhook 的优势在于更高效、更实时，你不必反复查询"有没有新动静"。生活化的比喻：轮询是你每隔十分钟跑到门口看快递到没到，webhook 是快递员到了按你家门铃。</p>
+      <p class="ctx">在实际自动化里，webhook 是"事件驱动流程"的基础：代码仓库一有新提交就触发构建、表单一来新提交就通知负责人、支付一成功就发货、监控一发现异常就报警——这些"一……就……"的流程，靠 webhook 才能做到秒级响应。主流工作流工具都提供 webhook 触发节点：工具生成一个专属网址给你，你把这个网址填到事件源服务（如 GitHub、表单工具、支付平台）的 webhook 设置里，之后事件一发生，数据就自动流进你的流程。配置过程没有代码，难的是想清楚"什么事件值得触发、触发后做什么"——这又回到了第11章的流程设计。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.github.com/en/webhooks/about-webhooks">GitHub 官方文档《About webhooks》（英文，webhook 定义与轮询对比）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，Webhook 触发节点）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>怎么选：一张对照表想清楚</h3>
+      <p class="ctx">两种方向不是竞争关系，而是<strong>按场景分工</strong>。设计流程前先回答三个问题：这件事需要多快响应？事件源提供 webhook 吗？我的调用配额经得起多频繁的轮询？</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>API 轮询（主动拉）</th><th>webhook（被动推）</th></tr>
+        <tr><td>时效性</td><td>受轮询间隔限制（分钟级常见）</td><td>事件发生即推送（秒级）</td></tr>
+        <tr><td>资源消耗</td><td>大量"没变化"的空查询，耗配额</td><td>只在有事件时传输，效率高</td></tr>
+        <tr><td>前提条件</td><td>对方有查询接口即可</td><td>对方须支持 webhook，且你有可接收的网址（工作流工具代劳）</td></tr>
+        <tr><td>典型场景</td><td>每日报表、定时对账、周期性检查</td><td>提交触发构建、支付回调、表单提交通知、报警</td></tr>
+        <tr><td>可靠性注意</td><td>间隔内的事件不会漏，只是延迟</td><td>推送失败需对方支持重发，或辅以低频轮询兜底</td></tr>
+      </table>
+      <p class="ctx">一个实用的组合拳：<strong>关键流程用 webhook 保证实时，再加一条低频轮询做兜底核对</strong>（比如每小时查一次"最近有没有漏掉的订单"）。工程上这叫"推拉结合"，是自动化流程里对抗"消息偶尔丢失"的常见做法——重要的事，永远不要只依赖单一通道。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.github.com/en/webhooks/about-webhooks">GitHub 官方文档《About webhooks》（英文，事件驱动与轮询对比）</a> · <a href="https://help.zapier.com/">Zapier 官方帮助中心（英文，Instant 触发与 Polling 触发的区分，商业产品文档）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、官方集成与页面抓取：走正门还是走侧门</h2>
+    <p class="chapter-sub">同样拿到数据，路径不同，稳定性、合规性、代价完全不同</p>
+
+    <article class="view">
+      <h3>官方集成永远优先：连接器与官方 API</h3>
+      <p class="ctx">想让 A 软件的数据流进 B 软件，路径优先级从高到低是：<strong>①B 或 A 自带的官方集成</strong>（很多软件在设置里就有"连接到某某"的入口，官方维护、授权规范）；<strong>②工作流工具的官方连接器节点</strong>（如 n8n、Zapier 等工具内置的数百个服务节点，本质是工具方替你封装好的官方 API 调用）；<strong>③自己直接调用服务的官方 API</strong>（需要一点动手能力，工具不支持时的正路）；<strong>④页面抓取</strong>（最后手段，下一卡专门讲）。</p>
+      <p class="ctx">官方集成为什么优先？三个理由。<strong>稳定</strong>：接口有版本管理和变更公告，页面排版却可能一夜改版，抓取流程说断就断；<strong>合规</strong>：官方接口配合授权机制（比如 OAuth，你只授予有限权限、随时可收回），而模拟登录去抓页面往往直接违反平台服务条款；<strong>省心</strong>：返回的是结构化数据，字段清清楚楚，不用从网页的视觉排版里"猜"哪段是价格哪段是姓名。动手前先花五分钟查一下"目标服务有没有官方 API/官方连接器"，几乎总能省掉后面五天的麻烦。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，集成节点目录与凭据授权机制）</a> · <a href="https://help.zapier.com/">Zapier 官方帮助中心（英文，App 连接与授权说明，商业产品文档）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>页面抓取：什么时候可以谨慎用，什么时候不能碰</h3>
+      <p class="ctx">页面抓取（把网页上的内容提取出来）本身是中性技术——第6章、第8章讲过它的正当用途：抓<strong>公开、无需登录</strong>的信息做个人存档与分析，尊重目标网站的 robots 协议与访问频率，不影响对方服务正常运行。但边界必须划清楚：<strong>需要登录才能看的内容，模拟登录后抓取，绝大多数平台的服务条款都明确禁止</strong>；对方设置了反爬措施（验证码、频率限制、访问校验），说明人家已经表达了"不欢迎机器"的意愿——本站不教授也不鼓励绕过这些措施，绕过行为轻则账号被封、流程瘫痪，重则触犯法律与平台规则，代价远大于收益。</p>
+      <p class="ctx">一个决策口径可以帮你快速判断：<strong>"这个数据，对方有没有提供正式获取渠道？"</strong>有官方 API 就用 API；没有 API 但内容公开、robots 协议允许，可以低频礼貌抓取并注明来源；既没 API 又需要登录、或 robots 明确禁止——那就换思路：联系对方商务合作、购买数据服务、或者接受"这个数据不自动化"。自动化是为了省时省心，不是为了跟平台的风控与法务部门赛跑。账号风控触发后的正确姿势是停下流程、回到官方渠道，具体避坑见<a href="../19-pitfalls/">第19章</a>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.robotstxt.org/robotstxt.html">robots.txt 标准官方说明（英文，网站对爬虫的授权声明协议）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国数据安全法》全文检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第三方转接的风险：数据在路上经过了谁的手</h3>
+      <p class="ctx">还有一种容易被忽视的路径：某些第三方工具提供"万能连接"，号称不需要官方 API 也能把各种软件串起来——原理往往是让你把账号密码或会话凭证交给它，由它模拟你的身份去操作。用这类服务前必须想清楚一个问题：<strong>你的数据在到达目的地之前，经过了谁家的服务器？</strong>你的聊天记录、客户名单、财务数据，会先在第三方中转系统里过一遍；这家公司的安全水平、数据留存政策、所在地法律管辖，你都未必了解。</p>
+      <p class="ctx">判断原则：<strong>数据越敏感，链路越要短、经手方越要少</strong>。个人低敏感数据（公开资讯、自己的待办）用主流大厂工具问题不大；涉及公司数据、客户个人信息、财务信息时，优先选择官方集成（数据只在两家正式服务方之间按协议流动），并检查第三方工具的隐私条款与数据处理协议；涉及重要敏感数据的团队场景，考虑可自托管的方案（如 n8n 支持部署在自己服务器上，数据不出内网）。把账号密码直接交给不知名第三方工具，等于把家门钥匙交给中介——这不是效率问题，是安全问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国个人信息保护法》全文检索，委托处理与跨境提供规则）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，self-hosting 自托管部署选项）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、API 密钥就是你的钥匙：泄露=别人花你的钱</h2>
+    <p class="chapter-sub">自动化流程里最值钱也最危险的东西，是那串看不见的凭证</p>
+
+    <article class="view">
+      <h3>密钥是什么：认钥匙不认人</h3>
+      <p class="ctx">程序调用 API 时，对方怎么知道"你是谁、有没有权限"？靠的是<strong>身份凭证</strong>，最常见的形式是 API 密钥（API key）——一串长长的随机字符，相当于你在该服务的"程序通行证"。你在工作流工具里连接某个服务时填的那串 key、或者授权登录后工具自动保存的令牌（token），都属于这类凭证。<strong>它的特点是"认钥匙不认人"</strong>：谁拿到这串字符，谁就能以你的身份调用服务——花你的调用额度、读你的数据、以你的名义执行操作，对方系统分不出来是不是你本人。</p>
+      <p class="ctx">所以密钥泄露的后果非常具体：泄露了大模型服务的密钥，别人可以拿它跑任务，账单算你的（按量计费的服务可能一夜产生巨额费用）；泄露了邮箱集成的令牌，别人可以读你全部邮件；泄露了支付类接口的凭证，后果更不堪设想。安全机构 OWASP 长期把"失效的访问控制"与凭证管理问题列在 API 安全风险榜单前列——这不是程序员的专属烦恼，任何配置自动化流程的人都在管理钥匙。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://owasp.org/www-project-api-security/">OWASP API Security Project（英文，API 十大安全风险，非营利安全组织）</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication">MDN Web Docs HTTP 认证概述（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>四条保管纪律：可以直接抄走</h3>
+      <p class="ctx">密钥管理不需要高深技术，需要的是纪律。以下四条适用于所有配置自动化的人：</p>
+      <blockquote class="q">①<strong>存放</strong>：密钥只放在工具的凭据管理功能或系统环境变量里，<strong>绝不</strong>写进聊天记录、邮件、文档正文、截图、代码仓库——发给别人看的任何地方都不行；<br>②<strong>最小权限</strong>：申请密钥/授权时只勾选流程真正需要的权限范围（只读就别给可写，只动一个邮箱就别授权全部），权限越小，泄露损失越小；<br>③<strong>定期轮换</strong>：每隔几个月（或按服务方建议）更换一次密钥，旧钥作废；员工离职、工具弃用时立即吊销对应授权；<br>④<strong>泄露即吊销</strong>：一旦怀疑泄露（截图外传、仓库误提交、设备丢失），第一时间到服务后台吊销旧密钥、生成新密钥、更新流程——先止损，再排查。<span class="qsrc">——依据 OWASP API 安全指南与主流服务官方文档整理的通用纪律（示例清单）</span></blockquote>
+      <p class="ctx">特别提醒一个 AI 时代的新坑：<strong>不要把密钥粘贴到对话框里让 AI"帮你看看"</strong>。你把带密钥的配置发给公共 AI 服务求助，等于把钥匙拍照发上了网。正确做法是先打码再求助，或者只描述问题结构。同理，让 AI 生成自动化配置时，密钥位置一律用占位符（如"YOUR_API_KEY"），拿到配置后自己在本地填入真钥。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://owasp.org/www-project-api-security/">OWASP API Security Project（英文，凭证与访问控制最佳实践）</a> · <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure">GitHub 官方安全文档（英文，凭证保管与泄露处置的通用范例）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>授权登录（OAuth）：不给钥匙给门禁卡</h3>
+      <p class="ctx">你有没有注意到，正规工具连接你的邮箱或网盘时，通常是弹出一个官方登录页让你确认授权，而不是让你把密码填给它？这套机制叫 OAuth（开放授权），可以理解为<strong>"不给万能钥匙，给限时限房间的门禁卡"</strong>：你在服务官方页面登录并勾选授权范围，服务方发给工具一张"门禁卡"（访问令牌），工具只能在授权范围内行动，你随时可以在服务方的"已授权应用"列表里收回。</p>
+      <p class="ctx">对普通用户的三条实用建议：①<strong>凡是要你直接提供账号密码的"集成"，一律警惕</strong>——正规集成走 OAuth 或官方密钥，不需要你的登录密码；②授权页面停留三十秒，看清楚它要什么权限（"读取全部邮件"和"只读取指定标签"是完全不同的授权），用不上的不勾；③每隔一段时间到常用服务的"安全设置→已授权应用/第三方授权"里巡检一遍，把不再使用的应用授权撤销——那些你半年前试用过就忘掉的小工具，往往还握着你的门禁卡。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/en-US/docs/Glossary/OAuth">MDN Web Docs OAuth 词条（英文）</a> · <a href="https://owasp.org/www-project-api-security/">OWASP API Security Project（英文，认证与授权风险）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、速率限制与配额：自动化为什么会"突然报错"</h2>
+    <p class="chapter-sub">429 不是故障，是对方在说"你太快了"——听懂它，流程才跑得长久</p>
+
+    <article class="view">
+      <h3>429 Too Many Requests：最常见也最被误解的报错</h3>
+      <p class="ctx">几乎所有提供 API 的服务都会做<strong>速率限制</strong>（rate limiting）：限定每个用户在单位时间内最多请求多少次。超限之后，服务会返回状态码 <strong>429 Too Many Requests</strong>——MDN 的官方定义是：客户端在给定时间内发送了过多请求，这种要求客户端放慢请求速率的机制通常称为速率限制；服务器还常在响应里附带一个 Retry-After 头部，明确告诉你"等多少秒后再来"。</p>
+      <p class="ctx">为什么服务方要限速？一是保护自己的服务器不被海量请求压垮，二是防滥用（包括防恶意扫描），三是商业分层（免费档配额低、付费档配额高，第5章讲成本时提过）。对自动化搭建者的启示很直接：<strong>你的流程是"机器速度"，而配额是按"人类速度"设计的</strong>——手动操作一天点三十次没人管，脚本一分钟循环三百次立刻撞墙。撞墙的正确反应不是"再试一次试试运气"，而是下一卡讲的退避。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429">MDN Web Docs《429 Too Many Requests》（英文，含 RFC 6585 规范出处与 Retry-After 说明）</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">MDN Web Docs《HTTP 概述》（中文版，状态码体系）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>退避与重试：机器也要懂礼貌</h3>
+      <p class="ctx">遇到 429（以及 500 系服务端错误）时，成熟的处理模式叫<strong>"退避重试"</strong>：等一会儿再试，而且每次失败后等待时间翻倍——第一次等 1 秒，再失败等 2 秒，再失败等 4 秒……直到成功或达到重试上限后报警给人。工程上还会加一点随机抖动，避免多个流程在同一秒齐刷刷重试造成"二次洪峰"。你不需要自己实现这些——主流工作流工具的错误处理节点都内置了"重试间隔/次数"设置，你要做的只是<strong>在搭流程时把它配置上，而不是默认无限立即重试</strong>。</p>
+      <p class="ctx">除了被动应对，更要主动设计"礼貌的频率"：批量任务之间加短暂间隔、把大循环拆到多个时段执行、能用 webhook 推送的就不用高频轮询（第二节）、批量接口存在时不用单条接口循环调用。一个心法：<strong>把目标服务当成共享电梯而不是自家楼梯</strong>——你有权使用，但持续占满会伤及所有人（包括你自己的流程稳定性）。频繁触发限速的流程，也更容易触发平台对自动化行为的整体风控（第三节、<a href="../19-pitfalls/">第19章</a>）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429">MDN Web Docs《429 Too Many Requests》（英文，Retry-After 机制）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，节点错误处理与重试设置）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、数据怎么流动：一条完整链路的全景拆解</h2>
+    <p class="chapter-sub">以"邮件→AI 摘要→群通知"为例，看清集成的每一环与每个卡点</p>
+
+    <article class="view">
+      <h3>示例流程：把每天的长邮件变成三句话</h3>
+      <p class="ctx">设定一个大众都能用上的场景（示例）：你每天收到大量工作邮件，希望重要邮件到达后几分钟内，群里自动出现一条"发件人+主题+三句话摘要+原文链接"的通知，让你不用逐封点开。整条链路五步：</p>
+      <blockquote class="q">①<strong>触发</strong>：邮箱服务通过 webhook（或工作流工具每 5 分钟轮询）把新邮件事件送进流程；<br>②<strong>过滤</strong>：规则节点筛掉广告、订阅类邮件（按发件人、标签、关键词），只放行"工作重要"类；<br>③<strong>理解</strong>：把邮件正文发给大模型接口，提示词要求"用三句话概括：谁、什么事、需要我做什么"（第3章的模板化提示词在这里派上用场）；<br>④<strong>组装</strong>：把模型返回的摘要与邮件原始字段（发件人、主题、链接）拼成一条通知文本；<br>⑤<strong>送达</strong>：调用群机器人的官方接口把通知发进工作群，并记录一条日志。<span class="qsrc">——示例流程，工具可任意替换；涉及邮件内容交给大模型前，先按第七节做脱敏判断</span></blockquote>
+      <p class="ctx">注意这条链路的分工：<strong>邮箱、大模型、群机器人三家服务各管一段，工作流工具是"总调度"</strong>，密钥与授权分别管理（第四节）。全程没有一行传统意义上的"代码"，但每一步都是一次正式的 API 集成——这就是本章知识在真实流程里的样子。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，触发-过滤-AI 节点-发送的典型流程范式）</a> · <a href="https://docs.github.com/en/webhooks/about-webhooks">GitHub 官方文档《About webhooks》（英文，事件推送机制参照）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>链路会卡在哪：三个最常见的堵点</h3>
+      <p class="ctx"><strong>堵点一：格式对不上。</strong>上一步的输出不是下一步想要的输入——邮件正文带着巨大的签名档和历史回复进了模型（浪费 token 还干扰摘要）、模型返回的文本里混着多余的解释（拼进通知很难看）。对策：在节点之间加"清洗"步骤（截取正文前 N 字、要求模型只输出固定格式，第3章讲过"输出要机器可读"）。</p>
+      <p class="ctx"><strong>堵点二：权限不够或过期。</strong>授权时只给了"读邮件"没给"读标签"，流程跑到过滤步骤失败；或者 OAuth 令牌到期没有自动续期，整条流程静默罢工。对策：搭流程时按实际用到的每个动作核对授权范围；给流程加"失败时通知我"的兜底节点——<strong>没有报警的失败比失败本身更危险</strong>，你以为它在干活，其实它已经躺平两周。</p>
+      <p class="ctx"><strong>堵点三：量变了。</strong>测试时一天十封邮件很顺畅，上线后遇到促销季一天三百封，轮询频率撞上限速（429）、模型调用费用飙升（第5章的成本意识）。对策：过滤前置（先筛再调用贵的服务）、批量合并处理、给每日调用量设上限熔断。把这三个堵点检查一遍，你的第一条集成链路就能超过大多数"搭完就坏"的流程。经验规律是：<strong>测试时跑通的流程只完成了一半的工作，另一半是预判它在真实数据量、真实权限环境、真实服务波动下会怎么坏</strong>——格式堵点靠清洗解决，权限堵点靠核对与报警解决，流量堵点靠过滤与熔断解决。三个堵点各配一个对策，链路就有了基本的免疫力。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，错误处理与工作流执行日志）</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429">MDN Web Docs《429 Too Many Requests》（英文）</a></div>
+    </article>
+    <article class="view">
+      <h3>上线才是开始：监控、日志与变更管理</h3>
+      <p class="ctx">很多第一次搭自动化的人有个错觉：流程跑通那天就是完工日。实际上<strong>跑通那天只是开始</strong>——集成链路的每一环都依赖别人家的服务，而别人的服务会变：接口升级换版本、授权策略调整、对方改价格改配额、群机器人换管理员忘了迁移。没有维护的自动化，平均寿命通常以"月"计。让它长寿的三件套：</p>
+      <p class="ctx"><strong>①日志</strong>：让流程每次运行都留下记录——什么时候触发、处理了几条、成功还是失败、失败在哪一步。工作流工具自带的执行历史就是最基本的日志，重要流程建议再加一条"每日运行摘要"发给你自己（今天跑了 42 次，成功 42 次，耗时正常）。<strong>②报警</strong>：失败必须主动通知你，而不是等你来发现"咦，怎么三天没收到摘要了"。最省事的模式是流程末尾加一个错误分支：连续失败 N 次→给你发一条消息。报警宁可偶尔误报，不可长期沉默。<strong>③变更管理</strong>：给流程做"版本意识"——每次修改前先复制一份现有流程作为备份，改坏了能一键回退；对方服务发布接口变更公告时（订阅官方更新邮件或状态页），提前评估影响。这三件事加起来每周花的时间不超过十分钟，却能把"突然罢工"变成"提前预警"。</p>
+      <div class="fig"><img src="../assets/img-12-2.png" alt="抽象示意图：一条由多个节点组成的管道流程在运行，旁边有仪表盘显示心跳曲线与日志卷轴，一个几何小人在巡检节点，异常节点亮起琥珀色警示灯，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">最后一个心态提醒：<strong>自动化流程也是"资产"，资产需要盘点</strong>。每隔一个季度列出你所有在跑的流程，问三个问题——它还在省时间吗？它的授权和密钥还有效且最小化吗？它失败时会有人知道吗？三个问题里任何一个答不上来，就花时间修一修，或者干脆下线它。僵尸流程不产生价值，只产生风险。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，执行日志、错误工作流与失败告警设置）</a> · <a href="https://docs.github.com/en/webhooks/about-webhooks">GitHub 官方文档《About webhooks》（英文，webhook 投递失败与重试机制）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、合规与隐私：接线之前的检查清单</h2>
+    <p class="chapter-sub">把数据接给第三方之前，法律要求你想清楚的几件事</p>
+
+    <article class="view">
+      <h3>个人信息保护法视角：最小化与知情同意</h3>
+      <p class="ctx">《中华人民共和国个人信息保护法》确立了处理个人信息的基本盘：<strong>目的明确、最小必要、公开透明</strong>。翻译成自动化搭建的语言就是三句话：①<strong>只接需要的数据</strong>——流程要摘要邮件主题，就别授权读取全部附件；要通知群消息，就别接入通讯录；②<strong>涉及他人的个人信息要有合法性基础</strong>——处理客户名单、员工信息、联系人数据前，确认公司已有相应的告知同意或法定依据，个人不要擅自把含他人信息的数据接到自己搭的外部工具里；③<strong>委托处理要可控</strong>——把数据交给第三方工具处理，法律上你是"委托方"，要选择有能力保护数据的服务方并了解其处理规则，这也是第三节"看隐私条款"的法律底气。</p>
+      <p class="ctx">还有一条容易被自动化放大的风险：<strong>数据的"二次流动"</strong>。你手动处理一份客户名单，数据在你手里；你把它接进五个工具的链路，数据就复制进了五个系统——每一环都是泄露面。所以链路设计的原则与密钥纪律同源：<strong>能少一环就少一环，能自托管就不出内网，能脱敏就不传原文</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国个人信息保护法》全文检索：最小必要原则、告知同意、委托处理规则）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国数据安全法》全文检索）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>接线前五分钟检查清单（示例模板）</h3>
+      <p class="ctx">把前面的原则压缩成一张可以直接执行的清单，每次新建一条涉及账号数据的集成前过一遍：</p>
+      <blockquote class="q">□ 这个服务有<strong>官方集成/官方 API</strong> 吗？（有就不用抓取和第三方转接）<br>□ 授权范围是否<strong>最小化</strong>？（只勾流程真正用到的权限）<br>□ 数据里有没有<strong>他人个人信息/公司机密</strong>？（有→确认合法性基础与公司政策；能脱敏→先脱敏再接）<br>□ 第三方工具的<strong>隐私条款</strong>看过了吗？（数据存哪、留多久、给不给下游）<br>□ 密钥放进了<strong>凭据管理</strong>而不是明文？<br>□ 流程配了<strong>失败报警</strong>和<strong>重试上限</strong>吗？<br>□ 我随时能在服务方后台<strong>找到并撤销</strong>这条授权吗？<span class="qsrc">——依据 PIPL 最小必要原则与 OWASP API 安全实践整理的自查清单（示例）</span></blockquote>
+      <p class="ctx">这张清单不長，但每一条都对应一类真实事故：密钥明文泄露被盗刷、超范围授权被滥用、第三方转接导致客户数据外流、流程静默失败两周没人发现。<strong>合规不是自动化的对立面，而是自动化能长期跑下去的前提</strong>——被平台封禁、被公司叫停、被监管处罚的流程，效率再高也是负资产。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国个人信息保护法》全文检索）</a> · <a href="https://owasp.org/www-project-api-security/">OWASP API Security Project（英文，最小权限与凭证管理）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于 API 与集成的四个误解</h3>
+      <p class="ctx"><strong>误解一："API 是程序员的事，普通人用不上。"</strong>——错。你每天都在间接触发 API（第一节），而工作流工具已把 API 调用封装成拖拽节点；本章的知识（选官方集成、管好密钥、看懂 429）恰恰是"不写代码的集成者"最需要的素养。</p>
+      <p class="ctx"><strong>误解二："官方没有接口，模拟登录抓页面也一样。"</strong>——不一样。稳定性和合规性双重劣势（第三节）：页面一改流程就断，模拟登录普遍违反服务条款，账号被封是常见结局，数据经手第三方还有泄露面。"一样"的只是表面上都拿到了数据。</p>
+      <p class="ctx"><strong>误解三："收到 429 报错，说明服务坏了，多刷几次就好。"</strong>——恰好相反：429 是对方明确告诉你"请求太频繁"（MDN 官方定义），继续硬刷只会延长限制、加重风控标记，正确动作是退避等待并降低流程频率（第五节）。</p>
+      <p class="ctx"><strong>误解四："授权过一次的工具，留着不管没风险。"</strong>——有风险。闲置授权=长期有效的门禁卡：工具被收购、被入侵、你忘了它有什么权限，都可能变成数据出口。定期巡检"已授权应用"列表并撤销闲置授权，是成本最低的安全习惯（第四节）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429">MDN Web Docs《429 Too Many Requests》（英文）</a> · <a href="https://developer.mozilla.org/en-US/docs/Glossary/OAuth">MDN Web Docs OAuth 词条（英文，授权可撤销机制）</a> · <a href="https://www.robotstxt.org/robotstxt.html">robots.txt 标准官方说明（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>用餐厅点单的比喻解释 API：菜单、服务员、厨房分别对应什么？</li>
+        <li>一次 API 调用里，请求包含哪三样东西？响应包含哪两样？</li>
+        <li>状态码 200/401/404/429/500 开头各代表什么大类问题？</li>
+        <li>为什么说结构化数据格式（JSON）是自动化的好朋友？</li>
+        <li>"拉取"和"推送"两种集成方向分别指什么？各自的生活化比喻是？</li>
+        <li>轮询模式的两个缺点是什么？webhook 的两个前提条件是什么？</li>
+        <li>什么叫"推拉结合"？为什么重要的事不要只依赖单一通道？</li>
+        <li>拿到目标软件数据的四条路径按优先级排序是怎样的？</li>
+        <li>官方集成优于页面抓取的三个理由是什么？</li>
+        <li>什么条件下页面抓取可以谨慎使用？什么条件下绝对不能碰？</li>
+        <li>"数据在到达目的地前经过了谁家的服务器"这个问题针对的是哪种集成路径？</li>
+        <li>为什么说 API 密钥"认钥匙不认人"？泄露大模型服务密钥的具体后果是什么？</li>
+        <li>密钥保管四条纪律是什么？为什么不能把密钥粘贴进 AI 对话框？</li>
+        <li>OAuth 授权为什么被比喻成"门禁卡"而不是"万能钥匙"？授权页面要停留三十秒看什么？</li>
+        <li>429 报错的官方含义是什么？Retry-After 头部有什么用？</li>
+        <li>退避重试的模式是怎样的？为什么还要加随机抖动？</li>
+        <li>"邮件→AI 摘要→群通知"链路的五步是什么？三个常见堵点分别怎么对策？</li>
+        <li>PIPL 的"最小必要"原则翻译成自动化语言是哪三句话？</li>
+        <li>接线前检查清单里，你觉得自己最容易漏掉哪一条？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>API=软件世界的正式接口，餐厅点单模型（菜单=接口文档、服务员=接口、厨房=服务本体）；请求带"要什么/怎么要/你是谁"，响应带"状态码+结构化数据"；集成两方向=主动拉（API 轮询，主动权在你但有空耗）与被动推（webhook，事件即达，需对方支持），关键流程推拉结合；路径优先级=官方集成&gt;官方连接器&gt;直连官方 API&gt;页面抓取（最后手段：公开+robots 允许+低频礼貌，需登录的内容不抓，任何灰产手法一律不教）；第三方转接先看"数据经过谁的手"，敏感数据链路越短越好；密钥四纪律=进凭据管理不进明文、最小权限、定期轮换、泄露即吊销，永不把密钥贴进 AI 对话框；OAuth=限时限房间的门禁卡，要密码的"集成"一律警惕，定期巡检已授权应用；429=你太快了（MDN/RFC 6585），退避重试+随机抖动+主动降频，把目标服务当共享电梯；链路三堵点=格式对不上（加清洗）、权限不够或过期（核对范围+失败报警）、量变了（过滤前置+配额熔断）；合规三句=只接需要的数据、他人信息要有合法性基础、委托处理要可控（PIPL 最小必要）；接线前过一遍五分钟检查清单——合规不是自动化的对立面，是它能长期跑下去的前提。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-workflow/"><span class="dir">← 第11章</span>工作流工具入门：把任务串成流水线</a>
+    <a href="../13-agent/"><span class="dir">第13章 →</span>AI Agent 是什么：感知-规划-行动循环</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第12章 · 依据 MDN Web Docs（HTTP/JSON/OAuth/429 状态码）、GitHub Webhooks 官方文档、OWASP API Security Project、n8n 官方文档、《中华人民共和国个人信息保护法》《中华人民共和国数据安全法》现行文本及 robots.txt 标准整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或企业合规建议 · 请遵守平台服务条款，AI 生成内容依规标识 · 关键操作请保留人工确认 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5章 成本账：自动化到底花多少钱 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第5章 · 认识 AI 自动化</div>
+  <h1>成本账：自动化到底花多少钱</h1>
+  <p>token 计费原理、订阅/API/本地部署三本账、可跟算的手算示例、隐性成本、ROI 粗算与"自动化悖论"，以及小模型分工、缓存、免费额度六招省钱法</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../04-safety/">← 第4章：安全与合规红线</a>
+    <a href="../06-browser/">第6章：浏览器自动化基础 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">token 是什么</a>
+    <a class="anchor" href="#s2">三本账</a>
+    <a class="anchor" href="#s3">手算示例</a>
+    <a class="anchor" href="#s4">隐性成本</a>
+    <a class="anchor" href="#s5">ROI 与悖论</a>
+    <a class="anchor" href="#s6">省钱技巧</a>
+    <a class="anchor" href="#s7">预算与监控</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成投资建议或采购建议。文中所有价格数字均为<strong>教学示例</strong>，用于演示计算方法，不代表任何厂商的真实报价；真实价格请以各厂商官方定价页为准（截至 2026 年 10 月），且 AI 服务定价变动频繁，示例数字可能很快过时。汇率、税费未计入示例。提及的产品与服务名称仅用于教学说明，本站无商业合作、无推广链接；提到商业产品时尽量并列开源替代方案，请根据自身需求独立决策。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①解释 token 是什么、为什么 AI 服务按 token 计费，并会估算一段文字的 token 量级；②说清订阅制、API 按量、本地部署三种付费模式各自适合谁，账分别怎么算；③跟着手算示例算出"一个自动化任务每月 API 费用"，并理解为什么文本类任务常常比想象中便宜；④列出四类账单外的隐性成本：搭建调试时间、持续维护、页面改版导致的失效、错误输出的代价；⑤用"省下小时数×时薪 vs 月成本"做 ROI 粗算，并识别"自动化悖论"：为了省 10 分钟搭 3 小时的自动化，什么情况下值得、什么情况下不值得；⑥掌握六招省钱法：模型分级分工、缓存、批量、免费额度、开源与本地方案、任务瘦身；⑦给自己的自动化设预算上限和用量监控，防止"跑一晚上账单爆炸"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是第一部分（认识 AI 自动化）的收官章：第2章教你选工具、第3章教你下指令、第4章教你守边界、本章教你算成本——四章合起来构成动手前的完整决策框架。第一次读建议通读；之后把第三节的手算框和第五节的 ROI 公式存成备忘，每次立项新自动化前花五分钟算一遍。核心心法一句话：<strong>自动化的成本大头几乎从来不是 API 账单，而是你的时间——搭建、调试、维护、收拾错误的时间；会算账的人先把时间账算清楚</strong>。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、token：AI 世界的计价单位</h2>
+    <p class="chapter-sub">不懂 token，就像打车不看计价器——账单来了才知道贵贱</p>
+
+    <article class="view">
+      <h3>token 是什么：模型的"字节"，账单的"度"</h3>
+      <p class="ctx">大模型不是按"字"或"词"处理文本的，而是按 <strong>token（词元）</strong>：模型先把文本切成一个个 token（常见词是一个 token，生僻词、长单词会被拆成几个，汉字通常一个字对应一个到两个 token），再逐个预测下一个 token（第1章讲过原理）。计费也按 token 走：你发进去的内容（提示词、上下文、材料）算<strong>输入 token</strong>，模型吐出来的内容算<strong>输出 token</strong>，两者单价不同——输出通常比输入贵数倍，因为生成比读取更耗算力。</p>
+      <p class="ctx">量级感很重要，记三个粗略换算（示例口径，精确值以各厂商官方分词器为准）：①一段 500 字的中文微信消息，约 500-1000 token；②一本 20 万字的小说，约 20-40 万 token；③一次普通的"总结这篇文章"对话（文章 2000 字+输出 300 字），约 3000-5000 token。有了量级感你就能心算：API 定价页上的价格是"每百万 token 多少美元"，一次几千 token 的调用，费用是"百万分之几"的量级——这就是为什么第三节的手算示例会得出"每天一百封邮件分类只要几毛钱人民币"这种反直觉的结论。<strong>贵不贵不取决于感觉，取决于任务量×单价，两个都能算</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI 官方文档：token 计费与模型上下文窗口说明（英文）</a> · <a href="https://arxiv.org/abs/2005.14165">Brown et al. (2020). Language Models are Few-Shot Learners：token 化与自回归生成原理（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>按量计费：AI 服务界的"水电表"</h3>
+      <p class="ctx">API 按量计费（pay-as-you-go）的逻辑和水电一样：装表不要钱（注册开发者账号通常免费），用多少算多少（按输入+输出 token 数×单价），账单周期结算。这个模式对个人自动化极其友好：<strong>不用就不花钱，小规模用花小钱</strong>，没有"最低消费"。对比之下，订阅制（每月固定费）像包月宽带，本地部署（买硬件自己跑）像自建发电机——三种模式没有绝对优劣，只有"用量-成本曲线"上的不同交点，第二节展开。</p>
+      <p class="ctx">看定价页的三个要点。①<strong>分清模型档位</strong>：同一厂商通常有多档模型（旗舰档贵、轻量档便宜），价差可达数十倍；定价页按模型分别标价。②<strong>输入输出分开计价</strong>：估算成本时把两者分开算，输出多的任务（写长文）和输入多的任务（读长文档）成本结构完全不同。③<strong>留意特殊计价项</strong>：图像、音频通常按张/按秒另计；带缓存的输入 token 可能有折扣价；批量接口可能有折扣（第六节省钱技巧的来源）。所有具体数字随时间变动，本课程不背价格表——<strong>背下方法，用时现查官方定价页</strong>，这是应对价格快速变化的唯一可靠姿势（各厂商定价页链接见第三节）。</p>
+      <p class="ctx">关于价格趋势，还有一个对决策有用的长期观察：自生成式 AI 普及以来，同等能力档位的模型单价总体呈快速下降趋势，各厂商还不断用更便宜的轻量档刷新"性价比下限"。这对你的成本决策意味着两条：①<strong>今天算不过账的任务，半年后可能算得过来</strong>——被成本否掉的候选任务别扔掉，放进清单定期重估；②<strong>不要为"以后会更便宜"而推迟值得做的自动化</strong>——回本周期以月计的任务，等降价省下的钱远小于早半年开始省下的时间。把这两条合起来就是：按现价决策、按趋势重估。</p>
+      <div class="fig"><img src="../assets/img-05-1.png" alt="token 计费概念示意图：一个抽象的计量表连接着文字方块流，方块被切分成小单元依次流过表计，旁边一个几何机器人记录读数" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.anthropic.com/pricing">Anthropic 官方定价页：API 按 token 计费的公开报价示例（英文，以页面实时价格为准）</a> · <a href="https://openai.com/api/pricing/">OpenAI API 官方定价页（英文，以页面实时价格为准）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、三本账：订阅、API、本地部署</h2>
+    <p class="chapter-sub">同样一件事"让 AI 干"，三种付费模式对应三种用量曲线和三类人群</p>
+
+    <article class="view">
+      <h3>订阅制：普通人的默认入口，账最好算</h3>
+      <p class="ctx">订阅制就是消费级 AI 产品的月费/年费模式：固定月费，额度内随便用（通常有频率上限，如每几小时多少条消息），高级模型能力往往放在更贵的档位。它的账最简单：<strong>每月固定支出，边际成本近似为零</strong>——适合"人机对话为主、自动化为辅"的普通用户：写材料、改文案、问问题、偶尔跑个小任务。判断值不值的方法也简单：这个月你用它替代了多少次"搜索+自己整理"或"外包+等待"？省下两顿外卖钱就回本了。</p>
+      <p class="ctx">订阅制做自动化的边界要清楚：①多数订阅产品的服务条款限制程序化调用（用脚本模拟网页对话可能违反 ToS，参考第4章）；②有频率上限，无人值守的批量任务容易撞墙；③额度是"对话额度"不是"API 额度"，两套体系不通用。所以订阅制的正确定位是：<strong>你坐在屏幕前用它干活</strong>；要让它在你睡觉时自动干活，请走 API。另外，不少办公套件已把 AI 能力打包进订阅（微软 365 Copilot 类，商业产品以官方页面为准），如果你已有办公套件订阅，先看套餐里含不含 AI 能力，可能不用额外花钱。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/pricing">Anthropic 官方定价页：订阅档位与 API 计价的并列说明（英文）</a> · <a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 入门文档：办公生态内的自动化与 AI 能力（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>API 按量：自动化的主战场，账要会算</h3>
+      <p class="ctx">API（应用程序接口）是给程序调用的通道：你的脚本、工作流工具、Agent 通过 API 把任务发给模型，按 token 付费。它是无人值守自动化的标准配置——第12章会专门讲怎么接。API 账的三个变量：<strong>调用次数 × 每次的 token 量 × 单价</strong>。三个变量都能优化：次数靠任务设计（能合并的合并）、token 量靠提示词瘦身（第3章的约束写得好，token 就省得多）、单价靠模型选型（下一张卡的分级分工）。</p>
+      <p class="ctx">API 模式的两条纪律。①<strong>先小额试跑再放量</strong>：新流水线先用几十条样本跑通、核对成本，再放到全量——见过太多"一晚上跑了几十万次调用"的事故，都是没试跑直接放量。②<strong>设硬性预算上限</strong>：主流厂商的开发者后台都提供用量限额与告警设置（以各官方文档为准），开户第一件事就是把月限额设上，第七节详述。API 的成本优势在于弹性：任务停了账单就停了；风险也在于弹性：出了 bug 的循环调用，账单会跟着循环。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档：工作流中接入 AI 模型 API 的配置方式（英文）</a> · <a href="https://openai.com/api/pricing/">OpenAI API 官方定价页：按量计费的公开报价（英文，以页面实时价格为准）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>本地部署：数据不出门的方案，账最容易被算错</h3>
+      <p class="ctx">本地部署=在自己电脑上跑开源模型：Meta 的 Llama 系列是最知名的开源模型家族，Ollama 把"下载并运行开源模型"简化成了几条命令，Hugging Face Transformers 是更专业的开源工具链。账面上它"免费"——没有 API 费、没有订阅费；但真实的账是：<strong>硬件（够用的内存/显卡，几千到几万元）+ 电费 + 你的调试时间 + 能力折扣</strong>。本地小模型与云端旗舰模型的能力差距是客观存在的：复杂推理、长文档、多步骤 Agent 任务，本地轻量模型的成功率会明显更低——省下的 API 费可能变成更多的人工返工。</p>
+      <p class="ctx">本地部署真正无可替代的场景只有一个：<strong>数据不能出门</strong>（第4章讲过的高敏感数据场景）。此时它不是"省钱方案"而是"唯一合规方案"，账要按合规成本算。除此之外，对个人用户的经验口径是：先别买硬件——云端 API 的轻量档模型价格已经很低（下一节手算），中轻度用量下"免费额度+API 轻量档"几乎总是比自购硬件划算；等你月账单持续超过一台设备的折旧价，再考虑本地化不迟。开源模型还有许可证条款问题（部分模型对商用规模有限制），使用前读一遍模型官方的许可说明。</p>
+      <table class="cmp">
+        <tr><th></th><th>订阅制</th><th>API 按量</th><th>本地部署</th></tr>
+        <tr><td>计费方式</td><td>固定月费</td><td>按 token 用量</td><td>硬件一次性+电费</td></tr>
+        <tr><td>适合谁</td><td>人机对话为主</td><td>无人值守自动化</td><td>数据不能出门/超重度用量</td></tr>
+        <tr><td>边际成本</td><td>≈0（额度内）</td><td>随量线性</td><td>≈电费</td></tr>
+        <tr><td>主要风险</td><td>频率上限、ToS 限程序调用</td><td>bug 循环调用账单爆炸</td><td>能力折扣、硬件闲置</td></tr>
+        <tr><td>上手难度</td><td>最低</td><td>中（第12章教）</td><td>较高</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://ollama.com/">Ollama 官方站：本地运行开源模型（英文）</a> · <a href="https://ai.meta.com/llama/">Meta Llama 官方页：开源模型家族与许可说明（英文）</a> · <a href="https://huggingface.co/docs/transformers/index">Hugging Face Transformers 官方文档（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三本账组合：普通人的典型演进路径</h3>
+      <p class="ctx">三种模式不是三选一，绝大多数人的真实路径是<strong>组合演进</strong>，大致分四个阶段。<strong>阶段一：纯订阅/纯免费</strong>——刚入门，所有任务都在对话框里人机协作完成，成本≈一份订阅费或零；这个阶段的重点是练第3章的提示词功底，别急着搭流水线。<strong>阶段二：订阅+轻量 API</strong>——开始出现"想让它自己跑"的任务（定时摘要、邮件分类），注册开发者账号、吃免费额度、跑轻量档模型，月成本通常在一杯奶茶到一顿午饭之间；这个阶段最该做的是把手算四步框用起来，对每个任务建立成本直觉。<strong>阶段三：API 为主+工具订阅</strong>——流水线多了，引入工作流工具统一编排（自托管 n8n 可以把工具费压到零，商业平台按档位付费），旗舰档模型只在关键环节动用；月成本几十到几百元，但对应省下的手动时间通常已是每天一两小时量级。<strong>阶段四（少数人）：局部本地化</strong>——某类数据不能出门，或某高频任务量大到 API 账单超过硬件折旧，才引入本地部署。</p>
+      <p class="ctx">这条路径的关键不是"每阶段花多少钱"，而是<strong>每次升级都由真实需求触发</strong>：任务量涨到免费额度不够了才付费，付费账单涨到工具能省更多时间了才上工具，工具化之后仍有数据合规硬需求了才本地化。反面的典型是"装备党路径"：还没跑通第一个任务，先买了显卡、订了三个平台、囤了一堆 API 额度——第2章说过的"先手动跑通再自动化"，在花钱这件事上同样成立：<strong>先用最便宜的方式验证任务值得做，再为它升级装备</strong>。判断自己该不该升级的信号只有一个：现有模式下，你是否有任务因为成本或额度限制而"想做但没做"——没有，就说明当前模式仍是性价比最优解。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档：自托管与云端两种部署模式的说明（英文）</a> · <a href="https://zapier.com/">Zapier 官网：商业工作流平台的档位定价模式示例（英文，商业产品，以官方页面为准）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、手算示例：一个自动化任务每月花多少钱</h2>
+    <p class="chapter-sub">跟着算一遍，你就获得了"看一眼任务就能估成本"的直觉——以下数字全部为教学示例</p>
+
+    <article class="view">
+      <h3>示例一：每天 100 封邮件自动分类摘要（轻量档模型）</h3>
+      <p class="ctx">任务：把每天收到的 100 封客户邮件自动分类（五个类别）并各生成一句摘要，结果写入表格。先估 token：每封邮件正文平均 300 字中文，约 450 token（按 1 字≈1.5 token 的示例系数）；提示词模板（第3章四件套）约 300 token；输出（类别+一句摘要）约 60 token。即<strong>每封邮件≈输入 750 token、输出 60 token</strong>。</p>
+      <p class="ctx">再套单价（教学示例价，非任何厂商真实报价）：假设某轻量档模型定价为输入每百万 token 0.8 元、输出每百万 token 3 元。每封邮件费用 = 750÷1,000,000×0.8 + 60÷1,000,000×3 = 0.0006 + 0.00018 ≈ <strong>0.0008 元</strong>。每天 100 封 ≈ 0.08 元；<strong>每月 ≈ 2.4 元</strong>——不够买一瓶水。这个反直觉的结论有普适性：<strong>轻量档模型+短文本+中等频率的"文本流水线"任务，API 成本几乎可以忽略</strong>；真正贵的是重度使用旗舰模型、超长上下文、图像音频、高频 Agent 循环这四类，见下一个示例。</p>
+      <blockquote class="q">手算四步框（任何 AI 自动化任务立项前算一遍，数字以官方定价页实时价替换）：<br>① 估单次 token：输入=材料+提示词模板，输出=期望结果，中文按 1 字≈1-2 token 粗估；<br>② 查单价：目标模型档位的输入价、输出价（每百万 token），分开记；<br>③ 单次费用=输入量÷100万×输入价 + 输出量÷100万×输出价；<br>④ 月费用=单次费用×日次数×30，再和第五节的"省下的人工成本"对比。<br><span class="qsrc">方法为本课程教学归纳；token 换算与计价口径参见 OpenAI/Anthropic 官方文档与定价页（英文），所有示例数字非真实报价。</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openai.com/api/pricing/">OpenAI API 定价页：查询真实单价的官方入口（英文，以页面为准，截至 2026 年 10 月）</a> · <a href="https://www.anthropic.com/pricing">Anthropic 定价页：查询真实单价的官方入口（英文，以页面为准，截至 2026 年 10 月）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>示例二：Agent 式网页调研任务（旗舰档模型，成本翻百倍的原因）</h3>
+      <p class="ctx">任务：让 Agent 自动完成"调研某产品市场的五家竞品并输出对比报告"。这类任务的成本结构和邮件分类完全不同：Agent 每一步都要"看"（把网页内容或截图塞进上下文）+"想"（推理下一步动作）+"做"（输出动作指令），一个任务可能循环二三十步，<strong>每一步的上下文还越滚越长</strong>（之前的观察都要带着）。粗估（教学示例）：单次任务累计输入 30 万 token、输出 3 万 token；假设旗舰档模型示例价输入每百万 20 元、输出每百万 100 元——单次费用 = 0.3×20 + 0.03×100 = 6 + 3 = <strong>9 元/次</strong>。每天跑 10 次就是每月约 2700 元，是邮件分类示例的一千多倍。</p>
+      <p class="ctx">贵在哪，一目了然：旗舰单价（×25）、超长上下文（×400 倍 token 量）、多步循环（×30 步）。三个乘数都来自任务设计而非"AI 本身贵"——所以省钱的全部艺术就是砍这三个乘数：能用轻量档就不用旗舰档、能压缩上下文就不带全文、能十步走完就不循环三十步（第六节展开）。立项时的正确姿势：先用手算框估一版，再用几十条真实样本试跑，用开发者后台的实际用量数字校准估算——估算和实测差十倍是常事，差在哪一步，账单会告诉你。</p>
+      <p class="ctx">顺带把多模态的成本直觉也建立了：<strong>图像和音频是另一套计价体系，量级普遍高于纯文本</strong>。图片输入通常按张或按分辨率折算 token 计费，一张高清截图折算的 token 可能顶几千字文本；语音转写按音频时长计费（如 Whisper 类服务的官方 API 按分钟计价，开源版本地跑则只花电费，第10章详讲）。所以"让 Agent 每一步都看截图"的电脑操作类自动化（第7章），成本天然高于"读文本干活"的流水线——设计时用能拿到结构化数据的地方就别截图（读网页 HTML 比看网页截图便宜且准确），这是多模态场景的第一省钱原则。视频理解类任务再把图片逻辑乘以帧数，成本敏感度更高，立项前务必先用几秒钟素材试算。</p>
+      <div class="fig"><img src="../assets/img-05-2.png" alt="成本天平示意图：一个抽象天平，左盘放着硬币堆成的小山，右盘放着时钟与齿轮，几何机器人在旁边观察平衡" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://arxiv.org/abs/2210.03629">Yao et al. (2022). ReAct: Synergizing Reasoning and Acting in Language Models：Agent"观察-推理-行动"循环的学术出处（英文）</a> · <a href="https://www.anthropic.com/pricing">Anthropic 定价页：模型档位价差的公开示例（英文，以页面为准）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、隐性成本：账单之外的四座冰山</h2>
+    <p class="chapter-sub">API 费只是水面上的十分之一：搭建、维护、失效、出错，才是个人自动化的真实成本结构</p>
+
+    <article class="view">
+      <h3>时间成本：搭建与调试是最大的一笔</h3>
+      <p class="ctx">对个人用户，自动化的成本大头是<strong>你的时间</strong>。一个"每周五自动把 30 个表格拼成周报"的流水线，从零到稳定通常要经历：理解工具（1-2 小时）→搭出第一版（1-2 小时）→调试边界情况（数据缺列、格式变化、编码问题，2-4 小时）→接入 AI 环节并调提示词（1-2 小时）→试运行一周修修补补（累计 1-2 小时）。合计 6-12 小时——这是"搭建成本"。它的残酷之处在于：<strong>无论任务以后跑多少次，这笔投入都已经发生</strong>；任务跑得越少，摊到每次的时间成本越高。这就是第五节"自动化悖论"的算术基础。</p>
+      <p class="ctx">调试时间还有一个反直觉的规律：<strong>自动化把"低强度重复劳动"换成了"高强度认知劳动"</strong>。手动拼表格 30 分钟是体力活，可以边听播客边干；调试流水线为什么报错 2 小时是脑力活，全神贯注还不能保证修好。所以"自动化一定轻松"是错觉——它轻松的是<strong>稳定运行之后</strong>的每一次执行，前提是你能熬过搭建调试期，并且任务足够高频，让稳定运行的次数把搭建成本摊薄。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档：工作流搭建与调试功能（错误处理、重试、执行日志）（英文）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF：AI 系统全生命周期成本与运维考量（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>维护、失效与错误：三座持续滴水的冰山</h3>
+      <p class="ctx"><strong>维护与失效成本</strong>：自动化依赖的外部世界会变。网页改版，你定位按钮的选择器就失效（第6章会讲选择器为什么脆弱）；平台调整接口或风控，昨天还通的流程今天就断；模型升级换代，原来调好的提示词输出风格漂移（第3章的验收要重跑）。经验口径：<strong>依赖网页界面的自动化，失效是常态不是意外</strong>——不是"会不会坏"而是"多久坏一次"；每次修复 0.5-2 小时。降低失效成本的设计在第8章、第15章讲：优先官方 API（比模拟点击稳定一个量级）、失败告警（坏了立刻知道，而不是错了三个月才发现）、模块化（坏哪段修哪段）。<strong>错误成本</strong>：自动化出错时的代价不对称——AI 把重要邮件分错类你可能毫无察觉（静默错误），把汇总数字算错直接进了报表（下游污染），批量操作把不该删的删了（不可逆损失）。所以第4章的人工兜底、第3章的验收测试、第15章的抽查机制，本质上都是在为"错误成本"买保险：保险费是每次多花十秒确认，赔付上限是避免一次事故。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/">Playwright 官方文档：选择器稳定性与自动等待机制（英文）</a> · <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLM Applications：LLM 系统的输出可靠性风险（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、ROI 粗算与"自动化悖论"</h2>
+    <p class="chapter-sub">省下的钱大于花掉的钱才值得做——包括花掉的时间</p>
+
+    <article class="view">
+      <h3>ROI 粗算公式：把时间统一折算成钱</h3>
+      <p class="ctx">投资回报率（ROI）的自动化粗算版，一行公式：<strong>月收益 = 每月省下的小时数 × 你的时薪；月成本 = 订阅/API/服务器费用 + 每月维护小时数 × 你的时薪；月收益 &gt; 月成本，才值得维持</strong>。时薪怎么定？上班族可以用"月薪÷实际月工时"做起点，但更推荐用<strong>机会成本口径</strong>：这一小时如果不干这个，你能创造/享受的价值是多少——对自由职业者是接单时薪，对上班族可能是"准时下班陪家人"的主观价值。这个公式最容易被低估的项是"每月维护小时数"：很多人只算搭建的一次性投入，忘了网页改版、提示词漂移带来的持续小修（第四节）。</p>
+      <p class="ctx">算一个完整例子（示例）：自动整理发票任务，手动每月 4 小时；搭建自动化花了 8 小时，之后每月维护约 0.5 小时；API 费每月约 5 元；你的时薪按 100 元计。月收益 = 4×100 = 400 元；月成本 = 5 + 0.5×100 = 55 元；<strong>净赚 345 元/月，搭建投入 8 小时（800 元）约 2.3 个月回本</strong>——值得做。再把参数改一下：如果这任务每月只手动花 30 分钟，月收益 = 50 元，扣除维护后<strong>净亏</strong>，且永远回不了本——不值得做，老老实实手动。<strong>同一项技术，频率差八倍，结论完全反转</strong>：这就是为什么"什么任务值得自动化"（第2章）必须先于"怎么自动化"。</p>
+      <p class="ctx">用这个公式给任务排队，就得到了你的<strong>自动化优先级清单</strong>：把候选任务逐个算出"回本月数"（搭建投入÷月净收益），按回本速度排序，先做回本最快的。两个修正项别忘加：①<strong>确定性权重</strong>——手动做经常出错、错了代价高的任务（对外数据、财务数字），即使回本慢也值得提前做，因为买的是"每次都一样对"；②<strong>复用系数</strong>——如果某任务的组件（登录模块、通知模块、数据清洗步骤）能被后面三个任务复用，它的真实搭建成本要按分摊算，优先级应上调。排完序你会发现一个普遍规律：<strong>高频、规则清晰、错误可挽回的任务排在最前面</strong>——这和第2章的选型四问、第19章的翻车复盘结论完全一致，殊途同归。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://zapier.com/">Zapier 官网：自动化任务量与订阅档位的公开计价模式示例（英文，商业产品，以官方页面为准）</a> · <a href="https://docs.n8n.io/">n8n 官方文档：可自托管的开源工作流方案（成本结构对照）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>自动化悖论：为了省 10 分钟，花了 3 小时</h3>
+      <p class="ctx">"自动化悖论"（工程师圈的老话题，xkcd 那幅著名漫画也算过这笔账）：你花 3 小时搭建自动化，去替代一个每周 10 分钟的手动任务——回本需要 18 周；如果任务每月才一次，回本要一年半；如果期间网页改版任务失效，可能<strong>永远回不了本</strong>。悖论的扎心之处在于：越懂技术的人越容易掉进去，因为"搭自动化"本身有趣，而"手动做任务"枯燥——于是我们用"提高效率"的名义，做了一件降低效率的事。识别信号很简单：<strong>当你搭自动化的动机里有"好玩""炫技""不想碰那个烦人的手动活"时，先拿出 ROI 公式冷静算一遍</strong>。</p>
+      <p class="ctx">但悖论有另一面，三个正当理由可以让"算不过账"的自动化依然值得做：①<strong>学习价值</strong>——本课程语境下，用一个小任务练手工作流工具，学到的是能复用到未来所有任务的能力，这笔账不能只按单任务算；②<strong>错误率价值</strong>——手动做容易错且错了难查的任务（数据搬运、格式转换），自动化的收益不止省时间，还有"每次都一样对"的确定性；③<strong>复利价值</strong>——第一个自动化最贵（工具、账号、模式都要从头摸索），第二个开始复用已有组件，边际搭建成本递减；今天"算不过账"的小流水线，可能是明天大流水线的预制件。结论：<strong>悖论防的是"为自动化而自动化"，不是防学习投资</strong>——分清你这一单是哪种。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://playwright.dev/">Playwright 官方文档：录制回放等降低搭建成本的功能（英文）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF：AI 系统投入产出的全生命周期评估思路（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、省钱六招：把三个乘数砍下来</h2>
+    <p class="chapter-sub">单价×token 量×次数，每一项都有成熟的砍法——省钱靠设计，不靠抠门</p>
+
+    <article class="view">
+      <h3>前三招：模型分级、缓存复用、批量折扣</h3>
+      <p class="ctx"><strong>招式一：小模型干粗活，大模型干精活</strong>（模型分级/路由）。流水线的多数环节是"粗活"：分类、抽取、格式转换——轻量档模型足够；只有少数环节需要旗舰档的推理力。把流水线拆开，每个环节单独选档，常见能省 50%-90% 的 API 费（具体比例取决于任务构成，示例口径）。判断方法：先用轻量档跑测试集（第3章），正确率达标就用它，不达标再升档——<strong>默认从最便宜的档试起</strong>。<strong>招式二：缓存复用</strong>。重复的输入不重复付费：①提示词模板部分固定不变，多数厂商提供提示缓存类机制，命中缓存的输入 token 有折扣价（各家机制与折扣以官方文档为准）；②同样的问题问过就别再问——给流水线加一层"结果缓存"（输入指纹→输出结果的对照表，命中直接返回）；③RAG（检索增强，第14章详讲）本质也是省 token：与其每次把整本手册塞进上下文，不如只检索相关段落。<strong>招式三：批量与非实时接口</strong>。对时效不敏感的任务（夜间跑的报表、周报汇总），用厂商的批量接口通常有折扣（以官方定价页为准）；工作流工具里把"来一条调一次"改成"攒一批调一次"，还能摊薄每次请求的固定开销。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI 官方文档：提示词精简与成本控制建议（英文）</a> · <a href="https://www.anthropic.com/pricing">Anthropic 定价页：提示缓存与批量接口的折扣说明入口（英文，以页面为准）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>后三招：免费额度、开源方案、任务瘦身</h3>
+      <p class="ctx"><strong>招式四：吃透免费额度</strong>。多数厂商给新账号免费试用额度；开发者平台常有长期免费层（每月一定量的免费调用）；开源模型通过 Ollama 本地跑是零 API 费。学习阶段（比如跟本课程做练习）的正确姿势：<strong>免费额度+本地小模型打底，只在验收关键效果时动用付费旗舰档</strong>——学费可以基本控制在零。<strong>招式五：开源与自托管工具</strong>。工具层同样有订阅账：商业工作流平台按任务量/席位收费，而 n8n 可自托管（其官方口径为 fair-code 许可，非纯开源，商用前读许可条款）、Playwright/Selenium 完全免费开源。工具订阅费在重度用量下可能超过 API 费，选型时把两本账一起算（第2章的选型四问里"预算"一问的展开）。<strong>招式六：任务瘦身</strong>。最便宜的 token 是不需要处理的 token：输入侧——材料先粗筛再进模型（用规则过滤掉明显无关的邮件，比让模型每封都读便宜两个数量级）、上下文只带必要段落、长对话定期摘要压缩；输出侧——第3章的格式约束写得越死，模型输出的废话越少（"只输出 JSON，不输出解释"直接砍掉一半输出 token 的案例很常见）；频率侧——每小时轮询改成每天一次，成本直接除以 24。<strong>六招的共同哲学：先优化任务设计，再优化模型选型，最后才是砍单价</strong>——顺序反了就是事倍功半。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://ollama.com/">Ollama 官方站：零 API 费的本地模型方案（英文）</a> · <a href="https://arxiv.org/abs/2005.11401">Lewis et al. (2020). Retrieval-Augmented Generation：检索增强降低上下文开销的学术出处（英文）</a> · <a href="https://docs.n8n.io/">n8n 官方文档：自托管部署与许可说明（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、预算与监控：别让账单给你惊喜</h2>
+    <p class="chapter-sub">无人值守系统必须有钱包闸口：上限、告警、复盘，三件套一次配齐</p>
+
+    <article class="view">
+      <h3>三道闸口：硬上限、用量告警、周期复盘</h3>
+      <p class="ctx">API 计费的弹性是双刃剑：bug 导致的死循环调用，能在几小时内烧掉平时几个月的预算——"账单爆炸"是自动化社区最常见的事故类型之一。三道闸口一次配齐：<strong>①硬上限</strong>——在厂商开发者后台设置月度消费上限（多数厂商支持，以各官方文档为准），到顶自动停服务；宁可流水线停摆，不可账单失控——停摆是已知损失，失控是未知损失。<strong>②用量告警</strong>——设置阈值告警（如日用量超过平常三倍时发邮件/短信通知你），异常在第一天就被发现，而不是月底看账单才知道。<strong>③周期复盘</strong>——每月花十分钟看一次用量明细：哪个任务花的钱最多？有没有已经不需要还在跑僵尸流水线（搭完就忘的定时任务是最常见的钱包漏洞）？单价有没有降（AI 服务价格长期趋势是下降的，你的模型选型可以定期重估）？</p>
+      <p class="ctx">给流水线本身也装上"省钱保险丝"：重试次数设上限（第3章失败协议的工程侧——失败重试是善意的，无限重试是烧钱的）；单次调用的输入输出 token 数设上限（防超长内容意外进入上下文）；循环类 Agent 设最大步数（第13章会讲步数上限是 Agent 安全的标配）。这三条配置花不了十分钟，却能把最坏情况的损失从"未知"变成"有界"。<strong>成本控制的本质不是抠单价，是给不确定性设边界</strong>——这句话同样适用于下一章开始的浏览器自动化：那里要设的边界是频率与超时。</p>
+      <p class="ctx">最后补一个读账单的实用习惯：主流厂商的开发者后台都能按 API 密钥分别统计用量，而密钥是可以多发几把的。给每条流水线（或每类任务）单独建一把密钥，账单里就能直接看到"邮件分类花了多少、周报汇总花了多少、上周的实验跑了多少"——不用自己记账，成本自动按任务归集。发现某条流水线成本异常时，先查三件事：调用次数是不是涨了（触发器配置错误导致重复执行？）、单次 token 是不是涨了（上游把整页内容塞进了上下文？）、模型档位是不是被谁改了（调试时升到旗舰档忘了改回来？）。这三问覆盖了账单异常的大多数原因，也是第15章编排监控的雏形：<strong>让每一笔钱都能对应到一个任务，让每一个异常都能在一天内被看见</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档：工作流错误处理、重试与执行监控配置（英文）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF：AI 系统的运行监控与风险管理要求（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">关于成本的四个流行错觉，每一个都会让你的决策跑偏</p>
+
+    <article class="view">
+      <h3>谣言粉碎：成本认知四大错觉</h3>
+      <p class="ctx"><strong>错觉一："AI 自动化很贵，是企业的专利。"</strong>——错。第三节手算过了：轻量档模型的文本流水线，每月成本常在一杯奶茶钱以内；加上各家免费额度与开源本地方案，个人学习阶段的成本可以压到接近零。真正贵的四种用法（旗舰档、长上下文、图像音频、高频 Agent 循环）恰恰都是可以被设计规避的。<strong>错觉二："免费的够用了，不用算账。"</strong>——半错。免费额度适合学习与轻用，但它通常有速率限制与档位限制，把它当生产依赖，任务会在最忙的时候撞墙；而且"免费"不等于零成本——你的时间与数据仍然是投入（第4章：向免费服务投喂敏感数据的隐性代价可能远超订阅费）。<strong>错觉三："本地部署一定比 API 省钱。"</strong>——错。本地部署的账=硬件+电费+调试时间+能力折扣，中轻度用量下几乎总是输给"免费额度+轻量档 API"（第二节）；它的不可替代价值在"数据不出门"，不在省钱。<strong>错觉四："ROI 算得过账就一定该自动化。"</strong>——片面。公式之外还有三件事：任务频率会不会变（明年还做这事吗）、错误代价承不承受得起（算得过账但一次事故就清零的任务，要么加人工兜底要么不做）、你有没有维护它的意愿（三个月后失效了谁来修）——第2章"什么时候不该自动化"的账，要和 ROI 一起算。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openai.com/api/pricing/">OpenAI API 定价页：各档位真实单价查询（英文，以页面为准，截至 2026 年 10 月）</a> · <a href="https://ollama.com/">Ollama 官方站：本地部署方案的真实成本构成（英文）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>token 是什么？输入 token 和输出 token 为什么单价不同？</li>
+        <li>三个 token 量级换算（500 字消息/20 万字小说/一次总结对话）大概是什么数？</li>
+        <li>看定价页的三个要点是什么？为什么本课程不背价格表？</li>
+        <li>订阅制适合什么用法？拿订阅产品跑无人值守自动化会撞到哪三堵墙？</li>
+        <li>API 账的三个变量是什么？各自怎么优化？</li>
+        <li>API 模式的两条纪律是什么？各自防什么事故？</li>
+        <li>本地部署的真实账由哪四项构成？它无可替代的场景是什么？</li>
+        <li>默写手算四步框，并复算一遍"每天 100 封邮件"示例的月成本。</li>
+        <li>Agent 式任务比文本流水线贵千倍的三个乘数是什么？</li>
+        <li>隐性成本四座冰山（搭建/维护/失效/错误）各举一个具体例子。</li>
+        <li>"低强度重复劳动换成高强度认知劳动"是什么意思？它对"自动化一定轻松"的说法有何修正？</li>
+        <li>写出 ROI 粗算公式，并复算"自动整理发票"示例的回本周期。</li>
+        <li>自动化悖论是什么？哪三个正当理由可以让"算不过账"的自动化依然值得做？</li>
+        <li>省钱六招分别砍的是哪个乘数？"先任务设计、再模型选型、最后砍单价"为什么是这个顺序？</li>
+        <li>三道闸口（硬上限/用量告警/周期复盘）各在哪个层面配？流水线自身的三条"省钱保险丝"是什么？</li>
+        <li>四大成本错觉，各自错在哪里？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>token=模型处理与计费的最小单位，中文 1 字≈1-2 token（粗估），输入输出分开计价、输出更贵；三本账=订阅制（人机对话，边际成本≈0，但限程序调用）、API 按量（无人值守自动化的主战场，先试跑再放量+设硬上限）、本地部署（为"数据不出门"而非省钱，账=硬件+电费+时间+能力折扣），普通人按"订阅→轻量API→API+工具→局部本地化"由真实需求触发逐级演进；手算四步框=估 token→查单价→单次费用→月费用（本章全部数字为教学示例，真实价以官方定价页为准，截至 2026 年 10 月）；文本流水线常便宜到忽略（示例月成本 2.4 元），Agent 循环贵千倍（旗舰单价×长上下文×多步循环三个乘数）；隐性成本四冰山=搭建调试（最大头）、持续维护、网页改版失效（常态非意外）、错误代价（静默错误最险）；ROI=省下小时×时薪 vs 费用+维护小时×时薪，频率差八倍结论反转；自动化悖论="为省 10 分钟花 3 小时"，学习价值/错误率价值/复利价值三个例外；省钱六招=模型分级、缓存、批量、免费额度、开源自托管、任务瘦身（最便宜的 token 是不处理的 token）；三道闸口=消费硬上限、用量告警、周期复盘（清僵尸流水线），流水线加三条保险丝=重试上限、token 上限、Agent 步数上限。至此第一部分完结——下一章进入实操：让机器人替你点网页。
+  </div>
+
+  <nav class="pager">
+    <a href="../04-safety/"><span class="dir">← 第4章</span>安全与合规红线：什么绝对不能碰</a>
+    <a href="../06-browser/"><span class="dir">第6章 →</span>浏览器自动化基础：替你点网页的机器人</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第5章 · 依据 OpenAI/Anthropic 官方定价页与文档、Ollama/Llama/Hugging Face/n8n 官方资料及 Yao et al. (2022)、Lewis et al. (2020) 等学术研究整理 · 全部价格数字为教学示例 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成投资或采购建议 · 价格以各厂商官方定价页实时数据为准 · 无商业合作与推广链接 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

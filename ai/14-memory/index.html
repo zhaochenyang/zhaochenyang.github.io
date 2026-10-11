@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14章 记忆与知识库：让 AI 用你的资料干活 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第14章 · 工作流与 Agent 编排</div>
+  <h1>记忆与知识库：让 AI 用你的资料干活</h1>
+  <p>RAG 不是玄学：先检索、再回答——从向量坐标比喻到个人知识库搭建的完整地图</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../13-agent/">← 第13章：AI Agent 是什么</a>
+    <a href="../15-orchestrate/">第15章：多步骤任务编排 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">AI 为什么记不住</a>
+    <a class="anchor" href="#s2">RAG 是什么</a>
+    <a class="anchor" href="#s3">向量检索</a>
+    <a class="anchor" href="#s4">三条路线对比</a>
+    <a class="anchor" href="#s5">搭建知识库</a>
+    <a class="anchor" href="#s6">幻觉与隐私</a>
+    <a class="anchor" href="#s7">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成法律意见、企业合规建议或任何产品的商业推荐；文中出现的工具、产品与论文名称仅用于教学说明，本站无商业合作、无推广链接，提到商业服务时均并列开源或自托管替代。向知识库投喂资料前，请遵守《个人信息保护法》《数据安全法》：他人个人信息与公司机密先脱敏、先取得合法性基础，敏感数据不进公共服务；RAG 能降低但不能根除幻觉，AI 基于你资料的回答仍可能出错，重要结论务必沿引用溯源人工核对原文；对外发布 AI 生成内容时，按《人工智能生成合成内容标识办法》履行标识义务。各节观点均标注来源，以来源原文为准；技术能力描述截至 2026 年 10 月。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①解释清楚"AI 为什么记不住你"：上下文窗口有限、会话即忘，所谓记忆都是外部补出来的；②用"开卷考试"和"图书馆查资料"的比喻讲清 RAG（检索增强生成）的工作原理：资料切块→语义索引→提问先检索相关块→带着原文作答；③说出 RAG 原论文（Lewis et al., 2020）的核心思想——给生成模型配一个外部检索记忆；④用"文字变坐标、意思相近坐标相近"理解向量检索与嵌入（embedding）；⑤背出个人/团队知识库的四步框架：收集→切分→索引→问答，并知道每一步最影响效果的坑；⑥用对照表分清 RAG、微调、长上下文三条路线各自的适用场景；⑦理解"引用溯源"是人工核对的抓手，RAG 降低幻觉但不能根除；⑧在投喂资料前完成脱敏与本地/云端取舍的隐私判断。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是第三部分的"记忆器官"：第13章讲了 Agent 的循环，本章补上它最重要的外挂——记忆与知识。第3章的提示词技巧解决"怎么问"，本章解决"让它带着你的资料答"。第一次读建议通读；动手建第一个知识库前，重读第五节的四步框架和第六节的隐私清单，照着走一遍。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、AI 为什么记不住你：记忆是补出来的</h2>
+    <p class="chapter-sub">会话即忘不是 bug，是大模型的工作机制——所有"记忆"都是工程手段</p>
+
+    <article class="view">
+      <h3>会话即忘：金鱼记忆的技术真相</h3>
+      <p class="ctx">很多人有过这种体验：跟 AI 聊了一个小时，把自己的偏好、背景、项目情况说得清清楚楚，第二天新开一个对话，它完全不认识你——"我昨天不是告诉过你了吗？"是的，你告诉过，但那次会话结束的瞬间，一切都清零了。这不是 AI"敷衍"你，而是大模型的基本工作机制决定的：<strong>模型本身是无状态的——每次请求，它只能"看见"这一次随请求送进去的文字，对之前的会话没有任何内在记忆</strong>。你在聊天软件里感受到的"连续对话"，其实是应用每次都把本轮之前的聊天记录一并塞进请求里造成的效果。</p>
+      <p class="ctx">理解了这一点，就理解了"记忆"类功能的真相：<strong>AI 产品的所有记忆能力，都是外部工程补出来的</strong>。聊天软件把历史对话带上，是"短期记忆"的工程化；产品宣传的"它记得你的偏好"，通常是把你的关键信息存进它家的数据库，下次对话时悄悄塞回请求里；你上传的文件"它读过了"，也只是在那次会话里被放进了上下文。没有任何一种是真的"长进模型脑子里"——模型权重在为你服务的过程中并没有被修改。这个认知很重要：它决定了你的资料放在哪里、谁能看到、删了之后是不是真的删了（第六节隐私讨论的基础）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function calling 官方指南（英文，请求-响应机制参照：模型仅依据当次请求内容作答）</a> · <a href="https://platform.claude.com/docs/en/build-with-claude/context-windows">Anthropic Context windows 官方文档（英文，上下文窗口的官方定义）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>上下文窗口：AI 的"工作台面"</h3>
+      <p class="ctx">每次请求能送进模型的文字总量有上限，这个上限叫<strong>上下文窗口</strong>（context window），按 token 计（第1章讲过 token 是模型处理文字的计量单位，中文大致一两个字对应一个 token）。可以把它想象成一张<strong>工作台面</strong>：台面再大也是有限的，你的指令、历史对话、上传的文件、系统的提示词，全都要摊在这张台面上让模型"一眼看到"；台面放满了，最早放上去的东西就会被挤下去（多数聊天产品会自动丢弃最久远的对话内容）。</p>
+      <p class="ctx">近几年各家模型的窗口从几千 token 一路扩到数十万甚至百万级，"把所有资料全塞进去"看似快要可行，但三个物理限制依然存在：<strong>①成本</strong>——按 token 计费的服务里，窗口塞得越满，每一次提问越贵，把一百页手册全文带上问一句话，等于每次提问都为一百页付钱（第5章的成本账）；<strong>②速度</strong>——输入越长，响应越慢；<strong>③效果</strong>——研究与实践都发现，超长上下文里模型对中间部分信息的利用率会下降（学术界称为"迷失在中间"现象，Liu et al., 2023 的研究是常被引用的出处）。工作台面大了是好事，但把整个仓库搬上台面，既贵又乱，找东西反而更慢——这就引出了下一节的思路：<strong>别把仓库搬上台面，只把需要的那几页拿上来</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://platform.claude.com/docs/en/build-with-claude/context-windows">Anthropic Context windows 官方文档（英文，窗口机制与成本关系）</a> · <a href="https://arxiv.org/abs/2307.03172">Lost in the Middle: How Language Models Use Long Contexts（Liu et al., 2023, arXiv:2307.03172，英文，长上下文中间信息利用率下降的研究）</a></div>
+    </article>
+    <article class="view">
+      <h3>记忆的分类：短期、长期与"外置大脑"</h3>
+      <p class="ctx">借用人类记忆的框架，AI 系统的记忆可以分成两大类，工程手段完全不同。<strong>短期记忆=上下文窗口里的东西</strong>：本次会话的历史对话、刚上传的文件、系统提示词——模型"睁眼就能看见"，但会话结束或窗口挤满就消失（Anthropic 官方文档把上下文窗口称为模型的"工作记忆"，working memory）。<strong>长期记忆=存在窗口之外、需要时再取回的信息</strong>：你的偏好档案、历史会话摘要、整个资料库——平时躺在数据库里，用的时候通过检索（本章主角 RAG）或产品自动注入的方式，把相关部分"搬回"工作台面。</p>
+      <p class="ctx">这个分类给普通用户三个实用推论：<strong>①"教 AI 记住"的正确姿势是写下来</strong>——想让偏好长期生效，与其每次口头叮嘱，不如写进产品的记忆/自定义指令功能，或者干脆维护一份"个人说明书"文档，每次重要任务开头贴给它（土办法，但百分百可控）；<strong>②长期记忆必然经过检索，检索就可能失准</strong>——产品"忘记"你说过的话，多数不是没存，是这次没检索到，重要信息别把身家性命押在自动记忆上；<strong>③记忆是隐私面</strong>——长期记忆里存着你的偏好与历史，它存在谁家服务器、能否查看和删除，属于第六节"条款关"的必查项。本章余下部分聚焦长期记忆最重要、最可控的形态：你自己的知识库。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://platform.claude.com/docs/en/build-with-claude/context-windows">Anthropic Context windows 官方文档（英文，上下文窗口作为"working memory"的官方定义与管理机制）</a> · <a href="https://www.pinecone.io/learn/retrieval-augmented-generation/">Pinecone RAG 科普页（英文，商业厂商撰写，长期记忆与检索的关系综述）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、RAG 是什么：先检索，再回答</h2>
+    <p class="chapter-sub">开卷考试的思路：不背下整个图书馆，答题时现场翻到那一页</p>
+
+    <article class="view">
+      <h3>一句话与一个比喻：RAG 的本质</h3>
+      <p class="ctx">RAG（Retrieval-Augmented Generation，检索增强生成）一句话：<strong>让模型回答之前，先从你的资料库里检索出最相关的几段原文，把它们连同问题一起交给模型，让它"照着资料回答"</strong>。比喻是<strong>开卷考试</strong>：闭卷考试全靠背（对应模型只凭训练时记住的参数知识答题——记不全、会记错、更不知道你家的事）；开卷考试允许带资料，答题前先翻到相关页（对应 RAG 的检索步骤），再组织语言作答。考试难的不是背得多，而是<strong>翻得快、翻得准</strong>——这正是 RAG 系统的核心挑战。</p>
+      <p class="ctx">这个思路解决了裸模型的三个死穴：<strong>①知识截止</strong>——模型训练完成后世界还在变，它不知道上个月的新政策、昨天的新价格，但你的资料库可以随时更新；<strong>②不知道你的私有信息</strong>——你公司的规章制度、你家的菜谱、你的项目文档，从来不在训练数据里，但可以被索引进你的知识库；<strong>③幻觉难核对</strong>——凭参数记忆答题，你无从知道它依据什么；照资料答题，回答可以附带出处，你顺着出处就能核对原文（第六节）。日常你在各种产品里看到的"上传文件后提问""和文档对话""企业知识库问答"，底层几乎都是 RAG。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（Lewis et al., 2020, arXiv:2005.11401，英文，RAG 原论文）</a> · <a href="https://www.pinecone.io/learn/retrieval-augmented-generation/">Pinecone《Retrieval Augmented Generation》科普页（英文，商业向量数据库厂商撰写，概念综述可参考）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>原论文的核心思想：给生成模型配一个外部记忆</h3>
+      <p class="ctx">RAG 这个术语来自 2020 年的论文《Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks》（Lewis et al., 2020）。它的核心思想用大众语言说：<strong>把"记住知识"和"运用知识"拆开</strong>——生成模型负责语言能力（把话说明白），一个可替换的外部检索器负责知识存储（从文档库里找相关内容），两者配合完成知识密集型任务。论文在开放域问答等任务上验证：相比纯靠模型参数记忆，配了外部检索的系统回答更具体、更准确，而且<strong>换掉检索库就能换知识</strong>——不用重新训练模型。</p>
+      <p class="ctx">"换库不换脑"是这篇论文留给实践者最值钱的遗产，直接解释了为什么 RAG 成了企业知识库的事实标准：公司制度改了，更新文档库即可，不用动模型；想接入新产品线，加一个资料源即可；昨天的会议纪要，今天就能被问答——而"把知识训进模型"（微调）每改一次都要花训练成本（第四节对比）。论文里的检索器基于文本的向量表示（下一节的主角），生成器是当时的大模型；五年多过去，模型换了十几代，<strong>"检索器+生成器"的架构骨架没有变</strong>——理解了一个 2020 年的思想，就理解了今天几乎所有知识库产品的工作原理。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（Lewis et al., 2020, arXiv:2005.11401，英文）</a> · <a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings 官方指南（英文，现代 RAG 检索环节的嵌入实现）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>四步流水线：从一堆文件到能问答</h3>
+      <p class="ctx">无论产品界面长什么样，RAG 系统内部都是同一条四步流水线：</p>
+      <blockquote class="q">①<strong>收集与预处理</strong>：把资料（文档、网页、笔记、聊天记录）汇到一起，转成纯文本，去掉页眉页脚水印等噪音；<br>②<strong>切分（chunking）</strong>：把长文档切成小段落（常见几百字一段，段落间留少量重叠避免切断语义）——因为检索的粒度是"段"，太长找不准，太短丢上下文；<br>③<strong>索引（embedding + 入库）</strong>：把每一段用嵌入模型转成一串数字坐标（向量），连同原文存进向量数据库——这一步是"建图书馆的索引卡片"，只做一次，之后资料更新只需增量补做；<br>④<strong>检索与生成（问答时）</strong>：你的问题也被转成坐标→系统找出坐标最接近的若干段落→把"问题+这几段原文"一起交给大模型→模型照着资料作答（通常附出处）。<span class="qsrc">——依据 RAG 原论文架构与主流向量数据库官方文档整理的通用流程（示例框）</span></blockquote>
+      <p class="ctx">记住这条流水线，你就获得了一项实用技能：<strong>知识库答得不好时，能定位是哪一步出了问题</strong>。答非所问、找错资料→多半是③索引质量或④检索数量的问题；回答缺上下文、断章取义→②切分粒度问题；资料明明在库里却说"没有相关信息"→①预处理没做好（比如关键内容锁在扫描图片里没转成文字）；资料是旧的说法→①的更新机制没跟上。第五节展开每一步的实操要点。</p>
+      <div class="fig"><img src="../assets/img-14-1.png" alt="抽象示意图：左侧一摞文档被切分成整齐的小方块，每个方块化为一个光点落进巨大的立体星座坐标系中；右侧一个提问光点射入坐标系，就近点亮若干文档方块，这些方块沿通道汇入一个几何大脑核心，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://qdrant.tech/documentation/">Qdrant 官方文档（英文，开源向量数据库，RAG 流水线各环节的技术说明）</a> · <a href="https://www.anthropic.com/news/contextual-retrieval">Anthropic《Introducing Contextual Retrieval》（英文，切分与索引质量优化的官方工程实践）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、向量检索：把意思变成坐标</h2>
+    <p class="chapter-sub">"报销流程"和"怎么报账"一个字都不同，坐标却紧挨着——这就是语义检索</p>
+
+    <article class="view">
+      <h3>嵌入（embedding）：每段文字一个坐标</h3>
+      <p class="ctx">向量检索的核心部件叫<strong>嵌入模型</strong>（embedding model）：输入一段文字，输出一串数字（比如几百到几千个），这串数字就是这段文字在高维空间里的"坐标"。关键性质是：<strong>意思相近的文字，坐标相近；意思无关的文字，坐标相距远</strong>。"公司报销流程是什么"和"出差垫付的钱怎么报账"没有任何共同的关键词，但嵌入模型会把它们放到几乎相邻的位置；而"报销流程"和"今天天气不错"的坐标则隔着十万八千里。</p>
+      <p class="ctx">对比一下传统搜索就明白它的价值：老式关键词检索靠"字面匹配"，搜"报账"找不到写着"报销"的文档，是图书馆按书名笔画排卡片——你得知道确切的字才找得到；向量检索按"意思"排卡片，你随便怎么问，只要意思对得上就能找到——甚至可以用大白话问专业文档（"请假扣不扣钱"问的是考勤制度原文），语义对了，坐标就对了。<strong>这就是为什么 RAG 系统能听懂人话</strong>——你不需要学会资料库的用词习惯，资料库来适应你的问法。OpenAI 等服务商提供嵌入 API（按 token 计费，价格远低于对话模型），也有大量开源嵌入模型可以本地跑（数据不出门，第六节隐私场景常用）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings 官方指南（英文，嵌入的定义、用途与向量相似度）</a> · <a href="https://qdrant.tech/documentation/">Qdrant 官方文档（英文，向量相似度检索原理说明）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>检索的质量上限：切分与上下文的工程细节</h3>
+      <p class="ctx">"意思相近就能找到"听起来完美，实践中却有一个大坑：<strong>切块之后，段落丢了上下文</strong>。举例（示例）：一份制度文档里有一段写着"符合条件的员工可申请补贴，标准为每月八百元"——单独看这段，"符合条件"是什么条件？在上一段里。切分把它孤立出来后，用户问"申请补贴需要什么条件"，这段的坐标和问题未必接近，可能被漏检；就算被检索到，模型拿到的也是个残缺信息。这类问题在长文档、多章节资料里非常普遍。</p>
+      <p class="ctx">工程界的对策不断演进，Anthropic 2024 年提出的"上下文检索"（Contextual Retrieval）是代表性思路：<strong>入库前让大模型给每个切块补写一两句"这段在全文中的位置与背景"</strong>（比如给上例那段加上"本段出自《员工补贴制度》第三章，前文定义了申请条件为入职满一年"），再连同补充说明一起做嵌入，官方报告称能显著降低检索失败率。大众用户不需要自己实现这些——但这解释了一个选品要点：<strong>好的知识库产品会在"切分与索引"环节下功夫</strong>（智能分段、保留章节结构、给切块补上下文），而粗糙的产品只是把文件剁碎了事。评估产品时可以问一句："它对长文档的分章节处理是怎么做的？"——答不上来的，效果多半也答不上来。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/news/contextual-retrieval">Anthropic《Introducing Contextual Retrieval》（英文，切块丢失上下文的问题与补写上下文的方案及效果数据）</a> · <a href="https://qdrant.tech/documentation/">Qdrant 官方文档（英文，chunking 策略说明）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、三条路线：RAG、微调、长上下文怎么选</h2>
+    <p class="chapter-sub">让 AI"懂你的资料"有三条路，绝大多数人只需要第一条</p>
+
+    <article class="view">
+      <h3>对照表：一张表想清楚三条路线</h3>
+      <p class="ctx">把私有知识交给 AI 有三条技术路线：<strong>RAG</strong>（资料放外部库，用时检索）、<strong>微调</strong>（用你的资料继续训练模型，把知识"焊进"参数）、<strong>长上下文</strong>（每次提问把资料整包塞进窗口）。三者不是互斥关系，但对大众用户，适用优先级非常清晰：</p>
+      <table class="cmp">
+        <tr><th>维度</th><th>RAG（检索增强）</th><th>微调（fine-tuning）</th><th>长上下文直塞</th></tr>
+        <tr><td>知识更新</td><td>改文档库即可，当天生效</td><td>要重新训练，成本高周期长</td><td>每次提问重新塞，无所谓更新</td></tr>
+        <tr><td>单次成本</td><td>低（只检索相关几段）</td><td>训练贵，推理便宜</td><td>每次都贵（整包 token 计费）</td></tr>
+        <tr><td>可核对性</td><td>强（回答可附原文出处）</td><td>弱（知识混在参数里，无出处）</td><td>中（资料都在上下文里）</td></tr>
+        <tr><td>适合场景</td><td>知识库问答、文档助手、客服（绝大多数场景）</td><td>固定风格/格式的专项任务（改变"说话方式"而非"知识"）</td><td>单份长文档的深度分析、一次性任务</td></tr>
+        <tr><td>资料量级</td><td>几十页到百万页都行</td><td>需要成规模的训练样本</td><td>受窗口限制，几份文档以内</td></tr>
+      </table>
+      <p class="ctx">一条经验法则：<strong>"知识"问题用 RAG，"行为"问题才考虑微调，"一次性小资料"直接塞上下文</strong>。想让 AI 熟悉公司制度、产品手册、个人笔记——这是知识问题，RAG 几乎是唯一合理选择；想让 AI 稳定输出某种特殊格式或风格——这是行为问题，微调或精细提示词更对症；手头就一份三十页的合同要通读分析——直接上传塞进长上下文最省事。行业常见误区是拿微调当知识库用：花大价钱训练完，制度一改全部作废，还查无对证——这正是 RAG"换库不换脑"优势的反面教材。还有一个隐藏的第四选项值得知道：<strong>三条路线可以叠着用</strong>。成熟系统的常见配方是"RAG 为主、长上下文为辅"——检索出最相关的十几段放进窗口（窗口够大，可以多带几段保上下文），单份重点文档则整篇直塞；对风格有硬要求的场景再考虑用少量样本微调"说话方式"，知识依然走检索。理解了各路线的原理，你就能看懂产品文档里的技术选型，判断它是不是为你这类场景认真设计过的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI Fine-tuning 官方指南（英文，微调适用场景的官方口径：定制风格格式而非注入最新知识）</a> · <a href="https://arxiv.org/abs/2005.11401">Lewis et al., 2020（arXiv:2005.11401，英文，检索式知识更新无需重训模型的优势论证）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、动手搭建：个人与团队知识库的四步框架</h2>
+    <p class="chapter-sub">工具会换，框架不变：收集→切分→索引→问答，每一步的质量决定最终效果</p>
+
+    <article class="view">
+      <h3>工具地图：从"零门槛"到"全自建"</h3>
+      <p class="ctx">市面上的知识库方案按动手程度分三档（工具中立，均可按需替换）：<strong>①零门槛档</strong>——聊天产品的"上传文件对话"功能、笔记软件的 AI 问答（如笔记类产品的"和笔记对话"）、网盘的文档问答：资料拖进去就能问，适合个人、小资料量、低敏感场景；<strong>②中间档</strong>——知识库 SaaS 与办公套件的 AI 助手：支持持续同步资料源、多人共享、权限管理，适合团队；工作流工具（第11章的 n8n 等）也有现成的向量存储与 RAG 节点，可以把"新文档自动入库"接进自动化流程；<strong>③全自建档</strong>——开源向量数据库（Qdrant、Chroma 等）+ 开源嵌入模型 + 自选大模型 API 自己组装：数据完全自控，适合有技术成员、资料高敏感的团队（第12章讲过自托管的意义）。</p>
+      <p class="ctx">选型三问：<strong>资料有多敏感</strong>（决定云端 SaaS 还是自托管，第六节）、<strong>谁来维护</strong>（没有专人维护的团队库会烂掉，见下下卡）、<strong>问答量多大</strong>（个人偶尔问，零门槛档足够；客服场景每天千次问答，才值得上中间档或自建）。绝大多数个人用户从零门槛档开始就是对的——<strong>先体验价值，再升级装备</strong>，和第11章"先用模板再谈定制"是同一个道理。三档之间也不必一步到位：零门槛档用熟了、资料量涨了、团队要共享了，再平移到中间档；只有当"数据必须留在自己手里"成为硬约束（行业监管、公司政策、资料本身高敏）时，全自建的投入才真正必要——它的成本不只是服务器，还有持续维护它的人。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://qdrant.tech/documentation/">Qdrant 官方文档（英文，开源向量数据库，自托管方案代表）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，工作流工具中的向量存储与 RAG 相关节点，fair-code 许可）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>资料质量决定效果：垃圾进，垃圾出</h3>
+      <p class="ctx">RAG 系统有一句铁律：<strong>检索只能找到库里有的东西，生成只能基于检索到的内容</strong>——资料库的质量就是回答质量的上限，这条定律没有任何技术能绕过。实践中最常见的四种"资料病"：<strong>①过时</strong>——库里的制度是两年前的版本，AI 言之凿凿地给出已废止的流程（比不知道更危险）；<strong>②矛盾</strong>——三份文档对同一件事说法不一，检索到哪份算哪份，回答随机漂移；<strong>③噪音</strong>——把没清理的原始文件整堆倒入：会议记录里的闲聊、文档里的修订痕迹、重复的三个版本，都在稀释检索精度；<strong>④断层</strong>——关键信息只存在于某人脑子里或聊天记录里，从没沉淀成文档，库里自然检索不到。</p>
+      <p class="ctx">对应的四条治理动作（比选什么工具重要十倍）：<strong>入库前清理</strong>——去重、去噪、留最新版；<strong>入库时标注</strong>——给文档带上生效日期与适用范围，让系统能"喜新厌旧"；<strong>入库后测试</strong>——准备十个你知道答案的真实问题（第13章的"已知答案考核法"在知识库场景同样适用），跑一遍看命中率，不达标回头查四步流水线哪环出了问题（第二节的定位技能）；<strong>定期巡检</strong>——每季度清一次过期文档，重要更新当天入库。团队场景还要加一条：<strong>指定资料维护责任人</strong>——没有主人的知识库，半年后就是数字垃圾场。反过来，维护得好的库会形成正向循环：回答越准，用的人越多；用的人越多，暴露的资料缺口越清晰；缺口补上，回答更准——这正是下一卡"让知识库长在流程上"要解决的问题：把维护从"靠自觉"变成"靠机制"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.anthropic.com/news/contextual-retrieval">Anthropic《Introducing Contextual Retrieval》（英文，检索效果与资料处理质量的关系）</a> · <a href="https://www.pinecone.io/learn/retrieval-augmented-generation/">Pinecone RAG 科普页（英文，商业厂商撰写，资料预处理对效果影响的综述）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>让知识库长在自动化流程上</h3>
+      <p class="ctx">知识库最理想的形态不是"一个你去问问题的网站"，而是<strong>自动生长的活系统</strong>——这与第11、12章的工作流和集成知识直接接轨（示例构想）：①<strong>自动入库</strong>：用工作流监听资料源（共享文件夹新增文件、会议纪要生成、邮件归档标签），新文档自动走"预处理→切分→索引"流水线入库，不靠人记得去上传；②<strong>自动引用</strong>：Agent 处理任务时（第13章），把知识库挂成它的检索工具——回答客户问题前先查产品手册、写周报前先查项目记录，让"照资料说话"成为流程默认动作；③<strong>自动保鲜</strong>：定时任务扫描库内文档的生效日期，过期自动标记或下架，并给维护人发提醒。</p>
+      <p class="ctx">这样搭出来的系统，价值随时间复利：资料越全→回答越准→越多人用→用中发现的缺口又反过来驱动资料补充。反过来，"一次性倒入资料然后再没人管"的库，价值随时间衰减：资料越旧→错答越多→没人再信→彻底荒废。<strong>知识库的成败不在搭建那天，而在搭建之后的维护机制</strong>——这与第12章"上线才是开始"的运维观完全同构。</p>
+      <div class="fig"><img src="../assets/img-14-2.png" alt="抽象示意图：一棵几何风格的树，根系连接着多个文档抽屉与文件夹持续输送光点养分，树干中央是星座状的向量索引球体，树冠结出发光的回答果实，一个几何小人在修剪枯枝（过期文档），青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，文档处理与向量库节点的自动化组合）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Anthropic Tool use 官方文档（英文，把检索作为 Agent 工具挂载的机制）</a></div>
+    </article>
+    <article class="view">
+      <h3>两个落地场景：个人第二大脑与团队问答台</h3>
+      <p class="ctx"><strong>场景一：个人第二大脑（示例）。</strong>你积累了几年笔记、几百篇收藏文章、一堆读书笔记和会议纪要，散落在三四个软件里，"我记得我写过/存过，但找不到"。知识库化之后的日常变化：写周报时问"上个月我在 X 项目上做了哪些决定"，它翻出你当时的会议纪要并附出处；读到新观点时问"这和我笔记里的哪些想法有关联"，它检索出三条旧笔记——<strong>你的旧资料从"存了就忘"变成"随问随在"</strong>。搭建路径：从零门槛档起步（笔记软件自带的 AI 问答），把三年的存量笔记导入，用十个已知答案的问题测试命中率，不合格就清理资料（去重、删过时）再来一轮。全程一个周末，零代码。要点是别贪多：第一年先只导一个软件里的笔记，把命中率调满意了再扩资料源——库小而准，远胜库大而浑。</p>
+      <p class="ctx"><strong>场景二：团队问答台（示例）。</strong>三十人的团队，新人入职要花两周到处问"报销找谁、部署流程在哪、客户 A 的历史情况是什么"，老员工每天被打断十次回答重复问题。把制度文档、流程手册、项目档案（脱敏后）接入团队知识库，配两条规则：回答必须附出处、查无依据必须明说。效果的双重性要预先讲清楚：<strong>省下的时间是真实的</strong>（重复问题自助解决），<strong>维护的责任也是真实的</strong>——制度更新没人同步入库，问答台就从"帮手"变成"谣言放大器"，比没有更糟。所以团队库上线前先落实第五节说的责任人机制与自动保鲜流程，没有主人就不要上线。两个场景共同的底线：涉他人个人信息与公司机密资料，先过第六节的三道关。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档（英文，知识库自动入库流程的搭建组件）</a> · <a href="https://www.pinecone.io/learn/retrieval-augmented-generation/">Pinecone RAG 科普页（英文，商业厂商撰写，知识库应用场景综述）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、幻觉缓解与隐私红线</h2>
+    <p class="chapter-sub">RAG 让回答有据可查，但"有据"不等于"无误"；投喂资料前，先过隐私这一关</p>
+
+    <article class="view">
+      <h3>引用溯源：人工核对的抓手</h3>
+      <p class="ctx">RAG 对幻觉的作用要说到准确：<strong>它能显著降低幻觉，但不能根除</strong>。降低的逻辑很直白——模型照着检索到的原文回答，比凭参数记忆瞎编的依据扎实得多；但三种漏网情况依然存在：<strong>①检索错了</strong>——找到的段落本身不相关或过时，模型"忠实地"基于错误依据作答；<strong>②过度发挥</strong>——资料只说了一半，模型用参数记忆把另一半"脑补"完整，真伪混在一句话里；<strong>③综合失真</strong>——多段资料各说一点，模型拼接概括时引入偏差。所以负责任的知识库产品都提供<strong>引用溯源</strong>：回答旁边标注"依据：《员工手册》第 3.2 节"，点开能看原文。</p>
+      <p class="ctx">引用溯源把"核对 AI"从不可能变成了举手之劳——这正是第13章"双通道验证"在知识库场景的落地。给你三条使用纪律：<strong>①重要结论必点出处</strong>——涉及钱、合规、对外承诺的回答，花三十秒点开引用的原文核对，别只看 AI 的转述；<strong>②警惕"没有出处的流畅回答"</strong>——资料库里查无依据时，好的系统会明说"库里没有找到"，如果它仍然对答如流，那是参数记忆在冒充知识库，可信度要大打折扣；<strong>③发现错答就修库</strong>——错答是免费的系统体检报告：顺着它定位是资料过时、切分不当还是检索失误（第二节流水线），修一处，全库受益。顺带说透一个常见困惑：为什么有时"AI 明明引用了原文，结论却还是错的"？因为引用只保证"这段话在库里存在"，不保证"这段话适用于你的问题"——制度文档常有适用范围与例外条款，检索到的可能是通用段落而漏掉了针对你情形的特殊规定。核对出处时多看引用的前后文（好的系统支持点开看整节而非孤立段落），是比"看有没有引用"更深一层的核对功夫。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2005.11401">Lewis et al., 2020（arXiv:2005.11401，英文，检索增强对生成事实性的提升论证）</a> · <a href="https://www.anthropic.com/news/contextual-retrieval">Anthropic《Introducing Contextual Retrieval》（英文，检索精度与回答质量的关系）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>隐私红线：投喂之前过三道关</h3>
+      <p class="ctx">建知识库的动作本质是<strong>把资料交给你选择的系统处理与存储</strong>——第12章"数据经过谁的手"的拷问在这里加倍适用，因为知识库往往是长期、批量、全量的数据托付。三道关：<strong>①分级关</strong>——给资料分敏感度：公开资料（产品手册、政策法规）随便放；内部资料（流程文档、会议记录）放可控的服务（团队版协议、可自托管）；高敏资料（个人身份信息、财务数据、未公开商业机密、他人隐私）默认不进任何云端服务，确有需要走全自建本地方案，且先做合法性判断。<strong>②脱敏关</strong>——必须入库的敏感文档，先脱敏再投喂：真实姓名换成角色（"客户A"）、证件号银行卡号打码、具体金额区间断化；《个人信息保护法》的最小必要原则在这里的操作化就是：<strong>问答用不到的个人信息，就不要让它进库</strong>。<strong>③条款关</strong>——入库前读服务方的数据处理条款：我的资料会被用于训练模型吗（要选"不用于训练"的选项或企业协议）？存储在哪、保留多久、删除后是否真删？能一键导出走人吗？</p>
+      <p class="ctx">本地与云端的取舍给个大众口径：<strong>个人低敏资料，主流云端产品的便利大于风险；团队协作与内部资料，选有正式数据处理协议的服务或自托管开源方案；高敏与涉他人隐私的资料，本地化是唯一稳妥选项</strong>——开源嵌入模型+开源向量数据库+本地部署的组合已经足够成熟，成本主要是硬件与一点技术投入。最后提醒一个隐蔽泄露面：知识库的<strong>问答记录本身也是数据</strong>——你在库里问过什么，暴露了你在关注什么（薪酬？并购？裁员名单？），团队场景的问答日志同样要按敏感信息对待。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库（《中华人民共和国个人信息保护法》全文检索：最小必要原则、敏感个人信息处理规则）</a> · <a href="https://qdrant.tech/documentation/">Qdrant 官方文档（英文，开源自托管向量数据库的部署选项）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于记忆与知识库的四个误解</h3>
+      <p class="ctx"><strong>误解一："接了知识库，AI 就无所不知我的资料了。"</strong>——错。检索有粒度与精度限制（第三节）：切分不当会漏检、问法太偏会找错、资料没转成文字（扫描件、图片表格）等于不存在。知识库的上限是"你放进去了什么+放进去的质量"，不是"AI 有多聪明"。</p>
+      <p class="ctx"><strong>误解二："上下文窗口都一百万了，还要 RAG 干什么？"</strong>——窗口大小解决"装得下"，解决不了"每次都为整包付钱"（成本）、"中间信息利用率下降"（效果，Liu et al., 2023）和"资料持续更新"（窗口内容每次请求都要重新塞）。单份短文档一次性分析直接塞窗口；长期、大量、频繁更新的资料库，检索仍是正解——两者是互补而非替代。</p>
+      <p class="ctx"><strong>误解三："RAG 有出处，就不会 hallucinate（幻觉）了。"</strong>——有出处只说明"它引用了某段资料"，不保证"引用对了、概括准了"：检索错、过度发挥、综合失真三种漏网情况都在（第六节）。出处是给你核对用的抓手，不是免检标志——重要结论永远点开原文看。</p>
+      <p class="ctx"><strong>误解四："微调能让模型记住公司知识，比 RAG 更彻底。"</strong>——方向就错了：微调擅长改变模型的"行为方式"（风格、格式、专项任务），而非注入可持续更新的事实知识；OpenAI 官方文档明确提示微调不是注入最新知识的手段。制度一改就要重训、答错还查无对证——知识库场景，RAG 的"换库不换脑"全面占优（第四节）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI Fine-tuning 官方指南（英文，微调适用边界）</a> · <a href="https://arxiv.org/abs/2307.03172">Lost in the Middle（Liu et al., 2023, arXiv:2307.03172，英文）</a> · <a href="https://arxiv.org/abs/2005.11401">Lewis et al., 2020（arXiv:2005.11401，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>为什么新开会话 AI 就"不认识你"了？"无状态"是什么意思？</li>
+        <li>AI 产品的各种"记忆"功能，工程上是怎么补出来的？</li>
+        <li>上下文窗口的"工作台面"比喻里，台面上都摊着什么？塞满后会发生什么？</li>
+        <li>长上下文不能取代检索的三个理由（成本、速度、效果）各是什么？"迷失在中间"指什么？</li>
+        <li>用开卷考试比喻讲清 RAG：闭卷对应什么？翻书对应什么？考试难点对应什么？</li>
+        <li>RAG 解决裸模型哪三个死穴？</li>
+        <li>Lewis et al. 2020 论文"把记住知识和运用知识拆开"是什么意思？"换库不换脑"为什么值钱？</li>
+        <li>RAG 四步流水线是哪四步？各步出问题的典型症状是什么？</li>
+        <li>嵌入模型输出的"坐标"有什么关键性质？为什么它比关键词检索"听得懂人话"？</li>
+        <li>切块丢失上下文的坑是什么？Anthropic 的 Contextual Retrieval 用什么思路补救？</li>
+        <li>RAG、微调、长上下文三条路线的对照表能默画吗？各自最适合什么场景？</li>
+        <li>"知识问题用 RAG，行为问题才考虑微调"这句话怎么理解？</li>
+        <li>知识库工具三档（零门槛/中间/全自建）各适合谁？选型三问是什么？</li>
+        <li>四种"资料病"（过时、矛盾、噪音、断层）分别怎么治理？</li>
+        <li>为什么说"知识库的成败不在搭建那天"？自动入库、自动引用、自动保鲜各指什么？</li>
+        <li>RAG 之后仍会幻觉的三种漏网情况是什么？</li>
+        <li>引用溯源的三条使用纪律是什么？为什么"没有出处的流畅回答"要警惕？</li>
+        <li>投喂资料的三道关（分级、脱敏、条款）各查什么？你手头的资料属于哪一级？</li>
+        <li>为什么问答记录本身也算敏感数据？</li>
+        <li>短期记忆与长期记忆分别对应什么工程手段？"教 AI 记住"的三个实用推论是？</li>
+        <li>个人第二大脑与团队问答台两个场景里，各自的关键成功条件是什么？为什么"没有主人就不要上线"？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>模型无状态、会话即忘，所有"记忆"都是外部工程补的；上下文窗口=有限工作台面，长上下文有成本、速度、"迷失在中间"（Liu et al., 2023）三重限制；RAG=开卷考试：先检索相关原文再照着作答（Lewis et al., 2020），解决知识截止、私有信息、幻觉难核对三个死穴，核心优势"换库不换脑"；四步流水线=收集预处理→切分（chunking，留重叠）→索引（嵌入成向量入库）→检索生成，答不好按步定位：找错资料查索引、断章取义查切分、说没有查预处理、答案旧查更新；嵌入=文字变坐标，意思相近坐标相近，语义检索听得懂人话；切块丢上下文的坑用"入库前补写背景"缓解（Anthropic Contextual Retrieval）；三路线口诀=知识问题用 RAG、行为问题才微调、一次性小资料直塞长上下文；工具三档=零门槛（上传即问）/中间档（团队 SaaS+工作流节点）/全自建（开源向量库+本地嵌入），选型三问=多敏感、谁维护、问答量；资料质量决定上限：四种资料病（过时/矛盾/噪音/断层）对应四条治理（清理/标注/测试/巡检），团队库必须有责任人；知识库要长在自动化上：自动入库、自动引用（挂成 Agent 工具）、自动保鲜；RAG 降低幻觉不根除（检索错/过度发挥/综合失真），引用溯源是核对抓手：重要结论必点出处、警惕无出处的流畅、错答就修库；隐私三道关=分级（高敏不上云）、脱敏（PIPL 最小必要：用不到的个人信息不进库）、条款（是否用于训练/存多久/能否删净），问答记录本身也是敏感数据。
+  </div>
+
+  <nav class="pager">
+    <a href="../13-agent/"><span class="dir">← 第13章</span>AI Agent 是什么：感知-规划-行动循环</a>
+    <a href="../15-orchestrate/"><span class="dir">第15章 →</span>多步骤任务编排：让流程自己跑起来</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第14章 · 依据 RAG 原论文（Lewis et al., 2020, arXiv:2005.11401）、Lost in the Middle（Liu et al., 2023, arXiv:2307.03172）、Anthropic Contextual Retrieval 与 Tool use 官方文档、OpenAI Embeddings 与 Fine-tuning 官方指南、Qdrant 与 n8n 官方文档、Pinecone 科普页（商业来源已标注）及《中华人民共和国个人信息保护法》现行文本整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或企业合规建议 · 敏感资料投喂前先脱敏并核对服务条款 · AI 回答请沿引用人工核对原文 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

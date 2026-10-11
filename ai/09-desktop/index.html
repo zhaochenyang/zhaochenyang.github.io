@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 桌面与文件自动化：批处理的正确姿势 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第9章 · 浏览器与桌面自动化</div>
+  <h1>桌面与文件自动化：批处理的正确姿势</h1>
+  <p>重命名一千张照片、把三百张发票变成一张表、每周一自动归档下载文件夹——你电脑里最被低估的生产力金矿，就藏在"文件"这两个字里</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-form/">← 第8章：表单填写与数据提取</a>
+    <a href="../10-media/">第10章：图像与语音 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">被低估的金矿</a>
+    <a class="anchor" href="#s2">文件批处理三级阶梯</a>
+    <a class="anchor" href="#s3">OCR 文字识别</a>
+    <a class="anchor" href="#s4">办公文档批量生成</a>
+    <a class="anchor" href="#s5">定时任务</a>
+    <a class="anchor" href="#s6">桌面 Agent 新趋势</a>
+    <a class="anchor" href="#s7">备份与脱敏红线</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章内容为技术教育与参考，不构成法律意见、企业合规建议或任何产品的商业推荐；文中出现的工具与产品名称仅用于教学说明，本站无商业合作、无推广链接。使用自动化工具处理文件前请遵守《中华人民共和国个人信息保护法》《中华人民共和国数据安全法》及所在单位的数据管理制度；处理他人个人信息须有合法性基础并遵循最小必要原则。<strong>批处理操作（尤其是重命名、移动、删除、格式转换）执行前务必先备份</strong>，涉及删除、覆盖、对外发送等不可逆操作必须保留人工确认环节。各节观点均标注权威来源，工具能力描述以其官方文档为准（截至 2026 年 10 月）。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说出桌面文件自动化和浏览器自动化的分工，判断一个任务该用哪种；②用系统自带工具（快捷指令、Power Automate 类）完成文件批量重命名、归档、格式转换，不写一行代码；③理解 OCR 的原理与准确率现实，会设计"识别→人工校对→入库"的流程；④用邮件合并思路批量生成通知书、标签、证书类文档；⑤给电脑设置定时任务，让它按时自动干活；⑥建立"先备份再自动化、上传先脱敏"的两个肌肉记忆。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>桌面与文件自动化是普通人回报最快的一块：任务规则明确、数据在自己手里、出错影响可控，非常适合作为你的第一个自动化项目。建议读完第二节后，立刻挑一件你本周真实要做的文件杂活（比如整理下载文件夹），照着"三级阶梯"做一次，体验比通读全章更有用。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、被低估的金矿：你的电脑里藏着多少重复劳动</h2>
+    <p class="chapter-sub">大多数人以为自动化是"高大上的编程"，其实最高频的自动化场景，就发生在你每天都在打开的文件夹里</p>
+
+    <article class="view">
+      <h3>从三个真实场景说起</h3>
+      <p class="ctx">场景一（示例）：你是行政专员，月底要把同事们交来的 200 多张报销发票变成一张汇总表。发票是拍照和扫描的 PDF，你一张张打开、看金额、敲进表格，一下午没了，还错了三处。场景二（示例）：你是摄影师爱好者，旅行回来 3000 张照片躺在下载文件夹里，文件名是 IMG_4521 这种天书，你想按"日期-地点-序号"重命名再按年份归档，手动改到第 40 张就想放弃。场景三（示例）：你是研究生，导师让你把 80 篇文献的 PDF 按"作者-年份-主题"整理进资料库，其中 20 篇是扫描版，复制不了文字，做笔记只能手抄。</p>
+      <p class="ctx">这三个场景有一个共同点：<strong>任务规则明确、重复次数多、单步操作简单</strong>——这正是自动化教科书式的适用条件。第6章到第8章讲的浏览器自动化处理的是"网页上的活"，而本章讲的桌面与文件自动化处理的是"你电脑本地的活"：文件的批量重命名、移动、压缩、格式转换，纸质材料变成电子文字，一份模板生成一百份文档，以及让这一切按时自动发生。两者合起来，才构成一个完整的"手脚系统"。</p>
+      <p class="ctx">为什么说它被低估？因为它<strong>门槛最低、风险最小、回报最快</strong>。浏览器自动化要面对网页改版、登录态、平台规则等不确定性；而本地文件是你自己的数据，规则你自己定，改坏了还能从备份恢复（前提是你备份了，见第七节）。对自动化新手来说，从文件批处理入手建立信心，远比一上来就挑战"全自动抢会议室"明智得多。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方入门文档：自动化重复性任务与文档处理的官方定位（英文）</a> · <a href="https://support.apple.com/guide/shortcuts/intro-to-shortcuts-apdf22b0444c/ios">Apple《快捷指令官方指南》：个人设备上的任务自动化官方入门（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>文件自动化的本质：把"规则"从你的手转移给机器</h3>
+      <p class="ctx">手动整理文件时，你的大脑其实在高速执行一套规则："文件名里有'发票'两个字的放报销文件夹""照片按拍摄月份归档""超过 100MB 的视频先压缩"。这些规则你从来没有写下来过，但它们真实存在——<strong>自动化的第一步，就是把这套藏在肌肉记忆里的规则显式地写出来</strong>。写不出规则的任务（比如"把重要的邮件挑出来"里的"重要"），机器就干不了；能写出规则的任务，机器几乎一定比你干得快、干得稳。</p>
+      <p class="ctx">这也解释了文件自动化和 AI 的分工关系：<strong>规则明确的部分交给传统批处理工具（快、稳、免费），规则模糊的部分才请 AI 出马</strong>（理解内容、判断分类、提取信息）。比如整理文献：按扩展名分拣 PDF 是规则活，用系统工具一秒完成；而"判断这篇文献属于哪个研究主题"是理解活，适合让大模型来做。第1章讲过大模型的能力边界，落到文件场景就是这句话：<strong>能用规则的不要用 AI，规则写不出来的才用 AI，用了 AI 的关键环节要人核对</strong>。</p>
+      <blockquote class="q">文件自动化任务自检三问：①这个任务的规则我能写成"如果……就……"吗？（能→传统批处理工具；不能→考虑 AI 辅助）②这批文件里有没有他人个人信息、公司敏感数据？（有→先看第七节红线）③操作可逆吗？会覆盖或删除原件吗？（会→先备份，并先在小批量上试跑）<span class="qsrc">—— 动手前的三问清单（示例，适用于本章所有场景）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方文档：基于规则的流程自动化（flows）概念（英文）</a> · <a href="https://arxiv.org/abs/2311.05232">Huang et al.《A Survey on Hallucination in Large Language Models》（2023，arXiv，英文）：为什么"理解判断"类环节需要人工核对</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、文件批处理三级阶梯：不写代码也能干八成的活</h2>
+    <p class="chapter-sub">第一级：文件管理器自带功能；第二级：系统自动化工具；第三级：脚本——大多数人停在第一级，其实第二级就够用</p>
+
+    <article class="view">
+      <h3>第一级：你天天用的文件管理器，其实自带批处理</h3>
+      <p class="ctx">很多人不知道，macOS 的访达（Finder）和 Windows 的资源管理器本身就藏着批量操作能力。访达里选中一堆文件右键"重命名项目"，可以批量替换文字、添加前后缀、按"文本+序号"格式重命名——第二节开头那个 3000 张照片的场景，选中全部照片用"格式"模式命名为"2026国庆-杭州-序号"，十秒钟解决一大半。Windows 资源管理器同样支持全选后统一改名（F2 键输入新名字，系统自动加序号后缀）。</p>
+      <p class="ctx">第一级还包括"智能整理"功能：访达的智能文件夹、Windows 的搜索筛选，都能按"种类+日期+大小"的组合条件把文件捞出来再批量处理。比如"下载文件夹里所有大于 100MB、超过三个月没打开的文件"，两个筛选条件就能定位，然后统一移走或删除（删除前记得看第七节的备份原则）。<strong>判断标准很简单：如果一次性的批量操作，文件管理器自带功能够用，就不要引入更复杂的工具</strong>——工具越复杂，学习和维护成本越高，这是第5章成本账在桌面场景的具体体现。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.apple.com/guide/mac-help/rename-files-folders-mchlp1000/mac">Apple 官方 macOS 用户指南：批量重命名文件与文件夹（英文）</a> · <a href="https://support.microsoft.com/zh-cn/windows">Microsoft Windows 官方帮助：文件资源管理器使用指南（中文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第二级：系统自动化工具——把多步操作录成"一键流程"</h3>
+      <p class="ctx">当任务从"一步批量改名"变成"多步流水线"——比如"收到发票 PDF→自动移动到报销文件夹→按月建子文件夹→生成一份清单"——就该上第二级工具了。两大系统各有官方答案：<strong>macOS/iOS 的"快捷指令"（Shortcuts）</strong>和 <strong>Windows 生态的 Power Automate</strong>。它们都是可视化拖拽的"动作积木"：每个积木是一个动作（移动文件、重命名、压缩、读取表格、发通知），把积木按顺序连起来，就是一个可以一键运行甚至自动运行的流程。</p>
+      <p class="ctx">快捷指令的官方动作库覆盖文件操作、文本处理、图像调整和"如果/重复"逻辑，普通用户不需要任何代码基础；它还支持"自动化"模式——比如"当下载文件夹新增文件时自动执行某个流程"，这正是文件场景里最实用的触发方式。Power Automate 除了桌面流程（Desktop flows，模拟你在电脑上的点击操作），还有与 Office 文档、OneDrive 深度集成的云端流程，官方入门文档把它定位为"自动化重复性任务与工作流"的工具。国产系统生态里也有同类工具（如各手机厂商的自动任务功能），思路完全一致：<strong>触发条件 + 动作序列 + 少量判断逻辑</strong>。</p>
+      <p class="ctx">用第二级工具的正确姿势是<strong>从小流程开始</strong>：先做"把下载文件夹的图片自动移进'图片待整理'文件夹"这种两三步的小流程，跑通、验证、用熟，再逐渐加长链条。一上来就搭十几步的大流程，出错时你很难定位是哪一步的问题——这个教训和第15章要讲的编排原则是同一个：<strong>小步验证，逐段加长</strong>。</p>
+      <div class="fig"><img src="../assets/img-09-1.png" alt="文件自动化三级阶梯示意图：从下到上三级台阶，第一级是文件夹图标，第二级是积木拼接的流程图，第三级是抽象代码窗口，一个无脸人物正沿台阶向上走" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.apple.com/guide/shortcuts/intro-to-shortcuts-apdf22b0444c/ios">Apple《快捷指令官方指南》：动作、自动化与个人自动化官方说明（英文）</a> · <a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方入门：桌面流程与云端流程（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第三级：脚本——什么时候才值得请它出山</h3>
+      <p class="ctx">第三级是写脚本（Python 之类）。对大众读者，本章不教编程，只教你<strong>判断什么时候需要它</strong>：当任务涉及第二级工具没有的动作（比如按照片内嵌的拍摄时间而不是文件修改时间归档）、当处理量大到可视化工具卡顿（几万个文件）、当逻辑复杂到积木图变得难以维护（多层嵌套判断）时，脚本才有性价比。脚本的优势是精确、可复用、可版本管理；代价是学习门槛和维护成本——页面会改版，脚本依赖的库也会升级。</p>
+      <p class="ctx">AI 时代第三级的门槛发生了微妙变化：<strong>你可以用自然语言让 AI 帮你写脚本</strong>（"写一个 Python 脚本，按照片 EXIF 拍摄时间把文件归档到 年/月 文件夹，先试运行不实际移动"）。第3章讲过提示词的四件套，用在生成脚本上同样有效。但要守住两条底线：其一，<strong>AI 生成的脚本必须先在小批量数据上试跑</strong>，确认行为符合预期再全量执行——AI 会写出看起来对、跑起来错的代码（幻觉在代码领域的表现）；其二，看不懂的部分要让 AI 逐行解释，一个你完全不理解的脚本不该拥有对你文件系统的写权限。</p>
+      <blockquote class="q">让 AI 写文件处理脚本的提示词模板（示意）："请写一个 Python 脚本完成：【任务】把 A 文件夹里的 JPG 照片按 EXIF 拍摄日期移动到 B 文件夹下的'年-月'子文件夹。【约束】①先以'试运行'模式输出将要执行的动作清单，我确认后加一个参数才真正移动；②没有 EXIF 信息的文件单独放到'待手工处理'文件夹，不要猜；③不删除任何原文件，只做移动。【输出】完整脚本 + 每段功能的白话解释 + 试运行命令。"<span class="qsrc">—— 角色-任务-约束-格式四件套在脚本生成上的应用（示例）</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI 官方提示工程指南：清晰指令与约束的写法（英文）</a> · <a href="https://arxiv.org/abs/2311.05232">Huang et al.（2023）大模型幻觉综述（arXiv，英文）：AI 生成内容需要验证的研究依据</a></div>
+    </article>
+
+    <article class="view">
+      <h3>高频文件杂活对照表：什么活用哪级工具</h3>
+      <p class="ctx">把常见的文件杂活和三级阶梯对个号，你可以直接按这张表认领自己的第一个自动化项目（示例，可按自己情况增删）：</p>
+      <ul>
+        <li><strong>批量重命名（加前后缀、替换文字、统一编号）</strong>→第一级：文件管理器自带批量重命名即可。</li>
+        <li><strong>按类型/日期分拣归档下载文件夹</strong>→第一级筛选+手动移动；每周都要做→第二级设成自动化流程。</li>
+        <li><strong>批量压缩打包（发材料前把一百个文件压成几个包）</strong>→第一级多选右键压缩；要按规则分包（如按部门、按月份）→第二级流程。</li>
+        <li><strong>格式转换（图片转 PDF、文档转图片、视频转音频）</strong>→系统自带能力覆盖常见方向（如访达可将多张图片快速生成 PDF）；批量、冷门格式→第二级工具调用系统转换动作，或第三级脚本。</li>
+        <li><strong>扫描件/照片提取文字</strong>→单张用手机系统实况文本；整批→第三节 OCR 流程。</li>
+        <li><strong>一份模板生成百份文档</strong>→第四节邮件合并。</li>
+        <li><strong>以上任何一项+定时自动执行</strong>→第五节定时任务。</li>
+      </ul>
+      <p class="ctx">认领项目的建议顺序：先挑<strong>本周就要做、规则你闭着眼睛能说出来、错了也能从备份恢复</strong>的那一件。做完第一件，你会自然发现第二件——文件杂活从来不是孤立出现的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.apple.com/guide/mac-help/rename-files-folders-mchlp1000/mac">Apple 官方 macOS 用户指南：重命名与转换文件（英文）</a> · <a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方入门：常见桌面流程模板（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、OCR：让扫描件、截图和纸面材料变成可用文字</h2>
+    <p class="chapter-sub">发票、合同、书籍、手写笔记——光学字符识别是文件自动化里"点石成金"的那一步</p>
+
+    <article class="view">
+      <h3>OCR 是什么：给电脑装上"认字"的眼睛</h3>
+      <p class="ctx">OCR（Optical Character Recognition，光学字符识别）的任务是：输入一张图片（扫描件、照片、截图），输出图片里的文字。它是报销发票自动汇总、纸质档案电子化、截图资料入库这些场景的关键一环——没有 OCR，图片里的信息对电脑来说就是一片"看得见但读不懂"的像素。</p>
+      <p class="ctx">现代 OCR 的技术底座已经从传统的模板匹配进化到深度学习：识别引擎先检测图片里的文字区域和行，再把每个字符（或整行）交给神经网络识别，同时结合语言模型纠正明显的错字。开源阵营的代表是 <strong>Tesseract</strong>——由 HP 开发、现由社区维护的老牌引擎，支持上百种语言；商业阵营则是各大云厂商的 OCR 服务（如腾讯云、百度智能云、阿里云等的文字识别产品），通常在中文场景、票据卡证等垂直类型上做了专门优化，按调用量计费（价格以各官方定价页为准，截至 2026 年 10 月）。此外，两大手机系统和 macOS 都已在系统层内置了实况文本/文字识别能力——截图上的文字直接选中复制，就是系统级 OCR 在工作。<strong>选择逻辑照旧：轻量偶发用系统内置，批量本地用开源，高精度票据用云服务（注意数据出本地的合规问题，见第七节）</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://tesseract-ocr.github.io/">Tesseract OCR 官方项目页：开源 OCR 引擎（英文）</a> · <a href="https://cloud.tencent.com/product/ocr">腾讯云文字识别（OCR）产品官方页：票据卡证等垂直识别能力（商业服务，标注）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>准确率的现实：为什么 OCR 之后必须有人工校对</h3>
+      <p class="ctx">OCR 不是魔法。识别准确率受四个因素影响：<strong>图像质量</strong>（模糊、倾斜、反光、褶皱都会大幅拉低准确率）、<strong>字体与排版</strong>(艺术字、手写体、密集表格是难点)、<strong>语言混排</strong>（中英文数字混排的票据比纯文本更难）、<strong>专业词汇</strong>（人名、地名、型号这类"不在常见词表里"的内容容易识别成形近字）。印刷体、平整、高清晰度的文档，现代引擎可以做到很高准确率；但手写体和低质量扫描件，出错是常态而不是意外。</p>
+      <p class="ctx">所以工程上正确的 OCR 流程从来不是"识别→完事"，而是<strong>"识别→置信度分流→人工校对→入库"</strong>：识别引擎通常会给每段文字一个置信度，把低置信度的部分标出来让人重点看（而不是让人从头到尾校对全文，那样自动化就白做了）；金额、日期、编号这类"错一位就出事故"的关键字段，无论置信度多高都建议人工过一眼。这和第15章"人在回路"的原则一脉相承：<strong>自动化负责把 95% 的粗活干掉，人负责守住那 5% 的关键点</strong>。</p>
+      <blockquote class="q">发票批量录入的五步流程（示例）：①收集——所有发票拍照/扫描成统一格式（建议 PDF 或 JPG，分辨率 300dpi 左右，正拍不倾斜）；②识别——用 OCR 工具批量提取"金额、日期、开票方、发票号"四个字段；③分流——低置信度记录和关键字段异常（如金额为 0、日期格式怪）自动标红；④校对——人工只处理标红部分，核对原件；⑤汇总——校对通过的记录自动写入表格，原始图片按"发票号"重命名归档，做到每一条汇总数字都能一键找到原图。<span class="qsrc">—— "识别→分流→校对→入库"流程拆解，可套用到合同、单据、档案等同类场景</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://tesseract-ocr.github.io/tessdoc/">Tesseract 官方文档：识别流程与图像质量建议（英文）</a> · <a href="https://arxiv.org/abs/2311.05232">Huang et al.（2023）幻觉综述（arXiv，英文）：AI 输出需验证与人工核对的一般原则</a></div>
+    </article>
+
+    <article class="view">
+      <h3>OCR 与大模型的合流：从"认字"到"看懂"</h3>
+      <p class="ctx">传统 OCR 输出的是"一串文字"，你还得自己从文字堆里找金额、找日期。多模态大模型出现后，流程可以更进一步：<strong>把发票图片直接交给能看图的 AI，让它"提取这张发票的金额、日期、开票方，输出成表格"</strong>——识别和理解一步完成。第10章会专门讲多模态模型的图像理解能力，这里先记住它在文件场景的两个实用点。</p>
+      <p class="ctx">第一，<strong>非标准版式的内容，大模型比传统 OCR 流水线更省事</strong>：传统方案要为每种票据配置字段模板，而大模型靠语义理解提取字段，版式变化容忍度高。第二，<strong>代价是准确率的不确定性和数据出域风险</strong>：大模型可能"看错"也可能"编造"（把模糊的 8 认成 3 还理直气壮），所以关键字段仍需人工抽查；把包含个人身份信息的票据传给公共云端模型前，先想清楚合规问题（第七节详述）。批量、敏感、格式固定的场景用本地 OCR + 模板；小批量、版式杂、不敏感的场景用多模态模型提效——两条路线并存，按数据的敏感度和任务量选。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：敏感个人信息处理规则</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 官方提示工程文档：结构化输出任务的指令写法（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、办公文档批量生成：一份模板变一百份文件</h2>
+    <p class="chapter-sub">录取通知书、报价单、证书、标签、节日贺卡——"内容不同、版式相同"的文档，全都该批量生成</p>
+
+    <article class="view">
+      <h3>邮件合并：被严重低估的办公自动化元老</h3>
+      <p class="ctx">"邮件合并"（Mail Merge）是文字处理软件里存在了几十年的功能，也是最容易被普通用户忽略的自动化利器。它的原理一句话：<strong>一份带占位符的模板 + 一张数据表 = 批量生成个性化文档</strong>。模板里写"尊敬的【姓名】：您的订单【订单号】已于【日期】发货"，数据表里每行一个人的信息，合并之后自动生成一百份各不相同的通知书——可以批量打印成信件和标签，也可以批量生成邮件正文。Word 的官方文档把邮件合并的适用场景列为"批量电子邮件、信件、标签和信封"，数据源通常就是一张 Excel 表或通讯录。</p>
+      <p class="ctx">邮件合并的思维模型值得单独记住，因为它就是第11章工作流工具"模板节点+数据循环"的雏形：<strong>把"不变的部分"（版式、措辞）和"变化的部分"（数据字段）分离，然后让机器循环填充</strong>。一旦你养成这个思维习惯，看到任何"手动复制粘贴改名字"的活，都会条件反射地想到：这能不能模板化？证书制作、合同初稿、工资条、邀请函、成绩单反馈——全是同一个模式。</p>
+      <p class="ctx">两个实操提醒：其一，合并前用"预览结果"功能抽查三五行，重点看数字格式（Excel 里的日期和金额经过合并常常变形，官方帮助文档有专门的格式准备指引）；其二，<strong>批量发送邮件类的合并必须人工终审收件人列表</strong>——发错人、群发泄露他人信息（比如把所有收件人放在可见的收件人栏而不是密送）都是真实发生过的事故，这正是免责声明里"对外发送必须人工确认"的典型场景。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.microsoft.com/zh-cn/word/use-mail-merge-for-bulk-email-letters-labels-and-envelopes">Microsoft Word 官方帮助：使用邮件合并来批量创建电子邮件、信件、标签和信封（中文）</a> · <a href="https://support.microsoft.com/zh-cn/word/insert-mail-merge-fields">Microsoft Word 官方帮助：插入邮件合并域（中文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>表格与演示文稿的批量化：数据驱动的报告生成</h3>
+      <p class="ctx">文档批量化的另一半在表格软件里。周报月报的常见痛苦是"数据来自五个系统，每周手动拼进同一张表"——正确的自动化路径分两步：第一步，<strong>让数据自动进表</strong>（各表格软件官方都提供"从外部数据源导入/刷新"的能力，配合第12章要讲的 API 或第8章的网页数据提取，可以做到一键刷新）；第二步，<strong>让图表和结论自动跟着数据变</strong>（图表绑定数据区域后自动重绘，配合公式生成"环比变化"这类文字结论）。</p>
+      <p class="ctx">演示文稿同理：需要为五十个客户各做一份"版式相同、数据不同"的提案，手动复制五十次是灾难；用"数据表+模板"的思路（部分办公套件官方支持从数据源批量生成幻灯片，或用脚本填充模板）才能一劳永逸。这里有一条重要的边界：<strong>自动化生成的是"初稿"，不是"终稿"</strong>——数字必须可溯源到原始表（第17章"AI 核数"原则），措辞和结论要人工审定，涉及对外承诺的内容更要逐字核对。机器负责省掉体力活，判断和责任仍然在人。</p>
+      <blockquote class="q">周报自动化改造清单（示例）：①列出周报里每一块内容的"数据从哪来"（哪个系统、哪个表格、谁提供）；②标注哪些块是"纯数据搬运"（可自动化）、哪些是"分析判断"（保留人工）；③把纯搬运部分改造成"数据源→自动刷新→模板填充"链路；④给自动数字加"溯源列"（每个汇总数注明来自哪张原始表的哪个区域）；⑤试运行两周，对比自动版和手动版的差异，修正后固化。<span class="qsrc">—— 从"每周手动拼表"到"一键刷新+人工分析"的五步改造</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.microsoft.com/zh-cn/excel">Microsoft Excel 官方帮助：数据导入、刷新与图表（中文）</a> · <a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方入门：办公文档流程自动化（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、定时任务：让电脑按时自动干活</h2>
+    <p class="chapter-sub">前面四节解决"怎么干"，这一节解决"什么时候自动干"——定时触发是桌面自动化的最后一块拼图</p>
+
+    <article class="view">
+      <h3>任务计划程序与自动化触发：系统级的闹钟</h3>
+      <p class="ctx">两大系统都内置了官方的"定时执行"机制：<strong>Windows 的任务计划程序（Task Scheduler）</strong>可以按时间（每天 9 点、每周五 18 点）或按事件（开机、登录、某程序启动）触发你指定的程序或流程；<strong>macOS/iOS 的快捷指令"个人自动化"</strong>支持按时间、到达某地点、连接某 Wi-Fi、收到某类文件等条件自动运行流程。程序员熟悉的 cron 定时任务是同一思想的命令行版本。你不需要理解它们的内部机制，只需要知道：<strong>任何你手动重复执行超过三次的电脑任务，都值得问一句"能不能设成定时自动跑"</strong>。</p>
+      <p class="ctx">典型的定时场景（示例）：每天下班前自动把"下载"文件夹按类型分拣归档；每周一早上自动汇总上周的记账表格并生成提醒；每月 1 号自动把上月的发票扫描件跑一遍 OCR 存成文字版；每天深夜自动把当天的工作文档增量备份到移动硬盘。这些流程单独看都是小事，合起来就是"电脑在你不注意的时候替你把家务干了"——桌面自动化的理想状态。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page">Microsoft 任务计划程序（Task Scheduler）官方文档：按时间或事件触发任务（英文）</a> · <a href="https://support.apple.com/guide/shortcuts/intro-to-shortcuts-apdf22b0444c/ios">Apple《快捷指令官方指南》：个人自动化触发条件（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>定时任务的三个翻车点与保险丝设计</h3>
+      <p class="ctx">定时任务最常见的翻车不是"没跑"，而是<strong>"默默跑了三个月，早就跑错了"</strong>。三个高发翻车点：其一，<strong>环境变化</strong>——文件夹改名了、网盘登录态过期了、系统升级后权限变了，流程从某天起开始失败，而你毫不知情；其二，<strong>条件竞态</strong>——定时执行时电脑恰好在睡眠、断网或文件被占用；其三，<strong>错误累积</strong>——第一次归档就把文件放错了位置，之后每天在错误的基础上继续堆。</p>
+      <p class="ctx">对应的保险丝设计也有三条：<strong>①失败要吼</strong>——给流程加上"出错时发通知"的动作（系统通知、给自己发条消息），沉默的失败比响亮的失败危险一百倍；<strong>②动作要可逆</strong>——优先用"移动/复制"而不是"删除/覆盖"，删除类操作改成"移入待删除文件夹+保留 30 天"，给自己留反悔窗口；<strong>③定期巡检</strong>——每月花五分钟抽查一次自动流程的输出（随机打开归档文件夹看看结构对不对），这相当于第19章要讲的"自动化体检"在桌面场景的最小版本。记住这句话：<strong>设完就不管的自动化，是危险的自动化</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page">Microsoft 任务计划程序官方文档：任务条件与失败处理设置（英文）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework：对自动化系统持续监控与治理的框架性要求（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、桌面 Agent 新趋势：AI 开始直接操作你的电脑</h2>
+    <p class="chapter-sub">从"你搭流程机器执行"到"你说需求 AI 自己搭"——能力在快速演进，但红线没有变</p>
+
+    <article class="view">
+      <h3>Computer Use 类能力延伸到桌面</h3>
+      <p class="ctx">第7章讲过 AI 操作浏览器（看截图→决策→点击），同样的能力正在延伸到整个桌面：Anthropic 在 2024 年 10 月发布 computer use 能力时，官方定位就是让模型"像人一样使用电脑"——移动光标、点击按钮、输入文字、切换应用；微软研究院的 Magentic-One 等多 Agent 系统研究也把"操作通用软件界面"作为核心场景。对你的意义是：<strong>过去必须先搭好流程才能自动化的任务，未来可能一句话就能让 AI 代跑</strong>——"把这批扫描件按发票号重命名，整理进报销文件夹，然后汇总成一张表"。</p>
+      <p class="ctx">但第7章的结论在桌面场景同样成立，甚至更严格：<strong>这类能力的可靠性还在爬坡期</strong>（学术基准上的成功率离"放心托管"有距离），而桌面比浏览器更危险——浏览器里最坏是网页操作失误，桌面上 AI 摸到的是你的文件系统、已登录的各种账号和本地密码库。所以当前阶段的正确用法是：<strong>让桌面 Agent 干"看着它干"的活（你在旁边盯着每一步），或者干"错了也无所谓"的活（副本数据、可逆操作）</strong>；给它的最小权限原则同样适用——能用普通用户权限就不用管理员权限，能限定操作某个文件夹就不给全盘访问。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.anthropic.com/news/3-5-models-and-computer-use">Anthropic 官方：Introducing computer use（2024-10，英文）</a> · <a href="https://arxiv.org/abs/2411.04468">Fourney et al.《Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks》（2024，arXiv，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>新旧路线怎么选：一张对照表</h3>
+      <p class="ctx">传统流程工具（快捷指令、任务计划、批处理脚本）和 AI 桌面 Agent 不是替代关系，而是分工关系。判断用哪条路线，看三个维度：<strong>任务频率</strong>（每天都跑的高频任务值得搭固定流程，一年跑一次的任务让 AI 现场代跑更划算）、<strong>规则稳定性</strong>（规则常年不变→固定流程；每次都不太一样→AI 理解后执行）、<strong>容错空间</strong>（错了影响大→固定流程+人工检查点；错了无所谓→AI 放手试）。</p>
+      <ul>
+        <li><strong>固定流程（传统工具）</strong>：快、稳、免费、可预期；缺点是搭建有门槛、规则变了要手动改。</li>
+        <li><strong>AI Agent（对话驱动）</strong>：灵活、免搭建、能理解模糊需求；缺点是可能出错且错法不可预期、按用量计费、需要盯着。</li>
+        <li><strong>混合模式（推荐的进阶路线）</strong>：让 AI 帮你"探路"——先把任务交给 AI 跑一遍，观察它的步骤，再把稳定下来的步骤固化成传统流程；或者传统流程干粗活（分拣、重命名），流程中嵌一步 AI 干细活（判断分类、提取字段）。第7章讲浏览器时说过同样的话：<strong>AI 探路，脚本固化</strong>。</li>
+      </ul>
+      <div class="fig"><img src="../assets/img-09-2.png" alt="两条自动化路线对照示意：左侧是齿轮与固定轨道组成的流水线代表传统流程工具，右侧是一个抽象几何机器人手持放大镜代表 AI Agent，中间一条双向箭头连接两者，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》官方文章：能用简单工作流解决就不要上 Agent（英文）</a> · <a href="https://learn.microsoft.com/en-us/power-automate/getting-started">Microsoft Power Automate 官方文档：固定流程自动化的适用场景（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、备份与脱敏：桌面自动化的两条红线</h2>
+    <p class="chapter-sub">自动化的效率放大的是收益，也放大的是事故——这两条红线是放大器和保险丝的关系</p>
+
+    <article class="view">
+      <h3>红线一：先备份，再自动化</h3>
+      <p class="ctx">手动整理文件，你出错的上限是"改错一个文件"；自动化整理文件，一个写错的条件可以在一分钟内<strong>把整批文件改错</strong>——批量的重命名撞上重名覆盖、归档条件写反把重要文件移进回收站、转换脚本把原件覆盖成损坏格式，这些都是真实世界的高频事故。所以桌面自动化第一铁律：<strong>任何批量修改类操作（重命名、移动、转换、删除）之前，先有备份</strong>。</p>
+      <p class="ctx">备份不需要复杂，按"3-2-1 原则"的简化版执行即可：<strong>重要数据至少两份，其中一份不在同一块硬盘上</strong>（移动硬盘、NAS 或网盘都行，注意网盘同步不等于备份——同步会把你的误删忠实地同步到云端）。具体到批处理操作，还有一个更轻量的习惯：<strong>先复制一份"试验田"文件夹，在副本上试跑流程，确认结果正确再对原件执行</strong>；或者把流程设计成"只移动不删除""输出到新文件夹不动原件"，让操作天然可逆。第5章算过自动化的成本账，备份占用的那点存储空间，是整个自动化项目里性价比最高的保险。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://support.apple.com/zh-cn/111901">Apple 官方支持：Mac 备份与恢复指南（中文）</a> · <a href="https://support.microsoft.com/zh-cn/windows">Microsoft Windows 官方帮助：备份与还原设置（中文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>红线二：上传先脱敏，敏感文件不出本地</h3>
+      <p class="ctx">当你把 OCR、摘要、分类这些活交给云端 AI 时，文件内容就离开了你的电脑——这一步的法律与安全边界必须清楚。<strong>《个人信息保护法》要求处理个人信息遵循合法、正当、必要原则，敏感个人信息（身份证件、医疗健康、金融账户、行踪轨迹等）的处理有更严格的规则</strong>；《数据安全法》则对重要数据的保护提出了制度要求。落到操作层面就是三句话：</p>
+      <ul>
+        <li><strong>能不上传就不上传</strong>：批量、敏感的文件处理（含身份证号、银行卡号、病历、合同）优先用本地方案——系统内置 OCR、开源 Tesseract、本地运行的大模型（第5章讲过 Ollama 类本地部署路线）。</li>
+        <li><strong>必须上传就先脱敏</strong>：把姓名、证件号、电话、金额等敏感字段遮蔽或替换成占位符后再交给云端 AI 处理，处理完再把结果映射回来；只给 AI 完成任务所必需的最小内容（数据最小化原则）。</li>
+        <li><strong>公司文件看制度</strong>：工作文档上传任何外部 AI 服务前，先确认公司数据管理制度和保密协议是否允许——很多单位对内部文档外传有明确禁令，个人效率不能踩组织的红线。</li>
+      </ul>
+      <p class="ctx">顺带一提，自动化流程本身也会制造"数据副本"：OCR 的中间文本、AI 处理的日志、云盘的同步记录。设计流程时多想一步——<strong>这些副本存在哪、谁能看到、多久清理</strong>——比事后补救省事得多。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：最小必要原则与敏感个人信息规则</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国数据安全法》全文检索</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：桌面自动化的三大误区</h2>
+    <p class="chapter-sub">流传很广的说法，经不起官方文档和工程实践的检验</p>
+
+    <article class="view">
+      <h3>谣言粉碎：这些"常识"该更新了</h3>
+      <p class="ctx"><strong>误区一："文件自动化是程序员的事，普通用户玩不转。"</strong>恰恰相反，桌面文件自动化是所有自动化里对普通人最友好的一块：两大系统官方都提供了零代码的可视化工具（快捷指令、Power Automate），文件管理器本身就自带批量重命名，OCR 已经是手机系统级功能。官方文档的定位写得很明白——这些工具面向的就是"自动化日常重复任务"的普通用户。真正需要写代码的场景（本章第三级阶梯）是少数。</p>
+      <p class="ctx"><strong>误区二："OCR 识别完就能直接用，人工校对是浪费时间。"</strong>任何 OCR 官方文档都会告诉你识别率受图像质量、字体、排版影响，手写体和低质量扫描件出错是常态。金额、日期、编号这类关键字段错一位，损失远大于一分钟的人工核对。正确的成本观是：OCR 帮你省掉了 95% 的录入劳动，你用 5% 的注意力守住关键——这不是浪费，是整条流水线里回报率最高的五分钟。</p>
+      <p class="ctx"><strong>误区三："把流程设成全自动就一劳永逸了。"</strong>自动化的真相是"设完才是开始"：文件夹会改名、登录态会过期、系统会升级、数据源会改版，任何环境变化都可能让流程静默失效。工程界的共识是自动化系统需要持续监控（NIST 的 AI 风险管理框架把"持续监控与治理"列为基本要求）。没有失败通知、没有定期巡检的全自动流程，等于把错误悄悄累积三个月再一次性爆炸。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://support.apple.com/guide/shortcuts/intro-to-shortcuts-apdf22b0444c/ios">Apple《快捷指令官方指南》：面向普通用户的自动化定位（英文）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework：自动化与 AI 系统的持续监控要求（英文）</a> · <a href="https://tesseract-ocr.github.io/tessdoc/">Tesseract 官方文档：影响识别准确率的因素（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来、能落到自己的电脑上，才算学会了</p>
+    <div class="checklist">
+      <h4>📋 桌面与文件自动化自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>什么样的任务适合文件自动化？三个共同特征是什么？</li>
+        <li>"能用规则的不要用 AI，规则写不出来的才用 AI"——整理文献的场景里，哪部分是规则活、哪部分是理解活？</li>
+        <li>文件批处理三级阶梯分别是什么？大多数人的任务停在哪一级就够用了？</li>
+        <li>macOS 和 Windows 官方的第二级工具分别叫什么？它们的共同思维模型是什么（触发+动作+什么）？</li>
+        <li>什么时候才值得升级到第三级（脚本）？给出两个判断信号。</li>
+        <li>让 AI 帮你写文件处理脚本时，提示词里必须加哪两条安全约束？</li>
+        <li>OCR 的输入和输出分别是什么？现代 OCR 的技术底座是什么？</li>
+        <li>影响 OCR 准确率的四个因素是什么？哪两类内容最容易识别错？</li>
+        <li>"识别→置信度分流→人工校对→入库"流程里，人只需要看哪部分？为什么关键字段例外？</li>
+        <li>多模态大模型处理票据相比传统 OCR 流水线，优势是什么？两个代价是什么？</li>
+        <li>邮件合并的原理一句话是什么？它体现了哪两个部分的分离？</li>
+        <li>批量合并发送邮件前，哪两个环节必须人工把关？</li>
+        <li>周报自动化改造五步里，"溯源列"是干什么用的？</li>
+        <li>定时任务的三个高发翻车点是什么？对应的三条保险丝是什么？</li>
+        <li>传统流程工具和 AI 桌面 Agent 的三个选型维度是什么？"AI 探路，脚本固化"是什么意思？</li>
+        <li>"同步不等于备份"这句话是什么意思？批处理前的"试验田"习惯指什么？</li>
+        <li>文件交给云端 AI 前的脱敏三句话是什么？哪些信息属于敏感个人信息？</li>
+        <li>为什么说"设完就不管的自动化是危险的自动化"？NIST 框架对此的基本要求是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张清单带走）：</strong>文件自动化＝规则明确、重复量大、单步简单的任务的主场；三问自检＝规则能写吗→有敏感数据吗→操作可逆吗；三级阶梯＝文件管理器自带功能→系统可视化工具（快捷指令/Power Automate）→脚本（AI 可代写但必须试跑+逐行理解）；OCR＝识别→置信度分流→人工校对→入库，关键字段永远人工过目；多模态模型＝版式杂的小批量提效利器，敏感数据不出本地；邮件合并＝模板+数据表批量生成，对外发送必须人工终审；定时任务＝失败要吼、动作可逆、定期巡检；桌面 Agent＝看着它干或干错了无所谓的活，最小权限；两条红线＝先备份再自动化（试验田习惯）、上传先脱敏（PIPL 最小必要）。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-form/"><span class="dir">← 第8章</span>表单填写与数据提取：最高频的两件事</a>
+    <a href="../10-media/"><span class="dir">第10章 →</span>图像与语音：给 AI 装上眼睛和耳朵</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第9章 · 依据 Apple 快捷指令官方指南、Microsoft Power Automate 与任务计划程序官方文档、Word 官方帮助（邮件合并）、Tesseract OCR 官方文档、Anthropic computer use 官方发布、《个人信息保护法》《数据安全法》及 Huang et al.（2023）、Fourney et al.（2024）等学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或企业合规建议 · 批处理前先备份 · 敏感数据不投喂公共模型 · 删除/覆盖/对外发送类操作保留人工确认 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

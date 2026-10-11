@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8章 表单填写与数据提取：最高频的两件事 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  pre.code{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:12px 16px;font-size:13px;overflow-x:auto;line-height:1.6;margin:10px 0;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第8章 · 浏览器与桌面自动化</div>
+  <h1>表单填写与数据提取：最高频的两件事</h1>
+  <p>把数据搬进网页、把数据搬出网页——两个方向的完整流程设计、去重校验、截图存档，以及频率克制的礼貌边界</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../07-ai-browser/">← 第7章：AI 操作浏览器</a>
+    <a href="../09-desktop/">第9章：桌面与文件自动化 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">填表三级</a>
+    <a class="anchor" href="#s2">批量五步</a>
+    <a class="anchor" href="#s3">去重校验</a>
+    <a class="anchor" href="#s4">数据提取</a>
+    <a class="anchor" href="#s5">截图存档</a>
+    <a class="anchor" href="#s6">错误处理</a>
+    <a class="anchor" href="#s7">合规边界</a>
+    <a class="anchor" href="#s8">案例拆解</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成法律意见或企业合规建议。数据提取涉及《中华人民共和国个人信息保护法》《中华人民共和国数据安全法》《中华人民共和国网络安全法》及目标网站服务条款、robots 协议与著作权——处理他人个人信息必须有合法性基础，本站<strong>不教授也不鼓励</strong>“绕过反爬”措施、“破解验证码”、规避频率限制等行为，相关内容仅作批判与风险警示。自动化提交正式申请、对外发送数据等关键操作必须保留人工确认。勿将敏感个人数据、公司机密投喂公共 AI 服务。文中工具名称仅用于教学说明，无商业合作、无推广链接；工具能力描述以官方文档为准（截至 2026 年 10 月）。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①分清自动填表的三级台阶（浏览器自带→密码管理器→自动化框架），知道自己该停在哪一级；②用"数据源→映射→校验→提交→回执存档"五步流程设计任何批量填报任务，并说出每步最容易出的错；③设计去重与校验规则，避免"同一份表交两遍""错数据进了正式系统"两类经典事故；④把网页上的表格与列表提取成结构化文件（CSV/表格软件），处理分页与增量更新；⑤建立截图存档习惯，理解"自动化的每一步都要能证明"；⑥处理三类常见故障：页面改版、验证码出现（正确动作是停，不是绕）、数据缺失（标记而不是编造）；⑦说清数据提取的合规与礼貌边界：robots 协议、频率克制、个人信息红线、著作权；⑧把一个真实场景（每周价格监测/批量报名）从头到尾拆解成可执行方案。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>填表与提取是浏览器自动化最高频的两类落地任务，本章是第6章概念与第7章 AI 能力的"实战合流"。第二节的五步流程框和第六节的错误处理三原则是全章骨架，建议精读；第八节的两个完整案例可以用来对照你自己的需求做改编。合规部分（第七节）与第4章呼应，做数据提取前务必读完。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、自动填表三级台阶：先用手边的，再上专业的</h2>
+    <p class="chapter-sub">浏览器自带填充 → 密码管理器 → 自动化框架——九成需求停在前两级就够</p>
+
+    <article class="view">
+      <h3>第一级：浏览器自带的表单能力</h3>
+      <p class="ctx">填表是网页时代最古老的需求，浏览器为此内置了一整套能力，很多人用了十年浏览器也没打开过：<strong>表单自动填充</strong>——Chrome、Edge、Safari、Firefox 都支持保存你的姓名、地址、电话、邮箱、银行卡等常用信息，下次遇到表单一键填入（各家设置里搜"自动填充"即可找到）；<strong>输入记忆</strong>——记住你在搜索框、地址栏的历史输入，下拉即选；<strong>表单标准本身</strong>——现代网页的表单遵循 HTML 标准（MDN 文档对 form 元素与各类控件有完整中文教程），规范开发的网站会给每个输入框标注语义（这是"收货地址"、那是"邮政编码"），浏览器的自动填充正是靠这些语义标记对号入座的。</p>
+      <p class="ctx">这一级的适用判断：<strong>你亲手填、只是不想重复打字</strong>——收货地址、开票信息、注册资料，自动填充能省掉九成的击键。它的局限也明显：一次只能填一份表，且需要你在场点击。当你发现自己在"复制粘贴同一份 Excel 数据到同一个网页表单，重复三十遍"时，就该看第三级了；而账号密码类的填充，先看第二级。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/form">MDN Web Docs（中文）《&lt;form&gt;：表单元素》：HTML 表单标准结构</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Forms">MDN Web Docs（中文）《表单》学习专区：网页表单完整教程</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第二级：密码管理器——填表自动化里最该先做的一件事</h3>
+      <p class="ctx">账号密码是每个人最高频的"表单填写"，而它恰好最不该靠人脑和明文便签。<strong>密码管理器</strong>（主流浏览器内置的密码保存功能，以及独立的专业密码管理软件——浏览器内置版免费够用，独立版功能更全，按需选择，本课程不做商业推荐）做三件事：为每个网站生成并保存不同的强密码、登录时自动填充、泄露时告警。从自动化视角看，它是"凭据管理"的标准答案：<strong>密码存在加密库里由工具按需注入，而不是写进你的自动化脚本</strong>——这条对第三级至关重要：任何脚本里出现明文密码，都是安全事故的伏笔（脚本会被分享、上传、进版本库）。</p>
+      <p class="ctx">与第7章的 AI 浏览器衔接一句：让 AI Agent 替你登录各种账号时，正确姿势同样不是把密码告诉它，而是<strong>登录环节亲手完成</strong>（或用密码管理器在本地注入），Agent 只在已登录的会话里干活。凭据的流转范围越小，暴露面越小——这是贯穿全章的安全直觉。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://support.mozilla.org/zh-CN/kb/password-manager-remember-delete-change-sync-passwords-firefox">Mozilla Firefox 官方帮助（中文）：密码管理器的使用与管理</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：账号凭据属敏感信息，处理须有保障措施</a></div>
+    </article>
+
+    <article class="view">
+      <h3>第三级：自动化框架批量填表——什么时候才需要它</h3>
+      <p class="ctx">第三级动用第6章的工具（Playwright/Selenium 类框架、工作流平台的浏览器节点、或第7章的 AI Agent），让程序批量完成"打开表单→填数据→提交→记录结果"的循环。判断要不要上这一级，就问三个问题：<strong>份数多吗</strong>（三十份以上手工填的错误率与耗时开始失控）；<strong>数据源已经结构化了</strong>（你手里有 Excel/CSV/数据库，而不是散落各处）；<strong>重复发生吗</strong>（每月/每周都要来一遍）。三问有两个"是"，就值得搭；只有一个，先用第一、二级顶着——第5章的成本账提醒过：搭建与维护自动化的时间也是成本，低频任务自动化是亏本生意。</p>
+      <p class="ctx">一个最小示意（全章两段代码之一，Playwright 风格，看懂思路即可）：</p>
+      <pre class="code">page.goto("https://example.com/apply")   # 打开申请表页
+page.fill("#name", row["姓名"])           # 从表格数据行取"姓名"填入
+page.fill("#phone", row["电话"])          # 填电话
+page.click("button:has-text('提交')")     # 点提交按钮
+page.screenshot(path=f"回执_{row['姓名']}.png")  # 截图存回执</pre>
+      <p class="ctx">逐行白话：打开页面→把数据表当前行的姓名、电话分别填进对应输入框→点提交→立刻给结果页截图存档，文件名带上姓名。把这段套进"对数据表每一行循环执行"的壳里，就是批量填报的骨架——但骨架距离可靠还差完整的流程设计，这正是第二节的主题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/locators">Playwright 官方文档《Locators》：fill/click 接口与定位方式（英文）</a> · <a href="https://www.selenium.dev/documentation/webdriver/">Selenium 官方文档《WebDriver》：表单交互的同构接口（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、批量填报五步流程：从数据到回执的完整链路</h2>
+    <p class="chapter-sub">数据源 → 映射 → 校验 → 提交 → 回执存档——每一步都有它的经典事故</p>
+
+    <article class="view">
+      <h3>五步流程总览</h3>
+      <p class="ctx">场景（示例）：培训机构教务每月要给 40 名学员在报名系统里逐一填报信息，数据在一张 Excel 里。手动填一份 3 分钟，40 份两小时，还得盯着不能串行。自动化方案不管用什么工具实现，流程都是同一条五步链路——这条链路是本节要你带走的核心资产：</p>
+      <blockquote class="q"><strong>流程拆解：批量填报五步链路（可直接套用）</strong><br>1. <strong>数据源整备</strong>：一张干净的表（Excel/CSV），一行一条记录，列名固定；缺值、格式、重复在这一步先处理干净——垃圾进，垃圾出；<br>2. <strong>字段映射</strong>：明确"表格的哪一列 → 网页的哪个输入框"，写成映射清单；日期格式（2026/10/1 vs 2026-10-01）、下拉选项文字（"男" vs "男性"）这类细节在映射时统一转换；<br>3. <strong>提交前校验</strong>：程序自查每条记录——必填项都有值吗？手机号是 11 位吗？这条是不是已经报过名（查重，第三节）？不合格的挑出来进"人工处理队列"，不让它进流程；<br>4. <strong>逐条提交</strong>：按合理节奏提交（频率问题见第七节），每条提交后确认页面反馈（"提交成功"提示或订单号出现）才算这条完成；<br>5. <strong>回执存档</strong>：每条成功记录截图/保存回执编号，汇总成一张"结果表"（姓名、提交时间、回执号、截图文件名）——这张表就是你的交付物和证据链。<span class="qsrc">流程模板 · 依据 Playwright 官方文档表单操作接口与通用数据工程实践整理</span></blockquote>
+      <p class="ctx">注意五步里只有第 4 步是"机器人点网页"，其余四步都是数据工程——这正是批量填报的真相：<strong>八成工作量在点击之外</strong>。跳过 1-3 直接开点的人，收获的是"错数据进了正式系统"；跳过第 5 步的人，在月底对账时收获"说不清哪些交了哪些没交"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：页面操作与截图接口（英文）</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Forms">MDN Web Docs（中文）《表单》：表单数据提交与验证机制</a></div>
+    </article>
+
+    <article class="view">
+      <h3>映射与校验：最容易翻车的两步细讲</h3>
+      <p class="ctx"><strong>字段映射</strong>的经典事故是"错位"：网页表单改版把"紧急联系人"挪到了"联系电话"上面，脚本按位置填而不是按标签填，结果所有家长的电话都填进了联系人栏。防线有二：其一，映射按<strong>语义标签</strong>建立（第6章的"韧性选择器"原则——找"标签为'联系电话'的输入框"，不找"第三个输入框"）；其二，正式批量跑之前先<strong>试填一条并人工核对</strong>——把试填结果截图给自己看一眼，三十秒换掉一场灾难。<strong>下拉框与日期控件</strong>是映射的重灾区：网页的下拉选项文字和你的数据可能差一个字（"北京市"vs"北京"），日期控件往往不接受直接打字、要模拟点选——遇到这类控件，优先找它的隐藏输入框（很多网页控件会把选中值写进一个隐藏的 input），实在不行再模拟点击。</p>
+      <p class="ctx"><strong>提交前校验</strong>的原则一句话：<strong>能在本地发现的错误，绝不留给网页报错</strong>。基础校验（必填、格式、长度、数值范围）用表格软件或脚本几分钟就能写完；业务校验（这个身份证号对应的人是否已在名单里、这个日期是否超出可选范围）需要你提前把规则想清楚。校验不通过的记录不是"丢弃"，而是进<strong>人工处理队列</strong>——一张单独的表，列出每条被拦下的记录与拦截原因，你集中处理完再放它们重新入列。这个"机器拦粗错、人管疑难件"的分层，是批量任务可靠性的第一支柱。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Forms">MDN Web Docs（中文）《表单数据校验》：客户端校验机制与表单约束属性</a> · <a href="https://playwright.dev/docs/locators">Playwright 官方文档《Locators》：按可见标签与角色定位的推荐实践（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、去重与查重：别让同一份表交两遍</h2>
+    <p class="chapter-sub">重复提交是批量任务的头号事故——三道查重闸门的搭法</p>
+
+    <article class="view">
+      <h3>三道查重闸门</h3>
+      <p class="ctx">为什么重复提交如此致命？因为它往往<strong>静默成功</strong>：系统收了第二份申请、扣了第二次费、给候选人发了两封通知——等你发现时，撤销比提交麻烦十倍。防线是三道闸门，一道比一道靠近现场：<strong>第一道：数据源查重</strong>——整备数据表时先按唯一键（身份证号、手机号、订单号）查重复行，同一人两条记录先人工合并或裁决；<strong>第二道：本地台账查重</strong>——维护一张"已提交台账"（哪些唯一键在什么时候提交成功、回执号是多少），每次批量跑之前，先把台账里已有的记录从待提交名单里剔掉；这道闸门同时解决<strong>断点续跑</strong>问题：任务跑到第 25 条断网了，重启后自动跳过前 25 条，而不是从头再交一遍；<strong>第三道：目标系统查重</strong>——提交前先在目标网站搜一下该记录是否已存在（很多报名/申请系统本身允许查询进度），存在则标记跳过。三道闸各有漏网可能（数据源没有唯一键、台账丢失、目标系统不提供查询），但叠起来后重复提交的概率被压到可以接受。</p>
+      <p class="ctx">唯一键的选择值得多想十秒：姓名会重名、电话会换号，最稳的是业务系统认可的标识（身份证号在合规前提下、订单号、学号）。如果实在没有唯一键，就用"多字段组合+人工抽查"顶替，并在台账里如实标注"查重强度弱"——知道自己防线的薄弱处，比假装固若金汤安全得多。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：查询页面状态以做提交前检查的接口（英文）</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：以身份证号等作唯一键时须遵守最小必要与安全保障义务</a></div>
+    </article>
+
+    <article class="view">
+      <h3>台账：批量自动化的"户口本"</h3>
+      <p class="ctx">把第二道闸门的"已提交台账"再展开讲讲，因为它值得单独建好：<strong>一行一条提交记录</strong>，至少包含——唯一键、提交时间、结果（成功/失败/跳过）、回执号或订单号、截图文件名、备注（失败原因）。台账的三个用途：<strong>对账</strong>（月底数一数：数据源 40 条=成功 37+失败 2+跳过 1，账对上了才算跑完）、<strong>续跑</strong>（上节说过）、<strong>审计</strong>（三个月后有人问"这份到底交没交"，你打开台账两秒给出答案和截图，这就是自动化带来的职业形象）。台账本身就是个 CSV/表格文件，不要引入专门的数据库——第2章的原则：用最轻的工具解决问题。</p>
+      <div class="fig"><img src="../assets/img-08-1.png" alt="抽象示意图：左侧一张电子表格网格中数据行依次流入中间一个漏斗形校验器，漏斗分出两条通道——主通道流向一个发光的提交按钮方块并连向右侧档案盒（回执存档），侧通道流向一个小的人工检查台，青色主色调配琥珀色点缀" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：screenshot 截图存档接口（英文）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文）：工作流平台中"记录执行历史"的同类设计（开源可自托管；商业同类如 Zapier）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、数据提取：把网页搬进表格</h2>
+    <p class="chapter-sub">反方向的流程——表格/列表页 → 结构化文件，分页与增量的处理</p>
+
+    <article class="view">
+      <h3>提取流程：定位、翻页、落盘</h3>
+      <p class="ctx">数据提取（把网页上的表格、列表、字段读出来存成 CSV/表格文件）是填报的镜像任务，流程同样是五步（示例：每周提取三家竞品官网的价格表）：<strong>①定位数据区</strong>——找到装着目标数据的元素（一张 HTML 表格、一组重复的商品卡片），还是第6章的选择器功夫，且优先用语义定位；<strong>②设计字段</strong>——先想清楚要哪几列（产品名、档位、月付价、年付价、抓取日期），把表头定死，提取只是往里面填行；<strong>③逐行读取</strong>——对数据区的每一行/每一张卡片，读出各字段文字；<strong>④处理翻页</strong>——数据跨页时循环"读取当前页→点下一页→等加载→再读"，直到"下一页"按钮消失或变灰；<strong>⑤落盘与对账</strong>——写入 CSV，记录本次抓取时间、页数、总行数，与网页显示的总数（"共 156 条"）核对——数字对不上就说明漏抓了。</p>
+      <p class="ctx">两个高频坑提前打预防针：<strong>动态加载</strong>——很多列表页滚动到底部才加载下一批（无限滚动），"点下一页"的套路失效，要改成"滚动到底→等新内容出现→继续"，判断"全部加载完"的标志（不再有新行出现）要设超时兜底；<strong>懒加载图片与延迟渲染</strong>——数据在页面代码里但还没画出来，直接读会读到空值，用第6章的条件等待（等元素出现再读）而不是死等几秒。CSV 落盘时注意编码（Excel 打开乱码通常是编码问题，存为带 BOM 的 UTF-8 或用表格软件的导入向导）——小坑，但几乎人人会踩一次。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/locators">Playwright 官方文档《Locators》：批量读取元素文本的接口（英文）</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_selectors">MDN Web Docs（中文）《CSS 选择器》：定位数据区的语法基础</a></div>
+    </article>
+
+    <article class="view">
+      <h3>增量提取与"先找官方出口"</h3>
+      <p class="ctx">周期性提取（每天/每周跑）要处理<strong>增量</strong>问题：页面上一共 200 条，其中 195 条昨天已经抓过，今天只有 5 条新的——全量重抓浪费且容易撞频率限制。做法与台账同理：维护一张"已抓记录表"（按唯一键），每次只处理表里没有的新条目；判断"新到哪里为止"通常靠列表的时间排序（新条目总在前面，抓到已知的旧条目就可以停）。增量逻辑让每日任务的耗时与请求量都稳定在小数字上——这对目标网站也更友好（第七节）。</p>
+      <p class="ctx">动手前的最后一个习惯，也是最重要的：<strong>先找官方出口</strong>。很多平台提供正式的数据获取通道——官方 API、数据导出按钮（"下载报表""导出 CSV"）、开放数据门户（政府公开数据平台）。官方通道给你的数据更全、更准、更合规，还不用维护选择器。只有当官方出口不存在或覆盖不了需求时，才考虑网页提取；而提取的对象也应是<strong>公开可访问的数据</strong>——需要登录才能看的数据，提取前先想清楚账号条款允不允许（下一节与第4章）。第12章会系统讲 API 集成，这里先立规矩：<strong>正门开着的时候，不要翻窗户。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.robotstxt.org/">robotstxt.org：robots 协议——网站对自动化访问的公开声明（英文）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国数据安全法》全文（检索法名；第 32 条要求收集数据采取合法、正当的方式）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、截图存档：让每一步都能被证明</h2>
+    <p class="chapter-sub">回执、证据、审计——自动化的运行记录比你以为的更值钱</p>
+
+    <article class="view">
+      <h3>什么值得截图，怎么截</h3>
+      <p class="ctx">网页内容会被修改、被删除、被"404"，而你的自动化流程恰恰需要回答"当时页面上写的是什么""我到底提交成功没有"。<strong>截图存档</strong>就是把答案定格下来。值得截图的四类时刻：<strong>①提交成功回执</strong>——含回执号/订单号与时间戳的页面（批量任务每条都截，文件名带唯一键，如第二节示意代码那样）；<strong>②关键条款与承诺</strong>——下单前的价格页、服务协议页、活动规则页（消费维权时"页面当时怎么写"经常是争议核心）；<strong>③异常现场</strong>——任务失败时的页面状态（报错弹窗、意外改版），这是你排错的第一手材料，第6章讲过 Playwright 的执行轨迹能自动录下每步截图；<strong>④监测留痕</strong>——周期性提取时定期整页截图，与结构化数据互为印证。</p>
+      <p class="ctx">截图的规范同样重要：<strong>全页优于局部</strong>（能看到浏览器地址栏与时间的完整截图证明力强得多）；<strong>命名即索引</strong>（日期+任务+唯一键，三个月后还能秒找）；<strong>集中存放并备份</strong>（按任务建文件夹，重要凭证异地备份）。关于证据效力多说一句：普通截图在纠纷中属于电子证据的一种，其证明力与完整性、形成过程可验证性相关；重大事务（大额交易、法律文件）如需强证明力，可了解公证机构的电子数据存证服务——本章不展开法律细节，只提醒：<strong>平时规范存档，关键时刻才有得用</strong>。</p>
+      <div class="fig"><img src="../assets/img-08-2.png" alt="抽象示意图：一个浏览器窗口正被一台几何相机拍下，照片从相机滑入右侧一排整齐的档案盒格架中，每个格子上有抽象的日期色块标签，其中一格发出琥珀色高光，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：整页截图与元素截图接口（英文）</a> · <a href="https://playwright.dev/docs/trace-viewer">Playwright 官方文档《Trace Viewer》：执行过程自动录屏与逐步截图（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、错误处理三原则：改版、验证码、缺数据</h2>
+    <p class="chapter-sub">自动化流程的死法各不相同，活法只有一条：错误要被看见、被分类、被正确处置</p>
+
+    <article class="view">
+      <h3>原则一：页面改版——预期内的必然事件</h3>
+      <p class="ctx">先立一个心态：<strong>你的脚本一定会失效，问题只是什么时候</strong>。网站改版、A/B 测试、节假日皮肤，都会让选择器找不到目标。应对分三层：<strong>事前</strong>——用韧性选择器（语义定位，第6章）把改版敏感度降到最低；<strong>事中</strong>——失败要响亮：脚本找不到关键元素时必须带截图报错停下，绝不"跳过继续"（静默跳过的批量任务会交出一张缺一堆行的表，而你毫不知情）；<strong>事后</strong>——修复要快：报错信息直接告诉你"哪个元素没找到+当时页面截图"，多数改版导致的失效是改一个选择器的事。AI Agent 在这里的价值（第7章混合模式）：脚本失效时让 AI 重新探路，把新路径固化回脚本——"AI 救火队员"正是为这个时刻准备的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/locators">Playwright 官方文档《Locators》：韧性定位策略（英文）</a> · <a href="https://playwright.dev/docs/actionability">Playwright 官方文档《Actionability》：动作前检查与失败报错机制（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>原则二：验证码出现——唯一的正确动作是停</h3>
+      <p class="ctx">批量任务跑着跑着，页面弹出了验证码（或滑块、点选等人机验证）。先把性质说透：<strong>验证码是网站明确的机器拒绝表示</strong>——它出现，说明你的访问已经触发了对方的风控判断。此时唯一的正确动作是：<strong>停下来，交还人工</strong>——脚本暂停并通知你，由你亲手完成验证后决定是否继续（继续时降低频率、缩小范围，或干脆放弃该任务改走官方通道）。本站不教授任何形式的验证码识别与绕过技术：这不是能力问题而是性质问题——对已明确拒绝你的系统继续强行进入，可能同时违反平台条款与《网络安全法》关于禁止干扰网络正常功能、禁止侵入他人网络的规定（第4章、第6章已详述），由此获取的数据也不干净。</p>
+      <p class="ctx">工程上的配套设计：<strong>把"遇到验证码"当作一种正常分支写进流程</strong>——检测到验证元素出现→截图存档→记录台账（"此记录因验证码中止"）→通知人工→处理完从中断点续跑（第三节的台账机制在这里再次发挥作用）。一个把验证码当"意外崩溃"的流程和一个把它当"预设分支"的流程，可靠性天差地别。同理适用于登录墙、付费墙、地域限制——<strong>网站设置的每一道门，都是让你停下的信号，不是让你想办法的信号</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国网络安全法》全文（检索法名；第 27 条禁止干扰网络正常功能与非法侵入他人网络）</a> · <a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：检测页面元素以触发人工分支的接口（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>原则三：数据缺失——标记，而不是编造</h3>
+      <p class="ctx">提取任务常遇到某行数据缺字段：这个商品没写年付价、那篇文章没有发布日期。错误做法有三种，都见过真实事故：<strong>默默跳过整行</strong>（结果表少行没人发现）、<strong>填个默认值充数</strong>（价格填 0，均价统计全毁）、<strong>让 AI"推测补全"</strong>（大模型会顺着格式编出一个像模像样的假数字——第1章幻觉问题在数据管道里的化身）。正确做法只有一种：<strong>如实标记缺失</strong>——该字段留空或标注"N/A"，同时在提取日志里记录"第几行缺什么"，汇总时单独报告缺失率。数据宁可残缺也要真实，这是数据工作的第一伦理；AI 参与整理时尤其要盯死这一条——凡是 AI 经手的数字，抽样回网页原处核对，比例不低于一成。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2311.05232">Huang et al.《A Survey on Hallucination in Large Language Models》(2023, arXiv)：模型编造事实的机制综述——"推测补全"不可信的依据（英文）</a> · <a href="https://playwright.dev/docs/api/class-page">Playwright 官方文档《Page》：读取元素文本为空时的处理接口（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于填表与提取的三个流行误区</h3>
+      <p class="ctx"><strong>误区一："有 AI 了，随便说句话它就能把所有表单填好、所有数据抓干净，流程设计过时了。"</strong>证据：第7章的基准数据（WebArena/Mind2Web）表明 AI Agent 在多步网页任务上成功率仍有限，越是批量、越要求一致性的任务，确定性流程+校验+台账越不可替代；AI 的正确位置是"探路、应变、救火"，五步链路一步都省不掉——事实上 AI 经手的批量任务更需要第三原则（防幻觉编数）与抽样核对。<br><strong>误区二："验证码识别工具很多，接一个就能全自动无人值守。"</strong>证据：性质上，验证码是网站的明确拒绝表示，识别绕过涉嫌违反平台条款与《网络安全法》第 27 条（本站只批判不教学）；工程上，风控是动态对抗，今天能过的工具明天就失效，把业务流程建在"持续绕过"上等于把地基打在流沙上——正路是降频、走官方通道、或把人工验证设计成流程分支。<br><strong>误区三："提取公开网页数据不算处理个人信息，怎么抓都行。"</strong>证据：《个人信息保护法》约束的是"个人信息"的处理行为，不以数据是否公开为豁免——公开渠道获得的个人信息（网页上的姓名、电话、照片）依然是个人信息，处理它仍须有合法性基础并遵守该法关于已公开个人信息处理的专门规定；批量汇聚公开信息还可能触碰著作权（数据汇编）与反不正当竞争（实质性替代他人服务）问题。"公开可见"≠"可以随便搬"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：已公开个人信息的处理规则</a> · <a href="https://arxiv.org/abs/2307.13854">Zhou et al.《WebArena》(2023, arXiv)：AI Agent 真实网页任务成功率数据（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、合规与礼貌边界：做个受欢迎的机器人</h2>
+    <p class="chapter-sub">robots 协议、频率克制、个人信息红线、著作权——第4章原则在本章场景的落地版</p>
+
+    <article class="view">
+      <h3>频率克制：像人，或者比人更客气</h3>
+      <p class="ctx">技术能力上，脚本一秒能发几十个请求；但"能不能"从来不是标准，"该不该"才是。<strong>频率克制</strong>是所有数据提取礼仪的第一条：把你的访问节奏控制在正常人手动浏览的量级（例如每几秒一次页面访问，而不是每秒几十次），避开对方业务高峰时段，能增量就不全量（第四节），能用官方 API 的配额就不硬刷网页。理由有三层：<strong>法律层</strong>——高频访问拖垮或干扰目标服务器，可能构成《网络安全法》禁止的"干扰网络正常功能"，司法实践中已有因爬取频率过高被认定不正当竞争的判例；<strong>条款层</strong>——几乎所有平台条款都禁止超常规频率的自动化访问，触发即账号风险；<strong>道义层</strong>——服务器的带宽是人家花钱买的，你的免费数据不能建立在别人的账单和真实用户的体验劣化之上。</p>
+      <p class="ctx">工程落地很简单：在循环里加固定间隔与随机抖动（模拟人的不规律），设置全局速率上限，记录每次任务的请求总数——这些数字将来既能自证清白（"我一天只访问了 200 次"），也能帮你及时发现脚本失控（重试风暴会把频率拉爆，第6章讲过重试上限）。<strong>robots 协议</strong>则要在任务设计之初就查：访问目标站的 /robots.txt（在浏览器地址栏输入"网站域名/robots.txt"即可看到），确认你的目标路径是否在 Disallow（禁止抓取）列表里——它在技术上不拦截你，但它是网站挂出的公开声明，无视它在任何后续纠纷中都是你的减分项。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.robotstxt.org/">robotstxt.org：robots 协议官方说明与 Disallow 语法（英文）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国网络安全法》（第 27 条）、《中华人民共和国数据安全法》（第 32 条）全文（检索法名）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>个人信息与著作权：两条实体红线</h3>
+      <p class="ctx"><strong>个人信息红线</strong>（与第4章一致，落到提取场景）：提取的内容里只要包含可识别到个人的信息（姓名+单位、头像、联系方式、用户主页），处理它就落入《个人信息保护法》的管辖——需要合法性基础（如取得同意，或在合理范围内处理个人自行公开的信息），敏感个人信息（医疗健康、金融账户、行踪轨迹等）要求更严；把提取的个人信息转手卖给别人、用于骚扰营销，则可能直接触犯刑法侵犯公民个人信息罪。<strong>给自己的数据做提取</strong>（自己账号的订单、自己发布的记录）走的是另一条逻辑：你是数据主体，但仍受平台条款约束，且优先用官方导出通道。<strong>著作权红线</strong>：网页上的文章、图片、数据汇编可能受著作权保护——个人学习研究范围内的少量保存风险较低，但批量抓取内容重新发布、做成竞争性产品，是侵权与不正当竞争的高发区；提取的数据用于商业目的前，先弄清来源站点的版权与免责声明。</p>
+      <p class="ctx">最后收拢成一张"提取前自查表"（配合第6章的五问使用）：<strong>□ 有官方 API/导出通道吗？有就走正门；□ robots 协议允许目标路径吗？□ 提取的是公开数据还是登录后数据？后者查账号条款；□ 内容含他人个人信息吗？含则确认合法性基础，敏感信息不碰；□ 频率设计在"像人"量级吗？□ 数据用途是个人研究还是要再发布？后者查著作权；□ 全程有台账与截图，能自证访问行为克制吗？</strong>七项都过，才开动。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：已公开个人信息处理与敏感个人信息条款</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国著作权法》《中华人民共和国刑法》（检索"侵犯公民个人信息罪"）全文</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、两个完整案例：把全章串起来</h2>
+    <p class="chapter-sub">一个填报案例、一个提取案例——看五步流程与合规清单怎么落在真实任务上</p>
+
+    <article class="view">
+      <h3>案例一：每周价格监测（提取型，示例）</h3>
+      <p class="ctx"><strong>需求</strong>：电商运营每周一早上要一份"三家竞品主打商品的价格与库存状态对比表"。<strong>方案设计</strong>：①合规先行——三家竞品官网均为公开商品页，逐一查 robots 协议（商品页路径未被禁止）、无个人信息、频率设计为每家每分钟 1 个商品页（30 个商品约半小时跑完，远低于"像人"上限）；数据仅内部经营分析使用，不再发布（著作权风险低）。②字段设计——商品名、规格、标价、促销价、库存状态、抓取时间，六列定死。③技术选型——页面结构固定且每周都跑：脚本自动化（第5节分工原则①），用韧性选择器定位价格元素；三家网站结构不同，写三个提取函数共用一张输出表。④增量与对账——商品清单固定，无翻页，每次全量 30 条，抓完核对行数=30。⑤存档——每周输出一个带日期的 CSV + 三家首页整页截图，按周归档；连续四周数据还能顺手画出价格趋势。⑥错误分支——某商品价格元素找不到（可能改版或下架）：该行标记"缺失"，任务继续跑其余商品，汇总报告里列出缺失项与截图，人工看一眼是改版还是真下架。<strong>总投入</strong>：搭建半天，此后每周零人工——第5章 ROI 公式的正例。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://playwright.dev/docs/locators">Playwright 官方文档《Locators》（英文）：价格元素定位实践</a> · <a href="https://www.robotstxt.org/">robotstxt.org（英文）：案例中 robots 协议核查的依据</a></div>
+    </article>
+
+    <article class="view">
+      <h3>案例二：批量活动报名（填报型，示例）</h3>
+      <p class="ctx"><strong>需求</strong>：社区工作者要把 60 位居民的报名信息（Excel 收集）逐一提交到活动平台的报名表单，平台无批量导入功能。<strong>方案设计</strong>：①合规与授权先行——居民信息已由本人填表授权用于本次报名（收集环节的知情同意已完成，第4章）；提交使用的是自己的组织者账号，先读平台条款确认未禁止代报（若条款禁止自动化提交，改为人工填+本流程只做数据整备与核对，自动化不是必须品）；频率设为每份间隔随机 20-40 秒。②数据源整备——Excel 清洗：60 行、必填项无空值、手机号格式统一、身份证列仅在平台要求时保留（最小必要）。③映射与试填——按语义标签建立"列→输入框"映射，先试填 1 条（用自己的一条测试数据），截图人工核对每个字段落位正确。④三道查重——数据源按手机号去重；台账记录已提交者；提交前平台若可查报名状态则先查。⑤提交与回执——每条提交后等"报名成功"提示出现，截图（文件名=姓名+手机号后四位），台账写入成功行与回执号；失败行进人工队列并注明原因。⑥收尾对账——60=成功 57+失败 2（1 条手机号格式被平台拒、1 条遇"该场次已满"）+跳过 1（重复报名），失败与跳过项人工处理，结果表连同截图包交付。<strong>关键差异点</strong>：与案例一相比，填报型的重心在"提交前"——校验与查重做足，提交环节反而简单；且全程若遇验证码/登录失效，按第六节原则二暂停交人工。</p>
+      <p class="ctx">两个案例合起来正好覆盖本章全部组件：五步链路（二）、三道查重与台账（三）、提取与对账（四）、截图存档（五）、三类错误分支（六）、合规自查（七）。你手里的真实任务千差万别，但拆到这一层，都是这些积木的组合。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Forms">MDN Web Docs（中文）《表单》：表单结构与提交行为（案例映射设计的基础）</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：知情同意与最小必要原则（案例授权链路的依据）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能对着自己的真实需求画出五步链路、说出三道闸门，就算真学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>自动填表三级台阶分别是什么？各自适合什么场景？"三问"判断法问哪三个问题？</li>
+        <li>为什么密码管理器是"填表自动化里最该先做的一件事"？脚本里为什么绝不能出现明文密码？</li>
+        <li>批量填报五步链路逐步背出来；为什么说"八成工作量在点击之外"？</li>
+        <li>字段映射的经典事故"错位"怎么发生？两道防线是什么？</li>
+        <li>下拉框与日期控件为什么是映射重灾区？隐藏输入框技巧是什么思路？</li>
+        <li>"能在本地发现的错误，绝不留给网页报错"——基础校验与业务校验各查什么？</li>
+        <li>人工处理队列的设计逻辑是什么？为什么不合格记录是"拦下"而不是"丢弃"？</li>
+        <li>三道查重闸门分别设在哪儿？第二道闸门还顺带解决了什么问题？</li>
+        <li>唯一键怎么选？没有唯一键时怎么办？</li>
+        <li>台账一行至少记哪些字段？它的三个用途是什么？</li>
+        <li>数据提取五步（定位、字段、逐行、翻页、落盘对账）各做什么？"共 156 条"这类总数核对防什么？</li>
+        <li>无限滚动页与懒加载各怎么应对？CSV 乱码通常是什么问题？</li>
+        <li>增量提取的机制是什么？为什么说它对目标网站也更友好？</li>
+        <li>"先找官方出口"指哪三类通道？"正门开着的时候，不要翻窗户"是什么意思？</li>
+        <li>值得截图的四类时刻是什么？全页截图为什么优于局部？</li>
+        <li>错误处理三原则分别是什么？验证码出现时唯一正确的动作是什么、为什么？</li>
+        <li>数据缺失的三种错误做法与唯一正确做法各是什么？AI 经手的数字为什么要抽样核对？</li>
+        <li>频率克制的三层理由（法律/条款/道义）各是什么？工程上怎么落地？</li>
+        <li>robots 协议怎么查？它的性质（技术不拦截但公开声明）怎么理解？</li>
+        <li>"提取前自查表"七项分别是什么？"公开可见≠可以随便搬"的法理依据在哪？</li>
+        <li>两个案例里，提取型与填报型的重心差异是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>填表三级台阶：浏览器自动填充→密码管理器→自动化框架，"份数多+数据已结构化+重复发生"三问有两个"是"才上第三级。批量填报五步链路：<strong>数据源整备→字段映射→提交前校验→逐条提交→回执存档</strong>——八成工作量在点击之外。三道查重闸门：数据源查重、本地台账查重（兼管断点续跑）、目标系统查重；台账=批量任务的户口本（对账、续跑、审计）。数据提取五步：定位数据区→定字段→逐行读→翻页/滚动→落盘对账；周期任务做增量，动手前<strong>先找官方出口</strong>（API/导出/开放数据）。截图存档四类时刻：回执、条款、异常现场、监测留痕；全页+规范命名+集中备份。错误处理三原则：<strong>改版是必然事件（韧性选择器+失败响亮+AI 救火）；验证码出现唯一动作是停（交还人工，绝不绕过）；缺数据只标记不编造（AI 经手数字抽样核对）</strong>。合规四件事：频率像人、先查 robots、个人信息守 PIPL（公开≠随便搬）、再发布查著作权；提取前过七项自查表。
+  </div>
+
+  <nav class="pager">
+    <a href="../07-ai-browser/"><span class="dir">← 第7章</span>AI 操作浏览器：从脚本到自然语言</a>
+    <a href="../09-desktop/"><span class="dir">第9章 →</span>桌面与文件自动化：批处理的正确姿势</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第8章 · 依据 MDN Web Docs（中文）、Playwright/Selenium/n8n 官方文档、robotstxt.org、国家法律法规数据库（个人信息保护法/数据安全法/网络安全法/著作权法）及 WebArena 等学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或企业合规建议 · 请遵守平台服务条款、robots 协议与法律法规 · 不教授任何“绕过反爬”与识别验证码的技术 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

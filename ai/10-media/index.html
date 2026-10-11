@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 图像与语音：给 AI 装上眼睛和耳朵 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第10章 · 浏览器与桌面自动化</div>
+  <h1>图像与语音：给 AI 装上眼睛和耳朵</h1>
+  <p>读得懂截图、听得清会议、认得出票据——多模态能力让自动化从"文字世界"走进"真实世界"，也带来新的隐私与合规功课</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../09-desktop/">← 第9章：桌面与文件自动化</a>
+    <a href="../11-workflow/">第11章：工作流工具入门 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">多模态时代</a>
+    <a class="anchor" href="#s2">图像理解</a>
+    <a class="anchor" href="#s3">语音转文字</a>
+    <a class="anchor" href="#s4">会议纪要流水线</a>
+    <a class="anchor" href="#s5">AI 生成内容标识</a>
+    <a class="anchor" href="#s6">隐私与版权红线</a>
+    <a class="anchor" href="#s7">谣言粉碎</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章内容为技术教育与参考，不构成法律意见、企业合规建议或任何产品的商业推荐；文中出现的工具与产品名称仅用于教学说明，本站无商业合作、无推广链接。<strong>录音、录像、拍摄他人须以告知同意为合法性前提</strong>，处理音视频中的个人信息须遵守《中华人民共和国个人信息保护法》；对外发布 AI 生成或合成的图像、音频、视频内容，须遵守《人工智能生成合成内容标识办法》及配套国家标准的标识义务；提取他人音视频内容的字幕、摘要受《中华人民共和国著作权法》约束。图像理解与语音识别的输出可能存在错误，金额、日期、承诺等关键信息必须人工核对。各节观点均标注权威来源，能力与价格描述以官方文档为准（截至 2026 年 10 月）。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清"多模态"是什么，以及图像理解和语音识别各自适合自动化的哪类环节；②会用 AI 读截图、识别票据、审核素材，并知道它会在哪里看走眼；③理解语音转文字（ASR）的原理与准确率现实，会选开源（Whisper）或云服务路线；④独立设计一条"录音→转写→摘要→待办"的会议纪要流水线，并知道哪些会议软件官方自带此能力；⑤说清 AI 生成图像的标识义务和录音录像的告知同意红线。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>图像和语音是自动化流程的"感官"：第9章的文件流水线里，扫描件要先"看懂"才能入库；第11章的工作流里，会议录音要先"听清"才能提炼待办。建议读第二、三节时手边放一张真实截图或一段自己的录音，跟着流程拆解试一次——用"自己的数据"练习还有个好处：完全不触碰隐私红线。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、多模态时代：AI 的感官从文字扩展到图像和声音</h2>
+    <p class="chapter-sub">"模态"就是信息的形态——文字、图像、音频、视频各是一种；能同时处理多种模态的模型，让自动化第一次"看得见、听得着"</p>
+
+    <article class="view">
+      <h3>什么是多模态模型</h3>
+      <p class="ctx">第1章讲过，大语言模型的"母语"是文字：它把一切输入切成 token 来预测下一个 token。多模态模型（multimodal model）的突破在于<strong>把图像和音频也"翻译"进同一个语义空间</strong>——一张图片被编码器切成许多"视觉 token"，一段语音被转成声学特征再映射进模型的表示体系，于是模型可以像理解文字一样理解它们，并用文字回答关于图像和语音的问题。OpenAI 在 2024 年发布的 GPT-4o（"o"即 omni，全能）把文本、音频、图像的统一处理作为核心卖点；Anthropic、谷歌等厂商的旗舰模型也均已支持图像输入（能力细节以各官方文档为准，截至 2026 年 10 月）。</p>
+      <p class="ctx">对自动化实践者，多模态的意义可以浓缩成一句话：<strong>过去只有"结构化的文字"能进流水线，现在"非结构化的图像和声音"也能了</strong>。你的世界里大量信息本来就不是文字——截图、照片、扫描件、会议录音、语音消息、监控画面。多模态模型把这些信息"翻译"成流水线可以处理的文字和结构，自动化的覆盖面因此扩大了一整圈。第9章的 OCR 是这条路线上最成熟的先例，本章讲的是它的两个大得多的延伸：理解图像的"内容"，和理解声音的"语义"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/images">OpenAI 官方文档：图像输入与视觉理解能力指南（英文）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 官方提示工程文档：多模态输入的指令写法（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>感官地图：眼睛和耳朵各自负责自动化的哪一段</h3>
+      <p class="ctx">把多模态能力放进自动化流程里看，"眼睛"（图像理解）和"耳朵"（语音识别）分工清晰。<strong>图像理解负责的环节</strong>：读界面截图判断页面状态（第7章 AI 操作浏览器的感知基础）、识别票据卡证提取字段（报销、记账、档案电子化）、审核素材（检查设计稿的版式问题、照片是否符合发布要求）、描述图片内容生成替代文字（无障碍与 SEO）。<strong>语音识别负责的环节</strong>：会议录音转文字、语音消息转写、客服通话质检抽样、播客视频转文稿。</p>
+      <p class="ctx">两者的共同下游是"文字世界"：图像和语音被转成文字与结构之后，就回到了第1章讲的语言模型主场——摘要、分类、提取、翻译全部适用。所以一条典型的多模态自动化流水线长这样：<strong>感官（看图/听音）→ 转译（变成文字与字段）→ 加工（摘要/分类/提取）→ 落库（表格/文档/通知）→ 人工核对关键点</strong>。本章第二、三节分别打磨"感官"两段，第四节把它们组装成会议纪要流水线——那是多模态自动化最经典、回报最高的入门项目。</p>
+      <p class="ctx">也要先泼一盆冷水：感官不是全知的。图像理解会在细节上"看错"甚至"编造"，语音识别会在嘈杂环境和专业术语上翻车。本章每一节都会给出能力边界的诚实描述——<strong>知道它在哪里不可靠，比知道它多强大更重要</strong>，这是全课程反复出现的安全观。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://arxiv.org/abs/2311.05232">Huang et al.《A Survey on Hallucination in Large Language Models》（2023，arXiv，英文）：多模态幻觉（视觉-语言模型编造图像内容）研究综述</a> · <a href="https://arxiv.org/abs/2212.04356">Radford et al.《Robust Speech Recognition via Large-Scale Weak Supervision》（2022，arXiv，英文）：Whisper 论文，语音识别在噪声与口音下的表现口径</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、图像理解：读截图、识别票据、审核素材</h2>
+    <p class="chapter-sub">从 OCR 的"认字"再进一步——模型能回答"这张图里发生了什么"</p>
+
+    <article class="view">
+      <h3>图像理解能干什么：四类高频用法</h3>
+      <p class="ctx"><strong>用法一：读截图。</strong>把报错弹窗、软件界面、聊天记录截图丢给 AI，问"这是什么错误、怎么解决""这个界面上该点哪里"。对不擅长检索报错信息的人，这是把"技术翻译官"装进了口袋；对自动化流程，第7章讲过它是 AI 操作浏览器的眼睛——每一步动作前先看截图确认页面状态。<strong>用法二：识别票据与单据。</strong>发票、收据、银行回单、快递单，让 AI 提取"金额、日期、对方名称、单号"输出成表格行——比传统 OCR 多了"理解版式"的能力，第9章第三节讲过两条路线的分工。<strong>用法三：审核与质检素材。</strong>检查海报文字有没有错别字、产品照片背景是否干净、截图是否包含不该露出的敏感信息（发布前的最后一道自动检查）。<strong>用法四：图片转结构化描述。</strong>给相册照片批量生成描述和标签便于检索，给图表截图提取数据，为网页图片生成替代文字。</p>
+      <p class="ctx">四类用法背后是同一个提示词思路（第3章四件套的直接应用）：<strong>告诉模型你的目标（提取/判断/描述）、给出输出格式（表格/是否+理由/一句话）、并声明"不确定就说不确定，不要猜"</strong>。最后这句在图像场景格外重要——下一节讲为什么。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/images">OpenAI 官方文档：图像输入指南（英文）</a> · <a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI 官方提示工程指南：明确输出格式与"不确定时拒答"的指令写法（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>能力边界：图像理解会在哪里看走眼</h3>
+      <p class="ctx">学术研究把视觉-语言模型的错误单独归为"多模态幻觉"：模型描述图像中<strong>不存在的物体、编造数字、对错位的细节给出自信满满的答案</strong>（Huang et al. 2023 的幻觉综述对此有系统梳理）。落到实用场景，高发错误区包括：<strong>小字与密集数字</strong>（表格截图里的金额、合同里的日期——分辨率不够时模型会"合理推测"出一个像样的数字，这比识别失败危险得多，因为失败是显性的，错得自信是隐性的）；<strong>空间关系</strong>（"A 在 B 左边还是右边"这类问题出错率明显高于内容识别）；<strong>计数</strong>（图里有 37 个人还是 41 个人，模型经常给出接近但不准的答案）；<strong>手写体与艺术字</strong>（延续 OCR 的老难题）。</p>
+      <p class="ctx">对应的使用守则有三条：<strong>①关键数字永远人工核对</strong>——凡是"错一位就出事故"的字段（金额、账号、日期、剂量），AI 提取的结果必须对照原图确认，流程设计上把它做成"AI 预填+人工终审"而不是"AI 直填直用"；<strong>②给足分辨率、一次一张</strong>——模糊缩略图是错误之源，批量处理时单张提交比九宫格拼图可靠；<strong>③要求模型标注置信状态</strong>——在提示词里明确"无法确认的字段填'不确定'，禁止推测"，把隐性的自信错误变成显性的待人工处理项。这三条和第8章表单场景的"缺数据标记"原则完全同构：<strong>自动化系统的诚实，是设计出来的</strong>。</p>
+      <blockquote class="q">票据批量提取的流程拆解（示例）：①预处理——原件扫描/拍照保持平整清晰，逐张切成独立图片文件；②提取——每张图配同一段提示词："提取发票代码、号码、开票日期、金额（价税合计）、销售方名称，输出为 CSV 一行；任何无法清晰确认的字段输出'不确定'，禁止推测"；③分流——含"不确定"字段的记录进入人工队列；④核对——人工对照原图补全并抽查全对记录（建议抽 10%）；⑤落库——核对后的数据写入汇总表，图片按"发票号码"重命名归档，保证每个数字可回溯到原图。<span class="qsrc">—— "提取→分流→核对→落库"五步流程，与第9章 OCR 流程互为表里：OCR 管认字，图像理解管懂版式</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2311.05232">Huang et al.（2023）幻觉综述（arXiv，英文）：视觉-语言幻觉的分类与成因</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 官方提示工程文档：让模型在信息不足时明确说"不知道"（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>图像生成：自动化的另一只眼，也是标识义务的重灾区</h3>
+      <p class="ctx">多模态不只是"看懂"，还包括"画出"：文生图模型（扩散模型路线，Stable Diffusion 类开源实现与各大厂商商业服务并存）让"给文章配插画、给产品出概念图、给活动做海报底稿"进入了普通人的工具箱。在自动化流程里，图像生成通常扮演"素材初稿机"：批量生成候选图→人工挑选→专业工具精修→发布。</p>
+      <p class="ctx">但生成即义务。<strong>《人工智能生成合成内容标识办法》（2025 年 9 月 1 日起施行）要求对 AI 生成的图片添加显式标识（画面上可感知的提示）和隐式标识（文件元数据中的生成属性信息）</strong>，配套强制性国家标准 GB 45438-2025 规定了标识的具体技术方法；服务提供者须在生成内容中提供标识，<strong>用户（发布者）在发布 AI 生成内容时也负有主动声明的义务</strong>。对个人用户的实操建议：用 AI 生成的图片对外发布时，主动在发布平台的相应位置勾选/注明"AI 生成"，不要移除图片自带的元数据标识；把 AI 配图纳入自动化发布流程时，把"添加标识"设计成流水线中不可跳过的一步。第4章讲合规红线时提过这部规章，图像生成是它最高频的落地场景。</p>
+      <div class="fig"><img src="../assets/img-10-1.png" alt="多模态感知示意图：中央一个抽象几何机器人头部，左侧一只由像素方块组成的眼睛正在扫描一张票据图形，右侧一只由声波线条组成的耳朵正在接收语音波形，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm">网信办等四部门《人工智能生成合成内容标识办法》全文（2025-09-01 施行）</a> · <a href="https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=F32EA2A561F1886CD8D606513512D547">GB 45438-2025《网络安全技术 人工智能生成合成内容标识方法》强制性国标信息公开页</a></div>
+    </article>
+
+    <article class="view">
+      <h3>被忽视的正经用途：给图片批量生成替代文字</h3>
+      <p class="ctx">图像理解还有一个不炫技但社会价值很高的自动化场景：<strong>为网页和图片库批量生成"替代文字"（alt text）</strong>——屏幕阅读器靠它把图片"读"给视障用户听，搜索引擎也靠它理解图片内容。Web 无障碍的官方规范（WCAG）早已把"文本替代"列为基本要求，但现实是绝大多数网站的图片 alt 属性要么空缺、要么敷衍写着"图片"两个字——人工逐张补写实在太枯燥，而这恰好是 AI 擅长、规则明确、容错又高的批量活：描述错了顶多不够精准，不会造成事故。</p>
+      <p class="ctx">流程上完全可以套用第9章的文件批处理三级阶梯：图片所在系统若自带 AI 替代文字功能（主流建站平台与社交平台陆续内置）则优先用自带；批量处理自有图片库时，用"图像描述→人工抽检→写回 alt 属性"的三段流程；写提示词时加两条约束效果更好——"只描述客观可见内容，不猜测拍摄意图"和"控制在 20 字以内，先说图片主体"。这个场景值得写进本章，是因为它展示了多模态自动化的另一面：<strong>不是所有自动化都为了省时间，有些是为了把"本该做但没人手做"的正确的事做完</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img">MDN Web Docs（中文）：HTML img 元素与 alt 属性的作用</a> · <a href="https://platform.openai.com/docs/guides/images">OpenAI 官方文档：图像输入能力（用于批量生成图片描述，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、语音转文字：把声音变成流水线能处理的原料</h2>
+    <p class="chapter-sub">ASR（自动语音识别）是多模态自动化里最成熟的一支——但"成熟"不等于"完美"</p>
+
+    <article class="view">
+      <h3>Whisper 与开源路线：本地跑、免费、数据不出门</h3>
+      <p class="ctx">语音转文字（Automatic Speech Recognition，ASR）的开源标杆是 OpenAI 于 2022 年开源的 <strong>Whisper</strong>。它的论文（Radford et al. 2022）走了一条大力出奇迹的路线：用 68 万小时的多语言网络音频做弱监督训练，换来对<strong>口音、背景噪声、专业术语的较强鲁棒性</strong>，支持包括中文在内的近 100 种语言的识别与翻译。开源仓库提供多种尺寸的模型：小模型快而糙，大模型准而慢——这个"按任务选尺寸"的思路和第5章"小模型干粗活"的成本账完全一致。</p>
+      <p class="ctx">Whisper 路线的最大卖点是<strong>本地运行：录音不上传任何服务器</strong>。对含商业机密、个人隐私的会议和通话，这可能是合规上的唯一可行路线（对照第六节红线）。代价是硬件与时间：大尺寸模型对显卡有要求，长录音的转写耗时以"分钟到小时"计。社区还衍生出 faster-whisper 等加速实现与各类图形界面封装，普通用户可以不写代码使用（安装步骤因工具而异，以各自官方仓库说明为准）。如果你的录音敏感或量大，"本地 Whisper + 自己核对"值得投入学习成本；如果是偶尔转一段公开内容的录音，云端服务或会议软件自带转写更省事。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2212.04356">Radford et al.《Robust Speech Recognition via Large-Scale Weak Supervision》（2022，arXiv，英文）：Whisper 论文</a> · <a href="https://github.com/openai/whisper">Whisper 官方开源仓库（GitHub）：模型尺寸、多语言支持与使用说明（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>云 ASR 与会议软件自带能力：省事路线的账</h3>
+      <p class="ctx">商业云厂商提供按量计费的语音识别 API（如腾讯云、阿里云、百度智能云等的 ASR 产品，价格与免费额度以各官方定价页为准，截至 2026 年 10 月），通常针对中文场景做了深度优化：方言适配、热词定制（把公司产品名、人名提前告诉引擎）、实时流式识别、说话人分离（自动区分"发言人1/发言人2"）。对需要稳定吞吐量的场景（客服质检、大量访谈转写），云 API 的工程成熟度高于自己维护本地模型。</p>
+      <p class="ctx">更省事的路线是<strong>直接用会议软件自带的转写与纪要功能</strong>：腾讯会议提供 AI 小助手与录制转写能力，钉钉、飞书生态同样内置智能纪要（均为商业产品功能，此处仅作教学说明，功能范围以官方页面为准）。对"开会→要纪要"这个最高频场景，自带功能往往已经够用，不需要另建流水线——第2章工具选型的"先问系统自带"原则再次适用。<strong>但注意两点：其一，云端转写意味着录音数据上传到服务商，涉密会议要先过合规这关（第六节）；其二，自带功能的输出格式未必符合你的归档需求，需要"人工整理"这一步兜底。</strong></p>
+      <blockquote class="q">开源与云端语音转文字对照表：<br>· 数据敏感度：本地 Whisper 录音不出门 ←→ 云服务数据出本地（看服务商协议与合规要求）<br>· 成本：本地=硬件+电费（一次投入）←→ 云端=按量/按订阅（持续支出，常有免费额度）<br>· 中文优化：云端普遍有热词/方言定制 ←→ 本地靠模型通用能力<br>· 工程负担：本地要自己装环境排错 ←→ 云端开箱即用<br>· 说话人分离：云端成熟 ←→ 本地需配合额外工具<br>· 适用画像：敏感录音/批量归档/爱折腾→本地；偶尔用/要快/团队场景→云端或会议软件自带<span class="qsrc">—— 选型对照，决策前先回答"这批录音有多敏感、量有多大"</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://cloud.tencent.com/product/asr">腾讯云语音识别（ASR）产品官方页：热词、说话人分离等能力（商业服务，标注；开源替代：Whisper）</a> · <a href="https://meeting.tencent.com/">腾讯会议官方页：AI 小助手与录制转写等内置能力（商业产品，标注）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>准确率的现实：转写稿为什么总要人改一遍</h3>
+      <p class="ctx">Whisper 论文标题里的"Robust"（鲁棒）是相对传统系统而言的诚实表述：即便是最先进的 ASR，在真实世界的录音里也会遇到<strong>口音与方言、多人抢话、专业术语与人名、电话音质、背景噪声</strong>这五座大山。同音字是中文的重灾区——"期中/期终""授信/受信"，引擎按语言模型的常见搭配选字，而会议里恰恰充满不常见的搭配（产品代号、客户名、行业黑话）。所以<strong>任何自动转写稿的默认状态是"90 分的初稿"，剩下 10 分要靠人</strong>。</p>
+      <p class="ctx">把"人工修改"的成本压到最低的三个工程手段：<strong>①热词表</strong>——把会议高频出现的专有名词（人名、项目名、术语）提前配置给引擎（云服务原生支持，本地方案可在提示词或后处理替换表里实现），这一招对术语错误的改善立竿见影；<strong>②只精改要发布的部分</strong>——全文逐字校对是完美主义陷阱，实际上纪要只需要"结论、数字、待办、承诺"四类信息准确，其余部分保留原样即可；<strong>③保留原始录音</strong>——转写稿存疑处回听录音确认，录音文件按"日期-会议名"归档（第9章的文件习惯直接复用）。顺带提醒：回听和归档录音本身也受第六节隐私红线约束——录音的合法获取是这一切的前提。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2212.04356">Radford et al.（2022）Whisper 论文（arXiv，英文）：多口音、噪声环境下的识别表现与局限</a> · <a href="https://github.com/openai/whisper">Whisper 官方开源仓库（英文）：模型尺寸与准确率/速度的权衡说明</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、会议纪要自动化：多模态流水线的第一课</h2>
+    <p class="chapter-sub">录音→转写→摘要→待办→归档——五步串起来，就是普通人能搭的最有价值的多模态自动化</p>
+
+    <article class="view">
+      <h3>为什么是会议纪要：高频、痛点明确、结构稳定</h3>
+      <p class="ctx">在所有多模态自动化场景里，会议纪要是"第一个项目"的最佳候选：<strong>频率高</strong>（职场人每周开好几个会）、<strong>痛点明确</strong>（没人爱写纪要，写了也没人爱看录音回放）、<strong>结构稳定</strong>（纪要的骨架永远是"议题—结论—待办—分歧"，正适合模板化处理）、<strong>容错可控</strong>（纪要是内部文档，AI 摘要偶尔偏差可以在评审时发现，不像对外发布那样一错到底）。</p>
+      <p class="ctx">更重要的是，会议纪要流水线是一个"五脏俱全"的教学案例：它包含<strong>感官环节</strong>（ASR 转写）、<strong>加工环节</strong>（大模型摘要与待办提取）、<strong>落库环节</strong>（写入文档/表格/任务系统）、<strong>人工环节</strong>(发布前审定)和<strong>合规环节</strong>（录音合法性、数据敏感度）。把这一条流水线想通，第11章的工作流工具和第15章的多 Agent 编排就都有了具体的参照物——抽象的"触发器-动作-分支"概念，落在"录音文件出现→自动转写→自动摘要→人工审定→自动归档"上，一下子就可感了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.n8n.io/">n8n 官方文档：文件触发→AI 处理→通知的流程编排范式（英文）</a> · <a href="https://meeting.tencent.com/">腾讯会议官方页：会议纪要与智能总结的内置实现（商业产品，标注）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>五步流水线拆解与提示词模板</h3>
+      <p class="ctx"><strong>第一步：录音。</strong>会议软件录制或本地录音笔，输出统一格式（如 m4a/mp3）；开录前完成告知同意（第六节红线，不可跳过）。<strong>第二步：转写。</strong>用第三节选定的路线（本地 Whisper / 云 ASR / 会议软件自带）把录音变成带时间戳和说话人标记的文字稿。<strong>第三步：摘要。</strong>把转写稿交给大模型，按固定模板提炼——这一步的质量几乎完全取决于提示词，模板见下方流程框。<strong>第四步：待办分派。</strong>从摘要中提取"谁、在什么时间前、做什么"的行动项清单，人工确认后同步到任务工具或群通知。<strong>第五步：归档。</strong>纪要文档+原始录音+转写稿按"日期-会议名"存入固定位置（第9章文件流水线接管），保证任何一条结论都能回溯到原始录音的具体时间点。</p>
+      <blockquote class="q">会议摘要提示词模板（示意）："你是会议纪要整理员。请基于以下会议转写稿输出纪要，严格按四个部分：【议题】本次会议讨论的事项列表；【结论】每个议题的明确结论（没有结论的写'未决，待××补充信息'，禁止替会议做决定）；【待办】格式为'负责人｜事项｜截止时间'，转写稿中没提到的负责人或时间写'待确认'；【分歧】各方意见不一致且未解决的点。要求：只依据转写稿内容，不得补充转写稿之外的信息；数字、日期、人名逐字引用原文；转写稿可能有同音字错误，遇到可疑处标注'（原文如此，请核对）'。"——四件套+防幻觉三保险（禁止补充、逐字引用、可疑标注）<span class="qsrc">—— 可直接套用的摘要提示词；转写稿过长时分段处理再汇总（第11章循环节点的经典应用）</span></blockquote>
+      <p class="ctx">两个实操细节：转写稿超过模型上下文窗口时，按议题或每 20 分钟切段分别摘要再合并（"分段-汇总"模式）；待办提取后<strong>必须经会议主持或记录人确认再分派</strong>——AI 把"我再想想"理解成"我来负责"的事故并不罕见，对外分派任务属于"对外发送"类操作，按免责声明必须人工终审。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 官方提示工程文档：结构化输出与"只依据给定材料"的指令写法（英文）</a> · <a href="https://arxiv.org/abs/2311.05232">Huang et al.（2023）幻觉综述（arXiv，英文）：摘要任务中"无中生有"类幻觉的研究依据</a></div>
+    </article>
+
+    <article class="view">
+      <h3>进阶形态：从"会后处理"到"会中助手"</h3>
+      <p class="ctx">上面的流水线是"会后批处理"：录音文件落地后整条链自动跑完。进阶形态是<strong>实时化</strong>——会议进行中同步转写、实时生成字幕（听障同事的无障碍刚需，也是跨国会议的翻译刚需）、会议结束时纪要即刻出炉。云 ASR 的流式识别接口和会议软件的内置能力（如实时字幕、会中 AI 助手）都指向这个方向（商业功能，以官方页面为准）。</p>
+      <p class="ctx">实时化带来两个新课题：<strong>其一，实时=没有回头路</strong>，转写错误直接呈现在所有参会者眼前，热词表等前置准备的优先级更高；<strong>其二，实时记录的合规敏感度更高</strong>——会中 AI 助手意味着"内容实时上云分析"，涉密会议须先确认组织的数据管理制度是否允许（很多单位对涉密会议明确禁用云端 AI 功能）。选择建议照旧从场景出发：日常例会用会议软件自带能力即可；敏感会议回到本地录音+会后本地 Whisper 的稳妥路线；<strong>把"实时"当锦上添花，把"准确与合规"当底线</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-p">🏷 商业科普</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://cloud.tencent.com/product/asr">腾讯云 ASR 官方页：实时流式识别能力说明（商业服务，标注；开源替代：Whisper）</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：处理个人信息的合法性基础与告知同意</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、AI 生成内容的标识义务：发布前的必修课</h2>
+    <p class="chapter-sub">图像生成、语音合成进入发布环节的那一刻，合规义务随之生效</p>
+
+    <article class="view">
+      <h3>《标识办法》管什么：显式+隐式双标识</h3>
+      <p class="ctx">《人工智能生成合成内容标识办法》由国家网信办等四部门发布，<strong>自 2025 年 9 月 1 日起施行</strong>，核心要求可以概括为"双标识"：<strong>显式标识</strong>——在生成内容的界面或画面上添加用户可感知的提示（图片上的"AI 生成"角标、音频的语音或文字提示、视频的片头标注等）；<strong>隐式标识</strong>——在文件元数据中添加生成合成属性、服务提供者信息等内容。配套强制性国标 GB 45438-2025 给出了元数据字段与添加方法的技术细节。义务主体分两层：<strong>服务提供者</strong>（提供生成服务的平台）必须提供带标识的内容；<strong>用户/发布者</strong>在传播 AI 生成内容时须主动声明，且不得恶意删除、篡改、伪造、隐匿标识。</p>
+      <p class="ctx">对个人自动化实践者的三条落地建议：<strong>①发布即声明</strong>——用 AI 生成或深度修改的图文、配音、视频对外发布时，在平台提供的"AI 生成"声明入口如实勾选，平台没有入口的在正文注明；<strong>②不要洗掉标识</strong>——把 AI 图片"去水印再发布"、抹掉元数据，属于办法明确禁止的行为，把自动化流水线设计成批量去标识更是踩红线；<strong>③把标识做进流水线</strong>——如果你用自动化批量生成配图（比如公众号文章插图），把"添加显式标识"设计成发布前不可跳过的一步，让合规成为流程的默认属性而不是事后补丁。第4章从总原则角度讲过这部规章，本节是它在图像语音场景的具体展开。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm">网信办等四部门《人工智能生成合成内容标识办法》全文（国信办通字〔2025〕2号）</a> · <a href="https://www.cac.gov.cn/2025-03/14/c_1743654685896173.htm">《标识办法》官方答记者问：显式与隐式标识、用户义务的权威解读</a></div>
+    </article>
+
+    <article class="view">
+      <h3>语音合成的特别提醒：声音是人格权益</h3>
+      <p class="ctx">AI 语音合成（TTS 与声音克隆）在自动化里的正当用途不少：给视频配旁白、把长文转成音频通勤时听、给流程加语音通知。但有一条边界比其他模态更硬：<strong>自然人的声音受法律保护</strong>——《民法典》第 1023 条规定对自然人声音的保护参照适用肖像权保护的有关规定，未经同意用 AI 克隆他人声音（哪怕是公开人物的声音）制作内容，已有多起司法判例认定侵权。实践中还有更直接的刑事红线：用克隆声音冒充他人实施诈骗是电信网络诈骗的高发手法，<strong>"AI 拟声"类内容既触发标识义务，也可能触及《个人信息保护法》中敏感个人信息的处理规则（声纹属于生物识别信息）</strong>。</p>
+      <p class="ctx">个人使用守则三句话：<strong>只克隆自己的声音，或取得他人书面授权；合成语音对外发布一律声明"AI 合成"；接到"熟人"的语音借款、转账请求，先通过电话等其他渠道核实</strong>——最后一条不是自动化知识，是这个时代的生活常识，值得转述给你关心的每一个人。</p>
+      <div class="fig"><img src="../assets/img-10-2.png" alt="会议纪要自动化流水线示意图：左侧一个话筒图标发出声波，经过中间三个串联的加工节点（转写、摘要、待办），输出到右侧一份带对勾标记的文档，一个无脸人物在最后节点处审核，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国民法典》第一千零二十三条（声音保护参照肖像权）检索</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：生物识别信息属敏感个人信息</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、隐私与版权红线：敏感影像与录音的正确处理</h2>
+    <p class="chapter-sub">多模态自动化的原料是真实世界的影像和声音——里面住着别人的脸、别人的话和别人的作品</p>
+
+    <article class="view">
+      <h3>录音录像的合法性前提：告知同意</h3>
+      <p class="ctx">先分清两种录音：<strong>你是通话/会议一方的录音</strong>，和<strong>你录别人的录音</strong>，法律评价完全不同。《个人信息保护法》要求处理个人信息（声音、影像都是）具有合法性基础并取得个人同意，声纹等生物识别信息更属于<strong>敏感个人信息</strong>，处理门槛更高；未经同意在私密空间安装录音录像设备，则可能同时触犯治安管理乃至刑法的相关条款。落到自动化实践的操作层：</p>
+      <ul>
+        <li><strong>会议录音前告知全体参会者</strong>并取得同意（会议软件的录制功能通常自带提示音与弹窗，别关掉它）；有外部人员或客户参会时尤其注意，部分场合还需书面确认。</li>
+        <li><strong>公共场合不针对特定个人录制</strong>；拍摄含路人面部的素材用于自动化处理（如人脸识别、行为分析）前，先想清楚合法性基础——"技术上做得到"从来不是"法律上可以做"。</li>
+        <li><strong>敏感影像与录音不投喂公共模型</strong>：含身份证号、病历、未成年人面孔、商业机密的图片和录音，处理路线只有"本地方案"或"与服务商签有数据处理协议的企业方案"，直接上传公共 AI 工具等于把敏感数据交给了不特定的处理链路。</li>
+        <li><strong>转写稿与录音的存储同样受约束</strong>：它们都是含个人信息的文件，归档位置要有访问控制，保留期限遵循"实现目的所必要的最短时间"，项目结束后按制度清理。</li>
+      </ul>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（网信办转发版）：告知同意、敏感个人信息、最小必要原则</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《中华人民共和国数据安全法》全文检索</a></div>
+    </article>
+
+    <article class="view">
+      <h3>字幕提取与二次创作的版权边界</h3>
+      <p class="ctx">ASR 让"把别人的视频变成文字"变得极其容易：提取课程视频的字幕做笔记、扒下访谈内容改写发文、把付费音频转成文字稿传播——技术上都是一键的事，版权上完全是另一回事。<strong>《著作权法》保护的不只是逐字复制：视频的连续画面、音频的口述内容（口述作品）、课程的结构编排都可能受保护</strong>，"AI 转写+改写"不改变侵权的定性，改编、传播他人作品需要授权，合理使用有严格的法定情形（个人学习研究、适当引用等），"全文照搬改几个词再公开发布"从来不在其中。</p>
+      <p class="ctx">个人使用的安全区与危险区（示例）：<strong>相对安全</strong>——提取自己购买的课程视频字幕供本人复习、转写自己参与的会议录音、对公开内容做带出处的少量引用与评论；<strong>危险</strong>——把他人付费内容的完整转写稿发布或分享、用他人视频文案"洗稿"成自己的原创、批量抓取平台视频音轨做二次分发（还可能同时违反平台服务条款与 robots 协议，见第4章）。一条实用的自检问句：<strong>"如果原作者看到我做的事，会觉得是传播还是替代？"</strong>——笔记式使用是传播的补充，全文式搬运是原作的替代，后者几乎总是侵权。自动化把复制的成本降到了零，但侵权责任没有降价。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.ncac.gov.cn/">国家版权局官网：《中华人民共和国著作权法》文本与版权政策发布（🏛 官方渠道）</a> · <a href="https://www.robotstxt.org/robotstxt.html">Robots Exclusion Protocol 说明（robotstxt.org，英文）：自动化访问平台内容的协议边界</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、谣言粉碎：图像与语音自动化的三大误区</h2>
+    <p class="chapter-sub">"AI 看图从不出错""转写稿拿来就能发""录下来自己用不算侵权"——三条都要粉碎</p>
+
+    <article class="view">
+      <h3>谣言粉碎：多模态能力的三个流行误解</h3>
+      <p class="ctx"><strong>误区一："多模态模型看图又准又全，提取的数字可以直接用。"</strong>幻觉综述研究（Huang et al. 2023）明确记录了视觉-语言模型编造图像中不存在的物体与数字的现象；实践中，小字金额、密集表格、计数与空间关系都是高发错误区，且错得"自信"——输出格式完全正确，数字悄悄不对。所以正规流程永远是"AI 预填+人工终审"，关键字段对照原图核对，这不是对 AI 的不信任，是任何信息录入系统的基本质检。</p>
+      <p class="ctx"><strong>误区二："ASR 转写稿质量已经够高，人工校对是浪费时间。"</strong>Whisper 论文自己就用整章篇幅讨论口音、噪声下的错误率；中文的同音字问题让专业术语和人名成为重灾区。正确姿势不是"全文逐字校对"（那确实浪费），而是"热词表前置+只精改结论数字待办+存疑回听录音"——用 5% 的人工守住 100% 的关键信息，和直接采信转写稿是两个完全不同的质量等级。</p>
+      <p class="ctx"><strong>误区三："我录的音、我拍的照，怎么用都行；转写别人视频的字幕只是'提取信息'，不算侵权。"</strong>两半都错：录音录像的合法性取决于是否告知同意、是否涉及他人个人信息与私密空间，"设备在我手里"不等于"权利在我手里"（PIPL 的敏感个人信息规则、民法典的声音保护条款都在管这件事）；而字幕提取触碰的是作品的表达本身，全文转写再传播、洗稿改写都不属于合理使用，"AI 做的"更不是免责理由。技术门槛的消失从来不会让法律门槛跟着消失。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://arxiv.org/abs/2311.05232">Huang et al.（2023）幻觉综述（arXiv，英文）</a> · <a href="https://arxiv.org/abs/2212.04356">Radford et al.（2022）Whisper 论文（arXiv，英文）：真实环境错误率的诚实口径</a> · <a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》全文（网信办转发版）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能讲清楚能力边界和红线位置，才算真的学会了多模态自动化</p>
+    <div class="checklist">
+      <h4>📋 图像与语音自动化自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>"模态"和"多模态模型"分别指什么？图像和声音是怎么被模型"理解"的？</li>
+        <li>多模态自动化的五段流水线（感官→转译→加工→落库→？）是什么？为什么最后一段不可省略？</li>
+        <li>图像理解的四类高频用法是什么？各举一个你自己的例子。</li>
+        <li>视觉-语言模型的四类高发错误区是什么？为什么"错得自信"比"识别失败"更危险？</li>
+        <li>使用图像理解的三条守则是什么？"自动化系统的诚实是设计出来的"怎么理解？</li>
+        <li>《标识办法》的"双标识"指什么？何时施行？发布者个人的义务是什么？</li>
+        <li>把 AI 配图纳入自动发布流程时，标识应该在哪一步、怎么保证不被跳过？</li>
+        <li>Whisper 的技术路线为什么"鲁棒"？开源路线最大的合规卖点是什么？</li>
+        <li>开源、云 ASR、会议软件自带三条转写路线各适合什么画像？"先问系统自带"原则怎么应用？</li>
+        <li>中文语音识别的重灾区是什么？压低人工修改成本的三个工程手段是什么？</li>
+        <li>为什么会议纪要是多模态自动化的最佳入门项目？四个理由。</li>
+        <li>会议纪要五步流水线是什么？摘要提示词里的"防幻觉三保险"指哪三条？</li>
+        <li>待办分派为什么必须人工确认后才发出？这对应免责声明里的哪类操作？</li>
+        <li>会中实时 AI 助手相比会后处理，多出哪两个课题？</li>
+        <li>声音克隆的法律边界是什么？个人使用三句守则是哪三句？</li>
+        <li>录音录像合法性的前提是什么？哪些内容属于"敏感影像与录音不投喂公共模型"的范围？</li>
+        <li>字幕提取的"安全区/危险区"怎么划分？"传播还是替代"自检问句是什么意思？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张清单带走）：</strong>多模态＝把图像声音译进同一语义空间，非结构化信息从此能进流水线；流水线五段＝感官→转译→加工→落库→人工核对；图像理解四用法＝读截图/识票据/审素材/转描述，四大错误区＝小字数字/空间关系/计数/手写体，三守则＝关键数字人工核对+给足分辨率+"不确定就说不确定"；ASR 路线＝敏感量大选本地 Whisper、偶尔用选云端或会议软件自带；转写稿默认是 90 分初稿，热词表+只精改关键信息+保留录音回听；会议纪要五步＝录音（先告知同意）→转写→摘要（防幻觉三保险）→待办（人工确认后分派）→归档（可回溯）；发布 AI 生成图像音频＝显式+隐式双标识（《标识办法》2025-09 施行），声音克隆须授权、发布须声明；红线＝录音录像告知同意、敏感影像与录音不投喂公共模型、字幕提取全文搬运即侵权。
+  </div>
+
+  <nav class="pager">
+    <a href="../09-desktop/"><span class="dir">← 第9章</span>桌面与文件自动化：批处理的正确姿势</a>
+    <a href="../11-workflow/"><span class="dir">第11章 →</span>工作流工具入门：把任务串成流水线</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第10章 · 依据《人工智能生成合成内容标识办法》及 GB 45438-2025、《个人信息保护法》《数据安全法》《著作权法》、OpenAI/Anthropic 官方文档、Whisper 官方仓库及 Radford et al.（2022）、Huang et al.（2023）等学术研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或企业合规建议 · 录音录像以告知同意为前提 · 敏感影像与录音不投喂公共模型 · AI 生成内容依规标识 · 关键信息人工核对 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 安全与合规红线：什么绝对不能碰 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第4章 · 认识 AI 自动化</div>
+  <h1>安全与合规红线：什么绝对不能碰</h1>
+  <p>个人信息保护、敏感数据不投喂、AI 内容标识义务、平台规则与 robots 协议、爬虫合规三条线、灰产批判，以及"人工兜底"为什么是全课程的总原则</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../03-prompt/">← 第3章：提示词就是编程</a>
+    <a href="../05-cost/">第5章：成本账 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">合规是前提</a>
+    <a class="anchor" href="#s2">个人信息</a>
+    <a class="anchor" href="#s3">数据投喂</a>
+    <a class="anchor" href="#s4">内容标识</a>
+    <a class="anchor" href="#s5">平台规则</a>
+    <a class="anchor" href="#s6">爬虫三条线</a>
+    <a class="anchor" href="#s7">人工兜底</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成法律意见或企业合规建议；具体项目请咨询执业律师或所在机构合规部门。本章对“批量注册”“刷单”“抢票外挂”等灰产行为仅作批判与风险警示，不提供任何实施方法；本课程不教、也不鼓励任何绕过平台技术措施的行为。文中出现的法规以官方发布文本为准（链接见各节），法规解读截至 2026 年 10 月，后续修订请以最新版本为准。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清自动化"翻车"的两大类代价：账号代价与法律代价，理解为什么合规要放在所有实操之前；②掌握《个人信息保护法》的两把尺子：知情同意与最小必要，并会用"数据最小化"原则给自动化任务瘦身；③列出哪些数据绝不能投喂公共 AI 模型，以及三种实用的脱敏方法；④讲清《人工智能生成合成内容标识办法》的显式标识与隐式标识、2025 年 9 月 1 日施行的时间点，以及"谁发布谁负责"的义务主体；⑤看懂平台服务条款对自动化的常见限制，理解 robots.txt 的意义；⑥默写爬虫合规三条线：公开数据、合理频率、不绕过技术措施；⑦识别常见灰产骗局的法律风险，明白"技术中立"不是挡箭牌；⑧为资金、删除、对外发送、法律文件四类高危操作设计人工兜底流程，并理解"自动化不转移责任"。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的"安全地基"章：第6章起的每一章实操开始前，都应先过一遍本章末尾的自测清单与速览要点。第一次读建议通读；之后把第六节的三条线、第七节的高危操作清单存成备忘。核心心法一句话：<strong>自动化放大的是你的行为——好事放大成效率，越界放大成事故；机器执行得越快，你越要先把边界画清楚</strong>。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么合规必须排在实操之前</h2>
+    <p class="chapter-sub">自动化的特殊性：它 7×24 小时不知疲倦地执行你的决定——包括错误的决定</p>
+
+    <article class="view">
+      <h3>两类代价：账号的与法律的</h3>
+      <p class="ctx">先讲两个虚构但典型的场景（示例）。场景一：小林写了个脚本，每小时自动登录某社交平台点赞转发，两周后账号被永久封禁，三年积累的人脉内容一夜清零——平台服务条款普遍禁止未经授权的自动化访问，风控系统识别这类行为已经非常成熟。场景二：某小公司用自动化脚本批量抓取同行网站上的客户评价，其中包含评价人的昵称、头像和消费记录，用于生成"竞品分析报告"——看似商业小动作，实则涉及个人信息处理，若被投诉，面临的是《个人信息保护法》下的整改、罚款乃至诉讼。</p>
+      <p class="ctx">这两个场景对应自动化越界的两类代价：<strong>账号代价</strong>（封号、限流、功能禁用、信用记录）和<strong>法律代价</strong>（民事赔偿、行政处罚，情节严重的触及刑事责任）。它们有个共同特点：<strong>不可逆性远高于收益</strong>。一个脚本省下的可能是每周两小时，一次封号或一纸罚单毁掉的可能是多年积累。更要命的是自动化的"放大器效应"：手动越界一次是一次，脚本越界一秒一百次，一晚上就是几十万次——法律上的"情节严重"、平台上的"恶意行为"，很多就是靠次数堆出来的。这就是为什么本课程把合规章放在全部实操章之前：<strong>先画好边界，再谈效率</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《中华人民共和国个人信息保护法》全文（2021-11-01 施行，网信办发布页）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework：AI 风险治理的"先治理后部署"思路（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>合规地图：六份文件管住你的自动化</h3>
+      <p class="ctx">普通人做自动化，需要心里有一张简明的合规地图。中国境内主要看四份文件：<strong>①《个人信息保护法》（PIPL）</strong>——管"你处理别人的个人信息"（收集、存储、使用、加工都算处理）；<strong>②《数据安全法》</strong>——管"数据的分类分级与安全义务"，企业数据、重要数据尤其相关；<strong>③《生成式人工智能服务管理暂行办法》</strong>（网信办等七部门，2023 年 8 月 15 日施行）——管生成式 AI 服务的提供与使用；<strong>④《人工智能生成合成内容标识办法》</strong>（网信办等四部门，2025 年 9 月 1 日施行）——管 AI 生成内容对外发布时的标识义务。再加上两层"民间规则"：<strong>⑤平台服务条款（ToS）</strong>——你和平台之间的合同，违反的后果是封号而非罚款，但同样真实；<strong>⑥robots.txt 协议</strong>——网站对自动化访问的"门口告示"，是行业惯例也是司法实践中判断主观状态的重要参考。</p>
+      <p class="ctx">出海业务还要看<strong>⑦欧盟《人工智能法案》（EU AI Act，Regulation (EU) 2024/1689）</strong>——全球第一部综合性 AI 立法，按风险分级监管。美国方向可参考 <strong>NIST AI 风险管理框架</strong>——虽非强制法律，但已成为行业事实标准。本章接下来按"个人信息→数据投喂→内容标识→平台规则→爬虫边界→人工兜底"的顺序逐一拆解；每个话题都只讲"普通人做自动化用得上"的部分，不做法条全文解读。</p>
+      <div class="fig"><img src="../assets/img-04-1.png" alt="合规地图示意图：一个几何风格的机器人站在一本打开的大书前，书周围环绕着盾牌、锁、天平、文档等抽象符号" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm">《生成式人工智能服务管理暂行办法》全文（网信办发布页）</a> · <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act（Regulation (EU) 2024/1689）官方文本页（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、个人信息保护：PIPL 的两把尺子</h2>
+    <p class="chapter-sub">知情同意管"能不能处理"，最小必要管"处理多少"——自动化的每一步都要过这两把尺子</p>
+
+    <article class="view">
+      <h3>知情同意：处理他人个人信息的合法性门槛</h3>
+      <p class="ctx">《个人信息保护法》确立的基本原则是：处理个人信息应当具有明确、合理的目的，并应当与处理目的直接相关，采取对个人权益影响最小的方式；基于个人同意处理的，该同意应当由个人在充分知情的前提下自愿、明确作出。翻译成自动化的语言：<strong>你的脚本或 Agent 每收集、使用一条能识别到具体个人的信息（姓名、手机号、住址、行踪、消费记录、社交账号内容等），都要回答一个问题——"我有合法性基础吗？"</strong></p>
+      <p class="ctx">对普通人来说，常见的合法性场景其实很窄：处理<strong>自己的</strong>信息（你的日程、你的文件、你的邮件——没问题）；基于<strong>合同必需</strong>（客户主动下单，你为履约处理其收货信息——没问题）；取得了<strong>明确同意</strong>（对方知情且自愿同意——注意，"对方没反对"不等于同意）。而以下自动化场景是高危区：批量抓取含个人信息的公开网页并建库（公开≠可任意处理，PIPL 对已公开个人信息的处理有专门限制：需在合理范围内、与公开目的相容）；未经同意用他人照片训练或生成内容；爬取招聘网站简历信息"建人才库"；把群聊记录整体投喂 AI 分析（里面有别人的个人信息）。判断口诀：<strong>信息是谁的？处理目的对方知道吗？影响方式最小吗？</strong>三问有一个答不上来，先停。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》全文：知情同意、最小必要、已公开个人信息处理规则（网信办发布页）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：可检索《个人信息保护法》权威文本</a></div>
+    </article>
+
+    <article class="view">
+      <h3>最小必要：给自动化任务做"数据瘦身"</h3>
+      <p class="ctx"><strong>数据最小化（data minimization）</strong>是本课程反复出现的工程原则，它同时是 PIPL 的法定要求（采取对个人权益影响最小的方式、限于实现处理目的的最小范围）和最好的安全实践：你没收的数据不会泄露，你没存的字段不用保护。做自动化设计时，把"最小必要"当成需求评审的第一条：</p>
+      <p class="ctx">实操四招。<strong>①字段裁剪</strong>：任务是"给客户发生日祝福"，需要的字段只有称呼和生日，手机号、地址、消费额一律不收不存。<strong>②即用即弃</strong>：中间数据（比如为生成摘要而临时读入的全文）用完即删，不落地、不进日志——自动化流水线的日志里藏着整页抓取内容，是最常见的"顺手多存"。<strong>③脱敏前置</strong>：需要把数据交给 AI 处理的，先脱敏再投喂（下一节详述）。<strong>④范围限定</strong>：脚本能访问什么，用权限管住——只给需要处理的目录读权限，不给全盘权限；API 密钥只授予任务所需的权限范围。最小必要不是"合规负担"，它同时降低了泄露风险和存储成本（第5章的账会体现这一点）。</p>
+      <blockquote class="q">数据最小化自查四问（每个自动化任务设计时过一遍）：<br>① 这个任务真正必需的字段是哪几个？多收的删掉。<br>② 中间数据用完即删了吗？日志里会不会"顺手"存下个人信息？<br>③ 交给 AI/云服务的数据脱敏了吗？<br>④ 脚本/密钥的访问权限，收窄到任务必需的范围了吗？<br><span class="qsrc">原则依据：《个人信息保护法》最小必要条款（网信办发布页，见上卡）；工程实践口径与 NIST AI RMF 的数据治理思路一致（英文）。</span></blockquote>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》：最小范围与影响最小方式（网信办发布页）</a> · <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF：数据治理与隐私保护实践（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>敏感个人信息：更高一级的保护，更窄一扇的门</h3>
+      <p class="ctx">PIPL 对<strong>敏感个人信息</strong>设了更严格的规则：生物识别（人脸、指纹、声纹）、宗教信仰、特定身份、医疗健康、金融账户、行踪轨迹等信息，以及不满十四周岁未成年人的个人信息——处理这类信息需要具有特定的目的和充分的必要性，并采取严格保护措施；基于同意处理的，应当取得<strong>单独同意</strong>。对自动化的直接含义：<strong>涉及敏感个人信息的自动化任务，默认答案应该是"不做"</strong>，除非你有明确的合法性基础、充分的必要性论证，并咨询过专业人士。</p>
+      <p class="ctx">几个容易踩中的具体场景：用自动化批量分析他人朋友圈推断健康状况或行踪（行踪轨迹+健康推断，双重敏感）；把含人脸的监控视频或合影投喂给云端 AI 做识别分析（生物识别信息）；脚本自动归集自己和家人的银行卡流水到第三方云端工具（金融账户信息——即便是自己的数据，也要评估服务商的安全能力与出境情况）；给孩子的照片建"成长相册"用的第三方 AI 服务（未成年人信息）。这些场景不是绝对不能碰，而是<strong>门槛显著更高</strong>：需要单独同意、需要必要性论证、需要严格保护措施。普通人的稳妥策略：能不用敏感信息完成的任务，就设计成不用敏感信息（比如用"编号+类别"替代"姓名+病情"）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》敏感个人信息专节：单独同意与充分必要性（网信办发布页）</a> · <a href="https://flk.npc.gov.cn/">国家法律法规数据库：《个人信息保护法》《数据安全法》权威文本检索</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、投喂 AI 的边界：什么数据不能给公共模型</h2>
+    <p class="chapter-sub">把内容粘贴进对话框之前，先问一句：这段话如果被陌生人看到，我会不会后悔？</p>
+
+    <article class="view">
+      <h3>四类不能投喂的数据</h3>
+      <p class="ctx">"投喂"指把数据交给公共 AI 服务处理（对话框粘贴、API 调用、上传文件都算）。以下四类数据，本课程的一贯建议是<strong>不进公共模型</strong>：<strong>①他人的个人信息</strong>——客户名单、员工花名册、群聊记录、简历，未经同意投喂，你就是 PIPL 意义下的处理者，责任在你；<strong>②公司机密与未公开信息</strong>——源代码、财务数据、未发布的商业计划、内部文档；多数公司的保密协议覆盖"向第三方服务披露"，粘贴进公共 AI 就可能构成违约，已有多个行业出现员工因向公共 AI 投喂内部数据被处分的公开报道（此类案例见技术媒体报道，标注为商业科普级来源）；<strong>③各类凭证与密钥</strong>——密码、API key、token、证书私钥，这些是自动化系统的命门，投喂等于把钥匙交给别人保管；<strong>④你自己的高敏感信息</strong>——身份证号、银行卡号、病历，即便是自己的数据，也遵循最小必要：任务不需要完整证件号，就不要给完整证件号。</p>
+      <p class="ctx">一个常见误区："我用的是企业版/付费版，数据不会被拿去训练，所以随便给。"——"不用于训练"（各厂商企业级产品的普遍承诺，具体以各家官方条款为准）只解决了"数据流向模型"的问题，没有解决"数据离开你的控制"的问题：传输、存储、日志、合规审计，每一环都还在。保密协议约束的是"是否披露给第三方"，而不是"第三方拿它训不训练"。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》：向第三方提供个人信息的规则（网信办发布页）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 官方文档：API 使用与数据处理的说明入口（英文，数据条款以各厂商官方页面为准）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三种实用脱敏方法：让数据"能用但认不出"</h3>
+      <p class="ctx">很多时候你确实需要 AI 处理含敏感信息的内容（比如分析客户反馈、整理病历式记录），这时用<strong>脱敏</strong>把风险降下来。三种普通人就能操作的方法：<strong>①替换法</strong>——把真实标识符换成占位符："客户张伟（手机号 138……）投诉物流"改成"客户 A 投诉物流"；姓名、电话、证件号、地址、公司名逐项替换，AI 分析投诉原因根本不需要知道张伟是谁。<strong>②泛化法</strong>——降低精度："32 岁，住朝阳区某小区 3 号楼"泛化为"30-35 岁，一线城市"；精确到日的行踪泛化为月份。多数分析任务在泛化粒度上照样成立。<strong>③拆分法</strong>——敏感字段不进 AI 通道：让 AI 处理"编号+内容"，"编号→真实身份"的对照表留在本地，处理完再合并。自动化流水线里，这三招可以做成固定的预处理步骤（第15章的编排会用到）。</p>
+      <p class="ctx">脱敏的验收标准只有一条：<strong>拿着脱敏后的数据，无法重新识别到具体个人</strong>。注意"假脱敏"陷阱：只删了姓名，但保留了"某公司唯一的 90 后女财务总监"这类描述，组合起来照样能锁定到人——这在 PIPL 语境下叫"去标识化不彻底"，匿名化才是目标（PIPL 区分了这两个概念：去标识化后借助额外信息仍可复原，匿名化则不能复原）。企业级场景还有专门的隐私计算与合规模块，超出本课程范围，需要时请咨询合规专业人士。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》：去标识化与匿名化的定义区分（网信办发布页）</a> · <a href="https://www.cac.gov.cn/2021-06/11/c_1624994566919140.htm">《中华人民共和国数据安全法》全文（网信办发布页）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>企业场景加餐：数据分级与出境</h3>
+      <p class="ctx">如果你在公司里推动自动化，还有两件事必须提前问清楚。<strong>第一，数据分级</strong>：《数据安全法》确立了数据分类分级保护制度，各行业（金融、医疗、汽车等）都有相应的数据分类分级指引；公司通常会把数据分为公开、内部、机密、绝密等级别，并规定哪些级别允许使用外部 AI 服务。绕过公司分级规定"先把活干了"，出了问题个人要担责。<strong>第二，数据出境</strong>：使用境外 AI 服务（包括 API 调用境外模型）意味着数据传输到境外服务器；PIPL 对个人信息出境设有专门规则（安全评估、认证、标准合同等路径），重要数据出境另有规定。企业在引入境外 AI 服务前，应由合规部门评估出境路径——这不是个人开发者该拍脑袋的事。</p>
+      <p class="ctx">个人用户的简化判断：<strong>数据敏感度越高，越倾向选择本地或私有化方案</strong>。开源模型（如 Meta 的 Llama 系列）配合本地运行工具（如 Ollama），可以在你自己的电脑上处理数据、不出网——能力弱于顶级云端模型，但"数据不出门"这一条对高敏感场景是硬需求。第5章会算这笔"本地部署"的成本账，第12章讲 API 集成时会再回到数据流向问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.cac.gov.cn/2021-06/11/c_1624994566919140.htm">《数据安全法》：分类分级保护制度（网信办发布页）</a> · <a href="https://ollama.com/">Ollama 官方站：本地运行开源模型的工具文档（英文）</a> · <a href="https://ai.meta.com/llama/">Meta Llama 官方页（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、AI 生成内容标识：发布者的法定义务</h2>
+    <p class="chapter-sub">2025 年 9 月 1 日起，用自动化对外发布 AI 生成内容，标识不是可选项</p>
+
+    <article class="view">
+      <h3>标识办法管什么：显式标识 + 隐式标识</h3>
+      <p class="ctx">网信办等四部门发布的《人工智能生成合成内容标识办法》自 <strong>2025 年 9 月 1 日</strong>起施行，配套的强制性国家标准《网络安全技术 人工智能生成合成内容标识方法》（GB 45438-2025）同步实施。办法把标识分为两类：<strong>显式标识</strong>——用户能感知到的，如生成内容的文字提示（"AI 生成"角标）、音频的起止提示音、图片的标注水印、视频的显著提示；<strong>隐式标识</strong>——藏在文件元数据里的，包括生成合成内容属性、服务提供者名称或编码、内容编号等制作要素信息。简单说：<strong>看得见的角标 + 看不见的元数据，两个都要有</strong>。</p>
+      <p class="ctx">对自动化实践者的直接影响：如果你的流水线会<strong>对外发布</strong> AI 生成或深度合成内容——自动生成的公众号配图、AI 配音的短视频、AI 撰写的商品描述、数字人直播素材——那么从生成、发布到传播的各个环节，都涉及标识义务的落实。办法要求服务提供者（生成工具方）在内容中提供标识功能，也要求<strong>发布者</strong>主动使用标识功能、不得恶意删除或篡改标识、不得通过提供工具或方式帮助他人规避标识。也就是说：工具给了你标识能力，你不用，责任在你。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm">《人工智能生成合成内容标识办法》全文（网信办发布页，2025-09-01 施行）</a> · <a href="https://www.cac.gov.cn/2025-03/14/c_1743654685896173.htm">四部门就《标识办法》答记者问（网信办发布页：显式/隐式标识与义务主体解读）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谁发布谁负责：自动化流水线里的标识落点</h3>
+      <p class="ctx">义务主体的通俗版：<strong>提供生成服务的平台</strong>负责提供标识功能；<strong>使用生成内容对外发布的组织和个人</strong>负责按要求使用标识并对其真实性负责。对个人自动化玩家的场景对号入座：用 AI 生成文章配图发到自己的公众号——发布环节加显式提示（多数内容平台的发布器已内置"含 AI 生成内容"声明选项）；用 AI 批量生成商品主图上架电商平台——按平台规则标注 AI 生成（主流电商平台已上线相应声明入口，以各平台官方规则为准）；AI 配音做口播视频——音频起止加提示、视频加角标；把 AI 生成的报告发给客户——属于商业沟通而非公共传播，标识义务的场景判断更复杂，稳妥做法是注明"本报告由 AI 辅助生成，关键数据经人工核对"。</p>
+      <p class="ctx">工程上的落点：把"加标识"做成流水线的固定步骤，而不是靠发布时想起来。图片类：生成后统一叠加角标并写入元数据；文本类：发布模板里固定带声明行；音视频类：片头片尾提示+元数据。同时守住两条禁令：<strong>不删除、不篡改</strong>他人内容中已有的 AI 标识；<strong>不提供</strong>帮助他人规避标识的工具或教程。第10章讲图像语音自动化、第16-17章讲内容发布场景时，我们会把标识步骤直接画进流水线图里。</p>
+      <div class="fig"><img src="../assets/img-04-2.png" alt="内容标识示意图：一条抽象的自动化流水线上，几何机器人给经过的图片与文档贴上一个盾牌形状的标记" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.cac.gov.cn/2025-03/14/c_1743654685896173.htm">《标识办法》答记者问：发布者义务与平台功能要求（网信办发布页）</a> · <a href="https://www.cac.gov.cn/2025-03/15/c_1743755846973028.htm">全国网安标委发布标识办法配套标准实践指南（cac.gov.cn 报道页）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、平台规则与 robots 协议：不是法律，但同样长牙</h2>
+    <p class="chapter-sub">违反 ToS 的代价是封号，无视 robots 的代价可能成为诉讼里的不利证据</p>
+
+    <article class="view">
+      <h3>服务条款：自动化条款藏在注册时你跳过的几万字里</h3>
+      <p class="ctx">几乎所有主流平台的用户协议都包含对自动化访问的限制条款：禁止使用机器人、脚本、爬虫等非人工方式访问服务，或对此设有明确的授权门槛。这些条款的法律性质是你与平台之间的<strong>合同</strong>：违反的后果通常不是罚款，而是<strong>封号、限流、终止服务</strong>——对依赖账号资产的自动化（社交运营、店铺经营、内容发布），这往往比罚款更疼。实操建议：动手前把目标平台的服务条款搜一遍关键词（"自动化""机器人""爬虫""脚本""automated""bot""scraping"），十分钟就能确认红线在哪；平台的开发者平台若有官方 API，优先走官方 API——那是平台明确授权的自动化通道，条款风险和稳定性都远好于模拟人工操作（第12章专讲 API 集成）。</p>
+      <p class="ctx">还要分清两类"自动化"：<strong>操作自己的账号</strong>（自动整理自己的收藏、批量导出自己的数据）风险相对低，但仍可能触发风控——频率像机器，风控就按机器处理；<strong>访问他人的内容或数据</strong>（抓取、批量互动、模拟操作他人页面）则可能同时触碰 ToS、著作权、个人信息保护多重红线。你的自动化越靠近后者，越应该先问"平台授权了吗"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://playwright.dev/">Playwright 官方文档：浏览器自动化的正当用途说明（测试等场景，英文）</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Robots.txt">MDN Web Docs（中文）：Robots.txt 词条——网站对爬虫的声明机制</a></div>
+    </article>
+
+    <article class="view">
+      <h3>robots.txt：网站的"门口告示"，自动化访问的第一道礼仪</h3>
+      <p class="ctx">robots.txt 是放在网站根目录（如 example.com/robots.txt）的一个纯文本文件，网站用它告诉自动化程序：哪些目录欢迎访问、哪些谢绝入内（通过 User-agent 与 Disallow/Allow 规则表达，还可声明抓取频率参考 crawl-delay 与站点地图位置）。它是搜索引擎时代流传至今的行业惯例：主流搜索引擎爬虫都自觉遵守。它本身不是法律，<strong>但它是判断你"主观状态"的重要参考</strong>：网站已经明确说"这里不欢迎机器"，你的脚本还硬闯，一旦进入纠纷，"明知故犯"的认定就多了一个证据。</p>
+      <p class="ctx">普通用户的实操口径：①写抓取类脚本前，先手动打开目标站的 /robots.txt 看一眼（浏览器直接访问即可），Disallow 的路径不碰；②robots.txt 只解决"能不能进"，不解决"拿到的数据能不能用"——进了允许的路径，抓取到的内容仍受著作权（原创内容）、个人信息保护（含个人信息的内容）、ToS（平台合同）三重约束；③频率克制：给抓取加延时（比如每页间隔若干秒）、避开高峰时段、并发从低——这既是礼貌，也是自我保护：访问模式越像正常用户，触发风控和法律争议的概率越低。MDN 的 Robots.txt 词条（中文版）是最方便的入门阅读。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Robots.txt">MDN Web Docs（中文）：Robots.txt 词条</a> · <a href="https://www.selenium.dev/">Selenium 官方文档：浏览器自动化工具的定位与用途（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、爬虫与自动访问的合规三条线</h2>
+    <p class="chapter-sub">公开数据、合理频率、不绕过技术措施——三条线全过才算走在正路上</p>
+
+    <article class="view">
+      <h3>三条线：一条比一条硬</h3>
+      <p class="ctx"><strong>线一：数据来源的正当性。</strong>抓取的应是公开可访问、且不含（或已妥善处理）他人个人信息的数据；登录墙后的数据、付费内容、他人私有空间，未经授权不碰；含个人信息的内容遵循第二节的 PIPL 规则。<strong>线二：访问行为的克制性。</strong>合理频率、低并发、避开高峰，不给对方服务器造成实质负担——高频访问导致对方服务瘫痪，可能从"违约"升级为侵权责任甚至更严重的定性。<strong>线三：不绕过技术措施。</strong>这是最硬的一条红线：网站设置了反爬机制、登录验证、验证码、访问频率限制，说明权利人明确表达了"拒绝此类访问"的意愿；采取技术手段突破这些措施，不仅违反 ToS，还可能触及《网络安全法》《数据安全法》乃至刑法中关于非法获取计算机信息系统数据的罪名。<strong>本课程明确不教任何“绕过反爬”“破解验证码”类技术，出现这类需求的任务，正确的答案是换官方 API、换数据源、或者放弃自动化。</strong></p>
+      <p class="ctx">三条线不是"限制你"，而是"保护你"：它们同时定义了正当自动化的正确路线。需要某网站的数据？第一选择是看它有没有官方 API 或数据开放平台（很多政务数据、公开统计数据有官方下载渠道）；第二选择是看数据是否已有合规的现成来源（公开数据集、行业报告、官方统计年鉴）；第三选择才是自写抓取，且严格贴着三条线走。发现任务无论如何绕不开登录墙或验证机制时，把它当成一个明确的信号：<strong>这个任务的设计本身有问题</strong>——要么数据源选错了，要么需求该通过合作、采购、授权等正路解决。技术能力越强，越要把"能做"和"该做"分开：这是本课程希望你带走的最重要的一条职业习惯。</p>
+      <table class="cmp">
+        <tr><th>三条线</th><th>合规动作</th><th>越线信号（出现即停）</th></tr>
+        <tr><td>来源正当</td><td>公开数据；不含未脱敏个人信息；尊重 robots 声明</td><td>需登录才能看的内容；对方明确禁止转载/抓取；页面含大量个人信息</td></tr>
+        <tr><td>频率克制</td><td>加延时、低并发、避高峰、抓完即止</td><td>对方站点变慢或报障；风控开始拦截；你为了"跑得快"想去掉延时</td></tr>
+        <tr><td>不绕过技术措施</td><td>遇到验证/拦截就停止，改走官方渠道</td><td>搜索“绕过反爬”“破解验证码”类教程的那一刻——说明任务本身该重新设计</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库：《网络安全法》《数据安全法》等权威文本检索</a> · <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Robots.txt">MDN Web Docs（中文）：Robots.txt 词条</a></div>
+    </article>
+
+    <article class="view">
+      <h3>灰产批判：那些"技术变现"话术背后的法律深渊</h3>
+      <p class="ctx">学会自动化工具后，你可能会遇到各种"变现机会"的诱惑，本节只做批判与风险警示，不提供任何实施信息。<strong>“批量注册”类</strong>：用脚本注册大量账号出售或养号——违反平台条款是起步价，规模化操作可能涉及非法利用信息网络、侵犯公民个人信息等罪名，账号关联的实名信息还会把你直接钉在证据链上。<strong>“刷单”“刷量”类</strong>：给电商刷销量、给内容刷阅读——《反不正当竞争法》明确禁止虚假宣传类“刷单炒信”行为，组织者和参与者都面临行政处罚，情节严重的可能涉刑；"帮商家刷单赚佣金"的兼职广告，本身就是常见诈骗剧本（先让你垫付）。<strong>“抢票外挂”类</strong>：高频请求占用公共资源，破坏公平秩序，铁路等部门多次公开打击，开发与销售环节均有被追责的先例。<strong>“水军控评”类</strong>：批量发帖删帖控评，涉及非法经营、寻衅滋事等罪名的司法案例已有多起公开判决。</p>
+      <p class="ctx">识别这类骗局的通用话术："技术无罪，用了才有罪""大家都这么干""平台查不到你"。三句话全是假的：技术确实中立，但<strong>用途决定责任</strong>——同一把刀，切菜和伤人是两回事；"大家都干"不改变违法性质，只意味着打击面可能扩大；至于"查不到"，自动化行为恰恰是最容易留痕的——IP、设备指纹、行为模式、资金流向，每一条都是证据。<strong>本课程所有工具与技术只面向正路场景：处理你自己的事务、获得授权的工作、公开合规的数据。</strong>第19章复盘翻车案例时会再回到这个话题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://flk.npc.gov.cn/">国家法律法规数据库：《反不正当竞争法》《网络安全法》等文本检索</a> · <a href="https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm">《生成式人工智能服务管理暂行办法》：不得利用生成式 AI 从事违法活动的规定（网信办发布页）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、人工兜底与追责主体：机器执行，人负责</h2>
+    <p class="chapter-sub">自动化能替你动手，但不能替你担责——所以高危动作必须留一道人的闸口</p>
+
+    <article class="view">
+      <h3>四类高危操作，一律设人工确认点</h3>
+      <p class="ctx">本课程从第6章开始的每个实操场景，都会重复同一条工程铁律：<strong>资金、删除、对外发送、法律文件，四类操作必须人工确认后执行</strong>。<strong>资金类</strong>（转账、支付、下单、改价）：AI 幻觉或脚本 bug 造成的资损不可逆，自动化最多做到"生成待执行清单"，执行按钮留给人。<strong>删除类</strong>（删文件、删邮件、删数据库记录、注销账号）：删除的破坏性在于不可逆，正确姿势是"移到回收站/归档"替代"直接删除"，且批量删除前列清单人工过目。<strong>对外发送类</strong>（邮件、消息、帖子、客户通知）：发出去就收不回，且代表你的名义——AI 起草、人工审发是底线配置。<strong>法律文件类</strong>（合同、声明、投诉、报案材料）：AI 可以辅助整理素材，但法律后果由签署人承担，任何法律文件都必须经本人（或专业人士）审定。</p>
+      <p class="ctx">工程实现上，"人工确认点"（human-in-the-loop）就是流水线上的一个暂停闸口：脚本把待执行的动作和理由整理好（一屏能看完的清单），推送给你，你点确认才继续。n8n 等工作流工具内置了人工审批节点，Anthropic 在 computer use 的官方公告中也明确警示：涉及资金、账号等敏感操作应由用户确认。记住一个不对称性：<strong>确认点每次只花你十秒钟，跳过它省下的时间，可能用一次事故十倍偿还</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.anthropic.com/news/3-5-models-and-computer-use">Anthropic《Introducing computer use》官方公告：敏感操作需用户确认的安全警示（英文）</a> · <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">EU AI Act：高风险 AI 系统的人类监督（human oversight）要求（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>追责主体：签名的永远是人，不是脚本</h3>
+      <p class="ctx">很多人有个模糊的侥幸："是程序自己跑的，出了事跟我没关系。"法律的回答恰恰相反：<strong>自动化工具是手段，行为的责任归属于使用者</strong>。你的脚本抓了不该抓的数据，责任在你；你的 Agent 发了不该发的内容，责任在你；你部署的自动化给第三方造成损失，侵权责任的主体是你（或你的公司）。AI 的"自主性"不产生新的责任豁免——各国监管框架的共识方向都是"人在回路、责任可追"：EU AI Act 对高风险系统强制要求人类监督机制；NIST AI RMF 把"可问责性（accountability）"列为治理核心；《生成式人工智能服务管理暂行办法》明确使用者与服务提供者各自的义务边界。</p>
+      <p class="ctx">把"责任在我"内化之后，你会自然养成三个习惯：<strong>①留痕</strong>——自动化跑了什么、改了了什么，日志留档（第15章讲日志与检查点设计），既是排错依据，也是自证清白的证据；<strong>②可停</strong>——任何无人值守任务都有紧急停止手段（一个能立刻停掉脚本的开关），发现异常第一时间止损；<strong>③定期审计</strong>——无人值守≠无人过问，每周抽查一次自动化的输出与日志，别让它悄悄错了三个月。这三条习惯的成本极低，但决定了你的自动化是"资产"还是"定时炸弹"。</p>
+      <p class="ctx">还有一种容易忽略的责任来源：<strong>第三方组件的连带责任</strong>。你的流水线里用了别人写的开源脚本、现成的工作流模板、来路不明的"效率工具"，如果这些组件本身在做违规的事（悄悄上传数据、内置了越权访问、把密钥发到外部服务器），部署它的你很难说清"我不知道"。所以引入第三方自动化组件前做三件小事：看它要什么权限（一个整理本地文件的工具为什么要通讯录权限？）、看代码或文档里它往哪里发数据、优先选社区活跃且代码公开的项目（Playwright、n8n 这类主流开源工具的行为是可审计的，来路不明的"破解版""绿色版"恰恰是重灾区）。供应链安全是大企业的专门学问，但"看清楚你装了什么"这个朴素习惯，个人用户也能防住九成风险。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework：治理、问责与人类监督（英文）</a> · <a href="https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm">《生成式人工智能服务管理暂行办法》：使用者义务与责任条款（网信办发布页）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">四个最危险的错误认知，每一个都可能把"效率工具"变成"事故源头"</p>
+
+    <article class="view">
+      <h3>谣言粉碎：合规不是束缚，是自动化的安全带</h3>
+      <p class="ctx"><strong>谣言一："公开网页上的数据，随便抓。"</strong>——错。"公开可访问"只解决"进得去"，不解决"能拿去用"：原创内容有著作权，含个人信息的内容受 PIPL 约束（已公开个人信息的处理也须在合理范围内、与公开目的相容），平台数据还受 ToS 约束。三重锁，缺一把都不算安全。<strong>谣言二："程序自己干的，出了事跟我没关系。"</strong>——错。见第七节：自动化工具是手段，责任归属于部署和使用它的人；日志、IP、资金流向让"匿名的脚本"其实处处留名。<strong>谣言三："注明'仅供学习'就免责了。"</strong>——错。免责声明不能豁免违法行为：抓取行为本身的定性不看你写了什么声明，"学习用途"也不是侵犯个人信息或非法获取数据的挡箭牌；它能做的只是表明无商业恶意，属于情节考量的细枝末节。<strong>谣言四："个人小规模自动化，法律管不着。"</strong>——片面。执法确实有优先级，但"规模小"不等于"不违法"：封号不因规模小而豁免，民事侵权不看量级看行为，而自动化天生有"规模化倾向"——今天 100 条，下周顺手改成 10 万条，红线不会因为你走得慢就移动。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm">《个人信息保护法》：已公开个人信息的处理规则（网信办发布页）</a> · <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLM Applications：LLM 应用的安全风险清单（英文）</a></div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>自动化越界的两类代价是什么？"放大器效应"为什么让后果更严重？</li>
+        <li>合规地图上的六份文件/规则各管什么？说出其中四份的名字。</li>
+        <li>PIPL 的两把尺子是什么？"三问口诀"是哪三问？</li>
+        <li>"公开的个人信息"为什么不能随便处理？</li>
+        <li>数据最小化四招（字段裁剪/即用即弃/脱敏前置/范围限定）各举一例。</li>
+        <li>哪些信息属于敏感个人信息？处理它们的额外门槛是什么？</li>
+        <li>四类不能投喂公共模型的数据是什么？"企业版不训练"为什么不等于"随便给"？</li>
+        <li>三种脱敏方法是什么？"假脱敏"陷阱指什么？去标识化和匿名化有何区别？</li>
+        <li>《标识办法》什么时候施行？显式标识和隐式标识各指什么？</li>
+        <li>发布者的三条义务（用标识/不删改/不帮规避）分别是什么？</li>
+        <li>动手写自动化脚本前，怎么快速确认目标平台的 ToS 红线？</li>
+        <li>robots.txt 是什么性质的规则？它为什么可能成为诉讼中的不利证据？</li>
+        <li>爬虫合规三条线是什么？哪条最硬？越线后正确的动作是什么？</li>
+        <li>“批量注册”“刷单”“抢票外挂”“水军控评”各对应什么法律风险？"技术无罪"话术错在哪？</li>
+        <li>四类必须人工确认的高危操作是什么？人工确认点的工程形态是什么？</li>
+        <li>"责任在我"内化后的三个习惯是什么？各自防什么？</li>
+        <li>四大合规谣言，各自错在哪里？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>自动化放大行为，越界代价分账号（封号）与法律（赔偿/处罚/刑责）两类，不可逆性远高于收益；合规地图=PIPL+数安法+生成式AI暂行办法+标识办法+平台ToS+robots 协议（出海加 EU AI Act/NIST RMF）；PIPL 两把尺子=知情同意与最小必要，三问口诀"信息是谁的/对方知道吗/方式最小吗"；敏感个人信息（生物识别/医疗/金融/行踪/未成年人）默认不做；四类数据不进公共模型=他人个人信息/公司机密/凭证密钥/自己的高敏感信息，脱敏三法=替换、泛化、拆分；标识办法 2025-09-01 施行，显式角标+隐式元数据，谁发布谁负责，不删改不帮规避；ToS 十分钟关键词自查，优先官方 API；robots.txt 是行业惯例也是主观状态证据；爬虫三条线=来源正当、频率克制、不绕过技术措施（本课不教任何突破技术措施的手段）；灰产话术"技术无罪/大家都干/查不到"全假；四类高危操作（资金/删除/对外发送/法律文件）一律人工确认；责任归属于使用者，养成留痕、可停、定期审计三习惯。下一章算钱：自动化到底花多少钱，什么时候划算。
+  </div>
+
+  <nav class="pager">
+    <a href="../03-prompt/"><span class="dir">← 第3章</span>提示词就是编程：让 AI 准确干活</a>
+    <a href="../05-cost/"><span class="dir">第5章 →</span>成本账：自动化到底花多少钱</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第4章 · 依据《个人信息保护法》《数据安全法》《生成式人工智能服务管理暂行办法》《人工智能生成合成内容标识办法》、EU AI Act、NIST AI RMF 及 MDN/OWASP 等官方与权威资料整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律意见或企业合规建议 · 对灰产行为仅作批判与风险警示 · 关键操作请设人工确认 · AI 生成内容依规标识 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 AI Agent 是什么：感知-规划-行动循环 — AI自动化实践</title>
+<style>
+  :root{--accent:#0e7490;--accent-deep:#155e75;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#cffafe;color:#155e75;border:1px solid #a5f3fc;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">AI自动化实践 · 第13章 · 工作流与 Agent 编排</div>
+  <h1>AI Agent 是什么：感知-规划-行动循环</h1>
+  <p>从"一问一答"到"自己拆步骤、调工具、看结果、再决定"——把 Agent 的原理、模式与现实预期一次讲清</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../12-integration/">← 第12章：API 与集成</a>
+    <a href="../14-memory/">第14章：记忆与知识库 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">Agent 是什么</a>
+    <a class="anchor" href="#s2">工具调用原理</a>
+    <a class="anchor" href="#s3">五种编排模式</a>
+    <a class="anchor" href="#s4">单与多 Agent</a>
+    <a class="anchor" href="#s5">可靠性现实</a>
+    <a class="anchor" href="#s6">预期管理</a>
+    <a class="anchor" href="#s7">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章为技术教育科普，仅供学习与参考，不构成法律意见、投资建议或任何产品的商业推荐；文中出现的工具、产品与论文名称仅用于教学说明，本站无商业合作、无推广链接。Agent 类技术自主性较高、错误会累积，涉及资金支付、数据删除、对外发送、法律文件等关键操作必须设置人工确认环节；不要向 Agent 授予超出任务所需的权限，不要让它接触敏感个人信息与公司机密；Agent 输出可能包含幻觉，重要事实须人工核对；AI 生成合成内容对外提供时，按《人工智能生成合成内容标识办法》履行标识义务。各节观点均标注来源，以来源原文为准；能力描述截至 2026 年 10 月。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用一句话说清 AI Agent 与普通聊天机器人的本质区别（自己拆步骤、调工具、看结果、再决定）；②画出 Agent 的核心工作循环：感知→规划→行动→观察→再循环；③理解工具调用（function calling / tool use）的原理：模型不是真的"动手"，而是输出结构化的"我想调用某工具"请求，由外部程序执行后把结果喂回来；④说出 ReAct 论文的核心思想（推理与行动交替进行）；⑤复述 Anthropic《Building effective agents》总结的五种工作流编排模式，并知道官方忠告——能用简单方案就不要上 Agent；⑥分清单 Agent 与多 Agent 的适用场景与协调开销；⑦正确解读 Agent 评测基准的分数（测试环境与真实世界的差距），建立"标准化任务可用、开放性任务需人盯"的现实预期。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>第12章讲了数据怎么在软件之间流动，本章讲"谁来指挥这些流动"——Agent 本质上是一个会自己调 API 的大模型。第一次读建议通读；等你真的想用 Agent 产品或搭建自主流程时，回来重读第三节的模式选择和第五节的可靠性现实，能帮你避开大多数"高射炮打蚊子"式的过度设计。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、Agent 是什么：从一问一答到自主循环</h2>
+    <p class="chapter-sub">聊天机器人回答你的问题，Agent 完成你的任务——差别在于"循环"</p>
+
+    <article class="view">
+      <h3>一个场景看懂区别：订一场活动</h3>
+      <p class="ctx">假设你想组织一场三十人的团队活动（示例）。你对普通聊天机器人说"帮我策划团建"，它会给你一篇像模像样的策划文案——但仅此而已，文案里的场地是它编的，价格可能过时，你还要自己一项项去查、去订。而你对一个 Agent 说同样的话，理想流程是：它先<strong>拆解任务</strong>（查场地→比价格→看档期→发投票→订场地→发通知），然后<strong>逐步执行</strong>：调用搜索工具查场地、看到结果后决定下一步查什么、发现预算超了就换方案重查、最后把候选清单发给你确认——每一步都基于上一步的<strong>真实结果</strong>做决定。</p>
+      <p class="ctx">这就是本质区别：<strong>聊天机器人是"一问一答"，Agent 是"接了任务自己转起来"</strong>。它可以自己拆解步骤、调用工具、观察结果、再决定下一步，直到任务完成或发现问题需要求助。Anthropic 在《Building effective agents》里给了一个清晰的区分：工作流（workflows）是按预定义代码路径编排的 LLM 与工具，而 Agent 是<strong>LLM 动态决定自己的流程与工具使用</strong>的系统——路线图写在模型脑子里，而不是写死在流程配置里。第11章的工作流工具是"你画好路线图，机器照着开"；Agent 是"你说目的地，机器自己找路"。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，workflows 与 agents 的官方区分）</a> · <a href="https://python.langchain.com/docs/concepts/agents/">LangChain 官方文档 Agents 概念页（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>核心循环：感知→规划→行动→观察</h3>
+      <p class="ctx">几乎所有 Agent 系统，剥开外壳都是同一个循环：</p>
+      <blockquote class="q">①<strong>感知</strong>：接收任务与当前环境信息（你的指令、上一步的工具结果、相关文件内容）；<br>②<strong>规划</strong>：模型思考"现在该做什么"——拆解任务、选择工具、决定参数（这一步常以"思考文本"形式显式输出）；<br>③<strong>行动</strong>：发出工具调用请求（搜索、读文件、调 API、执行操作），由外部程序真正执行；<br>④<strong>观察</strong>：把执行结果送回模型——成功就带着新信息进入下一轮循环，失败就调整方案重试或换路；<br>⑤<strong>循环</strong>：重复②③④，直到模型判断任务完成、或达到步数/成本上限、或遇到需要人类决策的节点。<span class="qsrc">——依据 ReAct（Yao et al., 2022）与 Anthropic《Building effective agents》的循环范式整理（示例框）</span></blockquote>
+      <p class="ctx">注意两个关键点。第一，<strong>"规划"不是一次性完成的</strong>——好的 Agent 走一步看一步，根据观察到的真实结果动态调整计划，这正是它比预定义工作流灵活的地方，也是它容易跑偏的地方（第五节）。第二，<strong>循环必须有刹车</strong>：最大步数、最大花费、超时、人工介入点，缺一个都可能变成"永动机式烧钱"。任何正经的 Agent 产品都会暴露这些刹车设置——用之前先找到它们。</p>
+      <div class="fig"><img src="../assets/img-13-1.png" alt="抽象示意图：一个几何风格的机器核心位于环形轨道中心，轨道上依次分布感知（天线）、规划（齿轮）、行动（机械臂）、观察（放大镜）四个节点，箭头沿环流动，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models（Yao et al., 2022, arXiv:2210.03629，英文）</a> · <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，augmented LLM 与 agent 循环）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>Agent 不是新物种：它是"被放大的大模型"</h3>
+      <p class="ctx">理解了循环，还要破除一层神秘感：<strong>Agent 的"大脑"就是第1章讲过的大语言模型，没有任何魔法</strong>。它的所有能力上限与缺陷，都继承自底层模型——模型会幻觉，Agent 就会基于幻觉的"观察"做决策；模型的上下文窗口有限，Agent 跑长任务就会"忘前忘后"（第14章的记忆机制正是为此而生）；模型不理解你的真实意图时，Agent 会勤勤恳恳地把错误的任务执行得很彻底。</p>
+      <p class="ctx">Agent 相对于裸模型的增量，来自三样"外挂"：<strong>工具</strong>（让它能查实时信息、能操作软件，突破"只会生成文字"的局限）、<strong>循环</strong>（让它能多步推进，突破"一问一答"的局限）、<strong>记忆</strong>（让它能跨步骤跨会话保持信息，突破上下文窗口的局限——第14章细讲）。Anthropic 把最基础的组合称为"增强的 LLM"（augmented LLM）：模型+检索+工具+记忆，这是所有 Agent 系统的积木原点。记住这个视角，你就不会被营销话术带节奏：<strong>评估任何 Agent 产品，先问它的模型是什么、工具接了什么、刹车怎么设、错了谁兜底</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，"the augmented LLM"基础积木）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Anthropic Tool use 官方文档（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、工具调用：AI 是怎么"动手"的</h2>
+    <p class="chapter-sub">模型从不亲自执行任何操作——它只是"下单"，执行和兜底都在模型之外</p>
+
+    <article class="view">
+      <h3>function calling 原理：一次"下单-上菜"的接力</h3>
+      <p class="ctx">"AI 能操作电脑了"听起来很玄，机制其实朴素。以 OpenAI 的 function calling 与 Anthropic 的 tool use 为例（两家官方文档口径一致），一次工具调用是四步接力：<strong>①</strong>开发者在请求里附上一份"工具菜单"——每个工具的名称、用途说明、参数格式（比如 get_weather：输入城市名，返回天气）；<strong>②</strong>模型读到你的问题后，如果判断需要用工具，就<strong>输出一段结构化的调用请求</strong>（"调用 get_weather，参数：杭州"）——注意，模型只输出这段文本，它自己并不执行任何操作；<strong>③</strong>外部程序（你的应用、工作流工具、Agent 框架）解析这段请求，<strong>真正去执行</strong>——调 API、查数据库、跑代码；<strong>④</strong>执行结果被送回模型，模型基于结果生成回答，或决定下一次调用。</p>
+      <p class="ctx">看清这个机制，你就握住了理解 Agent 安全性的钥匙：<strong>模型的"手"是外部程序装的，权限也是外部程序给的</strong>。模型说"我要删除这个文件"，只有当外部程序被授予了删除权限并且照单执行时，删除才会发生。所以 Agent 的安全边界不取决于模型多聪明，而取决于你给它接了什么工具、开了什么权限、设了什么确认环节——这正是第12章密钥纪律与最小权限原则在 Agent 时代的延续。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function calling 官方指南（英文，四步调用流程）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Anthropic Tool use 官方文档（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>ReAct：让模型"边想边做"的奠基论文</h3>
+      <p class="ctx">工具调用的"怎么想"这一半，来自 2022 年的 ReAct 论文（Yao et al.,《ReAct: Synergizing Reasoning and Acting in Language Models》）。它提出的问题很实际：让模型纯推理（一步步想但不接触外部世界），容易越想越偏、编造事实；让模型纯行动（直接输出操作不解释），又缺乏规划、错了不知为何错。ReAct 的做法是把两者<strong>交替进行</strong>：模型每做一步行动前，先生成一段"思考"（Thought：我现在知道了什么、下一步该查什么），再输出"行动"（Action：调用什么工具），拿到"观察"（Observation：工具返回的结果）后继续下一轮思考。</p>
+      <p class="ctx">论文在知识问答与网页操作任务上验证了这种"思考-行动-观察"交替的有效性：推理帮助模型制定和调整行动计划，行动帮助模型获取外部信息、避免幻觉式空想。今天你看到 Agent 产品界面里滚动的"思考过程/Thought"面板，血统基本都可以追溯到这篇论文。对普通用户的实用价值：<strong>选 Agent 产品时，优先选把思考与工具调用过程透明展示出来的</strong>——你能看见它每一步为什么这么做，出了错能定位到哪一步的观察或判断歪了；黑箱式"咣当一下给你结果"的 Agent，出错时你连复盘的抓手都没有。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models（Yao et al., 2022, arXiv:2210.03629，英文）</a> · <a href="https://arxiv.org/abs/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools（Schick et al., 2023, arXiv:2302.04761，英文，模型自学使用工具的相关研究）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>工具生态：从各家私有接口到标准化协议</h3>
+      <p class="ctx">早期每家模型服务商的工具调用格式互不相同，开发者给 A 家写的工具要重写一遍才能给 B 家用。行业很快走向标准化：一方面各家 API 的 function calling 格式趋同（都是"工具名+参数 JSON 模式"的描述方式），另一方面出现了跨模型、跨应用的<strong>工具接入协议</strong>——把"有哪些工具可用、怎么调用、返回什么"定义成通用规范，让任何支持该协议的应用即插即用地接入任何工具服务。你可以把它理解为"工具界的 USB 接口"：以前每个设备配一种专属插头，现在大家都用同一种。</p>
+      <p class="ctx">对大众用户的意义：Agent 的能力边界由<strong>工具生态</strong>决定。同一个模型，接上搜索工具就能查实时信息，接上日历工具就能排日程，接上代码执行工具就能算数画图，接上你公司系统的接口就能干业务活。评估一个 Agent 产品时，"它的模型多强"只是半个问题，另一半是<strong>"它能接什么工具、接工具的门槛高不高、第三方工具可不可信"</strong>——来路不明的第三方工具可能把你的数据转手送走（第12章第三节的教训在工具生态同样成立），给 Agent 装工具前，跟给自己手机装 App 一样要看清来源与权限。还有一层成本视角别忽略：工具调用不是免费的——每次调用都消耗 token（工具菜单本身占上下文，调用请求与返回结果也占），一条循环几十步的 Agent 任务，token 账单可能是单次聊天的几十倍。这就是为什么第5章的成本意识在 Agent 场景要加倍：给工具菜单"瘦身"（只挂当前任务用得上的工具）、控制循环步数上限、贵任务先用便宜模型跑通流程再换强模型提质量，都是实践中验证过的省钱手法。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function calling 官方指南（英文，工具描述与调用格式）</a> · <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use">Anthropic Tool use 官方文档（英文，工具定义与 MCP 连接器支持）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、五种编排模式：Anthropic 官方菜谱的大众版</h2>
+    <p class="chapter-sub">从简单到复杂：链式、分流、并行、主管-下属、评估-改进，最后才是自主 Agent</p>
+
+    <article class="view">
+      <h3>链式与分流：最常用的两种"简单聪明"</h3>
+      <p class="ctx">Anthropic 在《Building effective agents》中总结的五种工作流模式，前两种最朴素也最常用。<strong>链式（Prompt chaining）</strong>：把任务拆成固定的几步，一步的输出是下一步的输入——"先写大纲→再按大纲写正文→最后校对格式"。适合能清晰拆成固定子任务的工作，好处是每一步都可以单独检查和调优，中间还能插入程序化校验（比如大纲不合格就不往下走）。</p>
+      <p class="ctx"><strong>分流（Routing）</strong>：先给输入分类，再分发给不同的专门处理路径——客服场景里，先判断这是退款问题、技术问题还是投诉，然后各走各的专门提示词与工具。它的价值在于"关注点分离"：不用写一个包打天下的万能提示词（第3章讲过万能提示词往往哪头都不精），而是每类任务配一套量身定做的处理。这两种模式在第11章的工作流工具里都能直接搭出来——<strong>它们不是 Agent，是预定义工作流，但对大多数结构化任务，这就是最优解</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，Prompt chaining 与 Routing 模式）</a> · <a href="https://docs.n8n.io/">n8n 官方文档（英文，用可视化节点搭建链式与分流流程）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>并行与主管-下属：人多力量大的两种组织法</h3>
+      <p class="ctx"><strong>并行化（Parallelization）</strong>：把任务拆成互不依赖的块同时处理，最后汇总——审一份合同，"查法律风险""查商务条款""查错别字"三路同时跑，比串行快数倍；或者同一任务跑多个独立视角再投票/合并，用冗余换可靠性。前提是子任务之间真的不互相依赖。</p>
+      <p class="ctx"><strong>主管-下属（Orchestrator-workers）</strong>：一个"主管"模型在运行时动态拆解任务，把子任务派给若干"下属"模型执行，最后综合结果。它与并行化的关键区别是<strong>子任务不是预先定好的，而是主管临场决定的</strong>——比如"修改这个功能涉及哪些文件"要主管看了代码库才知道，再把不同文件分给不同下属去改。这已经半只脚踏进 Agent 领域：主管有动态决策权，但每个下属的动作范围仍然被主管框定。复杂内容生产（多章节报告）、涉及多文件的修改类任务，是这个模式的典型战场。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，Parallelization 与 Orchestrator-workers 模式）</a> · <a href="https://python.langchain.com/docs/concepts/agents/">LangChain 官方文档（英文，多组件编排概念）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>评估-改进与自主 Agent：循环的两副面孔</h3>
+      <p class="ctx"><strong>评估-改进（Evaluator-optimizer）</strong>：一个模型生成，另一个模型（或同一个模型换个角色）按明确标准评估打分、给出修改意见，生成方照意见改，循环若干轮直到达标——"写作+审稿"的内部化。适用前提是你能写出清楚的评估标准（翻译要信达雅、代码要过测试、文案要符合品牌规范），且多轮打磨确实能提升质量。这个模式在第3章"让 AI 自我检查"技巧的规模化版本。</p>
+      <p class="ctx"><strong>自主 Agent（Autonomous agents）</strong>：五种模式的终点——模型在开放环境里自己规划、自己调工具、自己循环，直到完成任务或触到刹车。与前四种的根本区别：前四种的流程图是你画的，自主 Agent 的流程图是它自己临场走的。Anthropic 对它的评价很清醒：Agent 适合<strong>步骤数无法预先确定、需要模型自己决策</strong>的开放性任务，代价是成本更高、错误会随步数累积、需要沙箱与人工兜底等防护措施。模式对照一张表：</p>
+      <table class="cmp">
+        <tr><th>模式</th><th>流程谁定</th><th>典型场景</th><th>成本/风险</th></tr>
+        <tr><td>链式</td><td>你（固定步骤）</td><td>大纲→正文→校对</td><td>低</td></tr>
+        <tr><td>分流</td><td>你（固定分支）</td><td>客服问题分类处理</td><td>低</td></tr>
+        <tr><td>并行化</td><td>你（固定拆分）</td><td>多角度审查、批量处理</td><td>中</td></tr>
+        <tr><td>主管-下属</td><td>主管临场拆</td><td>多文件修改、多章节报告</td><td>中高</td></tr>
+        <tr><td>评估-改进</td><td>你（固定循环）</td><td>翻译润色、按标准改稿</td><td>中</td></tr>
+        <tr><td>自主 Agent</td><td>模型自己走</td><td>开放性研究、探索式任务</td><td>高（需刹车+兜底）</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，Evaluator-optimizer 与 Autonomous agents，模式对照依据原文整理）</a> · <a href="https://docs.agpt.co/">AutoGPT 官方文档（英文，早期自主 Agent 项目的经验参照）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>官方忠告：从最简单的方案开始</h3>
+      <p class="ctx">《Building effective agents》开篇就给所有跃跃欲试的搭建者浇了一盆清醒的冷水，值得原文级转述：<strong>很多框架把 Agent 系统做得层层抽象，隐藏了底层提示词与响应，让调试更难，也诱使开发者过早采用复杂结构；建议先直接、透明地用模型 API，从最简单的方案开始——很多场景根本不需要 Agent，单次调用+检索+上下文示例就够了；只有当简单方案确实遇到瓶颈时，才考虑更复杂的模式，而且每加一层复杂度都要换来可衡量的收益。</strong></p>
+      <blockquote class="q">选型口诀（大众版）：<br>一次问答能解决 → 直接用聊天（配好提示词）；<br>缺你的资料 → 加检索（第14章知识库）；<br>步骤固定 → 链式/分流工作流（第11章工具）；<br>步骤不固定但边界清楚 → 主管-下属或评估-改进；<br>真正开放、需要临场决策 → 才轮到自主 Agent，且必须配刹车与人工兜底。<span class="qsrc">——依据 Anthropic《Building effective agents》"find the simplest solution possible"原则整理（示例框）</span></blockquote>
+      <p class="ctx">这个忠告背后是工程现实：<strong>复杂度每加一层，调试难度、成本、失控面都跟着涨</strong>。而"能用简单工作流不要上 Agent"恰恰是 2023 年 AutoGPT 式狂热退潮后行业沉淀下来的共识——当年无数人试图用全自主 Agent 做一切，最后发现大部分任务用一条确定性流水线做得又快又稳。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，"find the simplest solution possible"与框架抽象的告诫）</a> · <a href="https://docs.agpt.co/">AutoGPT 官方文档（英文，自主 Agent 项目的历史参照）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、单 Agent 与多 Agent：一个人干还是组队干</h2>
+    <p class="chapter-sub">多 Agent 不是"更强"的同义词——协调开销是真实的成本</p>
+
+    <article class="view">
+      <h3>多 Agent 的诱惑与代价</h3>
+      <p class="ctx">既然一个 Agent 能干活，那组一支"Agent 团队"——一个当产品经理、一个当工程师、一个当测试员——是不是更强？这是近年产品与研究的热门方向，逻辑上有真实收益：<strong>角色分工让每个 Agent 的提示词更聚焦</strong>（第3章：专注单一角色的提示词质量更高）、<strong>可并行</strong>（独立子任务同时推进）、<strong>可互相检查</strong>（一个干活一个审核，评估-改进模式的组织化）。研究团队公开的多 Agent 系统演示过让多个 Agent 分头调研再汇总产出报告的玩法，效果亮眼。</p>
+      <p class="ctx">但代价同样真实，核心是<strong>协调开销</strong>：Agent 之间靠自然语言传递信息，每一次转述都可能丢失细节、引入歧义——人类团队开会对齐要花的时间，Agent 团队一样要花，而且花的是 token（真金白银，第5章）；任务分配本身需要决策（谁干什么、干到什么程度算完），这个决策错了全队跟着歪；两个 Agent 对同一事实各执一词时，还得有仲裁机制。经验规律：<strong>子任务之间依赖越少、接口越清晰，多 Agent 越划算；任务本身揉成一团、需要频繁来回对齐的，单 Agent 带一套好工具往往又快又省</strong>。"主管-下属"模式（第三节）正是折中方案：动态分工，但信息都经主管汇总，减少横向扯皮。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，Orchestrator-workers 的动态分工与汇总结构）</a> · <a href="https://arxiv.org/abs/2307.13854">WebArena: A Realistic Web Environment for Building Autonomous Agents（Zhou et al., 2023, arXiv:2307.13854，英文，Agent 在真实网页环境的能力评测）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>Agent 简史：从狂热到工程化，普通用户能学到什么</h3>
+      <p class="ctx">回顾这几年 Agent 的公众形象变迁，本身就是一堂预期管理课。<strong>第一波（2023 年）是"全自主狂热"</strong>：AutoGPT 等开源项目在网络上爆红，演示视频里 AI"自己给自己派任务"，一夜之间"AGI 已来"的说法满天飞。但大量跟进者很快发现：真实使用中这些系统频繁原地打转、反复做无效尝试、token 烧得飞快，任务完成率远低于演示印象——AutoGPT 官方文档后来也坦率地把这类项目定位为实验性平台，强调需要谨慎配置与人工监督。狂热的教训：<strong>演示视频是精心挑选的最好情况，不是日常使用的平均情况</strong>。</p>
+      <p class="ctx"><strong>第二波（2024 年起）是"工程化回潮"</strong>：行业话语从"全自主 AGI"转向 Anthropic 式的冷静框架——承认 Agent 有用，但强调简单优先、模式化编排、沙箱测试、人工兜底；学术界同步建起 WebArena、SWE-bench 等严肃基准，用可复现的考试代替感觉良好的演示；产品形态也从"放养式全自动"收敛为"有边界的自主"：编码助手在明确仓库里修明确问题、研究助手在限定资料库里做调研、浏览器 Agent 在受控环境里完成结构化操作。对普通用户的启示很直接：<strong>看 Agent 产品别听它"能自主做什么"，要看它"在哪里被约束"</strong>——权限怎么裁、刹车怎么设、过程给不给看、错了怎么回滚。约束设计得越认真的产品，反而越值得托付。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://docs.agpt.co/">AutoGPT 官方文档（英文，项目定位与使用监督说明）</a> · <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，工程化编排框架）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、可靠性现实：评测分数与真实世界的距离</h2>
+    <p class="chapter-sub">看懂基准测试的口径，才不会被"成功率 80%"之类的宣传误导</p>
+
+    <article class="view">
+      <h3>评测基准怎么说：分数背后的口径</h3>
+      <p class="ctx">Agent 能力如何量化？学术界的做法是建<strong>标准化测试环境</strong>：WebArena（Zhou et al., 2023）搭了一套仿真的网站群（购物、论坛、办公系统），让 Agent 在里去完成真实风格的任务并统计成功率；SWE-bench（Jimenez et al., 2023）收集真实开源仓库的历史问题单，测 Agent 能否写出修复代码并通过项目原有测试。这些基准的价值在于可比性——所有系统在同样题目上考，分数才有意义。</p>
+      <p class="ctx">但读分数要懂口径，三条提醒：<strong>①测试环境≠真实世界</strong>——基准里的任务边界清晰、工具集固定、环境可重置，而你的真实任务往往信息不全、系统时有抽风、做错了不能一键撤销；<strong>②分数会过时</strong>——新一代模型发布后旧基准分数普遍上移，2023 年"最强系统"的成功率放今天可能平平，看评测一定注明时间（本章口径截至 2026 年 10 月）；<strong>③单步成功率与全链路成功率是两码事</strong>——这是下一卡的主题，也是 Agent 可靠性最反直觉的一点。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://arxiv.org/abs/2307.13854">WebArena: A Realistic Web Environment for Building Autonomous Agents（Zhou et al., 2023, arXiv:2307.13854，英文）</a> · <a href="https://arxiv.org/abs/2310.06770">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（Jimenez et al., 2023, arXiv:2310.06770, ICLR 2024，英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>错误累积：长任务的乘法效应</h3>
+      <p class="ctx">做个小学算术就明白 Agent 为什么"演示很惊艳、长任务拉胯"。假设一个 Agent 每一步的决策正确率高达 95%——已经相当优秀——那么一条需要 10 步的任务，全程不出错的概率是 0.95 的 10 次方，约 <strong>60%</strong>；20 步的任务，只剩约 <strong>36%</strong>；50 步的任务，不足 <strong>8%</strong>。这就是<strong>错误累积</strong>：单步可靠性再高，也扛不住长链路的乘法。更糟的是 Agent 的错误不是独立事件——第三步基于第二步的错误观察做了决定，后面步步都在错误的地基上施工，越走越远。</p>
+      <p class="ctx">Anthropic 在官方文章里对此直言不讳：Agent 的灵活性以更高的成本和错误累积为代价，建议在开始规模化之前先在沙箱环境里充分测试。工程界的应对思路你也可以拿来评估产品：<strong>把长任务切短</strong>（每完成一个里程碑就停下来让人确认，等于把 0.95 的 50 次方拆成十段 0.95 的 5 次方）、<strong>关键步骤加检查点</strong>（做之前先复述"我打算干什么"等你点头）、<strong>可回滚设计</strong>（改文件先备份、发消息先进草稿箱）、<strong>失败报警</strong>（连续失败就停下来叫人，而不是硬着头皮继续）。一个 Agent 产品有没有这些设计，比它宣传的模型多强更能决定你的真实体验。</p>
+      <div class="fig"><img src="../assets/img-13-2.png" alt="抽象示意图：一条长链路由许多环节组成，前段环节整齐发亮，中段个别环节出现细小裂纹并染上琥珀色，末端环节偏离了原本指向目标的虚线轨道，旁边一个检查闸门节点将其拦下，青色主色调" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，agent 的灵活性代价、错误累积与沙箱测试建议）</a> · <a href="https://arxiv.org/abs/2210.03629">ReAct（Yao et al., 2022, arXiv:2210.03629，英文，行动-观察链条中的误差传播讨论）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>幻觉进入循环：比单次回答错误更麻烦的事</h3>
+      <p class="ctx">第1章讲过大模型的幻觉问题：它会一本正经地编造不存在的事实。在单次问答里，幻觉的代价是你收到一条错误信息，核对后识破即可。<strong>但在 Agent 的循环里，幻觉会被"行动"放大</strong>：模型幻觉出一个不存在的文件路径→尝试读取失败→它可能基于"失败"这个观察推理出更歪的结论（"文件被删了？那我重建一个"）→在幻觉的地基上继续施工。工具返回的真实观察本可以纠偏（这是 ReAct 论文强调行动价值的另一面：真实世界的反馈能戳破空想），但纠偏的前提是模型<strong>正确解读</strong>观察结果——而解读本身又是一次模型推理，仍可能出错。</p>
+      <p class="ctx">对使用者的三条防护建议：<strong>①让 Agent 的关键结论"有据可查"</strong>——要求它在产出里附上信息来源（查了哪个网页、读了哪个文件），你抽查其中两三条，比通读全文效率高得多；<strong>②对"它说它做了"保持警觉</strong>——Agent 报告"已完成发送""已删除旧版本"时，去真实系统里核对一眼，报告与事实不符是循环系统最常见的静默故障；<strong>③高危决策要求双通道验证</strong>——涉及钱、数据、对外承诺的结论，让 Agent 给出证据链，人沿证据链独立复核（第14章的引用溯源机制就是为这个场景设计的）。一句话总结：<strong>幻觉在聊天框里是错误答案，在行动循环里是错误行为的起点</strong>——这正是 Agent 场景比聊天场景更需要人工兜底的根本原因。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2210.03629">ReAct（Yao et al., 2022, arXiv:2210.03629，英文，真实观察对幻觉的抑制与局限）</a> · <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，agent 错误的复合效应）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>人工兜底：给自主性划定安全区</h3>
+      <p class="ctx">基于错误累积的现实，负责任的使用方式不是"不用 Agent"，而是<strong>按后果的严重程度给操作分级，后果越重，人工介入越深</strong>。一个可直接套用的三级分级（示例模板）：</p>
+      <blockquote class="q">🟢<strong>绿灯区（可全自动）</strong>：只读操作与可逆操作——查资料、做摘要、生成草稿存进文档。错了没有实际损失，放手让 Agent 跑；<br>🟡<strong>黄灯区（先审后发）</strong>：对外可见但可补救——发邮件、发群消息、发布内容、修改共享文档。Agent 准备好一切，人过目后再发出去（对外发布 AI 生成内容记得按《标识办法》履行标识义务）；<br>🔴<strong>红灯区（禁止自动执行）</strong>：不可逆或涉钱涉权——支付、删除数据、签署文件、修改权限、批量操作生产系统。Agent 最多准备材料和建议，执行按钮必须握在人手里。<span class="qsrc">——依据"关键操作人工确认"通用安全原则整理的分级模板（示例），与第4章安全框架一脉相承</span></blockquote>
+      <p class="ctx">配置 Agent 产品时的落地动作：检查它有没有"执行前确认"开关并打开、给它的账号权限按红灯清单反向裁剪（不能支付的账号就干脆别绑支付方式，第12章最小权限原则）、给每次运行设成本上限。<strong>自主性是滑块不是开关</strong>——从绿灯区开始用，积累信任后再逐步放宽，永远不要一上来就把全权限交给一个你还没摸清脾气的系统。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，agent 需要防护机制与人工介入设计）</a> · <a href="https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm">《人工智能生成合成内容标识办法》（国家网信办等四部门 2025 年 3 月发布，9 月 1 日施行，对外发布 AI 内容的标识义务）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、预期管理：2026 年，Agent 能干什么不能干什么</h2>
+    <p class="chapter-sub">不神话不贬低：按任务性质对号入座</p>
+
+    <article class="view">
+      <h3>现实图景：标准化任务可用，开放性任务需人盯</h3>
+      <p class="ctx">综合官方文档口径与公开评测（截至 2026 年 10 月），Agent 的现实能力版图大致是：<strong>已经靠谱的地带</strong>——边界清晰、工具成熟、结果可验证的任务：在明确代码库里修明确的 bug（SWE-bench 类任务上头部系统成绩逐年大幅提升）、按模板整理与转换数据、在给定网站上完成结构化操作（WebArena 类环境）、多源资料的调研初稿（人来定稿）。<strong>仍需人盯的地带</strong>——目标模糊、环境多变、错误代价高的开放任务：跨多系统的复杂业务流、需要理解组织潜规则的协调工作、任何触碰红灯区操作的场景。</p>
+      <p class="ctx">给普通用户的三条决策建议：<strong>①用"验证成本"筛任务</strong>——结果一眼能核对的（数据转换、格式整理）放心交给 Agent，结果需要专业判断才能核对的（法律意见、医疗建议、投资决策）只让它做资料准备；<strong>②用"回滚成本"定权限</strong>——错了能撤销的给自动权，撤不回的一律人审；<strong>③把它当"聪明但没经验的实习生"</strong>——这个比喻精准匹配现状：能干活、学得快、偶尔自作聪明、必须给清楚的边界和抽查机制。实习生培养得好能成为得力助手，Agent 也一样：从窄任务开始、配好刹车、看过程而不只看结果。最后留一个动态视角：本章的能力版图是 2026 年 10 月的快照，边界会随着模型与工具的进步持续移动——去年还"需人盯"的任务类别，今年可能已经进了"靠谱地带"。所以比记住版图更重要的是掌握<strong>重新画版图的方法</strong>：每隔一段时间，用第⑧问的"已知答案小任务"重新考核一次你手头的 Agent 工具，它的进步与短板都会自己显形；你的托付程度跟着考核结果走，而不是跟着新闻标题走。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://arxiv.org/abs/2310.06770">SWE-bench（Jimenez et al., 2023, arXiv:2310.06770，英文，代码任务基准）</a> · <a href="https://arxiv.org/abs/2307.13854">WebArena（Zhou et al., 2023, arXiv:2307.13854，英文，网页操作基准）</a> · <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，适用场景判断）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>选 Agent 产品：普通用户的八问清单</h3>
+      <p class="ctx">市面上"Agent"字样的产品越来越多，营销话术大同小异。把本章知识压缩成八个问题，试用任何 Agent 产品前照着问一遍（示例模板）：</p>
+      <blockquote class="q">①<strong>过程透明吗</strong>——能看到它的思考步骤和每次工具调用记录，还是只给最终结果？<br>②<strong>刹车在哪</strong>——最大步数、花费上限、超时设置，能不能调？<br>③<strong>权限怎么给</strong>——接入我的账号时走官方授权还是索要密码？能不能只给只读权限？<br>④<strong>红灯区有没有拦</strong>——支付、删除、对外发送这类操作，它会自动执行还是停下来等我确认？<br>⑤<strong>错了怎么办</strong>——改文件有没有备份、发消息有没有草稿态、操作能不能回滚？<br>⑥<strong>数据去哪了</strong>——我的文件与对话内容存哪家服务器、留多久、给不给下游？（第12章的第三方转接问题）<br>⑦<strong>失败会报警吗</strong>——任务卡住或连续失败，它会通知我还是静默重试烧钱？<br>⑧<strong>用什么任务试</strong>——我有没有一个真实、低风险、结果好核对的小任务可以让它先跑？（用试用期考核它，别用演示视频的印象）<span class="qsrc">——依据本章可靠性原则与第4章安全框架整理的评估清单（示例）</span></blockquote>
+      <p class="ctx">八问里最容易被忽略的是第⑧问。多数人对新工具的做法是"看评测、看演示、直接上大任务"，正确顺序恰恰相反：<strong>先给它一个你做过的、知道正确答案的小任务</strong>——比如让它整理一份你手工整理过的数据、调研一个你熟悉的领域。对照你已知的答案看它的过程记录，十分钟内你就能摸清它的可靠边界，比读十篇评测文章都管用。这个"用已知答案考核"的方法，与第5章讲的成本意识合在一起，构成普通用户驾驭 Agent 的两条腿：<strong>知道它会怎么错，知道错一次多少钱</strong>。这两条腿也解释了本章反复出现的选型逻辑：Agent 的价值不在"自主"这个卖点本身，而在"有约束的自主"能不能在你的具体任务上稳定兑现——约束越透明、考核越容易的产品，越值得长期托付。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文，沙箱测试与防护机制建议）</a> · <a href="https://python.langchain.com/docs/concepts/agents/">LangChain 官方文档（英文，Agent 执行过程与可观测性概念）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于 Agent 的四个误解</h3>
+      <p class="ctx"><strong>误解一："Agent 就是更聪明的聊天机器人。"</strong>——不是程度差异，是结构差异：聊天机器人一问一答即结束，Agent 有"感知-规划-行动-观察"的自主循环和真实工具调用（第一、二节）。反过来说也成立：没有循环、没有工具执行的"Agent 模式"按钮，只是营销话术。</p>
+      <p class="ctx"><strong>误解二："Agent 越强，越应该什么都交给它。"</strong>——错误累积的乘法效应决定了长链路任务的可靠性天花板（第五节）：单步 95% 正确率的系统，50 步全程正确率不足 8%。越自主的系统越需要刹车、检查点与人工兜底，这不是不信任，是数学。</p>
+      <p class="ctx"><strong>误解三："多 Agent 一定比单 Agent 强。"</strong>——多 Agent 的收益（分工、并行、互查）要扣掉协调开销（信息转述损耗、token 成本、仲裁机制）；子任务高度耦合时，组队反而更慢更贵更歪（第四节）。</p>
+      <p class="ctx"><strong>误解四："评测分数高的 Agent 产品，我的任务它也一定行。"</strong>——基准是标准化考场，你的任务是真实世界：环境不同、工具不同、容错要求不同（第五节）。正确姿势是用你自己的真实小任务先试跑，看过程记录，再决定托付程度——别人的考卷分数，代替不了你的试用期。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.anthropic.com/research/building-effective-agents">Anthropic《Building effective agents》（英文）</a> · <a href="https://arxiv.org/abs/2210.03629">ReAct（Yao et al., 2022, arXiv:2210.03629，英文）</a> · <a href="https://arxiv.org/abs/2307.13854">WebArena（Zhou et al., 2023, arXiv:2307.13854，英文，测试环境与真实环境差异）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>用"团建策划"的例子说清聊天机器人与 Agent 的本质区别？</li>
+        <li>Anthropic 怎么区分 workflows 和 agents？"路线图写在谁脑子里"是什么意思？</li>
+        <li>Agent 核心循环的五步是什么？为什么规划不是一次性完成的？</li>
+        <li>为什么说循环必须有"刹车"？四种常见刹车设置是？</li>
+        <li>"增强的 LLM"指模型加上哪三样外挂？各自的局限是什么？</li>
+        <li>function calling 四步接力的过程是怎样的？模型在哪一步"动手"？（陷阱题：它从不动手）</li>
+        <li>为什么说 Agent 的安全边界取决于外部程序而不是模型？</li>
+        <li>ReAct 论文的核心思想是什么？"思考-行动-观察"交替解决了什么问题？</li>
+        <li>为什么选 Agent 产品要优先选过程透明展示的？</li>
+        <li>五种编排模式各自的流程由谁决定？对照表能默画出来吗？</li>
+        <li>主管-下属模式与并行化的关键区别是什么？</li>
+        <li>Anthropic 的选型口诀是什么？"每加一层复杂度要换来什么"？</li>
+        <li>多 Agent 的三个收益与三类协调开销分别是什么？</li>
+        <li>什么样的任务结构适合多 Agent，什么样的适合单 Agent？</li>
+        <li>单步正确率 95% 的系统，10 步、20 步、50 步的全链路成功率各约多少？</li>
+        <li>工程界应对错误累积的四个思路是什么？</li>
+        <li>红黄绿三级操作分级各对应什么类型的操作？你自己常用工具里哪些操作属于红灯区？</li>
+        <li>读评测基准分数的三条口径提醒是什么？</li>
+        <li>"聪明但没经验的实习生"这个比喻对应 Agent 现状的哪些方面？</li>
+        <li>幻觉在聊天框里和在行动循环里的代价有什么不同？三条防护建议是？</li>
+        <li>选 Agent 产品的八问清单里，你觉得自己最容易忽略哪一问？为什么第⑧问要"用已知答案的小任务考核"？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览（一张工具表带走）：</strong>Agent=会自己转循环的大模型：感知→规划→行动→观察→再循环，与聊天机器人的区别是"接了任务自己拆步骤、调工具、看结果、再决定"（Anthropic：workflows 按预定义路径，agents 由 LLM 动态决定流程）；工具调用四步接力=给模型工具菜单→模型输出结构化调用请求（只下单不动手）→外部程序执行→结果回喂，所以安全边界在外部程序的权限设计而不在模型；ReAct（Yao et al., 2022）=思考与行动交替，选产品优先选过程透明的；五种编排模式从简到繁=链式/分流/并行/评估-改进（流程图你画）→主管-下属（主管临场拆）→自主 Agent（模型自己走），官方忠告"find the simplest solution possible"——能用简单工作流不要上 Agent；多 Agent 收益（分工并行互查）要扣协调开销（转述损耗+token 成本+仲裁），子任务耦合高时单 Agent 更划算；错误累积=乘法效应（95% 单步正确率，50 步全程正确不足 8%），对策=切短任务、检查点、可回滚、失败报警；评测基准（WebArena/SWE-bench）看三条口径：测试环境≠真实世界、分数会过时、单步≠全链路；操作分级红黄绿=只读可逆全自动、对外可见先审后发（AI 内容依规标识）、涉钱涉权涉删除禁止自动执行；自主性是滑块不是开关，把它当聪明但没经验的实习生：窄任务起步、配好刹车、看过程不只看结果。
+  </div>
+
+  <nav class="pager">
+    <a href="../12-integration/"><span class="dir">← 第12章</span>API 与集成：软件世界的正式接口</a>
+    <a href="../14-memory/"><span class="dir">第14章 →</span>记忆与知识库：让 AI 用你的资料干活</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>AI自动化实践 · 第13章 · 依据 Anthropic《Building effective agents》与 Tool use 官方文档、OpenAI Function calling 官方指南、ReAct（Yao et al., 2022）、Toolformer（Schick et al., 2023）、WebArena（Zhou et al., 2023）、SWE-bench（Jimenez et al., 2023）、LangChain 与 AutoGPT 官方文档及《人工智能生成合成内容标识办法》整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供技术教育参考，不构成法律或投资建议 · Agent 能力描述具有时效性，以官方文档为准 · 关键操作请保留人工确认 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #0e7490;border-radius:12px;background:#f0fdfa;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#155e75;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/ai/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#0e7490;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#0e7490;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#f0fdfa;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正被重复劳动折磨，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#155e75;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #0e7490;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#f0fdfa;}
+.sr-item .sr-c{display:block;font-size:12px;color:#0e7490;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 场景 / 工具，如：浏览器、工作流、Agent、RAG…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/ai\/.*/,'/ai/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.AI_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#0e7490;border:1.5px solid #0e7490;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#f0fdfa;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
