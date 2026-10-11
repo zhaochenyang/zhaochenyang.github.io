@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 审题：圈画关键词，不跑题不偏题 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第11章 · 第三部分 · 写作流程</div>
+  <h1>🎯 审题：圈画关键词，不跑题不偏题</h1>
+  <p>老师评语里那句「做阅读真的怎么圈题」的正面回答——三步圈画法、跑题三大成因、30 字题意锁定句，把审题从「看两遍」升级成可检查的动作</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../10-structure/">← 第10章：结构</a>
+    <a href="../12-draft/">第12章：初稿 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">审题是什么</a>
+    <a class="anchor" href="#s2">三步圈画法</a>
+    <a class="anchor" href="#s3">跑题三大成因</a>
+    <a class="anchor" href="#s4">三类题型</a>
+    <a class="anchor" href="#s5">跑题诊断</a>
+    <a class="anchor" href="#s6">练习任务</a>
+    <a class="anchor" href="#s7">自查与谣言</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>考试题型、字数与评分口径以<strong>当年各省教育考试院与试卷公布为准</strong>；阅卷通行做法为内容与表达两维度、分等赋分，具体细则各省不公开，本站不传播网传「评分细则」。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清审题在写作认知里的位置：题目是「任务环境」的一部分，审题就是把试卷上的题翻译成自己的写作任务书（Hayes &amp; Flower 模型的任务表征）；②掌握三步圈画法：圈题眼、圈限定、圈要求，外加一句 30 字内的题意锁定句；③认得跑题的三大成因——漏题眼、换概念、无视限定词，并各配一个预防动作；④分清命题、半命题、材料作文三类题目各自的审题注意点；⑤会用「跑题诊断」检查自己和他人的开头段：判断哪个限定词丢了；⑥学会「改回题」的最小成本修法：只动开头结尾两段，保住正文。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章开启第三部分「写作流程」：从这一章起，我们按拿到题目之后的真实工序走——审题（本章）→提纲（第10章已备）→初稿（第12章）→修改（第13章）→时间管理（第14章）。老师评语里问「做阅读真的怎么圈题、怎么留时间」，本章回答「怎么圈」，第14章回答「怎么留时间」。如果你是第一次读，按顺序读完前五节再做练习；如果你的老毛病是「作文发下来才知道偏题了」，直接看第三节跑题三大成因和第五节诊断示范。学段提示：三步圈画法从小学高年级就可以练（先练圈题眼＋读要求两步），限定词分析与三类题型（第四节）以初中为主，小学高年级可作了解。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、审题是什么：把试卷上的题翻译成自己的任务书</h2>
+    <p class="chapter-sub">跑题不是态度问题，是工序缺失——「看了题」不等于「审了题」</p>
+
+    <article class="view">
+      <h3>题目是「任务环境」：审题在认知模型里的位置</h3>
+      <p class="ctx">第10章介绍过 Hayes 与 Flower（1980）的写作认知模型：计划、转译、复查三环节循环。这个模型里还有一个常被忽略的角色——<strong>任务环境（task environment）</strong>：写作题目、写作目的、读者对象这些「外部的题设条件」，与作者脑子里的素材、目标一起构成计划环节的输入。模型的关键洞见是：<strong>写作从「表征任务」开始，而不是从「读题」开始。</strong>读题只是把字看进眼睛；表征任务是把这些字加工成一份内部任务书——这篇要写什么、写给谁看、重心在哪、哪些东西不能碰。跑题的本质，就是任务表征这一步被跳过了：学生读到「难忘的一件事」五个字，脑子里浮现出一件难忘的事，然后直接开写——中间那份「任务书」从未被写出来，题目里的每个词也没有逐一被兑现。</p>
+      <p class="ctx">这正是老师评语的深意。评语里那句「我之后是怎么一点点改（比如做阅读真的怎么圈题、怎么留时间）」，把「圈题」写成了一个<strong>有动作、有痕迹、可检查</strong>的工序——圈题不是「认真看题」的同义反复，而是笔尖真的在题目上画圈。本课把它标准化为三步圈画法（第二节），并在第14章给它排进考场时间预算。国外教学证据同样把审题归入「预写活动（prewriting）」：Carnegie 基金会《Writing Next》报告综合上百项实验研究，将 prewriting 列为青少年写作教学有效十一要素之一——圈画题目、写锁定句，就是 prewriting 在中国考场上的最小落地形态。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes, J. R., &amp; Flower, L. S. (1980). "A Cognitive Process Theory of Writing." <em>College Composition and Communication</em>, 31(2), 146–161（JSTOR 反爬，卷期页码文字引用；<a href="https://wac.colostate.edu/">WAC Clearinghouse（英文）</a>收录研究史） · Graham, S., &amp; Perin, D. (2007). <em>Writing Next</em>（<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Carnegie 报告全文 PDF（英文）</a>）——prewriting 要素 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>跑题的代价：为什么它是所有失误里最贵的</h3>
+      <p class="ctx">写作失误可以粗分两类：<strong>局部失误</strong>（一个错别字、一句病句、一段详略失衡）与<strong>全局失误</strong>（跑题、偏题）。局部失误的代价按处计算，全局失误的代价按篇计算——阅卷通行做法是按内容与表达两个维度分等赋分（具体细则各省不公开，以当年考试院口径为准），一篇文笔不错但重心偏出题目要求的作文，内容维度会被压到低一档，此前所有的描写功夫跟着贬值。这就是为什么第9章教你把环境写出感情、第10章教你把主场景分到六成篇幅之后，第三部分的第一章却先讲审题：<strong>技术越好，方向错误的损失越大。</strong>一辆跑得越快的车，偏航后离目的地越远。</p>
+      <p class="ctx">还要区分两个近亲：<strong>跑题</strong>（写的不是题目要的内容——题目要写「那一刻」，你写了一整天）与<strong>偏题</strong>（写的是题目范围内的事，但重心偏了——题目重心在「我懂得了」，你把八成笔墨给了「爸爸多辛苦」）。跑题通常在开头就发生，偏题往往写到一半才滑过去；跑题靠圈画法在动笔前拦住，偏题靠写作中段的「回头看题」动作拦住（第三节给出具体操作）。两者的共同解药是同一张纸：<strong>把题目里的关键词抄到草稿角，写作全程让它待在视线里。</strong>课标对写作的要求是「切合题意」摆在内容与表达的第一序列（第四学段写作目标，以官方文件为准），审题不是应试小技巧，是课内正式能力。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：《义务教育语文课程标准（2022年版）》写作学段目标（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://www.neea.edu.cn/">中国教育考试网</a>——考试与评分口径以当年官方公布为准 · <a href="https://eric.ed.gov/?id=ED517367">写作教学研究综述（ERIC ED517367，英文）</a>——任务表征与写作质量的关系</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、三步圈画法：圈题眼、圈限定、圈要求</h2>
+    <p class="chapter-sub">一支笔在题目上走三遍，每遍只找一类东西——三分钟后题目变成任务书</p>
+
+    <article class="view">
+      <h3>第一步：圈题眼——这个题目到底要我写「什么」</h3>
+      <p class="ctx"><strong>题眼是题目里决定内容重心的那个词或短语</strong>，圈出它并回答一个问题：「全文的笔墨应该主要花在哪儿？」题眼通常藏在三个位置：<strong>中心词</strong>（《一堂有趣的课》的「课」——必须写课堂，写课间活动就是跑题）；<strong>情感与判断词</strong>（《那一刻，我长大了》的「长大了」——笔墨重心不是那件事，是「我」内心发生的判断变化）；<strong>动作与过程词</strong>（《我学会了骑自行车》的「学会」——重心在从不会到会的过程，会骑之后的快乐只是收尾）。一个题目可以有多个题眼（《那一刻，我懂得了爸爸》至少两个：「那一刻」管时间焦距，「懂得了爸爸」管内容重心），<strong>全部圈出，一个都不能漏</strong>——漏掉的那个，就是将来跑题的缺口。</p>
+      <p class="ctx">找题眼有个快速检验法：<strong>把这个词从题目里删掉，题目还成立吗？</strong>《一堂有趣的课》删掉「有趣」变成《一堂课》——题目明显变了味，说明「有趣」是题眼，全文必须让读者感到趣；《那一刻，我长大了》删掉「那一刻」变成《我长大了》——时间焦距没了，可以从三岁写到现在，但原题不行，必须聚焦在一个瞬间。凡是删掉后题目变味的词，都是题眼。这个检验法的原理是第9章「每处景都要干活」的同款逻辑反过来用：题目里没有白给的词，每个词都在给你的作文派活。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》“写作要有真情实感，力求表达自己对自然、社会、人生的感受、体验和思考”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材习作题目的编排（深链反爬，以官网检索为准） · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作任务框架中的「题旨」分析</div>
+    </article>
+
+    <article class="view">
+      <h3>第二步：圈限定——每个修饰词都是一道写作要求</h3>
+      <p class="ctx">题眼之外，题目里的修饰成分叫<strong>限定</strong>：它们不决定写什么，决定<strong>怎么写、写到什么范围</strong>。限定分五类，逐个排查：<strong>人称限定</strong>（「我」「我们」——必须第一人称在场，全程写别人就是跑题）；<strong>时间限定</strong>（「那一刻」「童年」「这个周末」——那一刻要求瞬间焦距，童年允许跨度但要有一条线）；<strong>地点与场景限定</strong>（「课间」「放学路上」「在市场里」——事件必须发生在指定场景）；<strong>数量限定</strong>（「一件事」「一堂课」——写两件就超纲，选材时就要忍痛二选一）；<strong>副词限定</strong>——这是最容易漏、也最能拉开差距的一类：<strong>「终于」</strong>要求前文有等待或反复尝试的铺垫（没有波折的「终于」不成立）；<strong>「也」</strong>（《我也能行》《花开不只在那一朵》）要求先写「别人行」再写「我行」，对照结构是暗含的；<strong>「又」「再」</strong>要求第二次与第一次形成呼应；<strong>「更」</strong>要求写出比较级；<strong>「渐渐」</strong>要求变化是过程性的，一个瞬间完成的变化配不上这个词。</p>
+      <p class="ctx">圈限定的标准动作：把每个限定词圈出来，在旁边用铅笔写两个字——<strong>它要求我做什么</strong>（「终于→要铺垫波折」「也→先写别人」「一件事→只选一件」）。这个动作把隐性要求变成了显性清单，写作时每写完一个内容块，回头对一遍清单：这个块兑现了哪几个圈？没有兑现任何圈的块，要么删，要么改。第10章考场五分钟提纲的第一分钟「圈题」，指的就是题眼加限定的完整圈画——两分钟能圈完，靠的是平时练习把动作练熟。</p>
+      <div class="fig"><img src="../assets/img-11-1.png" alt="空白试卷上一支深红色钢笔正在关键词周围画圈，纸面留白干净，朱红钢笔笔记本风扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——「题目的每一个字都有分量」的题意辨析传统 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用） · 《义务教育语文课程标准（2022年版）》（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——限定词分析对接“合理安排内容”的要求</div>
+    </article>
+
+    <article class="view">
+      <h3>第三步：圈要求＋写锁定句——把任务书钉在草稿角</h3>
+      <p class="ctx">第三步处理题目下方的小字：<strong>要求区</strong>。逐项圈画：字数要求（不少于多少字——第10章详略分配表的总预算从这里来）；文体要求（记叙为主还是可以议论，「诗歌除外」类禁令）；特殊规定（不得出现真实人名校名、是否允许虚构、卷面要求）。要求区的每一项都是硬约束，违反任何一项都可能直接影响评分档次（以当年试卷与考试院口径为准），而它们的共同特点是：<strong>与文笔无关，纯粹靠不遗漏</strong>——最冤的失分都发生在这里。圈完之后，把「字数下限＋文体＋禁令」三项抄到草稿纸角上，与题眼限定圈画结果放在一起，这就是你的现场任务书。</p>
+      <blockquote class="q">
+        <strong>三步圈画法（方法拆解框，考场版 3 分钟）：</strong><br>
+        ① <strong>圈题眼</strong>：圈出决定内容重心的词（中心词/情感判断词/动作过程词，可有多个）→ 用「删词检验法」验一遍：删掉它题目变味吗？变味=题眼。<br>
+        ② <strong>圈限定</strong>：按人称/时间/地点/数量/副词五类排查，每个圈旁写两个字——它要求我做什么。<br>
+        ③ <strong>圈要求</strong>：字数、文体、禁令逐项圈出，抄到草稿角。<br>
+        ④ <strong>写锁定句</strong>：在草稿角写一句 30 字内的话——「这道题真正要我写的是______」。<br>
+        <span class="qsrc">——本课方法框；第④步对接《Writing Next》的 prewriting 任务表征，锁定句同时是第10章提纲「中心句」的审题版前身</span>
+      </blockquote>
+      <p class="ctx">锁定句值得单独强调：它是三步圈画的<strong>结晶动作</strong>。圈画解决「不漏」，锁定句解决「不散」——把一圈符号压缩成一句人话，写作的每一段都要能向这句话交代。锁定句合格的标准有三条：30 字以内；包含题眼的意思；包含最重要的那个限定的意思。例如《那一刻，我终于读懂了妈妈》的锁定句：「写一个瞬间：我在某件事里突然理解了妈妈一直以来的做法。」——「瞬间」接住了「那一刻」，「突然理解」接住了「终于」与「读懂」，「妈妈的做法」接住了对象。第10章提纲的中心句以它为底稿，往「我的判断或变化」方向再推一步即可。学段提示：小学高年级先练①③两步（圈题眼、读要求），锁定句从初中开始强制使用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin (2007)《Writing Next》全文 PDF（英文）</a>——prewriting 与目标设定要素 · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012) 写作教学元分析（ERIC，英文）</a>——「设定具体目标」为显著有效策略（锁定句即目标设定的语言化） · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、跑题三大成因：漏题眼、换概念、无视限定词</h2>
+    <p class="chapter-sub">三种病各有各的病灶，也各有各的预防动作</p>
+
+    <article class="view">
+      <h3>成因一：漏题眼——写成了「更大的题」</h3>
+      <p class="ctx">最典型的跑题不是写了一件无关的事，而是<strong>把一道具体的题写成了它所属的大类</strong>：《一堂有趣的课》写成《我的学校生活》，《课间十分钟》写成《我和同桌》——素材可能真的动人，但题目给的那个「焦距」丢了。漏题眼的心理机制是「熟悉素材的引力」：学生脑子里存着几件写熟的事（运动会、考试、和妈妈吵架），拿到任何题目都下意识往这几件事上套，题目只是被当成了触发记忆的开关，而不是需要遵守的合同。这也是第1章「素材银行」要配「多角度标签」的原因：同一件素材，贴上不同的题眼标签（这件事里的「趣」在哪／「懂」在哪／「那一刻」是哪个瞬间），才能在考场上按题取用，而不是按记忆惯性取用。</p>
+      <p class="ctx"><strong>预防动作：动笔前用锁定句压素材。</strong>把想写的那件事对着锁定句问一遍：「这件事的哪个部分正好是锁定句说的内容？」答不出具体部分的，换素材或换切入角度——同一件事，把镜头对准不同的部分，就能对上不同的题眼（写《课间十分钟》就把镜头锁在课间，写《我和同桌》才允许镜头跟着人走）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">写作过程与策略教学研究（ERIC EJ1125149，英文）</a>——新手写作者受「已知内容驱动」而非「任务驱动」 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——选材与题目匹配的讲评课案例 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>成因二：换概念——写到一半，题眼被近亲词顶替</h3>
+      <p class="ctx">第二种跑题发生在写作中段：开头还对着题眼，写着写着，题眼被一个<strong>近义词悄悄顶替</strong>——《我学会了勇敢》写到第三段变成了「我学会了冷静」，《那一刻我懂得了坚持》写着写着重心滑向「我懂得了方法的重要性」。勇敢与冷静、坚持与方法，意思相近但不等价：冷静是情绪控制，勇敢是明知怕仍去做；方法是聪明地做，坚持是不放弃地做。换概念的隐蔽性在于<strong>每一段单独看都没毛病</strong>，通篇读完才发现题目承诺的那个词再没出现过。它的成因通常是素材反客为主：学生写到兴头上，素材里最精彩的部分（比如「我想了个巧办法」）自动抢走了重心。</p>
+      <p class="ctx"><strong>预防动作：段落回检＋点题句。</strong>其一，每写完一个自然段，抬头看一眼草稿角的锁定句，问「这一段在为锁定句干活吗」——两秒钟的动作，第13章修改课将把它升级为正式的复查清单。其二，在全文的三分之一处和结尾前，各安排一次<strong>点题</strong>：让题眼词（或它的自然变体）在句子里真实出现一次（「手心的汗提醒我，这就是老师说的那种勇敢」）。点题不是喊口号式的重复题目，而是用题眼词给当前内容「盖个章」——盖章的句子必须同时是干活的句子（第4章公式：情绪词要带身体反应），光秃秃地写「啊，我真勇敢」不算点题，算凑数。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——「unity」（统一性）原则：一篇文章只兑现一个承诺 · Hayes &amp; Flower (1980)（文字引用）——复查环节监控写作是否偏离任务表征 · 管建刚《我的作文教学系列》，福建教育出版社（文字引用）——讲评课上的「题眼回检」训练</div>
+    </article>
+
+    <article class="view">
+      <h3>成因三：无视限定词——「终于」「也」「那一刻」被当成了装饰</h3>
+      <p class="ctx">第三种跑题最可惜：题眼抓对了，大方向没错，但<strong>副词类限定的隐含要求没有兑现</strong>，文章与题目之间差了一口气。「终于举起了手」——全文没有铺垫「举不起手」的挣扎，「终于」悬空；「我也能行」——通篇只写自己，那个「也」字对照的「别人行」从头到尾没出场；「那一刻」——从早上写到晚上，没有一个瞬间被慢镜头放大（第5章的技术在这里接受检验：写「那一刻」的文章如果没有一段秒级放慢的描写，限定词就等于没兑现）。限定词是题目里最安静的考官：它不改变你写什么事，但严格要求你<strong>按什么形状写</strong>。</p>
+      <p class="ctx"><strong>预防动作：把限定词翻译成结构要求，写进提纲。</strong>第二节圈限定时在旁边写的那两个字，在这里升级为提纲里的结构条目：「终于→波折1、波折2进提纲（一波三折结构，第10章）」「也→块1先写别人的行，块3再写我的行（对照结构）」「那一刻→块2是主场景，慢镜头，占六成篇幅（详略分配表）」。限定词一旦被翻译成结构，它就从一个「记得住就行」的软要求变成了提纲上「看得见的格子」——第10章说提纲是骨架，限定词就是骨架上预先打好的孔位，段落必须按孔位安装。这也是三步圈画法与提纲工序的接缝：审题的输出（圈画与锁定句）就是提纲的输入（中心句与结构条目），两道工序共用草稿纸的一角。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》（文字引用）——虚词与副词的「分量」辨析是书中专章话题 · 《义务教育语文课程标准（2022年版）》第四学段“合理安排内容的先后和详略”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——限定词的结构化兑现 · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材「那一刻」类习作任务编排（以官网检索为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、三类题型：命题、半命题、材料作文</h2>
+    <p class="chapter-sub">圈画法通用，但每类题多一道专属工序</p>
+
+    <article class="view">
+      <h3>命题作文：警惕比喻义与引申义</h3>
+      <p class="ctx">题目完整的命题作文，圈画法三步走完即可，专属注意点是<strong>标题的字面义与比喻义之辨</strong>：《在路上》《转角处有光》《那扇门》一类题目，字面是一条路、一个转角、一扇门，实际多半指向成长过程、转机、心结——判断方法是问「按字面义写，能写出中心句要求的判断或变化吗」：能（真的有一次转角的经历且写出了领悟），字面义合法；不能，就要往比喻义走。稳妥的做法是<strong>字面与比喻双线</strong>：实写那条路，虚写那段成长，结尾让两层意思碰头（第15章结尾技法会展开「碰头」的写法）。小学阶段的命题作文多为字面义（《我的植物朋友》），比喻义辨析从初中开始练。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》学段目标（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——题目解读的教学内容分析 · <a href="https://www.jseea.cn/">江苏省教育考试院</a>——历年作文题以官方发布为准</div>
+    </article>
+
+    <article class="view">
+      <h3>半命题作文：你填进去的词，就是你亲手选的题眼</h3>
+      <p class="ctx">《______的滋味》《那次，我______》一类半命题，多出一道<strong>补题工序</strong>，而补题本质上是提前审题：填进去的词直接决定题眼与素材范围。补题三原则：<strong>具体优于抽象</strong>（《失败的滋味》不如《炒糊一盘蛋炒饭的滋味》——越具体，第4章的细节储备越容易调出来）；<strong>小口优于大口</strong>（填「成长」要给八百字装一生，填「学会系鞋带」只需装一个早晨）；<strong>有素材优于有文采</strong>（填一个让你眼前立刻浮现画面的词，而不是一个看起来漂亮的词——补题的检验标准与素材银行互通：填完这个词，你能立刻说出三个具体细节吗？不能，就换一个）。补题完成后，把补全的题目当成命题作文重新圈画一遍——你填的词往往正是最大的限定（填「终于」就得写波折，填「偷偷」就得写隐瞒与曝光）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——半命题补题的课堂训练序列 · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012)（英文）</a>——目标具体化（specific goals）显著提升写作质量：补题「具体优于抽象」即此结论的考场应用 · <a href="https://www.sceea.cn/">四川省教育考试院</a>——题型以当年官方公布为准</div>
+    </article>
+
+    <article class="view">
+      <h3>材料作文：区分「材料」与「指令」，据材料不抄材料</h3>
+      <p class="ctx">初中阶段出现的材料作文（给一段文字、一则故事或一组现象，要求据此写作），审题对象从一行标题变成<strong>两块内容：材料区与指令区</strong>，各自有不同的读法。材料区的圈画对象：反复出现的词、总结句、转折句（「但是」之后的内容往往是材料的重心）、材料中人物的选择与结果——圈完后用锁定句概括：「这则材料真正在讨论的是______」。指令区的圈画对象：「根据材料」「结合材料」与「自选角度」的差别（以试卷原文为准：前者要求文章内容与材料保持可辨认的关联，后者给出更大的立意自由度）、文体与字数要求。材料作文最常见的两个翻车点：<strong>其一，把材料抄进正文</strong>——材料是引子不是素材，大段复述材料等于用别人的话占自己的字数；正确做法是首段一两句话引材料入题，随后立刻切进自己的事例与描写。<strong>其二，只取材料的一个枝节</strong>——材料讲「坚持与方法」，只写坚持不写方法，属于偏题（第一节说过的「重心偏出」）；锁定句必须覆盖材料的主干而不是枝节。</p>
+      <p class="ctx">阅读与写作的审题在这里合流：老师评语说「做阅读真的怎么圈题」——阅读题的圈画对象（题干里的「结合全文」「联系上下文」「两点」）与材料作文的指令区圈法是同一套动作：<strong>找出每个要求兑现的词，逐条打勾。</strong>Fitzgerald 与 Shanahan（2000）的研究综述指出，阅读与写作共享同一批底层加工过程（对文本结构、作者意图、任务要求的表征），圈画训练在两边同时生效——练审题即练阅读，这不是比喻，是认知上的同一条通路。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Fitzgerald, J., &amp; Shanahan, T. (2000). "Reading and Writing Relations and Their Development." <em>Educational Psychologist</em>, 35(1)（文字引用；另见 <a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan 教授博客（英文）</a>读写结合专题） · 《义务教育语文课程标准（2022年版）》（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://www.neea.edu.cn/">中国教育考试网</a>——材料作文题干表述以当年试卷为准</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、「病句→改后」四栏对照：三个跑题病例的诊断</h2>
+    <p class="chapter-sub">用真实病灶练诊断眼——先学会看出别人的偏，才拦得住自己的滑</p>
+
+    <article class="view">
+      <h3>病例一：漏题眼——《那一刻，我懂得了爸爸》写成了《爸爸真辛苦》</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原文（开头段骨架）</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>开头两段用 250 字写爸爸每天早起进货、深夜盘账、冬天手上裂口子，第三段才出现「有一天晚上」，全文重心始终是爸爸的辛劳，「那一刻」与「懂得了」没有落点。</td><td>题眼漏了两个：「那一刻」要求瞬间焦距（文章却是一条时间线），「懂得了」要求写出「我」的认知变化（文章只有爸爸的状态，没有「我」的内心事件）。属于「写成了更大的题」＋限定词悬空的复合病例。</td><td>辛劳素材压缩为 60 字背景（「爸爸的账本我见过无数次，牛皮纸封面磨得起了毛」）；开头直接进那一刻的现场：深夜我起来喝水，看见爸爸在灯下用胶带一圈圈缠开裂的手，听见他对电话那头说「不碍事，明天照常进货」——三件套＋声音杠杆；随后用犹豫链写「懂得」：以为他不在乎→想起他从不喊疼→忽然明白不喊疼才是最疼。</td><td>诊断工具：锁定句「写一个瞬间：我在某件事里突然理解了爸爸一直以来的做法」——原文没有瞬间、没有理解事件，两问全空。改法不是重写素材，是把镜头从「一段时间」推到「一个瞬间」，把视角从「爸爸怎样」转成「我怎样懂了」。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：管建刚《我的作文教学系列》，福建教育出版社（文字引用）——「镜头推进」讲评法 · 《义务教育语文课程标准（2022年版）》“力求表达自己对自然、社会、人生的感受、体验和思考”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——「懂得」类题眼要求认知变化落纸</div>
+    </article>
+
+    <article class="view">
+      <h3>病例二：换概念——《我学会了勇敢》中途变成《我学会了冷静》</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原文（段落走向）</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>开头写「我一直胆小，不敢在课上发言」；中段写演讲比赛前「我深呼吸三次，把语速放慢，在心里默念开头两句」；结尾「我学会了冷静地面对挑战」。全文「勇敢」再没出现。</td><td>中段素材精彩（深呼吸、放慢语速都是合格的身体细节），但它们是「冷静」的证据，不是「勇敢」的证据——勇敢的定义性成分是「怕，但仍然做」，原文只写了「怕之后如何不慌」，漏掉了「怕着也上了」的那一跃。题眼被近亲词顶替。</td><td>中段保留冷静细节，但在其前面加「一跃」段落：叫到名字时腿是软的，脑子里有个声音说「举手示意弃权也来得及」——手却已经撑住了桌沿站起来（犹豫链＋动作出卖内心）；结尾改锁定句盖章：「声音还在抖，但我把第一句说完了。原来勇敢不是不害怕，是腿软着也站起来。」</td><td>诊断工具：删词检验——把「勇敢」换成「冷静」，原文毫发无损，说明写的根本不是勇敢。改法只加一段一尾，正文素材全保留：换概念病例的修复成本远低于跑题，前提是发现得早（段落回检的价值）。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes &amp; Flower (1980)（文字引用）——复查环节的任务偏离监控 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——unity 原则：全文只兑现一个承诺 · <a href="https://compositionforum.com/issue/50/teach-writing-as-process.php">Teaching Writing as Process（Composition Forum，英文）</a>——过程教学中「发现真正主题」的修订观</div>
+    </article>
+
+    <article class="view">
+      <h3>病例三：无视限定词——《我也能行》里没有「别人」</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原文（段落走向）</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>全文写「我」学滑板：摔了三次、膝盖擦破、终于滑成一条直线，结尾「我也能行！」。通篇没有出现任何「别人」。 </td><td>「也」字悬空：它是全文最贵的一个字，暗含对照结构——先有「别人行」，才有「我也行」。原文素材本身合格（三次摔倒正是波折结构），但少了参照系，「也」没有对象，题目承诺的形状没有被兑现。</td><td>开头加 80 字对照块：小区里那个总在天台练滑板的男孩，转弯像换频道一样利落，我站在楼下看了两个夏天，一直觉得「那是别人的天赋」；中段在我第三次摔倒处加一笔呼应：男孩停下来，把护腕解下来递给我，说了句「我第一年摔得比你惨」；结尾盖章：「原来『能行』不是天赋的专利——他能，我也能。」</td><td>诊断工具：圈限定时的旁注「也→先写别人」直接指出了缺口。改法是插块不是重写：限定词翻译成结构条目后，缺什么块一目了然——这就是第三节「限定词进提纲」的实操价值。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》（文字引用）——虚词分量辨析 · 《义务教育语文课程标准（2022年版）》（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材「我也能」类习作编排（以官网检索为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、练习任务：三个把圈画练成手的练习</h2>
+    <p class="chapter-sub">审题是动作技能：笔要真的动，圈要真的画，锁定句要真的写出来</p>
+
+    <article class="view">
+      <h3>练习任务一：「五题圈画」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①把下面五个题目抄在纸上（或在打印稿上直接做）：《一件难忘的事》／《那一刻，我心中开出一朵花》／《我终于战胜了它》／《市场里的早晨》／《一堂游戏课带给我的启示》；②每题走三步圈画：圈题眼（含删词检验）、圈限定（每个限定词旁写两个字的要求）、圈要求（想象字数 600、记叙文，把这两个条件也写在旁边）；③每题写一句 30 字内的锁定句；④五题做完，互相比较：哪个题目的限定词最多？《那一刻，我心中开出一朵花》的字面义和比喻义你各怎么判？<br><br>
+        <strong>检查表（三问）：</strong>每题至少圈出了两个题眼或一个题眼加两个限定吗？「终于」「那一刻」的要求旁注写了吗？五句锁定句都在 30 字以内、且含题眼意思吗？
+      </blockquote>
+      <p class="ctx">小学高年级简化版：只做《一件难忘的事》《市场里的早晨》两题，每题圈题眼＋写锁定句。参考答案自查：《一件难忘的事》限定「一件」（数量）＋题眼「难忘」（删掉变味）；《我终于战胜了它》的「终于」要求波折铺垫、「它」要求全文指代清晰；《一堂游戏课带给我的启示》题眼双核——「游戏课」管事件、「启示」管落点，只写好玩不写启示即偏题。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》报告（英文）</a>——prewriting 技能需经明确教授与反复练习 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——审题专项练习课的课例</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「跑题诊断室」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①三个诊断样本（示例）——题目《那一刻，我长大了》，样本A开头：「我从小到大经历过很多事，其中有一件让我印象最深……」；题目《我也能行》，样本B开头：「去年夏天我报名了游泳班，第一节课我就呛了水……」；题目《课间十分钟》，样本C开头：「叮铃铃，下课铃一响，我和同桌冲出了教室……」然后写到了放学后的操场；②对每个样本判断：跑题了吗？属于三大成因里的哪一种？哪个限定词丢了？③给每个问题样本开一张「最小改方」：只说改哪里，不重写；④对照第五节三个病例，检查你的诊断用词是否一致（漏题眼/换概念/无视限定词）。<br><br>
+        <strong>检查表（三问）：</strong>三个样本各判出了成因类型吗（A：「那一刻」焦距丢失；B：「也」无对照对象；C：地点限定失守）？每张改方都控制在「加一块/压一段/改一句」的最小手术量级吗？你能说出诊断的第一步永远是什么吗（先写锁定句，再拿样本对锁定句）？
+      </blockquote>
+      <p class="ctx">这个练习练的是<strong>诊断眼</strong>：看出别人的偏，靠的正是自己写时会用到的同一套检查。家长可以参与——拿孩子旧作文只问「锁定句是什么、这一段为锁定句干活了吗」，不评判文笔，只核对合同，冲突最小（第18章点评三步法将把这套问法编入正式流程）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012) 元分析（英文）</a>——「策略教学＋自我监控」组合的显著效应：诊断他人样本是自我监控的脚手架 · 管建刚《我的作文教学革命》，福建教育出版社（文字引用）——讲评课「先诊断后修改」的病例教学法</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「改回题：只动开头结尾」（约12分钟）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①从写作档案袋里翻出一篇被老师批过「跑题」「偏题」「中心不明确」的旧作文（没有就用练习二里的样本B自己扩写一段代替）；②先做三步圈画，写出这道题的锁定句；③对照锁定句诊断：正文素材能救吗？（大多数偏题作文的素材是能救的——第五节病例二证明了这一点）；④执行最小手术：重写开头段（直接进锁定句指向的现场，删掉「我经历过很多事」式引入）、重写结尾段（用题眼词盖章，写认知变化不喊口号）、在正文中段挑一处插入点题句（题眼词＋当前内容盖章，一句话即可）；⑤正文其余部分一个字不动；⑥把改前改后的开头段并排贴进档案袋。<br><br>
+        <strong>检查表（三问）：</strong>新开头三段内出现锁定句的核心意思了吗？结尾的盖章句里题眼词真实出现了吗？点题句是「干活的句子」吗（带身体反应或具体动作，而不是光秃秃喊题目）？
+      </blockquote>
+      <p class="ctx">这个练习的价值在<strong>成本感</strong>：跑题作文不是废稿，多数只需头尾两台小手术就能拉回题——知道修复便宜，考场上才发现偏题时才敢当场补救而不是心态崩掉（第12章初稿、第13章修改将系统展开补救工序）。同时它复习了第4章公式（点题句要带身体反应）与第15章预告的结尾原则（认知变化收束）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972) "Teach Writing as a Process Not Product"（英文）</a>——修改是发现与再聚焦，不是重写 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——revising 与 rewriting 的区分 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「修改自己的习作」是课内正式训练</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、自查清单与谣言粉碎</h2>
+    <p class="chapter-sub">15 个理解性问题＋一个把千万学生骗进跑题的谣言</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「审题就是把题目认真读两遍」</h3>
+      <p class="ctx"><strong>不成立——「读两遍」是输入动作，审题是加工动作，两者之间隔着一次必须动笔的转换。</strong>三层证据。<strong>第一层，机制证据：</strong>Hayes 与 Flower（1980）的模型里，题目属于任务环境，写作的起点是对任务的<strong>表征</strong>——把题设加工成内部任务书；「读」只完成了信息的物理进入，「表征」要求把每个词转写成对自己的要求。读了两遍仍能漏掉「终于」，恰恰因为阅读是整体性的，而题目里的限定词是零件性的——整体扫视天然看不住零件，必须逐词圈画。<strong>第二层，行为证据：</strong>老师评语原话是「做阅读<strong>真的怎么圈题</strong>」——「真的」二字针对的正是「自以为认真读了」与「笔尖真的画了圈」之间的落差；圈画留下物理痕迹，痕迹可以被检查，「认真读过」无法被检查——不可检查的工序等于没有工序，这是第10章「提纲是地图不是仪式」的同一条原则。<strong>第三层，疗效证据：</strong>《Writing Next》把 prewriting 列为有效要素、Graham 的元分析把「设定具体目标」列为高效应策略，两者的操作化形态都是「写下来的任务表征」（圈画痕迹＋锁定句），没有任何一项研究把「多读几遍题目」单列为有效干预。读两遍当然无害，但把它当审题的全部，等于用「看了两遍地图」冒充「规划了路线」。合理的内核同样保留：<strong>圈画不必仪式化</strong>——考场上圈画加锁定句的预算就是三分钟（第14章正式排入时间表），圈得密密麻麻反而挤占写作时间；三步走完、锁定句落笔，审题即告完成。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Hayes &amp; Flower (1980)（文字引用，卷期页码见第一节） · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin (2007)《Writing Next》全文 PDF（英文）</a> · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a> · <a href="https://www.neea.edu.cn/">中国教育考试网</a>——考试口径以官方公布为准</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 审题自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>Hayes &amp; Flower 模型里的「任务环境」指什么？为什么说写作从「表征任务」开始而不是从「读题」开始？</li>
+        <li>跑题和偏题的区别是什么？各自的拦截时机与拦截工具是什么？</li>
+        <li>「技术越好，方向错误的损失越大」——这句话在作文评分里怎么理解？</li>
+        <li>题眼通常藏在题目的哪三个位置？各举一例。</li>
+        <li>删词检验法怎么操作？它的原理与第9章哪条原则同源？</li>
+        <li>限定分哪五类？「终于」「也」「渐渐」各暗含什么结构要求？</li>
+        <li>圈限定时在旁边写的「两个字」是什么？举一个例子。</li>
+        <li>要求区要圈哪三项？为什么它们是最冤的失分点？</li>
+        <li>锁定句的三条合格标准是什么？给《那一刻，我终于读懂了妈妈》写一句。</li>
+        <li>跑题三大成因分别是什么？各自的预防动作是什么？</li>
+        <li>「熟悉素材的引力」是怎么回事？素材银行的多角度标签怎么对抗它？</li>
+        <li>点题句的合法标准是什么？为什么「啊，我真勇敢」不算点题？</li>
+        <li>半命题补题三原则是什么？补题的检验标准与素材银行怎么互通？</li>
+        <li>材料作文的材料区与指令区各圈什么？两个最常见的翻车点是什么？</li>
+        <li>「审题就是读两遍题目」的三层批驳证据是什么？这个谣言的合理内核又是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测与下一步</h2>
+    <p class="chapter-sub">流程的第一道工序完工：任务书写好了，接下来动笔</p>
+
+    <article class="view">
+      <h3>学完本章，你拿到了什么</h3>
+      <p class="ctx">自测方式沿用本课惯例：合上页面，口头回答第七节清单里至少十个问题；再随手拿一道旧作文题，限时三分钟走完三步圈画并写出锁定句——圈画痕迹齐全、锁定句 30 字内含题眼与限定，本章过关。你现在的完整工序是：拿到题目→三步圈画（本章）→锁定句升级为提纲中心句、限定词翻译为结构条目（第10章）→三种提纲法排块标星（第10章）→详略分配表定预算（第10章）→动笔。老师评语里的两个操作问题，「怎么圈题」已在本章解决，「怎么留时间」将在第14章解决——那之前还差两道工序：怎么写（初稿）和怎么改（修改）。</p>
+      <p class="ctx">下一章进入写作流程里最反直觉的一章：<strong>初稿：先写完，再写好。</strong>很多学生的初稿写不快，不是因为没素材、没提纲，而是因为在初稿阶段就启动了修改的裁判眼——写一句、删一句、嫌一句。第12章将用「写与改分家」的工序设计（自由写作的研究证据、初稿的合法粗糙度、以及为什么电脑前的学生比纸笔时代更容易犯这个病）把裁判请出初稿现场。你手里那张圈画过的题目和排好的提纲，就是初稿敢放开写的底气——方向已经锁死，笔就只管往前跑。</p>
+      <div class="fig"><img src="../assets/img-11-2.png" alt="放大镜悬在一张检查卡片上方，卡片上有朱红色对勾标记，暖色纸面，钢笔笔记本风扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——第12章「写与改分家」的研究背景 · <a href="https://peterelbow.com/">Peter Elbow 个人站（英文）</a>——《Writing Without Teachers》与自由写作方法原始文献 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——“教是为了不教”：自查自检是教学终点</div>
+    </article>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>审题=把试卷上的题翻译成自己的任务书：Hayes &amp; Flower（1980）模型中题目属「任务环境」，写作从表征任务开始而非从读题开始；跑题=任务表征被跳过。代价：局部失误按处计、全局失误按篇计——阅卷按内容与表达分等赋分（细则各省不公开，以当年考试院口径为准），技术越好方向错误的损失越大；跑题（写错内容）与偏题（重心滑出）要分开拦：前者动笔前圈画拦，后者写作中段回检拦。三步圈画法：①圈题眼——中心词/情感判断词/动作过程词，可多个，用「删词检验法」验证（删掉变味=题眼）；②圈限定——人称/时间/地点/数量/副词五类，「终于」要波折铺垫、「也」要对照结构、「那一刻」要瞬间慢镜头、「渐渐」要过程性变化，每个限定旁写两个字的要求；③圈要求——字数/文体/禁令抄到草稿角；④锁定句——30 字内「这道题真正要我写的是____」，含题眼与最重要限定，是第10章提纲中心句的前身。跑题三大成因与预防：漏题眼（熟悉素材的引力→用锁定句压素材，答不出「哪个部分正好是它」就换角度）；换概念（近亲词顶替题眼，勇敢写成冷静→段落回检＋三分之一处与结尾前各一次点题，点题句必须是干活的句子）；无视限定词（「终于」「也」悬空→把限定词翻译成结构条目写进提纲，与第10章工序共用草稿角）。三类题型：命题（辨字面义/比喻义，稳妥走双线）、半命题（补题三原则：具体优于抽象、小口优于大口、有素材优于有文采；补完当命题重新圈画）、材料作文（材料区圈反复词/总结句/转折句，指令区辨「根据材料」与「自选角度」；两大翻车点：抄材料进正文、只取枝节；阅读圈题与材料审题是同一套动作——Fitzgerald &amp; Shanahan 读写共享底层加工）。三组病例四栏对照：漏题眼（镜头从时间线推到瞬间）、换概念（加「一跃」段＋盖章尾，正文全保留）、无视限定（插对照块，最小手术）。三个练习：五题圈画→跑题诊断室→改回题（只动开头结尾＋一处点题，正文一字不动——跑题作文多数可救，修复成本低，考场上敢当场补救）。谣言已拆：「审题就是读两遍题目」——机制/行为/疗效三层证据批驳：读是输入、圈画是加工，不可检查的工序等于没有工序；但圈画不必仪式化，考场预算三分钟。下一章：<a href="../12-draft/">第12章·初稿：先写完，再写好</a>——把裁判请出初稿现场。
+  </div>
+
+  <nav class="pager">
+    <a href="../10-structure/"><span class="dir">← 第10章</span>结构：先列提纲，段落怎么排</a>
+    <a href="../12-draft/"><span class="dir">第12章 →</span>初稿：先写完，再写好</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第11章 · 依据教育部《义务教育语文课程标准（2022年版）》、统编语文教材习作编排、Hayes &amp; Flower (1980) 写作认知过程模型、Graham &amp; Perin (2007)《Writing Next》、Graham et al. (2012) 写作教学元分析、Fitzgerald &amp; Shanahan (2000) 读写关系研究、Murray (1972)、Zinsser《On Writing Well》、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · 考试与评分口径以当年各省教育考试院公布为准 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

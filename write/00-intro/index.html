@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导论 写作是可习得的技能——从一条老师评语说起 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 导论 · 课程说明</div>
+  <h1>✍️ 写作是可习得的技能——从一条老师评语说起</h1>
+  <p>差的从来不是天赋，而是没有人把"怎么写"拆开来教给你——这门课就干这一件事</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../01-mindset/">第1章：破除「没天赋」迷思 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">一条评语</a>
+    <a class="anchor" href="#s2">技能而非天赋</a>
+    <a class="anchor" href="#s3">四步方法论</a>
+    <a class="anchor" href="#s4">改给你看</a>
+    <a class="anchor" href="#s5">今天就练</a>
+    <a class="anchor" href="#s6">两条路线</a>
+    <a class="anchor" href="#s7">课程地图</a>
+    <a class="anchor" href="#s8">底线与谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①看懂一条真实老师评语里藏着的写作核心问题：「结果陈述」与「过程描写」的区别；②说清为什么写作是可分解、可练习的认知过程，而不是玄学天赋（Hayes &amp; Flower 模型、Murray 过程写作法）；③知道《义务教育语文课程标准（2022年版）》对习作的官方定位——写作是为了自我表达和与人交流；④掌握本课「输入→技术→流程→习惯」四步方法论与四部分二十章的课程地图；⑤学会本课每章的固定配置（练习任务、病句→改后、检查表）怎么用；⑥完成两个立刻上手的入门练习，建立自己的写作档案袋。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课程的「总纲」。学生第一次学习建议通读，然后直接做第五节的两个练习；家长建议先读完第六节「两条路线」，再去<a href="../18-parent/">第18章·家长辅导指南</a>。之后你可以随时回到第七节「课程地图」，按当下遇到的问题（没素材、写不细、跑题、来不及）跳转到对应章节。第八节「底线与谣言」请务必读完——它决定了你能不能躲开作文培训市场里最贵的几个坑。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、从一条真实的老师评语说起</h2>
+    <p class="chapter-sub">同一段经历，两种写法，差距到底在哪里——这是全课程要解决的核心问题</p>
+
+    <article class="view">
+      <h3>一条把问题说透的评语（真实场景还原）</h3>
+      <p class="ctx">这是一位语文老师写在学生作文本上的真实评语（经授权转述，人名略去）：</p>
+      <blockquote class="q">「没有写老师讲评的时候，具体说了什么？我听到哪一句话心里被点醒？我之后是怎么一点点改（比如做阅读真的怎么圈题、怎么留时间）？后面"渐渐地我能写完卷子，红叉少了"也是一笔带过，也只是对结果的陈述，不是过程描写。比如：你写的概括——考试的时候我很慌；应该写得细节——墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片，我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。」<span class="qsrc">——某中学语文教师作文评语（学生授权转述，2026）</span></blockquote>
+      <p class="ctx">请把这条评语读两遍。第一遍读学生的原句：<strong>「考试的时候我很慌。」</strong>第二遍读老师给出的改法：<strong>「墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片，我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。」</strong>两句写的是同一件事、同一种情绪，但阅读体验天差地别。第一句你「知道」了作者慌；第二句你「看见」了那个考场——听见挂钟的滴答声，看见空着的阅读题，感觉到指节的酸痛和笔杆打滑的那两下。这就是本课程的起点：<strong>「我知道你慌」和「我看见你慌」之间，隔着的全部距离，就是这门课要教的内容。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（显示而非告知）叙事技法条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》条目（英文）</a>——其训条"Use definite, specific, concrete language"（用明确、具体、有形的语言）正是这条评语的理论版</div>
+    </article>
+
+    <article class="view">
+      <h3>逐词精读：老师的改句里到底用了哪几招</h3>
+      <p class="ctx">把老师的改句拆开，每一个短语都是一件写作工具：<strong>「墙上的挂钟滴答响」</strong>——听觉锚点，环境音放大情绪，教室里越安静，滴答声越响，慌就被「听」见了；<strong>「离交卷只剩五分钟」</strong>——时间压力，用一个具体数字（五分钟）代替「快下课了」，紧迫感立刻可量化；<strong>「第三道阅读题还空着一大片」</strong>——视觉细节，「第三道」「一大片」都是具体的，读者能看到那张卷子的样子；<strong>「我的指节攥得发白」</strong>——身体反应，不说「我很紧张」，让攥笔的手替「我」说话；<strong>「笔杆滑了两次」</strong>——动作序列加触觉，「两次」是数出来的细节，比「笔都拿不稳」真实十倍；<strong>「视线反复在题干和原文之间跳」</strong>——动作链，「反复」「跳」两个词把卡壳的状态写成了可见的运动；<strong>「脑子却像卡住了」</strong>——收束，前面积累了六个具体细节之后，这一句概括才被允许出现，而且因为前面的铺垫，读者完全相信它。</p>
+      <div class="fig"><img src="../assets/img-00-1.png" alt="摊开的作文本与一支红笔，页边写满红色批注笔迹的插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">数一数：这短短两行里，用到了<strong>听觉、视觉、触觉三种感官，一个具体数字，两处身体反应，一条完整的动作链</strong>。而学生的原句「考试的时候我很慌」里，这些工具一个都没有——只有一个情绪结论。这就是「结果陈述」与「过程描写」的本质区别：<strong>结果陈述是把体验压缩成一个形容词交给读者；过程描写是把体验还原成感官、动作和细节，让读者自己得出那个形容词。</strong>前者省力但无效，后者需要方法——而方法，是可以教的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——"过程描写"的通行术语 · 《义务教育语文课程标准（2022年版）》第三学段要求习作"内容具体、感情真实"（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——"内容具体"四个字，官方早就写进了课程标准</div>
+    </article>
+
+    <article class="view">
+      <h3>评语里被忽略的第二层信息：老师其实在夸你</h3>
+      <p class="ctx">很多学生读到这样的评语，第一反应是沮丧：「老师挑了这么多毛病，我果然写不好。」但请你换个角度再读一遍——这位老师做了什么？她没有写「内容空洞，重写」这种判决书式的评语，而是<strong>连问三个具体问题</strong>（老师具体说了什么？哪句话点醒了你？你是怎么一点点改的？），又<strong>亲手示范了一段改法</strong>。这说明两件事：第一，老师认为这篇作文<strong>值得细改</strong>——被放弃的作文只会得到一个分数；第二，老师指出的每一个问题都<strong>具体、可操作、可练习</strong>——「圈题」「留时间」「把慌写成挂钟和指节」，没有一条是「你要有文采」「你要有天赋」这种无法执行的要求。</p>
+      <p class="ctx">这正是本课对待评语的态度，也是我们希望每个学生学会的态度：<strong>把评语当修改清单，而不是当判决书。</strong>判决书只能接受，清单可以逐条执行。「具体说了什么」对应第7章的对话描写，「哪句话点醒你」对应第8章的心理描写，「怎么一点点改」对应第5章的慢镜头写法与第13章的修改方法，「圈题、留时间」对应第11章的审题与第14章的考场时间分配——你看，这条评语几乎就是本课程第三、四部分的教学大纲。会读评语的学生，等于免费获得了一位私人教练。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019) "Reducing Writing Anxiety by Improving Self-Efficacy Beliefs"（英文）</a>——把反馈转化为具体可执行步骤能提升写作自我效能感、降低写作焦虑 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——叶圣陶主张教师的批改应当"引导学生自己改"，而不是代下判断</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、写作是技能，不是天赋：科学怎么说</h2>
+    <p class="chapter-sub">写作研究五十年的核心结论：写作是一个可以被分解、被教学、被练习的认知过程</p>
+
+    <article class="view">
+      <h3>Hayes &amp; Flower 模型：写作在脑子里是怎么发生的</h3>
+      <p class="ctx">1980 年，认知心理学家 John Hayes 和 Linda Flower 发表了写作研究史上最重要的论文之一《A Cognitive Process Theory of Writing》（写作认知过程理论）。他们通过让写作者「出声思考」（一边写一边说出脑子里在想什么），第一次把「写作文」这个黑箱拆开了：原来写作不是一支笔一气呵成，而是三个环节在循环——<strong>计划（planning）</strong>：从长时记忆里取素材、定目标、排顺序；<strong>转译（translating）</strong>：把脑中的意思变成纸上的句子；<strong>复查（reviewing）</strong>：读回来、发现问题、修改。三个环节之间不断往返：写着写着发现材料不够，回去重新计划；改着改着发现结构问题，回去重新排列。</p>
+      <p class="ctx">这个模型对本课程的意义是决定性的：<strong>既然写作由三个可命名的环节组成，那么每个环节就都可以被单独训练。</strong>计划环节对应第2、3章的观察与素材积累、第10章的提纲；转译环节对应第4到9章的全部描写技术；复查环节对应第13章的修改方法。所谓「会写作文的人」，不是脑子里有一支神笔，而是三个环节都有成熟的方法——这是技能，而技能的另一个名字，叫「可以练」。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes, J. R., &amp; Flower, L. S. (1980). "A Cognitive Process Theory of Writing." <em>College Composition and Communication</em>, 31(2), 146–161（JSTOR 反爬，卷期页码文字引用） · <a href="https://wac.colostate.edu/">WAC Clearinghouse 写作教学研究资料库（英文）</a>——其 Landmark Essays 系列收录该模型全文与研究史</div>
+    </article>
+
+    <article class="view">
+      <h3>Murray：教写作是教过程，不是评成品</h3>
+      <p class="ctx">1972 年，后来获得普利策奖的记者兼写作教师 Donald Murray 发表了一篇改变了美国写作教学的短文：《Teach Writing as a Process Not Product》（把写作当过程来教，而不是当成品来评）。他的核心主张只有一句话：<strong>写作课应该教「通过语言进行发现的过程」，而不是对成品打分了事。</strong>学生交上来的作文不是终点，而是下一个草稿的起点；老师的价值不在于评判，而在于帮学生看见「这篇稿子下一步可以往哪里长」。这篇文章发表五十多年后，写作研究界仍在回应它——2024 年《Composition Forum》第 50 卷还刊发了题为《No, Really: Teach Writing as a Process not Product》的纪念专辑，可见其影响之深。</p>
+      <p class="ctx">Murray 的立场直接塑造了本课程的设计：你在本课看到的每一个方法，都是「过程性」的——观察笔记是持续做的，素材卡是一张张攒的，初稿是允许烂的，修改是有清单的，练习是每天五分钟的。<strong>没有一项是「考前背下来」的成品性技巧。</strong>这也解释了为什么第一节那条评语值得高兴：那位老师做的正是 Murray 说的事——不打分了事，而是指出过程里的具体下一步。写作过程研究还有个配套发现：写作者的「卡壳」（writer's block）大多不是因为没东西可写，而是因为完美主义和边写边改——这两个敌人，第12章会专门处理。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray, D. M. (1972) "Teach Writing as a Process Not Product" 全文 PDF（英文）</a> · <a href="https://compositionforum.com/issue/50/teach-writing-as-process.php">Composition Forum 50 (2024) 五十周年纪念专辑（英文）</a> · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——卡壳成因与对策研究综述</div>
+    </article>
+
+    <article class="view">
+      <h3>课程标准的官方定位：写作是表达与交流，不是应试表演</h3>
+      <p class="ctx">再看国内的官方口径。《义务教育语文课程标准（2022年版）》对四个学段的习作/写作要求是逐级递进的一句话脉络：第一学段（1-2年级）「写自己想说的话」；第二学段（3-4年级）「观察周围世界，能不拘形式地写下见闻、感受和想象」；第三学段（5-6年级）「懂得写作是为了自我表达和与人交流」「内容具体、感情真实」；第四学段（7-9年级）「写作要有真情实感，力求表达自己对自然、社会、人生的感受、体验和思考」。请特别注意第三学段那八个字——<strong>「内容具体、感情真实」</strong>：第一节老师评语要求的一切（写具体说了什么、写真实的心理过程），正是课程标准原文的要求。换句话说，那位老师不是个人偏好挑剔，而是在执行国家课程标准。</p>
+      <p class="ctx">这个官方定位还澄清了一个常见误解：写作的目的是<strong>自我表达和与人交流</strong>，不是应试表演。课标没有要求学生「文采斐然」「金句频出」，要求的是具体、真实、有思考。统编语文教材从三年级起每册设置独立的「习作单元」（精读课文→交流平台→初试身手→习作例文→习作），把「观察」「写事」「写人」「写景」「说明」「抒情」逐项训练——教材的编排本身就是「写作可教可练」的制度证明。本课的四部分结构，正是与这条官方脉络对齐的：先解决「有什么可写」（观察与素材），再解决「怎么写具体」（描写技术），然后是「怎么完整写完」（流程），最后是「怎么长期写下去」（习惯）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部《关于印发义务教育课程方案和课程标准（2022年版）的通知》（教材〔2022〕2号，含语文课标全文附件）</a> · <a href="https://www.cernet.edu.cn/html/e/xinkebiao.shtml">中国教育和科研计算机网「义务教育新课标全面解读」专题</a> · <a href="https://xbgjxt.swu.edu.cn/article/doi/10.13718/j.cnki.jsjy.2022.06.008?viewType=HTML">西南大学学报（社科版）语文新课标学术解读（DOI: 10.13718/j.cnki.jsjy.2022.06.008）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>「我怕写作文」是真的，但它不是能力问题</h3>
+      <p class="ctx">「写作焦虑」（writing anxiety）是教育心理学里被反复研究的现象。Berk（2017）对六到八年级学生的对照研究发现，写作焦虑水平与学生的写作态度、写作自我认知显著相关——越怕写，越觉得自己写不好，越不愿意动笔，越缺少练习，于是越写不好，形成一个自我强化的循环。McGee（2019）的综述则给出了打破循环的钥匙：<strong>过程写作法（把大任务拆成小步骤）加上具体的成功体验（小步骤完成后的自我效能感提升），能显著降低写作焦虑。</strong>换句话说，治「怕写」的药方不是鼓励式安慰（「你写得挺好的呀」），而是把「写一篇作文」拆成「今天只做五感观察十分钟」「今天只写三张素材卡」这样小到不可能失败的步骤。Tsiriotakis（2016）在《Frontiers in Psychology》发表的研究也支持这一点：系统的写作策略教学（含自我调节训练）对写作表现有正向效应。</p>
+      <p class="ctx">这就是本课程「练习任务」设计的科学依据：每个练习不超过十五分钟，每个练习配检查表，每个练习标注学段——<strong>小到不可能失败，具体到可以检查。</strong>如果你或你的孩子此刻的感受是「我一看到作文题就发怵」，请记住这个诊断：发怵的不是写作能力，是过去那些「一口气写八百字、写完只有一个分数」的练习方式。换一种拆开来练的方式，焦虑会跟着下降——第1章会专门展开这个话题，第16章的低压力日记则是长期的焦虑解毒剂。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">Berk, R. R. (2017) "Comparison of Writing Anxiety and Writing Dispositions"（ERIC EJ1125149，英文）</a> · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee, K. (2019) "Reducing Writing Anxiety by Improving Self-Efficacy Beliefs"（英文）</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis (2016) 写作策略教学效应研究，Frontiers in Psychology（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、本课程的方法论：从「会看」到「坚持写」的四步</h2>
+    <p class="chapter-sub">输入→技术→流程→习惯，四个部分对应写作能力的四个层次</p>
+
+    <article class="view">
+      <h3>四步闭环：每一部分解决一个问题</h3>
+      <p class="ctx">写作能力的短板可以归为四类问题，本课程四个部分各治一类。<strong>第一步·输入（第1-5章）：解决「没东西可写」。</strong>素材匮乏几乎从来不是生活贫乏——学生的生活里有考试、球场、食堂、吵架、和好——而是不会采集和存储。这五章教观察（五感采集法）、积累（素材卡）、以及把素材变成细节的两大核心技术（细节描写公式、慢镜头写法）。<strong>第二步·技术（第6-10章）：解决「写不出画面」。</strong>五感写作、对话与动作、心理描写、场景描写、结构提纲——五种让人「看见」的技术，每一种都有独立的方法框和练习。<strong>第三步·流程（第11-15章）：解决「写不完、写跑题」。</strong>审题圈画法、初稿时间盒、修改四法、考场时间分配、开头结尾去套话——把一篇作文从拿到题目到检查交卷的完整流程走一遍。<strong>第四步·习惯（第16-20章）：解决「坚持不下来」。</strong>日记日课、读写结合、家长点评、考场心态，最后是二十一天的入门计划和学期计划。</p>
+      <p class="ctx">四步之间是闭环而不是流水线：习惯（第四步）让输入（第一步）持续发生，输入喂给技术，技术在流程里整合，流程的产出又成为下一轮观察的对象。所以本课程不承诺「学完立刻脱胎换骨」，承诺的是：<strong>每一步都有可执行的练习，每一步的效果都可以被检查表验证。</strong>「可落地、可执行」不是宣传语，是每一章的硬性体例——没有练习任务的方法，本课不写。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——写作过程五阶段（预写/起草/修改/编辑/发表）的通行框架 · 《义务教育语文课程标准（2022年版）》学段要求脉络（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部通知原文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>贯穿案例：一条评语例句，六章接力拆解</h3>
+      <p class="ctx">为了让你看清「一个方法的完整使用过程」，本课程做了一个特别设计：第一节那条老师评语的例句——「考试的时候我很慌」如何变成「挂钟滴答响……指节攥得发白」——将被<strong>六个章节接力拆解</strong>。<strong>第0章（本章）</strong>引入：认识结果陈述与过程描写的差别；<strong>第4章</strong>把它公式化：情绪→身体反应＋环境细节＋动作链，并给出六组同类型对照；<strong>第5章</strong>逐短语拆解慢镜头：动作怎么切分、动词怎么串联；<strong>第8章</strong>给例句补心理描写：「脑子卡住」的那一刻，心里其实经历了怎样的犹豫链；<strong>第9章</strong>换一个场景重写：同样的慌，放在 公布成绩前的走廊里怎么写；<strong>第10章</strong>把它放进提纲：这段慢镜头在一篇完整作文里应该占多大比例、放在哪个位置。</p>
+      <p class="ctx">同一素材六次复用，模仿的正是真实写作课的样子：好老师不会每节课换一个新例子让你眼花缭乱，而是抓着一个例子反复揉——揉到你不仅看懂这一个句子，而且掌握了处理所有类似句子的方法。读到后面几章时，建议你翻回这一节对照着看：你会发现，一个「写具体」的问题，原来需要一整套工具箱来回答；而工具箱里的每一件工具，都是单独可练的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学革命》，福建教育出版社（文字引用）——「一个病例反复讲评」是其讲评课的核心操作 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——例句拆解所用的分析框架</div>
+    </article>
+
+    <article class="view">
+      <h3>每章固定配置：练习任务、病句→改后、检查表、学段标注</h3>
+      <p class="ctx">本课程每一章都有四个固定配置，先在这里说明用法。<strong>配置一：练习任务。</strong>每章至少两个，最多三个；每个练习给出编号步骤（照着做即可）与「三问式检查表」（做完对照检查）；单个练习耗时不超过十五分钟——这是刻意设计的：McGee 的研究表明，小而确定的成功体验是降低写作焦虑的关键，一次练四十分钟远不如四天各练十分钟。<strong>配置二：「病句→改后」对照。</strong>每章至少两组，统一四栏格式：原句／问题诊断／改后／改动说明。「改动说明」一栏最重要——它告诉你的不是「改成这样」，而是「用了哪一招」，招式才是可以迁移到新作文里的东西。<strong>配置三：要点速览。</strong>每章末尾的黄框，一段话浓缩全章方法，适合考前或练习前快速回顾。<strong>配置四：学段标注。</strong>每个练习标注建议学段——【小学中年级】【小学高年级】【初中】。标注是建议不是限制：小学高年级学生做初中档练习完全可以，初中生回做小学档练习也不丢人——基础技术不扎实时，回炉就是最快的路。</p>
+      <p class="ctx">使用节奏建议：每章按「约25分钟通读＋练习任务另计」设计。最推荐的用法是<strong>问题导向的跳读</strong>——作文本上刚被批了「内容空泛」，就直接去第4章；刚考完试发现作文没写完，就去第14章；读完方法框先做练习，一周后回头补读该章的证据部分。不必从第1章按顺序硬啃到第20章：这门课是工具箱，不是小说。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小步成功体验与自我效能感 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——小学一线名师的习作任务单设计：任务必须小到「当堂可完成」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、先见效：一组「病句→改后」完整示范</h2>
+    <p class="chapter-sub">本课所有方法的浓缩演示——读完这一节，你今天就能用</p>
+
+    <article class="view">
+      <h3>四栏对照：从「我很慌」到一段完整的考场描写</h3>
+      <p class="ctx">下面是本课程统一使用的四栏对照格式（每章至少两组，第4、5、15章为重点章，各四组以上）。示范用的正是那条评语的原句：</p>
+      <table class="tb">
+        <tr><th style="width:22%;">原句</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>考试的时候我很慌。</td><td>只有情绪结论（「慌」），没有产生这个结论的过程；读者只能「知道」，无法「看见」；全句无任何感官细节。</td><td>墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片。我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。</td><td>用了四招：①环境音（挂钟滴答＝听觉）；②具体数字（五分钟、第三道）；③身体反应（指节攥白）；④动作序列（笔杆滑两次、视线来回跳）。情绪词「慌」反而删掉了——细节到位，读者自己会得出「慌」。</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-00-2.png" alt="墙上时钟与铅笔笔尖拖出慢镜头胶片轨迹的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">请注意「改动说明」栏的第④点后半句：<strong>情绪词「慌」在改后的句子里消失了。</strong>这是细节描写最重要也最反直觉的一条：当你把身体反应、环境细节、动作序列都写出来之后，情绪形容词反而多余了——读者通过指节发白已经「体验」到慌，再告诉他「我很慌」等于把体验降级回结论。这条原则的英文版本叫 "Show, don't tell"（显示，而非告知），中文写作教学里常表述为「不写'他很难过'，写他难过的样子」。当然，概括句并非一无是处——它在过渡和收尾时有正当用途，第4章会讲清楚「什么时候该概括、什么时候必须展开」的分界线。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——"Use definite, specific, concrete language" · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——简洁与具体并重，删掉不承担工作的词</div>
+    </article>
+
+    <article class="view">
+      <h3>把方法压缩成一个公式：情绪 → 身体反应 ＋ 环境细节 ＋ 动作链</h3>
+      <p class="ctx">如果本章只能带走一句话，请带走这个公式：<strong>要写一种情绪，就写这种情绪在身体上的反应（指节攥白、喉咙发紧、手心出汗）、在环境里的投射（挂钟滴答、蝉声烦人、日光灯发白）、以及它引发的动作链（笔杆滑了两次、视线来回跳、把橡皮掰成三块）。</strong>三项不必全用，关键场景至少用两项；每一项都要「具体到可以画出来」——「手心出汗」合格，「非常紧张」不合格，因为前者画得出来，后者画不出来。这就是第4章将系统展开的「细节描写公式」，也是检验一切描写的万能标准：<strong>这句话能画成画吗？画不出来的，就还是结果陈述。</strong></p>
+      <p class="ctx">公式的适用面远超「考试慌」：等成绩时的「盼」（走廊尽头老师的脚步声＋手里成绩单的纸边被捏出褶皱），被表扬时的「暖」（脸发热＋同桌用胳膊肘碰了碰我＋我把作文本往书包里塞的时候塞反了方向），输球时的「不甘」（哨声响起的瞬间＋球鞋在地板上摩擦的吱嘎声＋我把水瓶捏得咔咔响）——同一条公式，覆盖中小学作文里绝大多数的情绪场景。素材从哪来？第3章的「情绪素材银行」会教你平时怎么存；存够了，考场上才能取得出来。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作教学内容应当是「可操作的程序性知识」，而非「要生动要具体」式的口号</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、今天就动手：两个入门练习</h2>
+    <p class="chapter-sub">读懂不等于学会——本课的第一个练习任务，现在就可以开始</p>
+
+    <article class="view">
+      <h3>练习任务一：「评语翻译」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①找出一篇自己写过的旧作文（有老师评语更好）；②用铅笔圈出所有「结果陈述句」——判断标准就是第四节那条：这句话画得成画吗？画不出来的圈出来（「我很开心」「时间过得真快」「妈妈很辛苦」都算）；③数一数总共有几句，写在页脚；④从中选一句，用「身体反应＋环境细节＋动作链」公式改写成三行，禁用原句里的情绪词。<br><br>
+        <strong>检查表（三问）：</strong>改后的三行里，有没有至少一处身体反应？有没有至少一处环境音或环境物？动作是不是至少两步（而不是一步）？三问都是「有」，这个练习就合格了。<br>
+        <strong>示例参照：</strong>「我很慌」→「挂钟滴答响……指节攥得发白」（本章第四节）。
+      </blockquote>
+      <p class="ctx">这个练习的价值在于「数出来的那个数字」。大多数学生第一次做这个练习，会发现一篇六百字的作文里有十几处结果陈述句——<strong>「内容空泛」的评语第一次变成了一个可以数、可以改、可以看见进步的指标。</strong>下次作文发下来，先别问分数，先数这个数字：从十五处降到八处，比分数提高三分更值得庆祝，因为前者是能力，后者可能只是运气。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：管建刚《我的作文教学系列》，福建教育出版社（文字引用）——「先写后教、以写定教」，从学生自己的稿子里找教学点 · 《义务教育语文课程标准（2022年版）》「内容具体、感情真实」学段要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部通知</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：建立「写作档案袋」（约15分钟，之后长期生效）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①找一个文件袋或笔记本的空页，写上「写作档案」四个字和今天的日期；②把最近三篇作文（或周记、随笔）按日期放进去，最新一篇放在最上面；③在每篇的页脚写两个数字：结果陈述句的数量、总字数；④在袋子的封面写一句「本学期我要练会的一招」（比如「把'我很紧张'写成看得见的样子」——只能写一招，贪多必失）。<br><br>
+        <strong>检查表（三问）：</strong>档案袋里有没有至少三篇带日期的旧作？每篇页脚有没有两个数字？封面那一招是不是具体到「能看出练没练会」？<br>
+        <strong>使用方式：</strong>此后每次写完作文都存入档案袋；每月最后一个周日花五分钟，把最新一篇和一个月前的对照读一遍——你会亲耳听见自己的进步。学期末，用第一节的「评语翻译」法重改本学期最不满意的一篇。
+      </blockquote>
+      <p class="ctx">为什么要花十五分钟建一个档案袋？因为写作进步最大的敌人是<strong>「感觉不到进步」</strong>：作文一篇篇写，分数上下浮动，学生却看不见自己的变化，动机就在浮动里耗尽了。档案袋把「变化」变成了可以翻阅的实物——三个月后重读第一篇，那些「结果陈述句」会刺眼得让你不好意思，而这种不好意思，正是能力增长的证据。这也是第20章「学期写作计划」的地基：没有档案，任何计划都无法复盘。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——写作态度与自我认知对写作行为的循环影响，可视化进步是打破循环的杠杆 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——「发表/回顾」（publishing &amp; reviewing）是写作过程的标准环节，档案袋即其家庭版实现</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、两条使用路线：学生自练与家长辅导</h2>
+    <p class="chapter-sub">同一门课，两种打开方式——先找到你的角色，再决定阅读顺序</p>
+
+    <article class="view">
+      <h3>路线一：学生自练（建议顺序与时间预算）</h3>
+      <p class="ctx">如果你是自己来学这门课的学生，推荐这条路线：<strong>第一周</strong>，读本章＋第1章（心态）＋第4章（细节描写公式——全课核心，值得读两遍），每天做练习任务一个（每个不超过十五分钟）；<strong>第二周</strong>，读第2章（观察）＋第3章（素材积累），开始建立观察笔记和素材卡，同时启动第16章的「三行日记」日课；<strong>第三、四周</strong>，按第5到10章逐章过描写技术，每章只做第一个练习；<strong>第二个月</strong>，进入流程部分（第11-15章），用一次真实作文（学校作业即可）完整走一遍「审题→提纲→初稿→修改」流程；<strong>之后</strong>，把第20章的学期计划打印出来贴在书桌前，按周执行。整条路线的时间预算是<strong>每天十五到二十分钟</strong>——不需要更多，需要的是不断线。</p>
+      <p class="ctx">给自练学生的一条元建议：<strong>先做练习，再读证据。</strong>本课程每章都是「方法框在前、研究证据在后」的结构，急着上手的你完全可以只读方法框和练习任务，把「科学怎么说」留到练习遇到瓶颈时回来读——那时候证据才真正对你有用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小步练习与自我效能感 · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972) 全文 PDF（英文）</a>——「通过写作学习写作」：动笔永远优先于听课</div>
+    </article>
+
+    <article class="view">
+      <h3>路线二：家长辅导（先读第18章，管住红笔）</h3>
+      <p class="ctx">如果你是家长，你的阅读顺序应该<strong>反过来</strong>：先读<a href="../18-parent/">第18章·家长辅导指南</a>，再回头按需查其他章节。原因很简单：家长辅导作文最大的风险不是「教得不对」，而是「管得太多」——把孩子的作文从头改到尾、用红笔圈满整页、每篇都问「这篇能得多少分」，这些行为在动机研究里全部属于破坏自主感的反馈方式，效果与「提升写作水平」正好相反。第18章会给出「点评三步法」（引用原文肯定具体处→只提一个可改点→孩子自己动手改）和六组「打击性说法→建设性说法」的对照话术。</p>
+      <p class="ctx">家长在本课程里的正确角色是<strong>教练兼档案管理员</strong>，不是代笔人，也不是阅卷人。教练做三件事：陪孩子做练习任务（第2章的定点观察非常适合亲子一起做）、保管和提醒复盘写作档案袋（第五节练习二）、把学校老师的评语「翻译」成本周的一个练习（第18章有完整流程，第一节那条评语就是现成示范：评语说「没有过程描写」→本周练「情绪翻译器」）。叶圣陶说「作文就是用笔说话」——家长想想自己平时怎么教孩子说话：孩子说错一个词，你不会打断他重写整段话，你会等他说完，再温和地补一句「刚才那个词，这样说是不是更清楚」。教作文，同一个道理。最后重申本站立场：<strong>反对任何形式的“代写”与“抄袭”</strong>——家长动笔改得再多，孩子的笔也不会变快；第19章会讲清楚为什么依赖范文和模板从评分机制上就走不通。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「作文就是用笔说话」 · 夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——以故事体教读写，家长共读的经典范本 · <a href="https://en.wikipedia.org/wiki/Mindset">Dweck《Mindset》成长型思维条目（英文）</a>——反馈措辞对能力观的塑造（第1、18章展开）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、课程地图：四部分二十章怎么用</h2>
+    <p class="chapter-sub">按问题查、按学段查、按顺序读——三种用法都支持</p>
+
+    <article class="view">
+      <h3>二十章速查表</h3>
+      <table class="tb">
+        <tr><th>部分</th><th>章节</th><th>回答什么问题</th><th>优先学段</th></tr>
+        <tr><td rowspan="5">一·素材从哪来</td><td><a href="../01-mindset/">01 破除「没天赋」迷思</a></td><td>我怕写作文、觉得自己没天赋怎么办</td><td>全部</td></tr>
+        <tr><td><a href="../02-observe/">02 观察：五感采集法</a></td><td>总觉得没东西可写</td><td>小学中高年级起</td></tr>
+        <tr><td><a href="../03-accumulate/">03 素材积累：素材卡</a></td><td>经历过的事写作文时想不起来</td><td>小学中高年级起</td></tr>
+        <tr><td><a href="../04-detail/">04 细节描写（核心章）</a></td><td>被批「内容空泛、一笔带过」</td><td>全部</td></tr>
+        <tr><td><a href="../05-slow/">05 慢镜头写法</a></td><td>关键时刻三行就写完了</td><td>小学高年级起</td></tr>
+        <tr><td rowspan="5">二·怎么写出画面</td><td><a href="../06-senses/">06 五感写作</a></td><td>作文里只有「看到」</td><td>全部</td></tr>
+        <tr><td><a href="../07-dialogue/">07 对话与动作</a></td><td>人物说话像机器人、满篇「他说」</td><td>小学高年级起</td></tr>
+        <tr><td><a href="../08-psychology/">08 心理描写</a></td><td>只会写「我心想」</td><td>初中为主</td></tr>
+        <tr><td><a href="../09-scene/">09 场景与环境</a></td><td>故事没有「现场感」</td><td>初中为主</td></tr>
+        <tr><td><a href="../10-structure/">10 结构与提纲</a></td><td>想到哪写到哪、段落混乱</td><td>全部</td></tr>
+        <tr><td rowspan="5">三·写作流程</td><td><a href="../11-topic/">11 审题：圈画关键词</a></td><td>跑题、偏题</td><td>全部</td></tr>
+        <tr><td><a href="../12-draft/">12 初稿：先写完再写好</a></td><td>写两句就卡住、边写边改</td><td>小学高年级起</td></tr>
+        <tr><td><a href="../13-revise/">13 修改：增删调换</a></td><td>写完不想再看第二遍、不会改</td><td>全部</td></tr>
+        <tr><td><a href="../14-time/">14 考场时间分配</a></td><td>考试作文写不完</td><td>初中为主</td></tr>
+        <tr><td><a href="../15-openend/">15 开头结尾</a></td><td>开头绕弯子、结尾喊口号</td><td>全部</td></tr>
+        <tr><td rowspan="5">四·习惯与长线</td><td><a href="../16-diary/">16 日记与随笔</a></td><td>练习坚持不下来</td><td>全部</td></tr>
+        <tr><td><a href="../17-reading/">17 读写结合</a></td><td>书读了不少，作文没长进</td><td>小学高年级起</td></tr>
+        <tr><td><a href="../18-parent/">18 家长辅导指南</a></td><td>（家长）不知道怎么点评</td><td>家长必读</td></tr>
+        <tr><td><a href="../19-exam/">19 考场作文与谣言粉碎</a></td><td>考前心态、模板迷信</td><td>初中为主</td></tr>
+        <tr><td><a href="../20-plan/">20 21天行动方案</a></td><td>不知道从哪天开始</td><td>全部</td></tr>
+      </table>
+      <p class="ctx">三种用法：<strong>按顺序读</strong>——首次系统学习，从第1章到第20章，每天一章加一个练习，三周走完（第20章会把这个节奏排成正式的二十一天计划）；<strong>按问题查</strong>——用上面的速查表直达病灶章，读完先做练习，一周后再补证据部分；<strong>按学段查</strong>——小学中年级重点在第一、二部分（观察、素材、细节、五感），初中重点在第三、四部分（流程、考场、修改），但「优先学段」只是建议：技术的补漏永远不嫌早也不嫌晚。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》四学段要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部通知原文</a>）——学段划分的官方依据 · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材「习作单元」编排（三年级起每册一单元，深链反爬、以官网检索为准）</div>
+    </article>
+
+    <article class="view">
+      <h3>这门课的边界：三件事它做不到</h3>
+      <p class="ctx">诚实地列出边界，是这门课对自己的要求。<strong>第一，它不承诺提分。</strong>写作能力与考试分数相关，但分数还受阅卷、题目、状态等大量因素影响；本课承诺的是能力指标的可验证进步（结果陈述句变少、细节密度变高、修改有清单可依），不是分数保证——任何承诺「保提分」的写作课程，都值得你警惕（第八节展开）。<strong>第二，它不能代替真实反馈。</strong>检查表能自查大部分问题，但「这篇到底哪里还差点意思」有时需要一个真人读者——学校老师的评语、家长按第18章方法做的点评、同学的互读，都不可替代。<strong>第三，它不教「文采」。</strong>如果你期待的是好词好句集锦、名言金句大全，本课会让你失望：本课的立场与 Zinsser 一致——好写作的本质是清晰与真实，堆砌华丽辞藻恰恰是初学者最常见的弯路（第15章和第19章的谣言粉碎会正面处理这个话题）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——"clutter is the disease of writing"（冗杂是写作之病） · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis (2016)（英文）</a>——写作策略教学有效，但效果依托持续练习而非一次性干预</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、开课前的三条底线与三个谣言</h2>
+    <p class="chapter-sub">写作培训市场的坑，比育儿市场只多不少——先把最贵的几个说清楚</p>
+
+    <article class="view">
+      <h3>三条底线：不承诺、不推销、不代笔</h3>
+      <p class="ctx"><strong>底线一：本课不承诺提分与升学。</strong>理由如第七节所说：能力可以练，分数不可保。凡是把「保提分」「签约班」当卖点的写作培训，其商业模式建立在焦虑之上而非教学之上。<strong>底线二：本课不推荐任何机构、教辅与付费课程。</strong>全书提到的方法全部可以零成本在家执行（一支笔、一个本子、十五分钟）；提到的书籍仅作为来源标注，不构成购买建议。<strong>底线三：本课反对“代写”与“抄袭”，也不教投机取巧。</strong>家长代笔、网上抄范文、把背好的「万能素材」硬套进任何题目——这些做法不仅违背课标「真情实感」的要求，而且在阅卷技术上越来越容易被识别（雷同卷处理有明确的考务规定）；更重要的是，“代写”和“抄袭”剥夺的恰恰是孩子练习的机会——写作是技能，技能只能自己练出来，这一点没有任何捷径可绕。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》「真情实感」要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部通知原文</a>） · <a href="https://www.canedu.org.cn/site/content/6623.html">教育部教材局负责人就新课标答记者问（转载全文）</a>——课标修订以「真实情境下的语言运用」为导向</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：三句最贵的写作谣言，开课先拆</h3>
+      <p class="ctx"><strong>谣言一：「作文写得好是天生文笔好。」</strong>不成立。写作研究五十年（Hayes &amp; Flower 1980；Murray 1972）的核心结论就是：写作是可分解的认知过程，过程可教，环节可练；所谓「文笔」，拆开看是观察、素材、结构、修改四项技能的合成物——每一项都有独立的训练方法，也就是本课程的二十章。成长型思维研究（Dweck）同样表明：把写作能力看成「可发展的」还是「天生的」，直接影响学生面对评语时的坚持性。<strong>谣言二：「背范文、套“高分模板”，考场上稳赚。」</strong>不成立，且有三重代价：其一，模板化表达与课标「真情实感」直接冲突，阅卷标准对「套作」有明确的降档处理口径；其二，背范文占用的时间，本可以用来练真正可迁移的技术（细节公式、慢镜头、修改清单）；其三，最隐蔽的代价是思维习惯——套模板套久了，学生会丧失「从自己的经验里找素材」的能力，而这恰恰是写作的根。<strong>谣言三：「多读自然会写。」</strong>半句对半句错：阅读是写作的必要营养，但从「读过」到「会写」中间隔着一整套转化技术——没有批注、仿写、素材卡的介入，读一百本书也可能一句都写不出来。转化的具体方法在第17章，研究依据（Fitzgerald &amp; Shanahan 的读写关系综述）也在那里展开。至于宣称「七天见效」「包教包会」的“作文速成班”，请记住本课程的第一底线：写作没有速成通道——凡是急的、玄的、承诺包治的，转身就走。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Mindset">Dweck《Mindset》条目（英文）</a> · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a> · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 自由写作条目（英文）</a>——Elbow「不动笔什么也不会发生」：写的能力只能在写中长出来 · <a href="https://www.chinawriter.com.cn/">中国作家网</a>（中国作协主办）——名家谈创作栏目中「修改与积累」主题文章可按当期检索印证</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「结果陈述」与「过程描写」的区别是什么？用老师评语里的例句说明。</li>
+        <li>老师改句里的「挂钟滴答响」「指节攥得发白」「笔杆滑了两次」分别动用了哪类工具？</li>
+        <li>为什么说这条评语其实是「修改清单」而不是「判决书」？把它翻译成四章学习内容你会怎么翻？</li>
+        <li>Hayes &amp; Flower 模型的三个环节是什么？各自对应本课程的哪些章？</li>
+        <li>Murray「教过程不评成品」的主张是什么？它如何体现在本课的体例设计里？</li>
+        <li>《义务教育语文课程标准（2022年版）》第三学段对习作的八个字要求是什么？</li>
+        <li>写作焦虑的自我强化循环是怎么转起来的？打破循环的钥匙是什么？</li>
+        <li>细节描写公式「情绪→身体反应＋环境细节＋动作链」怎么用？检验一句话合不合格的那条标准是什么？（提示：能不能画成画）</li>
+        <li>为什么改后的句子里，情绪词「慌」反而被删掉了？</li>
+        <li>「评语翻译」练习的三问检查表是哪三问？那个「数出来的数字」为什么值得庆祝？</li>
+        <li>写作档案袋的四个建立步骤是什么？它对抗的是哪个敌人？</li>
+        <li>学生自练路线和家长辅导路线的顺序为什么正好相反？家长要先读哪一章？</li>
+        <li>课程地图的三种用法是什么？小学中年级和初中各自的重点部分在哪里？</li>
+        <li>本课的三条底线、三个做不到分别是什么？</li>
+        <li>三句写作谣言（天赋论/背范文/多读自然会写）各自的批驳依据是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>一条真实评语点破中小学作文的头号问题——「结果陈述」（我很慌）与「过程描写」（挂钟滴答、指节攥白、笔杆滑了两次）的差距；差距不是天赋，是没被教过方法。写作研究五十年（Hayes &amp; Flower 1980 的计划—转译—复查模型；Murray 1972 的过程写作法）与课程标准（2022年版第三学段「内容具体、感情真实」）共同确认：写作是可分解、可教学、可练习的技能。本课方法论四步闭环：输入（1-5章，观察/素材/细节/慢镜头）→技术（6-10章，五感/对话/心理/场景/结构）→流程（11-15章，审题/初稿/修改/时间/开头结尾）→习惯（16-20章，日记/读写/家长/考场/21天计划）；老师评语例句六章接力拆解。每章固定四配置：练习任务（≤15分钟＋三问检查表＋学段标注）、病句→改后四栏对照、要点速览、学段适配。核心公式一条：情绪→身体反应＋环境细节＋动作链，检验标准：这句话能不能画成画。今天可做的两个练习：「评语翻译」（数出自己旧作里的结果陈述句并改写一句）与「写作档案袋」（三篇旧作＋两个数字＋一招目标）。两条路线：学生自练按 0→1→4 起步，家长先读第18章管住红笔。三条底线：不承诺提分、不推销任何机构教辅、反对“代写”“抄袭”；三个谣言已拆：天赋论、背范文套模板、「多读自然会写」。下一章：<a href="../01-mindset/">第1章·破除「没天赋」迷思</a>——把「我写不好」这个念头本身送进手术室。
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">🏠 课程首页</span>写作习作课 · 全部目录</a>
+    <a href="../01-mindset/"><span class="dir">第1章 →</span>破除「没天赋」迷思：写作成长型思维</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 导论 · 依据教育部《义务教育语文课程标准（2022年版）》、统编语文教材习作体系、Hayes &amp; Flower (1980) 写作认知过程模型、Murray (1972) 过程写作法、Berk (2017) 与 McGee (2019) 写作焦虑研究、Tsiriotakis (2016) 写作策略教学研究、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》、Dweck《Mindset》、Elbow《Writing Without Teachers》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

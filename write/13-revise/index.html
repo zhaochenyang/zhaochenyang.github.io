@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 修改：好文章是改出来的 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第13章 · 第三部分 · 写作流程</div>
+  <h1>✍️ 修改：好文章是改出来的</h1>
+  <p>增、删、调、换四把工具，加朗读与冷却两个外挂——把老师的评语翻译成你的修改动作</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../12-draft/">← 第12章：初稿</a>
+    <a href="../14-time/">第14章：考场时间分配 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">修改的地位</a>
+    <a class="anchor" href="#s2">四法</a>
+    <a class="anchor" href="#s3">对照示范</a>
+    <a class="anchor" href="#s4">朗读冷却</a>
+    <a class="anchor" href="#s5">八条清单</a>
+    <a class="anchor" href="#s6">评语翻译</a>
+    <a class="anchor" href="#s7">互评与练习</a>
+    <a class="anchor" href="#s8">误区谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①理解修改为什么是写作的核心工序而不是收尾杂务（课标原文＋元分析证据）；②掌握「增·删·调·换」四法口诀，每一法对应哪类病症、怎么下手；③会用「朗读法」和「冷却法」两个物理外挂让自己的眼睛变毒；④打印并逐条使用「八条修改清单」；⑤学会本章的招牌动作——把老师评语逐句翻译成具体的修改动作（直接回应那条真实评语里的「我之后是怎么一点点改」）；⑥掌握「一句话互评法」，会当读者也会收反馈。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章与第12章是同一条生产线的前后两道工序：第12章封存的初稿，正是本章的加工对象——建议两章连着用，同一篇稿子先「25分钟写完」再按本章改一轮。如果你的痛点是「写完从来不看第二遍」，先读第一、二节扭转观念，再直奔第五节拿清单；如果痛点是「老师说'内容空泛'但不知道怎么改」，第六节的评语翻译法就是为你写的。家长请重点读第六、七节：怎么把评语转化为孩子的一周练习、怎么互评不伤人（配合<a href="../18-parent/">第18章</a>）。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、修改的地位：不是收尾杂务，是写作的核心工序</h2>
+    <p class="chapter-sub">官方口径、研究证据、名家经验，三方罕见地完全一致</p>
+
+    <article class="view">
+      <h3>为什么写完就不想再看第二遍</h3>
+      <p class="ctx">先承认一个真实的心理：绝大多数学生写完作文的那一刻，感受是「终于结束了」，而不是「可以开始加工了」。交上去的稿子像刚跑完的长跑，看一眼都累。这背后有两层机制。第一层是<strong>身份疲劳</strong>：起草时你一直是「写作者」，要切换到「编辑」身份需要一次主动的角色转换，而大脑天生抗拒切换——第12章讲过切换的认知代价，修改恰恰要求你从生产者变成挑剔的消费者。第二层是<strong>曝光恐惧</strong>：重读自己的稿子等于当面检查自己思维的漏洞，「这句写得真差」的自我批评会立刻冒出来，为了不挨这顿批，干脆不读。两层机制合起来，制造了那个普遍现象：作文交上去之前，多数学生从头到尾完整读过的次数是——零。</p>
+      <p class="ctx">本章要做的第一件事就是拆掉这两层心理障碍。拆法不是喊「你要认真修改」的口号，而是给修改工序配上<strong>具体的工具、明确的顺序和可数的指标</strong>：四法口诀告诉你每只手干什么，八条清单告诉你眼睛往哪看，朗读法和冷却法解决「自己的文章自己看不出错」的生理局限，评语翻译法把老师的抽象批评变成待办事项。工序一旦具体，恐惧就没有藏身之处——这和第1章治「怕写」的思路完全一样：焦虑的解药从来不是勇气，是清单。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017) 写作焦虑与写作态度研究（ERIC EJ1125149，英文）</a>——回避重读与写作焦虑的正相关 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——修改（revising）与编辑（editing）作为独立工序的标准框架</div>
+    </article>
+
+    <article class="view">
+      <h3>课标原文与研究证据：修改被写进了国家要求</h3>
+      <p class="ctx">《义务教育语文课程标准（2022年版）》在「表达与交流」部分的要求原文是：<strong>重视修改，引导学生自改、互改</strong>；第三学段（5-6 年级）进一步落实为「修改自己的习作，并主动与他人交换修改」。请注意措辞的重量级：「自改」与「互改」都被点名，说明官方把修改视为写作能力本体的一部分，而不是可有可无的附加动作。换句话说，一个从不修改自己习作的学生，即便每篇都写得不错，也还没有完成课标定义的完整写作训练。</p>
+      <p class="ctx">研究证据同样硬。Graham 等人 2012 年发表于《Journal of Educational Psychology》的小学段写作教学元分析发现：在 13 种有效干预中（效应量区间 0.30–1.02），<strong>写作策略教学、设定具体目标、同伴互评</strong>均显著有效——而「八条修改清单」正是策略教学＋具体目标的组合，「互评」直接被点名。2023 年该团队覆盖 6–12 年级的元分析延续了同一方向。卡内基《Writing Next》(2007) 报告列出的青少年写作教学 11 要素中，「过程写作法」「合作写作」「设定具体目标」三项都与修改工序直接相关。名家口径也不缺席：Zinsser 在《On Writing Well》里写下那句被引用了五十年的话——<strong>"Rewriting is the essence of writing."（重写是写作的本质。）</strong>；叶圣陶则在《叶圣陶语文教育论集》里反复强调「文章要自己改」，理由是「教师改得再多，不如学生自己会改」——改的能力只能在自己动笔改的过程中长出来，看别人改是学不会的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部《关于印发义务教育课程方案和课程标准（2022年版）的通知》（教材〔2022〕2号）</a>——「重视修改、自改互改」原文 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012) 元分析（英文）</a> · <a href="https://eric.ed.gov/?id=EJ994038">同文 ERIC 页（EJ994038，英文）</a> · <a href="https://psycnet.apa.org/record/2024-12988-002">Graham et al. (2023) 6–12 年级元分析（英文）</a> · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a> · Zinsser《On Writing Well》、叶圣陶《叶圣陶语文教育论集》（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>修改与编辑不是一回事：先动大手术，再修小瑕疵</h3>
+      <p class="ctx">写作研究把「改稿」分成两个层级，混用是初学者最常见的工序错误。<strong>修改（revising）</strong>是内容层的大手术：这段素材够不够具体？顺序对不对？主场景有没有写胖？哪些空话该整段删掉？<strong>编辑（editing）</strong>是语言层的小修补：错别字、标点、病句、用词不准。两者的正确顺序是<strong>先修改后编辑</strong>——道理很直白：一段话如果整体要删，花十分钟抠它的错别字就是白费功夫。八条清单（第五节）的排序就遵循这个逻辑：前五条全是内容层，后三条才轮到语言层。</p>
+      <p class="ctx">为什么多数学生只会「编辑」不会「修改」？因为编辑有标准答案（错字就是对错字），修改没有——修改要求你对着自己的稿子问开放性问题（「这里能不能更具体？」），这需要方法支撑，而方法正是本章要发的工具。老师评语里那句「后面'渐渐地我能写完卷子，红叉少了'也是一笔带过，也只是对结果的陈述，不是过程描写」，就是典型的内容层修改指令：不是让你改错字，是让你把那一句「加胖」成一个过程——用第13章的话说，这是一条「增」法工单。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——revising 与 editing 的层级区分 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——重写优先于润色 · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作教学应教「过程知识」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、四法口诀：增 · 删 · 调 · 换</h2>
+    <p class="chapter-sub">所有修改动作，拆到底只有四种——每种治一类病</p>
+
+    <article class="view">
+      <h3>方法拆解框：四法总表</h3>
+      <blockquote class="q">
+        <strong>增·删·调·换四法（按此顺序过稿，先内容后语言）：</strong><br>
+        <strong>①增</strong>——加细节：结果陈述句就地展开（第4章公式：身体反应＋环境细节＋动作链）；占位符逐个补写；主场景加感官（第6章）加动作切分（第5章）。治「内容空泛、一笔带过」。<br>
+        <strong>②删</strong>——减冗杂：删空话套话（「怀着激动的心情」）、删重复表述（一个意思说两遍）、删与中心无关的段落（再舍不得也删）。治「冗长、跑题、凑字数」。<br>
+        <strong>③调</strong>——挪顺序：段落先后调换、详略位置对调（主场景挪到黄金位置）、句子长短节奏调整。治「想到哪写到哪、重点淹没在流水账里」。<br>
+        <strong>④换</strong>——替字词：通用动词换具体动词（「拿」→「攥」）、套话换成自己的话（第15章黑名单）、大词换小词。治「用词不准、满篇陈词滥调」。
+        <span class="qsrc">框架来源：整合课标「自改」要求、Zinsser 重写方法（英文）与一线作文讲评通行做法；顺序为本课程设计</span>
+      </blockquote>
+      <p class="ctx">四法的顺序不是随便排的：<strong>增在最前</strong>，因为「写具体」是中小学作文的第一病症，也是老师评语的最高频词；<strong>删在第二</strong>，增完往往超字数、露冗杂，正好顺势瘦身；<strong>调在第三</strong>，内容齐了再看结构排布；<strong>换在最后</strong>，字词打磨是收尾工序。一轮完整修改就是按这个顺序过四遍稿子——每遍只干一种活。这听起来比「从头到尾改一遍」慢，实际更快：四遍各管一事，眼睛不用来回切换标准，漏改率大幅下降。这正是 Graham 元分析里「策略教学＋具体目标」显著有效的操作化：把模糊的「认真改」变成四个明确的工序。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学与具体目标的有效性 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「修改自己的习作」 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>「增」的正确姿势：不是加字数，是加信息</h3>
+      <p class="ctx">「增」最容易被误解成「把文章变长」——于是学生往里灌水：加天气、加心情、加「光阴似箭日月如梭」。灌水的增和真正的增，区别只有一条：<strong>加进去的东西有没有新信息。</strong>「我的心里像打翻了五味瓶」没有新信息（谁都知道你心情复杂）；「我把成绩单对折了两次才塞进书包侧兜」有新信息（这个动作泄露了不想让人看见的心情）。判断增得对不对，用第0章那条万能标准：<strong>这句话能画成画吗？</strong>画不出来的「增」，一律回炉。</p>
+      <p class="ctx">增的三个标准作业点：<strong>①占位符</strong>——第12章时间盒留下的「（补：……）」括号，就是现成的增补工单，逐个销号；<strong>②结果陈述句</strong>——用第0章「评语翻译」练习圈出的那些句子（「我很慌」「妈妈很辛苦」），每句按第4章公式展开成两三行；<strong>③主场景</strong>——对照第10章提纲标注的详写段，检查它是不是全文最胖的一段；如果主场景只有三行而过场写了十行，先增主场景再删过场。三处都过完，文章的「细节密度」就上来了——这个指标可以数：全文动作细节＋感官细节的总数，修改前后各数一次，进步一目了然。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——「增」的信息标准 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——"Use definite, specific, concrete language" · 管建刚《我的作文教学革命》，福建教育出版社（文字引用）——从学生稿子里找「增」的教学点</div>
+    </article>
+
+    <article class="view">
+      <h3>「删」的三条红线：什么必须删、什么舍不得也要删</h3>
+      <p class="ctx">Zinsser 把冗杂称为「写作之病」（clutter is the disease of writing），「删」就是治病的手术刀。三条必删红线：<strong>①空话套话必删</strong>——「通过这件事我明白了一个道理」「我的心里久久不能平静」，这类句子删掉后文章一个字的信息都不少，它们存在的唯一理由是凑字数和假装深刻；<strong>②重复必删</strong>——同一个意思用两种说法各写一遍（「我很紧张，心里七上八下的」——后半句是前半句的翻译，删一个），初稿阶段为了不断流允许重复，修改阶段必须合并；<strong>③离题段必删</strong>——写到一半想起的另一件事、与题眼无关的得意段落，写得再好也要删；舍不得的部分可以先「剪切」到素材本存档（第3章），删的是这篇，存的素材下次还能用——这个操作能大幅降低删除的心理成本。</p>
+      <p class="ctx">删完要做一次「删后通读」：检查删口处的衔接是否生硬，必要时补一个过渡句——但注意，补的过渡句必须承担真实功能（告诉读者时间/场景/逻辑的跳转），不能又是一句空话。一个实用的量化目标：<strong>每轮修改至少删掉全文的一成。</strong>这不是硬性规定，而是纠偏工具——因为多数学生的修改是「只增不删」的，文章越改越长、越改越水；「删一成」的指标逼着你在增的同时做减法，最后文章反而更结实。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——clutter 理论与删减原则 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——"Omit needless words" · <a href="https://eric.ed.gov/?id=ED517367">《Writing Next》(2007) ERIC 页（英文）</a>——摘要写作（提炼与删减）为有效要素之一</div>
+    </article>
+
+    <article class="view">
+      <h3>「调」与「换」：结构手术与字词打磨</h3>
+      <p class="ctx"><strong>「调」的三个常用手术</strong>：①把主场景从中间挪到黄金位置——记叙文的黄金位置是开头三分之一处（先声夺人）或结尾前（高潮收束），流水账式按时间平铺的稿子，把最精彩一幕挪个位置往往立刻改观；②详略对调——检查全文最胖的段落是不是最重要的段落，如果最胖的是过场（比如去考场的路上写了八行，考试本身两行），对调它们的详略（第10章详略分配表是检查依据）；③长句拆短、短句合并——三个逗号以上的长句优先拆分，连续七八个短句合并一两个，节奏就出来了。<strong>「调」的操作技巧</strong>：初稿写在自己本子上时，可以剪下段落用纸片重排；写在网上或试卷上不能剪的，先在草稿纸上列段落序号（①②③…），纸上排好再动笔誊——在纸上调整结构永远比在正文里调整便宜。</p>
+      <p class="ctx"><strong>「换」的三个升级方向</strong>：①通用动词换具体动词——「他拿着笔」可以换成「攥」「捏」「转」「敲」，动词是句子的发动机，换一个动词，画面就换一个样子（第5章动词串的修改版应用）；②套话换成自己的话——凡是「仿佛在哪里见过」的句子（「母爱如涓涓细流」），一律换成你自己的观察（「她把鱼肚子的肉都夹到我碗里，自己啃鱼尾巴」）；③大词换小词——「进行了深刻的反思」不如「我在楼道里站了十分钟」；抽象名词是初稿的常见病，具体的动词和名词才是解药。注意「换」的纪律：<strong>每处只换一个词，换完读一遍</strong>——朗读法（下一节）是「换」的质检工序，换出来的词读着拗口，说明换错了方向。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——动词的具体性原则 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——「句子组合」（sentence combining）为 11 要素之一：句式调整有实证支持 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、原稿→修改稿：三组完整示范</h2>
+    <p class="chapter-sub">每组标注用了哪几法——看方法怎么落在真实稿子上</p>
+
+    <article class="view">
+      <h3>示范一：把「一笔带过」改成过程（增法为主）</h3>
+      <table class="tb">
+        <tr><th style="width:26%;">原稿片段</th><th style="width:20%;">诊断</th><th style="width:32%;">修改稿</th><th>用了哪几法</th></tr>
+        <tr><td>老师讲评的时候我印象很深，渐渐地我能写完卷子，红叉少了。</td><td>正是老师评语点名的「结果陈述」：两个「渐渐地」之间发生了什么，一个字都没有；「印象很深」是情绪结论，深在哪里不可见。</td><td>讲评那天，老师把我的卷子投在屏幕上，指着第三道阅读题问：「圈出来的关键词有几个？」全班安静，我数了数卷子上可怜的圈，脸一直热到耳根。她接着说了一句我到现在还记得的话：「你不是不会做，你是没有看题，你在猜题。」就这一句，像谁把灯打开了。那天以后我做阅读有个固定动作：动笔前先圈——题干里的限定词圈一个三角，原文里的对应句画一条横线，圈完再答题。第一次月考，我的阅读题空着的地方没有了；期中，红叉从七个变成两个。</td><td>主用<strong>增</strong>：结果陈述句按第4章公式展开——身体反应（脸热到耳根）＋具体话语（老师那句原话，第7章对话法）＋动作链（圈三角、画横线）；辅以<strong>换</strong>：「印象很深」换成「像谁把灯打开了」；「红叉少了」换成可数的「从七个变成两个」。</td></tr>
+      </table>
+      <p class="fig"><img src="../assets/img-13-1.png" alt="红色铅笔在纸上擦除并重写线条留下修改痕迹的扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></p>
+      <p class="ctx">这组示范同时回答了评语的第三个问题「我之后是怎么一点点改（比如做阅读真的怎么圈题）」。注意修改稿里的关键动作——「圈一个三角、画一条横线」——<strong>「怎么改」的答案必须是可复述的动作</strong>，而不是「我更加努力了」的态度表态。读者（阅卷老师）通过动作相信改变发生了；表态没有人会信。这条原则同样适用于一切「成长类」作文：成长不写心里话，写手上多出来的那个固定动作。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「内容具体、感情真实」学段要求</div>
+    </article>
+
+    <article class="view">
+      <h3>示范二：删冗杂＋调顺序（删法、调法）</h3>
+      <table class="tb">
+        <tr><th style="width:26%;">原稿片段</th><th style="width:20%;">诊断</th><th style="width:32%;">修改稿</th><th>用了哪几法</th></tr>
+        <tr><td>那是一个星期六的上午，天气晴朗，阳光明媚，我早早地起了床，因为今天我们要去公园玩，我心情非常激动，吃完早饭后，我们坐车出发，路上车很多，到了公园门口，人山人海，我们买票进去，公园里有一个大湖，湖面上有很多船，我们租了一条船，划到湖中心，我把手伸进水里，水凉凉的，阳光照在水面上，一闪一闪的，这一天我玩得非常开心，真是难忘的一天啊。</td><td>典型流水账：全段 13 个事件平均用力，唯一有感官细节的地方（手伸进水里）淹没在中间；结尾两个空话套话；「阳光明媚」「人山人海」等成语堆砌。</td><td>船划到湖中心，桨声停了。我把手伸进水里——凉，从指尖一直凉到手腕。阳光落在水面上，被波浪切成一块一块，一闪，一闪，晃得人眯眼。岸上的人声到这里就听不清了，只剩下水拍船帮的声音。我不记得我们在公园还玩了什么，只记得这只手在水里的那几分钟。</td><td>主用<strong>调</strong>：把唯一的主场景（湖中心伸手进水）从流水账中段调到全文主体位置，其余 12 个事件压缩成末句一笔带过——详略对调；主用<strong>删</strong>：删掉天气套话、行程记录、结尾口号，原文约 170 字删至约 110 字，信息反而更集中；辅用<strong>增</strong>：主场景补一个听觉细节（水拍船帮）。</td></tr>
+      </table>
+      <p class="ctx">这组示范揭示「调」的深层逻辑：<strong>记叙文的选材不是「写了什么」，而是「什么被写胖」。</strong>原稿 13 件事都有，等于一件都没有——读者的注意力被摊成了一层薄饼。修改稿只保留一件事并把它写胖，其余全部让位。请注意末句的处理：不是删掉其他事件假装没发生，而是用一句「我不记得……只记得……」把它们收编——这句本身就成了文章的情感论点：难忘的从来不是行程，是那几分钟的触感。删与调配合到位时，文章会自己长出主题。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——删减与聚焦 · <a href="https://eric.ed.gov/?id=ED517367">《Writing Next》(2007) ERIC 页（英文）</a>——摘要写作要素：提炼主干的能力可教可练 · 蒋军晶《让学生学会写作》（文字引用）——流水账病症的一线讲评口径</div>
+    </article>
+
+    <article class="view">
+      <h3>示范三：换字词——动词一换，画面就动（换法）</h3>
+      <table class="tb">
+        <tr><th style="width:26%;">原稿片段</th><th style="width:20%;">诊断</th><th style="width:32%;">修改稿</th><th>用了哪几法</th></tr>
+        <tr><td>爸爸生气地看着我，把手机拿起来，放到了柜子上。我很难过，回到了自己的房间。</td><td>三个通用动词（看、拿、放）承载不了「生气」；情绪全靠形容词直给（生气的、难过）；两句话之间没有细节支撑的因果。</td><td>爸爸盯着我，没说话，把手机从桌上抄起来，搁到柜子顶上——那个我踮脚也够不着的位置。我回房间时带上了门，比平时重了一点。</td><td>主用<strong>换</strong>：「看着」→「盯着，没说话」（沉默比吼叫更有压力）；「拿」→「抄」（带风的速度感）；「放」→「搁到柜子顶上」＋补一个「踮脚也够不着」的方位细节；辅用<strong>增</strong>：结尾补「带门比平时重了一点」——用动作写难过，「难过」二字删除。</td></tr>
+      </table>
+      <p class="ctx">三组示范合起来是一套完整的修改流程演示：示范一治「空」（增），示范二治「散」（删＋调），示范三治「平」（换）。真实修改一篇稿子时，四法都会用到，只是每篇的主刀不同——先诊断这篇的病是空、散、平中的哪一种（或几种），再决定这一轮的主攻方向。<strong>一轮修改只主攻一种病</strong>：同时开四台手术，等于没有手术。这也是八条清单（第五节）把「找出本文最弱的一条」列为核心步骤的原因。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——情绪的动作化表达 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——具体动词优先 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——句子组合训练对写作质量的效应</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、两个物理外挂：朗读法与冷却法</h2>
+    <p class="chapter-sub">自己的文章自己看不出错——那就换耳朵、换时间点</p>
+
+    <article class="view">
+      <h3>朗读法：读不顺的地方，就是要改的地方</h3>
+      <p class="ctx">「文从字顺」这个课标要求，用眼睛检查其实不可靠——眼睛会自动脑补：你知道自己想说什么，读的时候大脑会把缺失的成分悄悄补上，病句就这么溜过去了。<strong>出声朗读堵死了脑补通道</strong>：嘴巴念不顺的地方（喘不上气的长句、重复啰嗦的词、突然断掉的逻辑），就是稿子上真有问题的地方。操作方法极简：找一篇自己的修改对象，<strong>出声、慢速、逐字</strong>读一遍，手里拿铅笔，凡是①读到需要换气的地方②读到自己都脸红的套话③读着突然卡壳接不上的地方，画一个圈。读完数圈：每个圈对应一处待改点，用四法逐个处理。全程大约十到十五分钟，是性价比最高的单轮修改工序。</p>
+      <p class="ctx">朗读法还有两个隐藏收益。其一，它检查的是「读者体验」：你念着累，读者读着就累——写作是给人看的，朗读让你第一次真正站在读者的位置上。其二，它对「调」法特别敏感：段落的顺序对不对、过渡生不生硬，默读时很难察觉，朗读时立刻现形（念完上一段，下一段接不上口，就是「调」的工单）。给家长的提示：孩子朗读自己的作文时，<strong>请只当耳朵不当评委</strong>——听到问题忍住不说，让他自己圈；他圈出来的问题是他的，你指出来的问题是你的（第18章点评三步法的第一原理）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——为耳朵而写：写作节奏的自检 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——各学段「文从字顺」要求 · 夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——以读写故事讲修改之道</div>
+    </article>
+
+    <article class="view">
+      <h3>冷却法：隔夜再改，你会换一双眼睛</h3>
+      <p class="ctx">第12章「初稿封存」练习留的伏笔在这里兑现：<strong>初稿写完至少放置一晚，第二天再动笔修改。</strong>这不是拖延的借口，是有认知依据的工序。写初稿时你脑子里装着完整的创作现场——写第三段时你清楚记得第一段想说什么，所以稿子上省略的逻辑你自动脑补，看不出来。放置一夜后，创作现场的记忆消退了，你再拿起稿子时，处境开始接近一个陌生读者：<strong>只有纸上的字，没有脑内的补充。</strong>哪里跳了、哪里没交代清楚、哪里自嗨，冷却后一眼可见。Zinsser 的做法是把稿子放一放再重读，叶圣陶也主张改稿要先「放一放」——两位隔着大洋的作者在同一个经验上会合。</p>
+      <div class="fig"><img src="../assets/img-13-2.png" alt="一张纸在窗台上冷却旁边放着小时钟的朱红色调极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">冷却法的操作参数：<strong>日常练笔至少隔夜（12 小时以上），重要习作建议隔两三天</strong>；考场没有冷却条件，替代方案是第14章的「检查五分钟」——用八条清单快速过一遍，重点查错别字与占位符漏补（冷却不了，就靠清单兜底）。冷却期间有一个纪律：<strong>不许反复翻看初稿。</strong>看一次就「热」一次，冷却就白做了——这也是第12章封存要拍照存档的原因：想翻看时看照片，纸质稿保持「封条」状态。冷却法还有一个心理副作用值得警惕：隔夜后重读，很多学生的第一反应是「写得真差，不想改了」——请把这个情绪识别为工序的正常反应（第一节讲过的曝光恐惧），然后翻开八条清单：清单不问感受，只问条目。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——放置与重读 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——修改阶段与起草阶段的时间分隔 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「文章要自己改」与放一放再改</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、八条修改清单：可以直接打印的检查表</h2>
+    <p class="chapter-sub">前五条查内容，后三条查语言——顺序就是工序</p>
+
+    <article class="view">
+      <h3>清单本体（建议抄在本子扉页或打印贴桌前）</h3>
+      <table class="tb">
+        <tr><th style="width:6%;">#</th><th style="width:34%;">检查项</th><th>操作标准（可数、可验证）</th></tr>
+        <tr><td>①</td><td>中心明确吗</td><td>能否用一句话说出「这篇写的是____」？说不出→第11章题意锁定句先行；文中每段都为这句话服务，不服务的进「删」工序</td></tr>
+        <tr><td>②</td><td>有具体细节吗</td><td>数一数：全文动作细节＋感官细节总数≥3处？不足→「增」法按第4章公式补，优先补主场景</td></tr>
+        <tr><td>③</td><td>每段只说一件事吗</td><td>逐段用一句话概括段意；一段概括出两件事→拆段或删一件</td></tr>
+        <tr><td>④</td><td>过渡自然吗</td><td>朗读法检查：段与段之间念着接不上的地方→补一个承担真实功能的过渡句（时间/场景/逻辑跳转），禁止空话过渡</td></tr>
+        <tr><td>⑤</td><td>空话套话删净了吗</td><td>对照第15章套话黑名单逐句排查；「删一成」指标：本轮删掉的字数≥全文10%</td></tr>
+        <tr><td>⑥</td><td>错别字</td><td>逐字排查（重点：同音字、形近字）；考场上此条为检查五分钟的第一优先级</td></tr>
+        <tr><td>⑦</td><td>标点</td><td>一逗到底的长句拆分；引号、书名号、省略号用法核对</td></tr>
+        <tr><td>⑧</td><td>题目与开头结尾呼应吗</td><td>重读题目→再读开头结尾：题眼在开头或结尾出现过吗？结尾是口号吗（是→第15章改法）</td></tr>
+      </table>
+      <p class="ctx">使用说明三条：<strong>第一，按序过，不跳条。</strong>八条的顺序就是工序顺序（内容→语言），第⑥⑦⑧条虽然最轻松，但必须最后做——先改错别字再删段落，等于给要拆的墙刷漆。<strong>第二，每轮重点攻一条。</strong>完整过八条后，找出本文最弱的一条（打星号），下一轮修改只攻它——这是 Graham 元分析「设定具体目标」要素的操作化：目标越具体，修改越有效。<strong>第三，用数据记进步。</strong>每篇稿子记三个数：细节总数（第②条）、删除字数（第⑤条）、最弱项是哪条。一个学期下来，你的档案袋里就有一张自己的「病症分布图」——总在第②条摔倒的人去重读第4章，总在第⑤条摔倒的人去重读第15章，清单成了导航。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学＋具体目标显著有效（效应量 0.30–1.02 区间） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「修改自己的习作」的学段要求 · <a href="https://eric.ed.gov/?id=ED517367">《Writing Next》ERIC 页（英文）</a>——目标设定要素</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、招牌动作：把老师评语翻译成修改动作</h2>
+    <p class="chapter-sub">评语是免费的私教课——前提是你有翻译器</p>
+
+    <article class="view">
+      <h3>翻译三步法：从「听不懂」到「照着做」</h3>
+      <blockquote class="q">
+        <strong>评语翻译三步法：</strong><br>
+        ① <strong>逐句拆</strong>：把老师评语按句号拆成条目，每条问一个问题——「这句话对应的修改动作是什么？」抽象评价（「内容不够生动」）先翻译成具体指向（生动=细节密度→第②条清单→「增」法）；具体指令（「没有写老师具体说了什么」）直接转成工单（补一句老师原话＋我当时的身体反应）。<br>
+        ② <strong>配工序</strong>：每个工单标注用哪一法（增/删/调/换）、调用哪一章的方法（第4章公式/第7章对话/第5章慢镜头），并估一个时间（每个工单≤15分钟）。<br>
+        ③ <strong>排日程</strong>：工单超过三个时，别一次做完——按「一天一单」排进本周日程，做完一单划掉一单。评语从「判决书」变成「一周练习清单」，这正是第0章立下的态度。
+        <span class="qsrc">方法整合：McGee (2019) 反馈转化为可执行步骤的焦虑干预思路 + 叶圣陶「引导学生自己改」+ 本课程设计</span>
+      </blockquote>
+      <p class="ctx">用本章开头那条真实评语做一次完整示范。<strong>原评语</strong>：「没有写老师讲评的时候，具体说了什么？我听到哪一句话心里被点醒？我之后是怎么一点点改（比如做阅读真的怎么圈题、怎么留时间）？后面'渐渐地我能写完卷子，红叉少了'也是一笔带过，也只是对结果的陈述，不是过程描写。」<strong>翻译结果</strong>：工单一——补写老师讲评时的原话（增法；调第7章对话描写；15分钟）；工单二——补写听到那句话瞬间的身体反应与心理（增法；调第4章公式＋第8章心理描写；15分钟）；工单三——把「怎么一点点改」写成固定动作链：圈题怎么圈、时间怎么留（增法；调第5章慢镜头；15分钟；本章第三节示范一就是成品参考）；工单四——「渐渐地……红叉少了」一句按过程重写，给出可数的变化（换法＋增法；10分钟）。四张工单，四天做完，这篇作文就从「一笔带过」变成了「过程完整」——评语的每一个问号都被兑现成了动作，这就是「翻译」的含义。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019) "Reducing Writing Anxiety by Improving Self-Efficacy Beliefs"（英文）</a>——把反馈拆成可执行步骤能提升自我效能感 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——批改的目的是「引导学生自己改」 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000) 自我决定理论（英文）</a>——自主执行的任务比被指派的任务更保护动机（<a href="https://selfdeterminationtheory.org">SDT 官网</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>常见评语的翻译对照表</h3>
+      <table class="tb">
+        <tr><th style="width:28%;">老师评语原文</th><th style="width:32%;">它在说什么（诊断）</th><th>翻译成的修改动作</th></tr>
+        <tr><td>「内容空泛」「不具体」</td><td>细节密度不足：结果陈述句太多</td><td>「增」法：圈出全部结果陈述句，主场景内至少展开两处（第4章公式）；清单第②条</td></tr>
+        <tr><td>「中心不明确」「有点跑题」</td><td>题眼丢失或素材与题目错位</td><td>写题意锁定句（第11章）；逐段问「这段为锁定句服务吗」，不服务的删或调</td></tr>
+        <tr><td>「流水账」</td><td>详略失当：事件平均用力</td><td>「调」法：选出唯一主场景写胖，其余压缩；本章第三节示范二为模板</td></tr>
+        <tr><td>「语言平淡」</td><td>通用动词与形容词直给情绪</td><td>「换」法：全文圈出十个通用动词逐个替换；删情绪形容词改用动作（示范三）</td></tr>
+        <tr><td>「结尾仓促」「虎头蛇尾」</td><td>时间分配或结构问题</td><td>查第14章时间盒；结尾改用「小场景收束」法（第15章）；清单第⑧条</td></tr>
+        <tr><td>「书写马虎」</td><td>起草纪律与卷面习惯</td><td>第12章起草四禁之「禁纠结字迹」的反面提醒：日常练速度，考场练规范，分场合执行</td></tr>
+      </table>
+      <p class="ctx">这张表建议抄在写作档案袋的封皮内侧。使用时的注意点：翻译的落点永远是<strong>动作</strong>（圈出来、展开两处、替换十个），不是决心（下次认真、多读多写）——能被检查表验证的才叫动作。如果某条评语你实在翻译不了，那正是去问老师的最好问题：「老师，您说的'不生动'，我改哪一段、怎么改，能给我指一个例子吗？」敢这样问的学生，老师只会高兴——第0章说过，会读评语的学生等于免费获得了一位私人教练，而提问是把教练请到场的方式。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（ERIC EJ1125149，英文）</a>——可执行反馈对写作态度的改善 · 管建刚《我的作文教学革命》，福建教育出版社（文字引用）——讲评课从学生稿子的真实病症出发</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、互评与练习任务</h2>
+    <p class="chapter-sub">同学是你的第一批读者；三个练习把本章方法练进手</p>
+
+    <article class="view">
+      <h3>一句话互评法：会当读者，也会收反馈</h3>
+      <p class="ctx">课标把「互改」与「自改」并列，Graham 2012 元分析也确认<strong>同伴互评显著有效</strong>——但有效的互评有严格的格式，否则就退化成互相夸奖或互相伤害。本课推荐的最小格式是<strong>「一句话互评法」</strong>：读完同伴的稿子，只说两句话——<strong>第一句：一个具体优点，必须引用原句</strong>（「你写'水凉凉的，从指尖一直凉到手腕'这句，我读的时候手都跟着凉了一下」）；<strong>第二句：一个修改建议，落到清单某一条</strong>（「结尾'真是难忘的一天'是清单第⑤条的套话，要不要试试用那个'手在水里'的画面收尾？」）。两句都有引用、都指向具体位置——这就是互评的全部技术要求。</p>
+      <p class="ctx">互评的三条纪律：<strong>①只提一个建议</strong>——两个以上建议等于没有建议，对方记不住也会泄气（第18章家长点评三步法同源）；<strong>②不动对方的笔</strong>——建议用嘴说或用便签写，改不改、怎么改是对方的工序，边界感是互评能持续的前提；<strong>③不打分不评级</strong>——「我觉得能得45分」这类话禁止出现，互评提供的是读者反应，不是模拟阅卷。收反馈一方也有功课：听到建议先别辩解，记下来，回家对照清单验证——读者说「这里没看懂」永远是有效信息，因为考场上阅卷老师也是第一次读你的文章。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——同伴互评的显著效应 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「主动与他人交换修改」 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a>——自主支持式反馈保护内在动机</div>
+    </article>
+
+    <article class="view">
+      <h3>练习一：「朗读圈改」（15分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①取第12章练习二封存的初稿（隔夜后再做）；②出声、慢速、逐字朗读全文，拿铅笔在三类位置画圈：需要换气的长句、自己脸红的套话、念着卡壳接不上的断口；③数圈的总数写在页脚；④用四法各改至少一处：「增」一处细节、「删」一处套话、「调」一个段落或长句拆分、「换」一个通用动词；⑤改完再朗读一遍，检查改过的地方是否顺了。<br><br>
+        <strong>检查表（三问）：</strong>四法是不是各动了至少一处（在页边标注增/删/调/换）？删除的字数达到全文一成了吗？第二遍朗读时，原来的圈还剩几个？
+      </blockquote>
+      <p class="ctx">这个练习的隐藏考点是「第二遍朗读」：多数学生改完不复读，等于手术做完不缝合。复读到「圈明显变少」为止，一轮朗读圈改才算闭环——通常两遍足够，超过三遍说明你在无限打磨，停下来，进清单工序。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——朗读自检 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学的操作化练习</div>
+    </article>
+
+    <article class="view">
+      <h3>练习二：「清单过稿」（15分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①取朗读圈改后的稿子；②按八条清单逐条过，每条在页边记「√」（合格）或「✗＋一句原因」；③统计✗的条数；④选出「最弱一条」（✗里最严重的那个），针对它做本轮唯一的一次修改；⑤页脚记三个数：细节总数（第②条数出来的）、本轮删除字数、最弱条编号。<br><br>
+        <strong>检查表（三问）：</strong>八条都有记录吗（没有跳条）？最弱条是不是只选了一个？三个数写进档案袋登记表了吗？
+      </blockquote>
+      <p class="ctx">连续做四篇，你的「最弱条编号」序列会呈现规律——有人常年卡在第②条（细节不足），有人卡在第⑤条（删不掉套话）。找到你的常驻病号，回对应章节重读方法部分：第②条→第4章，第⑤条→第15章，第③④条→第10章，第⑧条→第15章。清单不只是改稿工具，还是你的诊断仪。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012) ERIC 页（英文）</a>——具体目标的效应 · <a href="https://eric.ed.gov/?id=ED517367">《Writing Next》ERIC 页（英文）</a>——策略教学要素 · 王荣生《写作教学教什么》（文字引用）——程序性知识要练到自动化</div>
+    </article>
+
+    <article class="view">
+      <h3>练习三：「互评一句话」（10分钟，需同伴）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①与同学交换各自冷却后的稿子（或家长与孩子交换——家长写一段工作随笔也可）；②通读对方稿子一遍，不回读、不动笔；③在便签上写两句话：一个具体优点（必须引用原句）＋一个修改建议（落到清单某一条）；④便签交给对方，口头补一句「我读到____的时候最有画面感」；⑤收到对方便签后，先验证再决定：对照清单检查那条建议，采纳则标注「已改」，不采纳则写一句理由——不采纳也是合法结果。<br><br>
+        <strong>检查表（三问）：</strong>我的优点句引用原文了吗？我的建议落到具体条目了吗（不是「再改改」）？我对收到的建议做了「验证」而不是「照单全收」或「一律抵触」吗？
+      </blockquote>
+      <p class="ctx">没有同伴也可以做单人版：把自己一周前的旧作当「别人的稿子」，用一句话互评法给它写便签——冷却足够久的旧作，读起来真的像别人写的。这是冷却法的进阶应用，也是档案袋复盘（第0章练习二）的标准动作。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——同伴互评有效性 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「交换修改」要求 · <a href="https://selfdeterminationtheory.org">自我决定理论官网（英文）</a>——自主采纳而非被动服从</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、常见误区与谣言粉碎</h2>
+    <p class="chapter-sub">关于修改的三句流行话，逐句拆</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「修改就是改错别字」「老师改得越多越好」</h3>
+      <p class="ctx"><strong>谣言一：「修改就是改错别字和病句。」不成立。</strong>这是把「编辑」当成了「修改」的全部（第一节的层级区分）。错别字属于清单第⑥条，八分之一的工作量；真正决定文章成色的是前五条——中心、细节、段落、过渡、删冗。只改错别字的修改，等于给毛坯房擦玻璃。<strong>谣言二：「老师（家长）改得越多，孩子进步越快。」不成立，方向反了。</strong>叶圣陶的论断很直接：教师改得再多，不如学生自己会改——改的能力只能在自己动笔改的重复中长出来；满纸红笔的稿子发回来，学生看一眼分数就合上，那些修改从未进入他的工序记忆。研究口径同样支持：Graham 元分析里有效的是「策略教学」（教学生自己会改的方法）而不是「教师代改」。第18章会把这个结论翻译成家长操作：管住红笔，把稿子和清单一起还给孩子。</p>
+      <p class="ctx"><strong>谣言三：「好文章是一气呵成、不用改的。」不成立</strong>——它与第12章拆过的「一遍写成」谣言同源，此处补充修改工序特有的证据：Zinsser「重写是写作的本质」；课标把「自改互改」写入学段要求（如果文章不需要改，国家课程标准不会为一个不存在的工序设置要求）；《Writing Next》11 要素中「过程写作法」在列。一气呵成的观感来自熟练工序的压缩，不来自工序的缺席。顺带一个考场特供提醒：正因为修改是工序而非玄学，考场上「检查五分钟」才必须按清单执行而不是凭感觉扫一遍——具体安排见第14章。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「文章要自己改」「教是为了不教」 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a> · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a> · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>两条边界提醒：修改不是无限打磨，也不是万能</h3>
+      <p class="ctx"><strong>边界一：修改有停止条件。</strong>完美主义会从「不敢写初稿」（第12章）变形为「改到没完没了」——同一篇稿子改七八遍，每一遍都只是把「换」法重复做，细节密度和结构都没有变化，这不是修改，是焦虑的仪式。停止条件写死在清单里：八条全√、最弱条已针对处理、朗读两遍圈数不再下降——满足即停稿，把时间投给下一篇的输入工序（观察、素材卡）。写作能力靠「篇数×工序完整度」积累，不靠单篇打磨次数。<strong>边界二：修改救不了无米之炊。</strong>如果初稿本身素材空洞（从头到尾没有一个真实细节可展开），四法里「增」也无从下手——增的原料来自第2章的观察和第3章的素材卡。修改工序的上限，由输入工序的存量决定；这也是本课把「素材从哪来」放在第一部分的原因：先有米，再谈炊。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——完美主义的两种形态：不敢写与改不停 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——写作焦虑与回避行为 · Zinsser《On Writing Well》（文字引用）——「停止打磨」也是重写纪律的一部分</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「写完不想再看第二遍」的两层心理机制是什么？本章分别用什么工具拆掉它们？</li>
+        <li>课标 2022 对修改的原文要求是哪八个字？它为什么在逻辑上承认了「初稿」的存在？</li>
+        <li>Graham 2012 元分析中，与修改工序直接相关的三种有效干预是什么？效应量区间是多少？</li>
+        <li>revising（修改）和 editing（编辑）的区别是什么？为什么必须先后有序？</li>
+        <li>四法口诀是哪四法？各自治哪类病？为什么顺序是增→删→调→换？</li>
+        <li>「增」的判断标准是什么？（提示：新信息＋能不能画成画）增的三个标准作业点在哪里？</li>
+        <li>「删」的三条必删红线是什么？「删一成」指标防的是哪种偏向？</li>
+        <li>「调」的三个常用手术是什么？为什么在草稿纸上排段落序号比在正文里调便宜？</li>
+        <li>「换」的三个升级方向是什么？换完用什么工序质检？</li>
+        <li>朗读法为什么比默读检查可靠？三类画圈位置是哪三类？</li>
+        <li>冷却法的认知依据是什么？冷却期间为什么不许翻看初稿？考场上没有冷却条件怎么办？</li>
+        <li>八条清单前五条和后三条的分界逻辑是什么？「最弱一条打星号」是哪条研究要素的操作化？</li>
+        <li>评语翻译三步法是哪三步？用那条真实评语翻译出的四张工单是什么？</li>
+        <li>一句话互评法的两句话格式是什么？互评三纪律是哪三条？</li>
+        <li>修改的两个停止条件/边界是什么？为什么说「修改救不了无米之炊」？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>修改是写作的核心工序：课标 2022 原文「重视修改，引导学生自改、互改」；Graham et al. (2012) 元分析确认策略教学、具体目标、同伴互评显著有效（效应量 0.30–1.02）；Zinsser「重写是写作的本质」；叶圣陶「文章要自己改」。层级先分清：revising（内容大手术）在前，editing（语言小修补）在后。核心工具四法口诀——<strong>增</strong>（加信息不加字数：占位符销号、结果陈述句展开、主场景写胖）、<strong>删</strong>（空话套话/重复/离题段三红线，每轮至少删一成）、<strong>调</strong>（主场景挪黄金位、详略对调、长短句节奏）、<strong>换</strong>（通用动词换具体动词、套话换自己的话、大词换小词）；一轮只主攻一种病。两个物理外挂：朗读法（出声慢读，换气处/套话/断口画圈）与冷却法（隔夜再改，接近陌生读者眼光；考场用清单五分钟兜底）。八条清单：①中心②细节≥3处③每段一事④过渡⑤套话删净⑥错别字⑦标点⑧题目呼应——前五条内容、后三条语言，最弱条打星号作为下轮唯一目标，三个数记入档案袋。招牌动作「评语翻译三步法」：逐句拆→配工序（四法＋章节＋≤15分钟）→排日程（一天一单）；真实评语已示范翻译成四张工单。互评用「一句话互评法」：引用原句的优点＋落到清单条目的一个建议；三纪律：只提一个、不动对方笔、不打分。三个谣言已拆：修改≠改错别字、老师改得多≠进步快、好文章≠不用改。两个边界：满足停止条件即停稿；修改的上限由输入工序的素材存量决定。下一章：<a href="../14-time/">第14章·考场时间分配</a>——把这三章的工序装进 150 分钟的考场：怎么留时间，正是那条评语的最后一问。
+  </div>
+
+  <nav class="pager">
+    <a href="../12-draft/"><span class="dir">← 上一章</span>第12章 · 初稿：先写完，再写好</a>
+    <a href="../14-time/"><span class="dir">下一章 →</span>第14章 · 考场时间分配：作文与阅读怎么留时间</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第13章 · 依据教育部《义务教育语文课程标准（2022年版）》、Graham et al. (2012/2023) 写作教学元分析、《Writing Next》(2007)、Zinsser《On Writing Well》、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、管建刚作文教学系列、蒋军晶《让学生学会写作》、Ryan &amp; Deci (2000) 自我决定理论、McGee (2019) 与 Berk (2017) 写作焦虑研究等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

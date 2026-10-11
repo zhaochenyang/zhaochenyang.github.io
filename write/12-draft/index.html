@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 初稿：先写完，再写好 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第12章 · 第三部分 · 写作流程</div>
+  <h1>✍️ 初稿：先写完，再写好</h1>
+  <p>卡壳不是没灵感，是你让一个人同时干两个人的活——这一章把「写」和「改」彻底分开</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../11-topic/">← 第11章：审题</a>
+    <a href="../13-revise/">第13章：修改 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">卡壳现场</a>
+    <a class="anchor" href="#s2">过程写作法</a>
+    <a class="anchor" href="#s3">自由写作</a>
+    <a class="anchor" href="#s4">烂初稿许可</a>
+    <a class="anchor" href="#s5">时间盒</a>
+    <a class="anchor" href="#s6">对照示范</a>
+    <a class="anchor" href="#s7">练习任务</a>
+    <a class="anchor" href="#s8">误区谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清「写两句就卡住」的认知机制：一边生成一边评判，两个工序互相打架；②了解过程写作法（Murray）与自由写作（Elbow）这两套被研究反复验证的方法；③掌握「五分钟不停笔」热身法与「25分钟时间盒」完整初稿法的具体操作；④接受「烂初稿许可」：初稿的唯一任务是被写完，不是被写好；⑤学会「占位符跳写」：卡住的地方先占位，绝不回头；⑥完成三个练习，亲手体验一次「零修改初稿」。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>如果你或孩子的症状是「作文本上永远只有半页」「写一句划一句」「开头改了五遍还没进入正文」，本章就是对症药，建议通读后立刻做第七节练习一。如果症状是「考场上作文写不完」，本章的时间盒方法是第14章考场时间分配的地基，先读本章再去第14章。家长请重点读第四节「烂初稿许可」和第八节——孩子初稿写得乱时你的反应，决定他敢不敢继续写下去。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、卡壳现场：你不是没灵感，是工序乱了</h2>
+    <p class="chapter-sub">先诊断，再开方——三种卡壳，同一个病根</p>
+
+    <article class="view">
+      <h3>晚上八点的书桌：一次典型卡壳的还原（示例场景）</h3>
+      <p class="ctx">晚上八点，作文本摊开在桌上（以下为根据一线教学常见情形编写的示例场景）。题目是《那一刻，我长大了》。他写下开头：「每个人都有长大的时刻。」停笔，看了看，觉得太平了，划掉。重写：「成长就像一场旅行。」又觉得是套话，划掉。第三次写：「那天放学，天阴沉沉的。」觉得天气和主题没关系，又划掉。二十分钟过去，作文本上只有三行被划掉的句子和一片涂改的黑疙瘩。他并不懒，也不笨，脑子里甚至有好几个可用的素材——运动会接力赛掉棒又追回、第一次给奶奶削苹果削断了皮——但每一个素材刚冒头，立刻被另一个声音按住：「这个太幼稚」「这个开头不够漂亮」「这个词是不是用错了」。冒头的是「写作者」，按住的是「评判者」，两个人在抢同一支笔。</p>
+      <p class="ctx">这个场景在写作研究里有个专门的名字：<strong>写作阻塞（writer's block）</strong>。研究综述指出，写作阻塞的主要成因不是「无话可说」，而是<strong>写作过程中的焦虑、完美主义与不当的自我监控</strong>——写作者在生成文字的同时进行严苛评判，导致生成通道被反复掐断。注意这个诊断的措辞：问题出在「过程」和「监控」上，也就是说，它是工序安排问题，不是能力问题。工序问题，改工序就能解决——这正是本章要做的事。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 写作阻塞条目（英文）</a>——成因：焦虑、完美主义、边写边改的自我监控 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017) 写作焦虑与写作态度研究（ERIC EJ1125149，英文）</a>——写作焦虑越高，动笔越难，练习越少，形成循环</div>
+    </article>
+
+    <article class="view">
+      <h3>认知机制：生成与评判是两种互相干扰的脑力活</h3>
+      <p class="ctx">第0章讲过 Hayes &amp; Flower 的写作认知过程模型：写作由<strong>计划、转译、复查</strong>三个环节循环组成。成熟写作者也边写边改，但他们有一个关键特征——<strong>生成（转译）和评判（复查）在时间上是分开的</strong>：先让句子流出来，流到一段落或一个停顿点，再切换成读者身份回头看。而卡壳的学生把两个环节压进了同一秒：每写半句就切一次身份，写作者刚拿起笔，评判者就抢过来打分。身份切换是有认知代价的，切换得越频繁，留给「想下一句写什么」的脑力就越少——于是笔停住了。停住之后，评判者还会补一刀：「你看，果然写不出来。」这就是为什么卡壳往往越卡越死。</p>
+      <p class="ctx">所以本章的核心处方只有一句话：<strong>起草与修改分离。</strong>写初稿时，评判者不许进场；修改时（第13章），写作者退场，换评判者上台。两个工序各自有各自的规则、各自的时间、各自的合格标准——初稿的标准是「写完」，修改的标准才是「写好」。把这句话记住，本章其余内容都是它的展开：第三节教你怎么让评判者暂时离场（自由写作），第四节告诉你初稿烂到什么程度都可以接受（烂初稿许可），第五节给你分离工序的具体时间表（时间盒）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes, J. R., &amp; Flower, L. S. (1980). "A Cognitive Process Theory of Writing." <em>College Composition and Communication</em>, 31(2), 146–161（JSTOR 反爬，卷期页码文字引用）——计划/转译/复查三环节模型 · <a href="https://wac.colostate.edu/">WAC Clearinghouse 写作教学研究资料库（英文）</a>——写作过程研究文献库 · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对号入座：三种卡壳，一张诊断表</h3>
+      <p class="ctx">卡壳不止一种样子，先对号入座，才知道本章哪一节对你最有用：</p>
+      <table class="tb">
+        <tr><th style="width:24%;">卡壳类型</th><th style="width:30%;">典型表现</th><th style="width:22%;">病根</th><th>对应处方</th></tr>
+        <tr><td>断流型</td><td>写两句停一次，笔悬在半空，「下一句写什么来着」</td><td>没有提纲，全靠临时想（计划环节缺失）</td><td>第11章审题列纲＋本章第五节时间盒开头两分钟</td></tr>
+        <tr><td>嫌弃型</td><td>写一句划一句，涂改比正文多，开头永远不满意</td><td>边写边改，评判者抢笔（本章主症）</td><td>第三节自由写作＋第四节烂初稿许可＋起草四禁</td></tr>
+        <tr><td>怕错型</td><td>不敢下笔写「不确定对不对」的词句，频繁查字典问家长</td><td>把初稿当成品交，怕留下错误证据</td><td>第四节「初稿只给自己看」＋第五节禁查规定</td></tr>
+      </table>
+      <p class="ctx">三种类型的共同点是：<strong>都不是「没东西可写」。</strong>断流型的学生脑子里有素材但没有顺序，嫌弃型的学生写得出句子但不许自己写出来，怕错型的学生能写但不敢落笔。素材本身的问题归第2、3章管（观察与积累）；顺序问题归第10章管（提纲）；而「不许自己写出来」和「不敢落笔」，全部归本章管。如果你的诊断结果是混合型（大多数人是），也没关系——本章的方法是一套组合拳，按节读下去即可。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作困难应诊断为「过程知识」缺失而非笼统的「能力差」 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——预写/起草/修改/编辑/发表五阶段框架，各阶段任务不同</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、过程写作法：官方与研究站在同一边</h2>
+    <p class="chapter-sub">「先写完再写好」不是野路子，是写作教学五十年的主流结论</p>
+
+    <article class="view">
+      <h3>Murray（1972）：教写作是教过程，不是评成品</h3>
+      <p class="ctx">1972 年，后来获得普利策奖的记者兼写作教师 Donald Murray 在《Phi Delta Kappan》发表短文《Teach Writing as a Process Not Product》（把写作当过程来教，而不是当成品来评），成为过程写作法的奠基文献。他的核心主张：写作课教的是「通过语言进行发现的过程」——学生不是先想清楚再去写，而是<strong>在写的过程中发现自己到底想说什么</strong>。这个观点对「卡壳」的解释力极强：嫌弃型卡壳的学生总在等「想清楚了再动笔」，但 Murray 告诉你，想清楚恰恰是动笔之后才发生的事。初稿不是把想好的东西誊抄出来，而是用来「想」的工具——写着写着，第二段冒出来的那句话，往往才是这篇文章真正的中心。</p>
+      <p class="ctx">Murray 这篇文章发表五十多年后，写作研究界仍在回应它：2024 年《Composition Forum》第 50 卷刊发了题为《No, Really: Teach Writing as a Process not Product》的纪念专辑。一门方法能被学术界讨论半个世纪，说明它触到了写作的真实机制。对本章而言，Murray 给出的最重要操作启示是：<strong>初稿的价值在于「发现」，不在于「呈现」</strong>——它不需要给任何人看，它的读者只有一个，就是写完它之后再来修改的你（第13章）。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray, D. M. (1972) "Teach Writing as a Process Not Product" 全文 PDF（英文）</a> · <a href="https://compositionforum.com/issue/50/teach-writing-as-process.php">Composition Forum 50 (2024) 五十周年纪念专辑（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>研究证据：策略教学与过程写作法显著有效</h3>
+      <p class="ctx">「过程写作法有效」不只是一句口号，有元分析级别的证据。Graham 等人 2012 年发表在《Journal of Educational Psychology》的小学段写作教学元分析，汇总了 13 种写作干预的效应量，区间为 <strong>0.30–1.02</strong>（Graham, McKeown, Kiuhara, Harris &amp; Fitzgerald, 2012）——其中<strong>写作策略教学、过程写作法（明确区分计划/起草/修改各阶段）、设定具体目标、同伴互评</strong>均达到显著有效。2023 年 Graham 团队又发表了覆盖 6–12 年级的对应版元分析，中学段结论方向一致。换句话说：把「起草」当成一个有规则、有边界、可单独训练的工序来教，是研究反复验证过的做法；反之，把作文当成「一口气写成的成品」来要求，等于让学生用未经训练的工序去碰运气。</p>
+      <p class="ctx">另一份权威综述是卡内基公司 2007 年的《Writing Next》报告，它列出了青少年写作教学的 11 个有效要素，其中与本章直接相关的有三个：<strong>写作策略教学、预写活动（prewriting）、过程写作法</strong>。请注意这份清单里没有什么：没有「背范文」，没有「好词好句积累量」，没有「模板训练」——考试院不公开评分细则，但从有效教学的证据清单看，把功夫下在「工序」上远比下在「成品套路」上划算。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-p">🏷 商业科普</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012) 小学段写作教学元分析，Journal of Educational Psychology 104(4), 879–896（英文）</a> · <a href="https://eric.ed.gov/?id=EJ994038">同文 ERIC 收录页（EJ994038，英文）</a> · <a href="https://psycnet.apa.org/record/2024-12988-002">Graham et al. (2023) 6–12 年级写作干预元分析（英文）</a> · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) 报告全文 PDF（英文）</a> · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA "The science of writing instruction"（英文）</a>——写作教学科学的科普入口（标注：科普转述）</div>
+    </article>
+
+    <article class="view">
+      <h3>课标口径：写作本来就是一个「多稿」的过程</h3>
+      <p class="ctx">国内的官方口径同样站在过程这一边。《义务教育语文课程标准（2022年版）》在「表达与交流」部分明确要求<strong>重视修改，引导学生自改、互改</strong>；第三学段（5-6 年级）的具体要求是「修改自己的习作，并主动与他人交换修改」。「修改」被写进国家课程标准，逻辑前提就是：<strong>作文不是一遍成型的，一篇习作天然存在「初稿」和「修改稿」两个版本。</strong>如果初稿必须完美，「修改」这门课就没有存在的必要了。课标还给各学段规定了习作次数与课外练笔总量——注意它规定的是「量」，练笔的量要靠「写得完」来保证，而写得完的第一障碍就是边写边改。</p>
+      <p class="ctx">统编语文教材的编排也印证这一点：从三年级起每册设置独立「习作单元」，栏目依次是精读课文→交流平台→初试身手→习作例文→习作。「初试身手」这个栏目名说得很直白：<strong>先试，再改，不要求一次到位。</strong>英国教育捐赠基金会（EEF）的中学写作教学指南（Improving Writing in Secondary Schools）六条建议的第一条同样是「明确教授写作过程：计划、起草、修改」（EEF 官网反爬，此处文字引用）。中英两边的官方与第三方教学指南在这一点上罕见地完全一致——你可以放心地把「先写完，再写好」当成写作的正规工序，而不是偷懒的借口。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部《关于印发义务教育课程方案和课程标准（2022年版）的通知》（教材〔2022〕2号，含语文课标全文附件）</a>——「重视修改、自改互改」原文所在 · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材「习作单元」体例（深链反爬，以官网检索为准） · EEF《Improving Writing in Secondary Schools》指南（官网 403 反爬，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、自由写作：把评判者关在门外</h2>
+    <p class="chapter-sub">Elbow 的 freewriting——五分钟让笔先热起来的技术</p>
+
+    <article class="view">
+      <h3>什么是 freewriting：规则只有四条</h3>
+      <p class="ctx">Peter Elbow 在《Writing Without Teachers》（1973 年初版，1998 年二版）中系统提出了<strong>自由写作（freewriting）</strong>：一种定时、不停笔、不删改、不回读的写作练习。规则拆开只有四条：<strong>①定时</strong>——设一个闹钟，五分钟或十分钟，从小学五年级到初中都适用；<strong>②不停笔</strong>——从计时开始到结束，笔不离纸（或手不离键盘），这是唯一的硬规则；<strong>③不删改</strong>——写错的字划一道继续写，不涂改、不使用橡皮或退格键；<strong>④不回读</strong>——写的过程中不许回头看已经写了什么，回读等于请评判者进场。这四条规则的全部目的只有一个：让生成通道在一段时间内完全不受评判干扰，把那个「按住素材的声音」暂时关在门外。</p>
+      <p class="ctx">Elbow 还有一个配套概念叫 <strong>cooking（孵化）</strong>：素材和想法在不停地写与放一放之间反复「烹制」，答案常常不是想出来的，而是在写的过程中自己冒出来的。这解释了自由写作最神奇的现象：很多人写着写着就从「我卡住了我卡住了」滑进了真正的正题——前两分钟的胡言乱语相当于热身，第三分钟起，大脑发现评判者真的没来，素材就开始自己往外走。第14章的「开考先看作文题」用的也是 cooking 原理：让题目在后台孵化，前台先做阅读。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 个人官网（英文，作者官方页）</a>——《Writing Without Teachers》及 freewriting 方法说明 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——方法源流与操作规则综述</div>
+    </article>
+
+    <article class="view">
+      <h3>方法拆解框：「五分钟不停笔」标准操作</h3>
+      <blockquote class="q">
+        <strong>五分钟不停笔（建议每天一次，写在固定本子上）：</strong><br>
+        ① 准备：一个专用本子（写坏了也不心疼的那种）、一支笔、一个计时器；<br>
+        ② 起手式：计时开始，第一句固定写「此刻我脑子里……」，后面接什么写什么；<br>
+        ③ 硬规则：笔不离纸；想不出就写「我想不出来我想不出来」，写到下一句自己冒出来为止；<br>
+        ④ 禁动作：不划掉、不涂改、不回读、不查任何字；写错就把错的留在纸上；<br>
+        ⑤ 计时响：立刻停笔，在页脚写一个数字——本次中途完全卡住（停笔超过五秒）的次数；<br>
+        ⑥ 之后：允许从这堆文字里圈出一两句有意思的，抄进素材本（第3章），其余原样留着，不许改。
+        <span class="qsrc">方法来源：Elbow《Writing Without Teachers》freewriting 操作（英文），学段适配为本课程设计</span>
+      </blockquote>
+      <p class="ctx">页脚那个「卡住次数」是刻意设计的：它把看不见的进步变成可数的指标。第一次做，多数学生会卡七八次；坚持两周，次数通常降到两三次——这个数字的下降，比任何鼓励的话都更能说明「生成通道变宽了」。这正是第0章说的「小到不可能失败、具体到可以检查」的练习设计。自由写作写出来的东西绝大多数是废话，这是正常的、预期的、被允许的——它的热身价值恰恰建立在「反正不拿去交」之上。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——「产出质量不重要，过程即目的」 · <a href="https://peterelbow.com">Peter Elbow 官网（英文）</a> · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小而确定的成功体验降低写作焦虑、提升自我效能感</div>
+    </article>
+
+    <article class="view">
+      <h3>为什么有效：先让身体写，脑子会跟上来</h3>
+      <p class="ctx">自由写作看起来近乎儿戏——「写不出就写'我想不出来'」算什么方法？但它对症。第一节的诊断说过，卡壳的机制是评判者频繁掐断生成通道；freewriting 用「不停笔」这条物理规则直接封死了掐断的可能：笔在动，评判者就没有插手的缝隙。第二，它把写作的启动成本降到零：不需要题目、不需要提纲、不需要「今天状态好」，任何时刻都能开始——这对怕错型学生尤其重要，因为「专用本子＋不交＋不改」三重保险让「写错」失去了后果。第三，它训练的是写作最底层的体能：<strong>把内部语言持续转成书面语言的流畅度。</strong>这个转译能力与「会写好句子」是两回事，但它是后者的地基——地基不牢的学生，再多的好词好句也运不进作文里。</p>
+      <p class="ctx">需要说清楚的边界：自由写作是<strong>热身和日常体能训练，不是作文本身</strong>。它不教你审题（第11章）、不教你结构（第10章）、更不替代修改（第13章）。把它当成每天五分钟的「写作广播体操」，与正经习作分工明确——体操做得再好不等于会打球，但不做体操，打球时一定容易拉伤。对小学生，建议从三分钟起步，两周后加到五分钟；初中生可直接用五到十分钟。有家长担心「天天写废话会不会养成不认真的习惯」——恰恰相反，研究写作焦虑的文献里，「允许写糟」的练习环境是降低焦虑、恢复动笔意愿的标准手段；认真是用在修改工序上的，而修改的对象，得先有稿子。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（ERIC EJ1125149，英文）</a>——低威胁写作环境对写作态度的改善 · Elbow《Writing Without Teachers》（Oxford UP，1973/1998，文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、烂初稿许可：初稿的任务是被写完</h2>
+    <p class="chapter-sub">所有好作者的第一稿都很糟——这不是安慰，是行业事实</p>
+
+    <article class="view">
+      <h3>Lamott 的「烂初稿」与 Zinsser 的「重写本质」</h3>
+      <p class="ctx">美国作家 Anne Lamott 在写作指导名作《Bird by Bird》（Pantheon，1994，文字引用）里有一章的标题直白到粗鲁，通行的中译是「烂初稿」：她的核心观点是，<strong>所有好作者的第一稿都很糟，允许自己写烂，是能够继续写下去的前提。</strong>她描述自己写作的真实状态：初稿像是「把沙子一车车倒进沙坑」，之后的所有工序才是「用沙子堆城堡」。William Zinsser 在《On Writing Well》（Harper，1976 初版；30 周年版 2016，文字引用）里给出了同一件事的另一个版本，这句话值得抄在本子扉页：<strong>"Rewriting is the essence of writing."（重写是写作的本质。）</strong>他解释说，初稿的真正功能是「发现你想写什么」——写作的清晰不是写之前具备的条件，而是重写之后得到的结果。</p>
+      <p class="fig"><img src="../assets/img-12-1.png" alt="一张涂满潦草红色笔迹的初稿纸与一只沙漏的扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">两位作者合起来说清了一件事：<strong>初稿和成品是两种不同的东西，用成品的标准检查初稿，等于用考试标准要求练习赛。</strong>名家手稿可以作证——课本里那些「一气呵成」的感觉，是修改工序完成后呈现给读者的最终状态，起草现场没有人的纸面是干净的。第13章会教你修改的四法和清单；本章先把心理许可发下来：接下来你写出的每一篇初稿，都被允许句子笨拙、用词重复、结构摇晃、详略失当——它只需要满足三个「有」。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Anne Lamott《Bird by Bird》（Pantheon，1994，文字引用）——"shitty first drafts" 章 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——"Rewriting is the essence of writing" 与初稿功能论 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——起草与修改分属不同阶段的标准框架</div>
+    </article>
+
+    <article class="view">
+      <h3>初稿合格线：三个「有」，仅此而已</h3>
+      <p class="ctx">「允许烂」不等于「没有标准」——初稿有自己的合格线，一共三条，全部可以用肉眼检查：<strong>①有头有尾</strong>：哪怕结尾只有一句「后来我就回家了」，文章也是完整的，完整是初稿的第一合格线，因为修改工序需要完整的对象；<strong>②有主场景</strong>：全文最重要那个场面（第10章提纲里标注的详写段）确实写进去了，哪怕只写了三行；<strong>③有字数</strong>：达到本次练笔的目标字数（日常练习：小学 300–400 字、初中 500–600 字；考场标准见第14章）。三条都满足，这篇初稿就是合格初稿——不管它有多少涂改、多少笨句子。三条里缺哪条，修改阶段（第13章）就先补哪条。</p>
+      <p class="ctx">为什么把「有头有尾」放第一条？因为写不完是初稿最大的失败模式：开头精雕细琢两百字，中间素材流水账，结尾没时间了随手一句口号——这正是老师评语里「一笔带过」的成因之一。头尾齐全的文章哪怕中间粗糙，修改时也只是「把一段写胖」；没有结尾的文章，修改时得先解决「这篇到底想写到哪」的结构问题，工程量完全不同。第二条「有主场景」保证文章有可以放大的核心；第三条「有字数」保证练习量。三条之外的一切——句子美不美、词用得准不准、开头抓不抓人——<strong>全部推迟到修改工序</strong>，初稿阶段一律不管。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——各学段习作量与「内容具体」要求 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007)（英文）</a>——「设定具体目标」为 11 要素之一：三个「有」即初稿工序的具体目标</div>
+    </article>
+
+    <article class="view">
+      <h3>起草四禁与占位符跳写：卡住时的标准动作</h3>
+      <p class="ctx">把「评判者不许进场」翻译成可执行的规定，就是<strong>起草四禁</strong>：<strong>禁回读</strong>（写完的句子不回头看）、<strong>禁删改</strong>（错字划一道线继续，不用橡皮和退格键）、<strong>禁查</strong>（不查字典、不问家长、不搜手机，想不起的词先用一个笨词顶上）、<strong>禁纠结字迹</strong>（初稿写在自己本子上，字迹只要自己认得就行）。四禁的共同逻辑：任何「停下来做别的事」都在给评判者开门。其中「禁查」最反直觉——写错了不管吗？对，初稿阶段不管：错别字属于第13章修改清单的第⑥⑦条，有专门工序收拾它，起草阶段为它停下来一次，断流损失远大于一个错字。</p>
+      <p class="ctx">配套技术是<strong>占位符跳写</strong>：写到某处实在想不出（比如「后来我怎么一点点改的，具体动作想不起来了」），不要停，原地写一个方括号占位符——「（此处补：我圈题的具体动作，两三行）」——然后立刻跳过去写后面的内容。占位符的妙处有三：它把「卡住」从事故变成了待办事项；它保证文章头尾完整地写完（三个「有」的第一条）；修改阶段照着占位符逐个补写，正是第13章四法里「增」的现成清单。老师评语问「我之后是怎么一点点改（比如做阅读真的怎么圈题、怎么留时间）」——如果初稿时想不起细节，先立占位符「（补：圈题动作慢镜头）」，修改时调用第5章慢镜头法补写，工序各就各位，谁也不堵谁。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——起草阶段的通行规则与修改阶段的分工 · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——「跳过卡点继续写」为通行对策 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——一线课堂的起草纪律设计（出版信息以正式版本为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、25分钟时间盒：一篇完整初稿的生产线</h2>
+    <p class="chapter-sub">日常 25 分钟，考场 35–40 分钟——同一条生产线，两种排量</p>
+
+    <article class="view">
+      <h3>方法拆解框：25分钟时间盒初稿法</h3>
+      <blockquote class="q">
+        <strong>25分钟时间盒（日常练习版；建议学段：小学高年级—初中）：</strong><br>
+        0–2 分钟【看题立纲】：读题两遍，圈画关键词（第11章三步法），在草稿纸角上写三个词：写什么事／主场景是哪个／结尾落在哪。只写三个词，不写完整提纲。<br>
+        2–5 分钟【冲开头】：不设计开头，直接从主场景的前一步写起（「那天放学，我把卷子塞进书包最底层」），禁止使用任何名言和天气套话（第15章的黑名单先预支一下）。<br>
+        5–20 分钟【主体不停笔】：按三个词的顺序推进，执行起草四禁；卡住就立占位符跳过去；主场景处自动放慢——哪怕别处都是流水账，主场景也要有动作和感官（第4、5章）。<br>
+        20–23 分钟【收到尾】：把故事收住，写一个「有」的结尾，哪怕只有一句。<br>
+        23–25 分钟【点数封存】：数总字数、数占位符个数，写在页脚；拍照存档；本工序结束——按纪律，接下来 12 小时内不许改一个字（冷却法见第13章）。
+        <span class="qsrc">框架整合：Elbow freewriting 纪律 + Writing Next「具体目标」要素 + 本课程设计；考场版扩为 35–40 分钟，见第14章</span>
+      </blockquote>
+      <div class="fig"><img src="../assets/img-12-2.png" alt="一只手按下计时器启动键旁边放着空白笔记本的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">时间盒的本质是<strong>给每个工序发固定预算</strong>：预算用完就进入下一工序，不许透支。开头的两分钟立纲是第11章的接口；主体的不停笔是本章第三节纪律的延续；最后的点数封存是第13章的接口。注意 23–25 分钟那一步的两个数字——总字数对着三个「有」的第三条，占位符个数就是修改工序的待办清单长度。坚持做四周，你会得到两份数据：初稿用时是否稳定在 25 分钟内（时间感的形成），占位符数量是否下降（计划能力的形成）。这两条曲线，比分数诚实得多。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=ED517367">《Writing Next》(2007) ERIC 收录页（ED517367，英文）</a>——「设定具体目标」「过程写作法」要素 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学的显著效应 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——定时不停笔纪律</div>
+    </article>
+
+    <article class="view">
+      <h3>考场版有什么不同：35–40分钟初稿＋纪律不变</h3>
+      <p class="ctx">考场上没有「写坏了明天重来」的机会，时间盒相应放大：以高考语文为例（150 分钟、作文 60 分，公开常识口径，具体以当年本省考试院公布为准），作文全部预算约 50–55 分钟，其中<strong>审题列纲 5–10 分钟、初稿 35–40 分钟、检查 5 分钟</strong>——第14章会把这笔账完整算一遍，这里只强调一点：<strong>考场初稿的纪律与日常完全一致</strong>：不回读、不删改（写错划一道，卷面扣分远小于断流导致写不完）、不纠结字迹、占位符照用（考场上占位符意味着「此处必须补一句」的自我提醒，补完再划掉括号）。日常练的就是考场用的，只是预算不同。</p>
+      <p class="ctx">一个常见担心：「考场上不许涂改，那我平时练'不删改'，卷面岂不是更脏？」分两层回答：其一，草稿习惯与誊写习惯是两回事——时间充裕的考试（如部分省份中考允许打草稿后誊写）可先在本上完成初稿再誊；直接写卷的考试，用「错字划一道细线」的规范处理，卷面损失可控。其二，算一笔账：一次断流平均损失两三分钟，一篇作文断流四五次就是十分钟——十分钟足够写两百多字，而两百多字的完整度对「写完」这条底线的贡献，远大于一处整洁的涂改。写不完的作文与写完但有几处划线的作文，哪个损失大，答案不需要评分细则也知道。（评分细则各省不公开，网上流传的「细则」不可作为依据，请以当年本省考试院公布口径为准。）</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.neea.edu.cn/">中国教育考试网（教育部教育考试院）</a>——高考科目设置的官方入口（评分细则不公开，考试时长与分值为公开口径） · <a href="https://www.jseea.cn/">江苏省教育考试院</a> · <a href="https://www.sceea.cn/">四川省教育考试院</a>——各省中考口径差异查询入口 · <a href="https://psycnet.apa.org/record/2024-12988-002">Graham et al. (2023)（英文）</a>——中学段写作策略教学有效</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、病句→改后：初稿阶段的两个典型病例</h2>
+    <p class="chapter-sub">注意：这两组的病根都不在「写得不好」，而在「起草时干了修改的活」</p>
+
+    <article class="view">
+      <h3>病例一：拼装「好词好句」的开头——边写边美的代价</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句（初稿）</th><th style="width:20%;">问题诊断</th><th style="width:32%;">改后（先初稿、后修改）</th><th>改动说明</th></tr>
+        <tr><td>我的妈妈有一双水汪汪的大眼睛，樱桃似的小嘴，乌黑的长发像瀑布一样披在肩上。</td><td>起草时停下来从记忆库里拼装背过的「好词好句」，每个短语都要检索和比对，句子是「攒」出来的不是「写」出来的；且素材是通用模板，与「我的妈妈」这个具体的人无关。</td><td>（初稿照实写）妈妈的手指关节有点粗，右手食指侧面有个茧。那个茧是常年握剪刀留下的，我小时候她就用这只手给我剪指甲。<br>（修改阶段再打磨）妈妈右手食指侧面有个硬茧，握剪刀磨出来的。小时候她给我剪指甲，就是这只手，捏着我的手指头，一下，又一下。</td><td>初稿工序只干一件事：把真实、具体的素材放上去（一个茧比三个比喻更接近「我的妈妈」）；「打磨节奏、加动作细节」是修改工序的活（第13章「增」「换」两法）。两个工序分开后，每一句都不需要一次到位——到位是修改出来的。</td></tr>
+      </table>
+      <p class="ctx">这个病例的要点在「改动说明」最后一句：初稿句其实并不难写——看见妈妈的手，写下那个茧，十秒钟的事；难的是学生总想在落笔的同一秒写出「漂亮的句子」，于是调用的是背诵库而不是观察库（第2章五感采集的存量）。Zinsser 说冗杂是写作之病（"clutter is the disease of writing"），拼装出来的漂亮短语正是最常见的冗杂：它们不承担信息，只承担「显得有文采」的幻觉。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——"clutter is the disease of writing" · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——具体细节优于通用形容 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——"Use definite, specific, concrete language"</div>
+    </article>
+
+    <article class="view">
+      <h3>病例二：一句三改的天气开头——断流是怎么发生的</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句（初稿）</th><th style="width:20%;">问题诊断</th><th style="width:32%;">改后（先初稿、后修改）</th><th>改动说明</th></tr>
+        <tr><td>那天天气非常好，阳光明媚，万里无云，我怀着激动的心情来到了考场。</td><td>四个天气套话连用，每个都停下来检索一次；「怀着激动的心情」是情绪结论直给（结果陈述）；整句是「一句三改」的典型产物——写了改、改了写，二十分钟只推进了一行。</td><td>（初稿照实写）进考场前我在走廊站了一会儿。手心全是汗，我把准考证捏出了一个角。广播响了两次，第二次响完就开始发卷子了。</td><td>初稿句用了第4章的公式：身体反应（手心汗）＋环境细节（广播响两次）＋动作（捏出角），情绪词一个没用；句子并不「美」，但它具体、真实、往前推进。若嫌「捏出了一个角」不够准，留给修改工序去换词——起草时不动它。</td></tr>
+      </table>
+      <p class="ctx">两组对照放在一起看，能发现初稿阶段的统一美学：<strong>毛坯房标准。</strong>毛坯房不好看，但承重墙、门窗洞口、水电走向全在——装修（修改）才有对象。第一节的示例场景里，那个学生二十分钟产出了三行涂改，等于在工地上反复拆同一面墙；而毛坯房标准的初稿哪怕满纸笨句子，二十分钟能推进两百字，装修阶段面对的是一个完整的房子。「先写完」不是降低要求，是把要求放对工序：初稿对「完整与真实」负责，修改对「准确与漂亮」负责——第13章开工。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——初稿与重写的分工 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「内容具体、感情真实」：毛坯房标准的官方对应物</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、练习任务：三个都能今天做</h2>
+    <p class="chapter-sub">每个不超过 25 分钟；做完把数据记进写作档案袋（第0章练习二）</p>
+
+    <article class="view">
+      <h3>练习一：「五分钟不停笔」（5分钟＋2分钟记录）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①专用本子翻到空白页，写下今天日期；②设 5 分钟计时；③第一句写「此刻我脑子里……」，随后按第三节方法框执行：笔不离纸、不删改、不回读、不查；④计时响即停，页脚记两个数：中途卡住（停笔超过五秒）的次数、大约写了多少行；⑤圈出至多两句「有点意思」的话抄进素材本，其余原样保留。<br><br>
+        <strong>检查表（三问）：</strong>纸面上有没有被涂掉或划掉的句子？（应为零——错字划线不算涂改）计时中途有没有回读前面的内容？页脚两个数字记了吗？<br>
+        <strong>频次建议：</strong>每天一次，连续两周；观察「卡住次数」的下降曲线。小学生可从 3 分钟起步。
+      </blockquote>
+      <p class="ctx">两周后回看本子：前几页和后几页的「卡住次数」放在一起，就是你第一份可量化的写作进步证据。这份证据的说服对象不是老师，是你自己——第1章讲过，「感觉不到进步」是动机的头号杀手。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——freewriting 操作 · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——可数的小成功与自我效能感</div>
+    </article>
+
+    <article class="view">
+      <h3>练习二：「25分钟完整初稿」（25分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①选一道旧作文题（用过的更好，省去构思素材的时间）；②严格按第五节时间盒执行：0–2 立纲三词、2–5 冲开头、5–20 主体不停笔、20–23 收尾、23–25 点数封存；③全程执行起草四禁，卡住用占位符「（补：……）」跳过；④页脚记三个数：总字数、占位符个数、是否超时；⑤拍照存档，12 小时内不改一字。<br><br>
+        <strong>检查表（三问）：</strong>三个「有」达标了吗——有头有尾？有主场景？字数达线（小学 300–400／初中 500–600）？占位符个数记了吗？全程有没有违反四禁（回读、删改、查、纠结字迹）？<br>
+        <strong>后续：</strong>第二天按第13章流程修改这篇初稿——本练习与第13章练习一「朗读圈改」天然衔接，同一篇稿子走完两道工序。
+      </blockquote>
+      <p class="ctx">第一次做大概率超时、占位符一大堆——完全正常，毛坯房的第一间总是盖得最慢。每周做一到两次，四周后看数据：多数学生会稳定在 25 分钟内完成、占位符降到三个以下。届时再回到第14章，把这条生产线放大到考场规格。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012) ERIC 收录页（英文）</a>——策略教学＋具体目标的显著效应 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——prewriting 与过程写作要素</div>
+    </article>
+
+    <article class="view">
+      <h3>练习三：「初稿封存」（3分钟＋隔夜生效）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①给写完的初稿拍照，存进手机或电脑的「写作档案」相册；②纸质稿合上本子，放进抽屉，本子上压一支笔（物理提醒：工序已结束）；③在心里或纸上写一句「明天才许动笔改」；④第二天取出，先做第13章的「冷却后第一眼」：不通读，先只数占位符、只看三个「有」。<br><br>
+        <strong>检查表（三问）：</strong>照片存了吗？封存到次日再动笔，做到了吗？次日第一眼是「数待办」而不是「从头挑剔」吗？
+      </blockquote>
+      <p class="ctx">别小看这个三分钟的练习：它把「起草」与「修改」的边界仪式化了。心理学上，工序之间的物理隔断（合本子、放抽屉、隔夜）帮助身份切换——昨天的你是写作者，今天的你是编辑。第13章的冷却法会解释为什么隔夜之后你的眼光会变毒：睡了一觉的你，更接近一个陌生读者。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——修改阶段与起草阶段的分隔 · Zinsser《On Writing Well》（文字引用）——重写前先放置，以读者眼光重读</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、常见误区与谣言粉碎</h2>
+    <p class="chapter-sub">关于初稿的三句流行话，两句是谣言，半句是误区</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「好作文是一遍写出来的」</h3>
+      <p class="ctx"><strong>不成立。</strong>这句话把成品状态误当成了生产过程。读者看到的发表作品、考场高分卷，都是「起草＋修改」两道工序完成后的最终状态；没有证据表明任何一篇好文章跳过了修改工序，倒是有大量反证：Zinsser 明言重写是写作的本质；叶圣陶主张「文章要自己改」，其语文教育论集里反复强调修改是写作能力的主干而非附属（《叶圣陶语文教育论集》，教育科学出版社，文字引用）；课标把「自改互改」写进了学段要求。一遍成文的传说之所以流行，是因为它符合旁观者的错觉——看别人考场上下笔如飞，看不见他平时练过几十遍时间盒。「下笔如飞」是工序熟练的结果，不是跳过工序的证据。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a> · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「重视修改，引导学生自改互改」</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：「灵感来了才能动笔」与「初稿烂说明没天赋」</h3>
+      <p class="ctx"><strong>谣言二：「灵感来了才能动笔。」不成立。</strong>等灵感等于把动笔的主动权交给一个不受控的随机事件，而写作研究给出的因果关系恰好相反：灵感是写的过程中出现的（Murray 的「通过语言进行发现」、Elbow 的 cooking 孵化），不是写之前等来的。自由写作的全部设计就是为了制造「写着写着来灵感」的条件——第三节说过，多数人前两分钟的废话正是灵感的引道。<strong>谣言三：「初稿烂说明我没天赋。」不成立。</strong>Lamott 的回答最干脆：所有好作者的第一稿都糟，烂初稿是这个行业的共同起点，不是你的个人缺陷。评价写作水平的正确指标从来不是「初稿与成品的差距有多小」，而是「有没有能力把初稿改成成品」——前者靠运气，后者靠第13章的工序。把这两个谣言合起来看，它们其实是同一件事的两面：都在用「成品标准」恐吓「生产过程」。本课的立场一以贯之：初稿阶段，写完就是赢。</p>
+      <p class="ctx">最后补一条边界提醒，防止本章方法被用歪：「烂初稿许可」适用于<strong>起草工序</strong>，不适用于考试誊写卷面；自由写作是<strong>日常热身</strong>，不能替代审题列纲（第11章）与修改（第13章）；时间盒的预算数字可以按个人速度微调，但「工序不混用」这条底线不随任何情况放松。方法有边界，边界之内才自由。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972) 全文 PDF（英文）</a>——写作即发现 · <a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——cooking 孵化 · Anne Lamott《Bird by Bird》（Pantheon，1994，文字引用） · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——等待灵感与完美主义的恶性循环</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「边写边改」为什么会卡壳？用「生成」与「评判」两个身份抢一支笔的比喻讲一遍。</li>
+        <li>三种卡壳（断流型/嫌弃型/怕错型）各自的病根和处方是什么？你属于哪一种？</li>
+        <li>Murray「教过程不评成品」的核心主张是什么？为什么说「想清楚」是动笔之后才发生的事？</li>
+        <li>Graham 等人 2012 年元分析里，哪些写作干预被证明显著有效？效应量区间是多少？</li>
+        <li>《义务教育语文课程标准（2022年版）》对修改的原文要求是什么？它为什么逻辑上承认了「初稿」的存在？</li>
+        <li>freewriting 的四条规则是什么？哪一条是唯一的硬规则？</li>
+        <li>「五分钟不停笔」页脚要记哪两个数字？卡住次数的下降说明什么？</li>
+        <li>Elbow 的 cooking（孵化）是什么意思？第14章哪个技巧也用它？</li>
+        <li>Zinsser 那句「重写是写作的本质」怎么理解？初稿的真正功能是什么？</li>
+        <li>初稿合格线三个「有」是哪三个？为什么「有头有尾」排第一？</li>
+        <li>起草四禁是哪四禁？「禁查」为什么最反直觉却最重要？</li>
+        <li>占位符跳写怎么操作？它对修改工序有什么用？</li>
+        <li>25分钟时间盒的五个时间段各干什么？考场版初稿预算是多少分钟？</li>
+        <li>病例一「拼装好词好句」和病例二「一句三改天气开头」的病根有什么共同点？</li>
+        <li>三个谣言（一遍写成/等灵感/初稿烂=没天赋）各自的批驳依据是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>卡壳的机制是「生成」与「评判」两个工序挤在同一秒里互相打架——处方只有一个：起草与修改分离。依据三重叠合：Murray (1972) 过程写作法（写作即发现）、Graham et al. (2012) 元分析（策略教学与过程法显著有效，效应量 0.30–1.02）、课标 2022（「重视修改、自改互改」在官方口径里承认了多稿过程）。三个工具：①freewriting 五分钟不停笔（定时/不停笔/不删改/不回读，页脚记卡住次数）；②烂初稿许可（Lamott：好作者初稿都糟；合格线只有三个「有」：有头有尾、有主场景、有字数）；③25分钟时间盒（0–2 立纲三词→2–5 冲开头→5–20 主体不停笔＋占位符跳写→20–23 收尾→23–25 点数封存；考场版初稿 35–40 分钟）。起草四禁：禁回读、禁删改、禁查、禁纠结字迹。两个病例同病根：起草时干了修改的活。三个练习今天可做：五分钟不停笔、25分钟完整初稿、初稿封存（隔夜才许改，衔接第13章冷却法）。三个谣言已拆：一遍写成是传说、灵感是写出来的不是等出来的、初稿烂是行业共同起点。下一章：<a href="../13-revise/">第13章·修改：好文章是改出来的</a>——评判者正式上岗，四法、清单、朗读、冷却，把你封存的毛坯房装修成房子。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-topic/"><span class="dir">← 上一章</span>第11章 · 审题：圈画关键词，不跑题不偏题</a>
+    <a href="../13-revise/"><span class="dir">下一章 →</span>第13章 · 修改：好文章是改出来的</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第12章 · 依据教育部《义务教育语文课程标准（2022年版）》、Murray (1972) 过程写作法、Elbow《Writing Without Teachers》与 freewriting 方法、Lamott《Bird by Bird》、Zinsser《On Writing Well》、Hayes &amp; Flower (1980) 写作认知过程模型、Graham et al. (2012/2023) 写作教学元分析、《Writing Next》(2007)、EEF 中学写作教学指南、叶圣陶《叶圣陶语文教育论集》、王荣生《写作教学教什么》、Berk (2017) 与 McGee (2019) 写作焦虑研究等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

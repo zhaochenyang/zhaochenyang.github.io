@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17章 读写结合：怎么读才会写 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第17章 · 第四部分 · 习惯与长线</div>
+  <h1>📖 读写结合：怎么读才会写</h1>
+  <p>多读不等于会写——读与写之间隔着批注、拆解与仿写三座桥，这一章教你把桥修起来</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../16-diary/">← 第16章：日记与随笔</a>
+    <a href="../18-parent/">第18章：家长辅导指南 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">多读≠会写</a>
+    <a class="anchor" href="#s2">官方口径</a>
+    <a class="anchor" href="#s3">批注法</a>
+    <a class="anchor" href="#s4">仿写三步</a>
+    <a class="anchor" href="#s5">读写循环</a>
+    <a class="anchor" href="#s6">两组对照</a>
+    <a class="anchor" href="#s7">练习任务</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：本章讲仿写，第四节会专门划清「仿写」与“抄袭”的边界——换内容不换结构是练习，搬内容冒充原创是“抄袭”。</li>
+      <li>各节观点均标注来源；教材批注体系以统编教材实际编排为准，研究结论如有争议，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清「多读≠会写」的研究依据（读写共享元知识但转化需要显式教学），不再迷信「读得多自然会写」；②了解课标与统编教材的读写结合口径，知道批注法在教材里的位置；③掌握「批注符号五件套」与两个旁批问题，把「读过」变成「读过并且看懂了它怎么写的」；④会做结构仿写三步（拆结构→画句序图→换内容不换结构），并能说清仿写与“抄袭”的边界；⑤理解读写循环（读→批注→拆→仿→改）怎么与第16章日记、第3章素材库衔接成长期习惯；⑥完成三个练习任务，今晚就能用一支铅笔开始在书上做批注。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章处理输入侧：前十六章讲怎么写，这一章讲怎么读才能喂给写。学生从第三节批注法开始动手（拿一本正在读的书、一支铅笔即可），第四节仿写建议先用课内学过的课文练（范例结构清楚、篇幅合适）；家长可用第七节的「百字荐书」任务作为亲子共读的低压力接口——孩子荐书给你，你只负责认真读完那一段，并且只问一个问题，不评价、不打分。全章方法与第16章日课配套：批注是阅读时的日记，仿写是扩写之外的第二条转化通道。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、多读≠会写：被跳过的那座桥</h2>
+    <p class="chapter-sub">读写确实共享底层知识——但共享不等于自动转化，这是本章全部方法的出发点</p>
+
+    <article class="view">
+      <h3>为什么「读得多自然会写」只是半句话</h3>
+      <p class="ctx">几乎每个语文老师都说过「多读多写」，几乎每个学生都听过「读得多作文自然好」。这句话对了一半。对的一半：Fitzgerald 与 Shanahan 在 2000 年发表于《Educational Psychologist》的经典论文《Reading and writing relations and their development》中系统梳理了读写关系研究，结论是读与写<strong>确实共享一大批底层知识</strong>——书面语的词汇语法、篇章的组织方式（怎么开头、怎么过渡、怎么收尾）、以及关于「文本是给人看的」这种读者意识；阅读量大的人，这些共享知识的库存确实更大。但论文同样强调另一半：<strong>共享库存不会自动变成写作能力</strong>——从「认识一个好开头」到「自己写出一个好开头」，中间需要显式的读写结合教学（reading–writing instruction），把读到的东西「翻译」成可用的写作程序。没有这座翻译桥，读一千本书和读一本书，在写作输出上的差别可能远小于家长的预期。</p>
+      <p class="ctx">这个结论有神经认知层面的呼应：阅读以理解为目标，写作以产出为目标，两者调用的加工方向相反——阅读是从文字到意义（自下而上重建作者的意图），写作是从意图到文字（自上而下把想法编码成句子，第0章 Hayes &amp; Flower 模型）。一个人可以顺畅地完成前者却完全不会后者，就像能看懂游泳比赛的人未必下得了水。写作教学史上一再出现的现象——大量阅读的学生作文依然空洞——不是阅读量不够，而是他们阅读时<strong>只提取了内容（故事讲了什么），没有提取工艺（故事是怎么讲成的）</strong>。本章后面所有方法（批注、拆解、仿写）都只干一件事：在阅读时把「工艺」也提取出来。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fitzgerald &amp; Shanahan (2000) "Reading and writing relations and their development"，Educational Psychologist, 35(1), 39–50（文字引用，付费墙；另见 <a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan 本人博客 "How Should We Combine Reading and Writing?"（英文）</a>） · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——Hayes &amp; Flower (1980) 写作认知模型 · <a href="https://psycnet.apa.org/record/2007-11761-001">Graham &amp; Hebert (2011) 相关研究（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>研究证据：写作反过来也促进阅读——桥是双向的</h3>
+      <p class="ctx">Graham 与 Hebert 2011 年发表在《Journal of Educational Psychology》上的元分析（基于近六十项实验与准实验研究）给出了桥的另一半：让学生<strong>围绕所读文本进行写作</strong>——写摘要、写回答、写分析、写读后感——能显著提升他们的阅读理解成绩，效应稳定为正。也就是说读写之间是双向增益：读为写供应工艺与素材，写为读加深理解与记忆。这个发现对家庭实践有一个直接推论：<strong>读完一本书之后最有价值的一个动作，是写点什么</strong>——哪怕只有一百字（第七节练习任务三「百字荐书」就是为此设计的最小规格）。「只读不写」漏掉的不只是写作练习，连阅读本身的理解收益也打了折扣。</p>
+      <p class="ctx">需要如实标注的边界：元分析给出的是群体平均效应，不能承诺到个体——一个学生的阅读理解提升幅度取决于文本难度、写作任务设计与原有水平；Graham &amp; Hebert 也指出各研究的写作任务质量参差，效应的稳健性高于精确数值。本章采用的口径是：<strong>围绕阅读写作是性价比很高的习惯，值得长期坚持；但它不是提分保证</strong>——与全站免责一致。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham 等写作教学元分析系列（英文）</a>（Graham &amp; Hebert 2011 原文见 Journal of Educational Psychology, 103(1)，付费墙，文字引用；ERIC 检索号 <a href="https://eric.ed.gov/?id=ED517367">ED517367</a>） · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA Monitor "The science of writing instruction"（2013，英文）</a>——读写结合教学的研究综述 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、官方口径：课标与统编教材已经把桥修到了一半</h2>
+    <p class="chapter-sub">批注不是民间发明——它是课标明文要求、统编教材整单元训练的正经学法</p>
+
+    <article class="view">
+      <h3>课标怎么说：从「阅读」到「读写结合」的明文要求</h3>
+      <p class="ctx">《义务教育语文课程标准（2022年版）》为读写结合提供了制度依据。阅读板块，课标要求学生「对课文的内容和表达有自己的心得，能提出自己的看法和疑问」——「自己的看法」正是批注的定义；写作板块，课标要求「多角度观察生活」「力求表达自己对自然、社会、人生的感受、体验和思考」，并把「写读书笔记」列入综合性学习与课外练习的形式之中；第四学段（初中）更明确要求「欣赏文学作品，有自己的情感体验」「阅读简单的议论文，区分观点与材料」——这些要求落到操作层面，全部指向同一个动作：<strong>在书上留下自己思考的痕迹</strong>。课标还规定了课外阅读总量的下限（如第四学段每学年不少于一定字数的课外阅读，具体数额以课标原文为准）——本章要解决的是：这些课外阅读怎么读，才不白读。</p>
+      <p class="ctx">统编教材（人民教育出版社）把课标要求编成了可操作的单元体系：小学语文教材从四年级开始设置「批注」策略单元（如四年级上册第六单元，单元语文要素即「学习用批注的方法阅读」，教材通过《牛和鹅》等课文的旁批示范怎么批、批什么）；初中语文教材七年级上册设有专门的阅读方法指导（如「朗读」「默读」单元提示），并在自读课文中系统使用旁批体例引导学生自主阅读。这意味着：<strong>批注不是课外兴趣班的加餐，而是课内正经学过的阅读方法</strong>——孩子在四年级的课本上见过它，只是大多数时候没有把它延续成日常习惯。本章第三节做的事，就是把教材教过、考试考过、然后被丢掉的那个动作重新捡回来，并接到写作上去。教材具体单元与课文编排以人民教育出版社统编教材实际版本为准（此处按公开教材目录口径描述）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》教育部印发通知（含课标全文）</a>——「有自己的心得」「写读书笔记」 · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编语文教材（四年级上册批注策略单元、七年级上册阅读方法单元；具体编排以教材实际版本为准） · 王荣生《阅读教学教什么》，华东师范大学出版社（文字引用）——阅读方法与教学内容分析</div>
+    </article>
+
+    <article class="view">
+      <h3>《Writing Next》的印证：读写结合教学要素</h3>
+      <p class="ctx">国际口径与课标同向。卡内基公司 2007 年发布的《Writing Next》报告（Graham &amp; Perin，基于对 4–12 年级写作教学实验研究的元分析综述）列出的十一个高效写作教学要素里，有两个直接与本章相关：<strong>要素「范文研习」（study of models）」</strong>——让学生阅读并分析优秀文本的写作特征，然后在自己的写作中尝试运用，报告归纳的实验平均效应量约 0.25（以写作质量提升计）；<strong>要素「预写活动」（prewriting）」</strong>——动笔前通过阅读、讨论、笔记等方式收集与组织材料。两个要素合起来就是本章的路线图：先学会分析范文的工艺（第三、四节），再让阅读成为动笔前的备料（第五节）。需要如实标注：0.25 是元分析的平均效应量，属「小而真实」的改进，报告本身强调这些要素<strong>组合使用</strong>优于单独使用——这也正是第五节读写循环设计成完整链条的原因。</p>
+      <p class="ctx">报告还澄清了「范文研习」与「背范文」的本质区别：前者分析的是<strong>可迁移的写作特征</strong>（这段为什么开头见画面？这个转折用了什么信号词？），迁移的是方法；后者储存的是<strong>不可迁移的成品文字</strong>，考场上生搬硬套还会撞上第15章讲过的「套话病」——背来的名言与自己的文章水土不服，一眼假。「范文研习」的正当性在第19章考场策略里还会再出现一次：平时拆过的结构，考场上才可能长得出来。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin《Writing Next》(2007) PDF（英文）</a>——要素9 study of models（效应量约0.25）与要素 prewriting · <a href="https://eric.ed.gov/?id=ED517367">ERIC ED517367（英文）</a>——读写结合写作干预研究 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——小学段写作教学元分析</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、批注法：把「读过」变成「看懂它怎么写」</h2>
+    <p class="chapter-sub">一支铅笔的功夫——符号标位置，旁批写工艺</p>
+
+    <article class="view">
+      <h3>方法框：批注符号五件套＋两个旁批问题</h3>
+      <blockquote class="q"><strong>批注符号五件套（用铅笔，随时可改）</strong><br>
+      <strong>？</strong>＝没读懂或有疑问的地方（写在旁边：疑问本身是什么）；<br>
+      <strong>！</strong>＝读到时心里「咦」了一下的地方——惊讶、好笑、难受都算（这是工艺信号，最值得停）；<br>
+      <strong>○</strong>＝圈出用得好的一个词或一个短语（只圈一处，圈多了等于没圈）；<br>
+      <strong>—</strong>＝在让你看见画面的句子下面画横线（第4章细节公式的现场识别）；<br>
+      <strong>‖</strong>＝在段落之间画竖线并写两三个字：这段在干什么（开头／铺垫／转折／收尾）。<br>
+      <strong>两个旁批问题（每个「！」旁边至少回答一个）</strong>：<br>
+      ① 这里为什么好？（作者用了什么手法让我有了反应——画面？节奏？意外？）<br>
+      ② 我会怎么用？（我写自己的东西时，这个手法可以用在哪件事上？）<br>
+      <strong>用量红线</strong>：一页书上批注不超过五处；批注是挑选，不是涂色。<span class="qsrc">——综合统编教材四年级批注策略单元体例、课标「有自己的心得」要求与 Shanahan 读写结合建议拟定；学段：小学高年级用符号＋问题①，初中两问全用</span></blockquote>
+      <p class="ctx">为什么旁批的核心是「为什么好」而不是「好在哪」——因为前者逼你回答<strong>因果</strong>：「这里为什么好？——因为他没写『我很紧张』，写的是『指节攥得发白』，用身体反应替代了情绪词。」写下这句话的瞬间，第4章的细节公式在你脑子里被真实文本验证了一次——这就是「工艺提取」的具体发生机制。第二个问题「我会怎么用」把提取的工艺接到自己的素材库上（第3章）：「这个手法可以用在我那次……」——写在旁批里的这句话，就是未来某篇作文的种子。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pep.com.cn/">人民教育出版社统编教材</a>——四年级上册批注策略单元（旁批体例示范；以教材实际版本为准） · <a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan "How Should We Combine Reading and Writing?"（英文）</a>——围绕文本写分析性反应 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「对课文的内容和表达有自己的心得」（教育部通知原文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>「关于阅读的写作」：批注的升级版与读后感的正确姿势</h3>
+      <p class="ctx">批注是写在书页边的短反应；它的升级版是<strong>关于阅读的写作</strong>（writing about reading）——读完一章或一本书后，用一段完整文字回应它。Graham &amp; Hebert (2011) 元分析里的干预大多属于这一类：写摘要、写延伸回答、写分析笔记。对 K12 学生，这个升级版有一个极简规格：<strong>一段话、三句话</strong>——第一句写「这段／这本书写了什么」（内容，一句封顶，防复述）；第二句写「最打动我的是哪一处，为什么」（工艺＋真实反应，用批注里现成的「！」）；第三句写「它让我想到我自己的什么事」（接到素材库）。三句话的顺序是刻意的：内容最少、反应居中、联结自己最重——这个配比正好治好「读后感=情节复述」的病（第六节对照一会演示）。</p>
+      <p class="ctx">读后感的正确姿势还有一个负面清单：不许出现「这本书教会了我××道理」（升华套话，第15章黑名单）；不许超过三句写情节；不许写「我以后一定要××」（表决心，第15章结尾病）。如果三句话里找不到「打动我的一处」，诚实的批注是「这本没打动我，原因是××」——真实的负面反应同样是合格的关于阅读的写作，比硬挤的赞美有价值得多（第16章说过：最真的句子才是最好的原料）。</p>
+      <div class="fig"><img src="../assets/img-17-1.png" alt="一本摊开的书，页边有红色批注符号和问号的极简扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Graham &amp; Hebert (2011)（ERIC <a href="https://eric.ed.gov/?id=ED517367">ED517367</a>，英文）——writing about reading 提升阅读理解 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a> · William Zinsser《On Writing Well》（Harper，<a href="https://en.wikipedia.org/wiki/On_Writing_Well">条目（英文）</a>）——写作以诚实反应为起点</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、仿写三步：换内容，不换结构</h2>
+    <p class="chapter-sub">从「这段好」到「我能写出这样的段」——《Writing Next》要素九的操作化</p>
+
+    <article class="view">
+      <h3>方法框：结构仿写三步法</h3>
+      <blockquote class="q"><strong>结构仿写三步（每次约15分钟）</strong><br>
+      <strong>第一步·选段</strong>：从批注过的书里挑一个标了「！」或横线的<strong>段落</strong>（不是整本书、不是整章——段落是仿写的正确粒度），最好是你自己写不出来的那种；<br>
+      <strong>第二步·拆结构（画句序图）</strong>：把这个段落逐句编号，给每句写一个「功能标签」——它在干什么？例：第1句「环境」→第2句「动作」→第3句「身体反应」→第4句「心理一句真话」。功能标签必须抽象（环境／动作／对话／转折／收尾），不许出现原文内容；<br>
+      <strong>第三步·换内容不换结构</strong>：拿自己素材库里的一件事（第3章），按同一张句序图重写一遍——第1句写你那个场景的环境，第2句写你的动作……结构和句数尽量对齐，内容必须百分之百是你自己的。<br>
+      <strong>自检</strong>：把仿写段和原文段并排放，只比结构不比内容——句序一致＝成功；顺手抄了原文的词句＝重来。<span class="qsrc">——依据《Writing Next》要素「范文研习」与统编教材仿写练习体例拟定；学段：小学高年级仿三句句序，初中仿整段五至八句</span></blockquote>
+      <p class="ctx">给小学高年级的降档规格：句序图只拆三句（开头句→中间句→收尾句），功能标签从给定的五个词里选（环境／动作／对话／心情／转折），仿写段一百五十字即可。降档不是打折——三个句子的结构对齐练熟了，初中再升到整段五至八句，台阶才踩得稳。</p>
+      <p class="ctx">第二步的「功能标签」是整个方法的关键，也是最容易偷懒的地方。偷懒的拆法是写「第1句写了操场，第2句写了跑步」——这是内容摘要，仿写时只能照着抄操场；合格的拆法是「第1句环境铺垫→第2句动作开始→第3句意外打断」——结构拆到功能层，任何内容都能灌进去。这正是 Fitzgerald &amp; Shanahan 说的「显式翻译」发生的位置：读到的工艺（这段为什么有张力——因为第三句有个意外打断）被翻译成可执行的写作程序（我的第三句也要安排一个意外）。<strong>拆不出功能标签，说明这段还没读懂工艺，换一个标了「！」的段落重来。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——要素 study of models · Fitzgerald &amp; Shanahan (2000)（文字引用）——读写知识需显式教学才能迁移 · 蒋军晶《让学生学会写作》（文字引用）——段落仿写的课堂操作 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">The Elements of Style 条目（英文）</a>——从范例学习简洁风格的传统</div>
+    </article>
+
+    <article class="view">
+      <h3>仿写与“抄袭”的边界：一张对照清单</h3>
+      <p class="ctx">仿写是写作教学里最古老也最正当的练习——从书法临帖到《文心》里记载的属文训练，中国语文传统一向主张「先仿后创」；但家长和学生都需要一条清晰的边界，防止练习滑向本站反对的“抄袭”。边界只有一个判据：<strong>你搬的是「结构」还是「内容」。</strong>结构（句序、功能、节奏、手法）是公共的写作知识，搬结构是学习，如同临帖学的是笔法；内容（具体的词句、意象、事件、情节）是原作者的财产，把别人的词句搬进自己的作文冒充原创就是“抄袭”——本站反对，考试也按违规处理（考场规则以各省考试院公开文件为准）。一张速查清单：<strong>仿写</strong>＝句序图相同＋事件是我自己的＋没有一个连续七字以上的原句；<strong>“抄袭”</strong>＝整句照抄、或换几个字的「洗稿」、或把书里的情节安在自己身上。灰色地带只有一个：化用（借用意象但完全重写，如把「白色的 sails」变成自己的「白色的校服后背」）——化用在文学创作中正当，但初学阶段建议从严：练仿写就彻底换内容，等结构手感稳了再谈化用。</p>
+      <p class="ctx">顺带拆一个流行说法：「仿写多了会丧失自己的风格。」恰恰相反——书法史上所有大家都是从临帖开始的，写作的「自己的声音」不是凭空长出来的，它是在多种结构的反复试用中沉淀出来的偏好：仿过十种开头，你才知道自己最顺手哪种（这正是第15章「一题三开」练习的逻辑）。风格是熟练之后的自然选择，不是拒绝练习就能保住的童真。Zinsser 在《On Writing Well》里对「风格」的忠告与此一致：先追求清楚与诚实，风格会自己来找你。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——「先仿后创」的属文传统 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——风格来自清楚与诚实 · 王荣生《阅读教学教什么》（文字引用）——文本教学内容与模仿学习 · 各省教育考试院考场规则（以官方公开文件为准，此处文字引用）——“抄袭”的违规认定</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、读写循环：读→批注→拆→仿→改</h2>
+    <p class="chapter-sub">五个动作接成一个环，环与第16章日课、第3章素材库咬合成系统</p>
+
+    <article class="view">
+      <h3>一周一循环：读写结合的最小完整系统</h3>
+      <p class="ctx">把本章方法编进一个可执行的周期（与第16章的七日三行并轨）：<strong>平日（每天5分钟）</strong>：课外阅读十五分钟＋批注——符号五件套，每页不超过五处，遇到「！」写下两个旁批问题之一；批注即「阅读时的日记」，同样零评分、没人检查（可以批在自己的书上）。<strong>周三（10分钟）</strong>：从本周批注里挑一个「！」段落，做结构仿写三步——句序图画在素材本上，仿写段落写三百字以内，内容从素材库取（第3章）。<strong>周末（20分钟）</strong>：把仿写段落放进第13章的修改流程走一遍——朗读检查、砍掉一半形容词；改完的段落进档案袋。这样一周下来：批注约十处、句序图一张、仿写段一篇、修改一遍——五个动作各调用一章的技术（批注＝本章，素材＝第3章，仿写＝本章＋第4/5章，修改＝第13章，档案袋＝第0章），读写循环不是额外负担，而是把已有部件接上了输入侧的电源。</p>
+      <p class="ctx">循环跑起来之后，还有一个容易被忽略的接口：<strong>批注喂给第16章的日记</strong>。读到「！」的段落，当天三行日记的「画面行」可以刻意试用一次那个手法——不用仿整段，只借一招：书里那位作者用身体反应写紧张，我今天写「放学路上」也试试身体反应。这比周三的整段仿写更轻，却是把工艺用在自己生活里最短的路径；日课的手感与阅读的输入就这样互相咬合——读过的书开始在你自己的文字里留下指纹，这正是「怎么读才会写」的终点形态：不是复述别人的句子，而是化用别人的眼光。</p>
+      <p class="ctx">循环有两个自我保护机制。其一，<strong>断供保护</strong>：某周没读到值得批注的书，就跳过仿写只维持批注——循环允许降级运行（如同第16章的最低可行版本），不允许的只有彻底停摆；连续两周没有「！」，换书。其二，<strong>过载保护</strong>：批注不是任务量考核，一周十处足够；把每页都批满的学生会在第三周烧完热情——记住用量红线：批注是挑选，不是涂色。第19章会把读写循环接入考前冲刺：考前两周停止新仿写，只重读自己档案袋里改过的仿写段——自己亲手写过、改过的结构，比任何“高分模板”都可靠。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——要素组合使用优于单独使用 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a> · <a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan 博客（英文）</a>——读写结合的日常课堂设计 · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a>——写作即过程</div>
+    </article>
+
+    <article class="view">
+      <h3>读什么：范例文本的三层选择</h3>
+      <p class="ctx">仿写的效果取决于范例选得对不对。三层建议：<strong>第一层·课内课文（首选）</strong>——统编教材的课文经过编写组反复打磨，且孩子读过、老师讲过，结构熟悉度高；朱自清、萧红、鲁迅（初中）的段落都是经典仿写对象，课下注释与教师用书的分析可以对照自己的句序图（先自己拆，再对答案——顺序不能反）。<strong>第二层·优质儿童文学与散文</strong>——按课标推荐书目与孩子的兴趣选（书目以课标附录为准，本站不推荐具体教辅与书单产品）；挑选标准只有一条：孩子愿意读第二遍的书才值得批注。<strong>第三层·自己的旧作（高级用法）</strong>——把档案袋里写得最好的一段当范例拆结构，再仿写自己另一件事：这一步标志着读写循环完全内化——孩子开始从自己的成功里提取工艺，这正是成熟写作者的工作方式（Zinsser：重写是写作的本质）。反面清单同样重要：不拿满分作文选当范例——「满分作文」类出版物鱼龙混杂，其中相当部分是按“高分模板”逻辑炮制的应试产品，拆它们的结构等于把套话病请进循环（第15章黑名单的输入侧版本）。</p>
+      <div class="fig"><img src="../assets/img-17-2.png" alt="一张段落模板卡片，箭头流向由不同色块组成的新页面，朱红点缀的极简扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标附录课外阅读推荐书目（教育部通知原文）</a> · <a href="https://www.pep.com.cn/">人民教育出版社统编教材</a>——课文范例体系 · William Zinsser《On Writing Well》（<a href="https://en.wikipedia.org/wiki/On_Writing_Well">条目（英文）</a>）——rewriting is the essence of writing · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「教材无非是个例子」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、两组对照：病句→改后</h2>
+    <p class="chapter-sub">读后感的复述病、仿写的抄词病——读写结合的两个高频病例</p>
+
+    <article class="view">
+      <h3>对照一：情节复述读后感→三句式真实反应</h3>
+      <table class="tb">
+        <tr><th style="width:24%">原句</th><th style="width:24%">问题诊断</th><th style="width:30%">改后</th><th style="width:22%">改动说明（用了哪一招）</th></tr>
+        <tr>
+          <td>「这本书讲了主人公小明遇到很多困难，但他坚持不懈，最后成功了。这本书教会了我遇到困难不能放弃的道理，我以后一定要像小明学习。」</td>
+          <td>标准复述型读后感：三句全是情节概括，没有一处「我」的真实反应；「教会了我××道理」是升华套话（第15章黑名单）；「以后一定要」是表决心式结尾；全文没有一个具体文本细节作证据。</td>
+          <td>「最打动我的是小明在雪地里走丢那段——作者没写他害怕，只写他把冻硬的馒头掰开，先喂了身边的狗／读到这儿我停了一下，因为我上周也把自己仅剩的辣条分给了同桌／原来『舍不得但还是给了』这个动作，比写十句『他很善良』都有力。」</td>
+          <td>三句式：第一句引具体文本细节（掰馒头喂狗）替代情节概括；第二句联结自己的真实经历（辣条），批注「！」直接转化；第三句写提取到的工艺（用动作写品质），完成「为什么好＋我会怎么用」。</td>
+        </tr>
+      </table>
+      <p class="ctx">这组对照的核心差别：原版的信息量是零——任何一个读过简介的人都能写出来；改后的信息量非零——只有真读过、真停了「！」、真分过辣条的人才写得出来。<strong>读后感的价值判据从来不是「感想深刻」，而是「只有你写得出来」</strong>——这与第0章评语（结果陈述 vs 过程描写）是同一把尺子在读后写作上的应用。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Graham &amp; Hebert (2011)（ERIC <a href="https://eric.ed.gov/?id=ED517367">ED517367</a>，英文）——延伸性回应写作 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「有自己的心得，能提出自己的看法」（教育部通知原文）</a> · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对照二：仿词句的假仿写→仿结构的真仿写</h3>
+      <table class="tb">
+        <tr><th style="width:24%">原句</th><th style="width:24%">问题诊断</th><th style="width:30%">改后</th><th style="width:22%">改动说明（用了哪一招）</th></tr>
+        <tr>
+          <td>原文段：「月光如流水一般，静静地泻在这一片叶子和花上。薄薄的青雾浮起在荷塘里。」仿写：「阳光如流水一般，静静地洒在这一片草和树上。薄薄的白雾浮起在山坡里。」</td>
+          <td>假仿写：只把「月光」换成「阳光」、「泻」换成「洒」——搬的是内容词，结构原封不动照抄；这种「替换词仿写」练不到句序与功能，且离照抄只差一步（滑坡到“抄袭”的边缘）。</td>
+          <td>句序图（从原文拆出）：第1句「比喻＋动态动词写光」→第2句「雾气升起的静态画面」。仿写：「晚自习的灯光像被谁按住了，一动不动地压在每张课桌上／粉笔灰在光柱里慢慢地转，像一场只有三排观众的小雪。」</td>
+          <td>真仿写：先拆功能（比喻＋动态动词写光／静态悬浮画面），再灌自己的内容（教室、灯光、粉笔灰）——结构对齐，词与意象百分之百是自己的；「压」对「泻」是动态动词的功能对位，不是词的替换。</td>
+        </tr>
+      </table>
+      <p class="ctx">判别真假仿写的最快方法：把仿写段和原文段<strong>只比结构不比内容</strong>——如果去掉名词之后两段剩下的是同一批词（如…一般，静静地…在…），那是替换词假仿写；如果去掉名词之后剩下的是同一张功能图（比喻＋动态动词→静态画面），才是结构真仿写。朱自清这段是统编教材的经典课文，用它当范例属于第一层（课内课文），孩子拆起来有课堂学习的底子垫着——范例选择的又一个好处。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pep.com.cn/">统编教材课文（朱自清《荷塘月色》节选体系，以教材实际版本为准）</a> · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——study of models 的操作定义 · Fitzgerald &amp; Shanahan (2000)（文字引用）——工艺提取需显式化 · 蒋军晶《让学生学会写作》（文字引用）——仿写练习的设计</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、练习任务与谣言粉碎</h2>
+    <p class="chapter-sub">三个今晚就能开始的动作——一支铅笔、一张纸、一百个字</p>
+
+    <article class="view">
+      <h3>练习任务一：「符号批注夜读」（每天15分钟×7天）【全部学段】</h3>
+      <p class="ctx"><strong>步骤：</strong>①选一本正在读的书（自己愿意读第二遍的那种）和一支铅笔；②每天睡前读十五分钟，边读边用符号五件套（？！○—‖）；③每遇到一个「！」，在旁边回答两个旁批问题之一（小学写问题①「这里为什么好」，初中两问都写）；④用量红线：每页批注不超过五处；⑤第七天翻回本周的批注，数一数：一共几个「！」？其中写出「为什么好」的有几个？（可数指标，不评分）。<strong>三问检查表：</strong>我的批注是在写「我的反应和工艺分析」，还是只在划好词好句？一页有没有超过五处（超了＝涂色，重读那页只留最好的五处）？有没有至少一个「！」让我想到了自己的一件事（没有就把它记进素材卡，第3章）？</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pep.com.cn/">统编教材批注策略单元体例</a>（以教材实际版本为准） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「有自己的心得」（教育部通知原文）</a> · <a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan 博客（英文）</a>——日常化读写结合</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「结构仿写一页」（约15分钟，每周一次）【小学高年级／初中】</h3>
+      <p class="ctx"><strong>步骤：</strong>①从本周批注里挑一个「！」最多的段落（课内课文优先）；②逐句编号，给每句写功能标签（环境／动作／对话／转折／收尾……），画出句序图——标签必须是抽象功能，不许出现原文内容词；③从素材库（第3章）挑一件自己的事，按句序图重写：结构和句数对齐，内容全换；④自检：并排比对，只比结构不比内容——有没有顺手抄原文词句（有就重写那句）？有没有连续七字以上与原文相同（有就全部重写）？⑤仿写段放进档案袋，标注日期与出处（「仿×××第×段」——标注出处是正当练习的一部分，与“抄袭”的隐瞒恰好相反）。<strong>三问检查表：</strong>功能标签抽象吗（「写光」对，「写月光如流水」错）？事件是我自己经历过的吗？朗读一遍（第13章），读着像我的话还是像翻译腔？</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——study of models · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学要素 · 蒋军晶《让学生学会写作》（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「百字荐书」（约10分钟，读完一本书做一次）【全部学段，可亲子】</h3>
+      <p class="ctx"><strong>步骤：</strong>①读完一本书后，用三句式写一段百字左右的荐书（对象：一个还没读过这本书的朋友）——第一句「这本书写了什么」（内容一句封顶）；第二句「最打动我的一处，为什么」（从批注的「！」里直接取）；第三句「我把它推荐给谁，因为……」；②负面清单：不许出现「教会了我××道理」「我以后一定要××」「值得一读」；③把荐书念给家长听（或贴在家庭读书角），家长只许问一个问题：「第二句那个地方，你能再讲讲吗？」——不许评价、不许打分（第16章零评分原则的延伸）。<strong>三问检查表：</strong>三句里有没有具体文本细节作证据（「雪地里掰馒头」这种，不是「情节感人」这种）？「只有我写得出来」吗（换个读过这本书的人写，会和我的一样吗）？有没有升华套话漏网？</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Graham &amp; Hebert (2011)（ERIC <a href="https://eric.ed.gov/?id=ED517367">ED517367</a>，英文）——读完写作的理解增益 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——为具体读者而写 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「写读书笔记」（教育部通知原文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于读写结合的两个流行说法</h3>
+      <p class="ctx"><strong>谣言一：「抄好词好句本，作文就能变好。」</strong>错，而且错得有研究依据。好词好句本存的是<strong>内容</strong>（别人的词、别人的比喻），不是工艺（这些词句为什么在这个位置有效）；Fitzgerald &amp; Shanahan 的核心结论正是：内容层的积累不会自动转化为写作能力，需要显式的工艺提取。更实际的问题是提取失败：考场上想不起来用（存储时没有和自己的经历挂钩），或者生搬硬套（「月光如流水」用在写运动会上，水土不服比不写还糟）。本站的替代方案就是本章：符号批注（存反应与工艺分析）＋句序图仿写（把工艺变成自己用过的动作）——同样花十分钟，存进去的东西能不能调用，差别是天壤之别。<strong>谣言二：「批注浪费时间，读完就行，读得多自然会写。」</strong>前半句恰恰说反了：批注每次停顿不过几秒钟，一页最多五处，一本书加起来二十分钟——而它换来的是「读过」与「看懂它怎么写」的区别（第一节：只提取内容 vs 同时提取工艺）。「读得多自然会写」则被两个证据链否定：其一，Graham &amp; Hebert 元分析显示，读写结合的增益来自「围绕文本写作」这个显式动作，单纯的阅读量对写作输出的预测力远弱于家长的直觉；其二，统编教材从四年级就把批注设为独立策略单元——如果读得多自然会写，教材没有必要专门教。第16章拆过「天天写日记自然写好」，本章拆「读得多自然会写」——两句话错在同一个地方：<strong>输入与输出之间的桥，从来不是自动搭起来的。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Fitzgerald &amp; Shanahan (2000)（文字引用；<a href="https://shanahanonliteracy.com/blog/how-should-we-combine-reading-and-writing">Shanahan 博客（英文）</a>） · Graham &amp; Hebert (2011)（ERIC <a href="https://eric.ed.gov/?id=ED517367">ED517367</a>，英文） · <a href="https://www.pep.com.cn/">统编教材批注策略单元（人教版官网）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标原文（教育部通知）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>Fitzgerald &amp; Shanahan (2000) 说读写共享什么？为什么共享了还不会写？</li>
+        <li>「只提取内容」与「同时提取工艺」的阅读，差别是什么？游泳比赛的比喻怎么讲？</li>
+        <li>Graham &amp; Hebert (2011) 元分析的核心发现是什么？它对家庭实践的直接推论是哪一条？</li>
+        <li>为什么元分析效应不能承诺到个体？本章的口径怎么表述？</li>
+        <li>课标里哪几句话是批注法的制度依据？统编教材从几年级开始教批注？</li>
+        <li>《Writing Next》要素九「范文研习」的效应量约多少？它和「背范文」的本质区别是什么？</li>
+        <li>批注符号五件套分别是哪五个符号、各标什么？用量红线是什么？</li>
+        <li>两个旁批问题是什么？为什么第一个问题逼你回答「因果」？</li>
+        <li>三句式「关于阅读的写作」的三句各写什么？为什么内容只许一句？</li>
+        <li>结构仿写三步是什么？为什么段落是正确的仿写粒度？</li>
+        <li>功能标签「合格」与「偷懒」的分界在哪？举一个例子。</li>
+        <li>仿写与“抄袭”的判据是什么？「连续七字」红线怎么用？化用的边界在哪里？</li>
+        <li>「仿写会丧失风格」这个说法怎么反驳？书法临帖的类比怎么用？</li>
+        <li>一周一循环的五个动作（读→批注→拆→仿→改）各在哪天做、各调用哪一章技术？</li>
+        <li>断供保护与过载保护分别防什么？连续两周没有「！」该怎么办？</li>
+        <li>范例文本三层选择是哪三层？为什么满分作文选是反面清单？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>多读≠会写：读写共享元知识（Fitzgerald &amp; Shanahan, 2000）但转化需要显式的桥——桥是双向的，围绕阅读写作还能提升阅读理解（Graham &amp; Hebert, 2011，基于近六十项研究）。官方口径早已修桥：课标要求「有自己的心得」「写读书笔记」，统编教材四年级起设批注策略单元，《Writing Next》要素九「范文研习」（效应量约0.25，组合使用更佳）。批注法＝符号五件套（？！○—‖，每页≤5处）＋两个旁批问题（这里为什么好／我会怎么用）；升级版三句式：内容一句→工艺＋真实反应→联结自己，治好「读后感=情节复述」。仿写三步：选段（段落粒度）→拆结构（句序图＋抽象功能标签）→换内容不换结构；与“抄袭”的边界只有一条：搬结构是学习，搬内容是“抄袭”（连续七字红线，仿写标注出处）。读写循环一周一转：平日批注（阅读的日记，零评分）、周三仿写（素材库供血）、周末修改（第13章流程）；断供保护＋过载保护各设一道闸，范例三层按熟悉度递进（课内课文→兴趣书目→自己的旧作），满分作文选进反面清单——按应试套路炮制的文字，拆它的结构等于把套话病请进循环。练习三个：符号批注夜读、结构仿写一页、百字荐书。谣言已拆：「抄好词好句本」（存内容不存工艺，考场调不出来）、「读得多自然会写」（桥不是自动搭的——与第16章「天天写日记自然好」错在同一个地方）。下一章：<a href="../18-parent/">第18章·家长辅导指南</a>——家长的正确位置：不代笔、不监控，做那个问对问题的人。
+  </div>
+
+  <nav class="pager">
+    <a href="../16-diary/"><span class="dir">← 上一章</span>第16章 · 日记与随笔：低压力日课</a>
+    <a href="../18-parent/"><span class="dir">下一章 →</span>第18章 · 家长辅导指南</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第17章 · 依据《义务教育语文课程标准（2022年版）》、统编语文教材批注体系、Fitzgerald &amp; Shanahan (2000)、Graham &amp; Hebert (2011)、Graham et al. (2012)、《Writing Next》(2007)、Murray (1972)、Zinsser《On Writing Well》、夏丏尊与叶圣陶《文心》、叶圣陶《叶圣陶语文教育论集》、王荣生《阅读教学教什么》、蒋军晶《让学生学会写作》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

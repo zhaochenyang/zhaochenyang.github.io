@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14章 考场时间分配：作文与阅读怎么留时间 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第14章 · 第三部分 · 写作流程</div>
+  <h1>⏱️ 考场时间分配：作文与阅读怎么留时间</h1>
+  <p>先算账再动笔：作文 50–55 分钟怎么切、三个看表点、最后 15 分钟的应急写法</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../13-revise/">← 第13章：修改</a>
+    <a href="../15-openend/">第15章：开头与结尾 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">时间怎么丢的</a>
+    <a class="anchor" href="#s2">先算账</a>
+    <a class="anchor" href="#s3">55分钟怎么切</a>
+    <a class="anchor" href="#s4">先看作文题</a>
+    <a class="anchor" href="#s5">三个看表点</a>
+    <a class="anchor" href="#s6">应急15分钟</a>
+    <a class="anchor" href="#s7">平时练时间感</a>
+    <a class="anchor" href="#s8">误区谣言</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用「比例法」算出自己那场考试里作文应得的时间（高考 150 分钟→作文 50–55 分钟；中考按本省时长折算）；②把作文时间切成「审题列纲＋写作＋检查」三段，每段接上前面章节的工序（第11章圈题、第12章时间盒、第13章清单）；③掌握「开考先看作文题」的后台孵化策略（Elbow cooking 的考场版）；④设置并演练「三个看表点」：阅读结束时、作文写到一半时、交卷前 15 分钟；⑤学会最后 15 分钟的应急写法：放弃大叙事，写一个头尾齐全的完整小场景，字数达线优先；⑥在模考中用「时间计划书」记录偏差，把时间感练成肌肉记忆。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章回答那位同学评语里的最后一问——「怎么留时间」。它是第三部分的收官章：第11章的圈题、第12章的时间盒、第13章的八条清单，在这一章被装进一张真实的考卷时间轴。如果你只在大考时写作文，至少要在每次模考前重读第二、五、六节；如果你是家长，第六节「应急小场景」值得转给孩子——它专治「还剩十五分钟，作文只写了一半」的考场崩溃时刻。所有考试时长与分值<strong>以当年本省考试院公布为准</strong>（<a href="https://www.neea.edu.cn/">教育部教育考试院</a>及各省市考试院官网），本章给出的是计算方法和常见口径，不是承诺。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、考场时间是怎么丢的：三种丢法</h2>
+    <p class="chapter-sub">「写不完」几乎从来不是手速问题，而是分配问题</p>
+
+    <article class="view">
+      <h3>评语最后一问：「怎么留时间」</h3>
+      <p class="ctx">回到贯穿本课程的那条真实评语。这位同学在初稿里写「渐渐地我能写完卷子」，老师的批注追问道：「我之后是怎么一点点改（比如做阅读真的怎么圈题、<strong>怎么留时间</strong>）？」——「怎么圈题」第11章已经回答（圈题干限定词、圈材料关键词），本章回答剩下的半句。这个问题问得极准：「能写完卷子」不是一种决心，是一组可以被写出来的具体动作——开考第几分钟看作文题、阅读写到几点必须动笔写作文、最后十五分钟还差两百字怎么办。<strong>凡是说不清动作的「进步」，都值得追问一遍「具体怎么做的」</strong>——这既是第13章评语翻译法的原则，也是本章的写作对象。</p>
+      <p class="ctx">为什么时间分配值得单独开一章？因为它是考场作文的头号非能力性失分点：一篇构思、素材、语言都不差的作文，如果只写了一半，分数会断崖式下跌——阅卷老师在有限时间内读到的是「未完成的文本」，中心不完整、结尾缺失，评分维度里的「结构完整」直接归零档。反过来说，一篇中规中矩但头尾完整、字数达线的作文，得分下限远高于半篇佳作。时间分配不是锦上添花的技巧，是<strong>保住下限的工程</strong>。而工程是可以设计的：本章给你算账方法（第二节）、切割方案（第三节）、两个前置策略（第四、五节）和一套应急预案（第六节）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.neea.edu.cn/">教育部教育考试院官网</a>——考试安排与科目时长的官方发布渠道 · <a href="https://www.jseea.cn/">江苏省教育考试院</a>／<a href="https://www.sceea.cn/">四川省教育考试院</a>——省级考试时长口径示例 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——限时写作（timed writing）作为独立训练场景</div>
+    </article>
+
+    <article class="view">
+      <h3>丢法一：阅读恋战——「再想想就能做出来」</h3>
+      <p class="ctx">最普遍的时间漏洞在阅读部分。机制是<strong>沉没成本错觉</strong>：一道 3 分的选择题已经花了 4 分钟，此时放弃，前 4 分钟「白花」了；再花 3 分钟说不定就做出来——于是 7 分钟换 3 分，而作文每分钟的边际分值远高于此。恋战的题目有个共同特征：<strong>你已经读了三遍还没找到切入点</strong>。三遍是一个经验阈值：读三遍仍无思路的题，大概率缺的是某个知识点或题型方法，不是再多读一遍能解决的——此时正确动作是标记跳过，把这道题记在草稿纸角落，全卷做完若有富余再回来。</p>
+      <p class="ctx">给「恋战」装一个熔断器：<strong>单题超时即跳</strong>。考前按分值给每类题设一个「心理时限」（例如：选择题平均每题不超过 2 分钟，主观题按分值每分 1.5–2 分钟——具体数字按你所在省份的题量自己校准，方法见第二节），答题时不真的看表（频繁看表也浪费时间），而是用「读完三遍还没思路就跳」这个动作信号代替时间信号。跳题不是放弃，是把决策权从情绪手里拿回来：情绪说「再想想」，规则说「标记、跳过、继续」。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis et al. (2016) 考试焦虑与应对策略研究（Frontiers in Psychology，英文）</a>——应试策略训练可缓解时间压力下的焦虑 · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——「卡住即跳过」与占位符策略同源 · <a href="https://www.neea.edu.cn/">教育部教育考试院官网</a>——各科目试卷结构与分值发布</div>
+    </article>
+
+    <article class="view">
+      <h3>丢法二：作文磨开头——前十五分钟只写了三行</h3>
+      <p class="ctx">第二种丢法发生在作文内部：开头难产。学生在草稿纸上反复起草第一段，写了划、划了写，十五分钟过去，作文格子里只有三行。这与第12章「起草修改分离」是同一个病灶的考场变体——<strong>把「写出第一稿」和「写好第一稿」混在一个动作里</strong>。考场上没有冷却条件，没有重来机会，开头磨得越久，留给主体和结尾的时间越少，而主体的分值密度通常高于开头。破解法在第12章已经给过：时间盒的「2–5 分钟冲开头」——开头只要「能用的」不要「完美的」，先写下来，全篇写完若有余力再回头润色；真到没时间，一个朴素但切题的开头远胜过一个没写完的精彩开头（第15章会展开「保底开头三式」）。</p>
+      <p class="ctx">丢法三：<strong>检查环节无预算</strong>。不少学生的习惯是「写到哪里算哪里」，写完铃响，检查时间等于零；另一些学生则反过来，早早写完阅读，剩四十分钟全给作文，写到一半发现时间「还多」，于是慢悠悠打磨字句，最后五分钟匆忙补结尾。两种都是没有预算的症状。解法一致：把检查当作一道必须完成的「题」写进时间计划（第三节），预算 5 分钟，专查三件事——错别字、占位符漏补（第12章的「（补：……）」）、清单第⑥⑦⑧条（第13章）。检查是工序，不是运气。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——自由写作与「先完成再完善」原则 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——过程写作法的实证支持 · Zinsser《On Writing Well》(Harper 1976/2016)（文字引用）——开头是重写次数最多的部分，考场上更应快速通过</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、先算账：比例法算出你的作文时间</h2>
+    <p class="chapter-sub">按分值比例分配时间——所有考试通用的第一原则</p>
+
+    <article class="view">
+      <h3>比例法：分值在哪，时间就在哪</h3>
+      <blockquote class="q">
+        <strong>时间分配第一原则（比例法）：</strong>各部分时间 ≈ 各部分分值占比 × 总时长，再为作文追加 5 分钟左右缓冲。<br>
+        <strong>高考语文口径（常见）：</strong>总分 150 分、考试时长 150 分钟、作文 60 分 → 作文按分值占 40%，1 分钟≈1 分 → 作文基准时间 60 分钟；考虑到作文书写量大、不可回改，实操取 <strong>50–55 分钟</strong>（审题列纲 5–10 ＋ 写作 35–40 ＋ 检查 5），其余留给阅读与语言运用。<br>
+        <strong>中考：</strong>各省时长与分值不同（常见 120 分钟/120 分或 150 分钟/150 分，作文常见 50–60 分）→ 用同一公式折算：作文分值占比 × 总时长，再留缓冲。<br>
+        <strong>一切以当年本省考试院公布的时长与分值为准。</strong>
+        <span class="qsrc">方法整合：应试时间分配的通行原则 + 教育部教育考试院及省级考试院公开的考试口径（截至 2026 年 10 月）</span>
+      </blockquote>
+      <p class="ctx">比例法的逻辑近乎算术：考试是按分值给分的，时间却常被按「题号顺序」消耗——前面的题分值小却吃时间，后面分值大的作文反被挤到最后十分钟。比例法把分配依据从「顺序」换成「分值」。追加 5 分钟缓冲的理由也具体：作文是唯一不能「跳过去回头再写」的大题（阅读可以跳题，作文写到一半没法跳），且誊写、卷面都吃时间，缓冲是它的风险溢价。以常见高考口径算一遍：150 分钟里，作文 55 分钟（含缓冲），阅读与语言运用合计约 90 分钟，机动 5 分钟——这张账就是你的「时间计划书」骨架（第七节练习一会把它做成表格）。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.neea.edu.cn/">教育部教育考试院官网</a>——高考科目设置、时长与分值的官方口径 · <a href="https://www.jseea.cn/">江苏省教育考试院</a>——中考/高考省级口径发布示例 · <a href="https://www.sceea.cn/">四川省教育考试院</a>——同上 · 各年度《考试说明》以当年公布为准</div>
+    </article>
+
+    <article class="view">
+      <h3>折算示例表：不同考试怎么算</h3>
+      <table class="tb">
+        <tr><th>考试口径（示例）</th><th>总时长</th><th>作文分值占比</th><th>作文时间（含缓冲）</th><th>阅读等其余部分</th></tr>
+        <tr><td>高考语文（常见口径）</td><td>150 分钟</td><td>60/150＝40%</td><td><strong>50–55 分钟</strong></td><td>约 90–95 分钟＋机动</td></tr>
+        <tr><td>中考语文（120 分钟/120 分制示例，作文 50 分）</td><td>120 分钟</td><td>50/120≈42%</td><td><strong>45–50 分钟</strong></td><td>约 65–70 分钟＋机动</td></tr>
+        <tr><td>中考语文（150 分钟/150 分制示例，作文 60 分）</td><td>150 分钟</td><td>60/150＝40%</td><td><strong>50–55 分钟</strong></td><td>约 90 分钟＋机动</td></tr>
+        <tr><td>小学高年级单元习作（40 分钟/400 字要求示例）</td><td>40 分钟</td><td>整堂即作文</td><td><strong>35–38 分钟</strong>（审题 5＋写 28＋查 5）</td><td>——</td></tr>
+      </table>
+      <p class="fig"><img src="../assets/img-14-1.png" alt="考场课桌上方挂钟与写了一半的答题卡的扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></p>
+      <p class="ctx">用这张表之前先做一件事：<strong>把你自己那场考试的真数填进去</strong>——时长、总分、作文分值，全部以准考证背面或考试院公布为准，然后套公式算出你的作文分钟数，写进时间计划书。小学阶段的习作课虽然没有阅读挤占，但「审题—写作—检查」三段结构同样成立（表中最后一行）：40 分钟的课堂习作，检查 5 分钟的预算一样要留——时间感是从小学的小考场上开始练的，不是中考前一个月才现学的。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.neea.edu.cn/">教育部教育考试院官网</a> · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材各学段习作课时与字数要求参考 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis et al. (2016)（英文）</a>——时间管理属于可训练的应试策略</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、作文 55 分钟怎么切：三段切割法</h2>
+    <p class="chapter-sub">审题列纲 5–10 ＋ 写作 35–40 ＋ 检查 5——每段接上前面的工序</p>
+
+    <article class="view">
+      <h3>切割方案与三段各自的任务</h3>
+      <blockquote class="q">
+        <strong>考场作文三段切割（以 55 分钟为例，可按第二节公式缩放）：</strong><br>
+        <strong>第一段 · 审题列纲（5–10 分钟）：</strong>圈题眼与限定词（第11章圈题法）→ 写「题意锁定句」一句话 → 在草稿纸列三词提纲：开头意象／主场景／结尾呼应（第10章提纲的考场压缩版）。<br>
+        <strong>第二段 · 写作（35–40 分钟）：</strong>执行第12章时间盒的考场版——开头 3–5 分钟冲过去不回头；主体不停笔，卡壳处写「（补：……）」占位符继续推进；结尾必须在预算内动笔，宁可朴素不可没有。<br>
+        <strong>第三段 · 检查（5 分钟）：</strong>按第13章清单第⑥⑦⑧条顺序查：错别字→标点→题目与开头结尾呼应；同时清点占位符是否全部补写。只查不改写——检查阶段禁止动大手术。
+        <span class="qsrc">方法整合：第10–13章工序的考场装配；时间数字为常见口径下的经验值，以个人模考校准为准</span>
+      </blockquote>
+      <p class="ctx">这个方案的价值不在数字本身，而在<strong>每段都有明确的完成标准</strong>：审题列纲段完成的标准是「锁定句写出来了、三词提纲列出来了」——不是「想清楚了」（想没想清楚无法验证，写没写出来可以）；写作段的标准是「结尾落笔了」；检查段的标准是「占位符清零、三个条目标√」。有标准就有熔断：某段超时，标准没达到也强制进入下一段——考场上「完美地做完第一段」毫无意义，「完整地做完三段」才有分。这正是第12章「有头有尾、有主场景、有字数」合格线的考场执行版。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——起草阶段不停笔原则 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略教学与目标设定的有效性 · <a href="https://compositionforum.com/issue/50/teach-writing-as-process.php">Composition Forum：过程写作法教学（英文）</a>——过程工序在限时写作中的迁移</div>
+    </article>
+
+    <article class="view">
+      <h3>为什么审题列纲舍得花 5–10 分钟</h3>
+      <p class="ctx">不少学生觉得列提纲「浪费时间」，拿到题直接开写——这是用 35 分钟赌一个方向。三个理由支持把 5–10 分钟花在前头。其一，<strong>跑题的代价不对称</strong>：写到 800 字才发现偏题，重写没有时间，硬着头皮交卷则中心分全失；而列纲阶段发现偏题，改的只是草稿纸上三个词。其二，<strong>提纲是工作记忆的外挂</strong>：考场紧张状态下（第9章讲过焦虑对注意力的挤占），脑子里的构思会蒸发，写在草稿纸上的三词提纲不会——写到第四段忘了结尾怎么收，瞟一眼提纲就接上了。其三，<strong>详略在提纲期决定</strong>：主场景是哪个、写几段、哪段详哪段略（第10章），这些结构决策在动笔前做完，写作段就只管执行；边写边想结构的人，写出来的就是第13章示范二那种流水账。</p>
+      <p class="ctx">三词提纲的具体形态（第10章方法的考场压缩）：草稿纸上竖写三行——「开头：____（一个意象或场景）」「主场景：____（谁在哪做什么，含一个感官词）」「结尾：____（呼应开头的画面或动作）」。三行加起来不超过 30 个字，3–5 分钟能列完；剩下 2–5 分钟给圈题和锁定句。注意纪律：<strong>提纲一旦列定，写作段不再改提纲</strong>——中途改纲等于重新审题，时间双重损失。真写到一半发现提纲有大问题（罕见），改的是执行细节，不动三词骨架。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes &amp; Flower (1980) "Identifying the Organization of Writing Processes"，College Composition and Communication 31(2): 146–161（文字引用，JSTOR 反爬）——计划（planning）与执行（translating）分离的写作认知模型 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（ERIC EJ1125149，英文）</a>——提纲降低限时写作焦虑 · <a href="https://wac.colostate.edu/">WAC Clearing（科罗拉达州立大学写作研究资料库，英文）</a>——提纲作为写作过程工具的文献汇编</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、开考第一分钟：先看作文题</h2>
+    <p class="chapter-sub">让作文在后台「炖着」，阅读做完它已经半熟</p>
+
+    <article class="view">
+      <h3>后台孵化：Elbow「cooking」的考场版</h3>
+      <p class="ctx">第12章讲过 Elbow 的孵化（cooking）机制：写作任务在意识后台持续加工，搁置一段时间后往往自己「熟」了。这个机制在考场上有一个被严重低估的应用：<strong>开考后（按考场规则允许动笔时）先花 1 分钟看作文题</strong>——只看不写：读一遍题目，圈出题眼（第11章），心里默一句「这篇大概写什么素材」，然后立刻转去做阅读。接下来你答阅读的 80–90 分钟里，作文题在后台炖着；等你真正动笔写作文时，常有「素材自己冒出来」的体验——那不是灵感玄学，是后台加工的正常产出。认知心理学对这类孵化效应有持续研究（第12章引过相关文献），考场上的操作成本只有 1 分钟，收益是审题时间被摊薄、素材检索提前启动。</p>
+      <p class="ctx">操作细节与纪律：<strong>①只看 1 分钟，绝不恋战</strong>——看完立刻回阅读，试图在开考前 5 分钟把作文想透，挤占的是阅读的清醒时段（开考时注意力最佳，应给最需要精读的题目）；<strong>②不写草稿</strong>——此时写下的任何句子都会变成「先入为主的第一稿」，限制后台孵化的方向，看、圈、走，三步完；<strong>③素材冒出来就记一个词</strong>——做阅读间隙如果后台突然「炖出」一个好素材，在草稿纸角落记一个关键词（两个字即可）防蒸发，然后继续做题。<strong>④遵守考场规则</strong>：部分考试规定开考信号发出前不得答题、或有统一的填涂答题卡时间，一切以监考指令与本省考试院规定为准，「先看作文题」在规则允许的时间窗内执行。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——cooking/孵化概念的原始出处 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——Elbow 方法综述 · <a href="https://www.neea.edu.cn/">教育部教育考试院官网</a>——考场规则与开考指令的官方口径 · 《国家教育考试违规处理办法》（教育部令第33号，文字引用）——一切考场动作以规则为准</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、三个看表点：给时间装仪表盘</h2>
+    <p class="chapter-sub">不频繁看表，只在三个节点校准——偏差当场纠正</p>
+
+    <article class="view">
+      <h3>方法拆解框：三个看表点</h3>
+      <blockquote class="q">
+        <strong>三个看表点（以 150 分钟考试、作文预算 55 分钟为例，按你的时间计划书换算）：</strong><br>
+        <strong>看表点① · 阅读结束时（约开考后 90–95 分钟）：</strong>核对——阅读是否按计划做完？作文是否还有≥50 分钟？若阅读超时 10 分钟以上：作文压缩为「审题 5＋写 35＋查 3」，主场景保留、次要段落砍。<br>
+        <strong>看表点② · 作文写到一半时（作文开始后约 20 分钟）：</strong>核对——字数是否过半（约 400–450 字）？是否还在主场景之前？若进度落后：立即跳到主场景开写，过渡用一句交代；若严重落后（还剩 25 分钟只写了 200 字）：启动第六节应急预案。<br>
+        <strong>看表点③ · 交卷前 15 分钟：</strong>核对——结尾写完没有？没写完：立即执行应急小场景（第六节）；写完了：进入检查工序（第13章清单⑥⑦⑧条＋占位符清点）。
+        <span class="qsrc">方法为本课程设计，装配自第12章时间盒与应试时间管理通行做法；分钟数以个人模考校准为准</span>
+      </blockquote>
+      <div class="fig"><img src="../assets/img-14-2.png" alt="笔记本纸上手绘的饼图其中一块被红笔涂出的极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">为什么是三个点而不是「随时看表」？两个原因。其一，<strong>频繁看表本身消耗注意力并放大焦虑</strong>——第9章讲过焦虑的注意力挤占机制，每看一次表、每做一次「还剩多久」的心算，就是一次任务无关的加工；三次是校准所需的最少次数。其二，<strong>三个点各自对应一个可执行的纠偏动作</strong>：点①纠「阅读超时」（压缩作文预案）、点②纠「作文进度落后」（跳写主场景）、点③纠「结尾风险」（应急预案）——看表不是目的，触发动作才是。没有动作设计的时间检查只会制造恐慌：「还剩四十分钟」这个数字本身不解决问题，「还剩四十分钟→按预案 B 执行」才解决。</p>
+      <p class="ctx">实操建议：把三个看表点<strong>提前换算成钟点写在草稿纸角上</strong>（例如 9:00 开考→点① 10:32、点② 10:55、点③ 11:15——按你自己的计划书算），考场上只需扫一眼挂钟对钟点，不用做减法心算。平时模考就按这个流程走，第七节练习三会专门练它。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis et al. (2016)（英文）</a>——考试应对策略与焦虑水平的关系 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——结构化流程降低限时写作焦虑 · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA "What Does Research Say About Writing Instruction?"（英文）</a>——写作教学应包含过程管理策略</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、最后 15 分钟应急：写一个完整的小场景</h2>
+    <p class="chapter-sub">放弃大叙事，头尾齐全＋一个慢镜头＋字数达线</p>
+
+    <article class="view">
+      <h3>应急预案：从「写不完」到「小而完整」</h3>
+      <p class="ctx">现在到了那条评语问题的最后一环——「渐渐地我能写完卷子」里的「写完」，在最坏情况下怎么保住。设定场景：交卷前 15 分钟，你的作文只写了 300 字，主场景还没展开，结尾没影。此刻最危险的不是时间，是恐慌引发的两个错误决策：一是「赶紧编个大结局」（前面铺垫全无的结尾，逻辑断裂更扣分）；二是「字写飞快但只堆叙述」（速度换来的字数没有细节，档次不升反降）。正确动作是<strong>收缩目标：放弃原本的大叙事，改写一个完整的小场景</strong>。</p>
+      <blockquote class="q">
+        <strong>最后 15 分钟应急三步（目标：头尾齐全、字数达线）：</strong><br>
+        ① <strong>定一个场景（1 分钟）</strong>：从已写的 300 字里挑一个已经出现（或最接近）的瞬间——一次对话、一个动作、一个画面——决定把它当作全文的主场景。不要再引入新人物新事件。<br>
+        ② <strong>慢镜头展开（8–10 分钟）</strong>：用第5章慢镜头法把这个瞬间放慢：动作拆成 3–4 个小步骤，每步配一个感官细节（看到的/听到的/手上的触感），加一句人物原话（第7章）。一个瞬间写 150–250 字是完全可能的——慢镜头天生「增字数而不注水」。<br>
+        ③ <strong>两句话收束（3–4 分钟）</strong>：结尾禁止口号（「这真是难忘的一天」），用「画面呼应」法：回指开头的意象或题目里的关键词，一句描写＋一句克制的感受，两句话收全文（第15章「小场景收束」的应急版）。写完扫一眼字数线，不足则回到②再补一个感官细节。<br><br>
+        <strong>检查表（三问）：</strong>结尾落笔了吗（结构完整＞局部精彩）？字数达到要求线了吗？占位符和明显错别字清了吗？
+        <span class="qsrc">方法为本课程设计，装配自第5章慢镜头、第7章对话、第15章结尾法与限时写作通行应急策略</span>
+      </blockquote>
+      <p class="ctx">为什么「小而完整」优于「大而残缺」？从阅卷视角看：一篇 450 字但头尾齐全、主场景有慢镜头有对话的作文，「内容具体」「结构完整」两个维度都立得住；一篇 600 字但戛然而止、结尾缺失的作文，「结构完整」直接失守，且残篇给阅卷人的整体印象是失控。<strong>考场上，完整性是比规模更硬的通货。</strong>这也解释了为什么应急三步的核心是「收缩」而不是「加速」——加速写大叙事，写的是数量；收缩写小场景，保的是结构。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——慢镜头展开的描写学依据 · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA 写作教学研究综述（英文）</a>——具体策略训练优于泛泛劝告 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「内容具体、感情真实」的评价导向</div>
+    </article>
+
+    <article class="view">
+      <h3>病句→改后：两种仓促结尾的急救</h3>
+      <table class="tb">
+        <tr><th style="width:24%;">原句（仓促版）</th><th style="width:22%;">问题诊断</th><th style="width:30%;">改后（应急小场景版）</th><th>改动说明</th></tr>
+        <tr><td>时间不多了，我赶紧写：这件事让我明白了坚持就是胜利，我以后一定要更加努力，做一个对社会有用的人。</td><td>典型「赶时间口号结尾」：三个套话连发（明白道理/更加努力/有用的人），没有一个属于这篇文章的具体内容；「时间不多了，我赶紧写」暴露慌乱，也占字数。</td><td>铃声还有一分钟的时候，我又看了一眼那道题——圈出来的三个关键词，此刻整整齐齐排在题干下面。我把笔帽按上，手心那点汗终于凉了。原来「写完卷子」是这种感觉：不是胜利，是把每一个圈都画圆了的踏实。</td><td>删全部口号，换「画面呼应」收束：回指第11章的圈题动作（本文专属细节）＋一个身体感受（手心汗凉了，呼应评语例句）＋一句克制的点题（「把圈画圆了的踏实」——道理从画面里自己长出来，不喊出来）。用时约 3 分钟，字数反而更省。</td></tr>
+        <tr><td>考试的时候我很慌，后来我不慌了，我能写完卷子了，红叉也少了。</td><td>评语点名的「结果陈述」：慌→不慌之间没有过程；三个「了」字句平铺，无场景无细节；「后来」一笔跳过全部成长。</td><td>挂钟的秒针走得比平时响。我盯着阅读题的题干，逼自己先做那个固定动作：圈——限定词画三角，对应句画横线，圈完才许答题。第一遍圈得很慢，手心全是汗；第三篇开始，圈变成了顺手的事。交卷铃响时，我的卷子上第一次没有空着的题。红叉是后来才少的——从七个，到两个。</td><td>「增」法＋应急慢镜头的组合：保留「慌」的起点（秒针声、手心汗），把「怎么改」写成可复述的固定动作（圈三角、画横线——正是评语追问的「怎么圈题」），结果落到可数的变化（没有空题；七个到两个）。15 分钟内可完成 120 字左右的这一段。</td></tr>
+      </table>
+      <p class="ctx">两组对照合起来演示了应急预案的完整出口：第一组处理「结尾来不及」，第二组处理「主体来不及展开」。共同点是<strong>都用已写的部分作原料</strong>——应急阶段没有时间去构思全新内容，所有增补都必须从草稿纸和前文里就地取材：前文提过挂钟，结尾就用铃声；前文写过圈题，结尾就回指圈题。这就是第①步「从已写的 300 字里挑瞬间」的深意：你的初稿再仓促，也已经埋着可以回收的零件。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——具体优于抽象 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——策略化修改训练的有效性 · 夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——「触发」与就地取材</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、平时练时间感：三个练习</h2>
+    <p class="chapter-sub">时间感不是考场上的天赋，是模考里练出来的仪表盘</p>
+
+    <article class="view">
+      <h3>练习一：「时间计划书」（15分钟）【初中为主，小学高年级做简化版】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①查出你下一场考试的真数：总时长、作文分值、总分（考试院/准考证口径，家长协助查证）；②用比例法算出作文分钟数（分值占比×总时长＋5 分钟缓冲，向下取整到 5 的倍数）；③做一张分钟级分配表：开考时刻→阅读各题块预算→作文三段（审题列纲/写作/检查）→三个看表点换算成钟点；④下次模考照表执行，考后在表格右侧记录每块的实际用时与偏差（±分钟）；⑤偏差超过 10 分钟的块，写一句原因（恋战？磨开头？誊写慢？），下次模考前重读。<br><br>
+        <strong>检查表（三问）：</strong>表上的数字来自官方口径还是我猜的？三个看表点换算成钟点了吗？模考后记录偏差了吗（没有记录的执行等于没练）？
+      </blockquote>
+      <p class="ctx">这个练习的产出物是一张会进化的表：第一次模考偏差大是正常的（通常发现阅读超时），三到四次模考后偏差收敛到 ±5 分钟内，你的时间感就建立起来了——所谓时间感，就是「体内时钟」与「计划表」对齐的状态。小学高年级简化版：只算课堂习作 40 分钟的三段（审题 5/写 28/查 5），在一次单元习作中照表执行并记录偏差即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.neea.edu.cn/">教育部教育考试院官网</a>——官方时长分值查询入口 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis et al. (2016)（英文）</a>——应试策略的可训练性 · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA 写作教学研究综述（英文）</a>——目标设定与自我监控</div>
+    </article>
+
+    <article class="view">
+      <h3>练习二：「十五分钟应急作文」（15分钟）【初中为主】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①设计时器 15 分钟，随机取一道你写过的作文题（或课内习作题）；②不做提纲、不写大叙事，直接执行应急三步：定场景（1 分钟）→慢镜头展开（10 分钟）→两句话画面呼应收尾（4 分钟）；③字数目标：小学 300–400 字档，初中 400–600 字档（按本省作文要求线下限）；④写完自查三问：结尾落笔了吗？字数达线了吗？有没有口号句（有→用画面换掉）；⑤每两周做一次，记录字数与完成度。<br><br>
+        <strong>检查表（三问）：</strong>15 分钟内头尾齐全了吗？主场景有至少一个动作拆分＋一个感官细节吗？结尾是画面不是口号吗？
+      </blockquote>
+      <p class="ctx">这个练习平时看似「用不上」，练的其实是两项底层能力：<strong>收缩决策</strong>（在资源不足时果断放弃次要目标——这是应急心理学的通用能力）和<strong>快速调用素材</strong>（15 分钟内从记忆里捞出一个可用瞬间，靠的是第3章素材卡的存量）。第一次做大概率超时，第三次开始从容。注意：它是应急预案的演练，不是日常写作训练——日常练笔仍按第12章 25 分钟时间盒完整走工序。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://peterelbow.com">Peter Elbow 官网（英文）</a>——定时写作练习（timed writing）方法 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——限时练习与写作焦虑的脱敏关系 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——学段字数与速度要求参考</div>
+    </article>
+
+    <article class="view">
+      <h3>练习三：「三看表演练」（跨一场模考）【初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①模考前把练习一算好的三个看表点钟点写在草稿纸角上；②模考中每到一个点：看表→在草稿纸记「剩余时间/当前进度」一行→执行对应动作（正常推进/压缩预案/应急预案）；③考后复盘：三个点的记录与实际交卷状态对照——点②的进度判断准吗？点③触发应急了吗？④把复盘写进时间计划书右侧的偏差栏，下下次模考验证调整。<br><br>
+        <strong>检查表（三问）：</strong>三个点都看表并记录了吗（漏一个就说明钟点没写进草稿纸）？每次看表后都触发了明确动作吗？复盘偏差写进计划书了吗？
+      </blockquote>
+      <p class="ctx">三个练习的关系：练习一造仪表盘（计划），练习二练安全气囊（应急），练习三把两者装到真实路面上（模考）。建议节奏：练习一每学期初做一次、每次模考前重看；练习二每两周一次；练习三随每次模考执行。一学期后你会得到一张带偏差记录的完整时间计划书——它就是评语那句「渐渐地我能写完卷子」的过程性答案：不是渐渐，是每次模考±几分钟的收敛。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis et al. (2016)（英文）</a>——自我监控策略 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a>——自主记录的练习更易坚持（<a href="https://selfdeterminationtheory.org">SDT 官网</a>） · <a href="https://www.gov.cn/zhengce/2021-07/24/content_5627132.htm">「双减」政策文件（中国政府网）</a>——练习量控制：三个练习均为低频轻量设计</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、常见误区与谣言粉碎</h2>
+    <p class="chapter-sub">关于考场时间的三句流行话，逐句拆</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「写不完是因为手速慢」「背好'高分模板'考场省时间」</h3>
+      <p class="ctx"><strong>谣言一：「作文写不完是因为手速慢，要练写字速度。」基本不成立。</strong>拆开算账：初中作文常见要求 600 字左右，35–40 分钟的写作预算折合每分钟 15–17 字——这远低于正常书写速度（每分钟 25–35 字），说明「写不完」的主因不是手，是<strong>时间被别处吃掉</strong>（阅读恋战、开头难产、边写边想结构），或<strong>字数被空话稀释后仍觉得「没写完」是结构问题</strong>（缺的是主场景和结尾，不是字）。当然，书写速度过慢确实存在（每分钟不足 15 字的学生要单独练书写流畅度），但对多数学生，先做本章的算账与切割，再谈手速。<strong>谣言二：「作文留到最后 10 分钟凑一凑就行。」不成立且危险。</strong>10 分钟连应急三步都执行不完（应急预算是 15 分钟且前提是已有 300 字）；「凑」出来的作文缺主场景、缺结尾，是评分表里「结构不完整＋内容空洞」的双料打击。作文的正确位置是「预留 50–55 分钟的主菜」，不是「最后收拾的残局」。</p>
+      <p class="ctx"><strong>谣言三：“背好'高分模板'，考场直接套，省时又高分。”不成立。</strong>三层理由：其一，模板套写的文章缺真实细节（模板里没有你的圈题动作、没有你手心的汗），而「内容具体、感情真实」是课标与评分的共同导向——套模板省下的审题时间，会在「内容空洞」上加倍偿还；其二，阅卷对模板化文字高度敏感，「万能开头＋排比堆砌＋口号结尾」的组合是被反复识别的模式，本站在第15章会对所谓“高分模板”类营销做完整拆解，此处不传播其内容；其三，从本章的技术视角看，模板并不能真正省时间——真正的省时来自第三节的三段切割与第五节的看表点，这些是<strong>你自己的工序</strong>，背别人现成的段落替代不了工序。与「模板」同理的还有“作文速成班”类宣传：写作工序的建立需要按周计的练习（本课三个部分的练习体系），任何「几次课搞定考场作文」的说法，都与第12章拆过的「一遍写成」神话同源。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》（教育部通知原文）</a>——「内容具体、感情真实」导向 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a>——有效的是策略教学而非范文背诵 · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA 写作教学研究综述（英文）</a>——过程策略的实证基础 · 《国家教育考试违规处理办法》（教育部令第33号，文字引用）——考试纪律红线</div>
+    </article>
+
+    <article class="view">
+      <h3>一条边界提醒：时间策略救不了平时不写</h3>
+      <p class="ctx">最后必须把边界说清楚：本章全部分配方案的前提是<strong>你已经会写</strong>——圈过题（第11章）、做过时间盒初稿（第12章）、用清单改过稿（第13章）。一个从不在限时条件下完整写过一篇作文的学生，考场上拿到再精确的时间表也会失灵：55 分钟预算的前提是你知道 35 分钟写作段里每分钟该干什么，而这个「知道」只能来自平时练习的重复。时间策略是放大器：有工序，它放大工序；没工序，它无从放大。这也是第七节三个练习全部锚定「模考」与「日常练笔」的原因——<strong>考场时间分配的本质，是平时写作工序在压力环境下的复现</strong>。请把本章当作第三部分的「装配说明书」而不是「急救手册」：装配要在考前完成，急救（第六节）只是装配失败时的保底。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——练习量与写作焦虑、写作质量的关系 · <a href="https://psycnet.apa.org/record/2024-12988-002">Graham et al. (2023)（英文）</a>——写作能力发展依赖持续的策略练习 · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作知识须转化为写作实践</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「怎么留时间」是那条真实评语里的哪一问？为什么说「能写完卷子」必须写成具体动作？</li>
+        <li>考场时间三种丢法是什么？各自对应本章哪个解法？</li>
+        <li>「读完三遍还没思路就跳」这条熔断规则防的是什么心理错觉？</li>
+        <li>比例法公式是什么？为什么要为作文追加 5 分钟缓冲？</li>
+        <li>高考常见口径下作文预算是多少分钟？三段怎么切？（审题列纲/写作/检查各几分钟）</li>
+        <li>审题列纲段的「完成标准」是什么？为什么是「写出来」而不是「想清楚」？</li>
+        <li>三词提纲的三行分别写什么？为什么写作段禁止中途改提纲？</li>
+        <li>开考先看作文题的「后台孵化」机制是什么？四条纪律是哪四条？</li>
+        <li>三个看表点分别在哪三个时刻？各自触发什么纠偏动作？</li>
+        <li>为什么是三个看表点而不是频繁看表？「没有动作设计的时间检查」为什么有害？</li>
+        <li>最后 15 分钟应急三步是什么？为什么「小而完整」优于「大而残缺」？</li>
+        <li>应急时为什么所有增补必须「从已写的部分就地取材」？</li>
+        <li>时间计划书的偏差记录为什么是练习的核心（「没有记录的执行等于没练」）？</li>
+        <li>“背好'高分模板'省时高分”的三层反驳理由是什么？</li>
+        <li>为什么说「时间策略是放大器」？本章装配的三道工序分别来自哪三章？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>考场时间分配是保住得分下限的工程，不是手速问题——三种丢法：阅读恋战（解法：读三遍无思路即标记跳过）、作文磨开头（解法：3–5 分钟冲开头不回头）、检查无预算（解法：检查是工序，预算 5 分钟）。算账用比例法：作文时间≈分值占比×总时长＋5 分钟缓冲；高考常见口径 150 分钟/作文 60 分→作文 50–55 分钟；中考按本省时长折算，<strong>一切以当年本省考试院公布为准</strong>。55 分钟三段切割：审题列纲 5–10（圈题眼＋题意锁定句＋三词提纲）/写作 35–40（第12章时间盒考场版：冲开头、不停笔、占位符、结尾必须落笔）/检查 5（清单⑥⑦⑧条＋占位符清点，只查不改写）；每段有可验证的完成标准，超时即熔断进下一段。开考第一分钟先看作文题（Elbow cooking 考场版）：只看不写、素材冒出来记一个词、遵守考场规则。三个看表点：阅读结束时（超时→压缩预案）、作文写到一半（落后→跳写主场景，严重落后→应急预案）、交卷前 15 分钟（结尾没写完→应急三步）；提前换算成钟点写在草稿纸角。最后 15 分钟应急三步：定一个已出现的场景（1 分钟）→慢镜头展开（8–10 分钟：动作拆分＋感官＋一句原话）→两句话画面呼应收尾（3–4 分钟，禁口号）；小而完整优于大而残缺，就地取材不引入新内容。三个练习：时间计划书（官方真数→分钟级分配表→模考记偏差）、十五分钟应急作文（每两周一次）、三看表演练（随每次模考）。三个谣言已拆：手速慢论、最后十分钟凑一凑、背“高分模板”省时高分——与“作文速成班”宣传同源，均在批判语境拆解、不传播内容。边界：时间策略是放大器，救不了平时不写；考场分配的本质是平时工序在压力下的复现。下一章起进入第四部分：<a href="../15-openend/">第15章·开头与结尾</a>——把「冲开头」「两句话收束」两个考场动作展开成完整方法，并拆解套话黑名单。
+  </div>
+
+  <nav class="pager">
+    <a href="../13-revise/"><span class="dir">← 上一章</span>第13章 · 修改：好文章是改出来的</a>
+    <a href="../15-openend/"><span class="dir">下一章 →</span>第15章 · 开头与结尾：第一印象与最后回响</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第14章 · 依据教育部《义务教育语文课程标准（2022年版）》、教育部教育考试院及省级考试院公开考试口径、Graham et al. (2012/2023) 写作教学元分析、Hayes &amp; Flower (1980) 写作过程模型、Elbow 自由写作与孵化方法、Zinsser《On Writing Well》、Tsiriotakis et al. (2016) 考试应对研究、Berk (2017) 写作焦虑研究、APA 写作教学研究综述、王荣生《写作教学教什么》、《国家教育考试违规处理办法》（教育部令第33号）等权威来源与同行评审研究整理 · 考试时长与分值以当年本省考试院公布为准 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

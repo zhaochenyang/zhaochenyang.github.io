@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 结构：先列提纲，段落怎么排 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第10章 · 第二部分 · 怎么写出画面</div>
+  <h1>✍️ 结构：先列提纲，段落怎么排</h1>
+  <p>计划先行是写作研究确认的第一环节——三种提纲法、一张详略分配表、考场五分钟提纲，把散落的技术零件装进骨架</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../09-scene/">← 第9章：场景与环境</a>
+    <a href="../11-topic/">第11章：审题 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么先列提纲</a>
+    <a class="anchor" href="#s2">三种提纲法</a>
+    <a class="anchor" href="#s3">段落排列</a>
+    <a class="anchor" href="#s4">详略分配表</a>
+    <a class="anchor" href="#s5">考场5分钟提纲</a>
+    <a class="anchor" href="#s6">评语例句入提纲</a>
+    <a class="anchor" href="#s7">对照示范</a>
+    <a class="anchor" href="#s8">练习任务</a>
+    <a class="anchor" href="#s9">自查与谣言</a>
+    <a class="anchor" href="#s10">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清为什么「想到哪写到哪」必然卡壳：计划（planning）是写作认知过程的第一环节（Hayes &amp; Flower 模型），提纲就是给自己搭的计划脚手架；②掌握三种提纲法——清单式（小学中年级起步）、思维导图（小学高年级至初中）、鱼骨图（初中叙事文），并知道各自适用什么题；③理解段落排列的基本功：一段一事一中心，以及三段式的三种升级变体（起承转合、一波三折、镜头剪辑式）；④会画详略分配表，把六成以上笔墨锁定给主场景；⑤掌握考场五分钟提纲的压缩版流程（为第14章时间分配打底）；⑥看懂贯穿案例的最后一棒——老师评语例句如何放进一篇完整作文的提纲里。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是第二部分的收官章：前五章练出的描写零件（五感、对话、心理、场景），要在这一章装进一副骨架——没有骨架，再好的零件也是一地散珠。如果你是第一次读，按顺序读完前六节再做练习；如果你的问题是「作文总是写散了、写到哪算哪」，直接看第二节三种提纲法和第四节详略分配表。学段提示：清单式提纲从小学中年级就可以开始用，思维导图和鱼骨图适合小学高年级与初中；考场的五分钟压缩版（第五节）主要面向初中，小学高年级可作了解。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么先列提纲：写作研究的第一结论</h2>
+    <p class="chapter-sub">「想到哪写到哪」不是潇洒，是把三件重活压在同一秒钟里干</p>
+
+    <article class="view">
+      <h3>Hayes &amp; Flower 模型里的 planning：提纲是给工作记忆减负</h3>
+      <p class="ctx">导论介绍过写作认知过程研究的奠基模型：Hayes 与 Flower（1980）通过「出声思考」实验发现，写作由三个循环环节构成——<strong>计划（planning）、转译（translating）、复查（reviewing）</strong>。其中计划环节做三件事：从长时记忆里取素材、设定写作目标、决定内容顺序。关键发现在于：<strong>成熟写作者与新手最大的差别之一，是成熟写作者把大量时间花在计划环节，新手则拿到题目立刻开始转译（写句子）。</strong>这背后的机制是工作记忆的瓶颈——人的工作记忆同时只能处理很少的几个信息块；如果一边要回忆素材、一边要决定顺序、一边还要组织句子，三路任务挤在同一条窄路上，结果就是卡顿、跑题、写着写着忘了要写什么。「卡壳」（writer's block）研究综述里，「缺乏预先计划」与「边写边追求完美」并列为两大主因。</p>
+      <p class="ctx">提纲的作用由此说得通：<strong>它把「取素材」和「排顺序」两路任务从写作现场挪走，提前完成并写在纸上，让动笔时的工作记忆只剩「组织句子」一路任务。</strong>这就是「先列提纲」的全部科学理由——不是老师规定的仪式，是给大脑减负的工程手段。第12章讲初稿时还会回来接这个逻辑：正因为提纲已经接管了顺序问题，初稿才敢放开手「先写完再写好」。国外大规模教学证据也站在这一边：Carnegie 基金会《Writing Next》报告综合上百项实验研究，把「预写活动（prewriting）」与「写作策略教学」列入青少年写作教学有效的十一要素——提纲正是 prewriting 的核心动作。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes, J. R., &amp; Flower, L. S. (1980). "A Cognitive Process Theory of Writing." <em>College Composition and Communication</em>, 31(2), 146–161（JSTOR 反爬，卷期页码文字引用；<a href="https://wac.colostate.edu/">WAC Clearinghouse（英文）</a> Landmark Essays 系列收录研究史） · Graham, S., &amp; Perin, D. (2007). <em>Writing Next</em>（<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Carnegie 报告全文 PDF（英文）</a>）——prewriting 要素 · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>课标与教材的明文要求：提纲不是可选项</h3>
+      <p class="ctx">国内官方口径同样明确。《义务教育语文课程标准（2022年版）》第四学段（7-9年级）要求写作「合理安排内容的先后和详略」——「先后」与「详略」正是提纲要回答的两个问题；第三学段（5-6年级）要求习作「内容具体、感情真实」，并明确「修改自己的习作」，而动笔前的构思与动笔后的修改都以「有一个顺序框架」为前提。统编教材则把提纲写进了正式教学环节：小学高年级的习作任务中出现「列提纲」的明确要求（写文章前先想清楚写几部分、每部分写什么，以教材编排为准，人民教育出版社官网可检索）；初中统编教材的写作专题里有「学习列提纲」的专门训练。换句话说，<strong>「会列提纲」本身就是课内教学目标，不是本课额外加码的课外技巧。</strong></p>
+      <p class="ctx">家长需要知道的一个现实：很多孩子抗拒提纲，是因为把提纲理解成了「额外的作业」——写完提纲还要写作文，等于写两遍。这个误解要当场纠正：<strong>提纲不是作文的草稿，是作文的地图；地图画得好，路只走一遍。</strong>提纲上的每个条目通常只有几个字到十几个字（「挂钟—五分钟—空栏」这个量级），一篇六百字作文的提纲全文不超过八十字，花的时间是三到五分钟，省下的是写崩重写的时间。本章第五节的考场五分钟提纲，就是把这个账算到极致的版本。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：《义务教育语文课程标准（2022年版）》第四学段“合理安排内容的先后和详略”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材「列提纲」习作环节（深链反爬，以官网检索为准） · <a href="https://xbgjxt.swu.edu.cn/article/doi/10.13718/j.cnki.jsjy.2022.06.008?viewType=HTML">西南大学学报（社科版）语文新课标解读</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、三种提纲法：清单式、思维导图、鱼骨图</h2>
+    <p class="chapter-sub">三种工具各有适用场景，从小学中年级到初中逐级升级</p>
+
+    <article class="view">
+      <h3>提纲法一：清单式（三步走）——所有学段的起步工具</h3>
+      <p class="ctx">清单式提纲是提纲的最低可行版本：一张纸、三行字、三分钟。三步：<strong>第一步写「中心句」</strong>——这篇作文最想传达的一个意思，一句话（例如「那次上台演讲，我靠一个深呼吸稳住了自己」）；<strong>第二步写「三件事」</strong>——支撑中心的三个内容块，每块一行，按时间或重要度排列（上台前的慌／开口第一句的卡壳／深呼吸后的顺）；<strong>第三步标「主场景」</strong>——三件事里哪一件是全文的重头戏，在它旁边画一颗星，星星事件将来用第4、5、9章的全套技术慢写。就这三步。清单式的优点是快、不吓人、失败成本低，适合小学中年级起步，也适合考场的极简版（第五节）。</p>
+      <blockquote class="q">
+        <strong>清单式提纲模板（抄进素材本最后一页）：</strong><br>
+        中心句：这篇作文最想说的是______（一句话，不超过 25 字）<br>
+        内容块 1：______（一行）<br>
+        内容块 2：______（一行）<br>
+        内容块 3：______（一行）<br>
+        主场景（画★）：★______ —— 预计占全文篇幅的六成以上<br>
+        <span class="qsrc">——本课方法框；中心句对接第11章「30 字题意锁定句」，主场景对接第9章详略原则</span>
+      </blockquote>
+      <p class="ctx">清单式最常见的失败是「三件事变成流水账三站」（起床／上学／放学），治法在第四节详略分配表；第二个失败是中心句写成了题目复述（「记一次演讲」不是中心句，「我靠一个深呼吸稳住了自己」才是——中心句必须有「我」的判断或变化）。判断中心句合不合格的一问：<strong>这句话里有没有「观点」或「变化」？</strong>只有事件没有观点变化的，回去重写。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——小学起步阶段的习作任务单以「三行以内可完成」为原则 · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012) 小学段写作教学元分析（ERIC EJ994038，英文）</a>——「设定具体目标」与策略教学均为显著有效干预（效应量 0.30–1.02）</div>
+    </article>
+
+    <article class="view">
+      <h3>提纲法二：思维导图（放射式）——素材多、线索杂时用</h3>
+      <p class="ctx">思维导图的操作：纸横放，<strong>中心画一个圈</strong>写题目或中心意象（「那次我紧张极了」）；<strong>向外画三到五条主干</strong>，每条主干是一个内容维度——叙事文的常用主干是「起因／经过波折1／经过波折2／结果」，也可以按「场景／人物／心情变化／学到的」自由分维；<strong>每条主干上再长小枝</strong>，小枝写具体素材：一个细节、一句对话、一个五感记录——这些小枝直接从第2、3章的观察笔记和素材卡里取。思维导图的优势是<strong>非线性</strong>：想到什么先挂在哪个枝上，不必立刻决定顺序；挂满了再退后一步看，哪条主干最粗壮，哪条就是主场景的天然候选。</p>
+      <p class="ctx">给小学高年级的使用边界：思维导图容易越画越好玩、越画越费时，要立两条规矩——<strong>规矩一：限时八分钟</strong>，画不完就停，提纲是脚手架不是艺术品；<strong>规矩二：每条主干至少一个小枝必须来自素材本</strong>（有出处的真实细节），防止导图变成编故事的温床。初中生的进阶用法是「双导图」：第一张画素材（发散），第二张从第一张里挑出入选内容排成时间线（收敛）——发散与收敛分开，正是 Hayes &amp; Flower 计划环节里「取素材」与「排顺序」两个子任务的外化。</p>
+      <div class="fig"><img src="../assets/img-10-1.png" alt="纸上的思维导图骨架：中心圆与三条分支，分支末端各挂时钟、铅笔、奖杯小图标，朱红调扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes &amp; Flower (1980)（文字引用，同上）——计划环节的素材提取与顺序组织两个子任务 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——prewriting 阶段的图形组织器（graphic organizer）用法 · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>提纲法三：鱼骨图（因果链）——叙事有波折、议论有理由时用</h3>
+      <p class="ctx">鱼骨图的操作：画一条水平的<strong>主骨</strong>，箭头指向右侧的<strong>鱼头</strong>——鱼头写结果或结论（「我终于举起了手」「这次失败让我改了方法」）；主骨上下各斜出<strong>三根刺</strong>，每根刺写一个原因、一个波折或一个证据（上刺：老师提问没人答／同桌用胳膊肘碰我；下刺：手心出汗把稿纸捏皱了／想起昨晚对着镜子练过三遍）；刺与刺之间用主骨的箭头方向串成时间或因果顺序。鱼骨图的本事是<strong>逼出因果</strong>：清单式容易并列，思维导图容易发散，鱼骨图强迫你回答「为什么这个结果是由这些事导致的」——波折类叙事（一波三折结构）和简单议论（观点加理由）用它最合适。</p>
+      <p class="ctx">鱼骨图与贯穿案例的缘分最深：老师评语批评的原文正是「我之后是怎么一点点改的」——「一点点改」就是一条鱼骨，鱼头是「红叉少了」，每根刺是一次具体的改法（怎么圈题、怎么留时间、怎么重写慌的那个段落）。评语之所以说学生「一笔带过」，就是因为学生有鱼头没鱼刺——只报了结果，没列过程。把鱼骨图学会，等于拿到了回应这条评语的结构工具：写作时先画刺，每根刺就是一个必须慢写的过程细节，想一笔带过都不行。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：《义务教育语文课程标准（2022年版）》第三学段“内容具体”与第四学段“合理安排内容的先后”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——因果图/鱼骨图属 prewriting 图形组织器 · 管建刚《我的作文教学系列》，福建教育出版社（文字引用）——讲评课「从结果倒推过程」的提问框架</div>
+    </article>
+
+    <article class="view">
+      <h3>三种提纲法怎么选：一张速查表</h3>
+      <table class="tb">
+        <tr><th>提纲法</th><th>适合什么题</th><th>建议学段</th><th>时间预算</th></tr>
+        <tr><td>清单式</td><td>事件简单的记叙文；考场应急；起步练习</td><td>小学中年级起，全学段通用</td><td>3 分钟</td></tr>
+        <tr><td>思维导图</td><td>素材多、线索杂；「那一刻」类需要挑选瞬间的题；写景状物</td><td>小学高年级—初中</td><td>5–8 分钟（限时）</td></tr>
+        <tr><td>鱼骨图</td><td>有波折的叙事（一波三折）；「我学会了／我改变了」类成长题；简单议论</td><td>初中为主，小学高年级可试</td><td>5 分钟</td></tr>
+      </table>
+      <p class="ctx">选择困难时的默认规则：<strong>拿不准就用清单式。</strong>工具是为「想清楚」服务的，三种工具想清楚的东西是同一件：中心是什么、内容分几块、哪块是主场景。工具可以换，这三个问题一个都不能少——它们是下一节段落排列的输入。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》报告（英文）</a>——策略教学要「明确教授、可迁移」而非绑定单一工具 · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012)（英文）</a>——写作策略教学的显著效应以「学生真正会用」为前提</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、段落怎么排：一段一事一中心，三段式与它的升级</h2>
+    <p class="chapter-sub">提纲定「写几块」，段落定「每块怎么落笔」——顺序意识从段内开始</p>
+
+    <article class="view">
+      <h3>段落基本功：一段一事一中心</h3>
+      <p class="ctx">段落规则可以压缩成六个字：<strong>一段一事一中心。</strong>一个自然段只承载一个内容块（一件事、一个场景、一个理由），块内所有句子为这个小中心服务；内容块切换时必须换段（第9章的场景转换信号在这里落地）。这条规则的自查方法极简单：给每个自然段写一个不超过六个字的「段意标签」，如果一个段落贴不上一个标签——要么它装了两件事（拆段），要么它没有中心（删段或并入相邻段）。</p>
+      <p class="ctx">段落的内部顺序也有标准件：<strong>时间顺序</strong>（叙事默认，用第9章的时间词做路标）、<strong>空间顺序</strong>（写景状物：由远及近、由外到内，教材「这儿真美」类任务的推荐路径）、<strong>逻辑顺序</strong>（说明与议论：由主到次、由因到果、由现象到道理）。小学阶段先把时间与空间两种用熟，初中补逻辑顺序。一个常见的段落病要提前打预防针：<strong>「三段论式排比段」滥用</strong>——「爱心是……爱心是……爱心是……」式的排比堆叠在抒情散文里合法，在记叙文里则是用修辞替代叙事的偷懒，第15章开头结尾部分与第19章谣言粉碎将再次处理这个问题。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》学段要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——「一段一义」是其段落论的第一原则：the unity of the paragraph</div>
+    </article>
+
+    <article class="view">
+      <h3>三段式没有错，错的是不会升级</h3>
+      <p class="ctx">「开头—中间—结尾」的三段式常被嘲讽为幼稚结构，这是冤枉：三段式是结构的原子形态，所有复杂结构都是它的合金。问题只在于学生的三段式常年停在「版本1.0」——开头点题一句话、中间平铺一件事、结尾喊一句口号（这个版本的病灶在第15章治）。本课给出三种升级变体。<strong>变体一：起承转合。</strong>在「中间」里加一个「转」——事情朝预期相反的方向拐了一下（以为要输了却出现转机；以为会被批评却得到一句「我懂你」）。「转」是记叙文的心跳，没有转的叙事只是记录。<strong>变体二：一波三折（三次尝试结构）。</strong>中心事件由三次递进的尝试或波折构成，每次波折比上一次更接近真相或更紧张（第一次举手又放下／第二次手举到一半／第三次举手时手心全是汗但举成了）——鱼骨图的三根刺天然就是这个结构的提纲。这是中小学叙事文性价比最高的结构，教材范文里出镜率极高。<strong>变体三：镜头剪辑式（场景并列）。</strong>不靠时间线，靠三个并列场景拼出主题（同一张书桌在清晨、深夜、假期的三个镜头写「坚持」）——第9章的场景切换信号（空一行）正是这个结构的排版语法。难度最高，建议初中再碰。</p>
+      <blockquote class="q">
+        <strong>结构选择一问流：</strong>事件有明显意外转折吗？——有，用起承转合；事件是「反复尝试才成功/才明白」吗？——是，用一波三折；主题是状态而非事件（坚持/陪伴/变化）吗？——是，可试镜头剪辑式；三个都不是——回到三段式 2.0：中间部分按「起因详写＋经过主场景慢写＋结果短收」排。
+        <span class="qsrc">——本课方法框；变体命名沿用中文写作教学通行说法（文字引用），一波三折结构在统编教材叙事范文中常见（以教材为准）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——以故事讲文章作法：「文章的安排犹如建筑的间架」 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——结构组织属 drafting/revising 的处理对象 · <a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编教材叙事范文编排（以官网检索为准）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、详略分配表：把六成笔墨锁给主场景</h2>
+    <p class="chapter-sub">详略不是感觉，是预算——像分零花钱一样把字数分给每个内容块</p>
+
+    <article class="view">
+      <h3>详略分配表的操作：先分预算，再动笔</h3>
+      <p class="ctx">第9章立过节奏铁律：主场景慢写，笔墨占全文六成以上，过场一两句带过。本章把铁律做成工具——<strong>详略分配表</strong>。操作四步：<strong>第一步</strong>，把提纲的内容块抄成一张三列表：内容块｜详还是略｜字数预算；<strong>第二步</strong>，标出主场景（提纲里画星的那块），给它分配总字数的六成到七成（六百字作文给三百六到四百二十字）；<strong>第三步</strong>，剩余字数分给其余块：起因给一到一成半，结尾给半成到一成，过场压缩到一两行的字数（二十到四十字）；<strong>第四步</strong>，检查预算总和等于目标字数（考场作文以试卷要求的字数下限加一成左右为宜——具体字数要求以当年试卷为准）。</p>
+      <table class="tb">
+        <tr><th>内容块（示例：那次我紧张极了）</th><th>详/略</th><th>字数预算（600字卷）</th></tr>
+        <tr><td>起因：被点名参加演讲（过场快写）</td><td>略</td><td>60 字</td></tr>
+        <tr><td>上台前候场（次场景：三件套＋心理描写）</td><td>次详</td><td>120 字</td></tr>
+        <tr><td>★开口第一分钟（主场景：慢镜头＋五感＋对话全上）</td><td>详</td><td>330 字</td></tr>
+        <tr><td>结果：走下台那一刻（短收＋物件呼应）</td><td>略</td><td>60 字</td></tr>
+        <tr><td>结尾：一句变化（不喊口号）</td><td>略</td><td>30 字</td></tr>
+      </table>
+      <p class="ctx">这张表的疗效在于把「详略不当」从玄学变成算术：写作文写到一半发现主场景还没展开、字数已经过半——这就是预算失控，动笔前看一眼分配表就能避免。课标第四学段「合理安排内容的先后和详略」的要求，落地就是这一张表。家长检查孩子作文时也多了一个零冲突的抓手：不问「写得好不好」，只问「主场景拿到六成字数了吗」——对事不对人，正是第18章点评三步法提倡的反馈方式。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：《义务教育语文课程标准（2022年版）》第四学段“合理安排内容的先后和详略”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012)（英文）</a>——「设定具体目标」（goal setting）是效应量最高的干预类别之一：字数预算即目标设定的量化版</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、考场五分钟提纲：把流程压缩进考试</h2>
+    <p class="chapter-sub">平时练的是完整工序，考场上用压缩版——五分钟，一张草稿纸角</p>
+
+    <article class="view">
+      <h3>五分钟提纲流程（初中为主）</h3>
+      <p class="ctx">考场的提纲不需要画导图，用草稿纸一角走五步压缩流程：<strong>第 1 分钟：圈题。</strong>用第11章将教的圈画法圈出题眼、限定与要求（本章先按「找出题目里最不能忽略的两个词」执行，第11章给完整版）。<strong>第 2 分钟：定中心句。</strong>在草稿角写下「这篇要说的一个意思」，不超过 25 字。<strong>第 3 分钟：列三块＋标星。</strong>清单式三行，主场景画星。<strong>第 4 分钟：给星标块挂三个细节。</strong>从素材库存里取三个具体细节挂在主场景旁（一个声音、一个物件、一个身体反应——第9章三杠杆与第4章公式的直接调用）。<strong>第 5 分钟：分字数。</strong>默算：主场景大约写到第几行（六百字卷的主场景应从第三段开始、写满一面半），其余块各几行。五分钟后动笔，全程不再回头看题——因为题已经变成了草稿角上那几行字。</p>
+      <p class="ctx">为什么敢在分秒必争的考场上花五分钟？算一笔账：考场作文的两大失分来源——跑题（审题失误）和写不完（时间失控，第14章专治）——五分钟提纲同时压制两者：圈题与中心句锁定方向，字数预算锁定进度。反之，拿到题就写、写到三百字发现偏了再涂改，损失的远不止五分钟。当然，这是训练后的五分钟：平时每篇习作都走完整提纲流程（第二节），考场压缩版才能跑得起来——第14章的时间分配表里，这五分钟是正式列入预算的科目，不是挪用写作时间的奢侈品。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin (2007) Writing Next 报告全文 PDF（英文）</a>——策略教学需经练习达到「考试条件下可自动执行」 · <a href="https://www.neea.edu.cn/">中国教育考试网</a>——考试时长与题型以当年官方公布为准 · EEF《Improving Writing in Secondary Schools》（官网反爬，文字引用）——六条建议首条即「明确教授写作过程：计划、起草、修改」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、贯穿案例最后一棒：评语例句入提纲</h2>
+    <p class="chapter-sub">六章接力的终点：那段「挂钟滴答」的慢镜头，在一篇完整作文里坐哪个位置、占多少篇幅</p>
+
+    <article class="view">
+      <h3>为评语原文的那篇作文补一张提纲</h3>
+      <p class="ctx">回到一切的起点。老师评语批评的那篇作文，写的是「老师讲评之后，我怎么一点点改」——学生原文的问题是：讲评现场没细节、改的过程一笔带过、只有结果（「渐渐地我能写完卷子，红叉少了」）。现在你已集齐全部工具，我们替这篇作文重画一张提纲（鱼骨图转清单式），看评语例句该放哪：</p>
+      <blockquote class="q">
+        中心句：老师那句「你写的是概括」点醒了我，我学会了把结果写回过程。（25字内，有变化有观点 ✓）<br>
+        块1（略，60字）：发作文本那天——过场快写，一个物件（卷角的作文本）。<br>
+        块2（★主场景，320字）：讲评现场慢镜头——老师念到那句评语的原话、教室的安静（声音杠杆）、我耳朵发烫盯着桌面木纹（身体反应＋物件）、「心里被点醒」的瞬间用犹豫链写（第8章：不服→重读→服了）。<br>
+        块3（次详，150字）：一周里的三次改法，鱼骨三根刺——学圈题（第11章预告的动作）、掐表留时间（第14章的动作）、把「我很慌」重写成了挂钟滴答那一段（此处直接嵌入贯穿例句本身，作为「改的成果」的展品）。<br>
+        块4（略，70字）：又一次考试，卷子写完了——用结果对比短收：红叉少了，但重点写「我检查时圈出了三处结果陈述句并改掉了一处」。<br>
+        结尾一句（30字）：评语不是判决书，是清单——现在轮到我自己给自己写了。
+        <span class="qsrc">——贯穿案例提纲示范（示例）：老师改句从「被教的例句」变成作文里「我改出来的成果」，素材完成了一次完整的升级循环</span>
+      </blockquote>
+      <p class="ctx">这张提纲里有三个值得盯住的设计。<strong>设计一：例句的位置。</strong>「挂钟滴答」那段慢镜头不放在文章开头炫技，而是放在块3作为「我学会了」的证据——细节为叙事功能服务，这是第9章「每处景都要干活」原则在全文尺度上的推广。<strong>设计二：主场景的选择。</strong>重头戏不是考试，是<strong>讲评现场</strong>——因为中心句里的「点醒」发生在那里；主场景永远跟着中心句走，不跟着时间最长的事件走。<strong>设计三：结尾不喊口号。</strong>「评语是清单」呼应导论，是一个具体的认知变化，而不是「我以后一定要认真写作文」式的表态。六章接力到此完成：导论引入例句，第4章公式化，第5章逐短语拆解，第8章补心理，第9章换场景，本章入提纲——同一个素材走完了从句子到篇章的全程。</p>
+      <div class="fig"><img src="../assets/img-10-2.png" alt="米色纸面上用红墨水画的鱼骨图骨架，鱼刺末端用小图标代替文字标注，朱红极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学革命》，福建教育出版社（文字引用）——「一个病例反复讲评」的全程示范 · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a>——同一素材经多轮重写「发现」文章的真正中心：块2 被选为主场景正是这个发现过程的缩影</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、「病句→改后」四栏对照：三组结构病例</h2>
+    <p class="chapter-sub">结构层的病例改的是「段落与篇幅」，不是句子——诊断栏学会看骨架</p>
+
+    <article class="view">
+      <h3>病例一：流水账（过场吃掉主场景）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原文骨架</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后骨架</th><th>改动说明</th></tr>
+        <tr><td>《难忘的运动会》600字：起床穿衣200字→去学校路上150字→开幕式100字→我参加的项目80字→回家70字。</td><td>主场景（我的项目）只拿到 13% 篇幅，过场合计 70%；详略完全倒挂，标题承诺的内容被挤成一小截。</td><td>起床与路上合并成 40 字过场（一句时间词带过）→开幕式 60 字（一个声音杠杆：广播里的检录通知）→★我的项目 420 字（三件套开场＋慢镜头＋身体反应）→结果与回家 80 字短收。</td><td>用详略分配表重分预算：主场景从 80 字扩到 420 字（70%），过场从 420 字压到 100 字。压缩过场的工具是第9章的换挡信号：「检录的广播响起来时」一句话完成时空搬运。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》“合理安排内容的先后和详略”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——删减不干活的内容是重写的第一动作</div>
+    </article>
+
+    <article class="view">
+      <h3>病例二：一段装两件事（段落不中心）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句（段落开头）</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>「我走上讲台开始演讲，讲着讲着忘词了，这时我想起来妈妈说过深呼吸有用，我们家的猫昨天还打碎了杯子……」</td><td>一个自然段塞进了演讲、忘词、妈妈的话、家里的猫四件事，段意标签贴不出来；「猫打碎杯子」与中心无关，是跑野马。</td><td>拆成两段：段一（主场景内）——「我走上讲台，第一句还顺利，讲到第三句，脑子里那页稿子突然白了。手心的汗把讲稿角捏软了。」段二——「就在那两秒钟里，妈妈送考时说的话冒了出来：『慌了就深呼吸。』」猫的素材整体删除（与中心句无关，无论多生动）。</td><td>一段一事一中心：忘词与深呼吸是「那次紧张」链条上的两环，各成一段；无关素材再有趣也删——判断标准不是「写得好不好」，是「为中心干活吗」。删除的勇气来自 Zinsser：好写作的本质是删到只剩干活的词。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——"the essence of writing is rewriting"，删减优先 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——revising 阶段的结构性删改（区别于 editing 阶段的字句修正）</div>
+    </article>
+
+    <article class="view">
+      <h3>病例三：有头无尾的「转折」（起承转合缺了收）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原文骨架</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后骨架</th><th>改动说明</th></tr>
+        <tr><td>《那一刻我长大了》：起因（爸妈加班）→经过（第一次自己做饭，锅烧糊了）→转折（妈妈回来却没有骂我，说「你已经在长大了」）→然后作文就结束了，最后一段还在写锅怎么糊的。</td><td>「转」出现了但没有「合」：文章停在了转折点内部，没有写出「转」之后「我」的变化；标题「长大了」的判断没有人接住。</td><td>转折段保留，其后加 80 字「合」：妈妈蹲下来擦灶台，我站在旁边递抹布——「那一刻我忽然明白，长大不是会做饭，是看见她累了。」（物件呼应＋一句认知变化收束）。</td><td>起承转合的「合」不必长，但必须在场：它负责把事件升格成中心句。收束用「看见」的具体动作＋一句真实想法，不用「我以后再也要……」式表态——第15章结尾技法将系统展开。</td></tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》（文字引用）——「文章的收束要接得住前文」的间架论 · 《义务教育语文课程标准（2022年版）》第四学段“表达自己对自然、社会、人生的感受、体验和思考”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——「合」的官方口径：感受与思考要落纸</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、练习任务：三个把提纲练成手的练习</h2>
+    <p class="chapter-sub">提纲是动作技能，读懂不算会——手要练到三分钟出一张清单</p>
+
+    <article class="view">
+      <h3>练习任务一：「思维导图为『那次我紧张极了』列提纲」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①纸横放，中心圈写「那次我紧张极了」；②画四条主干：起因／波折1／波折2／结果；③每条主干至少挂两个小枝，小枝必须是<strong>具体细节</strong>（一个声音、一个物件、一个身体反应），其中至少三个小枝从你的素材本或情绪素材银行（第3章练习b）里取；④看哪条主干挂的细节最多，给它画星定为主场景；⑤限时八分钟，到点停笔。<br><br>
+        <strong>检查表（三问）：</strong>每条主干都有至少两个具体小枝吗（「很紧张」不算具体）？星标主干的细节里有声音或物件吗？总用时超过八分钟了吗（超了下次砍小枝数量）？
+      </blockquote>
+      <p class="ctx">做完别扔：这张导图直接就是练习三的输入。限时八分钟是硬规矩——提纲的考场价值在于快，平时不限时的提纲练习养不出考场能用的手艺。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis (2016) 写作策略教学研究（英文）</a>——策略教学含自我调节（限时即自我调节训练） · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「鱼骨图拆一次真实冲突」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①回忆一次真实的冲突或波折（和朋友的争执、一场比赛的翻盘、一次搞砸又补救的事）；②画主骨，鱼头写结果（「我们和好了」「赢了」「补好了」）；③上下各画三根刺，每根刺写波折链条上的一个环节——每根刺必须能回答「它为什么导致下一步」；④数一数：六根刺里有几根是「过程」（做了什么），几根是「结果」（变成了什么）？过程刺少于四根的，回去把结果刺改写成过程刺；⑤给最戏剧性的那根刺画星。<br><br>
+        <strong>检查表（三问）：</strong>鱼头是具体结果而不是道理吗？每根刺之间能说通「因为…所以…」吗？过程刺≥4 根了吗？
+      </blockquote>
+      <p class="ctx">第④步是本题灵魂：老师评语批评的「一笔带过」，在鱼骨图上现形为<strong>结果刺太多、过程刺太少</strong>——「红叉少了」是结果刺，「学着圈题、掐表留时间」才是过程刺。数刺的过程，就是把评语内化成自查标准的过程。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：管建刚《我的作文教学系列》，福建教育出版社（文字引用）——「过程性追问」讲评法 · 《义务教育语文课程标准（2022年版）》第三学段“内容具体”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「详略分配：给练习一标百分比」（约8分钟）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①把练习一的思维导图转抄成清单式（中心句＋内容块＋星标）；②假设这篇作文 600 字，给每个内容块标字数预算：星标主场景 330–420 字，其余按第4节示例表的量级分配；③检查三项：预算总和≈600？主场景占比≥60%？过场块≤60 字？④在星标块旁边写下三个细节的名字（从导图小枝里挑：一个声音、一个物件、一个身体反应）；⑤把这张表存进写作档案袋，将来真写这篇作文时照表施工。<br><br>
+        <strong>检查表（三问）：</strong>主场景拿到六成了吗？最小的过场压到两行了吗？星标块的三个细节都能「画成画」吗（第4章万能标准）？
+      </blockquote>
+      <p class="ctx">小学中年级简化版：只标「详／略」两个字，不算字数。这个练习把三个工具（清单、星标、预算）串成一条流水线，走完一遍，你就拥有了动笔前的完整仪式——从第11章起，写作流程部分（审题→提纲→初稿→修改→时间管理）会把这条流水线接入完整的作文生产周期。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012)（英文）</a>——目标设定（字数预算）为显著有效策略 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——prewriting 产出物（提纲）直接进入 drafting 的标准流程</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、自查清单与谣言粉碎</h2>
+    <p class="chapter-sub">15 个理解性问题＋一个流传最广的提纲谣言</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「列提纲浪费时间，直接写更快」</h3>
+      <p class="ctx"><strong>不成立——直接写「感觉快」，是因为把返工的成本算漏了。</strong>三层证据。<strong>第一层，研究证据：</strong>Hayes 与 Flower（1980）的出声思考实验显示，成熟写作者在计划环节的投入显著多于新手，而新手的「直接写」换来的是写作过程中频繁的中断、涂改与推倒重来；《Writing Next》的元分析把 prewriting 列入有效教学要素，前提正是它「整体上节省而非消耗写作时间」。<strong>第二层，算术证据：</strong>一张清单式提纲花三分钟，一次「写到一半发现偏题」的返工至少花十分钟外加一块橡皮擦烂的稿纸——考场稿纸不能换，涂改痕迹直接进阅卷老师的视线（卷面属于「表达」维度的观感项，通行阅卷口径，以当年各省考试院公布为准）。三分钟保险换十分钟风险敞口，这笔账怎么算都划算。<strong>第三层，机制证据：</strong>「直接写更快」的真实含义是「把计划塞进写作现场」——三路任务挤一条工作记忆窄路（第一节），结果是句子写得更慢、卡顿更多；你以为省掉的三分钟，其实以每分钟降速的形式分期偿还了。当然，这条谣言有一个合理的内核值得保留：<strong>提纲确实不该过度。</strong>画二十分钟的彩色导图去写一篇六百字作文，那是本末倒置——所以本章给每种工具都上了限时器（清单三分钟、导图八分钟、考场五分钟）。反对的不是提纲，是失去预算意识的提纲。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：Hayes &amp; Flower (1980)（文字引用，卷期页码见第一节） · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin (2007)《Writing Next》全文 PDF（英文）</a> · <a href="https://www.neea.edu.cn/">中国教育考试网</a>——考试口径以官方公布为准 · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目（英文）</a>——缺乏计划与完美主义并列为卡壳主因</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 结构与提纲自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>Hayes &amp; Flower 模型的三环节是什么？提纲替动笔时的你卸掉了哪两路任务？</li>
+        <li>为什么说「想到哪写到哪」是在挤工作记忆的窄路？</li>
+        <li>课标第四学段哪八个字是提纲的官方依据？统编教材哪个环节明文教提纲？</li>
+        <li>清单式提纲三步是什么？中心句合格的判断一问是什么？</li>
+        <li>思维导图的两条使用规矩是什么？「双导图」分别对应计划环节哪两个子任务？</li>
+        <li>鱼骨图的鱼头和鱼刺各写什么？它逼出的核心问题是什么？</li>
+        <li>老师评语里的「一点点改」用鱼骨图怎么画？「有鱼头没鱼刺」是什么意思？</li>
+        <li>三种提纲法各适合什么题？拿不准时的默认选择是什么？</li>
+        <li>「一段一事一中心」的自查方法（段意标签）怎么操作？</li>
+        <li>段落内部三种标准顺序是什么？各适合哪类文章？</li>
+        <li>三段式的三种升级变体是什么？「结构选择一问流」怎么走？</li>
+        <li>详略分配表四步是什么？主场景的预算比例是多少？</li>
+        <li>考场五分钟提纲的五个一分钟各干什么？</li>
+        <li>贯穿案例提纲里，「挂钟滴答」段被放在哪个块？为什么不放开头？</li>
+        <li>「列提纲浪费时间」的三层批驳证据是什么？这个谣言里合理的内核又是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="s10">
+    <h2 class="chapter-title">十、本章自测与下一步</h2>
+    <p class="chapter-sub">第二部分收官：零件与骨架都齐了，下一站是完整的写作流程</p>
+
+    <article class="view">
+      <h3>学完本章，你的工具箱齐了什么</h3>
+      <p class="ctx">第二部分「怎么写出画面」至此收官：第6章五感、第7章对话动作、第8章心理、第9章场景，加上本章的提纲与详略——零件与骨架全部到位。自测方式沿用本课惯例：合上页面，口头回答第九节清单里至少十个问题；再取一篇旧作文，只画它的详略分配表——如果十分钟内能诊断出它的主场景占比失衡在哪里，本章过关。第二部分解决的是「单篇作文怎么写好」的技术问题；但从下一章起，视角切换到<strong>流程</strong>：拿到题目之后，从审题到交卷的每一步怎么走。第11章讲审题圈画法——老师评语里那句「做阅读真的怎么圈题」，将在那里得到正面回答；本章考场五分钟提纲的第一分钟，也会在那里展开成完整的三步圈画法。</p>
+      <p class="ctx">最后留一个贯穿案例的完整回放，作为第二部分的结业仪式：一句「考试的时候我很慌」（导论），拆出「情绪→身体反应＋环境细节＋动作链」公式（第4章），逐短语标注慢镜头（第5章），补上「脑子卡住」时的犹豫链（第8章），换景到公布成绩前的走廊（第9章），最终坐进一张有中心句、有星标主场景、有字数预算的完整提纲（本章）。从一句话到一篇文章的全部工序，你都亲眼看过一遍了——接下来轮到你自己的素材上场。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——技术（drafting 能力）与流程（process 管理）的分工 · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「教是为了不教」：自查与自检是教学的终点</div>
+    </article>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>提纲的科学理由：Hayes &amp; Flower（1980）模型中计划（planning）是第一环节，成熟写作者计划投入显著多于新手；提纲把「取素材」「排顺序」两路任务提前卸载，让动笔时工作记忆只管组织句子——卡壳两大主因之一就是缺乏预先计划。官方口径：课标第四学段「合理安排内容的先后和详略」，统编教材高年级与初中明文训练「列提纲」。三种工具按学段与题型选：清单式（中心句→三件事→标星主场景，3分钟，全学段起步）、思维导图（中心圈→3-5主干→素材小枝，限时8分钟，素材多线索杂时用；规矩：每主干至少一个小枝来自素材本）、鱼骨图（鱼头=结果，六根刺=过程环节，逼出因果，波折叙事与简单议论用；「结果刺多、过程刺少」正是评语批评的「一笔带过」的图形化诊断）；拿不准就用清单式。段落基本功六个字：一段一事一中心（段意标签自查法）；段内顺序三标准件：时间/空间/逻辑。三段式三升级：起承转合（给中间加「转」）、一波三折（三次递进尝试，性价比最高）、镜头剪辑式（三场景并列，初中再碰）；结构选择一问流见第三节。详略分配表：主场景锁 60-70% 字数，起因一成半内、过场一两行、结尾短收——详略从感觉变成算术，家长查作文只问一句「主场景拿到六成了吗」。考场五分钟提纲：圈题→中心句→三块标星→星标挂三细节→分字数，第14章将把它列入正式时间预算。贯穿案例收官：例句入提纲——主场景选「讲评现场」而非考试（主场景跟着中心句走），「挂钟滴答」段放在块3当「我改会的证据」（细节为叙事功能服务），结尾用认知变化收束不喊口号。谣言已拆：「列提纲浪费时间」——研究、算术、机制三层证据批驳，但提纲须限时，反对的是失去预算意识的提纲。三个练习：导图列提纲（8分钟限时）→鱼骨拆冲突（数过程刺）→详略标百分比（存档案袋照表施工）。下一章：<a href="../11-topic/">第11章·审题：圈画关键词</a>——流程部分开工，先治跑题。
+  </div>
+
+  <nav class="pager">
+    <a href="../09-scene/"><span class="dir">← 第9章</span>场景与环境：让环境替你说话</a>
+    <a href="../11-topic/"><span class="dir">第11章 →</span>审题：圈画关键词，不跑题不偏题</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第10章 · 依据教育部《义务教育语文课程标准（2022年版）》、统编语文教材「列提纲」习作环节、Hayes &amp; Flower (1980) 写作认知过程模型、Graham &amp; Perin (2007)《Writing Next》、Graham et al. (2012) 写作教学元分析、Tsiriotakis (2016) 写作策略教学研究、Zinsser《On Writing Well》、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列、EEF《Improving Writing in Secondary Schools》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

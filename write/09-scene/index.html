@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 场景与环境：让环境替你说话 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第9章 · 第二部分 · 怎么写出画面</div>
+  <h1>✍️ 场景与环境：让环境替你说话</h1>
+  <p>时间、地点、氛围三件套先定位读者，再用选对的环境物件替你传达情绪——场景写好了，人物的心情不用说出口</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../08-psychology/">← 第8章：心理描写</a>
+    <a href="../10-structure/">第10章：结构 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">场景是什么</a>
+    <a class="anchor" href="#s2">选景即选情</a>
+    <a class="anchor" href="#s3">场景的节奏</a>
+    <a class="anchor" href="#s4">三个杠杆</a>
+    <a class="anchor" href="#s5">对照示范</a>
+    <a class="anchor" href="#s6">练习任务</a>
+    <a class="anchor" href="#s7">自查与谣言</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以观察、句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①用「时间＋地点＋氛围」三件套在两行内完成场景开场，让读者立刻站进你的故事现场；②理解「选景即选情」：同样写考场，为什么写挂钟比写窗外蝴蝶有效一百倍；③掌握同一场景的喜、悲两种写法，学会让环境替人物说话；④分清主场景与过场，会用「慢写」与「快写」控制叙事节奏；⑤掌握场景描写的三个杠杆——光线、声音、物件；⑥通过三组「病句→改后」对照和三个练习任务，把方法变成手上的功夫。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是第二部分「怎么写出画面」的第四块拼图：第6章解决了「只用眼睛」、第7章解决了「人物像机器人」、第8章解决了「心理贴标签」，本章解决的是<strong>故事没有现场感</strong>——读者知道事情发生了，却「站不进」事情发生的那个地方。如果你是第一次读，建议按顺序读完前五节再做练习；如果你正被「环境描写写了却不加分」困扰，直接跳到第二节「选景即选情」。本章会继续使用贯穿全课的老师评语例句——这一次，我们把「考试慌」从考场搬到别的地方，看场景法如何迁移。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、场景是什么：读者的定位系统</h2>
+    <p class="chapter-sub">没有场景的故事像没有舞台的戏——演员在黑暗里喊台词，观众不知道该往哪看</p>
+
+    <article class="view">
+      <h3>「在教室里」为什么不是场景</h3>
+      <p class="ctx">先看一个几乎所有学生都写过的开头：「叮铃铃，上课铃响了，我们坐在教室里准备考试。」这句话交代了地点（教室）、时间（上课铃响）、事件（准备考试），看起来信息齐全，但读者读完之后，脑子里依然是空的——什么样的教室？什么样的光线？什么样的声音？空气里是什么气氛？这是轻松还是紧绷？一概没有。「在教室里」不是场景，只是一个<strong>地理坐标</strong>；场景是坐标加上<strong>氛围</strong>——是这个坐标在此时此刻「感觉起来的样子」。同一条信息换一种写法：「考卷翻动的哗啦声一层压着一层，头顶的日光灯白得发冷，我把姓名栏写了又描了一遍，笔尖在纸上刻出沙沙的响。」——教室还在，但读者已经「站」进去了，而且立刻知道：这里很紧张。</p>
+      <p class="ctx">两句话的差别，就是本章要教的全部内容。第一种写法把场景当成<strong>交代任务</strong>（说清楚在哪就行），第二种写法把场景当成<strong>表达工具</strong>（用现场的样子替我说出我的心情）。英文写作教学里有个通行原则叫 "Show, don't tell"（显示，而非告知），第4章用它治过「我很慌」这类情绪结论，本章用它治「在教室里」这类地点结论——<strong>地点也可以显示而不是告知：不用说出「这里很紧张」，写考卷的哗啦声和发冷的灯光，紧张就自己出现了。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 叙述技法条目（英文）</a>——场景化呈现是「显示」的主要载体 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》条目（英文）</a>——"Use definite, specific, concrete language"</div>
+    </article>
+
+    <article class="view">
+      <h3>三件套：时间＋地点＋氛围，两行内完成定位</h3>
+      <p class="ctx">场景开场有一套可以直接套用的操作框，叫<strong>「三件套」</strong>：<strong>时间</strong>（几点、什么季节、离某个节点还有多久）、<strong>地点</strong>（具体到哪一件家具、哪一扇窗、哪一块地面）、<strong>氛围</strong>（这个时空里最响的声音、最显眼的光线、最有代表性的一个物件）。三件套不要求平均用力——通常「时间一笔、地点一笔、氛围两笔」，两行以内完成。氛围那一件是三件套的灵魂，因为时间和地点只是坐标，氛围才携带情绪。</p>
+      <blockquote class="q">
+        <strong>三件套开场操作框：</strong><br>
+        ①时间：给一个<strong>具体</strong>的时间锚点——「离交卷还有五分钟」「冬天六点半，天已经黑透」，不用「有一天」「那是一个下午」；<br>
+        ②地点：给一个<strong>可以看见的局部</strong>——「第三道阅读题的空栏」「靠窗第二排的桌面」，不用「在教室里」「在路上」；<br>
+        ③氛围：给一个<strong>携带情绪的环境物</strong>——挂钟的滴答声、发冷的日光灯、操场上空的蝉鸣；选它的标准只有一条：它替你说的话，正好是你想让读者感受到的心情。<br>
+        <span class="qsrc">——本课方法框；氛围件与「情绪→身体反应＋环境细节＋动作链」公式（第4章）中的「环境细节」同源</span>
+      </blockquote>
+      <p class="ctx">把老师评语里的改句拿来验证：「墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片」——时间件（还剩五分钟）、地点件（第三道阅读题的空栏）、氛围件（挂钟滴答响），三件齐全，两行完成，然后才轮到人物动作（指节攥白、笔杆打滑）出场。这不是巧合：那位老师示范的改句，本身就是一个教科书级的三件套开场。你已经在导论和第4、5章拆解过这个句子的身体反应与动作链，本章补上它的最后一块拼图——<strong>这个句子之所以让人瞬间入戏，一半的功劳属于它的场景。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》第三学段要求习作“内容具体、感情真实”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——三件套是「内容具体」在场景层面的落地 · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作教学应当提供「可操作的程序性知识」而非「要生动」式口号</div>
+    </article>
+
+    <article class="view">
+      <h3>教材早就在教：从「这儿真美」到「围绕中心意思写」</h3>
+      <p class="ctx">场景描写不是课外秘技，它是统编语文教材的明线。小学三年级上册就有「这儿真美」的习作任务——按一定顺序观察一处地方，把「美」写具体；到中年级，写景与记事开始结合（写一件事时交代环境）；到六年级上册，出现「围绕中心意思写」单元——所有的景、事、细节都必须服务于一个中心意思，场景第一次被明确要求<strong>为主题工作</strong>；初中阶段，统编教材的写作专题进一步要求「学习描写景物」「抓住细节」，场景描写从「写得好看不好看」升级为「有没有参与叙事」。人民教育出版社官网可以查到统编教材的整体编排（具体习作单元的深链以官网检索为准）。</p>
+      <p class="ctx">这条教材脉络给家长和学生两个重要提示。<strong>提示一：场景描写有学段台阶。</strong>小学中年级的合格线是「按顺序、写具体」（三件套里能填出时间和地点、氛围件有一个即可）；小学高年级的合格线是「景为情用」（氛围件开始有意识地匹配心情）；初中的合格线是「景为主题用」（场景的选择服务于整篇文章的中心意思，也就是六年级单元名的升级版）。练习时对照台阶，不必一步到位。<strong>提示二：学校已经教过，为什么还不会？</strong>因为教材给出的是「任务」（写一处美景），而学生缺的是「操作框」（三件套怎么填、氛围件怎么选）——这正是本课要补的那一层：把任务翻译成步骤。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编语文教材习作/写作单元编排（深链反爬，以官网检索为准） · <a href="https://xbgjxt.swu.edu.cn/article/doi/10.13718/j.cnki.jsjy.2022.06.008?viewType=HTML">西南大学学报（社科版）语文新课标学术解读</a>——课标「真实情境下的语言运用」导向</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、选景即选情：让环境替你说话</h2>
+    <p class="chapter-sub">考场写挂钟，不写窗外蝴蝶——环境物件不是背景板，是你派出去替你说话的代表</p>
+
+    <article class="view">
+      <h3>一切景语皆情语：环境投射的儿童版</h3>
+      <p class="ctx">第8章讲心理描写时提到过「环境投射」：心情不好的时候，「连风都像在嘲笑我」。这背后是中文写作的一条老原则——王国维在《人间词话》里说的「一切景语皆情语」（文字引用）：所有写风景的语言，本质上都是写心情的语言。这不是修辞技巧的炫技，而是有心理学依据的普遍体验：人在强烈情绪中，注意力会自动收窄到与情绪一致的信号上——紧张的人格外听得见钟表声，难过的人格外看得见落叶，开心的人格外注意得到阳光。<strong>把你「格外注意到」的那个环境物写下来，读者就自动接收到了你的情绪，一个情绪词都不用出现。</strong></p>
+      <p class="ctx">这就是「让环境替你说话」的机制：环境物件是情绪的扩音器。老师评语例句里，「慌」这个字从头到尾没有出现，但挂钟滴答响在替「我」喊慌——越安静，滴答越响；滴答越响，时间流逝越可感；时间越可感，「还剩五分钟」越像一把刀。三个元素（安静环境、钟声、倒计时）串成一条情绪的传导链。如果那个教室里挂钟不响、窗外有蝴蝶飞过，「我」的注意力就会被蝴蝶带走——蝴蝶是「闲适」的扩音器，装不进「慌」的情绪里。<strong>所以选景的本质是选情：你选了哪个环境物，就等于决定了读者感受到哪种情绪。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：王国维《人间词话》「一切景语皆情语」（文字引用，中华书局/上海古籍出版社多个校注本） · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——以环境细节传递情绪状态是该技法的核心应用场景</div>
+    </article>
+
+    <article class="view">
+      <h3>氛围件筛选法：五选一，选那个「只有此刻此地才有」的</h3>
+      <p class="ctx">怎么选对氛围件？给一个可操作的筛选流程。假设你要写「公布成绩前的教室」，先不假思索列出五个环境物件候选：①窗外的蝴蝶；②讲台上的粉笔灰在光柱里飘；③墙上的挂钟；④后排同学转笔的声音；⑤黑板上还没擦的值日表。然后问三个问题逐一试金：<strong>问题一：它带情绪吗？</strong>蝴蝶带的是「闲适/分心」，与「等待宣判」的紧张不匹配，淘汰；值日表中性，除非你能把它写出讽刺感（「黑板右下角还留着昨天写的『明天会更好』」——这时它才带上了情绪），暂时淘汰。<strong>问题二：它有声音或动作吗？</strong>挂钟（滴答）、转笔（咔哒）、粉笔灰（飘）都有动态，静态物件要费更多笔墨才能激活，优先选动态的。<strong>问题三：它是「只有此刻此地」的吗？</strong>挂钟每间教室都有，独特性一般；「粉笔灰在斜射的光柱里飘」只属于「下午、安静、有阳光」的那个特定时刻，独特性最强。三问过完，最佳氛围件浮出水面：粉笔灰光柱（独特）＋转笔声（动态、紧张）组合使用，挂钟留作倒计时道具。</p>
+      <blockquote class="q">
+        <strong>氛围件三问筛选（做成检查表贴在素材本里）：</strong><br>
+        ①它携带的情绪，和我想让读者感受到的情绪一致吗？——不一致，换；<br>
+        ②它有声音、动作或光线变化吗？——纯静态物件慎用，除非能写出讽刺或反差；<br>
+        ③它是「只有此刻此地才有」的吗？——越独特越好；每间教室都有的挂钟，要用出「倒计时」这样的此刻专属功能才合格。<br>
+        <span class="qsrc">——本课方法框；与第4章「细节筛选：选只属于这一刻的 2-3 个」同一原则（Strunk &amp; White：具体、明确的语言）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——具体性与明确性训条 · 《义务教育语文课程标准（2022年版）》第二学段“观察周围世界”要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——观察的对象正是这些候选环境物</div>
+    </article>
+
+    <article class="view">
+      <h3>同一场景写两遍：喜版与悲版</h3>
+      <p class="ctx">「选景即选情」最直观的证明，是同一个场景在两种心情下的两种写法。场景设定：放学路上下了一场雨。先看<strong>喜版</strong>（刚赢了比赛的心情）：「雨点砸在伞面上，噼噼啪啪，像一整支鼓掌的队伍。水洼被我踩出一个又一个漩涡，书包在背后一跳一跳，连路边那排冬青都被洗得发亮，绿得理直气壮。」再看<strong>悲版</strong>（刚考砸的心情）：「雨不大，却下得没完，顺着伞骨一根一根往下淌，像在数我卷子上丢掉的分数。鞋早就湿透了，每走一步都咕叽一声。路边那排冬青耷拉着被泡软的叶子，绿得毫无精神。」</p>
+      <p class="ctx">两个版本里，客观事实完全相同：小雨、伞、水洼、书包、冬青。不同的只有三样东西——<strong>选进画面的物件</strong>（喜版选水洼和书包的跳动，悲版选伞骨的水线和湿透的鞋）、<strong>物件的动态</strong>（噼啪鼓掌 vs 一根根淌水）、<strong>比喻的指向</strong>（鼓掌的队伍 vs 数丢失的分数）。全程没有出现「开心」「难过」任何一个情绪词，但读者绝不会认错情绪。这就是场景描写的全部秘密：<strong>心情不在心里写，心情在眼睛里挑。</strong>同一个学生，只要学会「先定情绪、再挑物件」的顺序，写景段落的质量会立刻上一个台阶——这个练习在本章第六节的练习任务二里等你。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——以故事体讲解「文章的景物描写须与情味一致」 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——情绪经由具体物象呈现而非直接陈述</div>
+    </article>
+
+    <article class="view">
+      <h3>贯穿案例接力：把「考试慌」搬出考场</h3>
+      <p class="ctx">导论预告过：老师评语的例句将在六个章节接力拆解，本章的任务是<strong>换景重写</strong>——把「慌」从考场搬到「公布成绩前的走廊」，验证三件套与氛围件筛选法能否迁移。原场景的氛围件是挂钟（倒计时功能），新场景里挂钟还在不在？在，但走廊里更独特的是什么？是公告栏、是教务处的门、是同学们聚集又散开的人流。按三件套开工：时间件——「第三节课下课铃响过十分钟」；地点件——「教务处门口那面还没贴纸的公告栏」；氛围件——按三问筛选：人流（动态、带情绪：聚了又散像潮水）入选，公告栏上残留的胶痕（独特、带「等待」的悬置感）入选。组装：</p>
+      <blockquote class="q">
+        「第三节课的下课铃响过十分钟，教务处门口的公告栏前聚了又散、散了又聚。栏上只留着上学期成绩单的四块胶痕，新的纸还没贴出来。我数着那四块胶痕，把『成绩』两个字在嘴里默念了一遍又一遍，走廊尽头的风穿堂过来，吹得公告栏边角哗啦哗啦地响。」
+        <span class="qsrc">——贯穿案例换景示范（示例）：同样的「慌」与「盼」，考场版用挂钟倒计时，走廊版用胶痕悬置——氛围件换了，情绪传导链的结构没变</span>
+      </blockquote>
+      <p class="ctx">注意这段里的氛围件「四块胶痕」：它是三问筛选的满分答案——带情绪（悬而未决）、有画面（具体到「四块」）、只属于此刻此地（上学期留下的、新纸未贴的窗口期）。同一份素材，考场和走廊两个场景各写一遍，你就完成了一次「场景迁移」训练：方法框不变，物件库更换。这正是素材本（第3章）里「五感卡」的用途——平时存下的环境物件，换景时随取随用。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学系列》，福建教育出版社（文字引用）——「一个病例反复讲评」：同一素材多场景改写是其讲评课核心操作 · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972) "Teach Writing as a Process Not Product" 全文 PDF（英文）</a>——通过重写同一素材「发现」新的表达可能</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、场景的节奏：主场景慢写，过场快写</h2>
+    <p class="chapter-sub">一篇作文只需要一两个放慢的场景，其余统统快进——节奏对比本身就是表达</p>
+
+    <article class="view">
+      <h3>详略的镜头逻辑：主场景至少占六成</h3>
+      <p class="ctx">第5章教慢镜头时立过一条边界：一篇作文只放慢一到两处，否则变拖沓。本章从场景角度把这条边界说得更完整。把一篇记叙文想象成一部短片：它由若干<strong>场景</strong>（同一时空里连续发生的动作）串成，其中推动中心意思的那一两场是<strong>主场景</strong>，其余都是<strong>过场</strong>——把人物从上一个时空运到下一个时空的通道。主场景要用第4、5章的全套技术慢写（三件套开场＋氛围件＋身体反应＋动作链，笔墨占全文六成以上）；过场要用一两句话快写，甚至半句话带过。</p>
+      <p class="ctx">学生作文最常见的节奏病有两种。<strong>病一：过场写成主场景。</strong>「那天早上我六点半起床，刷牙洗脸，吃了妈妈准备的鸡蛋和牛奶，背上书包出门，坐公交车，路上看到……」——起床到到校三百字，真正的中心事件（比如「第一次上台演讲」）反而只剩两百字。诊断：把笔墨花在了不携带中心意思的时空搬运上。<strong>病二：所有场景一样快。</strong>全篇匀速推进，每件事都三行，没有一处放慢——读者的注意力找不到落点，文章像监控录像，完整但无人想看完。诊断：没有确定主场景。治这两种病用同一张工具：<strong>详略分配表</strong>（第10章会正式教你画，本章先给场景版）——动笔前把全文场景列成清单，标出主场景，给它分配六成以上的篇幅预算，其余场景各一句话预算。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》第四学段要求“合理安排内容的先后和详略”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——详略安排是课标明文要求 · Stephen King, <em>On Writing</em>, Scribner 2000（文字引用）——「把最需要的笔墨留给最重要的场景」与其对描写剂量的告诫一致：描写过度与不足同样致命</div>
+    </article>
+
+    <article class="view">
+      <h3>场景转换的三个信号：时间词、空间词、感官切换</h3>
+      <p class="ctx">场景与场景之间要有清晰的「换挡」动作，读者才不会迷路。三种标准的换挡信号：<strong>信号一：时间词</strong>——「第二天清晨」「整整一周过去」「离交卷还有五分钟」，其中「倒计时式」时间词自带紧张感，是主场景开场的利器；<strong>信号二：空间词</strong>——「出了校门往东」「楼梯拐角处」，空间移动本身就是换景；<strong>信号三：感官切换</strong>——上一场景结束时留在一个声音上（「广播里的通知念完了，教室安静下来」），下一场景从另一种感官开始（「粉笔灰的味道先到，然后是光柱里浮动的尘埃」），感官的接力让切换不着痕迹。</p>
+      <p class="ctx">排版上还有一件零成本的工具：<strong>空一行</strong>。作文稿纸上，场景切换处空一行（或在方格稿纸上空一格起段），是给读者的视觉路标——「时空变了，请重新定位」。很多学生不知道空行的合法性，把所有内容挤成铁板一块，读者在密不透风的文字里连喘气的地方都没有。规则可以总结成一句话：<strong>一个场景至少一个自然段；场景切换必须换段，重要切换建议空行；段落内部不换景。</strong>如果你的一个自然段里出现了两个时间或两个地点，那就是该分段的信号。这条规则同时服务第10章的段落意识（一段一事一中心），两章在这里合流。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：William Zinsser, <em>On Writing Well</em>, Harper（文字引用；<a href="https://en.wikipedia.org/wiki/On_Writing_Well">条目页（英文）</a>）——段落与节奏是「重写」阶段的核心处理对象 · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——场景组织属于 drafting 与 revising 两阶段共同处理的结构性问题</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、场景描写的三个杠杆：光线、声音、物件</h2>
+    <p class="chapter-sub">不知道写什么环境时，从这三个方向找——每个方向都有现成的情绪词库</p>
+
+    <article class="view">
+      <h3>杠杆一：光线——情绪的温度计</h3>
+      <p class="ctx">光线是场景里最廉价也最有效的情绪工具，因为人类对光的感受天然带情绪：<strong>亮而暖</strong>（夕阳金黄、台灯的光圈）指向安全、温情、希望；<strong>亮而冷</strong>（日光灯白得发冷、雪地反光刺眼）指向紧张、暴露、无所遁形；<strong>暗</strong>（走廊尽头的黑、窗帘拉上的教室）指向未知、恐惧、秘密；<strong>光线变化</strong>（云遮住太阳、灯管闪了两下）指向转折、不祥、心情的骤变。写场景时先问自己：这个场景的光是什么色温、什么强度、有没有变化？答案自动携带情绪。评语例句的考场虽然没有直接写光，但「日光灯」类冷光是考场描写的默认底色——第三节喜悲对照里，「绿得理直气壮」的冬青背后正是充足的暖光，「泡软的叶子」背后是阴雨的灰光。</p>
+      <p class="ctx">给小学生光线杠杆的入门练习句式：「光是____的，照在____上。」填三次，选出最有情绪的一个放进作文。给初中生的进阶提醒：光线还可以做<strong>时间流逝的刻度</strong>——「光柱从课桌左角爬到右角，那道阅读题还空着」，用光的位置写时间的流逝，比「过了很久」高级得多，这正是第5章慢镜头技术在场景维度的延伸。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——具体名词与明确修饰的原则 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——小学写景习作的「感官分栏」任务单设计，光线栏是其中固定一栏</div>
+    </article>
+
+    <article class="view">
+      <h3>杠杆二：声音——情绪的放大器</h3>
+      <p class="ctx">第6章讲过「听觉放大情绪」：环境越安静，一个声音就越响；声音越响，安静背后的紧绷就越可感。这是声音杠杆的全部原理——<strong>声音写的从来不是声音，是声音与安静的对比。</strong>评语例句的挂钟滴答是标准示范：滴答声本身平常，放进「考场安静」的底色里，它就成了倒计时的鼓点。可用的声音素材分四类：<strong>机械声</strong>（挂钟、日光灯的电流嗡鸣、风扇摇头）自带秩序感与压迫感，适合考场、办公室；<strong>人声</strong>（翻卷子的哗啦、压低的咳嗽、走廊外的脚步）自带社会性，写「我」与他人的关系；<strong>自然声</strong>（蝉鸣、雨点、风穿堂）自带季节与天气信息，一件顶两件；<strong>身体声</strong>（自己的心跳、吞咽、呼吸变粗）是最贴身的声音，把镜头从环境拉回「我」，常用作声音段的收束。</p>
+      <p class="ctx">声音的进阶用法是<strong>声音的消失</strong>：「广播念到最后一个名字，操场忽然静得能听见旗子拍旗杆的声音。」——用突然的安静制造悬念或落差，比任何形容词都有力。检查你的场景段有没有声音，只需要一问：<strong>读者能「听见」这个场景吗？</strong>听不见，就从上面四类里挑一个放进去。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——感官细节传递情绪 · 《义务教育语文课程标准（2022年版）》第二学段“写下见闻、感受和想象”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——「见闻」的听觉维度</div>
+    </article>
+
+    <article class="view">
+      <h3>杠杆三：物件——情绪的容器</h3>
+      <p class="ctx">第三类杠杆是<strong>标志性物件</strong>：场景里一件被反复注视、被赋予意义的小东西。评语例句的「第三道阅读题的空栏」就是物件杠杆——那片空白不是普通的空白，它是「没写完的焦虑」的容器，看一眼就疼一下。物件杠杆的操作要领有三条：<strong>要领一：小比大好。</strong>「四块胶痕」（第二节走廊案例）比「整个公告栏」好，「笔杆」比「课桌」好——小物件看得清，看得清才信得过。<strong>要领二：与人物发生关系。</strong>物件不能只是摆着，要被人物的动作或视线碰过：「我把那张草稿纸对折、又对折，折到只剩指甲盖大」——纸是情绪的容器，折纸的动作是情绪的泄压阀。<strong>要领三：重复出现，前后变义。</strong>同一物件在文章开头和结尾各出现一次，意义发生变化（开头的空栏让人慌，结尾的空栏被填满让人松），这是物件杠杆的最高用法，也为第15章的结尾技法埋下伏笔。</p>
+      <p class="ctx">三个杠杆不必每段全用，但主场景开场建议至少用两个：光线＋声音搭台，物件唱戏。平时积累的办法接回第3章素材本：五感卡加一栏「本场最佳物件」，每次观察记一件——考场上你调用的不是想象力，是库存。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——"definite, specific, concrete"：具体物件优于抽象描述 · <a href="https://www.chinawriter.com.cn/">中国作家网</a>（中国作协主办）——名家谈创作栏目中「细节与道具」主题文章可按当期检索印证（文字引用口径）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、「病句→改后」四栏对照：三组场景病例</h2>
+    <p class="chapter-sub">改动说明一栏最重要——招式才能迁移进你自己的作文</p>
+
+    <article class="view">
+      <h3>病例一：地理坐标式开场（「在教室里」病）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>有一天，我在教室里上自习，教室里很安静。</td><td>时间模糊（有一天）、地点只有坐标（教室）、「很安静」是告知不是显示；三件套三件全空。</td><td>晚自习的铃响过五分钟，教室里只剩下笔尖划纸的沙沙声，头顶的风扇摇着头，把一页草稿纸的边角吹得一翘一翘。</td><td>三件套齐装：时间件（铃响过五分钟）、地点件（教室里的笔尖与草稿纸局部）、氛围件（沙沙声＋摇头风扇——安静用声音反衬，「一翘一翘」给静态场景加了动态。全程没说「安静」二字）。</td></tr>
+      </table>
+      <p class="ctx">注意「安静」的处理：原句直接告知「很安静」，改句用「只剩下笔尖划纸的沙沙声」显示安静——能听见最细小的声音，说明环境足够安静，这是第6章「以声衬静」手法的场景版。风扇「摇头」与纸角「一翘一翘」两个动态细节防止画面死板：安静不等于静止。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>病例二：环境堆砌式写景（「好词好句」病）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>公园里美丽极了，百花盛开，鸟语花香，绿树成荫，令人心旷神怡。</td><td>四个成语连用，全是他人用旧的概括，没有一个属于「我此刻此地」的观察；成语堆砌阻断了画面。</td><td>沿着石子路走到第三棵梧桐树下，风把叶子翻过来，露出浅色的背面，哗地亮了一片。长椅上落着一层薄薄的槐花，坐下去之前，得先用手扫出一小块空地方。</td><td>删光成语，换成两个独特观察：叶子翻面的「哗地一亮」（光线＋声音杠杆）和长椅上的槐花（物件杠杆，且与人物动作「扫出一小块空地方」发生关系）。「心旷神怡」不用说——读者在槐花长椅前自己会放松下来。</td></tr>
+      </table>
+      <p class="ctx">这组病例针对的是「好词好句＝好作文」的迷思（第19章谣言粉碎会正面处理）：成语是别人观察结果的压缩包，堆成语等于拒绝自己的观察。Zinsser 把这类装饰称为写作的「冗杂」（clutter）——它们不干活，只占地方。改后的两句话没有超过小学四年级的词汇量，却比四个成语具体一百倍。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——"clutter is the disease of writing" · 《义务教育语文课程标准（2022年版）》第三学段“内容具体、感情真实”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>病例三：景情错位（「乱选氛围件」病）</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>得知比赛输了，我难过极了。窗外的阳光明媚，小鸟在枝头欢快地歌唱，花朵也在对我微笑。</td><td>氛围件（阳光、鸟鸣、微笑的花）携带的是欢快情绪，与「难过」正面冲突；「以乐景写哀」是高级反衬手法，但这里显然是无意识错位，且「花朵对我微笑」是套话。</td><td>裁判的哨声还悬在耳朵里，操场上的欢呼声隔着半个球场传过来，一阵一阵，全是给对面的。我把水瓶捏得咔咔响，仰头灌了一口，水顺着下巴流进衣领，我懒得擦。</td><td>氛围件全部换成「与难过同向」的物件：别人的欢呼（声音杠杆，反衬我的失落）、捏响的水瓶与流进衣领的水（物件杠杆＋动作，「懒得擦」三字让沮丧有了重量）。「难过」二字删去——选景即选情，景对了，情自现。</td></tr>
+      </table>
+      <div class="fig"><img src="../assets/img-09-1.png" alt="空教室角落：墙上时钟、光锥下的一张课桌与浮动尘埃、长影营造紧张氛围的朱红调插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">补充一句公道话：「以乐景写哀」确实存在，而且是文学里的高级手法（王夫之《姜斋诗话》所谓「以乐景写哀，以哀景写乐，一倍增其哀乐」，文字引用）——但那需要作者<strong>有意控制</strong>，让读者明白环境的欢快与人物的心情构成反讽。判断标准很简单：改完之后情绪是更浓了还是更乱了？无意识的景情错位只会让读者困惑；有意识的反衬会让悲痛加倍。小学阶段先练「景情同向」，初中再尝试「有意反衬」，顺序不能颠倒。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：王夫之《姜斋诗话》「以乐景写哀」条（文字引用，人民文学出版社《姜斋诗话笺注》） · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——环境细节与情绪状态的一致性原则</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、练习任务：三个今天就能做的场景练习</h2>
+    <p class="chapter-sub">每个练习不超过15分钟，配三问检查表；做完把成品存进写作档案袋</p>
+
+    <article class="view">
+      <h3>练习任务一：「三件套开场」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①从下面三个情境任选一个：公布成绩的那一刻／运动会检录处／深夜写完作业的书桌前；②按操作框填空：时间件（一个具体时刻）＋地点件（一个看得见的局部）＋氛围件（一个携带情绪的环境物，先用三问筛选）；③把三个填空组装成两行以内的开场，禁止出现情绪词（紧张、期待、疲惫都不许用）；④读给家人听，让对方猜「我」此刻的心情——猜对了才算过关。<br><br>
+        <strong>检查表（三问）：</strong>时间件具体吗（有数字或可感知的时刻，不是「有一天」）？地点件是局部吗（能看见的一个角落，不是「在教室」）？氛围件带对情绪了吗（家人猜对了心情）？
+      </blockquote>
+      <p class="ctx">这个练习的第四步（让家人猜心情）是设计的核心：它把「氛围件选得对不对」变成了一个可以当场验证的游戏，而不是需要老师批改才知道的悬案。猜错了也不亏——错在哪里，正好回第二节重过三问。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——习作任务单「当堂可完成、当场可验证」的设计原则 · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小步成功体验提升写作自我效能感</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「选景练习：五选一划掉」（约10分钟）【全部学段】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①确定一种要传达的情绪（紧张／高兴／委屈／期待，四选一）；②为这个情绪的场景列出 5 个候选环境物件（不假思索，30 秒写完）；③用氛围件三问逐一筛选，划掉不合格的，划掉理由写在旁边（「不带情绪」「纯静态」「哪里都有」）；④用剩下的最佳 1-2 个物件写 3 行场景；⑤对照第二节的「喜版悲版雨景」，检查自己的 3 行有没有做到「情绪词零出现」。<br><br>
+        <strong>检查表（三问）：</strong>5 个候选里有几个被划掉了（划掉少于 2 个说明筛选不严格）？留下的物件通过三问了吗？3 行里没有情绪词，但情绪还在吗？
+      </blockquote>
+      <p class="ctx">小学中年级可以简化：候选物件由家长口述 5 个，孩子只做筛选和口头造句。这个练习的价值在第三步的「划掉理由」——写作的判断力不是知道什么好，而是<strong>说得出什么不好、为什么不好</strong>；能把划掉理由写清楚的学生，修改自己作文的能力（第13章）已经提前起步了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：《义务教育语文课程标准（2022年版）》“修改自己的习作，并主动与他人交换修改”（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">《The Elements of Style》条目（英文）</a>——「省略不重要的词」的判断力训练</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「场景改写：把旧作文搬进现场」（约15分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①从写作档案袋（导论练习二建立的那个）里找出旧作文中所有「地理坐标句」——「在教室里」「在路上」「在家里」式的交代句，选一处；②回忆当时的真实场景：光线是什么样的？最响的声音是什么？印象最深的一个小物件是什么？（想不起来的部分允许合理想象，但要在页脚标注「想象补写」）；③用三件套＋至少两个杠杆（光线/声音/物件任选）把它改写成 4 行；④在改写段落旁边写一句话：这个场景替「我」说的情绪是什么？<br><br>
+        <strong>检查表（三问）：</strong>有声音吗？有光线或色彩吗？物件选对了吗（它携带的情绪与第④步写的那句话一致吗）？
+      </blockquote>
+      <p class="ctx">这是本章的整合练习：素材来自你自己的旧作（不是练习题编的场景），所以改写的每一步都在为「下次写真作文」积累经验。页脚的「想象补写」标注是对诚实原则的坚持——本课反对为了细节而编造（第19章展开）：细节可以基于真实记忆做合理放大，但要让自己知道哪部分是记忆、哪部分是想象，这是写作者的自我诚实训练。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学革命》，福建教育出版社（文字引用）——「从学生自己的稿子里找教学点」 · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a>——重写旧稿是过程写作法的标准环节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、自查清单与谣言粉碎</h2>
+    <p class="chapter-sub">15 个理解性问题＋两个最流行的场景描写谣言</p>
+
+    <article class="view">
+      <h3>谣言粉碎：「作文开头必须先写一段景物，才有文采」</h3>
+      <p class="ctx"><strong>不成立，而且经常起反作用。</strong>这个说法把「场景描写」窄化成了「开头写景段」，好像不写「金秋十月，丹桂飘香」就不配开始叙事。三个理由拆掉它：<strong>其一，三件套不等于写景段。</strong>本章教的场景开场是两行以内的定位动作（时间＋地点＋氛围），可以直接嵌进叙事第一句——「晚自习的铃响过五分钟」既是场景也是叙事，根本不需要独立成段的「景物描写」打头。<strong>其二，脱离情节的写景段是典型的冗杂。</strong>Zinsser 说冗杂是写作之病：一段与后文情节无关的「丹桂飘香」，读者只会跳过它，阅卷老师见过一万次同样的桂花。<strong>其三，课标要求的是「内容具体、感情真实」</strong>，从来没有「开头必须写景」这一条——翻遍《义务教育语文课程标准（2022年版）》的学段要求，找不到任何关于「开头格式」的规定；把某种开头当成硬性套路，恰恰是“高分模板”式思维的残留（这类模板化训练的市场话术，第19章集中批判）。正确的姿势：需要定位读者时用最少的笔墨给三件套，氛围件服务于情绪，什么时候需要就什么时候给——可以在开头，也可以在文章中段的主场景入口处。</p>
+      <div class="fig"><img src="../assets/img-09-2.png" alt="剧场舞台大幕拉开，聚光灯下是一张小小课桌与时钟的布景，朱红与米色调极简插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》条目（英文）</a>——clutter（冗杂）批判 · 《义务教育语文课程标准（2022年版）》学段要求（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——无「开头写景」类格式规定</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：「环境描写越华丽，分数越高」</h3>
+      <p class="ctx"><strong>不成立——评分看的是环境与中心的匹配度，不是辞藻密度。</strong>先说事实层面：考试院不公开逐条评分细则，但通行的阅卷口径是「内容与表达」两维度分等赋分（以当年各省考试院公布为准，<a href="https://www.neea.edu.cn/">中国教育考试网</a>为官方入口）——「内容」维度考察的是切题、中心、材料，一段与中心无关的华丽写景在「内容」维度是减分项而不是加分项。再说方法层面：本章全部技术都指向「匹配」而非「华丽」——氛围件三问的第一问就是情绪匹配，详略原则要求场景笔墨服从主场景，三组病例里被改掉的恰恰全是华丽而空转的成语堆砌。<strong>环境描写的分数逻辑是：每一处景都在替中心意思干活，才配得上分数；不干活的美，是负资产。</strong>王荣生对写作教学的判断在这里同样适用：教「要文采」是教口号，教「氛围件怎么筛选」才是教知识。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.neea.edu.cn/">中国教育考试网（教育部教育考试院）</a>——考试评价官方入口（评分细则各省不公开，正文以通行口径表述） · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——「程序性知识」优于「口号式要求」</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 场景描写自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「在教室里」为什么不是场景？场景比地理坐标多了什么？</li>
+        <li>三件套是哪三件？各自的合格标准是什么？哪一件是灵魂？</li>
+        <li>老师评语例句里的三件套分别是哪些短语？</li>
+        <li>「一切景语皆情语」是什么意思？它有什么心理学依据（注意力与情绪的关系）？</li>
+        <li>氛围件筛选三问是哪三问？「窗外的蝴蝶」为什么进不了考场描写？</li>
+        <li>喜版与悲版的雨景，客观事实相同，不同的三样东西是什么？</li>
+        <li>换景重写「考试慌」时，走廊场景的氛围件为什么选「四块胶痕」？</li>
+        <li>主场景和过场的笔墨比例应该是多少？两种节奏病分别叫什么？</li>
+        <li>场景转换的三个信号是什么？空一行有什么作用？</li>
+        <li>光线杠杆的四种情绪指向（亮暖/亮冷/暗/变化）各是什么？</li>
+        <li>为什么说「声音写的从来不是声音」？声音的消失怎么用？</li>
+        <li>物件杠杆三要领（小比大好/与人物发生关系/重复变义）各举一例。</li>
+        <li>病例二的四个成语为什么全被删掉？成语和观察的关系是什么？</li>
+        <li>「以乐景写哀」和「景情错位」的区别在哪里？判断标准是什么？</li>
+        <li>「开头必须写景才有文采」错在哪三点？</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测与下一步</h2>
+    <p class="chapter-sub">场景是第二部分「写出画面」的最后一块大拼图，下一步把所有零件装进骨架</p>
+
+    <article class="view">
+      <h3>学完本章，你的工具箱里多了什么</h3>
+      <p class="ctx">盘点一下：第6章给了你五感配额，第7章给了你对话与动作，第8章给了你心理描写的三种式和剂量控制，本章给了你<strong>场景三件套、氛围件三问、详略节奏、三个杠杆</strong>——至此，「让人看见」的技术零件基本集齐。但零件多了会冒出一个新问题：一篇文章里，这么多技术怎么排兵布阵？五感用在哪儿、慢镜头给谁、场景占几段、心理描写插在哪里？这就是<strong>结构</strong>的问题——第10章会教你三种提纲法和一张详略分配表，把散落的技术零件装进一副完整的骨架。到那时，导论那条老师评语的例句将完成它的第六次接力：从被拆解的句子，变成一篇完整作文提纲里的核心段落。</p>
+      <p class="ctx">自测方式沿用本课惯例：合上页面，向一位朋友（或家长向孩子）口头回答第七节清单里至少十个问题；再打开自己的旧作文，找出三处「地理坐标句」——如果十分钟内能找到并说出各自该换成什么三件套，本章就真正过关了。找不到的话，回去重读第一、二节，那是全章的地基。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目（英文）</a>——描写技术服务于 drafting，结构组织进入 revising · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（文字引用）——「教是为了不教」：自查能力是教学的终点</div>
+    </article>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>场景≠地理坐标：「在教室里」只是交代，场景是坐标＋氛围——用「时间＋地点＋氛围」三件套在两行内让读者站进现场（老师评语例句的考场两行就是教科书级示范）。「选景即选情」：一切景语皆情语，情绪强烈时注意力自动收窄到与情绪一致的信号上，把「格外注意到」的环境物写下来，情绪词一个不用出现；氛围件用三问筛选——带情绪吗、有声音动作吗、是「只有此刻此地」的吗。同一场雨可以写出喜版和悲版：客观事实相同，选进的物件、动态与比喻指向不同。节奏铁律：主场景慢写（笔墨≥六成），过场快写（一两句带过）；场景切换用时间词、空间词或感官接力，重要切换空一行，段落内部不换景。三个杠杆随取随用：光线是情绪温度计（亮暖/亮冷/暗/变化），声音是情绪放大器（写的是声音与安静的对比，四类声源＋声音的消失），物件是情绪容器（小比大好、与人物动作发生关系、重复出现前后变义）。三组病例对照：地理坐标式开场、成语堆砌式写景、景情错位——改动说明里的招式才是能迁移的东西。三个练习：三件套开场（让家人猜心情验证氛围件）、选景五选一划掉（划掉理由写清楚）、旧作文场景改写（想象补写要标注）。两个谣言已拆：「开头必须写景」把三件套窄化成套路，脱离情节的写景段是冗杂；「环境越华丽分越高」违背「内容与表达」的阅卷口径——每处景都要替中心意思干活。下一章：<a href="../10-structure/">第10章·结构与提纲</a>——把所有技术零件装进一副完整的骨架。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-psychology/"><span class="dir">← 第8章</span>心理描写：写出心里的弯弯绕绕</a>
+    <a href="../10-structure/"><span class="dir">第10章 →</span>结构：先列提纲，段落怎么排</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第9章 · 依据教育部《义务教育语文课程标准（2022年版）》、统编语文教材写景与叙事习作体系、Show don't tell 叙事技法、Strunk &amp; White《The Elements of Style》、Zinsser《On Writing Well》、Murray (1972) 过程写作法、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列、王国维《人间词话》、王夫之《姜斋诗话》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

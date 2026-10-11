@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5章 慢镜头写法：把一秒钟拉长成一分钟 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.cmp{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第5章 · 第一部分 · 素材从哪来</div>
+  <h1>慢镜头写法：把一秒钟拉长成一分钟</h1>
+  <p>动作切分三步法、动词串、时间放大镜的选点与边界、评语例句的短语级标注、四组病句→改后对照、详略比例控制</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../04-detail/">← 第4章：细节描写</a>
+    <a href="../06-senses/">第6章：五感观察 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">时间感</a>
+    <a class="anchor" href="#s2">切分三步法</a>
+    <a class="anchor" href="#s3">动词串</a>
+    <a class="anchor" href="#s4">时间放大镜</a>
+    <a class="anchor" href="#s5">四组对照</a>
+    <a class="anchor" href="#s6">边界与详略</a>
+    <a class="anchor" href="#s7">学段适配</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供语文学习与家庭教育参考，不构成升学承诺，不保证提分；写作能力依赖持续练习，个体差异很大。本章示范段落均为教学示例（部分取材自真实课堂场景并改写）。本站<strong>不推荐</strong>任何培训机构与教辅产品；慢镜头写法的前提仍是<strong>真实</strong>——放慢的必须是真实发生过的时刻，切分动作时不编造没发生的情节，不背现成段落套进考场（“高分模板”类做法是本站明确批判的违规红线）。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①说清慢镜头写法的本质：用文字控制读者的时间感，关键处减速、次要处快进；②背出并会用动作切分三步法「大动作→小动作序列→感官锚点」；③会写动词串（攥—滑—顿—瞟—咬），并知道动词精度比形容词重要；④会用时间放大镜选点：只放慢情绪浓度最高的一两处，其余快进；⑤看懂四组病句→改后对照里的切分逻辑；⑥会用老师评语例句的短语级标注法自查自己的段落。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章是<a href="../04-detail/">第4章</a>公式里「动作链」零件的放大版专项训练——如果还没学第4章，先回去把核心公式（情绪→身体反应+环境细节+动作链）学完再来；已学过的直接读第二、三、五节（切分三步法、动词串、四组对照）即可上手；第六节的详略比例与<a href="../10-structure/">第10章</a>结构章联动，考场策略见<a href="../14-time/">第14章</a>。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、慢镜头：用文字控制读者的时间感</h2>
+    <p class="chapter-sub">写作是唯一能自由变速的媒介——你有导演权，但大多数学生从没用过</p>
+
+    <article class="view">
+      <h3>电影教给我们的第一课</h3>
+      <p class="ctx">看过体育电影的人都熟悉那个瞬间：球出手了，画面突然慢下来，篮球在空中旋转，汗珠一颗颗甩出去，观众的表情凝固——原本一秒钟的动作被拍成了一分钟。导演的意图毫无歧义：<strong>这一秒是全片最重要的一秒，请全体观众睁大眼睛看</strong>。慢镜头在电影里是强调手段：减速等于宣告「此处重要」，观众接收到的不只是画面，还有分量。</p>
+      <p class="ctx">文字拥有同样的权力，而且更彻底。电影慢镜头靠帧率，写作靠<strong>字数与颗粒度</strong>：一件事你写一行，读者半秒读完；写十行，读者就会在文字里停留十倍的时长，被迫体验那种「时间变慢」的感觉。这不是修辞游戏，而是阅读的真实机制——读者的大脑逐句模拟场景，你给多少颗粒，它就放映多长的胶片。可惜大多数学生的作文把这个权力拱手让出：全篇匀速，每件事都一行带过，等于一部从头到尾没有特写的电影。本章要教的就是拿回导演权：<strong>在哪里减速、减到什么颗粒度、什么时候恢复常速</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell：场景与概述的区分（英文）</a> · 夏丏尊、叶圣陶《文心》文章节奏诸篇（书籍文字引用） · <a href="https://www.chinawriter.com.cn/">中国作家网：名家谈叙事节奏（检索口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>快慢对照：同一秒的两种写法</h3>
+      <p class="ctx">先看常速版：「铃响了，老师抱着卷子走进来，开始念成绩。轮到我的时候，我上去领了卷子，回到座位。」四十七个字，流程完整，信息为零——读者只知道发生了，没感受到任何重量。再看慢放版：「老师的手搭上第一沓卷子的时候，教室里的呼吸声都变了。她一张一张地翻，每翻一张，纸边刮过指腹，声音轻得像刀片。念到第七个名字，前排的女生上去又下来，卷子在她手里哗啦响。我的名字出现在第十二张。我站起来，椅子腿在水泥地上刮出一声，全班好像都回头了一秒——也许没有，但我总觉得有。走到讲台那五步，我数着自己的脚步：一步，两步，卷子从老师手里递过来，我的指尖碰到纸角，是凉的。」</p>
+      <p class="ctx">慢放版用了常速版四倍的字，但多出来的不是废话，是<strong>颗粒度</strong>：翻卷子的声音、第七张与第十二张的计数、椅子腿刮地、五步的步数、纸角的温度。注意两点：第一，慢放版的所有零件都通过了第4章的三道过滤器（排他、可感知、有情绪），慢镜头不是放松标准，而是提高标准——<strong>颗粒越细，每个颗粒越要值钱</strong>；第二，慢放版并没有把每一秒都写满，「走到讲台那五步」只数到两步就跳到了指尖——这就是第四、六节要讲的选点与详略：慢镜头内部也有快进。写作研究把这两种速度叫 scene（场景呈现）与 summary（概述快进），健康记叙文的比例大致是场景呈现占七成、概述占三成，且概述负责搬运，场景负责发光。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">scene 与 summary 的写法区分（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「合理安排内容的先后和详略」</a> · 示范段为本站教学示例（标注示例用途）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、动作切分三步法：大动作→小动作序列→感官锚点</h2>
+    <p class="chapter-sub">慢镜头的操作手册：三步把「我举手了」切成七个镜头</p>
+
+    <article class="view">
+      <h3>三步法的完整流水线</h3>
+      <p class="ctx">学生最常见的困惑是：「我知道该写细，但一动手就只剩『我举手了』。」问题不在态度，在没有拆解工具。动作切分三步法就是那个工具。<strong>第一步，圈出大动作</strong>：把那个被一笔带过的动作找出来——「举手」「进球」「摔倒」「吹蜡烛」，它们全是压缩过度的一句话总结。<strong>第二步，切成小动作序列</strong>：问自己「这个动作从起念到完成，身体实际经历了哪几步？」把一步切成三到七步，每步用一个动词打头。<strong>第三步，钉感官锚点</strong>：在小动作序列里挑两三个位置，各钉一个五感细节（声音、温度、触感、气味、画面），锚点负责让读者「身临其境」，动词负责让读者「跟着动」。</p>
+      <blockquote class="q">
+        动作切分三步法（慢镜头流水线）：<br>
+        ① <strong>圈大动作</strong>：找到被一句话带过的那个动作，它就是候选慢放点。<br>
+        ② <strong>切小动作</strong>：从起念到完成切成 3-7 步，每步一个动词开头；默想身体实际怎么动的，不许跳步。<br>
+        ③ <strong>钉锚点</strong>：在 2-3 个步骤上各钉一个感官细节（听觉/触觉优先），锚点必须与情绪同频。<br>
+        ④ <strong>查比例</strong>：慢放段全文不超过两处、总字数不超过全文三分之一，其余快进。<br>
+        ⑤ <strong>朗读计时</strong>：读慢放段，超过 20 秒还没读完就砍零件——宁短勿滥。
+        <span class="qsrc">—— 本站根据 show, don't tell 场景写法与课标详略要求整理的操作版（非官方原文）</span>
+      </blockquote>
+      <p class="ctx">现场示范：把「我举手了」切成七步——「老师的问题落地，教室里静了两秒（环境锚点）。我的手心先在桌肚里擦了两下（小动作，触觉）。胳膊抬到一半，停住了——万一答错呢（心理插入）。前排没人举手，我的手指在桌面下蜷了蜷又松开（小动作，犹豫的证据）。深吸一口气，手肘撑住桌沿（发力细节）。整条胳膊举过了头顶（完成）。教室里好像有几个人转过头来，我盯着老师的下巴，等她点我（收束锚点）。」七步里没有一步是编的——它们全部藏在真实举手的半秒钟里，只是从来没被写出来。切分的诀窍是<strong>默想回放</strong>：闭上眼把那一刻像录像带一样逐帧倒回去，身体记得的比脑子记得的多。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · 蒋军晶《让学生学会写作》动作分解课例（书籍文字引用） · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略教学：明示步骤+反复练习（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>评语例句的短语级标注</h3>
+      <p class="ctx">第4章逐词拆过老师评语示范句的七个零件，这一章换一个角度：把它当作<strong>慢镜头脚本</strong>重新标注一遍，看每个短语在时间轴上占多少帧。原句：「墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片，我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。」</p>
+      <table class="cmp">
+        <tr><th>短语</th><th>镜头标注</th><th>时间感功能</th></tr>
+        <tr><td>墙上的挂钟滴答响</td><td>听觉锚点·背景音轨</td><td>滴答=天然的节拍器，给整段慢放提供计时基准，读者从第一个短语就开始「听见时间流逝」</td></tr>
+        <tr><td>离交卷只剩五分钟</td><td>时间压力·倒计时字幕</td><td>宣告剩余时长，让后面每个动作都自动带上紧迫感——慢放的合法性来源：只剩五分钟的人，每一秒都被主观拉长</td></tr>
+        <tr><td>第三道阅读题还空着一大片</td><td>视觉锚点·特写</td><td>镜头推到卷面，「一大片」的空白是静止画面，与滴答声形成动静反差，时间感被进一步放大</td></tr>
+        <tr><td>指节攥得发白</td><td>身体反应·定格</td><td>「攥」是持续动作，「发白」是持续的结果——一个凝固的姿势，等于慢镜头里的静止帧</td></tr>
+        <tr><td>笔杆滑了两次</td><td>动作序列·计数</td><td>「两次」把一个动作切成两个事件，时间被计数拉长；滑、握、再滑的循环自带慢放节奏</td></tr>
+        <tr><td>视线反复在题干和原文之间跳</td><td>动作链·往复运动</td><td>「反复」+「跳」=钟摆式循环，与开头的滴答声首尾呼应，全段的时间意象闭环</td></tr>
+        <tr><td>脑子却像卡住了</td><td>心理收束·骤停</td><td>前面六个短语全在动，最后一个突然静止——机器卡死，慢放到极致等于时间停摆，收尾干脆</td></tr>
+      </table>
+      <p class="ctx">这张表揭示了一个第4章没展开的秘密：那个示范句不仅是细节描写的模板，更是<strong>完整的慢镜头脚本</strong>——背景音轨（滴答）→倒计时（五分钟）→特写（空白题）→定格（指节）→计数动作（滑两次）→往复动作（视线跳）→骤停（卡住）。它的慢放合法性来自「只剩五分钟」：人在高压倒计时里，主观时间本来就会变慢，所以逐帧描写不是夸张，是忠实还原。学写慢镜头，先学会给自己的段落找到这个「五分钟」——一个让减速显得理所当然的情境压力。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · 评语例句与本章第4章贯穿复用（真实课堂素材改写） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「内容具体」要求</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、动词串：慢镜头的发动机</h2>
+    <p class="chapter-sub">攥—滑—顿—瞟—咬：五个字推进一整段，形容词一个不要</p>
+
+    <article class="view">
+      <h3>为什么动词是发动机，形容词是刹车</h3>
+      <p class="ctx">慢镜头段落的推进全靠动词。看第4章示范句里的动词链：「攥—滑—跳—卡住」，再加标注表里的「滴答响」「空着」——七个短语里六个由动词驱动，形容词只有一个「白」（还是「攥得发白」这个动词补语的一部分）。对比学生典型写法：「我紧张地看着空白的卷子，心里特别慌」——两个动词（看、慌）拖着三个修饰成分（紧张地、空白的、特别），句子像踩住刹车轰油门。动词串的原则：<strong>连续的精确动词自带画面和时间，形容词只负责减速</strong>。「攥—滑—顿—瞟—咬」五个字，读者能看见手在用力、笔在失控、动作在停顿、眼睛在偷瞄、牙在咬合——五个镜头一步到位，零形容词。</p>
+      <p class="ctx">动词要「精确」到什么程度？一个测试：把动词单独拎出来，能不能还原动作的画面。「拿」不能——拿杯子还是拿笔还是拿刀，画面模糊；「攥」能——五指收紧扣紧，力度可见。「看」不能；「瞟」能——快速地、偷偷地、斜着看，连心理都带出来了。同一段动作里，动词越精确，需要的修饰语越少；修饰语越少，节奏越快，慢镜头内部的「动作帧率」反而越高——这就是慢镜头的悖论之美：<strong>字数上慢，语感上快</strong>。Strunk & White 的训条在这里同样适用：具体的名词与有力的动词是句子的心脏，形容词副词只是输液管。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》：有力动词与具体名词（英文）</a> · Stephen King《On Writing》副词批判（书籍文字引用，英文原版 Scribner 2000） · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：动词优先原则（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>动词串训练：推开门走进教室</h3>
+      <p class="ctx">一个最普通的动作——「推开门走进教室」——能榨出多少个精确动词？示范：迟到生版本「我在楼梯口就开始跑，冲到门前收不住，肩膀先撞上木门，门『咚』地弹回来半尺。我扶住门框稳住，手心的汗在木头上打滑。重新发力，这次用手掌推，门轴吱呀一响，全班四十几颗头转过来。我侧着身子挤进门缝，贴着墙根溜到座位，屁股沾上椅子的时候，老师的『下次注意』正好落地。」动词清单：跑、冲、撞、弹、扶、稳、滑、推、响、转、侧、挤、溜、沾——十四个动词，一个形容词都没有，画面却精确到门轴的响声。注意「挤进门缝」的「挤」和「溜到座位」的「溜」：这两个动词不但写动作，还写了心理（心虚），动词的最高境界是<strong>一字双关——既推动画面，又泄露情绪</strong>。</p>
+      <p class="ctx">练习口诀「动词串三查」：一查替换——这个动词能不能被更精确的换掉（走→挪/蹭/冲/踱，各是各的步态）；二查删饰——动词周围有没有「地」字结构的修饰语（紧张地说、飞快地跑），有就删掉换精确动词（结巴、抢白；夺门而出）；三查连锁——连续动作能不能串成五个以上的动词链，中间不插形容词。三查做完，慢镜头段落的语感立刻紧实。这个训练和<a href="../03-accumulate/">第3章</a>素材卡的「动作」栏天然配套：平时观察存下的动词（爷爷是「拄」着栏杆下楼，同桌是「戳」着橡皮发呆），考场上就是现成的串珠。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：省略不必要的词（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第三学段「内容具体」与词语积累要求</a> · 示范段为本站教学示例（标注示例用途）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务：三个动作专项</h3>
+      <blockquote class="q">
+        <strong>练习任务①：十秒慢放八行</strong>【小学高年级·初中，约15分钟】<br>
+        步骤：1）回忆一个自己真实经历过的十秒钟高强度时刻（进球、摔倒、被点名、吹蜡烛、终点冲刺）；2）用切分三步法把它切成 5-7 个小动作；3）每个小动作写一行，在 2-3 行上钉感官锚点；4）全文禁止使用形容词与情绪词，只许动词+名词+数量词；5）写完朗读计时，超过 20 秒就砍掉最不值钱的零件。
+        <br>检查表（三问）：✔ 小动作之间有没有跳步（读者能跟上身体怎么动的吗）？✔ 数一数动词有几个、形容词有几个——动词少于 5 个或形容词多于 2 个就重写。✔ 遮住情绪词猜情绪，同桌猜得出来吗？
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务②：动词串挑战</strong>【小学中高年级·初中，约10分钟】<br>
+        步骤：1）选一个日常动作链：「推开门走进教室」「把作业本交到讲台」「给自行车上锁」任选其一；2）默想回放，先列出所有能用上的精确动词（至少 6 个）；3）用这些动词串成一段话，零形容词、零情绪词；4）与同桌互换，互相找对方段落里「还能换得更精确」的动词各一处。
+        <br>检查表（三问）：✔ 动词够 6 个吗？有没有用「弄、搞、弄好」这类万能动词偷懒？✔ 有没有「紧张地、飞快地」这类修饰语漏网？✔ 单独遮住上下文，光看动词能不能还原画面？
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务③：快慢对照双版本</strong>【初中为主，小学高年级可选做，约15分钟】<br>
+        步骤：1）选练习①里同一个时刻，先写 3 行常速版（概述快进）；2）再写 8 行慢放版（场景呈现）；3）两版并排贴进素材本，用短语级标注法（第二节表格）给慢放版每个短语标注镜头功能；4）自查：慢放版里有没有「五分钟」式的情境压力？没有就补一个。
+        <br>检查表（三问）：✔ 3 行版是否只负责搬运信息、1 个细节都不许有？✔ 8 行版的字数是不是 3 行版的三倍以上？✔ 标注时每个短语都说得出镜头功能吗？说不出功能的短语删掉。
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：本站练习为教学法整理 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略练习需重复至自动化（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「不拘形式地写下见闻、感受和想象」</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、时间放大镜：只放慢最关键的五秒</h2>
+    <p class="chapter-sub">选点决定成败——放错位置，慢镜头就是拖堂</p>
+
+    <article class="view">
+      <h3>选点的两条标准</h3>
+      <p class="ctx">一篇记叙文里值得放慢的时刻，通常只有一两个。选哪一段慢放，用两条标准。<strong>标准一：情绪浓度最高点</strong>——全文里人物心里最不平静的那几秒：举手前的犹豫、成绩念到前的煎熬、告别时的回头。情绪浓度高的时刻天然适合逐帧，因为人在那种时刻的主观时间本来就是拉长的（考场只剩五分钟的人觉得每一秒都很长），慢放是忠实而不是加工。<strong>标准二：转折发生点</strong>——事情发生方向变化的那一瞬间：决定举手的那一秒、球离手的那一秒、话说出口的那一秒。转折点是叙事的关节，关节处减速，全文的骨架才立得起来；把慢镜头用在关节上，读者的注意力就被精确引导到你想强调的地方。</p>
+      <p class="ctx">两条标准常常重合——情绪最高点往往就是转折发生点（「深吸一口气举手」既是情绪顶点也是行动转折），重合处就是全篇的黄金慢放位。反面教材同样清晰：开头起床刷牙慢放、路上风景慢放、结尾感悟慢放——三处全是情绪稀薄区，慢放等于强迫读者陪着拖堂。选点的操作办法：初稿写完后，把全文的「时刻」列成一串（起床→路上→进教室→……），在每个时刻旁边标情绪温度（高/中/低），<strong>只给标「高」且带转折的时刻上放大镜</strong>，其余一律概述快进。这个标注动作十分钟就能完成，却决定了整篇文章的节奏成败——它是<a href="../13-revise/">第13章</a>修改清单的固定条目。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process：修改即重排详略（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第四学段「合理安排内容的先后和详略」</a> · 王荣生《写作教学教什么》详略教学（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>快进的技术：概述句的三个档位</h3>
+      <p class="ctx">有慢必须有快——慢镜头的反面不是「常速」，而是「快进」。第4章第六节讲过概括句的正当岗位，这里给出快进的三个档位。<strong>一档快进（时段打包）</strong>：「这样的早晨过了整整两个星期」——把重复时段压成一句，一个字都不多给。<strong>二档快进（过程跳剪）</strong>：「排队、检录、热身，一切都按流程走完，广播里念到我们组的时候，我已经在起跑器后面站着了」——三个环节各给一个词，像电影跳剪，直接落到下一个关键场景门口。<strong>三档快进（结果直陈）</strong>：「比赛输了，我们坐在场边谁也没说话」——结果一句带过，但「谁也没说话」悄悄留了一个可慢放的钩子，若这个钩子恰是情绪高点，下一段立刻上放大镜。</p>
+      <p class="ctx">三个档位的共同纪律：<strong>快进段落里禁止出现细节</strong>。快进还夹细节，等于一脚油门一脚刹车，节奏立刻散架——这是学生作文最常见的隐形病：概述段里忍不住写一句「天空蓝得像水洗过」，慢放段里又只写「我很难过」。正确的呼吸是：快进段干干净净只搬运，慢放段浓墨重彩只发光；两种段落界限分明，读者的心脏才会跟着文字一起一伏。检查办法：把全文快进段的细节词划掉（划掉后信息不损失的就是冗余细节），把慢放段的概括句圈出来（圈出的每一句都要问「快进还是偷懒」——第4章的标准在这里继续生效）。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">scene 与 summary 的分工（英文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：简洁与节奏（英文）</a> · 夏丏尊、叶圣陶《文心》（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、病句→改后：四组慢镜头改造</h2>
+    <p class="chapter-sub">四个高频场景的完整切分示范，每组标明切了几刀、钉了几个锚点</p>
+
+    <article class="view">
+      <h3>四组对照总表</h3>
+      <table class="cmp">
+        <tr><th>原句（一句话带过）</th><th>问题诊断</th><th>改后（慢镜头切分）</th><th>切分说明</th></tr>
+        <tr><td>最后一分钟我进球了，我们赢了。</td><td>全场情绪最高点被压成八个字；「进球了」是结果，进球的一秒才是电影。</td><td>球传过来的时候我背对着球门。脚底先把球停住，皮球在鞋面上弹了一下才服帖。转身，两个人影从余光里扑过来。我没有看球门——训练时教练说过，看哪儿踢哪儿。摆腿，脚背绷紧，触球的那一瞬听见「砰」的一声闷响。球贴着草皮往远门柱去，守门员的手指尖够到了一点，没够住。网窝鼓起来的那一秒，整个球场先安静了半拍，然后所有的声音一起砸下来。</td><td>切七刀：停球→弹→转身→摆腿→触球→球飞行→入网。锚点三个：鞋面弹球（触觉）、闷响（听觉）、网窝鼓起（视觉）。情境压力=「背对球门+两人扑来」，慢放合法性成立。</td></tr>
+        <tr><td>我不小心摔倒了，很疼，同学们都笑了。</td><td>「摔倒」被跳过，疼和笑都是结论；疼痛没有被写成身体经验。</td><td>台阶比记忆里高了一级。脚落空的那半秒，我的手先抓了一把——抓住的是空气。膝盖磕在台阶棱上，疼还没有到，先听见裤子布料「嗤」地一声。我趴在那儿没敢动，等疼从膝盖慢慢涨上来，像有人在里面充气。身后先是安静，然后不知谁「噗」地笑出声，笑声一层一层传开。我撑着手肘爬起来，手掌蹭掉了一层沙粒，掌根火辣辣的，反倒把膝盖的疼压下去了一点。</td><td>切六刀：踏空→抓空→磕碰→布料声→等疼→爬起。锚点三个：嗤的布料声（听觉）、疼像充气（内感受）、掌根沙粒（触觉）。妙处在「疼还没到」——摔倒的瞬间痛觉延迟半秒，慢镜头捕捉的正是这种身体的真实时序。</td></tr>
+        <tr><td>轮到我演讲了，我很紧张地讲完了。</td><td>「紧张地讲完了」把全程最需要慢放的心理时刻整体跳过；「讲完了」是结果不是过程。</td><td>主持人念到我的名字，椅子往后挪的时候刮了一下地板。走上台只有七步，我把每一步都踩得很实，好像怕地板是虚的。话筒比想象中冰，我把它从左手换到右手，又换回来。台下黑压压的，只有第一排一个女生抬头看我，我就盯着她头顶上方那盏灯开始讲。讲到第三句，声音才慢慢回到自己耳朵里。结尾那句练了二十遍，说出来的时候，我听见自己的尾音在发抖——但已经说完了。</td><td>切六刀：起身→上台七步→握话筒→找视点→开口→收尾。锚点三个：话筒冰（触觉）、踩得很实（动觉）、尾音发抖（听觉）。紧张全程零出现，由换手的动作和踩实的脚步代演。</td></tr>
+        <tr><td>我吹灭了蜡烛，大家鼓掌，我很开心。</td><td>许愿吹蜡烛是生日的情绪顶点，却被两个短句打发；「很开心」是标准结论句。</td><td>灯关了以后，十一根火苗把整张脸都照成暖色。我闭眼许愿，许到一半偷偷睁了一条缝——怕许太久大家等急。深吸一口气，吸到胸腔发胀，先吹灭了左边三根，火苗倒下去的时候冒出一缕白烟。剩下的几根我偏着头一口气扫过去，最后一根抖了两抖，还是灭了。黑暗落下来的一瞬间，掌声和起哄声一起炸开，白烟的甜味飘过来，我在黑暗里咧开嘴，没有人看见，但我就是控制不住。</td><td>切五刀：关灯→许愿→偷睁眼→分批吹→最后一根熄灭。锚点三个：暖色火苗（视觉）、胸腔发胀（内感受）、白烟甜味（嗅觉）。收束动作「黑暗里咧嘴」——开心由动作代演，且「没有人看见」让情绪更真。</td></tr>
+      </table>
+      <p class="ctx">四组示范的共同规律请抄进素材本：<strong>原句全部是「动作+情绪结论」的两截式</strong>（进球了+赢了；摔倒了+很疼；讲完了+紧张；吹灭了+开心），改后全部把「动作」那一截切开、把「情绪结论」那一截删掉——情绪由切分出来的小动作和锚点自己演。这就是慢镜头与第4章公式的分工：公式管「写情绪用什么零件」，慢镜头管「把哪个零件拉长到逐帧」。四段均为教学示例，写作时只许放慢自己真实经历过的时刻——把示范段背下来套进考场作文，性质上就是“抄袭”，本站坚决反对；你要学的是切几刀、钉几个锚点、压力从哪来的装配逻辑。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》重写原则（英文）</a> · 四组均为本站教学示例（依据真实学生病历句改写）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、边界与详略：一篇只放慢一到两处</h2>
+    <p class="chapter-sub">慢镜头是稀缺资源——处处慢放等于没有慢放</p>
+
+    <article class="view">
+      <h3>详略比例的三条硬规则</h3>
+      <p class="ctx">学会切分的学生会立刻犯和第4章一样的新病：每件事都切七刀，六百字作文切出两千字，交卷铃响还差三段。慢镜头是导演的强调手段，强调的效力来自稀缺——电影里慢镜头一多，观众就麻木了；作文里处处慢放，重点就被稀释，评分口径里这叫「详略不当、中心不突出」。三条硬规则：<strong>规则一，全篇慢放不超过两处</strong>，选点用第四节两条标准（情绪最高点+转折点）；<strong>规则二，慢放段总字数不超过全文三分之一</strong>，六百字作文慢放段合计两百字封顶；<strong>规则三，快进段禁止夹细节，慢放段禁止塞概括句</strong>，两种段落界限分明。</p>
+      <p class="ctx">三条规则的执行需要一个物理检查动作——<strong>朗读计时</strong>：全文朗读一遍掐表，再单独朗读慢放段掐表，慢放段占比超过三分之一就砍零件；单段朗读超过二十秒还没完，说明切得太碎，合并小动作或删掉最不值钱的锚点。朗读计时同时暴露另一个问题：匀速。如果全文读下来没有任何一段让人屏住呼吸，说明慢放位没选对——回到第四节的情绪温度标注，把「高」字标错的地方改过来。这套检查会进入<a href="../14-time/">第14章</a>的考场时间分配：考场作文四十分钟，慢放段只在动笔前用一分钟选定位置（在草稿纸上圈出那一两个时刻），写的时候直接到位，绝不现场纠结切几刀——纠结本身就是最大的时间漏洞。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「合理安排内容的先后和详略」</a> · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process：计划-起草-修改的分工（英文）</a> · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray（1972）教写作即教过程（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>慢镜头与其他章的接口</h3>
+      <p class="ctx">本章不是孤岛，接口列清楚方便回头查。<strong>与第4章</strong>：慢镜头是「动作链」零件的逐帧放大，公式（情绪→身体反应+环境细节+动作链）管零件种类，本章管零件的时间分配；锚点选件直接调用第4章的三道过滤器。<strong>与<a href="../03-accumulate/">第3章</a></strong>：切分时「记不起身体怎么动的」说明素材银行存款不足，回头补观察；动词串的精确动词平时存进素材卡动作栏。<strong>与<a href="../06-senses/">第6章</a></strong>：感官锚点的原材料来自五感观察训练，听觉与触觉锚点最省字数、最出效果。<strong>与<a href="../08-mind/">第8章</a></strong>：慢放段里的心理插入（「万一答错呢」）只许一句话，展开的心理描写归第8章管，两章配合时心理独白不得挤占动作帧。<strong>与<a href="../10-structure/">第10章</a></strong>：详略比例是篇章结构的一章——主场景占六成篇幅的结构原则，落到操作层面就是本章的慢放位选择。</p>
+      <p class="ctx">最后交代评语例句在本章的完整闭环：第4章证明了「挂钟滴答到脑子卡住」是合格的细节描写，本章进一步证明了它是标准的慢镜头脚本——四十七个字里塞进了七帧画面，帧帧有锚点，首尾有时间意象闭环。老师在评语里说「渐渐地我能写完卷子，红叉少了」是「一笔带过」，用本章的语言重新表述就是：<strong>「渐渐地」是一段被快进错位的黄金慢放位</strong>——从「写不完」到「能写完」的转折过程，恰恰是全文情绪浓度最高、转折发生的地方，最该上放大镜的位置被概述句占领了。修改方向因此明确：把「渐渐地」切开，找到第一次写完卷子的那一天，从铃响前的最后十分钟开始逐帧重写。这句话就是第4章公式与本章慢镜头合力的样板工程，也是你改写自己旧作文时的对照标尺。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray（1972）过程教学（英文）</a> · 管建刚《我的作文教学革命》讲评改结合（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、学段适配：两个档位怎么练</h2>
+    <p class="chapter-sub">小学练「切三刀」，初中练「选点+比例」——不越级、不降格</p>
+
+    <article class="view">
+      <h3>分档训练表</h3>
+      <table class="cmp">
+        <tr><th>学段</th><th>目标颗粒度</th><th>练习形式</th><th>合格线</th><th>常见越级错误</th></tr>
+        <tr><td>小学中年级（3-4年级）</td><td>单个动作切三刀：把一个动词拆成三个小动作</td><td>「跳皮筋/拍球/吹蜡烛」切三步，每步配一个声音或触感；先玩口头切分游戏再动笔</td><td>一段话里有三个连续动作、一个感官锚点、零形容词堆砌</td><td>要求心理插入与转折意识，超出认知发展，孩子只会套话</td></tr>
+        <tr><td>小学高年级（5-6年级）</td><td>十秒时刻切五到七刀，配两三个锚点</td><td>练习①十秒慢放八行；练习②动词串挑战（≥6动词零形容词）</td><td>慢放段动词≥5、形容词≤2、锚点≥2且与情绪同频</td><td>全篇慢放不设比例意识，六百字写不完</td></tr>
+        <tr><td>初中（7-9年级）</td><td>篇章级：选点+详略比例+快慢对照</td><td>练习③快慢双版本；情绪温度标注法选慢放位；朗读计时自查；配合第10章结构与第14章考场策略</td><td>全篇慢放≤2处、占比≤1/3、快进段零细节、慢放位命中情绪高点或转折点</td><td>只炫技不服务主旨，慢放位与中心无关（选材审题见第11章）</td></tr>
+      </table>
+      <p class="ctx">给家长的三句叮嘱：第一，小学中年级的口头切分游戏价值极高——吃饭时玩「把『我夹起一块肉』切成三刀」（筷子伸过去、夹住、抬起来），零成本训练动作分解思维，比刷题有效；第二，检查作业时问三件事：慢放的是哪一段？为什么选它（情绪高点还是转折点）？动词有几个、形容词有几个？不问「写得美不美」；第三，孩子抱怨「写不细」时不要说「你多写点」，而是说「闭上眼，把那半秒钟像录像带一样倒回去」——<strong>慢镜头的原料一直在身体记忆里，缺的只是回放的动作</strong>。课标各学段对「内容具体」的要求是螺旋上升的，档位跟练习走、不跟年龄硬绑，五年级从切三刀重新开始完全正当。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》各学段习作要求</a> · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee（2019）自我效能感：小步子成功体验（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk（2017）写作焦虑与练习设计（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于慢镜头的三大误区</h2>
+    <p class="chapter-sub">每一个误区都在教孩子把强调手段用成字数泵</p>
+
+    <article class="view">
+      <h3>谣言粉碎：慢镜头篇三连</h3>
+      <div class="fig"><img src="../assets/img-05-1.png" alt="扁平插画：朱红色调电影胶片条，其中一格被放大镜放大，格内篮球悬停半空带运动弧线，奶油色背景，无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx"><strong>误区一：「处处慢写，字数就够了，作文就具体了。」</strong>第六节三条硬规则已给出正面回答：全篇慢放不超过两处、占比不超过三分之一。慢镜头的全部效力来自对比——有快进的寡淡，才有慢放的浓烈；处处慢放等于处处平淡，评分口径里这叫「详略不当、中心不突出」，是实打实的降档项。靠均匀堆细节凑出来的字数，在评卷老师眼里是稀释剂不是加分项。字数焦虑的正解在第10章（主场景占六成的结构）与第14章（考场时间分配），不在把每一段都拖成慢放。至于「三天学会慢镜头，字数轻松翻倍」这类“作文速成班”话术，利用的正是凑字焦虑，本站明确批判：切分能力需要至少三周的碎片练习才能自动化，没有任何速成通道。</p>
+      <p class="ctx"><strong>误区二：「慢镜头就是多堆修辞，比喻拟人越多越慢。」</strong>数一数四组示范里的修辞：进球段零比喻；摔倒段一个比喻（疼像充气）；演讲段零比喻；吹蜡烛段零比喻——四段共二十多行，修辞总共一处。慢镜头的主体是<strong>精确动词和感官锚点</strong>，不是修辞。修辞堆砌的「慢」是虚胖：比喻连发的段落读起来确实长，但读者手里没有任何可模拟的动作帧，时间感反而更糊。正确的配比是动词驱动、锚点定点、修辞收束——像评语示范句那样，四十七个字只在最后用一个比喻（脑子像卡住），前面的事实铺够了，那一个比喻才砸得实。<strong>慢镜头是颗粒度问题，不是修辞密度问题。</strong></p>
+      <p class="ctx"><strong>误区三：「背几段名家慢镜头描写，考场套进去稳拿高分。」</strong>与第4章批过的同款谣言，在慢镜头语境下多一重技术破绽：慢放段的合法性依赖「情境压力」——评语示范句能逐帧写，是因为「只剩五分钟」让主观时间天然变慢；名家段落的压力是他们自己的情境，硬套进你的作文，压力对不上，逐帧描写立刻显得矫揉造作，评卷老师一眼识破「这不是这个孩子此刻的语言」。诚信上，整段背用属于“抄袭”性质的违规；成长上，套用跳过了切分练习，三步法永远无法自动化。名家的正确用法在第17章：标注他的镜头脚本（切了几刀、锚点钉在哪、压力从哪来），然后<strong>用你自己的十秒钟重装一遍</strong>——学脚本结构，不偷成片。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：Stephen King《On Writing》，Scribner 2000（书籍文字引用，英文） · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：clutter 与简洁（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标详略安排与真情实感要求</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略自动化的练习量（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲给家人听，才算学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给写过「我进球了」的自己听试试）</h4>
+      <ul>
+        <li>慢镜头写法的本质是什么？写作靠什么实现变速（电影靠什么）？</li>
+        <li>scene（场景呈现）与 summary（概述快进）的健康比例大致是多少？各自负责什么？</li>
+        <li>快慢对照示范里，慢放版多出来的字变成了什么？「也许没有，但我总觉得有」写出了什么？</li>
+        <li>动作切分三步法的三步分别是什么？第②步切几刀？</li>
+        <li>「我举手了」被切成了哪七步？切分的诀窍「默想回放」怎么操作？</li>
+        <li>评语例句作为慢镜头脚本，七个短语各是什么镜头？「五分钟」提供了什么？</li>
+        <li>为什么说慢放需要「合法性」？你的段落里「五分钟」对应什么？</li>
+        <li>动词为什么是发动机、形容词为什么是刹车？「攥—滑—顿—瞟—咬」五字各还原了什么画面？</li>
+        <li>动词精确度测试怎么做？「拿」和「攥」、「看」和「瞟」差在哪？</li>
+        <li>慢镜头的悖论之美（字数上慢、语感上快）是什么意思？</li>
+        <li>「一字双关」的动词指什么？举「挤」「溜」的例子说明。</li>
+        <li>选点两条标准是什么？两条重合处叫什么？</li>
+        <li>情绪温度标注法怎么操作？哪三个位置是慢放禁区？</li>
+        <li>快进三档位（时段打包/过程跳剪/结果直陈）各举一例？共同纪律是什么？</li>
+        <li>详略三条硬规则是什么？朗读计时检查暴露哪两个问题？</li>
+        <li>四组对照的原句共同病灶是什么（「动作+情绪结论」两截式）？改法总原则是什么？</li>
+        <li>「渐渐地我能写完卷子」用本章语言重述是什么？修改方向是哪一天、从哪十分钟开始？</li>
+        <li>小学中年级为什么练口头切分游戏？初中档位的合格线有哪四条？</li>
+        <li>三大谣言各错在哪里？修辞在慢放段里的正确配比是什么？</li>
+      </ul>
+    </div>
+    <div class="fig"><img src="../assets/img-05-2.png" alt="扁平插画：朱红色调秒表，秒针拉长成一条蜿蜒小路，路上有一串逐渐放大的脚印，奶油色背景，无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>慢镜头写法的本质——用字数与颗粒度控制读者的时间感，关键处减速（scene 场景呈现）、次要处快进（summary 概述），健康比例约七比三；动作切分三步法：①圈大动作→②切成 3-7 个小动作（每步一个动词开头，默想回放不许跳步）→③在 2-3 步上钉感官锚点（听觉/触觉优先，须与情绪同频），外加④查比例（全篇≤2处、字数≤1/3）⑤朗读计时（单段≤20秒）；评语例句的慢镜头脚本标注：挂钟滴答=听觉背景音轨、只剩五分钟=倒计时（慢放合法性来源：情境压力让主观时间天然变慢）、题空一大片=视觉特写、指节攥白=定格、笔杆滑两次=计数动作、视线跳=钟摆往复、脑子卡住=骤停收束——首尾时间意象闭环；动词串：攥—滑—顿—瞟—咬，动词是发动机形容词是刹车，精确动词自带画面与心理（挤、溜一字双关），「动词串三查」=查替换、查删饰、查连锁；时间放大镜选点两标准：情绪浓度最高点+转折发生点，重合处是黄金慢放位；禁区：起床、路上、结尾感悟；快进三档位：时段打包、过程跳剪、结果直陈，纪律=快进段禁止夹细节、慢放段禁止塞概括句；四组病句→改后（进球/摔倒/演讲/吹蜡烛）共同规律：原句全是「动作+情绪结论」两截式，改法=切开动作、删掉结论、情绪由小动作和锚点代演；详略三条硬规则：慢放≤2处、占比≤1/3、两种段落界限分明，朗读计时自查匀速病；「渐渐地我能写完卷子」=被快进错位的黄金慢放位，修改方向是切开「渐渐地」找到第一次写完的那天从最后十分钟逐帧重写；学段三档：小学中年级口头切三刀、高年级十秒慢放八行+动词串、初中选点+比例+快慢对照；谣言三连：「处处慢写凑字数」（详略不当是降档项，“作文速成班”话术利用凑字焦虑，本站批判）、「慢镜头=堆修辞」（四组示范二十多行仅一处比喻，慢镜头是颗粒度问题不是修辞密度问题）、「背名家慢放段套用」（情境压力对不上立刻显假，诚信上属违规，学脚本结构不偷成片）。
+  </div>
+
+  <nav class="pager">
+    <a href="../04-detail/"><span class="dir">← 第4章</span>细节描写：从「我很慌」到「指节攥得发白」</a>
+    <a href="../06-senses/"><span class="dir">第6章 →</span>五感观察：把眼睛换成摄像机</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第5章 · 依据《义务教育语文课程标准（2022年版）》、Show don't tell 叙述技法研究、Strunk & White《The Elements of Style》、Zinsser《On Writing Well》、Stephen King《On Writing》、夏丏尊与叶圣陶《文心》、叶圣陶语文教育论集、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚《我的作文教学革命》、Murray（1972）、Hayes & Flower（1980）、Tsiriotakis（2016）、Berk（2017）、McGee（2019）及相关写作教学研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺 · 不推荐任何培训机构与教辅产品 · 反对编造经历、背范文套用与“代写” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第16章 日记与随笔：低压力日课 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第16章 · 第四部分 · 习惯与长线</div>
+  <h1>✍️ 日记与随笔：低压力日课</h1>
+  <p>三行、五分钟、零评分——写作能力的复利，从每天最小的那一笔开始</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../15-openend/">← 第15章：开头结尾</a>
+    <a href="../17-reading/">第17章：读写结合 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">为什么是日记</a>
+    <a class="anchor" href="#s2">日课三原则</a>
+    <a class="anchor" href="#s3">拒绝流水账</a>
+    <a class="anchor" href="#s4">隐私边界</a>
+    <a class="anchor" href="#s5">转化通道</a>
+    <a class="anchor" href="#s6">两组对照</a>
+    <a class="anchor" href="#s7">练习任务</a>
+    <a class="anchor" href="#s8">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>日记涉及孩子的隐私与心理边界，请家长务必阅读第四节；各节观点均标注来源，研究结论如有争议，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清日记为什么是全课程唯一「每天做」的练习，以及它与写作焦虑研究的关系；②掌握「低门槛、零评分、可积累」日课三原则，并知道每一条背后的动机科学依据（自我决定理论）；③分清日记与流水账的区别，会用「只写一件」和四种轮换形式把日记写出信息量；④理解隐私边界为什么是日记的生死线，会与孩子订立「免评条款」；⑤打通「碎片日记→周末扩写→正式成文」的转化通道，让日课真正喂给作文；⑥完成三个练习任务，今天就能开始七日三行日课。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这一章是全课程的「地基章」：第2章的观察笔记、第3章的素材卡、第4到10章的技术练习，全部依赖一个前提——你每天都在动笔。如果本课只能选一个习惯长期坚持，就选本章的三行日记。学生直接从第七节练习任务一开始做，做完再回头读原理；<strong>家长必须先读第四节「隐私边界」</strong>——那一节决定了这项日课在你家能活过两个星期，还是活不过两天。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、为什么是日记：每天最小的那一笔</h2>
+    <p class="chapter-sub">写作焦虑的解毒剂不是鼓励，是「小到不可能失败」的每日动作</p>
+
+    <article class="view">
+      <h3>频率比强度重要：写作的复利结构</h3>
+      <p class="ctx">先算一笔账。一个学生每周写一篇八百字的大作文，一学期（约二十周）动笔一万六千字；另一个学生每天写三行日记（约六十字），外加每周一篇三百字的随笔，一学期约两万八千字——总量更大，但更关键的区别不在字数，在<strong>动笔次数</strong>：前者一学期动笔二十次，后者动笔一百四十次。写作是程序性技能（第0章 Hayes &amp; Flower 模型讲过它的认知过程本质），而程序性技能的训练规律与游泳、骑车、乐器完全一致：<strong>高频短练远胜低频长练。</strong>每天五分钟、连续一百四十天建立的「取材—组织—落笔」神经通路，不是每周一次、每次两小时的痛苦冲刺能替代的。这也是为什么第0章说「练习任务单个不超过十五分钟」——小步高频不是降低标准，是训练规律本身。</p>
+      <p class="ctx">从研究证据看，动笔量与写作表现的关系在元分析层面有支持：Graham 等人 2012 年对小学段写作教学的元分析发现，多种干预（策略教学、过程写作法、同伴互评等）的效应量在 0.30–1.02 之间，而这些干预的共同前提是<strong>学生有足够的动笔机会</strong>——没有日常书写量，任何策略教学都无从落地。课程标准同样为日常练笔留了制度接口：课标对各学段的习作次数与课外练笔总量有明确要求（第三学段要求「修改自己的习作，并主动与他人交换修改」，各学段均鼓励不拘形式地写下见闻、感受和想象）——「不拘形式」四个字，正是日记的官方通行证。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://psycnet.apa.org/record/2012-18075-001">Graham, McKeown, Kiuhara, Harris &amp; Fitzgerald (2012) 小学段写作教学元分析，Journal of Educational Psychology, 104(4), 879–896（英文）</a>（另见 <a href="https://eric.ed.gov/?id=EJ994038">ERIC EJ994038</a>） · 《义务教育语文课程标准（2022年版）》（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——「不拘形式地写下见闻、感受和想象」</div>
+    </article>
+
+    <article class="view">
+      <h3>日记是写作焦虑的解毒剂：安全动笔区</h3>
+      <p class="ctx">第0章讲过 Berk（2017）与 McGee（2019）关于写作焦虑的研究：焦虑的自我强化循环是「怕写→不愿动笔→缺少练习→更写不好→更怕写」。打破循环的钥匙不是安慰，是<strong>小到不可能失败的成功体验</strong>。日记恰好是这个钥匙的实物形态：三行、五分钟、零评分——它把「写作文」这座大山，切成了每天一片薄到无法失败的薄片。McGee 研究里「自我效能感」的提升机制在这里完全适用：连续七天完成三行日记的孩子，获得的不是七段文字，而是七次「我说到做到」的证据；第二十一天时，「我写不出来」这个自我判断已经被二十一次反例动摇——这就是低压力日课的心理杠杆。</p>
+      <p class="ctx">日记对焦虑还有第二重解法：它把写作的<strong>读者问题</strong>暂时移除了。大作文永远有一个隐形读者（老师、阅卷人），这个读者的存在让很多学生下笔前先自我审查：「这样写老师会不会觉得幼稚？」——审查消耗的心理能量常常比写作本身还大。日记的默认读者是自己（第四节会讲隐私为什么必须真实成立），自我审查失去了对象，笔就松了。Elbow 在《Writing Without Teachers》里对自由写作（freewriting）的核心主张与此同构：先让笔不停，把评判者请出房间——写作的评判环节可以之后再来（那是第13章修改的事），但动笔的瞬间必须没有评判者。日记就是把这个原则制度化：每天五分钟，评判者禁止入内。</p>
+      <div class="fig"><img src="../assets/img-16-1.png" alt="床头暖灯下的一本朱红色封面小笔记本，夹着书签和铅笔的极简扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx">还要预防一种「日课变形」：把日记写成给老师检查的第二本作文。判断标准很简单——如果孩子写日记之前会停下来想「这句写上去会不会被批评」，那它已经不是日记了。真正的日记应该像刷牙一样不需要心理建设：到点、拿起笔、三行、合上本子。日课的失败形态从来不是写得少，而是写得「端着」——第五节的转化通道会说明，端着写的日记连扩写的价值都没有，因为它里面没有真话，而真话才是原料。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017) "Comparison of Writing Anxiety and Writing Dispositions"（ERIC EJ1125149，英文）</a> · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019) "Reducing Writing Anxiety by Improving Self-Efficacy Beliefs"（英文）</a> · Peter Elbow《Writing Without Teachers》（Oxford UP, 1973/1998），<a href="https://peterelbow.com">作者官方主页（英文）</a> · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、日课三原则：低门槛、零评分、可积累</h2>
+    <p class="chapter-sub">每一条原则背后都站着动机科学——不是随口定的规矩</p>
+
+    <article class="view">
+      <h3>原则一：低门槛——三行、五分钟、随时随地</h3>
+      <p class="ctx">门槛的定义：<strong>状态最差的那天也能完成。</strong>不是「有空的那天」，而是发烧刚退、作业写到十点、心情糟透了的那天——那天也能写完三行，这个习惯才算立住了。所以「三行」不是修辞，是硬性规格：三行、约五分钟内、不要求完整叙事、不要求任何技法。门槛还可以再配「最低可行版本」（minimum viable habit）：状态极差的日子，写一行也算完成——「今天什么都没发生」也是一行，写下来的那一刻，连续性没有断。连续性是日课唯一的生命线：<strong>断掉的七天日记，价值远低于写了七次的三行日记。</strong>很多家庭的日记实践死掉，不是因为孩子写得少，而是因为某次「今天太累了没写」之后，第二天的心理重启成本太高，第三天就彻底放弃了。最低可行版本就是为这种情况设计的安全阀。</p>
+      <p class="ctx">低门槛还有一层技术含义：不预设「今天必须有素材」。没素材本身就是素材——「今天想不出写什么，趴在桌上看了一会儿橡皮」完全可以成为三行日记，而且这种「诚实地记录没东西可写」的练习，恰恰在训练第2章的观察：当你开始觉得「没什么可写」的时候，认真看十秒钟身边的任何东西，可写的细节就会出现。门槛低到三行，孩子才敢于诚实地写「无聊」「没劲」「烦」——而这些真实情绪，正是第8章心理描写最需要的原料。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Anne Lamott《Bird by Bird》（Pantheon, 1994，文字引用）——「one inch picture frame」：把写作视野缩小到一寸相框那么大，从小到不可能的范围写起 · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小步成功体验 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——习作任务「当堂可完成」的设计原则</div>
+    </article>
+
+    <article class="view">
+      <h3>原则二：零评分——不打分、不判好坏、不批改</h3>
+      <p class="ctx">零评分的科学依据是自我决定理论（Self-Determination Theory, SDT）。Ryan 与 Deci 在 2000 年发表于《American Psychologist》的经典综述里指出：内在动机依赖三个心理需求的满足——<strong>自主（autonomy）、胜任（competence）、归属（relatedness）</strong>；而外部的控制性事件（强制、监控、评分排名）会系统性地侵蚀自主感，从而削弱内在动机。日记一旦被打分、被检查、被排名，它就从「自己的地盘」变成「又一项作业」——内在动机被外部评价置换，这正是很多孩子「日记写了一年，越写越敷衍」的机制：他们在为检查者写，而不是为自己写。零评分不等于零反馈：孩子主动拿给你看时，用第18章的点评三步法（先肯定具体处、只提一个建议、孩子自己改）；但主动权必须在孩子手里——<strong>他给，你才看；他不给，你不问。</strong></p>
+      <p class="ctx">零评分还包括「零语法警察」：日记里的错别字、病句、口语，一律不当场纠正。这不是纵容错误，而是分工——语法的规范属于修改环节（第13章的朗读检查法会处理它），动笔环节的任务只有一个：让笔不停。Elbow 的自由写作规则（定时内不停笔、不删改、不理评判）在日记场景的变体就是这条。家长最常犯的错，是看到日记里「的地得」用混了就忍不住圈出来——请记住：你圈的每一个红圈，都在向孩子确认「日记也是要被审查的」，下一次他落笔之前的自我审查就会多一分。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000) "Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being"，American Psychologist, 55(1), 68–78（英文）</a>（另见 <a href="https://selfdeterminationtheory.org">SDT 官网（英文）</a>） · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——Elbow 的「不动笔什么也不会发生」 · <a href="https://peterelbow.com">Peter Elbow 官方主页（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>原则三：可积累——日记是素材库，不是情绪垃圾场</h3>
+      <p class="ctx">日记与第3章素材卡的关系是「仓库与货架」：素材卡是从生活里直接采集的原料（事件卡、五感卡、语言卡），日记是每天的初加工——在日记里，一天的经历被写成最初的文字形态，其中最有价值的部分，之后可以被搬运、扩写、重组进正式作文。所以日记本要<strong>为检索而设计</strong>：每则日记只写一件事（第三节的「只写一件」原则），开头第一行可以给这件事起个两三个字的小标题（「橡皮」「雨」「吵架」）——这不是形式主义，是为了一个月后你能翻回来找到它。第0章建立的写作档案袋，日记本就是其中的「原料层」：正式作文是成品，随笔是半成品，日记是原料。</p>
+      <p class="ctx">可积累原则还回答了一个常见疑问：「日记写了会不会没处用？」——恰恰相反，日记是全课程使用率最高的资产。第5章的慢镜头练习要从日记里挑「最有画面的一秒」；第8章的心理描写要从日记里找「犹豫的那一刻」；第15章的物象收束要去日记里认领「反复出现的那个东西」；考场上（第14章）应急的「小场景」策略，调用的就是日记里练熟的场景描写肌肉。一个坚持写日记的学生，等于每天在为自己的素材库存款——第3章说过「情绪素材银行」，日记就是它的自动存款机。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：《义务教育语文课程标准（2022年版）》第二学段「观察周围世界，能不拘形式地写下见闻、感受和想象」（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">Graham &amp; Perin《Writing Next》(2007) PDF（英文）</a>——要素「预写活动（prewriting）」：日常书写为正式写作储备素材 · 管建刚作文教学系列，福建教育出版社（文字引用）——「素材积累本」的课堂实践</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、日记≠流水账：只写一件，轮换四式</h2>
+    <p class="chapter-sub">流水账的病根是「全都想写」——日记的解药是「只写最有感觉的那一件」</p>
+
+    <article class="view">
+      <h3>方法框：三行日记模板与「只写一件」原则</h3>
+      <blockquote class="q"><strong>三行日记模板（每天5分钟）</strong><br>
+      第一行【小标题】：给今天这件事起个两三个字的名字（橡皮／雨／吵架／那道题）；<br>
+      第二行【画面】：写这件事里最能画成画的一个瞬间——用第4章公式：身体反应＋环境细节＋动作，选一样就够；<br>
+      第三行【一句真话】：写当时的真实感受或想法，越直白越好，不许升华，不许喊口号。<br>
+      <strong>示范</strong>：「橡皮／借给同桌的橡皮被切成三块，最后一块只剩指甲盖大，捏在手里发热／我居然没生气，还挺想笑的。」<br>
+      <strong>最低可行版本</strong>：状态差的日子只写第一行＋「今天没什么可写」——连续性优先。<span class="qsrc">——综合课标「不拘形式写下见闻感受」与第4章细节公式；学段：小学中高年级与初中通用，小学生第二行可只写一个细节</span></blockquote>
+      <p class="ctx">流水账的定义与病根值得说清楚：流水账是按时间顺序记录一天全部行程（「早上七点起床，八点上学，第一节课语文……」），它的病根不是「记了琐事」，而是<strong>「全都想写」导致的平均用力</strong>——每件事一行，等于每件事都没有被看见。「只写一件」是对平均用力的直接否定：一天里总有某个瞬间让你多想了一秒钟（被切成三块的橡皮、突然变大的雨、同桌说的那句话），日记只写那一秒钟，把它写透三行。这与第5章慢镜头写法的原理完全一致：写作的力量来自聚焦与放慢，不来自覆盖。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》</a>——第二学段「写下见闻、感受和想象」、第三学段「内容具体」 · 夏丏尊、叶圣陶《文心》，开明书店1934初版（文字引用）——书中「日记」相关章节对流水账的批评与「写有意味的一段」主张 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>轮换四式：观察日记、心情天气、今日一句、人物速写</h3>
+      <p class="ctx">天天写「一件事」也会有枯竭的时候，这时用轮换形式给日课换口味——四种形式轮着来，每一种都在悄悄训练一项正式技术。<strong>式一：观察日记</strong>（对接第2章）：定点观察一个对象五分钟，用五感采集法记三行——「操场边那棵树／树皮裂开的缝里长出一撮草，风过来的时候它先动／树都不知道它养了个房客」。<strong>式二：心情天气</strong>（对接第8章）：把今天的心情写成天气，不许用情绪词——「多云转阴，午后局部有雷／放学的时候晴了，晴得莫名其妙」；这是心理描写的低配训练：用环境投射内心。<strong>式三：今日一句</strong>（对接第7章）：记录今天听到的一句最有意思的话——谁的、在哪说的、说话时在做什么动作：「『你再瞪我试试。』——数学老师说的，说的时候粉笔停在黑板上没转过来」；这是对话描写的原料采集。</p>
+      <p class="ctx"><strong>式四：人物速写</strong>（对接第7、9章）：用三行写今天注意到的一个人——一个动作、一件物品、一句口头禅，不评价：「食堂阿姨／她打菜的时候手腕会先抖一下再落勺，每次都是先抖／『够不够？不够再喊我。』」四种形式每周各用一两天，周末可以自选。轮换的价值除了防枯竭，还在于<strong>技术分布</strong>：一个月下来，观察日记喂给第2章的积累，心情天气喂给第8章的心理，今日一句喂给第7章的对话，人物速写喂给写人作文——日课在不知不觉中完成了全课程技术的分布式训练。这也是「可积累」原则的深层含义：日记不只是攒素材，更是在攒<strong>用过很多次的技术动作</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：蒋军晶《让学生学会写作》（文字引用）——小学日记与片段练习的形式设计 · <a href="https://eric.ed.gov/?id=EJ994038">Graham et al. (2012)（ERIC EJ994038，英文）</a>——句子层面技术（句子组合等）的训练价值 · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——要素「句子组合（sentence combining）」与「预写活动」 · <a href="https://www.apa.org/ed/precollege/ptn/2013/09/writing-instruction">APA Monitor "The science of writing instruction"（2013，英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、隐私边界：日记的生死线</h2>
+    <p class="chapter-sub">被监视的日记会退化为表演——这一节请家长务必读完</p>
+
+    <article class="view">
+      <h3>为什么「家长偷看日记」是日课的头号杀手</h3>
+      <p class="ctx">几乎每个孩子都经历过或恐惧过「日记被家长翻看」。请从动机科学的角度看清这件事的全部代价。自我决定理论（Ryan &amp; Deci, 2000）指出，自主感是内在动机的三大心理需求之一——日记恰恰是孩子生活中自主感浓度最高的书写行为：写什么、怎么写、给不给谁看，全部由他决定。偷看行为摧毁的正是这个「全部由我决定」：<strong>日记被偷看的那一刻，它的隐形读者就永久地从「自己」变成了「家长」</strong>——从此孩子写的每一行，都预设了那雙会翻开的眼睛。写作心理学对此有个朴素但准确的描述：为审查者写的文字会退化为表演——只写「正确的事」，不写真实的事；只写家长爱看的自己，不写真实的自己。而真实恰恰是这门课的全部地基（课标「感情真实」、第0章「过程描写」、第4章细节公式）——日记一旦表演化，日课就死了，哪怕它形式上还在继续。</p>
+      <p class="ctx">更实际的后果是信任：被翻过日记的孩子，通常会在两周内发现（日记本的位置、页面的顺序、夹在里面的头发丝），然后做出两个决定——换一个藏得更深的日记本（日课转入地下，家长永远失去了解孩子内心的窗口），以及降低对家长的信任等级（这个代价远超日记本身）。所以本节不是「建议」，是日课能否成立的<strong>前置条件</strong>：如果孩子不确信日记是私有的，请不要开始——一个写满表演性文字的日记本，比没有日记本更糟，因为它每天都在训练「为审查而写作」。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)，American Psychologist（英文）</a>——控制性环境对内在动机的侵蚀 · <a href="https://selfdeterminationtheory.org">自我决定理论官网（英文）</a>——自主需求（autonomy）专题 · Peter Elbow《Writing Without Teachers》（文字引用）——评判者在场对自由写作的抑制</div>
+    </article>
+
+    <article class="view">
+      <h3>「免评条款」：一页纸的家庭契约</h3>
+      <blockquote class="q"><strong>日记免评条款（写在日记本第一页，家长与孩子各自签字）</strong><br>
+      ① 这个本子归____（孩子姓名）所有，家长<strong>不翻看、不检查、不要求朗读</strong>；<br>
+      ② 孩子主动分享某一则日记时，家长先说「谢谢你给我看」，再按第18章点评三步法回应，<strong>不打分、不圈错别字</strong>；<br>
+      ③ 日记不作为任何奖惩的依据（写得好不奖励，没写不惩罚）；<br>
+      ④ 例外条款（事先约定、仅限此两条）：家长如从其他渠道得知孩子处于安全风险中（自伤、被欺凌等），可以且应当与孩子谈话——但谈话不以「翻日记」为手段。<span class="qsrc">——依据 SDT 自主支持原则与《家庭教育促进法》尊重未成年人隐私的导向拟定；请家庭按实际情况调整</span></blockquote>
+      <p class="ctx">免评条款的关键设计在第三条与第四条。第三条切断「日记—奖惩」的挂钩：日记一旦与奖励挂钩，它就变成了换取奖励的劳动（外在动机置换内在动机，SDT 的经典发现——德西效应）；一旦与惩罚挂钩，它就成了苦役。第四条是诚实条款：本站反对的是「以监控为手段的日常审查」，不反对家长履行安全监护责任——但安全干预的正确路径是谈话与求助专业渠道（学校心理老师、正规医疗机构），而不是翻本子；把安全例外写进契约，反而让前三条的承诺更可信。<strong>契约的仪式感本身就有心理效力</strong>：签了字的承诺，比口头说「我不看」重十倍。《中华人民共和国家庭教育促进法》明确要求家庭教育尊重未成年人的人格尊严与隐私权（法律文本以官方公布为准）——免评条款不过是把法律精神落到一张纸上。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：《中华人民共和国家庭教育促进法》（2021年通过，2022年施行；法律全文以中国人大网官方公布为准，此处文字引用）——尊重未成年人人格尊严与隐私 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a>——外在奖励对内在动机的置换效应 · <a href="https://selfdeterminationtheory.org">SDT 官网（英文）</a>——自主支持型养育（autonomy-supportive parenting）研究综述入口</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、转化通道：从三行碎片到成文</h2>
+    <p class="chapter-sub">日记不转化的话只是心情记录——每周末一次扩写，让碎片长成文章</p>
+
+    <article class="view">
+      <h3>周末扩写：碎片→成品的标准流程</h3>
+      <p class="ctx">转化通道的操作：每周末（约二十分钟），从本周七则日记里挑<strong>最有画面的一则</strong>，把它扩写成 300 字（小学）或 500 字（初中）的随笔。扩写不是把三行拉长三倍，而是执行一套固定动作：①回到那个瞬间，重新做一次五感采集（第2章）——当时还看见、听见、闻到了什么没写进日记的？②用慢镜头（第5章）把「画面行」里的那一秒切开——动作分解成几步？③给「真话行」补上心理过程（第8章）——那个感受之前，心里经过了怎样的犹豫链？④加上开头结尾（第15章）——用三行进现场开头，用物象收束结尾。四个动作正好调用四章技术，一篇随笔就是一次全流程的小型综合演练——这也是第20章二十一天计划里「全流程」阶段的热身。</p>
+      <p class="ctx">扩写还有一个隐藏收益：<strong>它让日记的「只写一件」有了回报。</strong>孩子会发现，周二那则三行日记（橡皮被切成三块），扩写之后是一篇有头有尾、有画面有心理的完整随笔——三行变成了三百字，而且每个字都有出处。这种「原料→成品」的可见转化，是坚持日课最有力的正反馈：日记不再是「每天的任务」，而是「每周作文的备料」。反过来，从未体验过扩写的孩子，很难理解日记的意义——所以第七节的练习任务二（周末扩写）请与任务一（七日三行）配套执行，不要只练其一。</p>
+      <p class="ctx">扩写的产物要有去处：放进第0章的写作档案袋，按月份排列。三个月后把第一篇和第十二篇放在一起读——不评分、不打分，只是让孩子亲眼看见「同一个人写的东西，差距有多大」。这个对比本身就是自我效能感最硬的证据（McGee 研究里「成功体验」的延长版：不只是「我做到了」，还有「我进步了」）。家长在这个环节唯一允许的动作是问一句：「你觉得哪一篇里的那一秒，写得最像当时真的发生了？」——把评价权留给孩子自己。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a>——写作是过程：草稿从素材中生长 · <a href="https://psycnet.apa.org/record/2024-12988-002">Graham et al. (2023) 6–12年级写作干预元分析（英文）</a>——策略教学在中学段的有效性 · 蒋军晶《让学生学会写作》（文字引用）——「片段练习→成文」的课堂转化设计</div>
+    </article>
+
+    <article class="view">
+      <h3>孵化（cooking）：为什么允许日记「写完就忘」</h3>
+      <p class="ctx">Elbow 在自由写作之外还提出过「cooking」（孵化）的概念：写下来的东西不必立刻有用，它们会在脑子里继续发酵——很多成文的灵感，来自几周前某则不起眼的日记在记忆里慢慢变化的过程。所以请不要给日记规定「每则都必须被扩写」或「必须积累出多少素材」：转化通道的正确配比是<strong>七则日记扩写一则</strong>，其余六则完成两个更安静的任务——保持手感（每天动笔），以及孵化（让经历在文字里沉淀）。急着把每则日记都变现的家长，会不自觉地把日课改造成产能考核，而产能考核正是零评分原则要防的东西。</p>
+      <p class="ctx">给初中学生一个进阶用法：<strong>月度回读</strong>。每月底花十分钟，只读自己这个月的日记小标题（第一行的两三个字）——「橡皮」「雨」「吵架」「那道题」……三十个词排在一起，就是这个月的生活地图。回读时做一件事：圈出出现两次以上的词或意象（比如「雨」出现了四次，或者「同桌」出现了六次）——反复出现的东西，就是这段时间你真正在意的事，它是下一个月随笔甚至考场作文的最佳题材池。第15章的物象收束、第10章的选材，都在这个动作里获得了原料。回读不需要写任何东西，十分钟读完即可——它维持的还是那个最低门槛：连读自己的日记，都不构成负担。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Peter Elbow《Writing Without Teachers》（Oxford UP，文字引用；<a href="https://peterelbow.com">作者官方主页（英文）</a>）——cooking：写作素材的孵化观 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis (2016)，Frontiers in Psychology（英文）</a>——写作策略与自我调节训练的正向效应</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、两组对照：病句→改后</h2>
+    <p class="chapter-sub">流水账怎么救、情绪结论怎么落地——日记的两个高频病例</p>
+
+    <article class="view">
+      <h3>对照一：流水账→只写一件</h3>
+      <table class="tb">
+        <tr><th style="width:24%">原句</th><th style="width:24%">问题诊断</th><th style="width:30%">改后</th><th style="width:22%">改动说明（用了哪一招）</th></tr>
+        <tr>
+          <td>「今天早上七点起床，吃了早饭，八点去上学。第一节是语文课，第二节是数学课。中午在食堂吃的饭。下午上了体育课，放学回家了。今天过得很充实。」</td>
+          <td>标准流水账：七件事每件一行，平均用力；没有任何一处落地成画面；结尾「很充实」是零信息情绪结论（第15章黑名单成员）。</td>
+          <td>「体育课／八百米最后一圈，喉咙里有铁锈味，我盯着前面同学的白色校服后背，就靠盯着那块白跑完了最后八十米／冲线的时候我没听见计时员报成绩，先听见了自己的心跳。」</td>
+          <td>只写一件＋三行模板：小标题（体育课）、画面行（铁锈味＋白色后背＋八十米，三感齐上）、真话行（先听见心跳）；一天七件事砍到一件事，但这一件被写透了。</td>
+        </tr>
+      </table>
+      <p class="ctx">注意改后版本的一个细节：它<strong>更短</strong>（三行对七行），信息量却大得多——「充实」这种结论词被「喉咙里的铁锈味」替代之后，读者不需要被告知充实，跑过八百米的人都知道那是什么感觉。这正是第0章评语的日记版：结果陈述（过得很充实）与过程描写（铁锈味、白色后背、心跳）的差距，在三行日记里同样成立。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：夏丏尊、叶圣陶《文心》（文字引用）——日记应写「有意味的一段」而非逐时记录 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「内容具体」要求（教育部通知原文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>对照二：情绪结论→心情天气</h3>
+      <table class="tb">
+        <tr><th style="width:24%">原句</th><th style="width:24%">问题诊断</th><th style="width:30%">改后</th><th style="width:22%">改动说明（用了哪一招）</th></tr>
+        <tr>
+          <td>「今天我很伤心，因为和好朋友吵架了，我心里非常难受，希望我们明天能和好。」</td>
+          <td>三个情绪结论词（伤心、难受）直接贴标签，「希望和好」是表决心式收尾（第15章结尾病一）；全文没有一个画面，读者只能「知道」而看不见。</td>
+          <td>「多云转雷／课间她去接水，路过我桌子的时候，我们俩同时把眼睛看向了别的地方，看得特别用力／下午放学的路走得比平时慢，走到一半才发现，我在等她喊我，她没喊。」</td>
+          <td>心情天气式：标题用天气替代情绪词；画面行写「同时看向别处」这个动作（第7章动作标签思维）；真话行「我在等她喊我」承认了没说出口的期待——比「希望和好」真实十倍，因为它写的是过程而不是愿望。</td>
+        </tr>
+      </table>
+      <p class="ctx">这组对照还展示了一个日记特有的优势：<strong>诚实的脆弱是安全的。</strong>「我在等她喊我」这句话，孩子多半不敢写进交给老师的作文里，但可以写进确认过隐私的日记里——而恰恰是这种句子，藏着最好的写作原料。周末扩写时，这则日记可以长成一篇关于友谊的完整随笔；即使不扩写，它也已经完成了一次高质量的心理描写训练（第8章的犹豫链：想等→但是拉不下脸→于是走得慢）。零评分与隐私保护，最终服务的是这个：让最真的句子有地方可去。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a>——心理安全与真实表达的关系 · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（ERIC EJ1125149，英文）</a>——写作态度与写作焦虑的相关 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、练习任务与谣言粉碎</h2>
+    <p class="chapter-sub">今天就能开始的三个动作——日课的生命线是「今天就开始」</p>
+
+    <article class="view">
+      <h3>练习任务一：「七日三行」（每天5分钟×7天）【全部学段】</h3>
+      <p class="ctx"><strong>步骤：</strong>①准备一个本子（专本专用，第一页抄上免评条款或写一句「此本归我」）；②每天睡前或作业完成后，用三行模板写今天的「一件事」（小标题／画面／一句真话）；③状态差的日子用最低可行版本（小标题＋「今天没什么可写」），不许空页，不许补写昨天的；④第七天在日历上给自己画一个勾，数一数：七天里画面行「能画成画」的有几天？（可数指标，不评分）。<strong>三问检查表：</strong>今天这则是「一件事」还是「一天事」？画面行里有没有至少一个感官细节？有没有出现黑名单情绪结论词（伤心、开心、充实——出现了就用心情天气式重写那一行）？</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——小而确定的成功体验 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>——定时定量的低门槛书写 · Anne Lamott《Bird by Bird》（文字引用）——短小任务对抗畏难</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「周末扩写」（约20分钟，每周一次）【小学高年级／初中】</h3>
+      <p class="ctx"><strong>步骤：</strong>①周日下午翻本周七则日记，挑画面最强的一则；②对那个瞬间重新做五感采集（第2章），在草稿角列出当时还看见、听见、闻到的三样东西；③用慢镜头（第5章）把画面行的那一秒切成至少三步动作；④给真话行补一层心理过程（第8章犹豫链）；⑤扩写成 300 字（小学）或 500 字（初中）随笔，用三行进现场开头、物象收束结尾（第15章）；⑥写完后朗读一遍（第13章朗读检查），只改读着拗口的地方，其他不动。<strong>三问检查表：</strong>扩写后的每个字都能追溯到日记或五感采集吗（没有凭空升华）？开头前三行有没有画面？结尾有没有喊口号？</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray (1972)（英文）</a> · <a href="https://carnegie.org/wp-content/uploads/2026/01/ccny_report_2007_writing.pdf">《Writing Next》(2007) PDF（英文）</a>——预写活动与策略教学要素 · <a href="https://psycnet.apa.org/record/2012-18075-001">Graham et al. (2012)（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「日记免评牌」（一次性，约10分钟，家长参与）【全部学段】</h3>
+      <p class="ctx"><strong>步骤：</strong>①家长与孩子一起读第四节；②按家庭实际情况修改免评条款四条（例外条款必须保留并如实讨论）；③抄在日记本第一页，双方签字、写日期；④家长把本子交还孩子，并当场说出这句话：「这个本子归你，你不给我看，我永远不看。」⑤一个月后全家复盘一次：条款有没有被破坏过？（哪怕是「我就看一眼封面写什么」也算破坏——条款的信用是一次性的）。<strong>三问检查表：</strong>孩子签字时是自愿的还是被安排的（被安排的契约无效，先解决抵触再回来签）？家长能不能复述出「偷看日记的两个代价」（表演化、信任降级）？例外条款里有没有被塞进「成绩下滑可以翻」这类后门（有就删掉，成绩不是安全例外）？</p>
+      <div class="fig"><img src="../assets/img-16-2.png" alt="七张便利贴排成一排、由短渐长的极简插画，红色点缀" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://selfdeterminationtheory.org">自我决定理论官网（英文）</a>——自主支持实践 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a> · 《中华人民共和国家庭教育促进法》（文字引用，法律全文以官方公布为准）——尊重未成年人隐私与人格尊严</div>
+    </article>
+
+    <article class="view">
+      <h3>谣言粉碎：关于日记的两个流行说法</h3>
+      <p class="ctx"><strong>谣言一：「天天写日记，作文自然就写好了。」</strong>半句对半句错。日记保证的是动笔频率与素材库存——这两样确实是作文的地基（第一节的频率账）；但从三行日记到八百字成文之间，隔着「只写一件→扩写→组织→修改」的转化技术，不转化，日记就只是心情记录。这就是第五节转化通道存在的理由：日课负责原料，扩写负责加工，第11到15章的流程负责装配——三者缺一，「自然写好」都不会发生。第17章还会用读写关系研究（Fitzgerald &amp; Shanahan）从另一个方向证明同一件事：<strong>读写之间的转化从来不是自动的，需要显式的桥。</strong><strong>谣言二：「日记就该让老师检查、家长批改，不然孩子会偷懒。」</strong>错，且错得代价高昂。检查与批改换来的不是勤奋，是表演（第四节）：孩子会写「安全的日记」——内容正确、情感积极、字迹工整，唯独没有真话。而写作能力恰恰长在真话里：不敢写「我在等她喊我」的孩子，也写不出打动人的心理描写。至于「偷懒」——三行日记的偷懒成本是失去自己的素材库，这个后果由孩子自己承担，恰是自主感的一部分；用监控防偷懒，等于用砍树的方式防止树叶发黄。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Fitzgerald &amp; Shanahan (2000) "Reading and writing relations and their development"，Educational Psychologist, 35(1), 39–50（文字引用）——读写转化需要显式教学 · <a href="https://psycnet.apa.org/record/2000-13324-002">Ryan &amp; Deci (2000)（英文）</a>——监控与外在评价对内在动机的削弱 · <a href="https://peterelbow.com">Peter Elbow 官方主页（英文）</a>——评判者在场的抑制效应 · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲出来，才算真的学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>「频率比强度重要」的账是怎么算的？两种练法一学期各动笔多少次？</li>
+        <li>Graham 等 (2012) 元分析里各干预的效应量区间是多少？它们共同的前提是什么？</li>
+        <li>写作焦虑的自我强化循环是哪五步？日记是从哪一步打断它的？</li>
+        <li>日记移除了写作的什么问题？Elbow「把评判者请出房间」对应日记的哪条原则？</li>
+        <li>日课三原则分别是什么？各自对应什么研究或官方口径？</li>
+        <li>「最低可行版本」是什么？它防的是哪种崩溃？</li>
+        <li>自我决定理论的三大心理需求是什么？评分检查伤害的是哪一个？</li>
+        <li>「零语法警察」的分工逻辑是什么？语法问题应该由哪一章处理？</li>
+        <li>日记本为什么要「为检索而设计」？小标题起什么作用？</li>
+        <li>流水账的病根为什么是「全都想写」而不是「写了琐事」？</li>
+        <li>三行日记模板的三行分别是什么？最低可行版本怎么写？</li>
+        <li>轮换四式各对接本课程哪一章的技术？</li>
+        <li>家长偷看日记的两个代价是什么？为什么说「表演化的日记比没有日记更糟」？</li>
+        <li>免评条款四条的内容是什么？为什么第四条（安全例外）反而让契约更可信？</li>
+        <li>周末扩写的四个扩写动作分别调用哪四章技术？七则扩一则的配比为什么不能更高？</li>
+        <li>「孵化（cooking）」是什么意思？月度回读圈重复意象的动作在为什么储备原料？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>日记是全课程唯一的每日动作：频率比强度重要（每天五分钟×一百四十次动笔完胜每周两小时×二十次），Graham 元分析（效应量 0.30–1.02）的前提就是足够动笔量；日记也是写作焦虑的解毒剂（McGee：小到不可能失败的成功体验；Elbow：动笔时评判者禁止入内）。日课三原则：低门槛（三行五分钟＋最低可行版本，状态最差那天也能完成）、零评分（SDT：控制性评价侵蚀自主感与内在动机；不打分不批改不圈错别字）、可积累（日记是素材库：小标题检索设计，喂给第5、8、14、15章）。日记≠流水账：病根是平均用力，解法是「只写一件」＋三行模板（小标题／画面／一句真话）＋轮换四式（观察日记、心情天气、今日一句、人物速写，分别对接第2、8、7、7章）。隐私是生死线：被监视的日记退化为表演——免评条款四条（不翻看／主动分享才回应／不与奖惩挂钩／安全例外事先约定）写在第一页双方签字。转化通道：每周末七选一扩写成 300/500 字随笔（四步动作调用第2、5、8、15章），其余六则负责手感与孵化；月底十分钟回读，圈出重复意象当题材池。练习三个：七日三行、周末扩写、日记免评牌。谣言已拆：「天天写日记自然写好」（缺转化桥）、「日记该被检查批改」（换来表演不是勤奋）。下一章：<a href="../17-reading/">第17章·读写结合</a>——输入侧的另一半：怎么读，才真的会写。
+  </div>
+
+  <nav class="pager">
+    <a href="../15-openend/"><span class="dir">← 上一章</span>第15章 · 开头结尾：砍掉陈词滥调</a>
+    <a href="../17-reading/"><span class="dir">下一章 →</span>第17章 · 读写结合：怎么读才会写</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第16章 · 依据《义务教育语文课程标准（2022年版）》、《家庭教育促进法》、Ryan &amp; Deci (2000) 自我决定理论、Graham et al. (2012/2023) 元分析、《Writing Next》(2007)、Berk (2017)、McGee (2019)、Tsiriotakis (2016)、Elbow《Writing Without Teachers》、Lamott《Bird by Bird》、夏丏尊与叶圣陶《文心》、叶圣陶《叶圣陶语文教育论集》、蒋军晶《让学生学会写作》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

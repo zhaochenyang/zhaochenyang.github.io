@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 细节描写：从「我很慌」到「指节攥得发白」 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.cmp{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第4章 · 第一部分 · 素材从哪来</div>
+  <h1>细节描写：从「我很慌」到「指节攥得发白」</h1>
+  <p>全课核心章：老师评语逐词精析、结果陈述与过程描写的机制差异、公式「情绪→身体反应+环境细节+动作链」、细节筛选的三道过滤器、六组病句→改后四栏对照、概括句的正确用途</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../03-accumulate/">← 第3章：素材积累</a>
+    <a href="../05-slow/">第5章：慢镜头写法 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">评语精析</a>
+    <a class="anchor" href="#s2">机制差异</a>
+    <a class="anchor" href="#s3">核心公式</a>
+    <a class="anchor" href="#s4">细节筛选</a>
+    <a class="anchor" href="#s5">六组对照</a>
+    <a class="anchor" href="#s6">概括句用途</a>
+    <a class="anchor" href="#s7">学段适配</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供语文学习与家庭教育参考，不构成升学承诺，不保证提分；细节描写能力依赖持续练习，个体差异很大。本章示范段落均为教学示例（部分取材自真实课堂场景并改写）。本站<strong>不推荐</strong>任何培训机构与教辅产品；细节描写的前提是<strong>真实</strong>——写自己真实经历过的感受，不编造没发生过的煽情情节，不背现成段落套进考场（“高分模板”类做法是本站明确批判的违规红线）。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约30分钟）：</strong>学完你能——①说清「结果陈述」与「过程描写」的机制差异：前者给读者结论，后者让读者亲历；②背出并会用核心公式「情绪→身体反应+环境细节+动作链」；③用三道过滤器筛选细节（排他性、可感知、有情绪），做到少而准；④看懂六组病句→改后对照里每一处改动用了哪一招；⑤知道概括句的正确用途是过渡与收尾，而不是被禁用；⑥按自己的学段选择练习档位，完成「情绪翻译器」练习。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>这是全课的地基章——第5章慢镜头、第7章对话、第8章心理描写全部建立在本章公式之上，建议第一遍全文精读；时间紧的学生直接读第一、三、五节（评语精析、公式、六组对照）；家长先读第八节谣言粉碎，检查自己有没有在辅导时说反话。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、一条老师评语的逐词精析</h2>
+    <p class="chapter-sub">全课贯穿案例在这一章正式开工：把那个改后的句子拆到零件级</p>
+
+    <article class="view">
+      <h3>先把两个版本并排放好</h3>
+      <p class="ctx">这门课从一条真实的老师评语开始。学生原文写的是：<strong>「考试的时候我很慌。」</strong>老师的评语问：没有写老师讲评的时候具体说了什么、哪一句话点醒了你、之后是怎么一点点改的——「渐渐地我能写完卷子，红叉少了」也只是一笔带过的结果陈述。老师给出的示范版本是：<strong>「墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片，我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。」</strong></p>
+      <p class="ctx">两句话写的是同一个时刻，差距却像两张不同的照片：第一句是文字说明，第二句是现场录像。老师示范句一共四十七个字，值得逐个零件拆开——因为它不是「写得美」，而是<strong>结构清晰、每招可学</strong>。这正是本章的任务：把这段范文从「读着好」变成「拆得开、装得回」，让每个孩子都能照着造出自己的版本。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell：呈现而非告知（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》：definite, specific, concrete language（英文）</a> · 评语场景为真实课堂素材（教学示例）</div>
+    </article>
+
+    <article class="view">
+      <h3>七个零件：示范句的逐词拆解</h3>
+      <table class="cmp">
+        <tr><th>原文零件</th><th>零件类型</th><th>它在干什么</th></tr>
+        <tr><td>墙上的挂钟滴答响</td><td>环境细节（听觉）</td><td>不写「安静紧张」，用被放大的声音反衬——只有极度专注或极度慌的时候，人才听得见挂钟</td></tr>
+        <tr><td>离交卷只剩五分钟</td><td>时间压力（事实）</td><td>给出精确数字，读者立刻共享倒计时；「快交卷了」是陈述，「只剩五分钟」是压迫感</td></tr>
+        <tr><td>第三道阅读题还空着一大片</td><td>事实细节（视觉）</td><td>「第三道」「一大片」都是具体量词，慌的原因不用说就摆在纸面上</td></tr>
+        <tr><td>我的指节攥得发白</td><td>身体反应</td><td>「慌」的生理证据：手在用力，用力到手色变了——读者看见身体，自己得出情绪</td></tr>
+        <tr><td>笔杆滑了两次</td><td>动作链（含次数）</td><td>「两次」这个计数是神来之笔：滑一次是意外，滑两次说明手心一直在出汗，而且人一直在硬撑</td></tr>
+        <tr><td>视线反复在题干和原文之间跳</td><td>动作链（眼动）</td><td>「反复」「跳」写出无计可施的循环——努力还在，方法没了</td></tr>
+        <tr><td>脑子却像卡住了</td><td>收束（比喻）</td><td>全句唯一一处「告知」，放在最后收口；前面六个零件铺完，这个比喻才砸得实</td></tr>
+      </table>
+      <p class="ctx">七个零件里，<strong>六个是可感知的事实（声音、数字、颜色、动作、次数），只有最后一个才是概括</strong>——这个比例就是细节描写的基本盘：先用事实铺路，概括才有资格出场。再注意零件的排列顺序：环境（挂钟）→事实（剩五分钟、题空着）→身体（指节）→动作（笔滑、视线跳）→心理收束（卡住），由外向内、由物及人，像镜头从教室摇到手上再摇进脑子里。这个顺序不是巧合，下一节的公式会把它固定下来，让任何人都能复用。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · 叶圣陶《叶圣陶语文教育论集》「写文章就是说话，也就是想心思」（书籍文字引用） · <a href="https://www.chinawriter.com.cn/">中国作家网：名家谈细节描写（检索口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>老师的三问，问的其实是同一件事</h3>
+      <p class="ctx">回头看评语的三个问题：「老师讲评时具体说了什么？」——问的是<strong>语言细节</strong>（原话是什么，不是大意）；「哪一句话点醒了你？」——问的是<strong>转折细节</strong>（变化的触发点在哪一秒）；「之后是怎么一点点改的？」——问的是<strong>过程细节</strong>（「一点点」三个字明确要求步骤，不要结果）。而学生写的「渐渐地我能写完卷子，红叉少了」为什么被批「一笔带过」？因为它是<strong>结果的两个指标</strong>（写完、红叉少），中间的「渐渐地」里藏着的所有具体动作——怎么圈题、怎么留时间、怎么订正——全部被这个词吞掉了。</p>
+      <p class="ctx">把三个问题翻译成通用句式就是：<strong>说了什么原话？变化从哪一刻开始？中间分几步发生？</strong>任何作文题、任何一段被批「空洞」的文字，都可以用这三问自查。这三问也是<a href="../13-revise/">第13章</a>修改清单的核心条目——老师评语的正确用法不是难过一场，而是把它翻译成可执行的修改动作（家长版翻译方法在<a href="../18-parent/">第18章</a>）。顺带提醒家长：评语里的「一笔带过」「不具体」「空洞」是出现频率最高的三句判词，它们指向的都是同一个病灶——结论句太多、事实句太少。以后看到这三句里的任何一句，不必焦虑，直接翻到本章第三节的装配流水线，陪着孩子把被批的那一段用五步重装一遍即可；重装两三次之后，孩子下笔时会自动开始找零件，评语里的判词也就慢慢消失了。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「内容具体、感情真实」学段要求</a> · 管建刚《我的作文教学革命》「讲评即修改」（书籍文字引用） · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray（1972）教写作即教过程（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、机制：为什么「我很慌」三个字不起作用</h2>
+    <p class="chapter-sub">不是字数问题，是信息类型问题——标签与证据的区别</p>
+
+    <article class="view">
+      <h3>结论句把读者的工作抢走了</h3>
+      <p class="ctx">「我很慌」是一句没有错的话，但它犯了一个写作上的根本错误：<strong>替读者得出了结论</strong>。写作研究的经典区分「展示与告知」（show, don't tell）说的正是这件事：告知（tell）直接交付判断——慌、感动、生气；展示（show）交付产生判断的证据——指节发白、笔杆打滑、挂钟滴答。告知的问题不在于信息假，而在于<strong>体验为零</strong>：读者拿到「慌」这个标签时，不需要调动任何感官和记忆，眼睛扫过就完了；而读到「笔杆滑了两次」时，读者会在自己身体里模拟那个手汗打滑的感觉——情绪不是被写出来的，是被读者自己再造出来的，这才是记叙文打动人的机制。</p>
+      <p class="ctx">英文写作教材把这个原则总结成一句百年训条。Strunk & White 的《The Elements of Style》要求写作者「使用明确的、具体的、具体的语言」（use definite, specific, concrete language）：与其写「天气很糟糕」，不如写「雨点横着砸在窗上」。Zinsser 在《On Writing Well》里则把模糊抽象的词称为「clutter」（杂碎），主张见一个删一个。中文语境里，叶圣陶的说法更朴素：作文是「用笔说话」——你面对面跟朋友说「我那天慌死了」，朋友一定会追问「怎么个慌法？」；写作只是把那个追问提前了，你要在朋友开口之前，自己把「怎么个慌法」写出来。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》（英文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：clutter 与简洁（英文）</a> · 叶圣陶《叶圣陶语文教育论集》（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>三种失效句式的病历卡</h3>
+      <p class="ctx">学生作文里的「告知」通常长成三种样子，各建一份病历。<strong>病历一：情绪形容词裸奔</strong>——「我很激动」「他非常生气」「大家都很开心」。病因：情绪词后面不跟任何证据，等于法庭上只宣读判决不出示证物。<strong>病历二：程度副词输液</strong>——「特别特别难受」「无比自豪」「十分感动」。病因：以为给形容词加大剂量就能加大感染力，实际上「特别特别」只暴露了词穷；感染力从来不在剂量上，在证据的颗粒度上。<strong>病历三：万能总结句盖棺</strong>——「这件事让我受益匪浅」「那一刻我懂得了感恩」「通过这件事我明白了坚持的意义」。病因：用一句放之四海皆准的道德总结替代全部过程，任何事都能套，恰恰证明这件事没被写出来——这类句子也是<a href="../15-openend/">第15章</a>要清理的结尾套话重灾区。</p>
+      <p class="ctx">自查办法简单粗暴：把自己作文里的每一句划成「事实句」或「结论句」两类（能拍照验证的是事实句，不能的是结论句）。健康的记叙文，事实句应当占绝对多数；如果一篇作文划下来全是结论句，那就是评语里说的「一笔带过」的全文放大版。这个划线动作本身就会进入<a href="../13-revise/">第13章</a>的修改清单——现在你只需要记住判断标准：<strong>读者能在脑子里放录像的是事实，只能点头的是结论。</strong></p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a> · Stephen King《On Writing》反对副词堆砌（书籍文字引用，英文原版 Scribner 2000） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第四学段「力求表达自己对自然、社会、人生的感受、体验和思考」</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、核心公式：情绪 → 身体反应 + 环境细节 + 动作链</h2>
+    <p class="chapter-sub">把第一节拆出来的零件重新装回去，装成任何人都能用的流水线</p>
+
+    <article class="view">
+      <h3>公式的三个部件从哪里来</h3>
+      <p class="ctx">回看第一节的七零件表，可以归成三类：<strong>身体反应</strong>（指节攥得发白）、<strong>环境细节</strong>（挂钟滴答、只剩五分钟、题空着一大片）、<strong>动作链</strong>（笔杆滑了两次、视线来回跳）。于是公式成立：<strong>写情绪，不写情绪词，写「身体反应 + 环境细节 + 动作链」三件套</strong>。三件套不必每次齐装满员——两件套也能用，但情绪词裸奔（零件套）永远不合格。这个公式的理论出身就是「展示而非告知」：身体、环境、动作都是可拍照的事实，事实堆到位，情绪自己会从纸面上站起来。</p>
+      <p class="ctx">三个部件各有分工。<strong>身体反应</strong>负责「强度」：情绪多强烈，看身体失守到什么程度（手心出汗是轻度，指节发白是重度，声音发抖是压不住了）。<strong>环境细节</strong>负责「氛围」：人在强情绪里会出现感官隧道效应——只注意到与情绪共振的东西，所以「慌的时候听见挂钟」本身就是慌的证据，选对环境细节等于让布景替你演戏。<strong>动作链</strong>负责「过程」：单个动作是照片，连续动作是录像；「笔杆滑了两次」之所以传神，在于「两次」让动作有了时间纵深——这正是<a href="../05-slow/">第5章</a>慢镜头写法的入口。</p>
+      <blockquote class="q">
+        细节描写公式（组装流水线）：<br>
+        ① <strong>定情绪</strong>：这一段人物心里是什么情绪？只许用一个词（慌/羞/盼/怒/暖）。<br>
+        ② <strong>查银行</strong>：翻开<a href="../03-accumulate/">第3章</a>的情绪素材银行，取出该情绪户头下的身体反应、环境细节、动作各一条。<br>
+        ③ <strong>排顺序</strong>：按「由外向内」装配——环境 → 身体 → 动作 →（可选）心理收束。<br>
+        ④ <strong>数零件</strong>：至少两个可感知零件，全段禁止出现第①步那个情绪词。<br>
+        ⑤ <strong>读一遍</strong>：朗读检查——听不出情绪词的段落里，情绪反而最响。
+        <span class="qsrc">—— 本站根据 show, don't tell 原则与课标「内容具体」要求整理的操作版（非官方原文）</span>
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「内容具体、感情真实」</a> · 王荣生《写作教学教什么》：写作教学要教「程序性知识」（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>现场装配：三个情绪的示范段</h3>
+      <p class="ctx"><strong>装配「盼」（等放假通知）：</strong>「教室后墙的日历被值日生撕到只剩薄薄一沓，我一天要扭头看三次。课间操广播响的时候，全楼安静了两秒——不是通知，是眼保健操。我把通知栏的边角都摸出毛了，放学铃响时才想起来，今天根本没安排去看。」——零件盘点：环境（日历薄了、广播、通知栏）+ 动作（扭头三次、摸出毛）+ 身体缺席但动作已足够；「盼」字一次没出现。<strong>装配「羞」（被当众点名表扬反而羞）：</strong>「全班的笑声从四面八方涌过来的那一秒，我盯着课桌右上角那道刻痕，好像那里写着什么要紧的东西。耳朵烧得厉害，连脖颈都在发烫，手里的笔被我转得飞快，转掉了，弯腰去捡的时候反而松了口气。」——身体反应（耳朵烧、脖颈烫）+ 环境（笑声、刻痕）+ 动作链（转笔、转掉、弯腰、松口气）三件套满员。</p>
+      <p class="ctx"><strong>装配「暖」（深夜陪读）：</strong>「台灯的光圈只罩住半张书桌，妈妈把牛奶推过来时没说话，杯底和桌面碰出一声很轻的响。她站了一会儿，伸手把我摊开的卷子往灯下挪了挪，转身出去时带门的动作比平时慢。牛奶的热气一缕一缕往上走，我把冰凉的指尖贴在杯壁上，没舍得马上拿开。」——注意这段没有任何「温暖」「感动」字眼，但杯壁的温度、放慢的关门动作、没舍得拿开的手指，全是「暖」的物证。三段示范共用一个秘密：<strong>情绪越克制，读者越汹涌</strong>——你把结论留给读者去下，读者下的结论永远比你写的更重。</p>
+      <p class="ctx">装配时还有两个常见卡壳点，提前给出解法。<strong>卡壳一：「我记不清当时的身体反应了。」</strong>解法不是编，而是回到<a href="../03-accumulate/">第3章</a>的情绪素材银行——银行里没有这个情绪的存款，说明观察积累欠账了，先把这次练习改成存款练习，回忆或观察一次同类情绪再写；长期习惯是每周给银行补两笔新存款。<strong>卡壳二：「零件我都写了，读起来还是像流水账。」</strong>多半是顺序和筛选出了问题：检查是不是按由外向内排的，检查零件有没有全部通过第四节将讲的三道过滤器——流水账的病根从来不是写得细，而是细得没有方向、没有主次。这两个卡壳点对应的解法，一个管「没料」，一个管「有料不会摆」，覆盖了装配环节九成以上的困难。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：具体语言（英文）</a> · 三段均为本站教学示例（虚构场景，标注示例用途）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务：情绪翻译器</h3>
+      <blockquote class="q">
+        <strong>练习任务①：情绪翻译器</strong>【小学高年级·初中，约15分钟】<br>
+        步骤：1）写下五个情绪词：慌、羞、盼、怒、暖；2）先翻<a href="../03-accumulate/">第3章</a>情绪素材银行，有存款的直接调用，没有的先补一笔存款；3）每个情绪写 3 行：第一行身体反应，第二行环境细节，第三行动作链；4）全文禁止出现这五个情绪词本身，写完互相检查有没有偷用。<br>
+        检查表（三问）：✔ 每个情绪是否凑齐了至少两个可感知零件？✔ 有没有用「很、非常、特别」偷懒？出现即重写。✔ 把情绪词遮掉给同桌读，他能猜出是哪种情绪吗？
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务②：一句话扩五行</strong>【小学中高年级·初中，约10分钟】<br>
+        步骤：1）翻开自己最近一篇作文，找出最空的一句话（划线自查法：结论句里挑最套话的）；2）用公式流水线五步把它扩写成五行；3）扩写只许用自己真实经历过的细节，不许编造没发生的煽情情节；4）把原句和扩写并排贴进素材本，作为自己的「改造前/改造后」档案。<br>
+        检查表（三问）：✔ 扩写后的五行里有几件可拍照验证的事实？少于两件重来。✔ 顺序是不是由外向内？✔ 原句的情绪词还在不在？在就删掉，让零件说话。
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务③：同桌互评圈感官</strong>【小学高年级·初中，约10分钟】<br>
+        步骤：1）与同桌交换练习①的成果；2）用铅笔圈出对方段落里的感官零件，标注是哪一感（视/听/触/嗅）；3）在每个「还能再加一个感官」的位置画一个加号；4）还给对方，各自挑一个加号补写一句。<br>
+        检查表（三问）：✔ 圈出来的零件有没有「评价词混进来的」（好闻、漂亮不算零件）？✔ 加号画在了身体、环境还是动作的位置？✔ 补写之后朗读一遍，情绪有没有更实？
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：本站练习为教学法整理 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「不拘形式地写下见闻、感受和想象」</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略练习需重复至自动化（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、细节筛选：不是越多越好</h2>
+    <p class="chapter-sub">选错细节，写得再细也是废话——三道过滤器</p>
+
+    <article class="view">
+      <h3>细节的敌人是细节太多</h3>
+      <p class="ctx">学会公式之后，学生会立刻掉进新的坑：每段塞八个细节，写成了监控录像回放。Zinsser 警告过这件事的反面——简洁是写作的底色，细节的价值在于<strong>选择</strong>而不是堆量。第一节的示范句只用了七个零件就写活了整场考试，因为每个零件都各司其职；如果再加上「我的书包是蓝色的」「同桌穿了件新卫衣」「黑板左上角有个粉笔印」，情绪立刻被稀释——这些细节是真实的，但它们是<strong>无关的真实</strong>。记叙文的细节配额大致是：一个关键场景两到三个零件，全篇重点细节不超过十几处，其余部分老老实实用概括句快速通过（第六节讲概括句的正当用途）。</p>
+      <p class="ctx">一个实用口诀：<strong>「这一刻独一份」</strong>。写考场，「挂钟滴答」入选，因为极度安静加极度紧张才听得见钟声——它只属于这一刻；「教室里有桌椅」落选，因为任何教室任何时刻都成立。细节的排他性越强，现场感越强；反之，放之四海皆准的细节等于没有细节，和放之四海皆准的总结句犯的是同一个病。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：简洁原则（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：省略不必要的词（英文）</a> · Stephen King《On Writing》（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>三道过滤器：排他性、可感知、有情绪</h3>
+      <p class="ctx">给每个候选细节过三道滤网。<strong>滤网一，排他性</strong>：这个细节是不是只属于这个场景、这个人物、这一刻？「奶奶的棉拖鞋在地板上磨出沙沙声」通过——换了别人家就没有这个声音；「奶奶家很温馨」不通过——谁家奶奶都温馨。<strong>滤网二，可感知</strong>：读者能不能通过五感之一接收到它？「沙沙声」是听觉，通过；「奶奶对我很好」不可感知，不通过。<strong>滤网三，有情绪</strong>：这个细节和人物此刻的情绪同频吗？写离别时「站台的广播带着回声」通过（回声放大空落感）；写离别时「我买了瓶矿泉水」原则上不通过——除非那瓶水有特殊戏份（比如是对方塞给你的、你攥了一路没喝）。</p>
+      <table class="cmp">
+        <tr><th>候选细节</th><th>排他性</th><th>可感知</th><th>有情绪</th><th>判定</th></tr>
+        <tr><td>挂钟滴答声（考场）</td><td>✔ 安静+紧张才听得见</td><td>✔ 听觉</td><td>✔ 倒计时压迫</td><td>入选</td></tr>
+        <tr><td>教室里有桌椅</td><td>✘ 放之四海</td><td>✔ 视觉</td><td>✘ 无关</td><td>淘汰</td></tr>
+        <tr><td>笔杆滑了两次</td><td>✔ 手汗+硬撑的证据</td><td>✔ 触觉+计数</td><td>✔ 慌的物证</td><td>入选</td></tr>
+        <tr><td>我的心情很复杂</td><td>✘ 万能句</td><td>✘ 不可感知</td><td>——本身就是情绪结论</td><td>淘汰</td></tr>
+      </table>
+      <p class="ctx">过滤器要练到「写之前自动过一遍」才算学会——这就是策略教学说的自动化（Tsiriotakis 2016）。初期可以物理化操作：把候选细节写在草稿纸边上，逐条打勾叉，留下通过三关的两三个再动笔。麻烦两周，受益终身。过滤器的最终检验只有一条：这个细节删掉之后，段落的情绪有没有变淡？变淡就留，不变淡就删——宁缺毋滥。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）写作策略教学（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：具体性与选择性（英文）</a> · 蒋军晶《让学生学会写作》细节指导课例（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、病句→改后：六组四栏对照</h2>
+    <p class="chapter-sub">本章主菜：六个高频场景的完整改造，每处改动标明用了哪一招</p>
+
+    <article class="view">
+      <h3>六组对照总表</h3>
+      <table class="cmp">
+        <tr><th>原句（结果陈述）</th><th>问题诊断</th><th>改后（过程描写）</th><th>用了哪招</th></tr>
+        <tr><td>考试的时候我很慌。</td><td>情绪词裸奔，零证据。</td><td>墙上的挂钟滴答响，离交卷只剩五分钟，第三道阅读题还空着一大片。我的指节攥得发白，笔杆滑了两次，视线反复在题干和原文之间跳，脑子却像卡住了。</td><td>公式全开：环境（听觉+时间压力）→身体→动作链→心理收束，由外向内装配。</td></tr>
+        <tr><td>等成绩的时候我特别紧张，心都快跳出来了。</td><td>「心都快跳出来了」是被用烂的套语，等于没说。</td><td>念到第十二个名字还不是我。我把准考证的边角卷起来又压平，压平又卷起来。同桌碰了碰我的胳膊，我才发现自己的牙一直咬着下嘴唇，咬出一道白印。</td><td>动作链（卷了又压、压了又卷的循环）+身体反应（咬出白印）；用「第十二个」这个计数代替「等了很久」。</td></tr>
+        <tr><td>老师批评了我，我很难过。</td><td>「批评」的内容和「难过」的证据全部缺席。</td><td>老师把我的本子轻轻放回桌上，没有像平常那样拍两下。他说了什么我已经听不清了，只记得他转身走开时，我盯着自己那道题——红笔划的叉把「解」字都劈成了两半。下课铃响的时候，我还坐着，本子在手里被我捏出了褶。</td><td>反常细节（「没有像平常那样拍两下」——排他性满分）+视觉特写（叉劈开字）+身体动作（捏出褶）；全程没有「难过」二字。</td></tr>
+        <tr><td>我们赢了比赛，大家非常激动非常开心。</td><td>双份程度副词输液；「大家」是没有面孔的集体。</td><td>终场哨响的那一秒，全场安静得像被按了暂停，然后炸了。我跳起来和扑过来的每个人击掌，手掌拍红了也不觉得疼。队长把旗子举过头顶的时候，我发现他手腕上还缠着上周受伤的绷带，白绷带在红旗下头一晃一晃的。</td><td>环境（静默到爆发的落差）+身体（拍红的手掌）+镜头式特写（绷带与旗子的颜色对比）；「激动」由读者自行得出。</td></tr>
+        <tr><td>和朋友告别时我依依不舍。</td><td>成语概括，零画面；「依依不舍」是四字包装纸。</td><td>她过了安检又跑回来一次，说忘了问我暑假回不回老家。我说回，她就笑了一下，往后退着走，退了两三步才转身。我站在原地数着她背影混进人流，数到看不见，手里还捏着她刚才塞给我的那半包薄荷糖，糖纸都被我攥热了。</td><td>动作链（跑回来、退着走、两三步才转身——全是「不舍」的动作证据）+道具特写（攥热的糖纸：触觉收尾）。</td></tr>
+        <tr><td>那天下着雨，我的心情很低落。</td><td>「下雨=低落」是最陈旧的天气心情连线题，雨成了情绪贴纸。</td><td>雨不大，斜斜地飘，落在眼镜片上就模糊一块，我懒得擦，就让世界糊着。积水漫过脚踝的时候凉意顺着袜子往上爬。公交站牌下挤了七八个人，都把脖子缩进领子里，谁也不看谁。车来了，我挤上去，玻璃上的水汽被谁的书包蹭开一道，露出外面灰蒙蒙的街。</td><td>环境细节选「与情绪同频」的雨（不擦眼镜、懒得擦=心情的动作化）+触觉（凉意爬）+群像速写（缩脖子）；「低落」藏在「就让世界糊着」这个选择里。</td></tr>
+      </table>
+      <p class="ctx">六组对照请这样用：第一遍只看「原句→诊断」，学会识别自己作文里的病；第二遍遮住「改后」列自己试改，再对照——你的版本不必和示范一样，零件凑齐两三个、情绪词删干净就算合格；第三遍看「用了哪招」，把招式名字（动作链、计数、反常细节、道具特写、同频环境）抄进素材本，它们是你自己的兵器谱。所有改后段落均为教学示例，写作时只许调用自己的真实记忆——<strong>把示范段的句子背下来套进自己的作文，性质上就是“抄袭”，本站坚决反对</strong>；示范教你的是装配法，不是现成零件。</p>
+      <p class="ctx">六组之外还有一个隐藏招式值得单独点破：<strong>计数法</strong>。注意改后句里反复出现的数字——「第十二个名字」「滑了两次」「退了两三步」「数到看不见」。数字是最便宜也最有力的细节，因为它天然精确、天然可验证，而且暗示了人物在当场真的数过：数名字的人在熬，数脚步的人在等，数到看不见的人在不舍。下次觉得段落发虚时，先试着往里放一个真实的数字，往往一句就立住了。当然前提还是真实——你记得的数字才写得出来，这又回到了素材银行的价值：平时存下的「第几个」「滑了几次」，考场上就是现成的零件。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》重写原则（英文）</a> · 六组均为本站教学示例（依据真实学生病历句改写）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、概括句的正确用途：过渡与收尾</h2>
+    <p class="chapter-sub">公式不是禁令——概括句退到它该在的位置上</p>
+
+    <article class="view">
+      <h3>不是不能用，是不能只用</h3>
+      <p class="ctx">学了公式的学生容易矫枉过正：看见概括句就杀，结果文章变成了零件堆积的仓库。必须说清楚：<strong>概括句本身无罪，它的正当岗位有两个——过渡和收尾</strong>。过渡岗位上，概括句负责快进：「这样的早晨过了整整两个星期」一句话带过重复时段，把读者运到下一个关键场景；没有概括句的快进，作文会被迫对每一天都慢写，篇幅爆炸、重点稀释。收尾岗位上，概括句负责落点：铺完全部细节之后，一句克制的总结（「后来我才明白，那天的挂钟声其实一直在响」）能让情绪落地——注意第一节示范句的最后一个零件「脑子却像卡住了」就是微型收尾：前面的事实铺够了，概括才有资格出场。</p>
+      <p class="ctx">判断概括句该不该留，用一个比例尺：<strong>关键场景里概括句不超过三分之一，过渡段里概括句可以百分之百</strong>。再配一个自查动作：每写一句概括句，问自己「这句话是在快进，还是在偷懒？」——快进（读者不需要看的过程）就留，偷懒（读者最想看的时刻被你一句话跳过了）就展开。评语里「渐渐地我能写完卷子，红叉少了」被判「一笔带过」，正是因为它偷懒跳过了全文最值得看的部分：那个「渐渐地」里的每一步。同理，「通过这件事我明白了……」式万能收尾之所以成为<a href="../15-openend/">第15章</a>的清理对象，不是因为它概括，而是因为它在没有任何细节铺垫的位置上空降概括。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process：修改阶段的详略调整（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第四学段「合理安排内容的先后和详略」</a> · 夏丏尊、叶圣陶《文心》详略与节奏诸篇（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、学段适配：三个档位怎么练</h2>
+    <p class="chapter-sub">同一套公式，小学练句、初中练段——不越级、不降格</p>
+
+    <article class="view">
+      <h3>分档训练表</h3>
+      <table class="cmp">
+        <tr><th>学段</th><th>目标颗粒度</th><th>练习形式</th><th>合格线</th><th>常见越级错误</th></tr>
+        <tr><td>小学中年级（3-4年级）</td><td>一句话级：给一个情绪词配上两个零件</td><td>「情绪+身体+动作」两件套造句，每天一句；五感卡打底</td><td>一句话里有两个可感知零件、无情绪词裸奔</td><td>强求成段，孩子写不动反而厌写</td></tr>
+        <tr><td>小学高年级（5-6年级）</td><td>三到五行级：一个场景装齐三件套</td><td>情绪翻译器全套（练习①）；旧作文一句话扩五行（练习②）</td><td>场景段由外向内装配、零件≥3、概括句≤1/3</td><td>细节堆量不过滤，段落变监控回放</td></tr>
+        <tr><td>初中（7-9年级）</td><td>段落级：关键场景+快慢节奏+心理收束</td><td>六组对照的遮列自改；互评圈感官（练习③）；配合第5章慢镜头与第8章心理描写</td><td>全篇重点场景至少一处满配装配，且与主旨同频</td><td>只练技术不练选材，细节漂亮但跑题（选材见第11章审题）</td></tr>
+      </table>
+      <p class="ctx">给家长的三句叮嘱：第一，<strong>档位只跟练习走，不跟年龄硬绑</strong>——五年级孩子从两件套重新开始完全正当，地基比楼层重要；第二，检查作业时只问检查表三问（零件几个？情绪词删了吗？同桌能猜出情绪吗？），不要代替孩子改句子；第三，孩子写出的细节只要真实就值得肯定，哪怕笨拙——真实感是细节描写里最贵、最不可教的部分，技术可以慢慢练，<strong>「愿意写真的」必须现在保护</strong>。课标对第四学段的要求是「写作要有真情实感」，真情实感排在一切技巧之前，这个顺序在任何学段都不能倒。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》各学段习作要求</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk（2017）写作焦虑与学段（英文）</a> · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee（2019）自我效能感：小步子成功体验（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于细节描写的三大误区</h2>
+    <p class="chapter-sub">每一个误区都把学生往公式的反方向推</p>
+
+    <article class="view">
+      <h3>谣言粉碎：细节描写篇三连</h3>
+      <div class="fig"><img src="../assets/img-04-1.png" alt="扁平插画：朱红色调，左侧一个灰暗的小气泡里只有一个点，右侧一个炸开的大气泡充满时钟、出汗的铅笔、颤抖的纸边图案，奶油色背景，无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx"><strong>误区一：「形容词多、成语多就是有文采。」</strong>恰恰相反。第二节病历卡已给出诊断：程度副词输液和成语包装纸是空洞的重灾区——「悲痛欲绝」「欣喜若狂」这类四字成语本质上是压缩过度的结论，比「很难过」离读者更远。真正的文采在名词和动词的精确度上：「笔杆滑了两次」没有一个形容词，却是全课最有文采的句子之一。Stephen King 在《On Writing》里对副词的著名态度（「通往地狱之路是副词铺就的」）说的就是这个道理——把修饰语换成证据，句子立刻结实。</p>
+      <p class="ctx"><strong>误区二：「细节描写就是把每件事都写细，字数自然够。」</strong>这是把技术用成了字数泵。第四节的三道过滤器说的正是反面：细节的价值在选择，全篇均匀铺开细节等于没有细节，只会让重点场景淹没在监控回放里。字数焦虑的正确解药不在本章，在<a href="../10-structure/">第10章</a>的详略分配（主场景占六成）和<a href="../14-time/">第14章</a>的考场策略——靠堆细节凑字数，评分标准里叫「中心不突出」，是要降档的。至于宣称「七天教会细节描写拿高分」的“作文速成班”话术，其营销逻辑就是利用字数焦虑，本站明确批判：本章公式至少需要三周的碎片练习才能自动化（策略教学研究的重复练习口径），没有任何速成通道。</p>
+      <p class="ctx"><strong>误区三：「背几段名家细节描写，考场上套进去就是高分。」</strong>三重错误。技术上：名家的细节长在他们的语境里，「背影」的橘子放在你的考场里是异物，评卷老师一眼识破；诚信上：整段背用属于“抄袭”性质的违规，各地考试评分细则对雷同卷有明确处理规定；成长上：套用替代了装配练习，公式永远练不自动化，等于用一次投机换掉一项终身技能。名家的正确用法在第17章：拆解它的零件结构（用了哪几感、动作链几步、怎么收尾），然后<strong>用你自己的素材装一遍</strong>——学装配法，不偷现成零件。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：Stephen King《On Writing》，Scribner 2000（书籍文字引用，英文） · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：clutter 批判（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「真情实感」与「合理安排详略」要求</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略自动化的练习量（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲给家人听，才算学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给写过「我很慌」的自己听试试）</h4>
+      <ul>
+        <li>老师示范句的七个零件各是什么类型？事实零件和概括零件的比例是多少？</li>
+        <li>「笔杆滑了两次」里的「两次」为什么是神来之笔？</li>
+        <li>零件的排列顺序是什么？像什么镜头运动？</li>
+        <li>老师评语三问翻译成通用句式是哪三句？</li>
+        <li>「渐渐地」这个词为什么被批「一笔带过」？它吞掉了什么？</li>
+        <li>show, don't tell 的核心区分是什么？为什么说告知「体验为零」？</li>
+        <li>三种失效句式（病历卡）分别是什么？各举一例。</li>
+        <li>事实句和结论句怎么划线区分？健康记叙文哪类占多数？</li>
+        <li>核心公式的三个部件各负责什么（强度/氛围/过程）？</li>
+        <li>装配流水线的五步是什么？第④步的数字要求是什么？</li>
+        <li>「盼」的示范段用了哪些零件？「暖」的段落里哪个细节最戳人，为什么？</li>
+        <li>三道过滤器是哪三道？「教室里有桌椅」死在哪一道？</li>
+        <li>「这一刻独一份」口诀是什么意思？</li>
+        <li>概括句的两个正当岗位是什么？关键场景里的比例上限是多少？</li>
+        <li>「这句话是在快进还是在偷懒」怎么用？评语例句属于哪种？</li>
+        <li>小学中年级的合格线是什么？初中档位的常见越级错误是什么？</li>
+        <li>三大谣言各错在哪里？“作文速成班”话术利用的是什么焦虑？</li>
+      </ul>
+    </div>
+    <div class="fig"><img src="../assets/img-04-2.png" alt="扁平特写插画：一支被攥得笔杆弯曲的铅笔，放射状应力线条，朱红与奶油色调，无手无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>全课核心公式——<strong>情绪 → 身体反应 + 环境细节 + 动作链</strong>，理论出身是 show, don't tell（展示而非告知）与 Strunk & White「明确、具体」训条；老师评语示范句七零件拆解：六个可感知事实（挂钟滴答=听觉环境、只剩五分钟=时间压力、题空一大片=视觉事实、指节攥白=身体反应、笔杆滑两次=动作链+计数、视线跳=眼动链）+一个收尾概括，装配顺序由外向内像镜头运动；评语三问的通用句式：说了什么原话？变化从哪一刻开始？中间分几步发生？；「我很慌」失效的机制：结论句替读者下判断、体验为零；三种失效句式病历卡：情绪形容词裸奔、程度副词输液、万能总结句盖棺；装配流水线五步：定情绪→查银行→排顺序（环境→身体→动作→心理收束）→数零件（≥2个可感知、禁情绪词）→朗读检查；细节筛选三道过滤器：排他性（这一刻独一份）、可感知（五感可达）、有情绪（与人物同频），关键场景零件 2-3 个，细节的价值在选择不在堆量；六组病句→改后四栏对照（考试慌/等成绩/挨批评/赢比赛/告别/雨天）各配招式名：动作链、计数法、反常细节、道具特写、同频环境、静默落差；概括句无罪，正当岗位是过渡快进与铺垫后的收尾，关键场景占比≤1/3，自查问「快进还是偷懒」；学段三档：小学中年级一句话两件套、高年级三至五行满装配、初中段落级配合慢镜头与心理描写，档位跟练习不跟年龄；谣言三连：「形容词多有文采」（文采在名词动词精确度，King 副词批判）、「全写细凑字数」（评分口径叫中心不突出，字数解药在第10/14章；“作文速成班”话术利用字数焦虑，本站批判）、「背名家段落套用」（技术上是异物、诚信上属违规、成长上废掉装配练习——学装配法不偷零件）；一切细节的前提是真实：只写亲身经历的感受，不编造煽情情节，真情实感排在一切技巧之前。
+  </div>
+
+  <nav class="pager">
+    <a href="../03-accumulate/"><span class="dir">← 第3章</span>素材积累：素材本、素材卡与碎片练习</a>
+    <a href="../05-slow/"><span class="dir">第5章 →</span>慢镜头写法：把一秒钟拉长成一分钟</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第4章 · 依据《义务教育语文课程标准（2022年版）》、Show don't tell 叙述技法研究、Strunk & White《The Elements of Style》、Zinsser《On Writing Well》、Stephen King《On Writing》、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、Hayes & Flower（1980）、Murray（1972）、Tsiriotakis（2016）、Berk（2017）、McGee（2019）及相关写作教学研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺 · 不推荐任何培训机构与教辅产品 · 反对编造经历、背范文套用与“代写” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

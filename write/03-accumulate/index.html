@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 素材积累：素材本、素材卡与碎片练习 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.cmp th{background:var(--bg-soft);color:var(--accent-deep);}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+    table.cmp{display:block;overflow-x:auto;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第3章 · 第一部分 · 素材从哪来</div>
+  <h1>素材积累：素材本、素材卡与碎片练习</h1>
+  <p>「没东西可写」不是生活太空，是记忆没有外存：三种素材卡的格式与填法、情绪素材银行为细节描写备料、课间三分钟就能做的碎片练习、标签归档让素材在考场上能被调出来</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../02-observe/">← 第2章：观察</a>
+    <a href="../04-detail/">第4章：细节描写 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">没东西可写的真相</a>
+    <a class="anchor" href="#s2">素材卡三格式</a>
+    <a class="anchor" href="#s3">素材本怎么建</a>
+    <a class="anchor" href="#s4">情绪素材银行</a>
+    <a class="anchor" href="#s5">碎片练习</a>
+    <a class="anchor" href="#s6">标签与检索</a>
+    <a class="anchor" href="#s7">病句改后</a>
+    <a class="anchor" href="#s8">谣言粉碎</a>
+    <a class="anchor" href="#s9">自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本章仅供语文学习与家庭教育参考，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。方法按学段适配：小学中低年级以句段级素材卡为主，小学高年级与初中逐步过渡到完整归档与考场调用。本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；<strong>反对“代写”与照搬</strong>他人文字进入自己的作文——素材卡收集的是<strong>你自己的经历、你亲耳听到的句子</strong>，动笔的必须是孩子自己。
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①说清「没东西可写」的认知机制：不是没经历，是记忆没有可检索的外部索引；②会做三种素材卡（事件卡、五感卡、语言卡），并守住「一卡一事一细节」的原子化原则；③建立自己的素材本，知道什么时候记、记多少、多久归档；④为「高兴、紧张、委屈」等常见情绪各存下一笔身体反应素材，直接为<a href="../04-detail/">第4章</a>的细节描写公式备料；⑤掌握三个课间就能做的碎片练习；⑥给素材贴标签，学会在审题后 30 秒内检索出可用的卡片。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>孩子第一次建素材本，按第一到第三节顺序做，先做 10 张卡再谈归档；家长辅导重点看第四节的「情绪素材银行」——那是全家可以一起玩的口头游戏；备考的学生直接看第六节「标签与检索」，它决定你积累的素材能不能在考场上被用起来。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、「没东西可写」的真相：素材没有外存</h2>
+    <p class="chapter-sub">写作研究给这个千年难题一个明确答案：问题出在提取，不在库存</p>
+
+    <article class="view">
+      <h3>咬着笔杆的四十分钟：一场失败的检索</h3>
+      <p class="ctx">周三下午第二节课，作文题写在黑板上：《那一刻，我长大了》。小林盯着题目看了五分钟，脑子里一片白——不是他没有长大过的时刻，恰恰相反，过去三年里他搬过一次家、输过一次比赛、第一次独自坐地铁、照顾过生病的奶奶，每一件事里都藏着「长大」。但这些经历此刻像一堆没有目录的书，堆在记忆的仓库里，他翻不动。四十分钟过去，他写下的是：「每个人都有长大的时刻，我也有。那一刻我懂得了责任。」——一句放之四海而皆准的空话，因为它不需要从记忆里提取任何东西。</p>
+      <p class="ctx">这个场景值得用写作科学的眼光重新看一遍。认知心理学家 Hayes 与 Flower 在 1980 年提出的写作过程模型把写作分解为三个环节：<strong>计划（planning）、转译（translating）、复查（reviewing）</strong>。其中「转译」环节——把心里的想法变成纸上的句子——依赖一个关键动作：<strong>从长时记忆里提取素材</strong>。研究指出，写作者卡壳的常见原因不是长时记忆里没货，而是提取失败：题目给出的线索（「那一刻」「长大」）与记忆存储时的编码方式对不上，就像用错误的文件名去搜索硬盘——文件明明在，就是找不到。小林的问题不是库存不足，是<strong>没有索引</strong>。这解释了为什么「多体验生活」的建议总是无效：孩子的生活从来不缺体验，缺的是让体验变成可检索素材的那道工序。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：Hayes & Flower（1980）A Cognitive Process Theory of Writing，College Composition and Communication 31(2)，146-161（学术文献，英文，文字引用卷期页码） · <a href="https://en.wikipedia.org/wiki/Writer%27s_block">Writer's block 条目：写作卡壳的成因研究综述（英文）</a> · <a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目：prewriting 阶段（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>素材本的本质：给记忆建一个外部索引</h3>
+      <p class="ctx">既然问题出在提取，解法就不是「再多经历一些」，而是<strong>把经历在发生之后、遗忘之前，转存成一个带线索的外部记录</strong>。这就是素材本的全部原理：它不是仓库，是索引——记录的字数可以很少（三行足够），但它把「那一刻」的具体细节、气味、说过的话从会蒸发的短期记忆里抢救出来，钉在纸上，等作文题来的时候按标签取用。叶圣陶在《叶圣陶语文教育论集》里有个朴素的论断：「作文就是用笔说话」「写文章就是说话，也就是想心思」——说话要有内容可想，想心思要有材料可用，素材本存的就是这些「心思的原材料」。</p>
+      <p class="ctx">课程标准同样把这条路写进了官方要求。《义务教育语文课程标准（2022年版）》对第二学段（3-4年级）的习作要求是「观察周围世界，能不拘形式地写下自己的见闻、感受和想象」，第三学段（5-6年级）进一步要求「懂得写作是为了自我表达和与人交流」「内容具体、感情真实」。注意「不拘形式」四个字——课标从一开始就没有要求孩子把积累写成完整作文，<strong>碎片化、低门槛、随手记，恰恰是官方认可的姿势</strong>。「内容具体」这四个字则直接指向素材质量：具体的内容只能来自具体的观察与记录，不能来自临场的空想。统编语文教材从三年级起每册设置独立习作单元，「交流平台」栏目反复训练的正是「留心观察、随时记录」这个动作——素材本不是课外加码，它就是教材主线的一部分。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部《义务教育语文课程标准（2022年版）》（教材〔2022〕2号印发通知，含课标附件）</a> · 叶圣陶《叶圣陶语文教育论集》，教育科学出版社（书籍文字引用） · <a href="https://www.pep.com.cn/">人民教育出版社官网（统编语文教材习作单元体例）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>先立规矩：素材本记「自己的」，不记「抄来的」</h3>
+      <p class="ctx">很多孩子的素材本长这样：整页整页抄好词好句，「阳春三月、莺歌燕舞、美不胜收」抄了满满两本，作文照样干瘪。这不是素材本，是词语坟场——抄来的形容词没有挂接任何亲身经历，提取时既没有画面也没有情绪，等于没存。更严重的问题是方向性的：把别人写的整段文字搬进自己的作文，性质上就是<strong>“抄袭”</strong>，是考试评分标准明令扣分的行为，也是本站红线；素材积累的正道恰恰相反——<strong>记自己的经历、自己的观察、自己亲耳听到的话</strong>，别人文字的作用只有一个：教你「原来可以这样写」，然后你用自己的素材重写一遍（这个技术叫仿写，在<a href="../17-reading/">第17章</a>展开）。</p>
+      <p class="ctx">一句话分清两件事：<strong>好词好句本存的是「别人的表达」，素材本存的是「你的生活」</strong>。作文评卷时打动老师的从来不是第二个选项——「美不胜收」谁都会抄，「奶奶的棉拖鞋在地板上磨出沙沙声」只有你家有。本章接下来的全部内容，都是围绕「你的生活」怎么记、怎么存、怎么取这三件事展开的。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》：Use definite, specific, concrete language（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》「内容具体、感情真实」学段要求</a> · 蒋军晶《让学生学会写作》，中国人民大学出版社（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、素材卡三格式：事件卡、五感卡、语言卡</h2>
+    <p class="chapter-sub">一张卡只装一件事——原子化是素材能被调用的前提</p>
+
+    <article class="view">
+      <h3>原子化原则：一卡一事一细节</h3>
+      <p class="ctx">先给素材卡定一条铁律：<strong>一张卡只记一件事、一个细节、一句话</strong>。为什么？回到第一节的检索原理：作文题给你的线索是具体的（「那一刻」「一个人」「一种声音」），你的素材存储粒度也必须具体，两边才对得上。一张卡塞进「春游全过程」，等题目是《那个声音》的时候，这张卡等于不存在——你不可能在考场上把一整天的记忆现场拆解。反过来，把春游拆成六张卡（大巴上的歌声、泥土的味道、同学摔倒的瞬间、老师喊集合的嗓子、午饭交换的火腿肠、返程时车窗上的雾气），任何一道题都能从里面精确命中一张。</p>
+      <p class="ctx">原子化还有一层心理学好处：<strong>小卡片没有心理负担</strong>。让孩子「写一篇日记」是任务，让孩子「记一张三行的小卡」是游戏——启动成本决定了坚持率。写作的过程研究反复确认，把大任务切成小步骤能显著降低写作焦虑、提升完成质量（Tsiriotakis 2016 对写作策略教学的研究即含任务分解与自我调节成分）。三张卡的格式如下，建议用裁成手掌大的空白卡片或活页纸，一张卡一个格式，写满十张就会形成手感。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）写作策略教学对写作表现的影响，Frontiers in Psychology（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk（2017）6-8年级学生写作焦虑研究，ERIC EJ1125149（英文）</a> · 蒋军晶《让学生学会写作》习作任务单设计（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>事件卡：六要素加一个细节特写</h3>
+      <p class="ctx">事件卡记「发生过的事」，格式是<strong>六要素速记 + 一个细节特写</strong>。六要素（时间、地点、人物、起因、经过、结果）各用一个短语，总共不超过三行；真正值钱的是第四行——<strong>细节特写</strong>：这件事里你印象最深的一个画面、一个动作、一样东西，用一句话钉死它。示例：「10月3日｜小区车棚｜我和爸爸｜电动车没电了｜爸爸推车我拎包，走两公里回家｜到家爸爸衬衫后背全湿。<strong>特写：爸爸推车时把车把往自己怀里拧，让车身靠他那边，我这边轻。」</strong>六要素保证事件完整可扩写，特写保证事件有画面可放大——考场上写《那个背影》，你调出来的不是「爸爸很辛苦」这个结论，而是「往怀里拧车把」这个动作。结论谁都能写，动作只有你见过。</p>
+      <p class="ctx">填事件卡的两个提醒：其一，<strong>起因经过结果不许写评论</strong>（不写「爸爸真伟大」，只写他做了什么）——评论是写作文时才做的加工，卡片阶段只存原料，原料掺了熟料反而没法用；其二，特写栏如果填不出来，说明这件事在你记忆里已经模糊，宁可换一件事，也不要硬编——素材卡的生命线是真实，编出来的细节在<a href="../04-detail/">第4章</a>的放大镜下会立刻露馅。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：蒋军晶《让学生学会写作》，中国人民大学出版社（书籍文字引用，作前指导与素材单） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「内容具体、感情真实」要求（真实素材是前提）</a> · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>五感卡：承接观察课的随身采样器</h3>
+      <p class="ctx">五感卡是<a href="../02-observe/">第2章</a>五感采集法的便携版：随时随地，对眼前的一个对象做五感速记，每感一个短语，不求成句。格式五行：「看｜听｜闻｜触｜尝（可空）」。示例（校门口傍晚）：「看：炸串摊的灯比路灯亮一倍｜听：油锅噼啪、扫码提示音连成串｜闻：孜然混着汽油味｜触：校服领口被风吹得贴脖子｜尝：（空）」。五感卡的价值在第六节的检索环节才会完全显现——它是三种卡里<strong>唯一直接按感官通道归档</strong>的卡，写《那个声音》《气味让我想起》这类题目时，五感卡的命中率远超事件卡。</p>
+      <p class="ctx">给孩子立一条五感卡的纪律：<strong>不许写评价词</strong>。「好闻」「难听」「漂亮」一律禁止，必须换成可感知的物理描述——「孜然混着汽油味」是素材，「味道很特别」是废话。这条纪律直接训练<a href="../04-detail/">第4章</a>要用的核心能力：把结论翻译成感官。每天放学路上记一张，一个月就是三十张按感官编码的活素材，比任何好词好句本都耐用。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第二学段「观察周围世界，写下见闻、感受」要求</a> · <a href="https://www.pep.com.cn/">统编语文教材三年级上册「观察」习作单元（人教社官网，栏目体例文字引用）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：具体语言训条（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>语言卡：收集活人说的活句子</h3>
+      <p class="ctx">语言卡记两种句子：<strong>你亲耳听到的</strong>（奶奶催促你的原话、同桌的口头禅、菜市场砍价的腔调）和<strong>你读到后被击中的</strong>（课文里让你停下来的那一句）。每条句子必须带两样东西：<strong>出处</strong>（谁说的/哪本书第几课）和<strong>情境</strong>（什么情况下说的）。示例：「『你倒是快点啊，粥都凉了！』——奶奶，每天早晨第七次，说的时候拿筷子敲碗沿。」带情境的语言卡是<a href="../07-dialogue/">第7章</a>对话描写的直接原料：写人物时，你调出的不是一句孤零零的台词，而是「台词+动作+频率」的完整人物指纹。</p>
+      <p class="ctx">语言卡必须重申边界：<strong>听到和读到的句子存进卡片是积累，原封不动搬进作文是“抄袭”</strong>——两者的区别在于加工。家人朋友的原话写进记叙文属于如实记录（注明是奶奶说的即可），这是记叙文的正当权利；但把书里、范文里的成段文字当成自己的描写交上去，考试评分里按违规处理，本站坚决反对。读来的好句正确用法只有一种：研究它「好在哪」（用了什么感官、什么动词、什么结构），然后用你自己的素材照着那个原理重写——这就是第17章要教的仿写三步。语言卡 therefore 分两栏记最好：左栏抄句子，右栏写「它好在哪」，右栏才是真正长在你身上的能力。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》，生活·读书·新知三联书店再版（书籍文字引用，读写结合的经典依据） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标第三学段「珍视个人独特感受」与第四学段「真情实感」要求</a> · <a href="https://www.chinawriter.com.cn/">中国作家网：作家谈素材与语言积累栏目（检索口径）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>三卡分工表：什么时候用哪种卡</h3>
+      <p class="ctx">三种卡不是三选一，是各司其职。用一张表把分工、频率和考场用途钉清楚——建议打印或抄在素材本扉页：</p>
+      <table class="cmp">
+        <tr><th>卡型</th><th>记什么</th><th>建议频率</th><th>命中的题型</th><th>加工去向</th></tr>
+        <tr><td>事件卡</td><td>六要素+细节特写</td><td>每周 2-3 张</td><td>《那一刻》《难忘的一件事》等记事题</td><td>扩写成记叙文主体（第9章叙事）</td></tr>
+        <tr><td>五感卡</td><td>看听闻触尝五栏速记</td><td>每天 1 张（放学路上）</td><td>《那个声音》《气味》等感官题、环境描写</td><td>塞进场景开场（第9章）与细节公式（第4章）</td></tr>
+        <tr><td>语言卡</td><td>活句子+出处+情境</td><td>每周 2-3 张</td><td>写人类作文的对话段落</td><td>对话描写的原料（第7章）、仿写范例（第17章）</td></tr>
+      </table>
+      <p class="ctx">注意「加工去向」一列：素材卡从来不直接等于作文，它是半成品仓库，每种半成品都有明确的下一道工序——这也是本课程把「积累」放在第一部分、把「描写技术」放在第二部分的原因：先有料，再练手艺，最后走流程。三卡之外不需要更多花样，格式越少越容易坚持。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学革命》，福建教育出版社（书籍文字引用，「先写后教、以写定教」的流程观） · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray（1972）Teach Writing as a Process Not Product 全文PDF（英文）</a> · 本站三卡格式为教学法整理（非官方模板）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、素材本怎么建：什么时候记、记多少、多久归档</h2>
+    <p class="chapter-sub">工具越简单越好，规则越少越能坚持</p>
+
+    <article class="view">
+      <h3>工具选型：一本就够，别买装备</h3>
+      <p class="ctx">素材本不需要任何专门装备。三个选项按场景挑：<strong>选项一，空白小本</strong>（口袋大小，随身）——适合小学中高年级，卡片直接画在本子上，一格一卡；<strong>选项二，活页纸+长尾夹</strong>——适合喜欢裁剪的孩子，卡片可以物理移动、重新排序，归档时按标签插页；<strong>选项三，手机备忘录</strong>——仅适合初中及以上且学校允许携带设备的场景，优点是语音输入快（三秒记完一条），缺点是翻找的手感差、且容易被家长怀疑在玩游戏。三条共同的否决项：<strong>不要用带锁的精美日记本</strong>——精致的本子会抬高「配得上写进去的内容」的心理门槛，孩子会因为「今天的事不够重要」而放弃记录；素材本的正确气质是皱巴巴、随手可用。</p>
+      <p class="ctx">再强调一次存储位置的原则：<strong>素材本必须离孩子的手最近</strong>。放在书桌抽屉深处的素材本，等于没有。书包侧兜、校服口袋、笔袋夹层，哪里顺手放哪里——记素材的最佳时机永远在事件现场或当天睡前，工具不在手边，时机就没了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：蒋军晶《让学生学会写作》（书籍文字引用，习作工具的极简原则） · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee（2019）降低写作焦虑与自我效能感，Learning to Teach（英文）</a> · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目：低门槛动笔原则（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>记录时机：现场速记加睡前补全</h3>
+      <p class="ctx">记忆研究里有个尽人皆知的曲线：遗忘在学习之后立即开始，速度先快后慢——当天不记的事，细节流失大半。素材记录因此有两个黄金时机。<strong>现场速记</strong>：事情正在发生时，掏出本子记三个关键词就够（「车棚｜拧车把｜衬衫湿」），全程不超过十秒，不打断生活；这三个词是钩子，晚上能把整件事钩回来。<strong>睡前补全</strong>：躺在床上花三分钟，把白天的钩子扩成一张完整的卡（补上六要素和特写）。睡前还有个隐藏福利：这段时间没有新信息进来干扰，白天的细节反而异常清晰，很多孩子发现「闭上眼能看见」的画面正是最好的特写素材。</p>
+      <p class="ctx">给家长的执行建议：<strong>把睡前补全挂进已有的睡前惯例</strong>（刷牙之后、关灯之前），不新设时间点——习惯叠加比意志力可靠。头两周家长可以当「素材采访员」：孩子说不出钩子时，用问题喂他（「今天放学路上有什么声音？」「课间谁说了句好玩的话？」），孩子答一句你让他自己写一句，注意是<strong>他写</strong>，你的嘴不能替他动笔——这与<a href="../18-parent/">第18章</a>的点评原则一脉相承：脚手架可以搭，楼必须孩子自己盖。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process 条目：prewriting 与素材捕捉（英文）</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）写作策略与自我调节（英文）</a> · 叶圣陶《叶圣陶语文教育论集》「随时动笔」主张（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>数量与频率：每周五张，宁少勿断</h3>
+      <p class="ctx">给素材本定一个刻意保守的指标：<strong>每周 3-5 张卡，每张不超过四行</strong>。这个数字不是随便说的——习惯养成的研究共识是，低到「不好意思失败」的目标才守得住；每周五张卡的全部门时间不到二十分钟，任何孩子都挤得出来，挤得出来才可能变成一年两百张的库存。反过来，定「每天写三百字素材日记」这种高指标的孩子，第三周就全线崩溃，还顺带把「积累素材」这件事和挫败感绑在了一起——亏两次。</p>
+      <p class="ctx">断更了怎么办？规则只有一条：<strong>断更不清零，回来接着记</strong>。素材本不是打卡软件，没有连续天数，没有惩罚机制；隔了两周再翻开，从今天的放学路上记起就行。家长在这个环节唯一禁止说的话是「你都断了多少天了」——这句话把重启成本抬高了十倍。坚持的全部秘密，是让「重新开始」永远便宜。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee（2019）自我效能感与写作坚持（英文）</a> · <a href="https://en.wikipedia.org/wiki/Mindset">Mindset 条目：成长型思维与目标设定（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk（2017）写作焦虑对照研究（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、情绪素材银行：为细节描写备料</h2>
+    <p class="chapter-sub">第4章的公式要吃「身体反应」，这一节现在开始存</p>
+
+    <article class="view">
+      <h3>为什么情绪要单独存：公式的原料库</h3>
+      <p class="ctx">提前剧透<a href="../04-detail/">第4章</a>的核心公式：<strong>情绪 → 身体反应 + 环境细节 + 动作链</strong>。把「我很慌」改写成「指节攥得发白、笔杆滑了两次」，靠的不是现场灵感，而是库存——你必须在<strong>不慌的时候</strong>，就记下过「慌的时候身体是什么反应」。这就是情绪素材银行：给每种常考情绪（高兴、紧张、委屈、生气、失望、温暖、害怕、自豪）各开一个户头，平时往里存三样东西：<strong>身体反应</strong>（心跳、手心、脸、胃、腿的具体感觉）、<strong>环境细节</strong>（当时注意到的声音、光线、物件）、<strong>动作</strong>（你做了什么小动作）。</p>
+      <p class="ctx">存款来源有三个：自己的（最好，趁感受还新鲜）、家人的（饭桌上问「你小时候考砸了什么感觉」，长辈的回答往往细节惊人）、书本的（读到一个写情绪的好句子，在语言卡上标注情绪标签）。唯一的纪律还是那条：<strong>不存形容词，只存可感知的物理事实</strong>。「非常伤心」不是存款，「眼泪在眼眶里打转但死活不掉下来，喉咙像塞了团棉花」才是。这个练习本身就是第4章公式的预习——银行存满之日，就是细节描写开写之时。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell：以可感知细节呈现情绪（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White：definite, specific, concrete language（英文）</a> · 王荣生《写作教学教什么》，华东师范大学出版社（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>开户示范：三笔样板存款</h3>
+      <p class="ctx">直接看三张填好的银行存单（示例，均取材自真实学生口述场景），格式为「情绪｜身体反应｜环境细节｜动作」：</p>
+      <table class="cmp">
+        <tr><th>情绪</th><th>身体反应</th><th>环境细节</th><th>动作</th></tr>
+        <tr><td>紧张（考试）</td><td>手心出汗把卷子洇出一块深印；心跳声大过翻卷声</td><td>挂钟秒针一顿一顿；前排同学的后脑勺一动不动</td><td>橡皮在指间转了四圈掉两次；把笔帽咬出牙印</td></tr>
+        <tr><td>高兴（赢了比赛）</td><td>胸腔里像有汽水在冒泡；嘴角压不住往上跑</td><td>哨声响完的那一秒全场安静，然后炸开</td><td>跳起来和每个人击掌，手都拍红了也不觉得疼</td></tr>
+        <tr><td>委屈（被误会）</td><td>喉咙发紧，一开口声音就抖；鼻子酸得厉害</td><td>盯着地板缝，不敢抬头看任何人的鞋</td><td>把衣角攥成一团，指甲掐进掌心留下月牙印</td></tr>
+      </table>
+      <p class="ctx">注意三点：每一格都是<strong>可以直接进作文的句子零件</strong>，不是概括；三笔存款来自三种不同场合，说明情绪银行的覆盖面靠平时零星积累，不靠一次突击；这些零件在第4章会被组装成完整段落——「紧张」那一行的三个格子拼起来，就是老师评语里那段范文的同款结构。让孩子照这个表格，本周先为「高兴、紧张、委屈」各存一笔，三笔就够开课。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：本站银行格式为教学法整理（非官方模板） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「感情真实」要求：真实情绪体验是描写的前提</a> · <a href="https://www.chinawriter.com.cn/">中国作家网：作家谈细节与情绪写作（检索口径）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、碎片练习：课间三分钟也能练</h2>
+    <p class="chapter-sub">练习任务区块：三个任务，全部不超过五分钟，附检查表与学段标注</p>
+
+    <article class="view">
+      <h3>三个碎片练习的做法</h3>
+      <p class="ctx">碎片练习的设计原则：<strong>时间短到无法拒绝，目标小到必然成功</strong>。第一个，<strong>「只写声音」三分钟</strong>：课间闭上眼睛听三十秒，然后在卡片上写下听到的五种声音，每种配一个比喻（「粉笔在黑板上打滑，像指甲刮过瓷碗」）——只许写听觉，逼着耳朵上班。第二个，<strong>「今天第一次注意到」五分钟</strong>：放学路上找一样<strong>走了几百遍却今天才第一次注意到</strong>的东西（墙上的裂纹形状、某家店门把手上缠的胶布），写三行：它什么样、你猜它为什么在那、你以前为什么没看见它。第三个，<strong>「一句话人物」</strong>：晚饭桌上每人说一件今天的事，孩子挑最有画面的一件，睡前把它写成一张事件卡——这个练习同时训练倾听和选材，还能顺手完成全家的「素材互通」。</p>
+      <p class="ctx">三个练习共同的隐藏目标：<strong>把「记录」变成条件反射</strong>。写作策略研究的一致结论是，策略必须练到自动化才会迁移到真实写作任务里（Tsiriotakis 2016）——每天三分钟的碎片练习，练的不是那三分钟的产出，而是「遇到有画面的瞬间会下意识摸本子」这个反射弧。反射弧建成了，素材本的库存增长就不再依赖意志力。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）写作策略自动化与迁移（英文）</a> · <a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目：定时低门槛练习（英文）</a> · 蒋军晶《让学生学会写作》碎片练笔设计（书籍文字引用）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务：本周就能开始的三个任务</h3>
+      <blockquote class="q">
+        <strong>练习任务①：制作 10 张素材卡</strong>【小学中高年级·初中均可，总耗时约 40 分钟，可分五天完成】<br>
+        步骤：1）裁 10 张手掌大的卡片或活页纸；2）按「事件卡 4 张 + 五感卡 3 张 + 语言卡 3 张」的配比填写，格式照第二节；3）每张卡右上角标注日期；4）做完放进素材本第一页。<br>
+        检查表（三问）：✔ 每张卡是否只装了一件事/一种感官采样/一句话？✔ 事件卡是否都有「特写」栏且填的是动作或画面而非评论？✔ 语言卡是否都带出处和情境？
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务②：情绪素材银行开户</strong>【小学高年级·初中，约 15 分钟】<br>
+        步骤：1）照第四节表格画三行，情绪填「高兴/紧张/委屈」；2）优先存自己的真实记忆，想不起来的采访家长（「你小时候紧张什么？身体什么反应？」）；3）每格必须是可感知的物理事实，出现「很、非常、特别」等程度副词即作废重写。<br>
+        检查表（三问）：✔ 身体反应写的是部位+感觉吗（手心/喉咙/心跳）？✔ 环境细节有没有至少一种非视觉感官？✔ 动作是不是具体的小动作而非大概念？
+      </blockquote>
+      <blockquote class="q">
+        <strong>练习任务③：每周日五分钟归档</strong>【全学段，每周 5 分钟】<br>
+        步骤：1）把本周新卡摊开；2）每张卡贴标签（第六节讲标签体系）；3）挑出本周最好的一张，念给家人听；4）把「念给家人听时家人追问的细节」补写回卡上——被追问的地方，往往就是你没写够的地方。<br>
+        检查表（三问）：✔ 每张卡都有标签了吗？✔ 有没有一张卡是空的「好词好句抄写」？有就撕掉换成自己的观察。✔ 家人的追问补进去了吗？
+      </blockquote>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：本站练习设计为教学法整理（依据课标「不拘形式写下见闻感受」口径） · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">《义务教育语文课程标准（2022年版）》习作学段要求</a> · <a href="https://mwover.com/wp-content/uploads/2018/05/murray-teach-writing-as-a-process-not-product.pdf">Murray（1972）过程写作法（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、标签与检索：让素材在考场上被调出来</h2>
+    <p class="chapter-sub">存进去只是一半，取得出来才算完成闭环</p>
+
+    <article class="view">
+      <h3>三维标签体系：人物、场景、情绪</h3>
+      <p class="ctx">积累到三十张卡之后，新问题出现了：卡片太多，翻不过来。解法是给每张卡贴<strong>三维标签</strong>：「人物」（家人/同学/老师/陌生人）、「场景」（学校/家里/路上/户外/特殊场合）、「情绪」（用第四节银行的八种基础情绪）。手写符号就够：人物用 ○△□，场景写一个字（校/家/路/外），情绪写一个词。三维标签对应三类最常见的作文题：写人类题目检索「人物」维，记事类题目检索「场景」维，抒情类题目（《那一刻，我____》）检索「情绪」维——审题之后你在哪一维上找卡，题目已经告诉你了。</p>
+      <p class="ctx">每周日归档时贴标签（练习任务③），一个学期下来你会得到一张按三维分布的素材地图。这张地图还兼任<strong>诊断工具</strong>：如果发现「情绪」维里八种情绪只存了三种、「场景」维全是学校，你就精确知道了自己素材库的短板在哪——下个月的碎片练习定向补那一维即可。积累从「盲目记」升级成「看着库存记」，这是素材本第二阶段的标志。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Writing_process">Writing process：prewriting 阶段的素材组织（英文）</a> · 王荣生《写作教学教什么》「写作是交际语境下的表达」（书籍文字引用） · 本站三维标签为教学法整理（非官方模板）</div>
+    </article>
+
+    <article class="view">
+      <h3>三十秒检索演练：从题目到卡片</h3>
+      <p class="ctx">考场上没有人给你翻本子的机会，素材检索必须在头脑里完成。练法是「三十秒检索演练」：家长或同桌随口报一个作文题，你在三十秒内说出<strong>两张</strong>可用的素材卡（说出特写细节才算数，只说「我有张卡写我奶奶」不合格）。举例：题目《那个声音》——检索路径：情绪维先排除（这是感官题）→ 场景维扫一遍 → 命中五感卡「油锅噼啪+扫码提示音」（校门口）和语言卡「奶奶的拖鞋沙沙声」→ 三十秒内报出两张，演练成功。</p>
+      <p class="ctx">这个演练每周做两次，每次五个题目，全家饭桌上就能玩。它的本质是<strong>把第六节的静态索引变成动态反射</strong>：题目一进来，大脑自动跑「审题→定维度→扫卡片」三步。到第4章你会发现，细节描写的所有技术都建立在「调得出具体素材」这个前提上——公式再好，仓库是空的也组装不出东西；而到了<a href="../11-topic/">第11章</a>审题和<a href="../14-time/">第14章</a>考场时间分配，这三十秒检索直接决定你能不能在五分钟内定下写哪件事。素材积累的闭环，到这里才算真正合拢：<strong>记下来、贴标签、调得出</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）策略自动化训练（英文）</a> · <a href="https://compositionforum.com/issue/50/teach-writing-as-process.php">Composition Forum 50（2024）过程写作法的当代实践（英文）</a> · 管建刚《我的作文教学系列》讲评与素材调用（书籍文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、病句→改后：素材如何变成句子</h2>
+    <p class="chapter-sub">四栏对照：原句/问题诊断/改后/改动说明——看清「有素材」和「没素材」的差距</p>
+
+    <article class="view">
+      <h3>两组对照示范</h3>
+      <table class="cmp">
+        <tr><th>原句（没调素材）</th><th>问题诊断</th><th>改后（调用素材卡）</th><th>改动说明</th></tr>
+        <tr><td>每天放学，校门口都很热闹，充满了生活气息。</td><td>「热闹」「生活气息」是结论不是画面；全句没有一个可感知的细节，谁都能写，等于没写。</td><td>放学铃一响，校门口就醒了：炸串摊的灯比路灯亮一倍，油锅噼啪响，扫码的提示音连成一串，孜然味混着汽油味往鼻子里钻。</td><td>直接调用第2节五感卡成品：视觉（灯）、听觉（噼啪/提示音）、嗅觉（孜然混汽油）三感齐上，结论词全部删掉，让细节自己说话。</td></tr>
+        <tr><td>爸爸很辛苦，他很爱我，我很感动。</td><td>三个「很」字全是评论，没有一个事实支撑；「感动」是贴给读者的结论标签。</td><td>电动车没电那天，爸爸推车走了两公里，把车把往自己怀里拧，让车身靠他那边。到家时他衬衫后背湿了一大片，先问我：「累不累？」</td><td>调用事件卡「特写」栏（拧车把）+语言卡（「累不累？」）；感动不再需要说出口——读者自己会得出这个结论，这就是「显示而非告知」。</td></tr>
+      </table>
+      <p class="ctx">两组对照共用同一个秘密：<strong>改后的句子没有增加任何新的写作技巧，只是把素材库里已有的卡片调了出来</strong>。这就是本章反复强调「先存后写」的原因——第4章的细节公式、第5章的慢镜头，全部要以素材卡为弹药；空着手上战场，再好的枪法也没用。建议把这两组对照抄进素材本扉页，每次觉得「我写的东西没味道」时看一眼：多半不是你写得差，是你没带素材。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》：简洁与具体（英文）</a> · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎：关于素材积累的两大误区</h2>
+    <p class="chapter-sub">每一句都出自真心为孩子好的嘴</p>
+
+    <article class="view">
+      <h3>谣言粉碎：素材积累篇二连</h3>
+      <div class="fig"><img src="../assets/img-03-1.png" alt="扁平插画：朱红色调，木盒里一叠索引卡片，最上面一张画着小时钟和小手的涂鸦，奶油色背景，无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <p class="ctx"><strong>误区一：「孩子生活两点一线，哪来的素材？得带他多出去见世面。」</strong>方向反了。素材的瓶颈从来不在经历的丰富度，而在记录的颗粒度——第一节已经用写作研究的提取原理说明：没有索引的经历等于没有经历。反过来说，「两点一线」的生活里藏着海量素材：校门口炸串摊的五感、同桌的口头禅、爸爸拧车把的动作，全是现成的卡片。真正的「见世面式积累」反而是陷阱：一年一次的旅行，孩子记不住细节，回来后照样写不出——<strong>没有当场记录的经历，再昂贵也会蒸发</strong>。与其周末开车两小时去「找素材」，不如把放学路上那五百米走慢一点。</p>
+      <p class="ctx"><strong>误区二：「把好词好句抄满本子，作文自然有文采。」</strong>这是流传最广的积累迷信，第一节已经批判过它的机制（别人的形容词挂不上你的经历），这里补上证据链：写作教学研究发现，真正提升写作表现的是<strong>策略教学与对自己文本的加工</strong>（具体目标设定、修改策略、自我调节），而不是好词好句的机械抄录（Graham 团队的写作教学元分析系列结论；Tsiriotakis 2016 的策略教学实验）。至于把背熟的现成段落套进考场的做法——所谓「背范文」「套“高分模板”」——各地考试评分细则均按雷同卷处理，属于本站明确批判的红线行为。抄十页形容词，不如存十张自己的卡：前者是替别人保管文字，后者才是给自己建仓库。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）写作策略教学实证（英文）</a> · <a href="https://wac.colostate.edu/">WAC Clearinghouse：写作过程研究资料库（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标「珍视个人独特感受」：积累的官方口径是个人化而非模板化</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s9">
+    <h2 class="chapter-title">九、本章自测</h2>
+    <p class="chapter-sub">能用大白话讲给同桌听，才算学会了</p>
+    <div class="checklist">
+      <h4>📋 理解性自测（讲给说「没东西可写」的同学听试试）</h4>
+      <ul>
+        <li>Hayes & Flower 模型的三个环节是什么？「转译」依赖哪个记忆动作？</li>
+        <li>为什么说「没东西可写」是提取失败而不是库存不足？硬盘搜索的比喻怎么讲？</li>
+        <li>素材本的本质是仓库还是索引？为什么三行就够？</li>
+        <li>课标第二学段对习作的原话要求是什么？「不拘形式」四个字说明什么？</li>
+        <li>好词好句本和素材本存的东西有什么本质区别？</li>
+        <li>原子化原则是什么？为什么一张卡塞「春游全过程」等于没记？</li>
+        <li>事件卡的格式是什么？哪一栏最值钱？为什么不许写评论？</li>
+        <li>五感卡为什么禁止「好闻」「漂亮」这类评价词？</li>
+        <li>语言卡必须带哪两样东西？听到和读到两种句子的用法边界在哪里？</li>
+        <li>为什么不要买精致的带锁日记本当素材本？</li>
+        <li>记录的两个黄金时机是什么？现场速记只需要记什么？</li>
+        <li>每周建议记几张卡？断更之后的唯一规则是什么？</li>
+        <li>情绪素材银行存哪三样东西？为什么说它是第4章公式的原料库？</li>
+        <li>三维标签是哪三维？分别对应哪类作文题？</li>
+        <li>三十秒检索演练怎么做？「合格」的标准是什么？</li>
+        <li>「生活两点一线没素材」这个说法错在哪？「抄好词好句」为什么无效？</li>
+      </ul>
+    </div>
+    <div class="fig"><img src="../assets/img-03-2.png" alt="扁平插画：朱红与奶油色调，一本存钱罐形状的笔记本，投进去的纸条上只有心形、闪电、雨云的小图标，无人脸无文字" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>「没东西可写」的认知机制是提取失败而非库存不足（Hayes & Flower 1980：转译环节需要从长时记忆检索，题目线索与存储编码对不上就调不出）——素材本的本质是给记忆建外部索引，三行就够；积累只记自己的经历，抄好词好句是词语坟场，整段搬进作文属违规红线；素材卡三格式：事件卡（六要素+细节特写，特写栏只存动作画面不存评论）、五感卡（看听闻触尝五栏速记，禁评价词，直接按感官归档）、语言卡（活句子+出处+情境，对话描写与仿写的原料）；原子化原则一卡一事一细节，粒度对上题目的检索线索；工具越简单越好（小本/活页/备忘录），本子必须离手最近，拒绝精致日记本；记录两时机：现场速记三个关键词+睡前补全成卡；指标刻意保守——每周 3-5 张，断更不清零，重启永远便宜；情绪素材银行为第4章公式「情绪→身体反应+环境细节+动作链」备料，八种情绪各开户，只存可感知的物理事实不存程度副词；碎片练习三个：课间三分钟只写声音、放学路上「今天第一次注意到」、晚饭桌一句话人物；三维标签（人物/场景/情绪）对应三类题型，素材地图兼任短板诊断；三十秒检索演练把静态索引变成动态反射，是审题（第11章）与考场时间分配（第14章）的前置技能；谣言二连：「两点一线没素材」（瓶颈在记录颗粒度不在经历丰富度，没当场记录的经历再贵也蒸发）、「抄好词好句就有文采」（策略教学与自我加工才有效，Graham 元分析与 Tsiriotakis 2016 为据；「背范文」“高分模板”是违规红线）。闭环口诀：<strong>记下来、贴标签、调得出</strong>。
+  </div>
+
+  <nav class="pager">
+    <a href="../02-observe/"><span class="dir">← 第2章</span>观察：五感采集法与观察笔记</a>
+    <a href="../04-detail/"><span class="dir">第4章 →</span>细节描写：从「我很慌」到「指节攥得发白」</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第3章 · 依据《义务教育语文课程标准（2022年版）》、Hayes & Flower（1980）、Murray（1972）、Tsiriotakis（2016）、McGee（2019）、Berk（2017）、叶圣陶《叶圣陶语文教育论集》、夏丏尊与叶圣陶《文心》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列、Strunk & White《The Elements of Style》、Zinsser《On Writing Well》及相关写作教学研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺 · 不推荐任何培训机构与教辅产品 · 反对“代写”与照搬他人文字 · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7章 对话与动作：让人物自己走出来 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="tag">写作习作课 · 第7章 · 第二部分 · 怎么写出画面</div>
+  <h1>✍️ 对话与动作：让人物自己走出来</h1>
+  <p>「妈妈让我别紧张」是转述，妈妈原话里那句带着口头禅的唠叨才是现场——让人物开口，作者退后</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 课程首页</a>
+    <a href="../06-senses/">← 第6章：五感写作</a>
+    <a href="../08-psychology/">第8章：心理描写 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">转述与现场</a>
+    <a class="anchor" href="#s2">对话三功能</a>
+    <a class="anchor" href="#s3">人物指纹</a>
+    <a class="anchor" href="#s4">标签的坑</a>
+    <a class="anchor" href="#s5">格式规范</a>
+    <a class="anchor" href="#s6">对照示范</a>
+    <a class="anchor" href="#s7">练习任务</a>
+    <a class="anchor" href="#s8">谣言与自测</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明（请务必先读）：</strong>
+    <ul style="margin:6px 0 0;padding-left:20px;">
+      <li>本站内容仅供<strong>语文学习与家庭教育参考</strong>，不构成升学承诺，不保证提分；写作能力的提升依赖持续练习，个体差异很大。</li>
+      <li>方法需按<strong>学段适配</strong>：小学阶段以句段练习为主，初中阶段逐步引入完整篇章与考场策略；文中每个练习均标注建议学段。</li>
+      <li>本站<strong>不推荐</strong>任何培训机构、作文班、教辅产品或付费课程；对“高分模板”“作文速成班”类营销只批判、不传播。</li>
+      <li>本站<strong>反对“代写”与“抄袭”</strong>：家长和老师的角色是引导与点评，动笔的必须是孩子自己。</li>
+      <li>各节观点均标注来源，以来源原文为准；研究结论如有争议或后续修正，文中如实说明。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>本章目标（约25分钟）：</strong>学完你能——①分清「转述」与「直接引语」的天壤之别，理解那条老师评语里「没有写老师讲评的时候，具体说了什么」问的到底是什么；②掌握对话的三个功能：推进情节、暴露性格、代替叙述；③学会用「人物指纹」（口头禅、语气词、句子长短）让每个人物说话像他自己；④戒掉满篇「他生气地说」，改用动作标签；⑤掌握对话书写的格式规范（提示语三位置、换行规则）；⑥完成三个练习，包括全章压轴的「只用对话写一场戏」。
+    <p style="margin:8px 0 0;"><strong>怎么用本章：</strong>本章直接回应老师评语的第一个问题——「没有写老师讲评的时候，具体说了什么？」评语批评的就是「转述癖」：学生写「老师批评了我」，却不肯把老师那句原话抄下来。先读第一、二节明白为什么原话值钱，再读第三、四节学怎么让人物的话「像他」，第五节的格式规范写对话前扫一眼即可。练习三「只用对话写一场戏」是本课程难度最高、收益也最高的练习之一，建议放在读完第8章心理描写之后回头做第二遍。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、转述与现场：评语第一个问题在问什么</h2>
+    <p class="chapter-sub">「老师说了什么」和「老师说」之间，隔着一整个现场</p>
+
+    <article class="view">
+      <h3>评语的第一个问题：具体说了什么？</h3>
+      <p class="ctx">回到那条贯穿全课的老师评语，它的第一个问题是：<strong>「没有写老师讲评的时候，具体说了什么？」</strong>学生的原文大概率是这样的：「老师把我叫到办公室，批评了我，让我以后认真听讲。」信息都交代了——人物、地点、事件、结果——但整段话像一份案情通报，没有现场。老师问的「具体说了什么」，问的就是那份通报里被省略掉的东西：那句让你「心里被点醒」的原话，一个字是什么样子？是「你最近的作业，字越写越挤，是不是心也越写越挤？」还是「我不批评你，我就问你一句，你自己满意吗？」——原话有原话的质地：它带着说话人的语气、习惯、脾气，甚至带着那个下午办公室里的空气。<strong>转述是把一段活对话压扁成一句死信息；直接引语是把那句话原样端给读者，让读者亲耳听。</strong></p>
+      <p class="ctx">「压扁」丢失了什么？至少三样。第一，<strong>信息量</strong>：原话里的具体所指（「字越写越挤」指向作业本，「心里被点醒」才有落点），转述里只剩抽象结论（「让我认真听讲」）。第二，<strong>人物</strong>：怎么说话，就是什么人——同样表达不满，有的老师用反问，有的老师用沉默，有的老师先叹一口气；转述把这些全部抹平成「批评了我」。第三，<strong>戏剧性</strong>：对话天然是「一来一回」的结构，自带节奏和悬念（老师说完那句，「我」接了什么？没接？），转述则把一来一回压成单方面宣告，戏就没了。写作教学里常说「让场景说话」（scene versus summary，场景对概括）：能用场景呈现的，不要用概括转述——这与第4章「结果陈述→过程描写」是同一条原则在人物语言上的应用：<strong>「老师批评了我」是结果陈述，老师那句原话才是过程。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——场景呈现对概括转述（scene vs. summary）的原理 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue（对话）条目（英文）</a>——叙事中对话的功能综述</div>
+    </article>
+
+    <article class="view">
+      <h3>什么时候必须上原话，什么时候可以转述</h3>
+      <p class="ctx">当然，不是所有对话都值得原样引用——作文篇幅有限，全部对话逐字实录会变成录音整理稿。取舍的规则很清晰：<strong>凡是「改变了事情走向」或「改变了人物内心」的话，必须上原话；凡是仅仅提供信息的话，可以转述。</strong>老师那句让「我」心里被点醒的话，改变了内心，必须原话直引；而「妈妈说明天会下雨让我带伞」，只提供信息，转述足够。用第5章的慢镜头语言说：原话就是对话里的「关键五秒」，值得放慢；其余对话是过场，快进即可。一篇六百字的作文，通常只需要一到两处原话直引——但那两处，必须是全篇的戏眼。</p>
+      <p class="ctx">这条规则还有一个反向用途：<strong>检查你的作文里「最该有原话的位置」有没有原话。</strong>方法：找出全文情绪转折点（被点醒的瞬间、冲突爆发的瞬间、和解的瞬间），看那个位置写的是直接引语还是转述——如果转折点上是「他说了很多，我很感动」，那就是把戏眼写瞎了。这个检查可以并入第13章的修改清单。顺带说清一个常见顾虑：写「原话」不等于必须一字不差地还原真实——记忆允许合理的加工与压缩（把十分钟的谈话提炼成最关键的三句），这与编造有本质区别：加工的是你自己真实经历的呈现方式，编造的是无中生有的经历。课标要求「真情实感」，反对的是假事假情，不是艺术加工；想象类习作（课标第二学段明确鼓励「写下见闻、感受和想象」）里的对话则完全允许虚构——写谁在说话、为什么这么说，逻辑自洽、符合人物即可。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：《义务教育语文课程标准（2022年版）》「见闻、感受和想象」「真情实感」（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>） · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）——写作是交际语境下的表达：谁在说、对谁说、为什么说，决定怎么说</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、对话的三个功能：每句话都要打工</h2>
+    <p class="chapter-sub">推进情节、暴露性格、代替叙述——写下一句对话之前，先问它在干哪份活</p>
+
+    <article class="view">
+      <h3>功能一与功能二：推情节，露性格</h3>
+      <p class="ctx"><strong>功能一：推进情节。</strong>好对话是带齿轮的——每一轮来回都让事情往前走一步：提出请求、拒绝、加码、妥协、翻脸、缓和。检验方法：删掉这句对话，后面的情节还成立吗？成立，说明这句是废话。比如「你吃了吗？」「吃了。」——除非这问答里藏着戏（「吃了」两个字说得含含糊糊，妈妈立刻察觉他其实在学校饿了一天），否则就是占行数。<strong>功能二：暴露性格。</strong>对话是人物性格最诚实的供词：急性子的人句子短、爱打断；谨慎的人先说「我不是那个意思」再表达意见；爱面子的人受了委屈偏说「没事没事」。写作教学的老话叫「言为心声」：作者不必介绍「小明是个直性子」，让小明开口说三句话，读者自己就认识了小明。这也是对话比外貌描写高效的地方——外貌是静态标签，语言是动态表演。</p>
+      <p class="ctx">两个功能经常同时发生，而初学者最容易忽略的恰是功能二。学生作文里的对话普遍有一种「播音腔」：所有人说话都像同一个人，语言干净、完整、礼貌、没有个性——「妈妈，这次考试我没考好，我下次一定努力。」「孩子，没关系，失败是成功之母。」这段对话情节上是「汇报与安慰」，性格上是「零信息」：这位妈妈和天下所有作文里的妈妈没有区别。对照一下真实生活里的妈妈可能怎么说：「多少分？」（先问分数，直入主题型）／「饿不饿？先吃饭。」（回避型，心疼大于责备）／「我早就跟你说过吧！」（爆发型，说完自己又后悔）——三种回答，三个妈妈，三段完全不同的戏。<strong>把「播音腔」改回「人话」，是对话描写最快的提分点。</strong></p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a>——叙事对话的塑造人物功能 · Stephen King, <em>On Writing</em>, Scribner, 2000（出版社页反爬，文字引用）——"put your characters in a situation and let them talk"：让人物自己开口，作者不要替他们说</div>
+    </article>
+
+    <article class="view">
+      <h3>功能三：代替叙述——「妈妈说别紧张」不如写妈妈说的话</h3>
+      <p class="ctx">第三个功能最容易被低估：<strong>对话可以接管叙述的工作。</strong>比较两个版本。版本A（叙述包办）：「比赛前我很紧张，妈妈安慰我说不要紧张，要相信自己，还说重在参与。」版本B（对话接管）：「检录的时候，我的手心全是汗。妈妈隔着栏杆喊：'紧张啥？你紧张，腿就不听你的了。'见我不动，她又补了一句：'跑你的，我在终点等你——跑成啥样都等你。'」版本A里，妈妈的安慰被压缩成三个四字短语（不要紧张、相信自己、重在参与），全是公共语言，没有一个字属于这位妈妈；版本B里，两句原话有她自己的逻辑（紧张会让腿不听使唤——一听就是练过体育的人说的话）、有她自己的方式（先拆解紧张，再给一个具体的承诺：终点等你）。<strong>叙述给的是信息，对话给的是人。</strong>版本B甚至顺便完成了环境（检录处、隔着栏杆）和身体反应（手心全是汗——第4章公式）的交代。</p>
+      <p class="ctx">「代替叙述」还有一个隐蔽的好处：<strong>它天然克制抒情。</strong>学生作文的常见病是叙述到动情处忍不住站出来喊「啊，母爱真伟大」——而对话写法把作者藏到幕后，让原话自己动情：「跑成啥样都等你」七个字的分量，远超十句「母爱如山」。这就是第6章五感、第4章细节公式与本对话技术的共同底层逻辑：<strong>作者退后一步，把判断权交给读者，感动才会由读者自己发生</strong>——自己发生的感动，才是「感情真实」。请把这个版本B存进素材本的语言卡：它是「对话代替叙述」的标准教具。</p>
+      <div class="fig"><img src="../assets/img-07-1.png" alt="两把空椅子相对而立，各自上方的对话气泡里只有闪电与雨云小图标的扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——作者退场、细节在场 · 《义务教育语文课程标准（2022年版）》「感情真实」（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、说话方式是人物的指纹</h2>
+    <p class="chapter-sub">口头禅、语气词、句子长短——三个变量，让每个人物一开口就「是他本人」</p>
+
+    <article class="view">
+      <h3>三个指纹变量：口头禅、语气词、句长</h3>
+      <p class="ctx">现实里我们为什么能「听声辨人」？因为每个人的语言习惯是稳定的：有人句句带「就是说」，有人爱用感叹词「哎呀」，有人说话永远半句半句往外蹦，有人一件事要铺垫三层。写作里把这个现象提炼成三个可操作的变量。<strong>变量一：口头禅。</strong>给重要人物配一个高频习惯语——爷爷的「慢慢来，不急」、同桌的「你猜怎么着」、班主任的「这道题我讲过多少遍了」。口头禅每次出现都是人物的签名，出现三次，读者就记住这个人了。注意口头禅要「配人」：它应当与人物的身份、性格、经历对得上（退休教师的口头禅和外卖小哥的口头禅不会相同），乱贴会假。<strong>变量二：语气词与称呼。</strong>「嗯」「哦」「哎呀」「行吧」「得了吧」——语气词是情绪的标点：同样是答应，「好」是干脆，「好吧」是勉强，「行行行」是不耐烦。称呼也是指纹：叫「妈」「妈妈」「老妈」「母亲大人」，是四种母子关系。<strong>变量三：句子长短与结构。</strong>急性子说短句、省略主语（「走了。」「快点。」）；慢性子爱用「这个嘛……」「其实吧……」开头；文化高的长辈可能引经据典，小孩子则常常逻辑跳跃、一句话里塞三个话题。三个变量调好，「播音腔」自动消失。</p>
+      <p class="ctx">指纹技术的最佳练习对象是<strong>你身边的真人</strong>：爷爷奶奶、爸爸妈妈、班主任、最好的朋友——每个人挑一句他们真实说过的、最有代表性的话记进语言卡（第3章），标注「这句话只有他会这么说，因为……」。积累十张这样的语言卡，你笔下的人物就有了十套现成的声纹。这里要立一条道德边界：<strong>记录真实对话只用于写作练习，涉及他人隐私的内容不写进公开的作文</strong>；写进作文时做加工变形（换称呼、换场景、合并人物）既是保护，也是虚构写作的常规操作——真实提供质地，变形提供自由。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Stephen King, <em>On Writing</em>（文字引用）——好对话的标准是「听起来像真人在说话」 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a>——对话与人物塑造（characterization）的关系 · 蒋军晶《让学生学会写作》，中国人民大学出版社（文字引用）——从真实生活语言中采集习作素材的任务设计</div>
+    </article>
+
+    <article class="view">
+      <h3>示范：同一件事，四种人说四种话</h3>
+      <p class="ctx">做一个思想实验：「我」把家里的杯子打碎了，四种亲人分别会怎么说？<strong>奶奶（心疼孙子型）</strong>：「哎哟我的乖孙，手划破没有？碎了就碎了，岁岁平安，别动别动，奶奶来扫。」——语气词打头，先问人后问物，口头禅式的吉利话。<strong>爸爸（工程师型）</strong>：「怎么碎的？」（蹲下来看碎片）「从桌沿滑下去的？……行，知道了。以后杯子往里放十公分。」——短句，先问原因，给出可执行的改进项，没有一个情绪词。<strong>妈妈（操劳型）</strong>：「我刚跟你说过多少回了！说了八百遍了！杯子放桌边上！你听见了吗？……算了算了，你去写作业吧，我来收拾。」——句子密、感叹号多、责备到一半自己熄火，心疼藏在「我来收拾」里。<strong>五岁的妹妹（学舌型）</strong>：「哇——碎了！哥哥把杯子弄——碎——了！」——拖长音、重复、纯粹的事件播报员。四个人说的都是「杯子碎了」这一件事，但没有一句话可以互换。<strong>把这段示范抄进素材本，它是「指纹三变量」的活教材。</strong>你写作文时未必用得上这四种人，但「先想清楚这个人怎么说话，再让他开口」这个动作，从今往后每次写对话都要做。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：夏丏尊、叶圣陶《文心》，开明书店1934年初版（文字引用）——以故事体示范「语言的性情」：什么人说什么话 · 《义务教育语文课程标准（2022年版）》第四学段「力求表达自己对自然、社会、人生的感受、体验和思考」（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）——人物语言的差异化正是「体验」的还原</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、对话标签的坑：戒掉「他生气地说」</h2>
+    <p class="chapter-sub">副词标签是懒惰的声明，动作标签是诚实的证据</p>
+
+    <article class="view">
+      <h3>为什么「生气地说」不合格</h3>
+      <p class="ctx">学生写对话，最常见的配套设施是副词标签：「他生气地说」「她高兴地说」「我伤心地说」。问题出在哪里？出在它违反了全课反复出现的那条铁律——<strong>它是情绪的结果陈述。</strong>「生气地」三个字是作者递给读者的结论，而不是现场证据；读者被迫相信作者在生气，却没有看见生气。对比动作标签：「他把筷子拍在桌上。」——没有一个字提到生气，但拍筷子的动作、声音（第6章听觉）都在作证。这正是 Stephen King 在《写作这回事》里那条著名主张的用武之地：他反对副词堆砌，认为「通往地狱的路是副词铺就的」——对话标签越依赖副词，说明对话本身越没有把情绪演出来。<strong>治本的办法是让引号里的话自己带情绪</strong>（「你再说一遍？」四个字比「他愤怒地质问」更愤怒），治标的办法是<strong>用动作代替副词</strong>：不说怎么说，只说说话人在干什么。</p>
+      <p class="ctx">动作标签的取材，就是第4章的身体反应库和第6章的感官库：攥紧、松开、拍、摔、搓手、别过脸、盯着桌面、把纸揉成团、声音低下去、说到一半停住、清了清嗓子。两个使用要领：<strong>要领一，动作要与情绪同构</strong>——「他高兴地把门摔上」除非写喜剧，否则动作与情绪打架；<strong>要领二，动作要选「泄露性」的</strong>——最能暴露情绪的动作往往是人物自己没意识到的那个（嘴上说「我不生气」，手却把遥控器捏得咯咯响），泄露比声明有力十倍。最后一个技术点：<strong>标签不是每句都要有。</strong>两人对话一旦节奏起来，完全可以整段不挂标签——谁在说话，靠语气、口头禅（第三节的指纹）和上下文交代。满页「他说」「她说」和满页副词一样，都是把读者当需要不断报站名的乘客。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Stephen King, <em>On Writing</em>, Scribner, 2000（文字引用）——副词批判与对话标签主张 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——情绪的证据化呈现 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a>——attribution（说话人标注）的省略惯例</div>
+    </article>
+
+    <article class="view">
+      <h3>标签升级三级阶梯：从副词到动作到无标签</h3>
+      <p class="ctx">把本节内容整理成一个可练习的阶梯，每一级都有明确的升级动作：<strong>第一级（不合格）：副词标签。</strong>「'你怎么又没写完？'老师严厉地说。」——诊断：情绪被声明。<strong>第二级（合格）：动作标签。</strong>「'你怎么又没写完？'老师把作业本轻轻放在我桌上，封面朝上——那页角的折痕她抚平过。」——升级点：动作替代副词，且「轻轻放」「抚平折痕」泄露了严厉底下的另一层情绪（惋惜），信息量反超原句。<strong>第三级（优秀）：指纹对话，无标签。</strong>「'这道题，我讲过多少遍了？'作业本轻轻落在我桌上，封面朝上。页角的折痕是抚平过的。'……八遍。'我盯着桌面。'你还数着。'她叹了口气，'数着就好。'」——升级点：口头禅（「我讲过多少遍了」）交代了身份，动作细节（轻放、抚平）替代全部标签，一来一回的节奏自带紧张与缓和的交替，「数着就好」三个字完成了人物的反转（严师底下是耐心）。三级阶梯的爬法：<strong>初稿允许自己停在第一级，修改时（第13章）逐句升到第二级，重点段落再试试第三级</strong>——不要指望一步登顶，阶梯的意义就是让「升级」成为每次修改里可执行的动作。</p>
+      <div class="fig"><img src="../assets/img-07-2.png" alt="一双筷子拍在桌面上、以冲击线代替对话气泡的极简扁平插画" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：管建刚《我的作文教学系列》，福建教育出版社（文字引用）——修改教学：把「改好」拆成可执行的升级动作 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · <a href="https://eric.ed.gov/?id=EJ1125149">Berk (2017)（英文）</a>——分级的、可达成的小目标改善写作态度</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、格式规范：提示语三位置与换行规则</h2>
+    <p class="chapter-sub">技术细节一次讲清，从此对话的卷面分不再冤枉丢</p>
+
+    <article class="view">
+      <h3>提示语三位置：前、中、后</h3>
+      <p class="ctx">统编语文教材从低年级起就系统训练「对话的提示语」（即交代谁在说话的那部分文字），三个位置各有用途。<strong>位置一：提示语在前。</strong>「妈妈压低声音说：'嘘，奶奶刚睡着。'」——先报说话人再上原话，适合初次登场或需要强调说话方式的场合；提示语在前时用冒号。<strong>位置二：提示语在中。</strong>「'这道题，'老师停顿了一下，'你其实会做。'」——把一句话从中切开，插入的提示语天然制造了停顿与悬念（上例里「停顿了一下」正是戏所在）；提示语在中时用逗号，不用冒号。<strong>位置三：提示语在后。</strong>「'跑成啥样都等你。'妈妈隔着栏杆喊。」——原话先行、身份后揭，适合制造「先闻其声」的效果；提示语在后用句号。三个位置轮换使用，对话的节奏就不会单调。此外两条硬规则：<strong>①一人一段，换人必换行</strong>——这是对话排版的第一铁律，两个人来回十轮挤在一段里，读者会数不清谁是谁；<strong>②引号配对</strong>——被提示语切开的句子（位置二），前后两部分各自加引号。标点细节（冒号、逗号、句号的选择）以教材与课标口径为准，考试阅卷对标点规范有明确要求，这部分是纯粹的「不该丢的分」。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.pep.com.cn/">人民教育出版社官网</a>——统编语文教材对话提示语训练序列（三年级起；深链反爬，以官网检索为准） · 《义务教育语文课程标准（2022年版）》（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）</div>
+    </article>
+
+    <article class="view">
+      <h3>常见格式病自查表</h3>
+      <p class="ctx">把学生对话写作里最高发的格式病列成一张自查表，每次写完对话扫一遍（也可以并入第13章修改清单）：</p>
+      <table class="tb">
+        <tr><th>格式病</th><th>症状</th><th>处方</th></tr>
+        <tr><td>一锅烩</td><td>两个人的多轮对话挤在同一段，谁说的要靠猜</td><td>换人必换行，一人一段</td></tr>
+        <tr><td>标签轰炸</td><td>每句都挂「他说」「她说」，或全部用副词标签</td><td>指纹与动作接管身份和情绪后，删掉大部分标签（第四节三级阶梯）</td></tr>
+        <tr><td>标点错位</td><td>提示语在中却用冒号；提示语在后却用逗号；引号不配对</td><td>记口诀：前冒号、中逗号、后句号；切开的话两截各自加引号</td></tr>
+        <tr><td>录音稿病</td><td>把真实对话一字不落全抄上（「嗯」「啊」「那个」连篇），拖垮节奏</td><td>只留「改变走向」的话（第一节取舍规则），口水话删除或压缩</td></tr>
+        <tr><td>播音腔</td><td>所有人说话都像同一个广播员，礼貌、完整、无个性</td><td>回到第三节的指纹三变量，先给每个人物定声纹再开口</td></tr>
+      </table>
+      <p class="ctx">五种病里，「录音稿病」和「播音腔」是一对镜像病：一个抄得太真（未经加工的真实），一个编得太假（缺乏质感的规范）。好的对话写作正好落在两者中间：<strong>用真实的质地（口头禅、语气词、不完美的句式），经过取舍的加工（只留打工的话），服务于明确的意图（推情节、露性格）。</strong>这句话可以作为本章的总纲背下来。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：William Zinsser, <em>On Writing Well</em>（<a href="https://en.wikipedia.org/wiki/On_Writing_Well">条目（英文）</a>）——删掉不承担工作的语言 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a>——叙事对话经艺术加工而非实录 · 王荣生《写作教学教什么》，华东师范大学出版社2014（文字引用）</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、病句→改后：两组完整对照</h2>
+    <p class="chapter-sub">第一组治「转述癖」，第二组治「副词标签」——本章两大病灶各来一次手术</p>
+
+    <article class="view">
+      <h3>对照示范：从案情通报到现场直播</h3>
+      <table class="tb">
+        <tr><th style="width:22%;">原句</th><th style="width:20%;">问题诊断</th><th style="width:34%;">改后</th><th>改动说明</th></tr>
+        <tr><td>老师把我叫到办公室，耐心地教育了我，让我明白要认真对待学习。</td><td>纯转述：评语第一个问题（具体说了什么）没有答案；「耐心」「教育」「明白」全是结论词；办公室没有现场。</td><td>办公室里只有我们两个人，暖气片咔哒咔哒地响。老师没有翻我的卷子，只是问：「你最近写作业的时候，心里在想什么？」我张了张嘴，没出声。她又说：「不用现在回答我。哪天你想明白了，来告诉我。」——就是那句「你心里在想什么」，把我问醒了。</td><td>四招齐用：①原话直引（两句，都是「改变内心」级别的话——第一节取舍规则）；②环境音（暖气片咔哒声——第6章听觉，写办公室的安静与压力）；③动作标签接管副词（「没有翻卷子」「张了张嘴」代替「耐心地」）；④保留一句叙述收束（「把我问醒了」），直接回应评语「哪句话点醒你」。</td></tr>
+        <tr><td>「你怎么回事！」妈妈生气地说，「说了多少次了！」我伤心地说：「我知道了。」</td><td>副词标签轰炸（生气地、伤心地）；对话有音量没内容；「我」的「我知道了」是典型的敷衍式台词，没有戏。</td><td>「你怎么回事！」妈妈的声音比平时高了半截，「说了多少次了！」我没接话，把卷子往书包里塞，塞了两次才塞进去。「行了，」她的声音忽然低下去，「吃饭吧。」</td><td>三招：①副词标签全部换成证据（「声音比平时高了半截」是可听见的生气；「低下去」是熄火）；②「我」的回应改成动作（卷子塞两次才塞进去——慌乱与羞愧的身体证据，第4章公式）；③「行了，吃饭吧」四个字代替千言万语——中国家庭的和解从不道歉，指纹对话（第三节）的典型样本。</td></tr>
+      </table>
+      <p class="ctx">请特别留意第一组示范与老师评语的呼应：评语问「没有写老师讲评的时候，具体说了什么？我听到哪一句话心里被点醒？」——改后段落给出了完整的答卷：具体说的话有了（两句原话），被点醒的那句有了（「你心里在想什么」），点醒的过程也有了（张了张嘴没出声→那句话把我问醒了）。<strong>这条评语问的每一个问题，本章都给了技术答案。</strong>第二组示范则示范了对话与动作、感官的联动：对话从来不是孤立的技术，它调用第4章的身体反应、第6章的听觉、本节的动作标签——描写技术是一张网，拉动任何一根线，整张网都会动。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a> · Stephen King, <em>On Writing</em>（文字引用）——对话以真实口语质地为尚 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s7">
+    <h2 class="chapter-title">七、练习任务：从偷听到无叙述</h2>
+    <p class="chapter-sub">三个练习难度递增：先采集真实语言，再练动作标签，最后挑战「只用对话写一场戏」</p>
+
+    <article class="view">
+      <h3>练习任务一：「偷听记录」（约10分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①在家人知情同意的前提下（合规与礼貌是前提，偷偷录下别人的话不可取），记录家人之间的一段真实对话，十行左右——饭桌上、接送路上、电话里都可以；②如实记下每句话，包括语气词和不完整的句子；③记录后，为每位说话人标注一条「指纹」：口头禅是什么？语气词习惯？句子偏长还是偏短？④把最有代表性的两句话摘进素材本语言卡，注明「这句话只有他会这么说，因为……」。<br><br>
+        <strong>检查表（三问）：</strong>记录里有没有至少两处「书面语不会这么写」的真实表达（语气词、半截话、重复）？每个人物的指纹是不是不一样（如果两个人听起来像一个人，是记录不细还是真的像）？语言卡上那句「因为……」填出来了吗？<br>
+        <strong>隐私边界：</strong>练习记录只留在自己素材本里；写进作文前按第三节的边界做加工变形（换称呼、换场景、合并人物）。
+      </blockquote>
+      <p class="ctx">这个练习是对抗「播音腔」的根治法：播音腔的根源不是不会编，而是<strong>采集得太少</strong>——真实语言的库存不够，只好用书面套话顶替。坚持每周记录一段，一个月后你的语言卡里就有八套活人声纹；写作文需要谁出场，就从库存里调。这也是第3章素材积累体系里「语言卡」的主要进货渠道。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：夏丏尊、叶圣陶《文心》（文字引用）——从生活中采集语言素材的经典主张 · <a href="https://en.wikipedia.org/wiki/Dialogue">Dialogue 条目（英文）</a>——自然对话的特征（停顿、重复、不完整句）</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务二：「标签两版对照」（约12分钟）【小学高年级／初中】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①选一个简单冲突（弟弟弄坏了我的东西／同桌越过了三八线／爸爸又要加班），写一段六到八轮的对话，<strong>版本A</strong>：每句都挂副词标签（生气地说、委屈地说、无奈地说）；②<strong>版本B</strong>：同样的情节重抄一遍，规定：全篇不许出现「××地说」，情绪全部由引号内的话＋动作标签承担；③两版并排读一遍，各挑出你认为最有力的一句，在旁边写一句「为什么它有力」。<br><br>
+        <strong>检查表（三问）：</strong>版本B里每个情绪是否都能找到「证据」（动作或原话）？版本B里是否至少有一处「泄露性动作」（人物没意识到的那个）？两版对比后，你能说出副词标签到底偷懒在哪里吗？<br>
+        <strong>进阶（初中）：</strong>再写<strong>版本C</strong>：删掉全部标签（含动作标签），只靠指纹和上下文让读者分清谁在说话——这是第四节三级阶梯的第三级。
+      </blockquote>
+      <p class="ctx">两版对照是本章最有效的「体感训练」：道理（副词是声明、动作是证据）十秒就能听懂，但只有亲手把同一场戏写两遍，手腕才会记住差别。把版本B存进档案袋——下次初稿里出现「生气地说」，你会条件反射地想起这次对照。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Stephen King, <em>On Writing</em>（文字引用）——副词批判的实操化 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis (2016)（英文）</a>——策略教学配合对比练习的效果</div>
+    </article>
+
+    <article class="view">
+      <h3>练习任务三：「只用对话写一场戏」（约15分钟）【初中为主／小学高年级挑战】</h3>
+      <blockquote class="q">
+        <strong>步骤：</strong>①题目规定：<strong>「考砸了，不敢告诉家长」</strong>——写一场「我」和妈妈的戏，<strong>全篇只许用对话（含动作标签），一句叙述、一句心理描写都不许出现</strong>，十五行以内；②动笔前先做两件事：给妈妈定指纹（她是直入主题型、回避型还是爆发型？口头禅是什么？）；想清楚「不敢说」要怎么泄露——是通过「我」的岔开话题？还是通过一个动作（把卷子压在书包最底层）？③写完对照检查表自查；④（可选）一周后读完第8章心理描写，回头给这场戏加三行内心戏，体会「纯对话版」与「对话＋心理版」各自的得失。<br><br>
+        <strong>检查表（三问）：</strong>删掉标题只看正文，读者能不能猜出「考砸了」和「不敢说」两件事？妈妈的话有没有她的指纹（换一个人的妈妈还能说同样的话吗）？全篇有没有出现「紧张」「害怕」「心虚」这类情绪结论词？（规定：一个都不许有）<br>
+        <strong>提示：</strong>卡住时回想第六节改后示范的第二组——「把卷子往书包里塞，塞了两次才塞进去」，动作会替你说出所有不敢说的话。
+      </blockquote>
+      <p class="ctx">这是全课程难度最高的练习，但它训练的正是本章的终极目标：<strong>作者彻底退场，让人物自己走出来。</strong>「不许叙述」的规定看起来苛刻，实则是刻意练习的「限制法」——就像篮球训练蒙眼运球，限制越强，被针对的能力长得越快。绝大多数人第一次写会忍不住偷加叙述句，删掉重来的过程本身，就是「对话能承担多少叙事工作」的最好教学。完成的版本请务必存入档案袋：它将是你写作能力最直观的展品。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：Peter Elbow, <em>Writing Without Teachers</em>, OUP（<a href="https://en.wikipedia.org/wiki/Freewriting">Freewriting 条目（英文）</a>）——限制条件下的写作练习释放表达 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell 条目（英文）</a>——「纯呈现」写作的极端形态 · <a href="https://openjournals.utoledo.edu/index.php/learningtoteach/article/view/305">McGee (2019)（英文）</a>——挑战性小任务与自我效能感</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s8">
+    <h2 class="chapter-title">八、谣言粉碎与本章自测</h2>
+    <p class="chapter-sub">三个关于对话描写的流行误解，拆掉再自测</p>
+
+    <article class="view">
+      <h3>谣言粉碎：对话写作的三个误解</h3>
+      <p class="ctx"><strong>谣言一：「对话多是在凑字数。」</strong>不成立——凑字数的不是对话，是「录音稿病」（第五节）：无取舍的口水对话才是凑数。经过取舍规则（只留改变走向的话）筛选的对话，是全文信息密度最高的部分：它同时推进情节、塑造人物、代替叙述（第二节三功能）。真正凑字数的写法恰恰是不用对话的那种——「我们聊了很久，聊得很开心」一句话占了位置却零信息。<strong>谣言二：「写对话要文雅，不能写大白话。」</strong>正好相反。对话的生命力在于「像真人说话」：书面腔的对话（「母亲，请您息怒」）是Cosplay，不是写作；King 的标准是听起来像真话，教材的口语交际训练也以真实语境为准。文雅与否看人物——写语文老师可以文雅，写菜市场摊主就得是摊主的语言；<strong>「像这个人」永远优先于「像好词好句」。</strong><strong>谣言三：「原话记不清了，就不能写直接引语。」</strong>不成立，这是对「真实」的机械理解。第一节的边界已经讲清：记忆允许合理的加工与压缩——把十分钟谈话提炼成最关键的三句、把模糊的语气还原成符合人物的说法，都是正当的写作加工；这与「编造」的区别在于，加工围绕你自己真实的经历与真实的情感逻辑，编造则是无中生有地捏造事件与感情去套「感人模板」——后者才是课标「真情实感」和本站红线共同反对的对象。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：Stephen King, <em>On Writing</em>（文字引用） · William Zinsser, <em>On Writing Well</em>（<a href="https://en.wikipedia.org/wiki/On_Writing_Well">条目（英文）</a>）——自然语言优于装腔语言 · 《义务教育语文课程标准（2022年版）》「真情实感」「见闻、感受和想象」（<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">教育部印发通知原文</a>）</div>
+    </article>
+
+    <div class="checklist">
+      <h4>📋 本章自测（讲给朋友听试试）</h4>
+      <ul>
+        <li>老师评语的第一个问题「具体说了什么」批评的是哪种写作习惯？转述比直接引语至少丢了三样什么东西？</li>
+        <li>「必须上原话」的取舍规则是什么？怎么用它检查自己作文的「戏眼」位置？</li>
+        <li>记忆加工与编造的区别在哪里？课标为什么同时要求「真情实感」又鼓励「想象」？</li>
+        <li>对话三功能分别是什么？各自的一秒检验法是什么？</li>
+        <li>「播音腔」的症状是什么？三种不同性格的妈妈对同一句「我没考好」分别可能怎么回答？</li>
+        <li>人物指纹的三个变量是什么？口头禅为什么要「配人」？</li>
+        <li>记录真实对话的道德边界是什么？写进作文前要做哪些加工？</li>
+        <li>为什么「生气地说」不合格？「泄露性动作」指什么样的动作？</li>
+        <li>标签三级阶梯的三级分别是什么？爬阶梯的正确节奏（初稿停在哪级、修改升到哪级）？</li>
+        <li>提示语三位置的标点口诀是什么？对话排版的第一铁律是什么？</li>
+        <li>五种常见格式病里，哪两种互为镜像？好的对话写作落在什么位置？</li>
+        <li>两组病句→改后示范各用了本章哪几招？第一组是怎么逐条回应老师评语的？</li>
+        <li>「偷听记录」练习为什么必须先取得家人知情同意？</li>
+        <li>「只用对话写一场戏」的限制法训练逻辑是什么？为什么规定一个情绪词都不许出现？</li>
+        <li>三个对话谣言（凑字数／要文雅／记不清不能写）各自的批驳要点是什么？</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>📌 本章要点速览：</strong>老师评语第一问（「具体说了什么」）直指学生作文的「转述癖」：转述把活对话压扁成死信息，丢掉信息量、人物与戏剧性三样东西；取舍规则——改变了事情走向或人物内心的话必须原话直引，一篇作文一到两处戏眼即可；记忆允许合理加工压缩，加工与编造的分界是「真实经历与情感逻辑」。对话三功能：推进情节（删掉后情节仍成立即废话）、暴露性格（言为心声，开口即供词）、代替叙述（「跑成啥样都等你」胜过「母爱如山」，且天然克制抒情）。人物指纹三变量：口头禅（要配人）、语气词与称呼（情绪的标点）、句长与结构；素材来源=每周一段知情同意下的「偷听记录」＋语言卡。对话标签三级阶梯：副词标签（不合格，情绪被声明）→动作标签（合格，优先「泄露性动作」）→无标签指纹对话（优秀）；初稿可停第一级，修改升第二级，重点段冲第三级。格式规范：提示语前冒号、中逗号、后句号，换人必换行，引号配对；五种格式病自查表（一锅烩／标签轰炸／标点错位／录音稿病／播音腔）。两组四栏对照示范：办公室谈话（原话＋暖气片声＋动作标签，逐条回应评语）与母子冲突（声音高低替代「生气地」＋卷子塞两次）。三个练习：偷听记录、标签两版对照、只用对话写「考砸了不敢说」十五行（全课最难，存档）。三个谣言已拆：对话≠凑字数（取舍后的对话信息密度最高）、对话≠文雅（像这个人优先于像好词好句）、记不清≠不能直引（合理加工正当，编造套模板才是红线）。下一章：<a href="../08-psychology/">第8章·心理描写</a>——对话管住了嘴，这一章打开心里：犹豫链三转折，把「我心想」写成一场内心戏。
+  </div>
+
+  <nav class="pager">
+    <a href="../06-senses/"><span class="dir">← 上一章</span>第6章 · 五感写作：视觉之外的听觉嗅觉触觉</a>
+    <a href="../08-psychology/"><span class="dir">下一章 →</span>第8章 · 心理描写：写出心里的弯弯绕绕</a>
+  </nav>
+
+</main>
+
+<footer>
+  <p>写作习作课 · 第7章 · 依据教育部《义务教育语文课程标准（2022年版）》、统编语文教材（人民教育出版社）对话提示语训练序列、Show don't tell 叙事技法研究、Dialogue 叙事对话研究、Stephen King《On Writing》、Zinsser《On Writing Well》、Peter Elbow《Writing Without Teachers》、Tsiriotakis (2016) 写作策略教学研究、Berk (2017) 与 McGee (2019) 写作焦虑研究、夏丏尊与叶圣陶《文心》、叶圣陶《叶圣陶语文教育论集》、王荣生《写作教学教什么》、蒋军晶《让学生学会写作》、管建刚作文教学系列等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 不教背范文套模板，反对“代写”与“抄袭” · <a href="../">返回课程首页</a></p>
+</footer>
+
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ if(navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
