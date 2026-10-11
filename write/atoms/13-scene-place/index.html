@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>场所：教室、家、走廊、街市、旅途、校园角落、老屋、饭桌、车站 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 景色与场所</div>
+  <h1>🏫 场所：教室、家、走廊、街市、旅途、校园角落、老屋、饭桌、车站</h1>
+  <p>有人在里面待过的痕迹，才是场所</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../12-scene-nature/">← 上一页</a>
+    <a href="../14-scene-object/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">场所的总开关</a>
+    <a class="anchor" href="#s2">教室与走廊</a>
+    <a class="anchor" href="#s3">家、老屋、饭桌</a>
+    <a class="anchor" href="#s4">街市、车站、旅途</a>
+    <a class="anchor" href="#s5">校园角落</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①写教室不再是"桌椅整齐"，而是能写出桌面的划痕、椅子腿的磨痕、光照到的位置；②写家能写到台面油渍、门把磨损这种"日子过过的痕迹"；③写走廊、街市、车站这种人来人往的地方，能用"擦肩的瞬间""衣服带起的风"代替"很热闹"；④写旅途能写出"刚到"和"将回"的两种不同距离感；⑤写校园角落用被遗忘的工具让人物安心。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>每个场所读完先问自己：我在这个场所里<strong>真的看见过什么痕迹</strong>？磨痕、油渍、贴纸、划痕、刻字——这些是场所的指纹。然后挑两组换名用一次。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、场所的总开关：写痕迹，不写样子</h2>
+    <p class="chapter-sub">场所的灵魂在用过它的那些手上</p>
+
+    <article class="view">
+      <h3>为什么"教室很整齐"是弱版</h3>
+      <p class="ctx">写场所最容易写成"教室很整齐""家很温馨""街市很热闹"。这些全是<strong>评价</strong>，不是场所。场所的实质是<strong>有人在这里面待过</strong>——这种"待过"会留下痕迹：桌面的划痕、椅腿的磨痕、墙角的贴纸、抽屉里的橡皮屑、窗台上的灰。本页所有原子的共同机制：<strong>找一个被人反复接触的具体部位，把它的状态写出来。</strong><strong>剂量：一篇作文里场所原子用 2–3 处（开头一处、转场一处、收尾一处），超了读者会觉得在读"装修清单"。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>桌面有一道刻痕，是某年某班的某某；<br>椅腿底部磨得发亮，比桌面亮；<br>抽屉里有一截断了的铅笔头。</td>
+          <td>教室很整齐。</td>
+          <td>三条都指向<strong>使用过的证据</strong>：刻痕（人为的）、磨亮（反复接触的部位更亮）、铅笔头（被弃的）。这三条都不靠形容词，全靠<strong>具体物的状态</strong>——读者读到的不是"教室"，是<strong>教室被多少人怎么用过</strong>。</td>
+          <td>开头写教室；写转学、毕业、离别；写记忆中某间教室的样子。</td>
+        </tr>
+        <tr>
+          <td>窗台有一层薄灰，被谁擦了一道手指印；<br>黑板左下角有一块没擦干净的粉笔字；<br>日光灯管里跑进了一只小虫。</td>
+          <td>教室很干净。</td>
+          <td>三条把"干净"和"不干净"<strong>同时写出来</strong>：灰（积累）、手指印（最近的动作）、没擦干净（教学现场）。读者看到的是<strong>教室此刻有人</strong>，而不是"它一直都这样"。</td>
+          <td>写上课前的那一刻；写放学后的教室；写回忆里的某个具体瞬间。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、教室与走廊</h2>
+    <p class="chapter-sub">每天经过的地方，痕迹也最具体</p>
+
+    <article class="view">
+      <h3>教室：桌椅、光、墙</h3>
+      <p class="ctx">教室是学生最熟悉的场所。熟悉的好处是<strong>细节不假</strong>——桌椅怎么摆、灯怎么亮、墙报贴在哪，全能写准。<strong>剂量：教室原子 1–2 处，且挑"桌椅／光／墙"中一个角度写透，不要三个都写。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>第三排靠窗的椅子腿比别的矮一截；<br>课桌右上角总被同一只手磨出白印；<br>粉笔槽里堆着前一节课没倒掉的粉笔灰。</td>
+          <td>教室里桌椅很整齐。</td>
+          <td>三条各自对应<strong>不同的痕迹类型</strong>：物理形变（椅子矮）、长期使用（手磨的白印）、临时残留（粉笔灰）。读者读到的不是"教室"，是<strong>教室被一只手、一双脚、一节课反复作用</strong>的样子。</td>
+          <td>写自己的座位；写同桌；写放学后只剩自己的教室。</td>
+        </tr>
+        <tr>
+          <td>日光灯只亮一半，另一半在抖；<br>窗户上贴着一张去年的窗花；<br>讲台的木纹磨出了一片光亮。</td>
+          <td>教室里灯很亮。</td>
+          <td>三条写的是<strong>场所的衰老与持续</strong>：灯坏一半（时间过去）、窗花（时间留下的纸）、讲台磨亮（时间打磨）。三者都指向同一件事——<strong>这间教室被用过很久了</strong>。</td>
+          <td>写老教室；写毕业前最后一节课；写回学校那天。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「写自己想写的内容」· <a href="../../09-scene/">写作习作课第9章</a>「场所感来自使用痕迹」</div>
+    </article>
+
+    <article class="view">
+      <h3>走廊：人来人往的地方，写"擦肩"</h3>
+      <p class="ctx">走廊是<strong>穿过</strong>的场所，不是停留的场所。所以写走廊不要写墙和地，要写<strong>经过的人</strong>：肩膀相错时带起的风、脚步声里谁的步子最快、谁的钥匙晃了一下。<strong>剂量：走廊原子用 1 处即可，太多会让全篇像在人群里跑。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>两个人错身的时候，衣服带起的风还没散；<br>远处有人在跑，脚步声比人先到；<br>钥匙在某个口袋晃了一下，没人捡。</td>
+          <td>走廊里人来人往。</td>
+          <td>三条都给了<strong>具体证据</strong>：风（错身的物理结果）、先到的声音（顺序错位）、晃一下没人捡（声音的孤立）。读者读到的是<strong>经过那一刻的人</strong>，而不是"很多人"这个抽象集合。</td>
+          <td>写课间十分钟；写迟到那一路；写放学那个瞬间。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>——具体优于概括 · <a href="../../09-scene/">写作习作课第9章</a>「场所感来自使用痕迹」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、家、老屋、饭桌</h2>
+    <p class="chapter-sub">日子过过的痕迹最具体</p>
+
+    <article class="view">
+      <h3>家：被同一双手反复接触的地方</h3>
+      <p class="ctx">家是<strong>私人的</strong>场所。它的痕迹不是公共的（不会有人打扫那样勤快），而是<strong>被同一双手反复接触的</strong>：门把手的磨痕、灶台边的油渍、沙发扶手上的塌陷。<strong>剂量：家原子用 1–2 处，不要把整篇都写家里——那会变成家庭说明书。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>门把手被手掌磨出一道亮光；<br>灶台边的瓷砖有一圈淡黄色的油印；<br>沙发扶手那一块塌下去一寸。</td>
+          <td>家里很温馨。</td>
+          <td>三条都指向<strong>同一双手的反复接触</strong>：磨光（高频摩擦）、油印（做饭溅上去）、塌陷（坐同一位置）。"温馨"是评价，这三条是<strong>证据</strong>——读者一眼就看出家里有人日复一日地过日子。</td>
+          <td>开头的家庭场景；写爸妈的习惯动作；写要搬家或告别前的最后一眼。</td>
+        </tr>
+        <tr>
+          <td>茶几上有一个茶杯印，淡到快看不见；<br>阳台上的那盆绿萝垂到了第二层栏杆；<br>鞋柜最下层有一双没穿过的鞋。</td>
+          <td>家里很干净。</td>
+          <td>三条写的是<strong>家的层次</strong>：茶杯印（曾经的）、绿萝（生长着的）、没穿过的鞋（一直被搁置的）。三条不同时间状态同时在场——家不是某一个瞬间，它是<strong>一段时间的累积</strong>。</td>
+          <td>写人物的回家；写发现某样东西被丢在角落很久了；写告别的家。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「观察生活」· <a href="../../04-detail/">写作习作课第4章</a>「具体性原则」</div>
+    </article>
+
+    <article class="view">
+      <h3>老屋：很久没人住的地方</h3>
+      <p class="ctx">老屋和"现在的家"的区别是<strong>痕迹方向反过来</strong>——家里的痕迹是"被使用"，老屋的痕迹是"被离开"。灰尘的厚度、门轴的涩、贴在墙上没撕的画。<strong>剂量：老屋原子 1 处一组，不要和"家"原子连用——两种痕迹方向不一样，混了反而奇怪。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><strong></strong><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>推门的时候门轴吱呀响了一声；<br>桌面的灰被手指画了一道，露出原来的木色；<br>墙上还贴着去年的日历，没撕。</td>
+          <td>这间老屋很久没人住了。</td>
+          <td>三条都写了<strong>没人在的证据</strong>：门轴涩（没人开门）、灰厚到能画画（积累的时间）、日历没撕（停在某一天）。"很久没人住"是结论，这三条是<strong>读者自己拼出来的结论</strong>。</td>
+          <td>写回老家的瞬间；写告别祖屋；写人物第一次回到离开很久的地方。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「感官细节」</div>
+    </article>
+
+    <article class="view">
+      <h3>饭桌：被围起来的地方</h3>
+      <p class="ctx">饭桌的特点是<strong>人围着坐</strong>。所以写饭桌不要写桌子本身，写<strong>围起来的那一刻</strong>——谁先坐下、谁迟到、谁的筷子敲了一下碗。<strong>剂量：饭桌原子 1 处一组，最好配合人物出现的位置。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>椅子还空着两把，桌上的碗筷已经摆好；<br>有人先动了筷子，剩下的人才开始；<br>汤在桌子中间冒气，谁也没先舀。</td>
+          <td>我们一家人围坐在一起吃饭。</td>
+          <td>三条写的是<strong>饭桌的等待与开始</strong>：空椅子（缺席的人）、先动筷（家庭秩序）、汤冒气没人舀（某种默契或心事）。读者读到的是<strong>围坐的那一刻的家庭气氛</strong>，不是"一家人"这个标签。</td>
+          <td>写一次普通的晚饭；写有人迟到的晚饭；写要告别的晚饭。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>· <a href="../../04-detail/">写作习作课第4章</a>「家庭生活场景」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、街市、车站、旅途</h2>
+    <p class="chapter-sub">过路的地方，看一眼就懂</p>
+
+    <article class="view">
+      <h3>街市：被人群推着的地方</h3>
+      <p class="ctx">街市的特点是<strong>动</strong>。所以写街市不要写店铺，写<strong>街上的人</strong>：被推着走的瞬间、刚放下又挑起的菜、讨价还价的那一句。<strong>剂量：街市原子用 1 处即可，太多读者会觉得嘈杂。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>有人提着两条鱼，鱼尾巴还在甩；<br>卖菜的大叔把秤砣拨了三下才停；<br>塑料袋被风一吹就鼓起肚。</td>
+          <td>街上很热闹。</td>
+          <td>三条都写了<strong>街上那一刻的具体动作</strong>：甩（活的）、拨（精确）、鼓（被风作用）。三条对应不同的"动"——读者读到的不是"热闹"，是<strong>三种具体的动作同时在发生</strong>。</td>
+          <td>写放学路上的菜场；写早晨赶集的场面；写回家路上的街市。</td>
+        </tr>
+        <tr>
+          <td>水果摊的橘子码成金字塔；<br>肉铺的钩子上挂着半扇排骨；<br>铁板烧的烟一停，油就噼啪响。</td>
+          <td>街上卖东西的很多。</td>
+          <td>三条都给了<strong>视觉细节</strong>：码（几何）、挂（吊挂）、噼啪（听觉）。每个摊子都被一个动作和一个具体物绑定——读者一眼能记住，不会被"很多"这个词滑过去。</td>
+          <td>写喜欢逛的街；写一个人去买菜的细节；写放学回家的路上。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a> · <a href="../../09-scene/">写作习作课第9章</a></div>
+    </article>
+
+    <article class="view">
+      <h3>车站：开始和结束在同一个地方</h3>
+      <p class="ctx">车站是<strong>情绪两极</strong>的地方——有人在这开始一段旅程，有人在此结束。所以写车站不要写站台本身，写<strong>某人在这一秒</strong>——送人的、被送的、走过的、刚到的。<strong>剂量：车站原子用 1 处，最好放在转场或情绪转折点。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>检票口前，有人回头了三次；<br>站台的钟比车次早到一分钟；<br>刚下车的人比要上车的人走得快。</td>
+          <td>车站里人来人往。</td>
+          <td>三条各对应<strong>一种方向</strong>：回头（看）、钟的时间（等）、走的快慢（节奏对比）。三个方向同时发生——读者读到的是<strong>车站的两极情绪</strong>，不是"很多人"。</td>
+          <td>写离别；写开学第一天的回程；写春节回家。</td>
+        </tr>
+        <tr>
+          <td>广播里的女声把每个字都念得很慢；<br>候车厅的塑料椅坐出了一个人形的凹；<br>出口处有人举着一块写名字的纸。</td>
+          <td>车站很安静。</td>
+          <td>三条都给了<strong>等待的形状</strong>：慢（声音的延迟）、人形的凹（时间磨出来的）、举着纸（具体动作）。三者让"等"和"接"这种抽象动作都有了<strong>可以看见的形状</strong>。</td>
+          <td>写接人；写等人；写凌晨的车站。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>· <a href="../../09-scene/">写作习作课第9章</a>「离别场景」</div>
+    </article>
+
+    <article class="view">
+      <h3>旅途：刚到和将回</h3>
+      <p class="ctx">旅途的特别之处是<strong>两段时间感</strong>同时在场——一是刚到的新鲜，二是要回的牵挂。所以写旅途不能只写一路风景，要写<strong>人在这两段时间之间的位置</strong>。<strong>剂量：旅途原子 1 处一组，最好放在行进的某一刻而不是开头或结尾。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>车窗外的电线杆一根一根往后退；<br>路牌上的地名开始有认识的；<br>行李箱的轮子在石子路上颠了一下。</td>
+          <td>我们在路上。</td>
+          <td>三条对应<strong>旅途的三个阶段</strong>：退（远离）、认识（接近）、颠（路况变化）。读者读到的不只是"在路上"，是<strong>在哪一段路上</strong>。</td>
+          <td>写坐火车回家；写学校大巴的某一段；写跟爸妈出游的路上。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「时间感」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、校园角落：被遗忘的角落</h2>
+    <p class="chapter-sub">没人看见的地方，反而最让人安心</p>
+
+    <article class="view">
+      <h3>校园角落：安静、工具、被搁置</h3>
+      <p class="ctx">校园角落不是花园、操场这种公开场所，而是<strong>被遗忘的</strong>——花坛背后的长椅、楼梯转角的窗、体育器材室门口的空地。这些地方的共同点是<strong>有人去过但没人看见</strong>。所以写角落要写<strong>被搁置的工具或物</strong>。<strong>剂量：校园角落原子 1 处一组，且常作为人物"想一个人待着"的位置出现。</strong></p>
+      <div class="fig"><img src="../../assets/img-09-1.png" alt="示意插画：校园角落里被遗忘的长椅与工具，扁平矢量风格，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>花坛背后有一张长椅，椅背掉了一根木条；<br>楼梯转角的窗玻璃被谁涂了一个笑脸；<br>体育器材室门口有一只被踩扁的矿泉水瓶。</td>
+          <td>校园里有很多安静的地方。</td>
+          <td>三条都给了<strong>角落的形状</strong>：长椅（位置）、笑脸（人为的）、踩扁的瓶（被反复踩）。读者读到的是<strong>具体的一个角落</strong>，而不是"安静"这种抽象形容。</td>
+          <td>写想一个人待着；写课间躲人的地方；写记忆中的某个角落。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White（英文）</a>· <a href="../../09-scene/">写作习作课第9章</a>「私密空间」</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>场所的总开关是什么？为什么要写痕迹不写样子？</li>
+      <li>"教室很整齐"为什么是弱版？它告诉了你什么具体的证据吗？</li>
+      <li>教室原子通常挑哪三个角度写？三个一起写可以吗？</li>
+      <li>走廊的特点是"穿过"而不是"停留"，所以写走廊不能写什么？应该写什么？</li>
+      <li>家和老屋在痕迹方向上有什么不同？</li>
+      <li>"门把手被手掌磨出一道亮光"为什么是好句子？它写了什么物理过程？</li>
+      <li>饭桌的核心是什么？为什么不要写桌子本身？</li>
+      <li>街市的特点是"动"，所以写街市要避开什么？要写什么？</li>
+      <li>车站的两极情绪是什么？本页给了哪两个方向？</li>
+      <li>旅途的两段时间感是什么？它们怎么同时在场？</li>
+      <li>校园角落和其他场所的最大不同是什么？</li>
+      <li>本页的剂量页写明：场所原子用几处？教室用几处？其他用几处？</li>
+      <li>如果写"放学路上"，应该挑哪几个分类的场所原子组合？</li>
+      <li>"被反复接触的部位"为什么是场所感最可靠的来源？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>场所的总开关是<strong>写痕迹，不写样子</strong>——有人在里面待过才是场所。教室写桌椅／光／墙三选一，写刻痕、磨痕、粉笔灰、家人的习惯；走廊写"擦肩"的瞬间，写衣服带起的风、脚步声、钥匙晃；家写被同一双手反复接触的部位（门把手、灶台、沙发）；老屋的痕迹方向反过来——灰尘厚度、门轴涩、没撕的日历；饭桌写围坐的那一刻，写空椅子、先动筷、汤冒气；街市写街上那一刻的具体动作（鱼甩尾、秤砣拨、塑料袋鼓肚）；车站写开始和结束的两极情绪；旅途写刚到和将回的两段时间感；校园角落写被搁置的工具（断木条、笑脸、踩扁的瓶子）。剂量：场所原子 2–3 处（开头、转场、收尾各一处），教室原子 1–2 处且只挑一个角度写透，其他场所各 1 处一组。换名用时，把每个原子里的具体物换成你真见过的——"门把手磨亮"要换成你家真有的那个把手。
+  </div>
+
+  <nav class="pager">
+    <a href="../12-scene-nature/"><span class="dir">← 上一页</span>景色：天空、云、风雨雪雾、山水草木、星空、水面</a>
+    <a href="../14-scene-object/"><span class="dir">下一页 →</span>物件：以物写情（书包、旧手机、饭盒、伞、镜子、纸条、旧校牌、门锁、钥匙）</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 场所：教室、家、走廊、街市、旅途、校园角落、老屋、饭桌、车站 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk & White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

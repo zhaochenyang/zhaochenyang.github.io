@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>羞愧、尴尬、后悔 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 情绪原子</div>
+  <h1>😳 羞愧、尴尬、后悔</h1>
+  <p>羞愧、难堪、尴尬、后悔、内疚、出丑、被揭穿——七种"回火"，三种不同身体</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../05-emo-anger/">← 上一页</a>
+    <a href="../07-emo-warm/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">羞愧：火回到自己身上</a>
+    <a class="anchor" href="#s2">尴尬：被看见的瞬间</a>
+    <a class="anchor" href="#s3">出丑与被揭穿</a>
+    <a class="anchor" href="#s4">后悔与内疚</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①区分羞愧、尴尬、后悔这三种"回火"在身体上的差别；②把"我非常羞愧""尴尬极了"这类被用烂的句子各换上一组可触摸的细节；③在当众犯错、被揭穿、说错话、做了错事四类情境里挑对原子；④守住"一类情绪一篇用 1–2 处"的剂量，并知道为什么堆叠会变假。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>这一类情绪最难写准——它们都"面向自己"，不像喜悦向外、愤怒有对手。读一遍，把你旧作文里的"我非常羞愧""恨不得找个地缝钻进去"挑出来——基本都该进弱版列。本页的"低""缩""想消失"三条机制值得你花最多时间。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、羞愧——火回到自己身上</h2>
+    <p class="chapter-sub">火不朝外，朝里</p>
+
+    <article class="view">
+      <h3>羞愧的面部与眼睛</h3>
+      <p class="ctx">羞愧与生气的方向相反：生气<strong>朝外扩张</strong>，羞愧<strong>朝内收缩</strong>——眼睛往下、声音变小、下巴往胸口收。<strong>剂量：一篇作文里"羞愧"类面部原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>眼睛往下，看着桌面；<br>下巴往胸口收，自己没觉；<br>耳根红，一路红到脖子；<br>嘴抿紧，咬肌自己鼓起。</td>
+          <td>我非常羞愧，脸红了。</td>
+          <td>“脸红"是告知。换成<strong>四种"朝内收缩"</strong>：眼往桌（视线的反常方向）、下巴收（部位位移）、耳根红（温度范围）、嘴抿咬肌（对抗动作）。羞愧是<strong>身体的姿态对折起来了</strong>。</td>
+          <td>被当众指出错误、被看见失态、被夸反讽。<strong>羞愧要配观众</strong>，不能单独写。</td>
+        </tr>
+        <tr>
+          <td>说话声音比自己预想的小一半；<br>话说到一半被自己的气截住；<br>问话像问墙，没人应；<br>对方说话，自己只剩点头。</td>
+          <td>我羞愧得说不出话来。</td>
+          <td>“说不出"是结论。换成<strong>四种"声音被折回"</strong>：小一半（音量反常）、被气截（语言中断）、问墙（声音空响）、只剩点头（语言坍缩）。羞愧让语言<strong>失去了音量与长度</strong>。</td>
+          <td>被当众批评、被家长责备、公开认错。羞愧的语言要写"缩小"的过程，不要直接写"沉默"。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-18-1.png" alt="示意插画：人物低头、下巴往胸口收的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——身体朝内收缩替代情绪词 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——羞耻情绪研究</div>
+    </article>
+
+    <article class="view">
+      <h3>羞愧的"想消失"</h3>
+      <p class="ctx">羞愧的标志是<strong>想消失</strong>：头低下去、身体往桌子底下缩、想把自己装进墙缝。<strong>剂量：一篇作文里"羞愧"类消失原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>头低下去，额贴桌面；<br>肩膀往前收，把自己缩到最小；<br>脚收到椅子底下；<br>想把自己装进墙缝。</td>
+          <td>我恨不得找个地缝钻进去。</td>
+          <td>“地缝钻进去"是文学修辞。换成<strong>四种"想消失"的真实动作</strong>：额贴桌（部位连接）、肩收最小（可量）、脚收椅底（下移）、装进墙缝（空间的隐喻化）。羞愧是<strong>占的空间被压缩到最小</strong>。</td>
+          <td>被当众揭穿、被嘲笑、被误会后知真相。<strong>羞愧常常配桌椅、墙角、桌底</strong>这类可缩的场域。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「表达真情实感」要求 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、尴尬——被看见的瞬间</h2>
+    <p class="chapter-sub">尴尬与羞愧的差别：尴尬常常一下就过去</p>
+
+    <article class="view">
+      <h3>尴尬的"凝固"</h3>
+      <p class="ctx">尴尬与羞愧的差别：羞愧<strong>持续</strong>，尴尬常常<strong>一下就过去</strong>——凝固半秒到三秒，然后找个东西假装没发生。<strong>剂量：一篇作文里"尴尬"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>手停在半空，没放下来；<br>笑挂到一半，没收回；<br>一句话说一半，对方没接；<br>脚踩到自己鞋带，没蹲下去。</td>
+          <td>我非常尴尬。</td>
+          <td>“尴尬"是结论。换成<strong>四种"凝固半秒"</strong>：手停半空（动作凝固）、笑挂半（表情凝固）、话半不接（语言凝固）、鞋带没蹲（动作失败）。尴尬是<strong>动作停在了不该停的位置</strong>。</td>
+          <td>说错话、认错人、被看见出丑、忘词。<strong>尴尬要写"凝固半秒"</strong>，不要写"持续很久"。</td>
+        </tr>
+        <tr>
+          <td>假装看手机，屏其实没亮；<br>假装翻包，东西都还在；<br>假装看窗外，天黑了不知道看什么；<br>假装咳嗽，咳不出来。</td>
+          <td>我很尴尬地装作没事。</td>
+          <td>“装作"是结论。换成<strong>四种"装作"</strong>：看手机没亮（视觉反常）、翻包都还在（触觉反常）、看窗外天黑（无效循环）、咳不出来（动作的预备失败）。尴尬是<strong>身体找不到一个体面的姿势</strong>。</td>
+          <td>被当众问住、被误解、说错了名字。<strong>装作常常配手机、包、窗外</strong>这类可假装投入的物件。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>· <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>尴尬的"笑与咳嗽"</h3>
+      <p class="ctx">尴尬特有的两种伴随动作：<strong>假笑与假咳嗽</strong>——它们都是身体在"准备说话却没说出来"的替代。<strong>剂量：一篇作文里"尴尬"类笑代原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>嘴角抬了一下，不是笑；<br>咳嗽两声，自己挡了一下；<br>摸了一下鼻尖，没打喷嚏；<br>轻轻点头，没听见对方说什么。</td>
+          <td>我尴尬地笑了笑。</td>
+          <td>“笑了笑"是结论。换成<strong>四种"没完成的动作"</strong>：抬不是笑（动作的不完整）、咳挡一下（动作的双重未完成）、摸鼻没嚏（动作的预备失败）、轻点没听（动作与感知的双重失败）。尴尬是<strong>每一个动作都没画上句号</strong>。</td>
+          <td>被当众问住、被误会、忘词、被叫错名字。<strong>这一组只在一段里用一处</strong>，<strong>不要连用</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、出丑与被揭穿</h2>
+    <p class="chapter-sub">身体瞬间的失态</p>
+
+    <article class="view">
+      <h3>出丑的瞬间</h3>
+      <p class="ctx">出丑与尴尬的区别：<strong>尴尬常常只有自己知道，出丑已经被看见</strong>。出丑的身体反应是<strong>一瞬间的失衡</strong>——绊了一下、话说错、手里的东西掉了。<strong>剂量：一篇作文里"出丑"类失衡原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>脚绊到门槛，踉跄了两步；<br>手里的东西掉了，没蹲下去捡；<br>话说出来才发现说错了；<br>答应了一声，发现对方叫的不是自己。</td>
+          <td>我出了丑。</td>
+          <td>“出丑"是结论。换成<strong>四种"失衡"</strong>：踉跄两步（位移失衡）、掉了不蹲（动作失衡）、说错（语言失衡）、答应错（应答失衡）。出丑是<strong>身体失去了原有的协调</strong>。</td>
+          <td>被绊、说错、接错东西、被认错。<strong>出丑要配场景的"在看的人"</strong>。</td>
+        </tr>
+        <tr>
+          <td>动作定格在大半秒，已经忘记下一拍；<br>眼睛看着对方，脑子一片空白；<br>嘴角想抬，抬不起来；<br>手伸向口袋，摸了一个没用的东西。</td>
+          <td>我当时愣住了。</td>
+          <td>“愣"是结论。换成<strong>四种"停"</strong>：定格大半秒（动作停滞）、眼在脑空（感知停滞）、嘴角抬不起（表情的预备失败）、摸个没用的（触觉的失效）。出丑是<strong>身体失去了它的常规剧本</strong>。</td>
+          <td>上台忘词、被揭穿、出洋相。<strong>出丑要写"下一个动作已经不知道是什么"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「感情真挚」要求</div>
+    </article>
+
+    <article class="view">
+      <h3>被揭穿的"接不住"</h3>
+      <p class="ctx">被揭穿是出丑的升级版：<strong>出丑常常是自己看见，被揭穿是对方说出来</strong>。被揭穿的身体反应是<strong>接不住</strong>——话掉了、笑掉了、对方的话掉到自己头上。<strong>剂量：一篇作文里"被揭穿"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>话到一半被对方接过去；<br>笑挂到一半，掉下来；<br>准备好的解释，说出第一句就停；<br>对方的眼神落在脸上，自己接不住。</td>
+          <td>我被揭穿了。</td>
+          <td>“揭穿"是结论。换成<strong>四种"接不住"</strong>：话被接（语言被截断）、笑掉（表情的失效）、解释断（语言的预备失败）、眼神接不住（目光的失效）。被揭穿是<strong>自己的语言与表情都失去了支点</strong>。</td>
+          <td>撒谎被发现、装被看穿、借口被戳破。<strong>被揭穿要配"对方的眼神"</strong>。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-18-2.png" alt="示意插画：人物被对方目光接住的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、后悔与内疚</h2>
+    <p class="chapter-sub">"如果"开头的句子，与"应该"开头的句子</p>
+
+    <article class="view">
+      <h3>后悔——倒带自己的决定</h3>
+      <p class="ctx">后悔的身体形态是<strong>倒带</strong>——同一个画面反复想了三遍，每次换一个结果。"如果当时……"是后悔的语言形态。<strong>剂量：一篇作文里"后悔"类心理原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>同一个画面想了三遍，每遍换一个结尾；<br>把那件事的时间往回拨了一格；<br>对方的话重念一遍，换个答法；<br>晚上闭上眼，那一幕自己又来。</td>
+          <td>我非常后悔。</td>
+          <td>“后悔"是结论。换成<strong>四种"倒带"</strong>：三遍换结尾（语言循环）、时间回拨一格（时间倒带）、答法换（语言反刍）、闭眼又来（思维的循环）。后悔是<strong>已经发生的事被反复重演</strong>。</td>
+          <td>说错话、错过机会、伤了人、选错。<strong>后悔要配"已经过去的时间"</strong>。</td>
+        </tr>
+        <tr>
+          <td>手在桌面划那件事的痕迹；<br>把当时的话写下来又划掉；<br>想给对方打句话，打完又删；<br>把手机翻到对方的头像，停住。</td>
+          <td>我心里很后悔。</td>
+          <td>“后悔"是结论。换成<strong>四种"想补救"</strong>：划痕迹（动作的回溯）、写下划掉（语言的回溯）、打完删（语言的预备失败）、翻头像停（视觉的预备失败）。后悔是<strong>事过去了，身体还在前面</strong>。</td>
+          <td>伤人后、说错话后、错过机会后。<strong>后悔组常常配纸、笔、手机</strong>这类可补救的物件。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>内疚——对另一个人的账</h3>
+      <p class="ctx">内疚与后悔的差别：<strong>后悔指向自己，内疚指向对方</strong>。"我对不起他/她"是内疚的语言形态。<strong>剂量：一篇作文里"内疚"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>看见对方，眼神先避开；<br>为对方做的事，每件都先想两遍；<br>说话比平时轻声半度；<br>对方的名字叫到一半，又咽回去。</td>
+          <td>我对不起他。</td>
+          <td>“对不起"是结论。换成<strong>四种"对另一个人的账"</strong>：眼神避开（视线的反常方向）、两遍（语言的双重准备）、轻半度（音量反常）、叫半咽（语言的预备失败）。内疚是<strong>身体在为那件事多做事</strong>。</td>
+          <td>伤过人、错过帮忙、伤害了家人。<strong>内疚要配"那个人"</strong>。</td>
+        </tr>
+        <tr>
+          <td>看见那件让对方受伤的物件，自己先移开眼；<br>为对方开门，手要扶稳才走；<br>过马路时护在对方外侧半步；<br>对方咳嗽，自己先停下话。</td>
+          <td>我一直内疚着。</td>
+          <td>“内疚"是结论。换成<strong>四种"补偿动作"</strong>：移开眼（视觉补偿）、扶稳才走（动作补偿）、护半步（位移补偿）、咳停自己先看（感知的补偿）。内疚是<strong>身体在为那件事多做一些不相干的事</strong>。</td>
+          <td>伤过家人、错过机会、说错过话。<strong>内疚组要配"那个人在场"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「表达真情实感」要求 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>羞愧、尴尬、后悔、内疚这四种"回火"在身体方向上的根本差别是什么？</li>
+      <li>羞愧与生气的方向差在哪？为什么说"朝内收缩"是羞愧？</li>
+      <li>羞愧的"想消失"是哪四件？它们的共同方向是什么？</li>
+      <li>尴尬与羞愧的差别是哪一条？为什么说"凝固半秒"是尴尬的标志？</li>
+      <li>尴尬的"装作"是哪四件？为什么尴尬要配可假装投入的物件？</li>
+      <li>出丑与尴尬的根本差别是什么？出丑的"失衡"具体是哪四件？</li>
+      <li>被揭穿与出丑的差别是哪一条？"接不住"是哪四种证据？</li>
+      <li>后悔的"倒带"是哪四件？为什么说后悔是已经发生的事被反复重演？</li>
+      <li>内疚与后悔的差别是哪一条？为什么内疚要配"那个人在场"？</li>
+      <li>内疚的"补偿动作"是哪四件？它们的共同点是什么？</li>
+      <li>本类情绪每篇的剂量是什么？哪一类原子不能用同段连用？</li>
+      <li>在你最近一篇写"我错了""我难过"或"我不好意思"的作文里，这些原子能用上哪几条？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>羞愧、尴尬、后悔、内疚四种"回火"在身体方向上不同。羞愧是<strong>朝内收缩</strong>（眼往下、下巴收、占的空间被压缩），尴尬是<strong>凝固半秒</strong>（手停半空、装作装作））。被揭穿是<strong>接不住</strong>（话被接过去、笑挂到一半掉下来）。后悔是<strong>倒带</strong>（同一画面想三遍每遍换结尾、时间往回拨一格），内疚是<strong>补偿动作</strong>（眼神避开、说话轻半度、为对方做的事多一倍）。剂量：羞愧 1 处，尴尬 1 处，出丑 1 处，被揭穿 1 处，后悔 1 处，内疚 1 处。配图与剂量都来自课堂反复试错的经验。下一情绪页：<a href="../07-emo-warm/">感动、温暖、希望</a>——最容易被写假的一类。
+  </div>
+
+  <nav class="pager">
+    <a href="../05-emo-anger/"><span class="dir">← 上一页</span>生气、烦躁、憋屈</a>
+    <a href="../07-emo-warm/"><span class="dir">下一页 →</span>感动、温暖、希望</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 羞愧、尴尬、后悔 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

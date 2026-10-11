@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理：把心思写成看得见的东西 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第六部分 · 心理与对话</div>
+  <h1>🧠 心理：把心思写成看得见的东西</h1>
+  <p>"我很难过"是弱版；"眼眶酸，但一滴没掉"才是原子</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../15-sense-five/">← 上一页</a>
+    <a href="../17-dialogue/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">念头原话</a>
+    <a class="anchor" href="#s2">犹豫链</a>
+    <a class="anchor" href="#s3">自我辩解</a>
+    <a class="anchor" href="#s4">事后回想</a>
+    <a class="anchor" href="#s5">没说出口的话</a>
+    <a class="anchor" href="#s6">数字与时间里的心理</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约25分钟）：</strong>学完你能——①把任何一句"我很紧张／我很难过"还原成具体念头原话；②用"想—否定—再想"三拍写犹豫的形状；③用身体反应打脸嘴上的话，写出自我辩解；④把事后回想的错位感写成可感的句子；⑤区别"没说出口的话"与"心里难过"两种写法；⑥用数字与时间跨度替代"特别""非常"。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>写完一段，遮掉所有带"我/特别/非常"的句子，每个念头必须能找到一句人话或一个身体动作代替。配 <a href="../../08-psychology/">写作习作课第 8 章「看见心理」</a>一起读。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、念头原话：先把心思变成人话</h2>
+    <p class="chapter-sub">所有心理词都有一句"嘴里说的"</p>
+
+    <article class="view">
+      <h3>把脑子里的判断，换成嘴边那句</h3>
+      <p class="ctx">"我很犹豫"是形容词，读者读到的还是结论；"算了吧"是还原——一个人在那具体一刻从嘴里挤出的那个音。<strong>剂量：一段心理描写里至少出现一条念头原话，避免连续四句都是"我有点 / 我很 / 我感觉"。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"算了吧。"——在牙缝里碾了两遍；<br>"我再想想。"——眼神已经离开他；<br>"行。"——答得比想要的快半拍；<br>"我在呢。"——声音比想要的小半度。</td>
+          <td>我有点犹豫，话到嘴边没敢说出来。</td>
+          <td>"犹豫"是<strong>告知</strong>，四组原子全是<strong>音节</strong>——声量（"小半度"）、时态（"碾两遍"）、错位（眼神已经离开）。读者读到的是人在那一刻具体发出的那个声音，自己再拼回犹豫。</td>
+          <td>答应、拒绝、回答前需要挤出一句的场合。<a href="../../04-detail/">第 4 章</a>讲过过程描写的机制：用<strong>慢动作</strong>代替结论。</td>
+        </tr>
+        <tr>
+          <td>"没事没事。"——手心的汗在抖；<br>"一会儿就好。"——肩膀还在抖；<br>"我没在意。"——眼睛却追出去；<br>"不疼不疼。"——受伤的手往袖口里藏。</td>
+          <td>我很难过，但还是装作没事的样子。</td>
+          <td>"装作没事"是<strong>前后矛盾</strong>，读者看到的是判断。四组原子的机制是<strong>嘴与身体打架</strong>：嘴上那句安抚得越平，下面那个身体反应越藏不住。自我对话一旦被身体当场拆穿，就有了形状。</td>
+          <td>被人问"怎么了"、跌了跤、输了一场比赛之后的回应。<strong>技巧</strong>：嘴上的话与身体反应必须<strong>同方向挤</strong>，互相拆。</td>
+        </tr>
+        <tr>
+          <td>"再数三下我就去。"<br>"第三次真的算。"<br>"这次不算，下次一定。"<br>"最后一次。"</td>
+          <td>我犹豫了好久，最后决定还是别去了。</td>
+          <td>犹豫被翻译成<strong>可数的次数</strong>——"三下""第三次""这次"。读者读到的是一个人在用数数给自己下命令，犹豫不再是一团模糊，而是一段倒计时。</td>
+          <td>要举手、要开口、要离开座位、要拨那个号码之前。最后那句"最后一次"单独用，就是结尾的力道。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——心理描写必须落到可观察的行为上 · <a href="../../08-psychology/">写作习作课第 8 章</a>「看见心理」分诊表</div>
+    </article>
+
+    <article class="view">
+      <h3>一幅速写：等成绩时脑子里的一句话</h3>
+      <p class="ctx">这是教学示例，等同一段心理被两种写法打开的样子。请盯住第二段没有出现任何"我紧张"，念头却是真的。</p>
+      <div class="fig"><img src="../../assets/img-16-1.png" alt="插画：一只手攥着一张折成四折的纸，纸角被指尖揉得发白，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <blockquote class="q">
+        <strong>弱版（不要写）：</strong><br>
+        我坐在座位上，心怦怦直跳，脑子里乱糟糟的，不知道成绩怎么样。
+      </blockquote>
+      <blockquote class="q">
+        <strong>还原后（教学示例）：</strong><br>
+        "没事，肯定没事。"——我在心里念了三遍。脚尖在地上点，点出一个小坑。手里的成绩单被我折成四折，又折成八折，再折，纸角软下来。我盯着讲台，老师还在翻名单。"真的没事。"——第四遍，念出声了。
+        <span class="qsrc">—— 装配演示：原子来自本页 § 1.1 与 § 1.2；属教学示例，非任何真实考场的还原。</span>
+      </blockquote>
+      <p class="ctx">对比时盯三处：<strong>一、念了三遍同样的字</strong>是焦虑的尺寸；<strong>二、纸被折成"四折—八折—再折"</strong>是手没处放的形状；<strong>三、第四遍念出声</strong>是焦虑从心里漏到嘴边的瞬间。弱版全没这些，只剩一个"乱糟糟"。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——将抽象状态拆解为可观察的微技能模块</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、犹豫链：想—否定—再想</h2>
+    <p class="chapter-sub">用三拍写就够——犹豫有了拍子，就有了形状</p>
+
+    <article class="view">
+      <h3>一个动作的反复三遍</h3>
+      <p class="ctx">犹豫的本质不是不动，是<strong>动得没有用</strong>。把它写准，<strong>三拍起手</strong>就够——抬手、缩手、再抬手。<strong>剂量：一整段心理犹豫，犹豫链最多出现一处，重复出现就是堆砌。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>抬手，缩手，再抬手，没抬起来；<br>想叫住他，叫出的是别人的名字；<br>想哭，抿嘴；想喊，又咽了；<br>想回那条消息，输入法打开又关。</td>
+          <td>我很想举手，又不敢举，心里矛盾极了。</td>
+          <td>四组原子的机制是<strong>重复 + 错位</strong>：同样的动作做两遍，读者读到"无效"；"叫出别人的名字"则把犹豫变成了<strong>走偏</strong>——一个动作想说的是 A，做出来是 B，犹豫因此有了<strong>逗号</strong>。</td>
+          <td>想问问题、想开口道歉、想离开座位、向暗恋的人打招呼。<strong>技巧</strong>：两次重复 + 一次错位，三拍就够。</td>
+        </tr>
+        <tr>
+          <td>三秒抬手，两秒按住，零秒放下；<br>看手机十分钟，点开两秒，退出来；<br>排到队首，转身去厕所绕一圈；<br>走到嘴边的话吞了三口才咽掉。</td>
+          <td>我犹豫了很长时间，最后还是没去。</td>
+          <td>犹豫被翻译成<strong>可数的毫秒</strong>"三秒／零秒"、"三口"。读者读到的是<strong>倒计时</strong>——并不是"很长时间"，而是动作越压越短，到"零秒"或"三口"，时间感被压缩成一个数。</td>
+          <td>排到队首、要发消息、要关掉闹钟的瞬间。用一句"<strong>短—短—更短</strong>"就能撑起一节。</td>
+        </tr>
+        <tr>
+          <td>"不对"——再想——"还是不对"；<br>嘴在笑，心里一句："别问了"；<br>眼睛说行，嘴说："我再想想"；<br>一只手点"是"，另一只手已经退回了页面。</td>
+          <td>我嘴上同意心里不愿意，但又不好意思拒绝。</td>
+          <td>内部矛盾被拆成<strong>两个器官各自说一句</strong>：嘴一句、眼一句、手一句、心一句。"打脸"放在同一行同一个人身上——这种<strong>分头反水</strong>比"矛盾极了"具体得多。</td>
+          <td>答应不愿答应的事、被误解时没说、接受和拒绝都在一秒之间。<strong>技巧</strong>：两个器官要各说一句，不要堆形容词。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——清晰来自删去多余的解释 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">策略教学的可观察单元（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、自我辩解：给自己找理由</h2>
+    <p class="chapter-sub">理由不是写一句，是写一串——而且常常互相矛盾</p>
+
+    <article class="view">
+      <h3>念头堆成的"自我安慰"</h3>
+      <p class="ctx">人内心最长的句子不是感受，<strong>是解释</strong>。把解释写下来，犹豫才显得真实。自我辩解一定要<strong>几条并排，互不接得上</strong>，因为脑子里就是这样。<strong>剂量：一处心理矛盾里，自我辩解用 2–3 条连排，不要超过三条。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"我其实不是不想，是没机会。"<br>"我哪晓得他会这样。"<br>"换了别人也会这么做。"<br>"我只是顺嘴一说。"<br>"那不算数。"<br>"我没往心里去。"</td>
+          <td>我有点自责，但我觉得也不能全怪我。</td>
+          <td>"自责"是结果，六条原子是<strong>人逼自己的六个不同方向</strong>——每条都把责任推开一点点。"不算数""顺嘴一说"是<strong>降级</strong>，"没机会"是<strong>转嫁</strong>，读者读到的是一个人在嘴上<strong>围着自己</strong>转。</td>
+          <td>失误后、被人指出问题后、临考前突然放弃的瞬间。<strong>技巧</strong>：每条 ≤ 10 字，口气要像自言自语，不能像读检讨。</td>
+        </tr>
+        <tr>
+          <td>心里一个声："你行。"<br>另一个声："你不行。"<br>第三个声："别试了。"<br>他把第三个声听进了心里。</td>
+          <td>我心里有两个声音在打架。</td>
+          <td>"两个声音"是<strong>告知</strong>——读者没听到任何东西。三行原子让<strong>三个声音各自有名有姓</strong>"行／不行／别试了"，最后一行是他<strong>选了哪一声</strong>。犹豫落成动作。</td>
+          <td>要鼓起勇气、要做出选择、要回头去面对的瞬间。</td>
+        </tr>
+        <tr>
+          <td>"反正不是第一次了。"<br>"反正也不会是最后一次。"<br>"反正都没人看。"<br>"反正明天也忘了。"</td>
+          <td>我反正觉得怎样都行，无所谓。</td>
+          <td>四句开头都是"<strong>反正</strong>"——同一个字重复四次，是自我劝降的<strong>节拍</strong>。"反正"的口吻像劝自己放弃，越重复越便宜。</td>
+          <td>放弃一件事、决定不再努力、觉得无所谓的那一瞬。<strong>技巧</strong>：同一个连接词重复，是用<strong>节奏</strong>代替内容。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》（英文）</a>——用具体动作代替抽象判断 · <a href="../../08-psychology/">第 8 章</a>「五栏心理分诊表」中的"念头原话"列</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、事后回想：回头才明白</h2>
+    <p class="chapter-sub">最有力量的句子常常不在当时，而在之后</p>
+
+    <article class="view">
+      <h3>把"我懂了"换成"那一刻我没懂"</h3>
+      <p class="ctx">心里最动人的地方，常常是<strong>当时不懂</strong>，后来才懂。写"我懂了"是结论，写"那一刻我不懂"才是过程。<strong>剂量：事后回想这一节，全文出现一两次足够，多了就成了反思文。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"那一刻我以为他懂了。"<br>"他笑的不是我，是时机。"<br>"为什么我没问出那句？"<br>"那天我没听出他话里的音。"<br>"原来他当时指的不是这件事。"</td>
+          <td>后来我才明白他当时是那个意思。</td>
+          <td>"后来才明白"是<strong>总结</strong>。五句原子都是<strong>事后拼回去的那一瞬</strong>：各自补上<strong>一个当时没察觉的细节</strong>——笑的不是人是时机、话里的音、指的是另一件事。读者跟着人物一起<strong>重新拼图</strong>。</td>
+          <td>写告别、写错过、写某个当时不懂的善意。<strong>技巧</strong>：每一句都要<strong>命中一个具体的细节</strong>，不是一句大道理。</td>
+        </tr>
+        <tr>
+          <td>他那天抬手扶了一下门框；<br>老师点了一下头，没说话；<br>妈妈把那块排骨夹到他碗里；<br>那只没接到的笔，今天想起还烫手。</td>
+          <td>那天的细节我现在还记得很清楚。</td>
+          <td>"记得清楚"是<strong>告知</strong>。四组原子是当时<strong>没注意到的细节</strong>，被今天重新<strong>放大</strong>。"今天想起还烫手"——<strong>今天的温度加上当年的温度</strong>，是事后回想最厉害的写法。</td>
+          <td>段落或文章结尾。"今天想起还烫手"这类<strong>温度错位</strong>，全篇最多用一次。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——"懂得"必须落到具体细节，否则就是空 · <a href="../../08-psychology/">第 8 章</a>「回忆视角」的转换练习</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、没说出口的话：憋回去的心思</h2>
+    <p class="chapter-sub">没说出口的话，比说出来的话更重</p>
+
+    <article class="view">
+      <h3>把"我想说"写到嘴边</h3>
+      <p class="ctx">心里最重的句子，常常没出去。"我想说对不起"是脑子里的事件，"嘴张了一下，没声，闭住"是<strong>身体出口处的停顿</strong>。<strong>剂量：未出口这一招，全篇配两条足以，多了反而显得矫情。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>嘴张了一下，没声，闭住；<br>那三个字在喉咙里咽了；<br>"对不起"换成"行吧"出口；<br>想握住，没握，手又收回来；<br>想叫的名字没叫出声。</td>
+          <td>我很想对他说一句道歉，但最后还是没说出口。</td>
+          <td>"想说没说"是<strong>告知</strong>。五句原子把<strong>没说出口的瞬间拆到出口</strong>——嘴、喉咙、字眼、握手、叫名，每一句都在<strong>最后一步</strong>停住。"对不起换成行吧"是<strong>替代出口</strong>，读者读到<strong>被替换掉的原词</strong>。</td>
+          <td>告别、吵架之后、差点道歉的瞬间。<strong>技巧</strong>：每条都要在<strong>出口的位置</strong>刹住，不要停在"想说"。</td>
+        </tr>
+        <tr>
+          <td>她在教室门口站了三秒，转身走了；<br>他把"留下来"写成一行，划掉；<br>"再见"到了嘴边，变成了一声咳；<br>他回头看了一眼，没招手。</td>
+          <td>我本来想叫住她，但最后还是没叫。</td>
+          <td>四句把<strong>出口</strong>分散到四个<strong>动作</strong>：门口三秒、把字划掉、一声咳、回头一眼。<strong>替代动作</strong>和<strong>原动作</strong>并列，读者读到的是<strong>被压下去的那一秒</strong>。</td>
+          <td>人已经走远、信已经写好又划掉、告别时不敢开口。<strong>技巧</strong>：用身体<strong>替代</strong>嘴说话——咳、站、划、看，都是"换了一种出口"。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——张力常常藏在没说出口的地方 · <a href="../../08-psychology/">第 8 章</a>「压抑视角」训练</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、数字与时间里的心理</h2>
+    <p class="chapter-sub">用度量代替"特别""非常""十分"</p>
+
+    <article class="view">
+      <h3>把"特别紧张"换成"五秒一次"</h3>
+      <p class="ctx">心理强度最难的不是写高低，是写<strong>准确</strong>。一个数字——三秒、五次、第二十六次——比"非常""特别"具体得多，也重得多。<strong>剂量：数字心理一段用一次，多了像记流水账。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>七秒。<br>三天没回他的消息。<br>第五次看表。<br>第二十六次把笔帽拔了又按。<br>一整个下午，发了三条又撤了三条。</td>
+          <td>我非常紧张，特别特别紧张，一点也静不下来。</td>
+          <td>"非常／特别"是<strong>感叹</strong>，读者没接住任何东西。五个原子全是<strong>可数的单位</strong>——7 秒、3 天、第 5 次、第 26 次、3 对 3。"次数对次数"是焦虑<strong>自己和自己比</strong>的形状。</td>
+          <td>等成绩、等人回消息、等一个迟到的人。<strong>技巧</strong>：数字必须有<strong>递进或对照</strong>，不能只是同一个数。</td>
+        </tr>
+        <tr>
+          <td>三点到七点，四个小时；<br>从一楼到四楼，十一分钟；<br>第三十二个字，他迟疑了；<br>十六岁的那个春天，整整两年。</td>
+          <td>过了很久很久，那段时间我很难熬。</td>
+          <td>"很久很久"是<strong>模糊</strong>。四句原子都是<strong>具体到小数点的时间</strong>——四点、四楼、32 个字、整两年。把<strong>时间精确到边界</strong>，心理就有了<strong>刻度</strong>。</td>
+          <td>失去的时光、被忽略的等待、某段回头才认出的日子。<strong>技巧</strong>：用"数字 + 单位"+"具体时点"压扁时间跨度。</td>
+        </tr>
+        <tr>
+          <td>她叹了一口气，三秒钟长；<br>他点了一下头，第一秒很用力；<br>天黑了三次，她才走出来；<br>闹铃响了一分钟，没人关。</td>
+          <td>她叹了一口气，很长，让人心里很不是滋味。</td>
+          <td>"很长""不是滋味"是<strong>形容词堆</strong>。四句把<strong>时间量</strong>直接<strong>当作物体</strong>来量——三秒钟长、第一秒很用力、天黑了三次、闹铃响一分钟。<strong>把时间当作可以"称"的量</strong>，读者就接住了情绪。</td>
+          <td>一句动作里藏着长时间停顿的场合。<strong>技巧</strong>：把抽象长度（"很长"）换成<strong>具体数字 + 单位</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「内容具体""能根据需要写具体的场景和细节」 · <a href="../../08-psychology/">第 8 章</a>「数字心理」是分诊表的第三栏</div>
+    </article>
+
+    <article class="view">
+      <h3>一幅练习：把五个形容词换掉</h3>
+      <p class="ctx">这是教学示例，五句心理描写被具体名词重新装回去的样子。</p>
+      <div class="fig"><img src="../../assets/img-16-2.png" alt="插画：一个时钟指着三点半，秒针定格，旁边一根手指在桌面上无意识地点出小坑，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <blockquote class="q">
+        <strong>弱版（不要写）：</strong><br>
+        那天我非常紧张，特别害怕，手心一直出汗，心里七上八下的，几乎要哭出来。
+      </blockquote>
+      <blockquote class="q">
+        <strong>还原后（教学示例）：</strong><br>
+        七秒。我数到七，指尖已经点出一排小坑。三点零三分，他还没回，第二十六次把笔帽拔了又按。"没事。"我在心里念出声，肩膀压不住。手心的汗把卷子印出一枚手印。
+        <span class="qsrc">—— 装配演示：原子来自本页 § 6.1；属教学示例，非任何真实场景。</span>
+      </blockquote>
+      <p class="ctx">请对照：<strong>"七秒"</strong>代替"非常"，<strong>"二十六次"</strong>代替"特别"，<strong>"点出一排小坑"</strong>代替"七上八下"，<strong>"手心的汗把卷子印出一枚手印"</strong>代替"几乎要哭出来"。读者读到的是<strong>可数、可称、可触</strong>的东西，不是形容词。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》（英文）</a>——删去空泛的形容词</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>"我很犹豫"为什么是告知？换成哪一种念头才算原子？</li>
+      <li>"算了吧"和"我很犹豫"相比，多出了哪三种信息（声量／时态／身体）？</li>
+      <li>"嘴与身体打脸"的机制是什么？为什么自我对话一定要配身体动作？</li>
+      <li>犹豫链的"三拍"具体是哪三拍？为什么不能两拍或四拍？</li>
+      <li>"三秒—两秒—零秒"比"很长时间"具体在哪？</li>
+      <li>为什么自我辩解要好几条并排、互不接得上？</li>
+      <li>三个声音"行／不行／别试了"为什么比"两个声音在打架"具体？</li>
+      <li>"反正不是第一次"开头四个字连用四次，是用哪一种修辞代替什么？</li>
+      <li>事后回想为什么不能写"我懂了"？要落到什么上才有效？</li>
+      <li>"今天想起还烫手"为什么比"我很难过至今"更有重量？</li>
+      <li>没说出口的话，为什么要到"出口"的位置停住？不停住会怎样？</li>
+      <li>"对不起换成行吧出口"这一招的机制是哪两个字？</li>
+      <li>数字心理的"剂量红线"是什么？为什么数字多了反而像记流水账？</li>
+      <li>"七秒"和"非常紧张"相比，谁的信息量更大？</li>
+      <li>为什么"特别""非常""十分"是本页的红牌词？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>心理不能直接写。六个出口按这一行的顺序用——①<strong>念头原话</strong>"算了吧／没事没事"（给音节与身体打脸）；②<strong>犹豫链</strong>三拍（抬手—缩手—再抬手，加上数数）；③<strong>自我辩解</strong>（不接得上地排"反正我其实我没"）；④<strong>事后回想</strong>（补上当时没注意到的细节 + 今天的温度）；⑤<strong>没说出口的话</strong>（到出口位置刹住，写"替换出口"）；⑥<strong>数字与时间</strong>（用"七秒／第三十二个字／二十六次"代替"特别非常"）。每一类心理都有自己最适合的写法：心智化强的事用①③，情绪张到极处用④⑤，长时间的压抑用⑥。一个形容词都不留，给读者<strong>音节、动作、计数</strong>。这是全库唯一一条反复强调的规矩："'特别''非常''十分'是本页的红牌词。"
+  </div>
+
+  <nav class="pager">
+    <a href="../15-sense-five/"><span class="dir">← 上一页</span>五感：把世界分成五种来写</a>
+    <a href="../17-dialogue/"><span class="dir">下一页 →</span>对话：让每句话都有身份</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 心理：把心思写成看得见的东西 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

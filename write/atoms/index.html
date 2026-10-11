@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原子素材库 — 写作习作课</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:44px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 10px;font-size:30px;}
+  header.masthead p{margin:4px 0;font-size:15px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .toc-part{margin:16px 0 6px;font-size:16px;font-weight:700;color:var(--accent-deep);padding-left:2px;}
+  .toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:8px 0 20px;}
+  .toc-list a{display:block;border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-decoration:none;color:var(--ink);background:#fff;font-size:14px;transition:.15s;}
+  .toc-list a:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 2px 6px rgba(185,28,28,.10);}
+  .toc-list .t{display:block;font-weight:600;}
+  .toc-list .d{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:23px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 共 22 页 · 六个部分</div>
+  <h1>📦 原子素材库</h1>
+  <p>写作成篇靠公式，写好一句靠零件</p>
+  <p><a href="../">← 返回写作习作课</a></p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">✍️ 写作习作课</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">这是什么</a>
+    <a class="anchor" href="#s2">怎么用</a>
+    <a class="anchor" href="#s3">全部目录</a>
+    <a class="anchor" href="#s4">十条禁令</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>这个库解决什么问题：</strong>读完<a href="../04-detail/">第4章《细节描写》</a>，很多人能复述公式，却依然写不出一段话——因为从头到尾没见过一段公认写得好、有名有姓的细节描写。本库补的就是这一层：<strong>约一千条可以直接调用的句子零件</strong>，覆盖表情、外貌、动作、心理、景色、季节、对话、比喻、夸奖、开头结尾。
+    <p style="margin:8px 0 0;"><strong>先读哪两页：</strong>如果只有十分钟，读<a href="00-intro/">《什么是原子》</a>——它解释了为什么"背句子"不等于"抄"，以及三条不能碰的界线。然后直接翻目录挑你眼下卡住的那一页，不必通读。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、这是什么</h2>
+    <p class="chapter-sub">零件，不是段落</p>
+
+    <article class="view">
+      <h3>一句话说清本库的定位</h3>
+      <p class="ctx"><a href="../04-detail/">写作习作课</a>是原理课，回答"为什么这样写有效"；本库是零件库，回答"那这一句具体怎么写"。两者配套使用，但方向相反——原理让你判断，零件让你下笔。</p>
+      <p class="ctx">本库收录的每一条都满足四条判准：<strong>够小</strong>（单条不超过二十字）、<strong>独立表意</strong>（离开原文也说得清）、<strong>有搭配位</strong>（知道自己该接在情绪、动作、物件的哪个位置）、<strong>有过渡证据</strong>（每条都配一个"弱版"，告诉你它凭什么赢）。</p>
+      <blockquote class="q">
+        我特别紧张，心怦怦直跳，手心全是汗。<span style="color:#991b1b;">← 这是弱版，全库二十页都在教你怎么摆脱它</span><br>
+        手心的汗把笔杆捂得发滑，换了个握法，还是滑。<span style="color:#1a7f37;">← 这才是原子：黏度、力度、失败重试</span>
+        <span class="qsrc">—— 教学示例</span>
+      </blockquote>
+      <p class="ctx">区别不在文采，在<strong>读者需要不需要被告知</strong>。弱版把结论递出去，读者只能被通知；原子把证据摆出来，读者自己走到结论。整本库就是在训练这一件事。<a href="00-intro/">总论页</a>有完整解释。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">义务教育语文课程标准（2022年版）</a>第三学段「内容具体」「表达真情实感」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、怎么用</h2>
+    <p class="chapter-sub">按需取用，不要通读</p>
+
+    <article class="view">
+      <h3>三种用法，各有代价</h3>
+      <table class="tb">
+        <tr><th>用法</th><th>怎么做</th><th>适合谁</th><th>代价</th></tr>
+        <tr><td><strong>查表法</strong></td><td>写作文时开着某一页，卡住了直接挑一组</td><td>正在写考场作文，急用</td><td>低。但只能救急，攒不下自己的东西。</td></tr>
+        <tr><td><strong>成组背</strong></td><td>一次背一组：读原子、读弱版、读"什么时候用"三遍</td><td>有时间和人愿意教</td><td>中。要花时间，但会形成可调用的直觉。</td></tr>
+        <tr><td><strong>换名用</strong></td><td>把原子里的具体名词换成自己生活里的东西，造一句只有你才有的话</td><td>想真的写得比别人好</td><td>高。必须真的动手换，一句都不能空过。</td></tr>
+      </table>
+      <p class="ctx">本库最推荐第三种，因为它同时练了三件事：记住句型、唤起自己的记忆、建立"我的作文里应该有什么"的判断力。第三件最重要——<strong>一个真正会写作的人，脑子里装的是自己，不是别人的句子</strong>。</p>
+      <p class="ctx">换名的正确示范：原子"牙咬下嘴唇，咬出一道白印"。你换成什么，取决于你真的有过什么——等成绩时你可能咬的是笔帽，上台时你可能捏的是裤缝，换完还要问自己一句：<strong>这件事我真的经历过吗？</strong>没经历过就不要用。本库提供句型，不提供经历。</p>
+      <div class="fig"><img src="../assets/img-03-2.png" alt="示意插画：文件夹中分门别类的写作零件卡片，扁平矢量风格，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——练习需重复与即时反馈，单次讲解不产生自动化 · <a href="../03-accumulate/">写作习作课第3章</a>「素材本记自己的，不记抄来的」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、全部目录</h2>
+    <p class="chapter-sub">22 页，按写作时"你卡在哪"排，不按字母排</p>
+
+    <div class="toc-part">第一部分 · 原子总论</div>
+    <div class="toc-list">
+      <a href="00-intro/"><span class="t">📦 什么是原子</span><span class="d">四条判准 + 三条禁令</span></a>
+      <a href="01-assemble/"><span class="t">🔧 装配术</span><span class="d">从原子到成篇的顺序与剂量</span></a>
+    </div>
+
+    <div class="toc-part">第二部分 · 情绪底座（全库调用率最高）</div>
+    <div class="toc-list">
+      <a href="02-emo-joy/"><span class="t">😄 喜悦、兴奋、得意</span><span class="d">高兴／雀跃／迫不及待</span></a>
+      <a href="03-emo-sad/"><span class="t">😢 难过、失落、想念</span><span class="d">伤心／孤独／想家</span></a>
+      <a href="04-emo-fear/"><span class="t">😰 紧张、害怕、忐忑</span><span class="d">心慌手乱这一支</span></a>
+      <a href="05-emo-anger/"><span class="t">😤 生气、烦躁、憋屈</span><span class="d">怒气与不甘</span></a>
+      <a href="06-emo-shame/"><span class="t">😳 羞愧、尴尬、后悔</span><span class="d">难堪与被揭穿</span></a>
+      <a href="07-emo-warm/"><span class="t">🥰 感动、温暖、希望</span><span class="d">心疼／欣慰／被理解</span></a>
+    </div>
+
+    <div class="toc-part">第三部分 · 人</div>
+    <div class="toc-list">
+      <a href="08-face/"><span class="t">😶 表情</span><span class="d">不说话的时候他在说什么</span></a>
+      <a href="09-look/"><span class="t">👤 外貌</span><span class="d">第一眼就让人物立住</span></a>
+      <a href="10-body/"><span class="t">🖐 身体反应与动作链</span><span class="d">第4章公式那两支的原料库</span></a>
+    </div>
+
+    <div class="toc-part">第四部分 · 景与物</div>
+    <div class="toc-list">
+      <a href="11-scene-time/"><span class="t">🕐 时序 × 季节</span><span class="d">16 格网格给全</span></a>
+      <a href="12-scene-nature/"><span class="t">🌄 景色</span><span class="d">天空云风雨雪雾山水星空</span></a>
+      <a href="13-scene-place/"><span class="t">🏫 场所</span><span class="d">教室家走廊街市旅途老屋</span></a>
+      <a href="14-scene-object/"><span class="t">🎒 物件</span><span class="d">以物写情</span></a>
+      <a href="15-sense-five/"><span class="t">👃 五感与通感</span><span class="d">视听嗅味触 + 通感</span></a>
+    </div>
+
+    <div class="toc-part">第五部分 · 心与言</div>
+    <div class="toc-list">
+      <a href="16-psych/"><span class="t">💭 心理</span><span class="d">把心思写成看得见的东西</span></a>
+      <a href="17-dialogue/"><span class="t">💬 对话</span><span class="d">让每句话都有身份</span></a>
+      <a href="18-metaphor/"><span class="t">🔗 比喻与拟人</span><span class="d">四种喻体，四种用法</span></a>
+      <a href="19-motion/"><span class="t">🎞️ 动态</span><span class="d">慢镜头／快进／静止瞬间</span></a>
+    </div>
+
+    <div class="toc-part">第六部分 · 用</div>
+    <div class="toc-list">
+      <a href="20-praise/"><span class="t">🌟 夸人的话</span><span class="d">怎样夸人才不油</span></a>
+      <a href="21-craft/"><span class="t">✂️ 开头结尾与过渡</span><span class="d">非套话的句型原子</span></a>
+    </div>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、十条底线</h2>
+    <p class="chapter-sub">这个库的全部伦理边界</p>
+
+    <article class="view">
+      <h3>可背、可拆、但不可整句搬运</h3>
+      <p class="ctx">本库里的句子设计成<strong>可以背、可以拆开单独用</strong>——但一旦你在成篇作文里原样长段使用，它就从"零件"变成了"搬运"，那正是本站反对的。<a href="00-intro/">总论页</a>把它写成三条禁令：</p>
+      <blockquote class="q">
+        <strong>一</strong>　同一类原子一篇作文不超过两处。<br>
+        <strong>二</strong>　必须换掉其中至少一个具体名词才能用——换不动，说明它不属于你。<br>
+        <strong>三</strong>　任何一条原子不得整句连续出现在成篇作文里超过十五字。
+        <span class="qsrc">—— <a href="00-intro/">原子素材库 · 什么是原子</a></span>
+      </blockquote>
+      <p class="ctx">为什么是这三个数：<strong>两处</strong>是阅读饱和的阈值，第三处读者只会翻页；<strong>一个名词</strong>是"这件事是否发生过"的最低检验，换了它才有你自己的痕迹；<strong>十五字</strong>是"使用"与"搬运"的分界，再往上就不是在写，是在贴。</p>
+      <p class="ctx">至于本库明确拒绝的四种做法——<strong>“代写”</strong>（找人替考替写）、<strong>“抄袭”</strong>（拿别人的文字冒充自己的）、<strong>“高分模板”</strong>（把一整段能得高分的文字背下来换个题目塞进去）、<strong>“作文速成班”</strong>（承诺短期保分的那类课程与营销）——它们的共同点是卖<strong>结果</strong>。本库只提供零件和诊断方法，成篇的判断与表达始终是你的工作。</p>
+      <p class="ctx">最后一句话请记牢：<strong>你可以在考场上想起"手心的汗把笔杆捂得发滑"这十几个字，但你必须自己决定它在那一刻是否真实——如果那天你手心是干的，你就该写别的。这条分界线就是本站全部课程的伦理底线。</strong></p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「不编造，不得套作」· <a href="../17-reading/">写作习作课第17章</a>仿写与“抄袭”边界判据：句序图相同＋事件是自己的＝仿写；整句照抄或换字洗稿＝“抄袭”</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 使用前自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>本库和写作习作课的关系是什么？一个讲什么，一个讲什么？</li>
+      <li>本库要解决的具体问题是什么？发生在第4章的哪个环节？</li>
+      <li>原子的四条判准分别是什么？</li>
+      <li>为什么"背句子"不等于"抄"？区别到底在哪一条线上？</li>
+      <li>弱版示例和原子示例，读者分别得到了什么？</li>
+      <li>三种用法各自的代价是什么？为什么推荐换名用？</li>
+      <li>换名用时你必须问自己哪一句话？问不出答案就该怎么办？</li>
+      <li>为什么本库按"你卡在哪"排，而不按字母排？</li>
+      <li>你最近一次卡住是在哪一类？该翻哪一页？</li>
+      <li>三条使用禁令分别是什么？各防什么毛病？</li>
+      <li>为什么是"两处""一个名词""十五字"这三个数？</li>
+      <li>本库拒绝的四种做法是什么？它们的共同点是什么？</li>
+      <li>伦理底线那句话的最后一句是什么？</li>
+    </ul>
+  </div>
+
+  <nav class="pager">
+    <a href="../"><span class="dir">← 返回</span>写作习作课</a>
+    <a href="00-intro/"><span class="dir">下一页 →</span>什么是原子：会背、能装、不照搬</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 共 22 页 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》、Graham &amp; Perin《Writing Next》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回写作习作课</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

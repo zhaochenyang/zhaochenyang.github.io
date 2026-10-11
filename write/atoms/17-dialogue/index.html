@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对话：让每句话都有身份 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第六部分 · 心理与对话</div>
+  <h1>💬 对话：让每句话都有身份</h1>
+  <p>"他说了句什么"是弱版；"‘真的？'——筷子在碗沿停了三秒"才是原子</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../16-psych/">← 上一页</a>
+    <a href="../18-metaphor/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">提问</a>
+    <a class="anchor" href="#s2">拒绝与道歉</a>
+    <a class="anchor" href="#s3">鼓励与争执</a>
+    <a class="anchor" href="#s4">告别、长辈与晚辈</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约25分钟）：</strong>学完你能——①给任何一句对话配一条"提示语"（动作、语气、停顿、眼神）；②识别对话的"信息差"——谁不知道什么，谁装不知道什么；③分辨"问答流水账"和有张力的对话；④把一句道歉的形状写出来，不是只写"对不起"；⑤写家长对孩子、老师对学生时，怎么让两句家长话与两句老师话不互相冒充。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>先做"对话提示语"的练习——把作业里写过的每一句对话找出来，每一句配一条提示语，配不上的就是被"告知"替掉的空句子。配合 <a href="../../07-dialogue/">写作习作课第 7 章「让人说话」</a>一起读。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、提问：问句怎么开口</h2>
+    <p class="chapter-sub">提问不写问号，写"问号从哪里长出来"</p>
+
+    <article class="view">
+      <h3>普通问句 + 提示语</h3>
+      <p class="ctx">"我问他"是动作，"能借我看看吗？"是问句，<strong>提示语</strong>是"问句是怎么问出来的"——手、眼睛、肩膀、停顿。<strong>提示语本身就是原子</strong>，它不是修饰。<strong>剂量：一段对话里，每一句问句都要带一条提示语，不要连用"我问他／她问"作动词。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"能借我看看吗？"——手已经摸上书边又收回来；<br>"这个怎么做？"——眼睛直盯着不放；<br>"你还好吗？"——手掌贴在她肩上；<br>"老师，我做得对吗？"——手里攥着那张卷子；<br>"你要走了吗？"——她已经把门推开一条缝。</td>
+          <td>我小心翼翼地问他能不能借我一下。</td>
+          <td>"小心翼翼"是<strong>形容词</strong>，五个原子全是<strong>具体动作或停住的位置</strong>：手"摸上又收回"——既想又不敢；"攥着卷子"——提问背后的筹码。读者读到的是<strong>问号是怎么长出来的</strong>，不是提问这件事。</td>
+          <td>借东西、问路、问成绩、问"你怎么了"。<strong>技巧</strong>：提示语必须<strong>先于或同时</strong>出现，不能在问句之后补一句"我说"。</td>
+        </tr>
+        <tr>
+          <td>不说话，眼睛从他这里瞟到那里；<br>嘴张了一下，没出声，又闭上；<br>"你……"——半句就这样打住了；<br>想问的事，越坐越远；<br>一回头，话咽回去。</td>
+          <td>我有话想说但又不敢问。</td>
+          <td>五句原子全是<strong>没出口的问句</strong>——身体在代替嘴提问。"瞟到那里"是眼睛在问，"张一下又闭上"是嘴在问，"咽回去"是嗓子在问。读者读到的是<strong>五处不同的未完成</strong>，各有各的形状。</td>
+          <td>想问又不敢问的瞬间。<strong>技巧</strong>：不要写"我想问"，写一个身体部位"想问"。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——对话后必跟身体反应 · <a href="../../07-dialogue/">写作习作课第 7 章</a>「提示语四类：动作／语气／停顿／眼神」</div>
+    </article>
+
+    <article class="view">
+      <h3>对话的"信息差"——谁不知道什么</h3>
+      <p class="ctx">对话有力量，常常因为说话的人<strong>不知道某件事</strong>，或<strong>装作不知道</strong>。一个句子有了信息差，对话就有了戏。<strong>剂量：每一处对话，问自己"这句话的另一层是什么"，写不出来的就是被告知替掉了的张力。</strong></p>
+      <div class="fig"><img src="../../assets/img-17-1.png" alt="插画：两个剪影隔着桌子对坐，一人抬头，一人低眼，中间有一行看不见的对话，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"你妈还好吗？"——他不知道她刚走；<br>"考得怎么样？"——他不知道她缺考；<br>"一起走吗？"——他不知道她要转学；<br>"你这次来是找我吗？"——她不知道他要请假；<br>"怎么没见他？"——他不知道那个名字没人认识。</td>
+          <td>他问了我一些事情，但我没有回答。</td>
+          <td>"问我没回答"是<strong>告知</strong>。五句原子都是<strong>问者不知道某件事</strong>——读者拿到了两个人之间的<strong>信息差</strong>，每一问后面都有一条空的、被剪开的句子。对话一出现就<strong>是画外音</strong>。</td>
+          <td>送别、分手、消息未达的瞬间。<strong>技巧</strong>：问句背后的"不知道"必须<strong>是具体的人称或事</strong>，不能是模糊的"她不知道一切"。</td>
+        </tr>
+        <tr>
+          <td>"真的？"——筷子在碗沿停了三秒；<br>"巧。"——那两个字押得很轻；<br>"随便你。"——把"随便"两个字咬了一下；<br>"嗯。"——眼睛没跟上来；<br>"行啊。"——笑没笑到眼底。</td>
+          <td>他嘴上说好，但是看出来他心里不情愿。</td>
+          <td>"嘴上好心里不情愿"是<strong>判断</strong>，五个原子全是<strong>声音与身体的错位</strong>——筷子停、字音轻、咬字、眼没收跟、笑不到眼底。每个简短对话背后藏着<strong>一层不说出的</strong>，读者得自己拼。</td>
+          <td>对话里常见但被跳过的瞬间。"真的？""巧""行啊"——三个汉字三个意思，<strong>用身体补丁撑起整句</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》（英文）</a>——对话必须有目的 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">策略教学（英文）</a>——信息差作为可观察单元</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、拒绝与道歉：对话里最难的两件事</h2>
+    <p class="chapter-sub">写"对不起"是写动作，不是写一个词</p>
+
+    <article class="view">
+      <h3>拒绝的形状：身体比嘴诚实</h3>
+      <p class="ctx">拒绝难，<strong>难的不是说"不"，是接住对方的反应</strong>。写作上写拒绝，重点是身体在那一刻<strong>怎么躲</strong>。配 <a href="../16-psych/">16 心理</a>里的"未出口的话"一起读。<strong>剂量：一段对话里最多出现一组拒绝，不要每件事都"拒绝"。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"不去了。"——头没抬，笔帽在指间转；<br>"你自个儿吃。"——筷子已经夹起菜；<br>"下次吧。"——把手机翻过去扣在桌面；<br>"你看着办。"——眼睫低下去，嘴角僵在原位；<br>"别问我。"——<br>"算了算了。"——<br>"我不去了行不行。"</td>
+          <td>我很不情愿地拒绝了他的邀请。</td>
+          <td>"不情愿地拒绝"是<strong>形容词组合</strong>，七个原子全是<strong>拒绝那一刻身体的退路</strong>——头不抬、筷子先动、手机翻扣、嘴角僵住、"别问"和"算了"连说两遍、最后那句带"行不行"是松口的缝。读者读到的是<strong>拒绝的几何形状</strong>。</td>
+          <td>不愿赴约、不想答应的瞬间。<strong>技巧</strong>："不"字之后的提示语<strong>必须先动作后说话</strong>。</td>
+        </tr>
+        <tr>
+          <td>"我不饿。"——把盘子推开半寸；<br>"没事。"——把袖子里的伤口藏一藏；<br>"我挺好。"——声音大了一点。<br>"不用。"——手缩回袖口；<br>"没事没事。"——眼里的笑撑了三秒。</td>
+          <td>我假装自己没事，但其实心里很难受。</td>
+          <td>"假装没事"是<strong>判断</strong>。五个原子都是<strong>嘴越平，反差越重</strong>："不饿"配"推半寸"，"挺好"配"声音大了一点"。<strong>拒绝背后的拒绝</strong>——身体替嘴挡回去，读者读到的是<strong>藏在后面的那件事</strong>。</td>
+          <td>不愿添麻烦、不愿被担心的场合。<strong>技巧</strong>：嘴一句+身体一句，<strong>两句方向相反</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——清晰来自身体细节 · <a href="../../07-dialogue/">第 7 章</a>「让拒绝有形状」</div>
+    </article>
+
+    <article class="view">
+      <h3>道歉的形状：低头低到什么程度</h3>
+      <p class="ctx">"对不起"三个字太短，<strong>道歉不是写这三个字</strong>，是写道歉在身体上走了几步。<strong>剂量：道歉段落里至少出现一处"低头/松开/抬眼"的提示语，不要连用三个"对不起"作对话。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"我错了。"——眼睛看着鞋尖；<br>"对不起。"——声音小到差点没听见；<br>"刚才我那句话。"——手攥着袖口；<br>"我不该那么说。"——抬眼看了他一下；<br>"是我没说清楚。"——手又松开一点。</td>
+          <td>我很诚恳地向他道了歉，他原谅了我。</td>
+          <td>"诚恳地道歉"是<strong>形容词</strong>，"他原谅了我"是<strong>告知结果</strong>。五句原子只写<strong>道歉那半秒</strong>：看鞋尖、声量小、攥袖口、抬一眼、松一点。读者读到的是<strong>道歉走过的距离</strong>，结果则留给他们自己判断。</td>
+          <td>需要写对不起的瞬间。<strong>技巧</strong>：道歉的提示语<strong>必须向下</strong>——视线、声音、手，全向下。</td>
+        </tr>
+        <tr>
+          <td>"是我没做好。"——把头再低半寸；<br>"这一次是我的问题。"——纸条已经折好；<br>"对不起晚了。"——手机亮着没开声音；<br>"我也有错。"——半句话没说完整的；<br>"谢谢你没走。"——眼圈红了一圈。</td>
+          <td>我迟到了很久才和他道歉，心里很愧疚。</td>
+          <td>五句都在<strong>事后道歉</strong>——已经走远一段距离。"低半寸""折好纸条""亮着没开声音""半句没说完""眼圈红"——五个<strong>物或身体</strong>，让"迟到的道歉"有了<strong>具体的时刻与物件</strong>。</td>
+          <td>事发后很久才开口道歉。<strong>技巧</strong>：道歉里<strong>必须有一个未完成的物件</strong>——折好的纸条、亮着没开声音的手机。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》（英文）</a>——删去形容词，让动作说话 · <a href="../16-psych/">心理页</a>「未出口的话」节</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、鼓励与争执：对话的两种力气</h2>
+    <p class="chapter-sub">鼓励是递出去的手；争执是接不接得回来</p>
+
+    <article class="view">
+      <h3>鼓励：把力气递过去</h3>
+      <p class="ctx">鼓励不是"加油"——加油是<strong>告知</strong>。鼓励是<strong>递过去一样具体的东西</strong>：一杯水、一只手、一句具体的"你这一步已经对了"。<strong>剂量：鼓励配一句提示语，不要写两段鼓励。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"再试试，刚才那一步已经对了。"<br>"没事，错了再来。"——递过来一杯水；<br>"我当年比你还糟。"——手搁在他肩上；<br>"别看分数，看错的那个坑。"<br>"抬起头来。"</td>
+          <td>我鼓励了他，让他振作起来。</td>
+          <td>"鼓励让他振作"是<strong>告知＋告知</strong>。五句原子都是<strong>鼓励的具体动作</strong>：递水、搁肩、点错题坑——三个动词后面都跟着<strong>一样具体的东西</strong>（水、肩、错题的那一处）。读者读到的是<strong>递过去的手</strong>，不是抽象的"加油"。</td>
+          <td>考试失利、跌了一跤、被拒绝后。<strong>技巧</strong>：鼓励不能光有"加油"，必须<strong>带一样具体的东西</strong>。</td>
+        </tr>
+        <tr>
+          <td>"你可以的。"——<br>"你能做完。"——眼睛直盯不放；<br>"再来一次，跟我念。"——指头点着题；<br>"我在这里。"——手一直搁在他背上；<br>"别怕。"——肩膀靠了一下。</td>
+          <td>我对他说了很多鼓励的话。</td>
+          <td>"很多鼓励的话"是<strong>告知</strong>。五句原子写的是<strong>鼓励的几种不同力道</strong>——盯、点题、靠一下、搭着肩——每句配合一句短话。读者读到的是<strong>五种不一样的手</strong>。</td>
+          <td>陪低年级的孩子、生病的亲友、第一次登台。<strong>技巧</strong>：鼓励句的提示语<strong>必须有身体接触或临近</strong>——水、肩、手、靠。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「写出真情实感""能根据需要写具体的场景和细节」</div>
+    </article>
+
+    <article class="view">
+      <h3>争执：对话的韵——停、抬、再停</h3>
+      <p class="ctx">吵架不是把难听话堆一起，<strong>吵架是有节奏的</strong>：一拍比一拍紧，一拍比一拍短，最末一拍常常不"吵"，<strong>换成了别的</strong>（摔东西、转身、关门）。<strong>剂量：争执场景全篇最多出现一处，写多了整篇都会火气过重。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"你怎么老是这样！"<br>"我没老这样，你才老这样！"<br>"我不想吵。"——声音反而抬高了一度；<br>"行行行，都你对。"——嘴角压下一丝笑；<br>"我没说，你说了。"——把筷子放回桌上；<br>"那你自己来。"——把围裙往桌上一甩。</td>
+          <td>我们大吵了一架，谁也不让谁。</td>
+          <td>"大吵一架谁也不让谁"是<strong>概括</strong>。六个原子写的是<strong>吵的节拍</strong>：先指控、再反指控、再说不想吵（却抬高一度）、再认输（带一丝笑）、再否认、再摔东西——递进的声响与物件，读者读到的是<strong>争吵本身的乐句</strong>。</td>
+          <td>家里的一次争吵、同学拌嘴。<strong>技巧</strong>：争吵最后一句<strong>要换成动作不换成话</strong>（摔、转身、关、放下）。</td>
+        </tr>
+        <tr>
+          <td>"我受够了。"——<br>"那就离。"——<br>"离就离。"——<br>门一关，门里很静；<br>"你给我回来。"——声音从门缝里挤出来。</td>
+          <td>她说要走，结果又舍不得真的离开。</td>
+          <td>"走但舍不得"是<strong>告知</strong>。五句原子全是<strong>门两边的声音</strong>：四句在门外（受够了、那就离、离就离、门一关），最后一句突然从门缝里挤进来——<strong>空间一反转</strong>，句子的来源变了，争吵因此有了<strong>方向感</strong>。</td>
+          <td>决裂场景。<strong>技巧</strong>：争吵一定写<strong>两次空间切换</strong>——人换地方，话也跟着换地方。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——对话的张力来自留白和断句</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、告别、家长对孩子、老师对学生</h2>
+    <p class="chapter-sub">三种人说话，声音不能互相冒充</p>
+
+    <article class="view">
+      <h3>告别：最后一句都不是告别</h3>
+      <p class="ctx">告别写得用力，常显生硬。<strong>高明的告别常常是另一件事</strong>——围围巾、发条消息、把车玻璃摇下来。<strong>剂量：告别段落里至少一处是用物件代替"再见"。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"路上小心。"——把围巾绕紧一圈；<br>"到地方给我发条消息。"<br>"回去吧。"——在车窗外抬手；<br>"嗯。"——<br>"照顾好自己。"</td>
+          <td>我们依依不舍地告别了。</td>
+          <td>"依依不舍"是<strong>形容词</strong>，五句原子写的是<strong>告别那一段时间</strong>：绕围巾、嘱咐一句话、车窗外抬手、"嗯"——四句都很短，但每句背后都压着一件<strong>没说的事</strong>。"照顾好自己"是普通一句，但接在最后，份量会突然变重。</td>
+          <td>送别、分手、家人离开。<strong>技巧</strong>：告别的话要<strong>短</strong>，留位给动作。</td>
+        </tr>
+        <tr>
+          <td>"你要好好的。"——把那块糕塞进袋子；<br>"记得吃饭。"——把伞往她那边推；<br>"别哭。"——把纸巾递过去；<br>"有空打电话。"——门已经关上；<br>"下次见。"——隔着门缝说的。</td>
+          <td>我和她告别，她舍不得地走了。</td>
+          <td>五句话全都<strong>是另一件事</strong>——塞糕、推伞、递纸、电话、隔着门缝。每句告别都<strong>压在一件具体的东西上</strong>。"隔着门缝说的"——最后一句的位置感，把"再见"推出去了。</td>
+          <td>送别一个重要的人。<strong>技巧</strong>：每句告别背后接<strong>一样物件或动作</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——诀别藏在物件里 · <a href="../16-psych/">心理页</a>「没说出口的话」节</div>
+    </article>
+
+    <article class="view">
+      <h3>家长对孩子——开口就短的三个句型</h3>
+      <p class="ctx">家长和孩子的对话有一个共同特征：<strong>话短、半截、明令</strong>。要写得像，提示语必须紧——手、肩、眼神、嗓子。<strong>剂量：写家长，一次只上 2–3 句，连上五句会像电视剧。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"饭好了，不吃拉倒。"<br>"作业没写完不许看电视。"<br>"听话。"——手按住他肩膀；<br>"看我一眼。"——声音压低了；<br>"你再跑？"<br>"回屋。"</td>
+          <td>妈妈很严厉地教育了我。</td>
+          <td>"严厉教育"是<strong>形容词＋告知</strong>。六个原子都是<strong>家长常用的高浓度短句</strong>：条件＋后果、命令、"听话"二字的按住、"看我一眼"的低嗓音、"你再跑"是反问、"回屋"是收尾。读者读到的是<strong>家里听过无数次的六个音</strong>。</td>
+          <td>写家里的不愉快、写妈妈的样子、写严厉的爱。<strong>技巧</strong>：家长的话<strong>不超过六个字</strong>，多了不像家长。</td>
+        </tr>
+        <tr>
+          <td>"出门带水。"——把水杯塞进他书包；<br>"天冷加件衣服。"——把外套搭在椅背上；<br>"吃饭别挑。"——在他碗里夹了一块；<br>"作业写完再玩。"——把台灯按了一下；<br>"早点睡。"——把电视遥控藏起。</td>
+          <td>妈妈总是无微不至地照顾我。</td>
+          <td>"无微不至"是<strong>形容词堆</strong>。五个原子把<strong>关爱拆成五种具体动作</strong>：塞水杯、搭外套、夹菜、按灯、藏遥控。每句话接<strong>一个动词</strong>，读者读到的是<strong>那五下的手</strong>。</td>
+          <td>写温柔的家长、写家里的日常关怀。<strong>技巧</strong>：每句关怀后面<strong>接一个动作</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「写出真情实感」</div>
+    </article>
+
+    <article class="view">
+      <h3>老师对学生——节制的五种声调</h3>
+      <p class="ctx">老师的声音要节制。<strong>不像家长那样急</strong>，但要<strong>比家长更"放在一件事上"</strong>——一道题、一处错、一次迟交。<strong>剂量：老师场景一次对话上限 3–4 句，超过会显得平面。</strong></p>
+      <div class="fig"><img src="../../assets/img-17-2.png" alt="插画：一支粉笔在黑板上画出一道弧，旁边一只手折起一张试卷的角，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>"再想想。"<br>"坐下。"——<br>"下课来找我。"——把卷子折一角还给他；<br>"下回再来。"<br>"这孩子反应快。"——半是对自己说的。</td>
+          <td>老师对我说了一些话，让我受益匪浅。</td>
+          <td>"受益匪浅"是<strong>形容词</strong>。五句老师的话<strong>句句短、句句带物</strong>：折起卷子那角、半是自己说的。读者读到的是<strong>五种老师不同的气口</strong>——从简短的指令到带关切的旁白，老师的声音因此有<strong>层次</strong>。</td>
+          <td>写老师、写某个具体的瞬间。<strong>技巧</strong>：老师的话也要短，但是<strong>比家长更"放"在物件上</strong>。</td>
+        </tr>
+        <tr>
+          <td>"看黑板。"——粉笔在板上一敲；<br>"这道题考过。"——指头点一下题号；<br>"把笔放下。"<br>"我再说一遍。"——指节在讲台上一叩；<br>"都记下来。"——眼神扫一圈。</td>
+          <td>老师认真负责地给我们上课。</td>
+          <td>"认真负责上课"是<strong>总结</strong>。五个原子写的是<strong>上课的五个动作音</strong>：粉笔敲、点题、放笔、叩讲台、眼神扫。每句话<strong>配一个具体动作或物件</strong>，老师因此有了<strong>节奏感</strong>。</td>
+          <td>写某节课、写某个老师。<strong>技巧</strong>：上课场景的提示语必须<strong>与教具有关</strong>——板、粉笔、笔、讲台。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》（英文）</a>——对话要简短而有力</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>"提示语"是什么？为什么它本身就是原子？</li>
+      <li>"小心翼翼地问"为什么弱？怎么改？</li>
+      <li>问句的信息差是怎么制造的？举一个具体例子。</li>
+      <li>为什么"你怎么老是这样"一句能撑起一句对话的开头？</li>
+      <li>写拒绝时，"不"字之后的提示语为什么必须先动作后说话？</li>
+      <li>"假装没事"为什么弱？应该怎么写？</li>
+      <li>道歉的提示语为什么必须向下——视线、声音、手都要向下？</li>
+      <li>写事后道歉为什么要带一个未完成的物件？举一个具体物件。</li>
+      <li>鼓励的话为什么不能光说"加油"？必须带什么？</li>
+      <li>争吵的场景里，最后一句为什么必须换成动作而不是话？</li>
+      <li>告别的话为什么必须短，留位给物件？</li>
+      <li>家长的话为什么不能超过六个字？六个字以上会像什么？</li>
+      <li>老师的话和家长的话有什么本质不同？分别靠什么样的物件撑？</li>
+      <li>为什么"依依不舍""受益匪浅"这类词在对话里不能出现？</li>
+      <li>本页"提示语"分为哪四类？分别给你一句本章示例。</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>对话不是问答流水账，<strong>提示语</strong>才是对话的另一半。"我问他"是动作，"能借我看看吗？——手已经摸上又收回"是原子。<strong>提示语分四类</strong>：动作（手、肩膀、眼睛、腿）、语气（声音压低、抬高、咽回去）、停顿（半句打住、咽三口、再三秒）、眼神（瞟、追、不跟上来）。<strong>对话要有信息差</strong>：问者不知道某件事，被问的那一侧藏着答案——读者自己拼。拒绝的"不"字之后必须先动作后说话；道歉的提示语必须向下（视线、声音、手）；鼓励必须带一样具体的东西（杯、肩、错题的那一处）；争吵的节拍一拍比一拍短，最后一拍要换成动作——摔、关、转身；告别的话必须短，留位给物件（围巾、推过来的伞、隔着门缝）。家长的话要短、半截、明令（六个字以内）；老师的话比家长更"放"在物件上——粉笔、卷子、讲台、题号。两个家长音、两个老师音，宁可少几个字也不要堆形容词。这是本页最要紧的一条："<strong>对话的力道不靠形容词，靠提示语。</strong>"
+  </div>
+
+  <nav class="pager">
+    <a href="../16-psych/"><span class="dir">← 上一页</span>心理：把心思写成看得见的东西</a>
+    <a href="../18-metaphor/"><span class="dir">下一页 →</span>比喻与拟人：四种喻体，四种用法</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 对话：让每句话都有身份 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>景色：天空、云、风雨雪雾、山水草木、星空、水面 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 景色与场所</div>
+  <h1>🏞️ 景色：天空、云、风雨雪雾、山水草木、星空、水面</h1>
+  <p>写变化与光线，不写静物清单</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../11-scene-time/">← 上一页</a>
+    <a href="../13-scene-place/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">天空：光线是主词</a>
+    <a class="anchor" href="#s2">云：动得比你想的快</a>
+    <a class="anchor" href="#s3">风雨雪雾：四种"看不见的东西"</a>
+    <a class="anchor" href="#s4">山水草木：远中近三层</a>
+    <a class="anchor" href="#s5">星空：把白天的视觉关掉</a>
+    <a class="anchor" href="#s6">水面：照得见，也碎得了</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①写天空不再只写"天很蓝"，而能写出光线的色温和变化；②写云从"形状清单"转成"动起来的云"；③把风雨雪雾当成各自的物理过程而不是天气标签；④写山水草木用"远中近"三层代替平铺直叙；⑤写星空时关掉白天的视觉经验，让黑暗和亮星同时在场；⑥写水面用倒影和波纹区分静水和动水。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>每个分类先读一遍，记住它的核心机制——天空靠光线，云靠运动，风雨雪雾靠物理过程，山水草木靠层次，星空靠反差，水面靠倒影。然后挑两组换名用一次。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、天空：光线是主词</h2>
+    <p class="chapter-sub">不是"天很蓝"，是光的色温和变化</p>
+
+    <article class="view">
+      <h3>天空的核心：写光，不写蓝</h3>
+      <p class="ctx">写天空最容易停在天色本身——"天很蓝""天很灰"。但天色是被光决定的，不是被天决定的。本节所有原子都把<strong>光线变化</strong>当主角：天色像被洗过、像被擦过、像一层灰布、像被烧成一条橘红的边。<strong>剂量：一篇作文里天空原子用 1–2 处，写过头就成了天气预报。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>天空像被洗过一遍，蓝得发白；<br>云低得像压在头顶；<br>太阳一出来就晃眼。</td>
+          <td>今天天气真好，天很蓝。</td>
+          <td>三条各指向一个<strong>不同感官</strong>：色温（发白）、气压（云压头顶）、光强（晃眼）。把同一时刻的天空拆给眼睛、皮肤、眉毛看，"蓝"就不再是单一颜色，而是<strong>一组同时发生的感觉</strong>。</td>
+          <td>开头的明亮场景；人物第一次走进户外的那一刻；夏秋之交正午。</td>
+        </tr>
+        <tr>
+          <td>阴天时天色像一层灰布；<br>日落把天烧成一条橘红的边；<br>傍晚天边堆了一团火。</td>
+          <td>天有点阴，傍晚很漂亮。</td>
+          <td>三条写的是<strong>光的形状</strong>：灰布（平的，无层次）、一条边（窄的，线性）、一团火（堆积的，有体量）。写光有了形状，傍晚的天空就<strong>有了方向</strong>——读者知道光从哪来、烧到哪停。</td>
+          <td>写情绪低落的阴天；写夕阳对人说话的瞬间；写跟人告别的黄昏。</td>
+        </tr>
+        <tr>
+          <td>雨后天空像被擦过；<br>清晨的天泛白带一点粉；<br>凌晨的天还没亮透。</td>
+          <td>雨过天晴，早晨的天空很美。</td>
+          <td>三条都是<strong>过渡态</strong>：擦过（从湿到干）、泛白（从暗到亮的中间）、没亮透（亮了一半）。过渡态比完成态更值得写——读者看到的是变化的<strong>那一刻</strong>，而不是已经变了的样子。</td>
+          <td>时间感需要推进时（雨停了、天刚亮、人刚醒）；用来标记一个场景的开始。</td>
+        </tr>
+        <tr>
+          <td>蓝天上什么云都没有；<br>傍晚天边只剩一条暗红。</td>
+          <td>天空万里无云，夕阳很红。</td>
+          <td>两条写的是<strong>空</strong>——什么也没剩。"没有云"是空，"只剩一条"是空到极致。空不是少，是<strong>减到刚够读者进去</strong>。这种天空适合人物独自站着或要做决定的那一刻。</td>
+          <td>人物做决定的瞬间；平静的内心；结尾收住全篇的画面。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——具体优于概括 · <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「观察自然环境」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、云：动得比你想的快</h2>
+    <p class="chapter-sub">写云的形状清单是死路，写云的运动才有云</p>
+
+    <article class="view">
+      <h3>云的核心：写它的形变和速度</h3>
+      <p class="ctx">云的弱点不在它本身，是写它的人把它当成静物——"云像棉花糖""云像绵羊"。云<strong>永远在动</strong>，所以写云要写它的变化：被风撕开、被太阳烧、被山挡、走得像被赶。<strong>剂量：云的原子用 1–2 处，且必须有一处带"动"的词，否则就只是形状清单。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>云低得压着楼顶；<br>云像被风撕开的棉絮；<br>天上只剩一丝云。</td>
+          <td>云很低很白。</td>
+          <td>三条都给了云的<strong>一个动作</strong>：压（向下）、撕（分开）、剩（被吹走）。每条都让云从形状变成事件——读者读到的是云正在被风、被光、被时间改变。</td>
+          <td>天气变化的前兆；人物出发的瞬间；写沉闷感或压抑感时。</td>
+        </tr>
+        <tr>
+          <td>云被太阳烧成金边；<br>积雨云像一顶要塌下来的帽子；<br>云翻过山头就不见。</td>
+          <td>云很漂亮，变化很多。</td>
+          <td>三条各有不同<strong>光源／地形</strong>对云的作用：烧（光的作用）、塌（重力与云的厚度）、翻过（地形遮挡）。云的形态是它和<strong>外部世界</strong>的关系，不是云自己长什么样。</td>
+          <td>写日出日落时；写山区的天气；写暴风雨前那一刻的预感。</td>
+        </tr>
+        <tr>
+          <td>风一过，云散了；<br>云一动，天就变了；<br>一朵云被风吹成一缕；<br>云的影子比云走得慢。</td>
+          <td>云在天上飘来飘去。</td>
+          <td>四条写的是云的<strong>速度与运动轨迹</strong>：散（瞬时）、变（光的连锁反应）、吹成一缕（变形）、影子慢于云（视觉错位）。其中最后一条最好——它把云的运动变成了一道<strong>物理题</strong>，读者看到光、影子、云三者的不同速度。</td>
+          <td>写景中的过渡段；写人物注意力的短暂转移；写孩子第一次盯着云看。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「写动态不写静态」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、风雨雪雾：四种"看不见的东西"</h2>
+    <p class="chapter-sub">写它们如何改变物体，而不是写它们的存在</p>
+
+    <article class="view">
+      <h3>风的核心：写它的反作用</h3>
+      <p class="ctx">风是看不见的。所以写风只能写它<strong>吹动了什么</strong>——树叶翻过来、耳朵里嗡的一声、脸上的冷最先到。本节原子的共同机制是：风不是被写出来的，是被它接触的物体替它写出来的。<strong>剂量：天气类原子一篇作文用 1–2 处，超了就成了气象频道。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>雨点打在铁皮上，噼啪响；<br>雨大到看不清五米外的人；<br>雨丝斜着落下来。</td>
+          <td>雨下得很大。</td>
+          <td>三条把雨变成了<strong>可听、可数、可测量角度</strong>的物理事件：铁皮响（声）、五米外（能见度）、斜着落（风向）。雨不再是天气，是<strong>周围物体被雨改变的样子</strong>。</td>
+          <td>需要建立沉闷、急促、被困住的场景；中段推进天气变化时。</td>
+        </tr>
+        <tr>
+          <td>风一过树叶翻过来露出背面；<br>风停时耳朵里嗡的一声；<br>风的冷是从脸上开始的。</td>
+          <td>风很大，很冷。</td>
+          <td>三条写的是风的<strong>作用对象</strong>：树（翻）、耳（嗡）、脸（冷）。风被分解给三个感官去感受——读者读到的不只是"风大"，是身体三个地方同时知道风来了。冷从脸上开始，是因为皮肤上的温度感受器最密。</td>
+          <td>开头建立冷感；写人走出屋子的那一刻；写清晨上学路上。</td>
+        </tr>
+        <tr>
+          <td>雪落在衣服上不化；<br>雪地反光刺眼；<br>冰挂从屋檐垂下一根。</td>
+          <td>下了很大的雪。</td>
+          <td>三条写的是雪的<strong>三个物理状态</strong>：不化（够冷）、反光（密度）、冰挂（融化一半又冻住）。读者从这三条里看到的是<strong>温度梯度</strong>，不是"下雪"两个字。</td>
+          <td>写严冬；写放学的路上；写早晨出门看见的第一眼雪。</td>
+        </tr>
+        <tr>
+          <td>雾里十米外的人只剩影子；<br>雾散去时露出一角屋顶；<br>雷声从远处滚过来。</td>
+          <td>起雾了，还有雷声。</td>
+          <td>三条分别写雾的<strong>距离压缩</strong>（十米外只剩影子）、<strong>散去的过程</strong>（露出屋顶而不是整栋楼）、雷的<strong>运动</strong>（滚过来而不是响）。雾散去的过程感尤其好——它写的是<strong>信息一点一点回来</strong>而不是"雾散了"。</td>
+          <td>开头建立迷茫感；人物第一次看见某地；写早晨上学路上雾未散。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-09-2.png" alt="示意插画：风雨雪雾四种天气元素对应的不同物理过程，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White（英文）</a>——写动作，写具体结果 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、山水草木：远中近三层</h2>
+    <p class="chapter-sub">写景深，不要写平铺直叙的清单</p>
+
+    <article class="view">
+      <h3>山水草木的核心：层次和细节</h3>
+      <p class="ctx">山水草木最容易写成静态罗列——"山很高，水很清，树很绿"。本节的核心是<strong>写景深</strong>：远处一层、中间一层、近处一层；同一种东西在不同距离上颜色、形状、声音都不同。<strong>剂量：山水草木原子一处一组就够，组内 2–3 条最好——它们之间形成层次。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>山被云遮了一半；<br>山的颜色一层比一层浅；<br>远山比近山淡。</td>
+          <td>山很高很远。</td>
+          <td>三条写的是山的<strong>远中近层次</strong>：被遮（云与山的关系）、层色（深到浅）、淡（远的视觉差）。同一个"远"字被拆成三个不同证据——读者看到的不只是"远"，是<strong>远的物理过程</strong>。</td>
+          <td>开头的远景；人物第一次看见远方某地；写登高或离开。</td>
+        </tr>
+        <tr>
+          <td>水清到看见自己的影子；<br>水流过石头发出轻轻的声音；<br>河水在桥下转了一个弯。</td>
+          <td>水很清，水很凉。</td>
+          <td>三条把水写成了<strong>三种不同的可读证据</strong>：清（透明度）、过石头（声音）、转弯（运动方向）。水被切给眼睛、耳朵、运动感——同一个"水"字变成了三件事。</td>
+          <td>写小溪、池塘、河边；写人物第一次站在水边。</td>
+        </tr>
+        <tr>
+          <td>草叶上的露水一弯腰就掉了；<br>树叶的背面比正面浅；<br>山坡上的草被风按下去。</td>
+          <td>草很绿，树叶很嫩。</td>
+          <td>三条写的是草和树叶的<strong>反常细节</strong>：露水一弯腰就掉（力学）、背面浅（叶绿素分布）、被风按（动态）。这些细节不靠形容词，全靠<strong>力学或生物学</strong>支撑——读者读完会觉得作者真的蹲下来看过。</td>
+          <td>写早晨的草地；写人物蹲下观察的瞬间；写风中走过的路。</td>
+        </tr>
+        <tr>
+          <td>山上的松树一年四季都绿着；<br>老树的皮裂开像鱼鳞；<br>树枝伸出来比想象的长。</td>
+          <td>松树很绿，老树很老。</td>
+          <td>三条写的都是<strong>时间的痕迹</strong>：常年绿（恒常）、鱼鳞（多年生长）、比想象的长（错觉）。老树的鱼鳞尤其好——它把"很老"变成<strong>一个具体可看的形状</strong>。</td>
+          <td>写老地方；写记忆中的某棵树；写告别或回头。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「细节优于形容词」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、星空：把白天的视觉关掉</h2>
+    <p class="chapter-sub">写星空要写的不是星，是黑</p>
+
+    <article class="view">
+      <h3>星空的核心：反差，不是清单</h3>
+      <p class="ctx">写星空最常犯的错是把星星当成白天物体来数——"星星很多很亮"。星空的本质是<strong>反差</strong>：夜空是黑的，星星才有意义。所以星空的原子必须同时带黑和亮。<strong>剂量：星空原子用 1 处，且只挑一组，不要连用——星空已经够重，连用读者会喘不过气。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>星星多得像撒了一把；<br>月亮是弯的，像切剩的指甲；<br>流星划过还没来得及指。</td>
+          <td>夜空星星很多，月亮很亮。</td>
+          <td>三条都给了<strong>具体的量或形状</strong>：一把（数量）、切剩的指甲（弯的厚度）、还没来得及指（速度）。"撒"是动态动词，把星星从"挂"变成"落"——夜空就动了。</td>
+          <td>第一次仰望星空的瞬间；暑假回老家的夏夜；写一段安静的等待。</td>
+        </tr>
+        <tr>
+          <td>夜空蓝得近；<br>月亮慢慢爬上屋顶；<br>月亮旁边有一颗很亮的星；<br>银河像一条浅带；<br>星星眨得比平时快。</td>
+          <td>夜空很美。</td>
+          <td>五条写的是<strong>夜空与白天不同的视觉经验</strong>：蓝得近（错觉）、爬（速度）、挨着的星（位置）、浅带（形状）、眨得快（大气抖动）。每条都把"夜空"从抽象变回<strong>具体的眼睛在看</strong>。</td>
+          <td>写夜里的一次抬头；写失眠的夜晚；写回老家的路上抬头的一瞬间。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「观察自然」· <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、水面：照得见，也碎得了</h2>
+    <p class="chapter-sub">写水面写的是"倒"与"破"</p>
+
+    <article class="view">
+      <h3>水面的核心：倒影和波纹</h3>
+      <p class="ctx">水面是风景里最容易被忽略也最好用的部分——因为它有两层：上面一层（天空、岸、人），下面一层（倒影）。<strong>写水面要写这两层的分裂和重合</strong>：倒影被打碎了又拼回来、雨点打出一圈一圈、落叶贴着漂。<strong>剂量：水面原子 1 处一组，不要和天气原子堆叠——水面的反应已经包含天气。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>水面平得能照见人；<br>风一过水面皱了一下；<br>雨点在水面上打出一圈一圈。</td>
+          <td>水面很平静。</td>
+          <td>三条写的是水面的<strong>三种物理反应</strong>：照见（镜面反射）、皱（表面张力被打乱）、一圈一圈（同心波）。三条对应<strong>无风、有风、有雨</strong>三种状态——读者一看就知道当下是什么天气。</td>
+          <td>写清晨的池塘；写雨刚落下的一刻；写人物第一次把目光落在水面上。</td>
+        </tr>
+        <tr>
+          <td>落叶贴着水面漂；<br>倒影被打碎了又拼回来；<br>水底长着水草，随波一晃。</td>
+          <td>水里有倒影，水很清。</td>
+          <td>三条都给了<strong>运动 + 视觉错位</strong>：贴（接触面最小）、打碎又拼（瞬间变化）、随波一晃（透明中的运动）。水底的草"一晃"是<strong>透出来</strong>而不是"看见"——它写的是水的透明度。</td>
+          <td>写溪边、湖边；写人物蹲下来看水的那一瞬间；写回老家的路上。</td>
+        </tr>
+        <tr>
+          <td>一片落叶转着圈沉下去；<br>鱼的影子一闪就没；<br>水面亮得睁不开眼；<br>水面被船划开一道白印。</td>
+          <td>水里有鱼有落叶。</td>
+          <td>四条写的是<strong>水上与水下、动与静、明与暗</strong>四个对比：沉（垂直运动）、一闪（瞬间）、亮（高光）、白印（船过）。把它们组合在一起，<strong>水面就有了上下两个世界</strong>。</td>
+          <td>写临水的一段长景；写孩子第一次盯着水面看；写船过的视角。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White（英文）</a>· <a href="../../06-senses/">写作习作课第6章</a>「倒影是水面的第二层」</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>写天空的核心机制是什么？弱版"天很蓝"错在哪？</li>
+      <li>"色温""一层比一层浅""像被擦过"分别对应什么物理过程？</li>
+      <li>写云的核心机制和写天空一样吗？如果不一样，差在哪？</li>
+      <li>为什么"云的影子比云走得慢"是好句子？它用了几个对象的速度差？</li>
+      <li>风雨雪雾四个的核心共同点是什么？它们写的不是天气，是什么？</li>
+      <li>"风一过树叶翻过来露出背面"为什么比"风很大"强？</li>
+      <li>写山水草木为什么要分远中近三层？平铺清单错在哪？</li>
+      <li>老树的皮"裂开像鱼鳞"用了什么手法？把哪两个东西并列了？</li>
+      <li>星空的核心不是"亮"，是什么？为什么必须反差？</li>
+      <li>水面有哪两层？为什么写水面要把这两层都写到？</li>
+      <li>"倒影被打碎了又拼回来"为什么是好句子？它的关键动词是什么？</li>
+      <li>本页的剂量页里写明：天空原子用几处？天气原子用几处？山水草木用几处？星空用几处？水面用几处？</li>
+      <li>如果写"早晨上学路上的雨"应该挑哪几个分类的原子？</li>
+      <li>"光线变化"这个机制为什么是景色页最重要的工具？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>景色页的总开关是<strong>写变化与光线，不写静物清单</strong>。天空：写光，不写蓝——色温、形状、过渡态、空。云的弱点是当成静物，所以写云必须写运动——撕、烧、翻过、走、影子慢于云。风雨雪雾是四种"看不见的东西"，要把它们写在作用对象上——铁皮、树叶、脸、雪地、屋顶。山水草木靠景深，远中近三层分开写，远淡近清。星空是反差，不是清单——黑与亮必须同时在场。水面有上下两层，上面（天空、岸、人）下面（倒影、落叶、水草），写水面要把这两层都写到。剂量：天空 1–2 处、云 1–2 处且必须带"动"、天气 1–2 处、山水草木一组 2–3 条、星空 1 处一组、水面 1 处一组。换名用时，把每条的具体名词换成你真见过的——"远山比近山淡"要换成你真的站过的那座山和那道坡。
+  </div>
+
+  <nav class="pager">
+    <a href="../11-scene-time/"><span class="dir">← 上一页</span>时序 × 季节</a>
+    <a href="../13-scene-place/"><span class="dir">下一页 →</span>场所：教室、家、走廊、街市、旅途、校园角落、老屋、饭桌、车站</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 景色：天空、云、风雨雪雾、山水草木、星空、水面 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk & White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

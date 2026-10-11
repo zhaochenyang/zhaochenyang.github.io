@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>感动、温暖、希望 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 情绪原子</div>
+  <h1>🌅 感动、温暖、希望</h1>
+  <p>感动、温暖、心疼、欣慰、希望、被理解、想念某人——七种"暖"，三种不同身体</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../06-emo-shame/">← 上一页</a>
+    <a href="../08-face/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">感动：眼眶热了</a>
+    <a class="anchor" href="#s2">温暖：身体的小事</a>
+    <a class="anchor" href="#s3">心疼与欣慰</a>
+    <a class="anchor" href="#s4">希望与被理解</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①区分感动、温暖、希望这三种最容易被写得"空"的"暖"，给它们各自配上一组身体证据；②把"我心里很感动""一股暖流涌上心头"这类被用烂的句子各换上一组可触摸的细节；③在收到关怀、看到亲情、得到理解、被守护四类情境里挑对原子；④守住"一类情绪一篇用 1–2 处"的剂量，并知道为什么堆叠会变假。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>这一类情绪是考场最爱写的，也是最容易写得"空而假"的一类——"心里暖洋洋的"。读一遍，把你旧作文里的"一股暖流""感动得流泪"挑出来——基本都该进弱版列。本页的"眼眶热""具体物件""身体里的小事"三条机制值得你花最多时间。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、感动——眼眶热了</h2>
+    <p class="chapter-sub">感动是难过与喜悦的交叉点</p>
+
+    <article class="view">
+      <h3>感动的鼻根到眼眶</h3>
+      <p class="ctx">感动与难过的差别：难过<strong>持续往下</strong>，感动常常<strong>突然起来</strong>。感动走的是<strong>鼻根到眼眶这一段</strong>——酸了一下，热了一下，眼眶自己湿润了。<strong>剂量：一篇作文里"感动"类面部原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>鼻根一酸，眼眶跟着热；<br>眼睛还没湿，下巴先抖了一下；<br>睫毛眨了两下，没忍住；<br>嘴巴想笑，喉咙先哽了一下。</td>
+          <td>我心里很感动，眼泪流了下来。</td>
+          <td>“眼泪流"是文学修辞。换成<strong>四种"正要掉却没掉"</strong>：鼻根到眼眶（部位连接）、下巴先抖（部位次序）、眨两下没忍（频率与控制）、笑先哽（表情的反向）。感动是<strong>两个情绪在眼眶里打架</strong>。</td>
+          <td>被关心、被理解、被守护、被一句话戳中。<strong>感动常常配"某句话"</strong>。</td>
+        </tr>
+        <tr>
+          <td>眼眶湿了，自己用手背擦了一下；<br>假装看别处，让眼睛吹一下风；<br>把头转过去，没接话；<br>把手里的小东西攥紧了一下。</td>
+          <td>我强忍着泪水。</td>
+          <td>“强忍"是结论。换成<strong>四种"假装没事"</strong>：手背擦（触觉的反向）、吹风（呼吸假装）、转没接（语言的反向）、攥小东西（触觉的反向）。感动常常伴随<strong>想把眼泪藏起来的动作</strong>。</td>
+          <td>被公开表扬、被陌生人关怀、听别人念一段话。<strong>感动常常发生在"不哭"的场合</strong>。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-05-2.png" alt="示意插画：人物眼眶湿润、把头转过去的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——具体身体反应替代表情词 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——情绪交叉研究</div>
+    </article>
+
+    <article class="view">
+      <h3>感动的"喉结动了一下"</h3>
+      <p class="ctx">感动最具辨识度的身体形态是<strong>喉结动了一下</strong>——想说话却没说出来，喉咙里像有什么被压住。<strong>剂量：一篇作文里"感动"类喉部原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>喉结动了一下；<br>想说话，声音没跟上；<br>点头，点了两下才停；<br>对方话没说完，自己先低下了头。</td>
+          <td>我感动得说不出话来。</td>
+          <td>“说不出"是结论。换成<strong>四种"喉部反应"</strong>：喉结动（部位动）、声音没跟（语言预备）、点头两下（应答重复）、先低头（姿态的反向）。感动让语言<strong>失去了它的起点</strong>。</td>
+          <td>被感谢、被理解、被守护。<strong>感动常常配"对方一句话"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「感情真挚」要求 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、温暖——身体的小事</h2>
+    <p class="chapter-sub">温暖不是形容词，是身体接住了一件事</p>
+
+    <article class="view">
+      <h3>温暖的具体物件</h3>
+      <p class="ctx">"温暖"被滥用得最严重：<strong>一股暖流涌上心头</strong>是它的代名词。真情形是<strong>身体接住了一件小事</strong>——外套被披上、座位被让出、一句话被听见。<strong>剂量：一篇作文里"温暖"类物件原子用 1–2 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>外套披到肩上的那一刻，没抖下来；<br>座位被让出来，自己愣了一秒；<br>听见对方说"我来"，手已经伸出；<br>一杯水递到手里，热的，自己没要求。</td>
+          <td>我心里涌起一股暖流。</td>
+          <td>“暖流"是成语，读者读完没画面。换成<strong>四种"接住"</strong>：披上没抖（动作的接受）、被让一秒（语言与位移的接受）、听见我手已经（接与伸的同步）、热水没要求（对象的反常）。温暖是<strong>身体接住了一件自己没求的事</strong>。</td>
+          <td>陌生人让座、被披外套、被递水、被让路。<strong>温暖要配具体的物件</strong>。</td>
+        </tr>
+        <tr>
+          <td>手搁在对方的袖子上，没移开；<br>把自己的围巾往对方那边送了半寸；<br>把手里的暖手宝递给对方；<br>把自己的一份菜夹到对方碗里。</td>
+          <td>我感到温暖。</td>
+          <td>“温暖"是结论。换成<strong>四种"给予的小动作"</strong>：搁袖没移（触觉的停留）、送半寸围巾（位移的小）、递暖手宝（物件的传递）、夹菜到碗（物件的反常方向）。温暖常常发生在<strong>自己给出去的时候</strong>，不是被人给。</td>
+          <td>为家人做事、为朋友、为陌生人。<strong>给予的温暖比接受的温暖更准</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>——具体优于抽象 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>温暖的"被接住"</h3>
+      <p class="ctx">温暖的另一个形态是<strong>被接住</strong>——话到一半被对方接过去，摔倒时被扶住，问题到一半被回答。<strong>剂量：一篇作文里"温暖"类接住原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>话到一半，对方先接过去；<br>手伸出来没到一半，对方先扶住；<br>问题还没问完，对方先答了；<br>脚踩空被扶，没摔倒。</td>
+          <td>我感到温暖。</td>
+          <td>“温暖"是结论。换成<strong>四种"被接住"</strong>：话先接（语言被接）、手扶（动作被接）、问题先答（语言被预接）、踩空没摔（身体的被接）。温暖是<strong>动作还没完成，对方已经接住</strong>。</td>
+          <td>被人扶、话被人接、问题被预答。<strong>被接住常常配"对方比自己先动"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、心疼与欣慰</h2>
+    <p class="chapter-sub">心疼是看见对方的难，欣慰是看见对方的好</p>
+
+    <article class="view">
+      <h3>心疼——身体的"代入"</h3>
+      <p class="ctx">心疼的身体形态是<strong>代入</strong>——看见对方的手在抖，自己手也紧了一下；看见对方冷，自己先摸了摸自己的袖口。<strong>剂量：一篇作文里"心疼"类代入原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>看见对方手抖，自己手也紧了一下；<br>看见对方冷，自己先摸袖口；<br>听见对方咳嗽，自己喉咙跟着发紧；<br>看见对方叹气，自己先闭上眼。</td>
+          <td>我很心疼他。</td>
+          <td>“心疼"是结论。换成<strong>四种"代入"</strong>：手抖手紧（部位的代入）、先摸袖（动作的代入）、喉紧跟（部位的代入）、叹闭眼（反应的代入）。心疼是<strong>身体替对方做了一遍那件事</strong>。</td>
+          <td>看家人辛苦、看朋友受伤、看别人艰难。<strong>心疼要配"对方在场"</strong>。</td>
+        </tr>
+        <tr>
+          <td>想为对方做点什么，手伸到一半停；<br>话到嘴边咽回去，又说一句；<br>把自己的外套递过去，没接对方的；<br>为对方多盛一碗饭，没说原因。</td>
+          <td>我心疼他。</td>
+          <td>“心疼"是结论。换成<strong>四种"想多做"</strong>：伸半停（动作的预备失败）、咽又说（语言的双重准备）、递外套（物件的方向反常）、多盛饭（动作的反常量）。心疼是<strong>身体在为对方做比平时多的事</strong>。</td>
+          <td>看家人辛苦、看朋友生病、看别人受伤。<strong>心疼要写出"多出来的那一点"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>· <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>欣慰——看见对方的好</h3>
+      <p class="ctx">欣慰与心疼的方向相反：心疼<strong>看见对方的难</strong>，欣慰<strong>看见对方的好</strong>。欣慰的身体是<strong>松</strong>——肩膀落下一寸，气吐出来，眼睛看着对方停住。<strong>剂量：一篇作文里"欣慰"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>肩膀落下一寸；<br>一口气长吐出来；<br>眼睛看着对方，停了三秒；<br>嘴角抬一下，没笑出声。</td>
+          <td>我感到欣慰。</td>
+          <td>“欣慰"是结论。换成<strong>四种"松"</strong>：肩落一寸（可量位移）、长吐（时长反常）、眼停三秒（凝视时长）、嘴角抬没笑（表情的预备）。欣慰是<strong>身体为对方"放下了"</strong>。</td>
+          <td>看见孩子长大、看学生答对题、看家人康复。<strong>欣慰要配"看见对方的具体变化"</strong>。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-04-2.png" alt="示意插画：人物肩落一口气长吐的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「感情真挚」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、希望与被理解</h2>
+    <p class="chapter-sub">希望是身体的力气回来了</p>
+
+    <article class="view">
+      <h3>希望——力气回来了</h3>
+      <p class="ctx">"希望"被滥用得比"温暖"还严重：<strong>看见了希望</strong>是它的代名词。真情形是<strong>身体里的力气回来一点</strong>——肩重新抬起来，脚踏稳地，呼吸变长，眼睛看得远。<strong>剂量：一篇作文里"希望"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>肩重新抬起来；<br>脚踏稳地，多踩了一下；<br>一口气长吐之后，长吸了一口；<br>眼睛抬起，看得远了一寸。</td>
+          <td>我看见了希望。</td>
+          <td>“希望"是结论。换成<strong>四种"力气回来"</strong>：肩重抬（姿态的重置）、脚踏多一下（位移的强化）、长吐长吸（呼吸的节拍）、眼抬一寸（视距的反常）。希望是<strong>身体里多出来的那一口气</strong>。</td>
+          <td>得知好消息、看见对方康复、走出低谷。<strong>希望要配"力气回来的具体动作"</strong>。</td>
+        </tr>
+        <tr>
+          <td>手伸向窗台，摸到了一片阳光；<br>把窗推得更开一些；<br>把桌子上的东西重新摆了一遍；<br>把那本搁置已久的书翻开。</td>
+          <td>我重燃了希望。</td>
+          <td>“重燃"是修辞。换成<strong>四种"打开"</strong>：摸阳光（触觉的开放）、推窗（空间的开放）、重摆（物件的重置）、翻旧书（物件的重新激活）。希望是<strong>身体重新打开了一扇窗或一本旧东西</strong>。</td>
+          <td>低谷后、失败后、被拒之后。<strong>希望常常配"光、窗、书"</strong>这类可重新打开的物件。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>——具体优于抽象 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>被理解——身体松了</h3>
+      <p class="ctx">被理解是这一页里最难写准的一类：它不是高兴，不是感动，是<strong>身体里一直绷着的那根弦松了</strong>。<strong>剂量：一篇作文里"被理解"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>一直绷着的肩落下了；<br>一口气吐出来，比平时长；<br>眼眶热了一下，自己没按住；<br>看着对方，眼珠没动。</td>
+          <td>我被理解了。</td>
+          <td>“被理解"是结论。换成<strong>四种"松"</strong>：绷落（可量的松弛）、长吐（呼吸的反常）、热按住（情绪的反向控制）、眼没动（凝视的反常）。被理解是<strong>身体里那根一直绷着的弦断了</strong>。</td>
+          <td>被听、被看见、被接过一句话。<strong>被理解要配"一直在准备解释却没说"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「表达真情实感」要求 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>感动、温暖、希望这三种"暖"在身体上的根本差别是什么？</li>
+      <li>感动为什么常常伴随着"不哭"的场合？举出四种藏眼泪的动作。</li>
+      <li>感动最具辨识度的身体形态是什么？为什么说"喉结动了一下"是感动？</li>
+      <li>"一股暖流涌上心头"为什么是弱版？温暖应该写"接住"还是"接受"？</li>
+      <li>温暖常常发生在什么方向上？为什么说给予的温暖比接受的温暖更准？</li>
+      <li>"被接住"是哪四件？它们的共同点是什么？</li>
+      <li>心疼与感动在身体方向上的差别是什么？为什么说心疼是"代入"？</li>
+      <li>欣慰与心疼的差别是哪一条？欣慰的"松"具体是哪四件？</li>
+      <li>希望的"力气回来"是哪四种？希望的"打开"是哪四种？</li>
+      <li>被理解为什么比离别难写？它的四种"松"是哪四件？</li>
+      <li>本类情绪每篇的剂量是什么？哪一类原子不能用同段连用？</li>
+      <li>在你最近一篇写"我被感动了""我心里暖暖的"的作文里，哪些原子能用上？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>感动、温暖、希望三种"暖"在身体上有不同形状。感动是<strong>两个情绪在眼眶里打架</strong>（鼻根酸、下巴先抖、喉结动），温暖是<strong>身体接住了一件小事</strong>（外套被披上、座位被让出、话被先接过去），希望是<strong>身体里的力气</strong>（肩重抬、长吐长吸、推窗）。心疼与欣慰是另一种维度：心疼是<strong>代入</strong>（看见对方抖自己也紧），欣慰是<strong>松</strong>（肩落一寸）。被理解是<strong>身体里一直绷着的弦断了</strong>。剂量：感动 1–2 处，温暖 1–2 处，希望 1 处，心疼 1 处，欣慰 1 处，被理解 1 处。配图与剂量都来自课堂反复试错的经验。<a href="../../04-detail/">写作习作课第4章</a>讲情绪的写法时专门讨论过"暖"的反义词不是"冷"，是"空"——空才需要写具体。情绪页到此结束，下一组：<a href="../08-face/">表情</a>——把"脸"当成零件来调。
+  </div>
+
+  <nav class="pager">
+    <a href="../06-emo-shame/"><span class="dir">← 上一页</span>羞愧、尴尬、后悔</a>
+    <a href="../08-face/"><span class="dir">下一页 →</span>表情原子</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 感动、温暖、希望 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

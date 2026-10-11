@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动态：慢镜头、快进、静止瞬间、突发 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第五部分 · 节拍</div>
+  <h1>⏱ 动态：慢镜头、快进、静止瞬间、突发</h1>
+  <p>"过了一会儿他喝了口水"是弱版；"指节一节扣紧、杯底离桌一寸"才是原子</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../18-metaphor/">← 上一页</a>
+    <a href="../20-praise/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">慢镜头</a>
+    <a class="anchor" href="#s2">快进</a>
+    <a class="anchor" href="#s3">静止瞬间</a>
+    <a class="anchor" href="#s4">突发</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约25分钟）：</strong>学完你能——①把一秒以内的动作拆成<strong>起势—到位—顶点—收</strong>四拍；②用时间跨度代替"过了一会儿"和"很慢"；③在一个静止瞬间里只<strong>留一个细节在动</strong>，其余定住；④用一个具体动作的声响或位置改变整个场面，写出"突发"。这四种动态是不同的时间齿轮——慢镜头把一秒拉成四节，快进把一年缩成一格，静止瞬间把一滴定住一辈子，突发把一秒拍回一年。<strong>一篇作文里四种都有，文章才有节奏</strong>。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>挑一篇你最顺的练习，挑出其中一处动作——比如"他坐了下来"——按慢镜头的四拍重写一遍。配合 <a href="../../05-slow/">写作习作课第 5 章「慢镜头」</a>一起读。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、慢镜头：把一秒拆成四拍</h2>
+    <p class="chapter-sub">起势 — 到位 — 顶点 — 收</p>
+
+    <article class="view">
+      <h3>四拍动作的固定写法</h3>
+      <p class="ctx">慢镜头的机制是<strong>把一秒拉到四节</strong>——起势、到位、顶点、收。每一拍<strong>换一个动词</strong>，读者才感觉到那一秒里有<strong>可数的距离</strong>。<strong>剂量：一篇作文里慢镜头只一处，控制在 4–6 拍内。多了不是慢，是拖。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>第一拍：手指搭上杯沿；<br>第二拍：指节一节扣紧；<br>第三拍：杯底离桌面一寸；<br>第四拍：杯沿碰到下唇。</td>
+          <td>过了一会儿，他端起水喝了一口。</td>
+          <td>"过了一会儿喝一口"是<strong>结果</strong>。四个原子装的是<strong>端杯的整段力学</strong>——搭（试探）、扣（用力）、离（位移）、碰（落点）。读者跟着一只手<strong>慢慢做完端杯</strong>，端杯才有了<strong>节拍</strong>。</td>
+          <td>端水、拿笔、推门、放东西——所有一秒以内的事。<strong>技巧</strong>：每一拍必须<strong>换一个动词</strong>，不能只是位置平移。</td>
+        </tr>
+        <tr>
+          <td>第一拍：拇指食指捏住书角；<br>第二拍：书页被拱起一个小弯；<br>第三拍：纸面在指尖翻半圈；<br>第四拍：背面朝上，响一声。</td>
+          <td>我翻过一页继续看。</td>
+          <td>"翻过一页"是<strong>告知</strong>。四拍原子把<strong>翻页拆成纸的一段运动</strong>：捏（力度）、拱（变形）、翻（位移）、响（声音）。读者读到<strong>纸在指尖走完的一厘米</strong>，翻页才有<strong>形状</strong>。</td>
+          <td>翻书、推窗、开门、系扣、撕糖纸。<strong>技巧</strong>：第三拍要有一处<strong>变形的细节</strong>（拱起的小弯、纸面的翻），第四拍要有一个<strong>落点</strong>（响、停在、撞上）。</td>
+        </tr>
+        <tr>
+          <td>第一拍：膝盖先软；<br>第二拍：重心往前倾；<br>第三拍：两只手轮流撑地；<br>第四拍：脸朝下，停住。</td>
+          <td>我一不小心摔在了台阶上。</td>
+          <td>"不小心摔了"是<strong>告知结果</strong>。四拍原子把<strong>摔倒拆成力学过程</strong>：软（失去支撑）、倾（重心位移）、撑（自救）、停（落点）。读者读到<strong>从站稳到脸朝下的四步距离</strong>。</td>
+          <td>摔倒、跌跤、撞头、滑倒。<strong>技巧</strong>：慢镜头的末拍<strong>要停住</strong>——不是摔倒，是"停住"那一刻。</td>
+        </tr>
+        <tr>
+          <td>第一拍：眼看见纸飘下来；<br>第二拍：手迎出去；<br>第三拍：指尖夹住纸边；<br>第四拍：纸在手心抖一下。</td>
+          <td>我接住了那张纸。</td>
+          <td>"接住了"是<strong>结果</strong>。四拍原子写的是<strong>从看见到夹住的那段距离</strong>：看见（眼）、迎（手）、夹（指尖）、抖（物）。读者拿到的是<strong>指尖完成的那段动作</strong>。</td>
+          <td>接物、抓球、擦肩、握住一样东西。<strong>技巧</strong>：慢镜头里<strong>被动那一方也要有动作</strong>——纸"抖一下"。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——为关键动作保留更多空间 · <a href="../../05-slow/">写作习作课第 5 章</a>「慢镜头与四拍动作」</div>
+    </article>
+
+    <article class="view">
+      <h3>慢镜头里被静止的"另一只手"</h3>
+      <p class="ctx">慢镜头最容易写坏的是<strong>只写动作</strong>。真正能让读者暂停呼吸的是：<strong>主动作在动，另一处细节在反方向动</strong>。</p>
+      <div class="fig"><img src="../../assets/img-19-1.png" alt="插画：一只手正在合上一本摊开的书，背景是一滴悬而未落的墨水，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>手在翻页，风把窗帘推到另一侧；<br>门在推开，走廊里那盏灯正在闪；<br>杯子端到唇边，她眼皮都没抬一下；<br>父亲把筷子放下，我听见自己的心跳。</td>
+          <td>我翻了一页，他走了进来。</td>
+          <td>"翻页／进来"是<strong>两句动作并列</strong>。四组原子的机制是<strong>两个不同步的动作并列</strong>：手在动+窗帘反方向动、门动+灯闪、杯子动+眼睛不动、筷子下+心跳冒出来。<strong>反向反差</strong>让读者分得清时间在那里<strong>真的变慢</strong>了。</td>
+          <td>长焦段落、对峙、慢瞬间。<strong>技巧</strong>：每一组慢镜要配<strong>一个反向的细节</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——动作必有方向的差异</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、快进：用时间跨度带过</h2>
+    <p class="chapter-sub">把一年缩成一格——靠时段，不靠形容词</p>
+
+    <article class="view">
+      <h3>"过了一会儿"换成"一节课像坐了三年"</h3>
+      <p class="ctx">快进的失败大多在<strong>用"过了一会儿"或"很快"</strong>——读者没收进东西。快进的机制是<strong>用可量的时段</strong>——一眨眼、一节课、三年。<strong>剂量：一段写时间跨度，快进句只上一处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>一眨眼，队伍排到街口；<br>等我回过神，他已经跑没影了；<br>一节课像坐了三年。</td>
+          <td>很快，这件事就过去了。</td>
+          <td>"很快／过去了"是<strong>形容词＋动词</strong>，三句都是<strong>时段 + 可见结果</strong>：一眨眼—排到街口、回过神—跑没影、一节课—坐三年。读者读到的是<strong>两头的跨度</strong>，中间被剪掉那一段。</td>
+          <td>写快的事、写一段距离突然被走完、写一段关系的结束。<strong>技巧</strong>：<strong>两端的画面都要写出</strong>，中间留白。</td>
+        </tr>
+        <tr>
+          <td>一晃，他已经比我高半个头；<br>二十分钟，她滴米未进；<br>三年过去，那棵槐树还在；<br>一整个下午，窗外的雪没停；<br>等我抬头，太阳已经偏西。</td>
+          <td>没过多久，他已经长高了很多。</td>
+          <td>"没多久／很多"是<strong>模糊量</strong>，五个原子都用<strong>时段或生长度</strong>：一晃—半个头、二十分钟—滴米、三年的—槐树、一整个下午—雪没停、抬头—太阳偏西。<strong>时间跨度与可量变化配对</strong>，读者拿到了时间<strong>长什么样</strong>。</td>
+          <td>回忆、写成长、写等待、写一段日子过去。<strong>技巧</strong>：时间跨度<strong>必须配一个尺度变化</strong>（身高、位置、亮暗）。</td>
+        </tr>
+        <tr>
+          <td>一夜之间，隔壁的灯就灭了；<br>一整个暑假过去，他瘦了八斤；<br>三天，她把书翻到了第六十四页；<br>从一楼到四楼，十一分钟。</td>
+          <td>那段时间变化很大。</td>
+          <td>"变化很大"是<strong>形容词</strong>。四组原子都是<strong>时段+具体变化</strong>：一夜—灯灭、暑假—瘦八斤、三天—六十四页、一楼到四楼—十一分钟。读者读到的是<strong>时间能换出什么</strong>。</td>
+          <td>写一段时光、写一段刻苦或放弃。<strong>技巧</strong>：变化必须<strong>可称可量</strong>，不要只写"很大"。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「能根据需要写具体的场景和细节」 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk & White《The Elements of Style》</a>——删去"很快""过了一会儿"</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、静止瞬间：把人冻住只留一个细节</h2>
+    <p class="chapter-sub">全场不动，让某一个细节继续动</p>
+
+    <article class="view">
+      <h3>静止的瞬间：只留一个东西在动</h3>
+      <p class="ctx">静止瞬间是<strong>摄影里的长焦</strong>——一切都停，只剩一个人或一个细节在动。它的机制是<strong>整体静止 + 一个例外</strong>。<strong>剂量：静止瞬间全篇最多出现一处，多了就显得装。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>整个世界慢下来，只剩那只手；<br>他停在那里，像图钉被钉在纸上；<br>一切不动，只有那盏灯闪了一下；<br>周围都不动了，只有风还在走。</td>
+          <td>那一刻全场都愣住了。</td>
+          <td>"愣住了"是<strong>形容词</strong>。四句原子都在<strong>整体+例外</strong>：慢下来—只剩那只手、停—像钉、灯不动—灯闪、四周不动—风走。本喻与喻体的结构是<strong>全部定住 + 一个例外</strong>。</td>
+          <td>写决定性的一瞬、写恐惧、写冲突前的瞬间。<strong>技巧</strong>：一定要<strong>有一个例外</strong>在动，否则不是静止是停摆。</td>
+        </tr>
+        <tr>
+          <td>时间停了一秒，她看他，他没看见她；<br>那一刻静得能听见呼吸以外的东西；<br>他那张脸定在那一秒；<br>整条街像被按下暂停。</td>
+          <td>那一刻我心里咯噔一下。</td>
+          <td>"咯噔一下"是<strong>套话</strong>。四句原子都是<strong>时间的"封口"</strong>：一秒定住的方向感（看他但被忽略）、静得能听见（听觉填满空位）、定在那一秒（拍摄）、整条街暂停（全局）。</td>
+          <td>写错过、写安静、写决定瞬间。<strong>技巧</strong>：静止的瞬间<strong>必须有时间词</strong>（一秒、那一刻、忽然）。</td>
+        </tr>
+        <tr>
+          <td>一秒里他似乎想了一辈子的事；<br>她那张脸定在那一秒，没换表情；<br>风停了一拍，又起；<br>灯亮着，没闪，只是亮着。</td>
+          <td>他心里慢慢平静下来了。</td>
+          <td>"慢慢平静"是<strong>形容词＋动词</strong>。四句原子是<strong>静止里的"继续"</strong>：一秒=一辈子、脸定住、风停一拍拍又起、灯亮着不闪。<strong>静止里仍然有一处继续</strong>，读者拿到的是<strong>静止的形状</strong>。</td>
+          <td>写情绪的定格、写独自等待的瞬间。<strong>技巧</strong>：静止瞬间<strong>必须有"还在"的细节</strong>，否则没区别于停机。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">策略教学的可观察单元（英文）</a>——定格的可观察模块</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、突发：一个动作改写整个场面</h2>
+    <p class="chapter-sub">声音与位置——两件事能一秒翻转全场</p>
+
+    <article class="view">
+      <h3>突发的两种开关：声音、位置</h3>
+      <p class="ctx">"突然"是<strong>告知</strong>。突发的真正机制是<strong>一个声音或一件物的位置改变</strong>，瞬间改写整个场面。读者读到的是<strong>声响</strong>（拍、砸、折、啪），或<strong>位置的位移</strong>（合、推、抬、扬）。<strong>剂量：突发段落全篇只一处，写多了戏剧化就反转成套路。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>门一推，全场静了三秒；<br>她把本子一合，"我不念了"；<br>他把盒子往地上一砸。</td>
+          <td>突然发生了一件事，气氛全变了。</td>
+          <td>"突然气氛全变"是<strong>告知</strong>。三句原子都是<strong>一件物 + 一个动作 + 一句话</strong>：推门—全场静、合本—我不念、砸盒—声音穿透。<strong>物的位置与声响</strong>同时出来，全场"变"才有了<strong>落点</strong>。</td>
+          <td>写气势逆转、写一幕的开头或结尾。<strong>技巧</strong>：<strong>必须有一个声音名词</strong>——拍、砸、折、啪——和一个位置变化。</td>
+        </tr>
+        <tr>
+          <td>老师把那支笔一折，全场倒吸一口气；<br>"散会。"校长只说了一个字；<br>她的声音一扬，整条走廊都静了；<br>父亲把筷子一拍，碗里的汤溅出来。</td>
+          <td>老师突然很生气，大家都不敢出声。</td>
+          <td>"突然生气"是<strong>告知</strong>。四句原子都是<strong>一个动作改写一个空间</strong>：折笔—全场吸气、一个字—散会、声音扬—走廊静、筷子拍—汤溅。<strong>局部动作影响整个空间</strong>，突发就有了<strong>几何</strong>。</td>
+          <td>写冲突开始、写一桌饭一下子静下来、写一个权威瞬间。<strong>技巧</strong>：写突发<strong>后立刻跟一个空间词</strong>（全场、走廊、桌、班里）。</td>
+        </tr>
+        <tr>
+          <td>她把那张纸撕成两半；<br>母亲一抬手，全桌都不敢再吃；<br>他抬手把那只杯子挡出去；<br>她把门反手一带，钥匙扔在桌面上。</td>
+          <td>那个时刻我很生气，做了一个举动。</td>
+          <td>"一个举动"是<strong>抽象名词</strong>。四句原子都是<strong>局部动作 + 一个物件的后果</strong>：撕纸—两半、抬手—全桌停、挡杯—杯子飞、摔钥匙—桌面响。<strong>动作+物件的代价</strong>让"生气"有了<strong>重量</strong>。</td>
+          <td>写破裂、写反抗、写宣布结束。<strong>技巧</strong>：<strong>动作必须损毁或转移一样东西</strong>——撕、扔、推、挡。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——关键场景的转折必有<strong>具体声音或位移</strong></div>
+    </article>
+
+    <article class="view">
+      <h3>一段练习：把"那一刻他突然跑了"重写</h3>
+      <p class="ctx">教学示例，一句告知被四种动态重新打开。</p>
+      <div class="fig"><img src="../../assets/img-19-2.png" alt="插画：一双手把一只盒子按在桌面上，盒子旁边有一道被划破的空气痕，扁平矢量风格" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <blockquote class="q">
+        <strong>弱版（不要写）：</strong><br>
+        那一刻他突然转身跑了出去。我们愣在那里，不知道发生了什么事。后来听说是出了什么问题。
+      </blockquote>
+      <blockquote class="q">
+        <strong>四种动态一起上之后（教学示例）：</strong><br>
+        椅子腿在地上一拖，"吱"地响了一声——突发。他站着，两只手垂下来，整个人定住一拍——静止瞬间。三年过去，那棵槐树还在——快进。再看那一刻，手搭上门框，指节一节扣紧，门推开一寸——慢镜头。
+        <span class="qsrc">—— 装配演示：原子来自本页 § 1、§ 2、§ 3、§ 4；属教学示例。</span>
+      </blockquote>
+      <p class="ctx">对比时盯四处：<strong>第一句是突发</strong>（"吱"的一声）；<strong>第二句是静止</strong>（定住一拍）；<strong>第三句是快进</strong>（三年）；<strong>第四句回到慢镜头</strong>（手—门）。弱版一处"突然"代替了所有结构，<strong>读者手里只有两个字</strong>。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">策略教学的可观察单元（英文）</a>——节奏作为单独模块</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>慢镜头的固定四拍是哪四拍？为什么不能省一拍？</li>
+      <li>"过了一会儿他端起水喝了一口"为什么弱？拆四拍后力道从哪来？</li>
+      <li>慢镜头的第三拍为什么要换一个动词？</li>
+      <li>慢镜头的末拍为什么要"停住"而不是"完成"？</li>
+      <li>快进的句式骨架是什么？为什么"过了一会儿""很快"不算快进？</li>
+      <li>"一节课像坐了三年"为什么带得出"难熬"？</li>
+      <li>静止瞬间的关键字是什么？为什么必须配一个在动的细节？</li>
+      <li>"全场愣住了"为什么弱？应该配什么样的"静止里的例外"？</li>
+      <li>突发的两种"开关"是什么？它们各自适合写什么？</li>
+      <li>写突发为什么必须跟一个空间词（全场、走廊、桌）？</li>
+      <li>突发的动作必须损毁或转移一样东西，为什么？</li>
+      <li>四种动态在一篇作文里都出现有什么用？节奏从哪儿来？</li>
+      <li>慢镜头一处最多几拍？多了会变成什么？</li>
+      <li>快进句怎么写才不空？两端必须写出什么？</li>
+      <li>把弱版"那一刻他突然跑了"按四种动态重写一遍，你打算各放哪一句？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>四种动态是四种时间齿轮——<strong>慢镜头</strong>把一秒拉成四拍（起势—到位—顶点—收），每一拍换一个动词，末拍要<strong>停住</strong>；<strong>快进</strong>把一年缩成一格——靠"一眨眼/一节课/三年"这类时段，靠"两端画面 + 中间留白"；<strong>静止瞬间</strong>把一切冻住只留一个细节在动——必须有<strong>一个例外</strong>，否则就是停机；<strong>突发</strong>是一个动作改写整个场面——开关是<strong>声音</strong>（拍、砸、折）或<strong>位置</strong>（合、推、扬），动作后必须跟一个<strong>空间词</strong>（全场、走廊、桌）。四种动态的剂量红线：慢镜头一处、4–6 拍内；快进一处、两端要写出；静止瞬间一处、要配在动的细节；突发一处、要配声音或位移。一篇作文里四种都有，文章才有节奏；只有快进和突发，看起来像电视剧；只有慢镜头和静止，会写成散文诗。
+  </div>
+
+  <nav class="pager">
+    <a href="../18-metaphor/"><span class="dir">← 上一页</span>比喻与拟人：四种喻体，四种用法</a>
+    <a href="../20-praise/"><span class="dir">下一页 →</span>表扬与批评：把评语写成可用的零件</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 动态：慢镜头、快进、静止瞬间、突发 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

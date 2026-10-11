@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紧张、害怕、忐忑 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 情绪原子</div>
+  <h1>🌫️ 紧张、害怕、忐忑</h1>
+  <p>紧张、害怕、忐忑、慌张、不安、如坐针毡——六种近义恐惧，三种不同身体</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../03-emo-sad/">← 上一页</a>
+    <a href="../05-emo-anger/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">紧张：身体在偷偷做准备</a>
+    <a class="anchor" href="#s2">害怕：动作变形这一支</a>
+    <a class="anchor" href="#s3">忐忑：脑子与身体不一致</a>
+    <a class="anchor" href="#s4">如坐针毡：动得没有用</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①区分紧张、害怕、忐忑这三种最常被混用的"怕"，给它们各自配上一组身体证据；②把"心里很紧张""手心出汗"这类被用烂的句子各换上一组可触摸的细节；③在考试、上台、等成绩、被叫起四类情境里挑对原子；④守住"一类情绪一篇用 1–2 处"的剂量，并知道为什么堆叠会变假。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>这是情绪页里最容易写得"用力过猛"的一类。读一遍，把你旧作文里的"我很紧张""心里害怕极了"挑出来——基本都该进弱版列。本页的"反常的量"和"无效循环"两条机制值得你花最多时间。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、紧张——身体在偷偷做准备</h2>
+    <p class="chapter-sub">紧张的本质，是动得没有用</p>
+
+    <article class="view">
+      <h3>紧张的身体先动</h3>
+      <p class="ctx">紧张与害怕的真正差别不在于程度，在于<strong>对象在不在场</strong>——紧张是<strong>还没发生</strong>，害怕是<strong>正在发生</strong>。紧张的动作都是"准备":擦汗、整理衣角、摸笔、翻卷子。<strong>剂量：一篇作文里"紧张"类躯干原子用 1–2 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>心口被从里面一下一下撞着，比平时快；<br>手心的汗把笔杆捂得发滑，换了握法还是滑；<br>喉咙发紧，吞口水有点疼；<br>整条脊椎僵了，从腰到脖子。</td>
+          <td>我特别紧张，心怦怦直跳，手心全是汗。</td>
+          <td>“怦怦直跳""出汗"是<strong>告知</strong>。四个原子全部换成<strong>可测量的身体事实</strong>：撞击感（力度）、发滑（黏度）、吞咽疼（痛觉）、僵（范围）。读者自己拼出紧张，作者不必说"紧张"二字。</td>
+          <td>上台、面试、等成绩、被叫起回答。紧张原子必须带一个<strong>反常的量</strong>——比平时快得多、换了握法还是滑。</td>
+        </tr>
+        <tr>
+          <td>我把笔帽拔下来又按回去，来回三次；<br>同一道题读了两遍，第二遍比第一遍还快；<br>手伸向抽屉摸了一下笔，又缩回来；<br>翻到上一题又翻回来，原地没动。</td>
+          <td>我很紧张，不停地摆弄笔。</td>
+          <td>力气花在<strong>次数与无效循环</strong>上："三次"可数，"来回"可听见。紧张的本质不是不动，是<strong>动得没有用</strong>——把无效动作写准，紧张就有了形状。</td>
+          <td>考场等待、被打断后的重来、想说又不敢说。<strong>不要连用三条</strong>，用一条循环即可。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-04-1.png" alt="示意插画：人物在桌前摆弄笔、来回移动手指的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——身体证据替代表情词 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——情绪与准备动作</div>
+    </article>
+
+    <article class="view">
+      <h3>紧张的"偷偷准备"</h3>
+      <p class="ctx">紧张有一个独有的形态：<strong>准备动作</strong>——理衣角、擦汗、翻包、拉椅子、整理桌面。这些事原本不需要做，但身体在"为还没发生的事"预演。<strong>剂量：一篇作文里"紧张"类准备原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>理了三次衣角，每理一次都理到原来位置；<br>额上没汗，还是擦了一下；<br>翻了三遍包，东西都还在；<br>椅子往前拉了半寸，又推回去。</td>
+          <td>我紧张地整理衣服。</td>
+          <td>“整理"是空动。换成<strong>无效循环与可量的位移</strong>：三次回到原位（循环）、没汗擦一下（多余动作）、翻三遍都还在（次数反常）、半寸推回（位移反常）。紧张是<strong>身体在为不可能的"再发生一次"准备</strong>。</td>
+          <td>上场前、等消息、家长会前。常作为段首的<strong>连续小动作</strong>，引出场景。</td>
+        </tr>
+        <tr>
+          <td>说话时眼睛不落在对方脸上；<br>问话被人反问，自己愣了一秒；<br>听见自己名字，肩先动；<br>叫人时把名字叫错了半拍。</td>
+          <td>我紧张得说不出话来。</td>
+          <td>“说不出"是告知。换成<strong>紧张的四个社会暴露</strong>：眼不落（视线反常）、被人反问愣（反应迟）、听见名字肩动（惊跳反常）、叫错名字（语言失误）。紧张在人前的形态是与别不同。</td>
+          <td>被介绍、答辩、家长会、见长辈。<strong>社会化的紧张比独处紧张难写</strong>，要写出在别人面前的样子。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>——具体优于概括</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、害怕——动作变形这一支</h2>
+    <p class="chapter-sub">害怕与紧张的差别，是对象在不在场</p>
+
+    <article class="view">
+      <h3>害怕的肌肉与位移</h3>
+      <p class="ctx">害怕的对象<strong>已经在场</strong>——黑、响、未知、看不清的人。<strong>肌肉先于想法反应</strong>：缩、蹲、往后退、屏住呼吸。<strong>剂量：一篇作文里"害怕"类肌肉原子用 1–2 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>肩先缩一下，整条脊椎跟着缩；<br>整个人蹲下去，膝盖贴胸；<br>脚往后退半步，没挪开；<br>屏住呼吸，过了三秒才吐。</td>
+          <td>我很害怕。</td>
+          <td>“害怕"是结论。换成<strong>四种退缩的反常指标</strong>：肩先缩（部位次序）、膝盖贴胸（可量的靠近）、脚退半步没挪（位移与犹豫）、屏住三秒（呼吸时长）。害怕是<strong>身体的"省电模式"</strong>。</td>
+          <td>走夜路、看恐怖片、独自留家、被惊吓。常作为段首的<strong>强冲击</strong>反应，<strong>不要连用</strong>。</td>
+        </tr>
+        <tr>
+          <td>手伸向开关，没够着，又缩回；<br>想叫人，张嘴没出声；<br>脚钉在地上，挪不动；<br>头转过去，眼没跟上。</td>
+          <td>我想逃。</td>
+          <td>“想逃"是心理。换成<strong>四种"想去没去成"</strong>：手没够着缩回（动作中断）、张嘴无声（语言失败）、脚钉住（位移失效）、头转眼没跟（部位不同步）。害怕是<strong>想逃，逃不动</strong>。</td>
+          <td>夜路、听到异响、被叫上台不知说什么。<strong>害怕常常配声音或光亮</strong>这类刺激物。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>· <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——应激反应研究</div>
+    </article>
+
+    <article class="view">
+      <h3>害怕的失声与屏息</h3>
+      <p class="ctx">害怕最稳定的标志是<strong>屏息</strong>：呼吸被主动按住，时间在体内被延长。读者读完一句"屏住呼吸过了三秒"，能自己拼出害怕。<strong>剂量：一篇作文里"害怕"类呼吸原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>一口气吸进去，没吐；<br>胸膛不动，像被按住；<br>过了三秒才慢慢吐；<br>吐出来的气是凉的，自己听见。</td>
+          <td>我屏住呼吸。</td>
+          <td>“屏住"是结论。换成<strong>呼吸的反常节拍</strong>：吸没吐（中断）、像被按住（外力感）、三秒慢吐（时长）、气凉听见（温度反常）。害怕让体内的时间<strong>变慢了</strong>。</td>
+          <td>听见怪声、看不清的角落、被叫起。呼吸原子<strong>只在一段里用一处</strong>，<strong>不必每段重复</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「感情真挚」要求 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、忐忑——脑子与身体不一致</h2>
+    <p class="chapter-sub">忐忑，是脑子在两个结果之间来回走</p>
+
+    <article class="view">
+      <h3>忐忑的"倒带"</h3>
+      <p class="ctx">忐忑与紧张的差别：<strong>紧张是动作变形，忐忑是脑子倒带</strong>——同一个画面反复想了三遍，结果却想了两种。<strong>剂量：一篇作文里"忐忑"类心理原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>同一句话想了三遍，每遍都换一个结尾；<br>一个画面翻到正面，又翻回背面；<br>两个答案在脑子里来回走；<br>再算一遍，笔尖停在同一个数。</td>
+          <td>我心里很忐忑。</td>
+          <td>“忐忑"是结论。换成<strong>四种"反复看"的动作</strong>：三遍换结尾（语言循环）、翻正翻背（视角循环）、两个答案来回（结果循环）、笔尖停数（动作循环）。忐忑是<strong>重复想一个还没发生的事</strong>。</td>
+          <td>等成绩、等结果、面试候考。常配合<strong>卷子、分数、名单</strong>这类带数字的物件。</td>
+        </tr>
+        <tr>
+          <td>听一句就知道结果；<br>听见名字先眨眼；<br>卷子翻到分数那行，没看见数字；<br>听见别的分数，回头才听自己的。</td>
+          <td>我怕听到结果。</td>
+          <td>“怕听到"是心理。换成<strong>四种"听到与听到不到"</strong>：听一句就知（听觉压缩）、名字先眨眼（惊跳反应）、翻到分数行没见数（视觉失效）、别的分数先听（听觉优先）。忐忑是<strong>结果砸下来之前的失重感</strong>。</td>
+          <td>发卷、念成绩、收到信息、名单公布。<strong>配仪式感的场域</strong>最有效。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>忐忑的"留白"</h3>
+      <p class="ctx">忐忑的另一个形态是<strong>留白</strong>：句子说到一半停住，停顿比话长，眼睛盯着某个不动的东西。<strong>剂量：一篇作文里"忐忑"类留白原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>句子说到一半停住，停顿比话长；<br>眼睛盯着一个不动的东西，盯了三秒；<br>手指敲着桌面，敲到第三下才听出节拍；<br>嘴唇动了一下，没出声。</td>
+          <td>我紧张得说不下去。</td>
+          <td>“说不下去"是肢体。换成<strong>四种"正在发生却没发生"</strong>：停顿比话长（时长反常）、盯三秒（凝视时长）、第三下才听出（感知延迟）、唇动无声（语言预备）。忐忑是<strong>过程正在发生却没结果</strong>。</td>
+          <td>被叫起回答、面试答辩、家长会发言。留白原子<strong>要配合"将要发生的事"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「表达真情实感」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、如坐针毡——动得没有用</h2>
+    <p class="chapter-sub">这是紧张的升级版：身体的每一个动作都"没到位"</p>
+
+    <article class="view">
+      <h3>如坐针毡的"不到位"</h3>
+      <p class="ctx">如坐针毡不是"坐不住"，是<strong>坐下了又站起来</strong>，或者<strong>每个动作都做了一半</strong>。<strong>剂量：一篇作文里"如坐针毡"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>坐下，起来，再坐下；<br>翻到这页，下一折；<br>腿伸出去，又缩回来；<br>脚踩在地上，重心换来换去。</td>
+          <td>我坐立不安。</td>
+          <td>“坐立不安"是成语。换成<strong>四种"做完又做"的循环</strong>：起坐循环（位移循环）、翻折循环（动作循环）、伸缩循环（位移循环）、重心换（重心循环）。如坐针毡是<strong>每一个动作都没画上句号</strong>。</td>
+          <td>等通知、等结果、见重要的人。常作为段中段尾的<strong>连续小动作</strong>，强化情绪。</td>
+        </tr>
+        <tr>
+          <td>手心在腿上擦了三遍，越擦越湿；<br>指甲抠椅子边，抠出一道痕；<br>把纸巾叠了四折，又展开；<br>盯着手表秒针，秒数走得像停住。</td>
+          <td>我如坐针毡。</td>
+          <td>“如坐针毡"是结论。换成<strong>四种"无效循环"</strong>：擦三遍越湿（反向循环）、抠出痕（动作的可量后果）、叠四折展开（无效重复）、秒针停（时间失速）。如坐针毡是<strong>身体已经在做工，脑子却停下了</strong>。</td>
+          <td>考试发卷前、家长签字前、被叫起前。<strong>如坐针毡要配椅子、桌子、纸张</strong>这类静物。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-08-1.png" alt="示意插画：人在桌前坐下又起来、来回翻页的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——应激下动作研究 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>不安——还没产生结果</h3>
+      <p class="ctx">不安比如坐针毡轻半档：动作可能没发生，但<strong>身体已经在准备迎接</strong>——胃里翻了个身，后背起一层细密的小颗粒。<strong>剂量：一篇作文里"不安"类躯干原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>胃里翻了个身；<br>后背起一层细密的小颗粒；<br>手心出汗，没意识到；<br>脚底板发凉，自己才发觉。</td>
+          <td>我心里很不安。</td>
+          <td>“不安"是结论。换成<strong>四种"还没发生就出现"</strong>：翻身（内脏反应）、颗粒（皮肤的微反应）、汗未觉（自主神经）、脚凉（末梢反应）。不安是<strong>身体比脑子先收到信号</strong>。</td>
+          <td>听消息、家长会前、看别人先下场。<strong>不安要写皮肤与内脏</strong>，不写脸。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>紧张、害怕、忐忑、如坐针毡这四种"怕"在身体上的根本差别是什么？</li>
+      <li>紧张的本质是不是"不动"？为什么说"动得没有用"才是紧张的形状？</li>
+      <li>"手心的汗把笔杆捂得发滑，换了握法还是滑"这条原子赢在哪？哪两个字是关键？</li>
+      <li>紧张的"偷偷准备"具体是哪四件？它们为什么是"无效循环"？</li>
+      <li>紧张的社会化形态（在小孩面前、答辩）比独处紧张难在哪？举出三种暴露。</li>
+      <li>害怕与紧张的差别是哪一条？哪一项是屏息的核心？</li>
+      <li>害怕的"想逃逃不动"是哪四种动作？它们的共同特征是什么？</li>
+      <li>忐忑的"倒带"是什么？为什么说脑子里两个答案来回走是倒带？</li>
+      <li>忐忑的留白指什么？为什么说停顿比话长是留白？</li>
+      <li>如坐针毡的"不到位"指什么？举出四个不到位的动作。</li>
+      <li>如坐针毡与紧张的剂量一样吗？它们能同段使用吗？</li>
+      <li>本类情绪每篇的剂量是什么？哪一类原子不能用同段连用？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>紧张、害怕、忐忑、如坐针毡四种"怕"在身体上有不同形状。紧张是<strong>动得没用的循环</strong>（拔按笔帽、翻同一道题），害怕是<strong>想逃逃不动</strong>（屏息三秒、肩膀先缩），忐忑是<strong>脑子倒带</strong>（同一句话想三遍、两个答案来回走），如坐针毡是<strong>每个动作都没画上句号</strong>（坐下又起、叠四折又展开）。剂量：紧张 1–2 处，害怕 1–2 处，忐忑 1 处，如坐针毡 1 处。配图与剂量都来自课堂反复试错的经验。下一情绪页：<a href="../05-emo-anger/">生气、烦躁、憋屈</a>——情绪有方向的另一类。
+  </div>
+
+  <nav class="pager">
+    <a href="../03-emo-sad/"><span class="dir">← 上一页</span>难过、失落、想念</a>
+    <a href="../05-emo-anger/"><span class="dir">下一页 →</span>生气、烦躁、憋屈</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 紧张、害怕、忐忑 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

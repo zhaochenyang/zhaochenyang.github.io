@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五感：视觉、听觉、嗅觉、味觉、触觉 + 通感 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:600;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 景色与场所</div>
+  <h1>👁️ 五感：视觉、听觉、嗅觉、味觉、触觉 + 通感</h1>
+  <p>写感觉要可感知，给出具体来源与强度参照</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../14-scene-object/">← 上一页</a>
+    <a href="../16-psych/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">视觉：明暗、远近、色温、层次</a>
+    <a class="anchor" href="#s2">听觉：远近、声源、节奏、安静</a>
+    <a class="anchor" href="#s3">嗅觉：四类词库</a>
+    <a class="anchor" href="#s4">味觉：七味与涩、腥</a>
+    <a class="anchor" href="#s5">触觉：温度、粗糙、软硬、重量、湿干、痛</a>
+    <a class="anchor" href="#s6">通感：把一种感觉翻译成另一种</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约35分钟）：</strong>学完你能——①写视觉不再只有"很亮""很暗"，而能写出明暗、远近、色温、层次四件事；②写听觉能区分远近、声源、节奏，并知道"安静"不等于"无声"；③嗅觉有四类词库（食物/自然/人造/人身的具体物），能挑一类用；④味觉能用七味（酸甜苦辣咸鲜麻）加上涩和腥；⑤触觉能从温度、粗滑、软硬、重量、湿干、痛六个维度挑一个写透；⑥通感至少用出十句不同感觉之间的翻译——味→色、香→形状、声→质地、痛→温度。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>每一类先读词库，再读原子表，然后挑两组换名用一次。通感那一节是本页的难点——它要你把两种感觉打通，写之前先在脑子里过一下"我要把 A 翻译成 B"。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、视觉：明暗、远近、色温、层次</h2>
+    <p class="chapter-sub">视觉不只是"看到了什么"，是光</p>
+
+    <article class="view">
+      <h3>视觉的核心：光的四件事</h3>
+      <p class="ctx">视觉最容易写得空——"看到了××"。视觉的核心是<strong>光</strong>，光有四件事：明暗（强度）、远近（距离）、色温（颜色倾向）、层次（前后）。本节所有原子都至少点亮其中一件事。<strong>剂量：视觉原子一篇作文用 2–3 处（多用于建立场景），超了就成了摄影说明书。</strong></p>
+      <div class="fig"><img src="../../assets/img-09-1.png" alt="示意插画：明暗远近色温层次四个视觉维度，扁平矢量风格，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>逆光的时候，所有人的脸都看不清；<br>太阳落到一半，地上的影子拉成长条。</td>
+          <td>光线很亮。</td>
+          <td>两条对应<strong>两种光的角度</strong>：逆光（背光）、半落（角度变化）。两条都把"光线"写成了<strong>光的运动</strong>，不是"亮"这个单一形容词。</td>
+          <td>写日落；写合影；写关灯后的房间。</td>
+        </tr>
+        <tr>
+          <td>远处的山只剩一条暗蓝的线；<br>近处的树叶看得到叶脉。</td>
+          <td>远处的山很模糊。</td>
+          <td>两条对应<strong>远中近两层视觉</strong>：远（轮廓）、中（细节）。两层写在一起，<strong>空间就有了深度</strong>——读者能看出作者在哪个位置看。</td>
+          <td>写景中推进视角；写人物在某处的视线变化；写登高或回头看。</td>
+        </tr>
+        <tr>
+          <td>早晨的色温偏冷，黄昏偏暖；<br>晴天时影子是蓝灰的，不是黑的。</td>
+          <td>颜色不一样。</td>
+          <td>两条直接说<strong>色温的物理事实</strong>：冷暖（光线频率）、蓝灰（天空补色）。读者读完知道作者<strong>知道颜色从哪来</strong>，而不是凭感觉写。</td>
+          <td>写色彩鲜明的时刻；写记忆中的某段景；写人物对色彩敏感。</td>
+        </tr>
+        <tr>
+          <td>前排的人挡住了半个黑板；<br>靠窗那排被光分了一半。</td>
+          <td>教室里很挤。</td>
+          <td>两条对应<strong>空间的层次感</strong>：遮挡（前后）、分一半（光切）。两条让"挤"变成了<strong>可以画出来的空间</strong>。</td>
+          <td>写教室；写电梯；写公交车上的人。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「视觉」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、听觉：远近、声源、节奏、安静</h2>
+    <p class="chapter-sub">"很安静"不是听觉，"听见什么"才是</p>
+
+    <article class="view">
+      <h3>听觉的核心：声源、远近、节奏</h3>
+      <p class="ctx">听觉最容易被忽略，因为人最依赖眼睛。但写作里<strong>听觉常常比视觉更情绪化</strong>——声音是有节奏的，节奏带情绪。本节原子的核心机制：<strong>给声音一个声源、一个距离、一个节奏。</strong>另外特别要说"安静"——<strong>安静不是无声，是有声音但声音很少</strong>。<strong>剂量：听觉原子用 1–2 处，写过头全篇就吵。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>远处的鞭炮声断断续续；<br>隔壁的声音隔着一堵墙也听得清。</td>
+          <td>外面很吵。</td>
+          <td>两条对应<strong>两种声音距离</strong>：远（断续）、隔墙（穿透）。读者读完知道<strong>每个声音从哪来、怎么到耳朵里</strong>——"很吵"两个字立刻有了形状。</td>
+          <td>写嘈杂的环境；写晚自习时；写过年或深夜的声音。</td>
+        </tr>
+        <tr>
+          <td>翻页声一下一下；<br>远处有人在跑，脚步声比人先到。</td>
+          <td>教室里很安静。</td>
+          <td>两条各自是<strong>不同节奏的声音</strong>：一下一下（等距）、先到（顺序错位）。<strong>节奏本身就是信息</strong>——读者读完知道当下是什么时刻。</td>
+          <td>写等待；写考试的紧张；写夜里的某一声。</td>
+        </tr>
+        <tr>
+          <td>安静到能听见自己的呼吸；<br>安静到听见冰箱在嗡嗡。</td>
+          <td>周围非常安静。</td>
+          <td>两条把<strong>安静写成了"听见"</strong>：呼吸（自己身体）、冰箱（家用电器）。这种安静<strong>不是无声，是声音被剥离到只剩最弱的</strong>——读者读完会觉得汗毛立起来。</td>
+          <td>写深夜独处；写某个独自一人的瞬间；写害怕或压抑的场景。</td>
+        </tr>
+        <tr>
+          <td>下课铃一响，整栋楼的声音同时涌出来；<br>集合哨一声，所有人都停了。</td>
+          <td>下课很热闹。</td>
+          <td>两条写了<strong>声音的发动与中断</strong>：涌（同步）、停（指令）。两条都让<strong>声音成了动作的扳机</strong>——读者读完知道这声音意味着什么。</td>
+          <td>写学校的某个瞬间；写军训或比赛；写突然安静下来的那一刻。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「听觉」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、嗅觉：四类词库</h2>
+    <p class="chapter-sub">不是"很香"或"很臭"，是具体的某物在散发</p>
+
+    <article class="view">
+      <h3>嗅觉的词库：食物、自然、人造、人身</h3>
+      <p class="ctx">嗅觉最容易被写成"很香"或"很臭"——这是评价，不是感觉。嗅觉的核心是<strong>具体物在散发气味</strong>：刚揭盖的汤、下雨前的土味、新书的纸味、妈妈衣服上的味道。<strong>剂量：嗅觉原子 1–2 处，每处挑同一类里的 2–3 个物。</strong>本节给四类词库各一组原子供你挑选。</p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>刚揭盖的汤冒着一股白气；<br>酱油碰到热锅，噼地一声焦了。</td>
+          <td>饭很香。</td>
+          <td>两条各自是<strong>食物气味的不同瞬间</strong>：冒气（刚出锅）、焦（热反应）。两条都把"香"变成了<strong>可以观察的物理过程</strong>。</td>
+          <td>写做饭；写放学回家那一顿；写某顿饭的回忆。</td>
+        </tr>
+        <tr>
+          <td>下过雨的泥土有一股腥；<br>松针被踩碎时冒出一股辛。</td>
+          <td>外面的空气很清新。</td>
+          <td>两条对应<strong>两种自然气味</strong>：腥（水汽）、辛（松脂）。两条都用<strong>具体的化学成分命名</strong>，让"清新"变成可查证的味道。</td>
+          <td>写雨后；写海边；写山林；写某种天气里的散步。</td>
+        </tr>
+        <tr>
+          <td>新书翻开时有一股纸味；<br>刚刷过的油漆味冲，过两天就淡了。</td>
+          <td>有股奇怪的味道。</td>
+          <td>两条对应<strong>两种人造气味</strong>：纸味（油墨）、油漆（溶剂）。每条都给出了<strong>气味的化学来源</strong>，而不是"奇怪"这种模糊词。</td>
+          <td>写新东西；写搬家；写新装修的房间；写坐新车。</td>
+        </tr>
+        <tr>
+          <td>妈妈衣服上有一股洗衣液味；<br>爷爷身上是烟草混着樟脑。</td>
+          <td>他身上有股熟悉的味道。</td>
+          <td>两条对应<strong>两种人身气味</strong>：洗衣液、烟草樟脑。每种都来自<strong>不同的生活或职业</strong>——读者读完知道这个人是谁。</td>
+          <td>写怀念的人；写和爸妈在一起；写某个同学或邻居。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「观察生活」· <a href="../../06-senses/">写作习作课第6章</a>「嗅觉词库」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、味觉：七味与涩、腥</h2>
+    <p class="chapter-sub">味道比"好吃"复杂得多</p>
+
+    <article class="view">
+      <h3>味觉的核心：七味 + 涩 + 腥</h3>
+      <p class="ctx">味觉常被简化为"甜"和"咸"——但嘴里的世界远比这两个字复杂。本节按<strong>七味（酸甜苦辣咸鲜麻）+ 涩 + 腥</strong>展开，每种给 2–3 条具体的来源物。<strong>剂量：味觉原子用 1 处即可，常作为吃某样东西的瞬间。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>醋喝下去喉咙被烫了一下；<br>酸奶放久了，酸味往上顶。</td>
+          <td>很酸。</td>
+          <td>两条对应<strong>两种酸的强度</strong>：烫（强酸）、往上顶（发酵）。读者读完知道<strong>酸是有梯度的</strong>。</td>
+          <td>写吃水果；写吃面时的醋；写某种发酵的食物。</td>
+        </tr>
+        <tr>
+          <td>糖在舌尖化开是一秒；<br>甜到腻的时候，鼻子里冲一下。</td>
+          <td>很甜。</td>
+          <td>两条把<strong>甜从"味道"变成"过程"</strong>：化开（时间）、冲一下（嗅觉联动）。甜不只是"糖"——是<strong>糖在嘴里的几个阶段</strong>。</td>
+          <td>写糖水；写蛋糕；写妈妈做的甜食。</td>
+        </tr>
+        <tr>
+          <td>苦瓜咽下去的时候，舌根发麻；<br>咖啡的苦是带焦的。</td>
+          <td>很苦。</td>
+          <td>两条对应<strong>两种苦</strong>：发麻（生物碱）、焦（烘焙）。苦是有<strong>不同味道的苦</strong>，不是单一一种。</td>
+          <td>写第一次喝咖啡；写吃药；写某种带苦的食物。</td>
+        </tr>
+        <tr>
+          <td>辣是从嘴唇开始的；<br>辣到第三口，耳朵根发烫。</td>
+          <td>很辣。</td>
+          <td>两条对应<strong>辣的扩散路径</strong>：嘴唇（接触）、耳朵（神经反应）。辣不只是"舌头感觉"——是<strong>从脸到耳朵的全身反应</strong>。</td>
+          <td>写吃辣；写第一次吃辣；写某次被辣到的经历。</td>
+        </tr>
+        <tr>
+          <td>盐在舌尖像针尖挑了一下；<br>咸到发苦，是盐过了。</td>
+          <td>很咸。</td>
+          <td>两条对应<strong>两种咸的层次</strong>：针尖（颗粒感）、发苦（过量）。读者读完知道<strong>咸过头就会变成苦</strong>——这是味觉的临界点。</td>
+          <td>写咸食；写吃多了盐的瞬间；写某道菜的某一口。</td>
+        </tr>
+        <tr>
+          <td>鲜是嘴里回甘的那种；<br>海鲜的鲜里带一丝甜。</td>
+          <td>很鲜。</td>
+          <td>两条对应<strong>两种鲜</strong>：回甘（氨基酸）、甜（核苷酸）。"鲜"是个被译过来的词——<strong>它具体到嘴里是有几种的</strong>。</td>
+          <td>写喝汤；写吃海鲜；写某种调味的瞬间。</td>
+        </tr>
+        <tr>
+          <td>麻是嘴唇跳了一下；<br>麻过去的时候，嘴是木的。</td>
+          <td>很麻。</td>
+          <td>两条对应<strong>麻的两个阶段</strong>：跳（开始）、木（结束）。麻有<strong>完整的过程</strong>，不是单一刻度。</td>
+          <td>写川菜；写第一次吃花椒；写麻到失去味觉的瞬间。</td>
+        </tr>
+        <tr>
+          <td>涩是舌头被一层东西糊住；<br>红酒过舌头的时候，涩带一点酸。</td>
+          <td>很涩。</td>
+          <td>两条对应<strong>两种涩</strong>：糊住（收敛感）、带酸（涩酸一体）。涩是<strong>比苦更细的一种味觉</strong>，它有具体的物理感。</td>
+          <td>写某种不熟的水果；写红酒；写柿子或绿茶。</td>
+        </tr>
+        <tr>
+          <td>鱼腥要从喉咙往上翻；<br>血腥味带铁锈。</td>
+          <td>很腥。</td>
+          <td>两条对应<strong>两种腥</strong>：翻（鱼腥）、血（生理腥）。"腥"是常常和"臭"混的——其实它是<strong>两种不同的化学感</strong>。</td>
+          <td>写杀鱼；写某种腥味重的食物；写血腥的瞬间。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../06-senses/">写作习作课第6章</a>「味觉词库」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、触觉：温度、粗糙、软硬、重量、湿干、痛</h2>
+    <p class="chapter-sub">皮肤是身体最会说话的部分</p>
+
+    <article class="view">
+      <h3>触觉的核心：六个维度</h3>
+      <p class="ctx">触觉是<strong>最容易写得空洞</strong>的感觉——"摸起来很软""感觉很冷"。触觉的核心是<strong>具体来源与强度参照</strong>：比什么更凉、比什么更滑、和什么比起来更重。本节按六个维度给原子：温度、粗滑、软硬、重量、湿干、痛。<strong>剂量：触觉原子用 1–2 处，不要让身体一直碰东西——读者会累。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>比井水凉，比冰块暖；<br>热到手腕发烫；<br>指尖一碰就缩回来；<br>温吞吞的，不凉也不热。</td>
+          <td>温度很特别。</td>
+          <td>四条对应<strong>四个温度参照点</strong>：井水/冰块（范围）、发烫（强度）、缩回来（应激）、温吞（模糊）。四条让"温度"有了<strong>坐标系</strong>，读者读完知道那个温度在哪。</td>
+          <td>写摸一样东西的瞬间；写洗手；写发烧或退烧。</td>
+        </tr>
+        <tr>
+          <td>粗到能挂住纸；<br>滑到抓不住；<br>沙沙的，像细砂；<br>绒毛顺着一个方向倒。</td>
+          <td>摸起来很粗糙/很滑。</td>
+          <td>四条对应<strong>四种粗糙度</strong>：挂住（极粗）、抓不住（极滑）、沙沙（细砂）、绒毛（柔软的方向感）。每条都给了<strong>具体物理结果</strong>，不是"粗""滑"两个字。</td>
+          <td>写摸石头、摸布、摸猫；写第一次摸某样东西。</td>
+        </tr>
+        <tr>
+          <td>硬到按不动；<br>软到指头陷进去；<br>按下去会回弹；<br>硬但不冰，是塑料的硬。</td>
+          <td>很硬/很软。</td>
+          <td>四条对应<strong>软硬的四种物理证据</strong>：按不动（刚性）、陷（弹性）、回弹（弹性恢复）、硬但不冰（材质）。软硬不只是"软硬"——还要带<strong>材料和温度</strong>。</td>
+          <td>写坐沙发；写枕头；写搬一件东西。</td>
+        </tr>
+        <tr>
+          <td>提了一下差点脱手；<br>沉到手腕发酸；<br>比一袋米轻；<br>轻得像没什么。</td>
+          <td>很重/很轻。</td>
+          <td>四条对应<strong>四种重量感</strong>：脱手（失控）、酸（肌肉反应）、比米（参照）、没什么（极轻）。重量是有<strong>生理代价</strong>的——读者读完能感觉到那种累。</td>
+          <td>写搬东西；写拎行李；写第一次抱起某物。</td>
+        </tr>
+        <tr>
+          <td>湿到指尖起皱；<br>干到起静电；<br>湿衣服贴在背上；<br>潮得发霉，墙角发黑。</td>
+          <td>很湿/很干。</td>
+          <td>四条对应<strong>湿干的四种状态</strong>：起皱（泡水）、静电（干燥）、贴（吸湿）、霉（长期）。湿干是有<strong>程度和时间的</strong>——读者知道是什么时候的湿干。</td>
+          <td>写洗手；写雨后；写长期不住的屋子。</td>
+        </tr>
+        <tr>
+          <td>刺了一下，缩手；<br>痛到吸气；<br>麻痛是按下去才痛；<br>灼烧的痛，是表面的；<br>胀痛是里面的。</td>
+          <td>很痛。</td>
+          <td>五条对应<strong>五种痛</strong>：刺（尖锐）、吸气（强烈）、按压（深部）、灼烧（表层）、胀（内部）。痛是有<strong>类型的</strong>——读者读完知道痛在哪。</td>
+          <td>写受伤；写牙痛；写某种慢性的痛。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「多感官描写」· <a href="../../06-senses/">写作习作课第6章</a>「触觉维度」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s6">
+    <h2 class="chapter-title">六、通感：把一种感觉翻译成另一种</h2>
+    <p class="chapter-sub">通感不是修辞花招，是大脑本来就这么工作</p>
+
+    <article class="view">
+      <h3>通感的核心：A 感觉翻译成 B 感觉</h3>
+      <p class="ctx">通感是<strong>不同感觉之间的翻译</strong>——味觉说成颜色、声音说成形状、痛说成温度。这种翻译不是修辞花招，是大脑本来就这么工作：<strong>吃到酸会皱眉（视觉与味觉联动），听到刺耳会牙酸（听觉与触觉联动）</strong>。本节给四组共十二条通感——味→色、香→形状、声→质地、痛→温度。<strong>剂量：通感原子 1–2 处即可，太多会让读者进入翻译疲劳。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>酸是绿的；<br>甜是橙黄的；<br>苦是黑棕；<br>辣是红的；<br>咸是白的。</td>
+          <td>吃起来很有味道。</td>
+          <td>五条把味觉<strong>翻译成视觉颜色</strong>：酸配绿（植物酸）、甜配橙黄（蜜）、苦配黑棕（咖啡豆）、辣配红（辣椒）、咸配白（盐）。这是大脑对味觉的默认色——读者读完会有<strong>真的看见了味道</strong>的感觉。</td>
+          <td>写某种食物的味道；写调味的过程；写童年某顿饭的记忆。</td>
+        </tr>
+        <tr>
+          <td>那个香气是尖的；<br>这味道扁扁地摊开；<br>咖啡香是厚的；<br>茶的香是细的；<br>汗味是钝的。</td>
+          <td>闻起来很有味道。</td>
+          <td>五条把嗅觉<strong>翻译成形状</strong>：尖（冲鼻）、扁（淡）、厚（浓郁）、细（清雅）、钝（不好闻但不强）。香是有<strong>几何形状</strong>的——读者读完就有了立体感。</td>
+          <td>写某种气味；写经过某个摊位的瞬间；写茶或咖啡的味道。</td>
+        </tr>
+        <tr>
+          <td>那个声音是涩的；<br>远处的喇叭声是圆的；<br>妈妈的唠叨是软的；<br>金属声是冷的；<br>玻璃声是硬的。</td>
+          <td>听起来很有感觉。</td>
+          <td>五条把听觉<strong>翻译成触觉质地</strong>：涩（粗）、圆（无棱）、软（不刺耳）、冷（金属）、硬（脆）。声音是有<strong>质地</strong>的——读者读完会觉得那声音可以摸。</td>
+          <td>写某段声音；写某种职业的声音特征；写人和人说话的声调。</td>
+        </tr>
+        <tr>
+          <td>那一刀是冰的；<br>胃痛是烧的；<br>针扎是热的；<br>挫伤是钝的温热；<br>牙痛是胀的冷。</td>
+          <td>很痛。</td>
+          <td>五条把痛<strong>翻译成温度与质地</strong>：冰（刀割）、烧（胃痛）、热（针扎）、温（挫伤）、冷（牙痛）。痛是有<strong>温度</strong>的——读者读完会真的觉得那种痛。</td>
+          <td>写受伤的瞬间；写某种慢性痛；写心理痛借身体痛来表达。</td>
+        </tr>
+      </table>
+      <p class="ctx">通感的反向也要会用——把视觉说成声音、把触觉说成颜色：</p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>晚霞是响的，像敲了一下；<br>白是静的；<br>红色是吵的；<br>黑是沉的；<br>天亮是一下子的事。</td>
+          <td>晚霞很红，天亮了。</td>
+          <td>五条把视觉<strong>翻译成听觉与运动</strong>：响（晚霞的醒目）、静（白的安静）、吵（红的刺激）、沉（黑的重量）、一下子（亮的突然）。颜色是有<strong>声音</strong>的——读者读完会觉得看见了响。</td>
+          <td>写晚霞；写某种颜色冲击的瞬间；写天亮或天黑的那一刻。</td>
+        </tr>
+        <tr>
+          <td>那块布摸起来像在听；<br>冷空气咬了一下脸；<br>被温柔地烫了一下；<br>那种痛是丝绒的。</td>
+          <td>感觉很好/很差。</td>
+          <td>四条把触觉<strong>翻译成听觉与材质</strong>：听（布的静）、咬（冷的尖刺）、温柔的烫（轻痛）、丝绒（痛的质地）。触觉是有<strong>声音和材质</strong>的——读者读完会重新理解那个感觉。</td>
+          <td>写触摸的瞬间；写某种温柔或残忍；写心理感受借身体表达。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a> · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="../../06-senses/">写作习作课第6章</a>「通感十句」</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>视觉的四件事是哪四件？为什么视觉的核心是光？</li>
+      <li>听觉的核心不是"听到了什么"，是哪三件事？</li>
+      <li>"安静到听见冰箱在嗡嗡"为什么是好句子？它把"安静"变成了什么？</li>
+      <li>嗅觉的四类词库是哪四类？每类给两个例子。</li>
+      <li>味觉的"七味 + 涩 + 腥"分别是哪几种？</li>
+      <li>"辣是从嘴唇开始的"为什么是好句子？辣还有哪些扩散反应？</li>
+      <li>触觉的六个维度是哪六个？为什么每个都要有具体参照？</li>
+      <li>"比井水凉，比冰块暖"为什么是好句子？它用了什么手法？</li>
+      <li>通感的核心机制是什么？它对应的大脑反应是什么？</li>
+      <li>通感至少要会用哪四组翻译？</li>
+      <li>"酸是绿的""甜是橙黄的"用了什么映射？为什么有效？</li>
+      <li>痛觉可以翻译成什么？举两个例子。</li>
+      <li>声音可以翻译成什么？举两个例子。</li>
+      <li>本页的剂量页写明：每种感觉原子用几处？</li>
+      <li>写感觉的总原则是什么？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>五感的总开关是<strong>写感觉要可感知，给具体来源与强度参照</strong>。视觉四件事：明暗、远近、色温、层次——逆光、半落、远中近三层、阴影蓝灰。听觉三件事：声源、远近、节奏——翻页一下一下、钟摆两秒一次、安静到听见冰箱。嗅觉四类词库：食物（汤、米饭、酱油）、自然（泥土、草、海、松针）、人造（书、塑料、油漆、皮革）、人身（洗衣液、烟草樟脑、汗、药水）——每条都给化学来源。味觉九种：酸甜苦辣咸鲜麻涩腥——每种都有梯度（甜的化开/黏/冲；辣的唇/耳/鼻）。触觉六维：温度、粗滑、软硬、重量、湿干、痛——每条都给参照（比井水凉、挂住纸、差点脱手）。通感四组翻译：味→色、香→形状、声→质地、痛→温度，加上反向两组（视觉→听觉、触觉→材质），共十二条以上。剂量：每种感觉用 1–2 处，通感用 1–2 处，全篇加起来不超过 8 处——读者会累。换名用时，把每个原子的"具体物"换成你真的尝过、摸过、闻过的那种。
+  </div>
+
+  <nav class="pager">
+    <a href="../14-scene-object/"><span class="dir">← 上一页</span>物件：以物写情</a>
+    <a href="../16-psych/"><span class="dir">下一页 →</span>心理</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 五感：视觉、听觉、嗅觉、味觉、触觉 + 通感 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk & White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

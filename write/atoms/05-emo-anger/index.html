@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生气、烦躁、憋屈 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第二部分 · 情绪原子</div>
+  <h1>🔥 生气、烦躁、憋屈</h1>
+  <p>生气、愤怒、烦躁、不耐烦、憋屈、不甘——六种"火"，三种不同身体</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../04-emo-fear/">← 上一页</a>
+    <a href="../06-emo-shame/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">生气：身体往外扩</a>
+    <a class="anchor" href="#s2">愤怒：身体的扩张到顶</a>
+    <a class="anchor" href="#s3">烦躁：身体里打嗝</a>
+    <a class="anchor" href="#s4">憋屈与不耐烦</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约30分钟）：</strong>学完你能——①区分生气、烦躁、憋屈三种最常被混用的"火"，给它们各自配上一组身体证据；②把"我非常生气""心里烦躁"这类被用烂的句子各换上一组可触摸的细节；③在被误解、被忽视、被打断、被唠叨四类情境里挑对原子；④守住"一类情绪一篇用 1–2 处"的剂量，并知道为什么堆叠会变假。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>这一页的难度是<strong>生气最容易写得假大空</strong>——"火冒三丈""气炸了"。读一遍，把你旧作文里的"我非常生气""气死我了"挑出来——基本都该进弱版列。本页的"扩张""卡住""打嗝"三条机制值得你花最多时间。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、生气——身体往外扩</h2>
+    <p class="chapter-sub">生气的身体在长大：肩扩、背挺、声音压低</p>
+
+    <article class="view">
+      <h3>生气的肩与背</h3>
+      <p class="ctx">生气不是火冒三丈。生气的身体形态是<strong>扩张</strong>——肩膀往后撑开半寸，背挺直，声音压低。<strong>剂量：一篇作文里"生气"类躯干原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>肩膀往后撑开半寸，背自己挺了；<br>下巴比平时高出一指；<br>喉咙发紧，声音压下来；<br>一口气长吐，吐在对方脸上。</td>
+          <td>我非常生气。</td>
+          <td>“生气"是结论。换成<strong>四种"扩张"的身体事实</strong>：撑开半寸（可量位移）、挺（躯干）、高出一指（下巴可量位移）、压下来（音量反常）、吐在脸上（距离反常）。生气的身体在<strong>变大变近</strong>。</td>
+          <td>被误解、被当众责备、被嘲笑。<strong>生气的"扩张"动作必须有一个反常的量</strong>。</td>
+        </tr>
+        <tr>
+          <td>手握成拳，骨节发白；<br>指甲掐进肉里，自己没觉；<br>指关节敲桌面，敲了三下；<br>攥着手里的东西，攥出声。</td>
+          <td>我攥紧了拳头。</td>
+          <td>“攥紧"是结论。换成<strong>四种"用力过度"</strong>：骨节发白（可量变化）、掐没觉（力度反常）、敲三下（节奏反常）、攥出声（可听结果）。生气是<strong>力气多出来了</strong>。</td>
+          <td>被冤枉、被嘲笑、看不过去。<strong>生气的手常常要"找东西攥"</strong>，配合场景。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-08-2.png" alt="示意插画：人物肩膀撑开、下巴抬高的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——身体扩张替代表情词 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——愤怒情绪研究</div>
+    </article>
+
+    <article class="view">
+      <h3>生气的声与眼</h3>
+      <p class="ctx">生气的声与眼有个共同特征：<strong>盯着对手</strong>。生气的眼睛不离开对方，声音低，每个字被咬得很短。<strong>剂量：一篇作文里"生气"类眼神原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>眼睛不眨，盯了三秒；<br>嘴闭紧，咬肌自己鼓起；<br>说话一字一字咬，咬得短；<br>听完对方的话，没立刻接。</td>
+          <td>我狠狠地瞪了他一眼。</td>
+          <td>“瞪"是结论。换成<strong>四种"压制"的身体证据</strong>：不眨三秒（频率反常）、咬肌鼓（部位鼓起）、一字一字咬（语言节奏）、没立刻接（应答延迟）。生气是<strong>身体的节奏被拉慢</strong>。</td>
+          <td>对质、对话停顿、被顶撞。<strong>生气的"压制"形态比"爆发"难写</strong>，但更准。</td>
+        </tr>
+        <tr>
+          <td>接话时把对方的话重念了一遍；<br>点头时停了一秒才点下去；<br>听见名字，肩先动；<br>对方话没说完，自己先叹口气。</td>
+          <td>我忍不住发火。</td>
+          <td>“忍不住"是心理。换成<strong>四种"接住对方"</strong>：重念对方话（语言反刍）、停一秒才点（应答延迟）、肩先动（惊跳反常）、先叹气（情绪前置）。生气是<strong>对方的话还没落地，自己已经接了</strong>。</td>
+          <td>对话中、被反问、被追问。<strong>生气常常发生在"对话的缝隙里"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「表达真情实感」要求 · <a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、愤怒——身体的扩张到顶</h2>
+    <p class="chapter-sub">生气是扩，愤怒是扩到顶</p>
+
+    <article class="view">
+      <h3>愤怒的"失控"</h3>
+      <p class="ctx">愤怒与生气的差别：生气<strong>压着</strong>，愤怒<strong>没压住</strong>——东西被砸出去、声音被自己抬起来、话说出来收不回。<strong>剂量：一篇作文里"愤怒"类失控原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>手里的东西摔出去，摔完才停；<br>声音抬起来，自己才听见；<br>一句话说出来收不回去；<br>门被推开，碰到墙才停。</td>
+          <td>我气炸了。</td>
+          <td>“气炸"是成语。换成<strong>四种"放出去"</strong>：摔完才停（动作超时）、抬起来才听见（音量失控）、收不回（语言失控）、碰到墙才停（位移的不可控终止）。愤怒是<strong>动作越过了停的位置</strong>。</td>
+          <td>被冤枉到顶、被当众羞辱、看见不该看的事。<strong>愤怒常常配"砸""摔""推"</strong>这类有冲击力的动词。</td>
+        </tr>
+        <tr>
+          <td>说出的字一个比一个响；<br>话说到后面自己听不清；<br>对方还没接，自己已经把下半句说完了；<br>问话变成了质问，自己才发觉。</td>
+          <td>我大声地吼道。</td>
+          <td>“吼道"是结论。换成<strong>四种"音量越线"</strong>：一个比一个响（升序）、自己听不清（声音的自我消解）、下半句说完（语言失控）、问变质问（语气反常）。愤怒是<strong>音量失去了标准刻度</strong>。</td>
+          <td>对质、家长会、申诉场面。<strong>愤怒组里的音量要写"上升"的过程</strong>，不要直接写最大。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——愤怒的失控研究 · <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White（英文）</a>——删掉形容词</div>
+    </article>
+
+    <article class="view">
+      <h3>愤怒的余震</h3>
+      <p class="ctx">愤怒最大的特点不是当时的样子，是<strong>过后的余震</strong>：手还在抖，话说不完整，眼眶突然红。<strong>剂量：一篇作文里"愤怒"类余震原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>手抖，话说不完整；<br>眼眶红了，自己没意识到；<br>喘气，喘了三口才平；<br>东西摔出去没捡。</td>
+          <td>我气得说不出话来。</td>
+          <td>“说不出"是告知。换成<strong>愤怒的四个余震</strong>：抖说不完整（发声异常）、眼眶红没觉（情绪过界）、三口才平（呼吸反常）、摔不捡（动作过界）。愤怒是<strong>身体的过界状态</strong>。</td>
+          <td>对质后、说完硬话、被告知坏消息。<strong>余震比愤怒的当下更好写</strong>，留着用。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、烦躁——身体里在打嗝</h2>
+    <p class="chapter-sub">烦躁不是生气，是事情的线卡住了</p>
+
+    <article class="view">
+      <h3>烦躁的"卡住"</h3>
+      <p class="ctx">烦躁与生气的真正差别：生气<strong>有对象</strong>，烦躁<strong>没有明确对象</strong>——是事情本身卡住了。<strong>烦躁的身体是"卡"</strong>：话到嘴边停、笔尖顿住、走三步退两步。<strong>剂量：一篇作文里"烦躁"类卡住原子用 1–2 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>话到嘴边停了一下，再说出来变了味；<br>笔尖顿住，墨水渗出一团；<br>走三步退两步，没挪远；<br>手做的事，眼睛看着别处。</td>
+          <td>我心里很烦躁。</td>
+          <td>“烦躁"是结论。换成<strong>四种"卡住"</strong>：停变味（语言中止）、嘴用渗一团（动作反常）、三步两步（位移反常）、手眼分离（部位不同步）。烦躁是<strong>身体的多个部位失去了协调</strong>。</td>
+          <td>作业做不下去、等不到结果、家人唠叨。<strong>烦躁要配具体的卡点</strong>。</td>
+        </tr>
+        <tr>
+          <td>把东西摆整齐，又弄乱；<br>开抽屉关抽屉，没找东西；<br>翻一页书，没看字；<br>在屋里走来走去，没目的。</td>
+          <td>我坐立不安。</td>
+          <td>“坐立不安"是成语。换成<strong>四种"无效循环"</strong>：摆齐弄乱（反向循环）、开关没找（无效循环）、翻没看字（动作的失效）、走来没目的（位移无效）。烦躁是<strong>身体需要出口，事情没出口</strong>。</td>
+          <td>等不到结果、被困在家里、节奏不对。<strong>烦躁常常配物件</strong>——书、抽屉、抽屉里的东西。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>——失效动作的循环 · <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>烦躁的"短气"</h3>
+      <p class="ctx">烦躁的另一个形态是<strong>短气</strong>：叹气变多，一口气只吐一半，说话越来越短。<strong>剂量：一篇作文里"烦躁"类呼吸原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>一口气只吐一半；<br>一分钟叹了三口气；<br>说话越来越短，没一个字是整句；<br>问话只问半句，自己接上后半句。</td>
+          <td>我叹了口气。</td>
+          <td>“叹气"是结论。换成<strong>四种"短"的描述</strong>：半口气（反常）、一分钟三叹（频率反常）、越来越短（语言缩短）、问半接半（语言裂解）。少化是<strong>身体的耐力在下降</strong>。</td>
+          <td>被打断、被反问、答不下去。<strong>短气要配节奏</strong>，不能直接写"不耐烦"。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>· <a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「感情真挚」要求</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、憋屈与不耐烦</h2>
+    <p class="chapter-sub">火被压住的那支</p>
+
+    <article class="view">
+      <h3>憋屈——想说但没说</h3>
+      <p class="ctx">憋屈与生气的差别：<strong>生气说出去了，憋屈没说出来</strong>。憋屈的身体是<strong>反向的</strong>——手在抖但收住了，话说一半咽回去了。<strong>剂量：一篇作文里"憋屈"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>手在抖，按住了；<br>话说一半，咽回去；<br>眼眶热了一下，没掉出来；<br>点头走开，没说话。</td>
+          <td>我心里憋屈。</td>
+          <td>“憋屈"是结论。换成<strong>四种"压住"</strong>：抖按住（动作的反向控制）、咽回去（语言的反向控制）、热没掉（情绪的反向控制）、点头走开（身体的反向控制）。憋屈是<strong>身体想发出去，被自己按回去了</strong>。</td>
+          <td>被责备、被忽视、被当众点。<strong>憋屈常常配"想走""想开口"两个未实现的动作</strong>。</td>
+        </tr>
+        <tr>
+          <td>嘴张了一下，没出声；<br>准备了三句话，说出一句停住；<br>转身走了，肩还在抖；<br>把要说的话写在纸上，叠起来没给。</td>
+          <td>我忍着没发火。</td>
+          <td>“忍着"是心理。换成<strong>四种"准备发出却没发出"</strong>：张没声（语言预备）、三句一句停（解释被截断）、肩还在抖（余震未消）、写叠没给（书面语替代）。憋屈是<strong>语言被自己截断</strong>。</td>
+          <td>对质后、被打断、被长辈责备。<strong>憋屈要写"已经准备好"的部分</strong>。</td>
+        </tr>
+      </table>
+      <div class="fig"><img src="../../assets/img-16-1.png" alt="示意插画：人物转身、肩还在抖的瞬间，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser（英文）</a>· <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a></div>
+    </article>
+
+    <article class="view">
+      <h3>不甘与不耐烦</h3>
+      <p class="ctx">不甘与憋屈不同：不甘是<strong>事过去了还放不下</strong>，不耐烦是<strong>现在还想更快</strong>。<strong>剂量：一篇作文里"不甘"类原子用 1 处，"不耐烦"类原子用 1 处。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>拳头松了又握；<br>回头看那件事发生的地方；<br>想说的话编了三个版本，没说；<br>晚上闭上眼，那一幕自己又来一遍。</td>
+          <td>我心里不甘。</td>
+          <td>“不甘"是结论。换成<strong>四种"过不去"</strong>：松又握（循环）、回头看（视线的反转）、创三个没说（语言编制、放弃）、闭上眼又来（思维的循环）。不甘是<strong>事件过去后还在反刍</strong>。</td>
+          <td>比赛失利、错过机会、被反超。<strong>不甘要配"已经过去的时间"</strong>。</td>
+        </tr>
+        <tr>
+          <td>听人说话，听到一半把话接过去；<br>对方还没说完，自己已经站起来；<br>看着手表，看了三回；<br>问话只问半句。</td>
+          <td>我不耐烦了。</td>
+          <td>“不耐烦"是结论。换成<strong>四种"想快进"</strong>：接话过去（语言抢断）、对半站起（动作抢断）、看表三次（声音抢断）、问半句（语言缩短）。不耐烦是<strong>身体的速度跟不上脑子了</strong>。</td>
+          <td>听唠叨、等慢的人、看别人慢动作。<strong>不耐烦要配"慢的对象"</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>「内容具体」要求 · <a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a></div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>生气、愤怒、烦躁、憋屈这四种"火"在身体上的根本差别是什么？</li>
+      <li>生气的身体扩张具体是哪几件？哪一项是关键的可量变化？</li>
+      <li>生气的手为什么常要"找东西攥"？这一动作背后的心理是什么？</li>
+      <li>愤怒与生气的差别是哪一条？愤怒的"失控"具体是哪四件？</li>
+      <li>愤怒的余震为什么比愤怒的当下更好写？举出四个余震证据。</li>
+      <li>烦躁与生气的根本差别是什么？为什么说烦躁常常没有明确对象？</li>
+      <li>烦躁的"卡住"是哪四种动作？它们的共同特征是什么？</li>
+      <li>烦躁的"短气"是哪四件？为什么说身体的耐力在下降？</li>
+      <li>憋屈与生气的根本差别是什么？憋屈的"反向控制"是哪四种？</li>
+      <li>不甘与憋屈的差别是哪一条？不甘为什么要配"已经过去的时间"？</li>
+      <li>不耐烦的"想快进"是哪四件？为什么说不耐烦要配"慢的对象"？</li>
+      <li>本类情绪每篇的剂量是什么？哪一类原子不能用同段连用？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>生气、愤怒、烦躁、憋屈四种"火"在身体上有不同形状。生气是<strong>扩张</strong>（肩扩半寸、声音压低），愤怒是<strong>越过了停的位置</strong>（摔完才停、声音抬起来才听见），烦躁是<strong>卡住</strong>（话到嘴边停、笔尖顿、走三步退两步），憋屈是<strong>反向的</strong>（抖按住、咽回去）。不甘与不耐烦在后面：不甘是事件过去后<strong>还在反刍</strong>，不耐烦是<strong>想快进</strong>。剂量：生气 1 处、愤怒 1 处、烦躁 1–2 处、憋屈 1 处、不甘 1 处、不耐烦 1 处。配图与剂量都来自课堂反复试错的经验。下一情绪页：<a href="../06-emo-shame/">羞愧、尴尬、后悔</a>——火被折回到自己身上的一类。
+  </div>
+
+  <nav class="pager">
+    <a href="../04-emo-fear/"><span class="dir">← 上一页</span>紧张、害怕、忐忑</a>
+    <a href="../06-emo-shame/"><span class="dir">下一页 →</span>羞愧、尴尬、后悔</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 生气、烦躁、憋屈 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

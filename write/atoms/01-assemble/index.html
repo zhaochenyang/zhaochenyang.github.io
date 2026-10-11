@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>装配术：从原子到成篇 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第一部分 · 原子总论</div>
+  <h1>🔧 装配术：从原子到成篇</h1>
+  <p>零件有了，怎么装——顺序、剂量、衔接、引用的规矩</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../00-intro/">← 上一页</a>
+    <a href="../02-emo-joy/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">装配四步</a>
+    <a class="anchor" href="#s2">情绪段的骨架</a>
+    <a class="anchor" href="#s3">剂量纪律</a>
+    <a class="anchor" href="#s4">衔接与过渡</a>
+    <a class="anchor" href="#s5">引用的规矩</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约25分钟）：</strong>学完你能——①说出原子装配成段的四步顺序，知道为什么不能倒着来；②照着"情绪段骨架"把三组原子装成一个段落；③判断自己的一篇作文剂量是超了还是刚好；④用五种衔接方式把两个原子连起来而不显生硬；⑤知道引用名家句子时该怎么处理，才不算搬运。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>读一遍，再用第三节的剂量表量一次你最近一篇作文。第四节那五种衔接建议贴在书桌上——它是本库最容易用坏也最容易用好的地方。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、装配四步</h2>
+    <p class="chapter-sub">顺序不能倒：先有事实，再有情绪，最后才有反应</p>
+
+    <article class="view">
+      <h3>为什么顺序不能反</h3>
+      <p class="ctx">初学者最常见的写法是：先说"我很紧张"，再补细节。这是<strong>结论前置</strong>——你先给了结论，后面的细节就成了注脚，读者读到的还是结论。<a href="../../04-detail/">第4章</a>讲的正是这件事的机制：过程描写之所以有效，是因为它让读者<strong>自己走到结论</strong>。</p>
+      <p class="ctx">正确的装配顺序是反过来的：先给一个<strong>具体的事实</strong>（人在哪、在做什么），再给<strong>身体反应</strong>（身体不听使唤了），再给<strong>动作</strong>（他做了无效的、重复的动作），最后情绪<strong>只出现一次</strong>，而且最好不出现——让读者替你说出来。情绪词是这套装置的<strong>收据</strong>，不是<strong>发票</strong>。</p>
+      <table class="tb">
+        <tr><th>步</th><th>装什么</th><th>示例（教学示例）</th><th>错了会怎样</th></tr>
+        <tr><td><strong>一 · 事实</strong></td><td>时间、地点、在场的人、正在做的事</td><td>发卷子的老师走到第三排，她的手停了一下。</td><td>跳过这步，情绪就没有落脚点，后面的细节会飘在空中。</td></tr>
+        <tr><td><strong>二 · 身体</strong></td><td>一个可测量的身体反应</td><td>我数到第七页才敢抬头，手心的汗把笔杆捂得发滑。</td><td>跳过这步，只有心理描写，就成了"内心独白"，读着像日记。</td></tr>
+        <tr><td><strong>三 · 动作</strong></td><td>无效或重复的动作链</td><td>我把笔帽拔下来又按回去，来回了三次。</td><td>跳过这步，情绪只有形容词，没有证据。</td></tr>
+        <tr><td><strong>四 · 收口</strong></td><td>情绪只出现一次，最好是物不是词</td><td>整张卷子我一道题也没再看。</td><td>写两次情绪，就退回"告知"。</td></tr>
+      </table>
+      <p class="ctx">这四步之所以是顺序而不是清单，是因为每一步都在为下一步提供<strong>动机</strong>：因为手心出汗（身体），所以笔杆滑（事实），所以才反复拔笔帽（动作），所以最后什么也做不成（收口）。如果第一步先出现"我很紧张"，后面三步就都没有了理由——你已经把话说完了，剩下的是补充说明。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a> · <a href="../../04-detail/">写作习作课第4章</a>「结果陈述 vs 过程描写」一节</div>
+    </article>
+
+    <article class="view">
+      <h3>照着骨架装一次：同一件事，两个版本</h3>
+      <p class="ctx">下面是同一场考试，同一个人，两种写法。请注意右边的原子全部来自本库，但<strong>没有一个字是照抄的</strong>——它们是被装配起来的。</p>
+      <blockquote class="q">
+        <strong>弱版（不要写）：</strong><br>
+        考试的时候我很紧张，心怦怦直跳，手心全是汗，一点题也做不下去，最后考得很差。
+      </blockquote>
+      <blockquote class="q">
+        <strong>装配后（教学示例）：</strong><br>
+        铃响到一半，我还在看前一题的最后一个字。汗从手心渗出来，笔杆滑得握不住，我把它在裤子上抹了一下，重新握紧。同桌翻页的声音很响，一下，又一下。我把那道题又读了一遍，一个字也没读进去。<br>
+        ——收在这里，情绪一个词都没用，但"那一下，又一下"和"一个字也没读进去"已经把紧张交出去了。
+        <span class="qsrc">—— 装配演示：原子来自 <a href="../04-emo-fear/">04 紧张害怕</a>、<a href="../10-body/">10 身体与动作链</a>、<a href="../15-sense-five/">15 五感</a>。属教学示例，非任何真实考场的还原。</span>
+      </blockquote>
+      <p class="ctx">对比时要盯住三处：<strong>一，没有情绪词</strong>；<strong>二，动作重复出现了两次</strong>（抹一下笔杆、读两遍），重复是紧张最可靠的证据；<strong>三，结尾是一个失败的结果</strong>而不是一个评价。弱版结尾的"考得很差"是评判，读者只能被告知；装配版结尾是"一个字也没读进去"，读者自己判断出考砸了。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》（英文）</a>——删去总结性判断，让具体细节自行说话</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、情绪段的骨架</h2>
+    <p class="chapter-sub">所有情绪都可以套进同一副骨架</p>
+
+    <article class="view">
+      <h3>骨架一：一个情绪 = 三支</h3>
+      <p class="ctx">本库第二部分六个情绪页（喜悦、难过、紧张、生气、羞愧、感动）看起来内容各异，其实底层是同一副骨架：<strong>身体先动、动作变形、环境响应</strong>。学会这副骨架，六页原子可以互相借用。</p>
+      <table class="tb">
+        <tr><th>支</th><th>它回答什么问题</th><th>三类情绪的样例</th></tr>
+        <tr><td><strong>身体支</strong></td><td>身体哪里不听使唤了</td><td>高兴：嘴角压不住；难过：胸口那口气下不去；紧张：喉咙发紧</td></tr>
+        <tr><td><strong>动作支</strong></td><td>手在做什么无效的事</td><td>高兴：把笔转了两圈；难过：把校服拉链拉上又拉开；紧张：把笔帽拔了又按</td></tr>
+        <tr><td><strong>环境支</strong></td><td>周围的世界变样了吗</td><td>高兴：走廊的光好像比平时亮；难过：走廊的灯一盏一盏都亮着；紧张：翻页声一下一下</td></tr>
+      </table>
+      <p class="ctx">三支的<strong>先后顺序也可以换</strong>，效果不同：环境支放开头，读者先被拉进场景，再从外部看到情绪（<strong>旁观</strong>）；身体支放开头，读者直接进到人物内部（<strong>代入</strong>）。写自己用代入，写别人用旁观——这是两种不同的技术，别混。</p>
+      <div class="meta-row"><span class="c-badge c-a">📋 学术研究</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>——策略模块化练习优于整体讲解 · <a href="../../03-accumulate/">写作习作课第3章</a>「情绪素材银行」四栏存单</div>
+    </article>
+
+    <article class="view">
+      <h3>骨架二：一次只装一支</h3>
+      <p class="ctx">初中作文最常见的浪费是三支全上，而且每一支都上三句。一篇六百字的文章，情绪段通常只占一百五到两百字，三支各一句已经是上限。<strong>宁可一支写透，不要三支写平。</strong></p>
+      <p class="ctx">怎么判断该上哪一支？看你要写的是<strong>哪一种"读者最需要知道"</strong>：如果这件事本身是个坏消息，重点是<strong>身体支</strong>（人先垮下来）；如果这件事需要人物做出选择，重点是<strong>动作支</strong>；如果这个场景是全篇的舞台，重点是<strong>环境支</strong>。三者只能选一，这是本页最要紧的一条分配纪律。</p>
+      <div class="fig"><img src="../../assets/img-08-2.png" alt="示意插画：人物剪影与三枚分别指向身体、动作、环境的标记，扁平矢量风格，无文字元素" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、剂量纪律</h2>
+    <p class="chapter-sub">超了就麻，欠了会空——剂量表</p>
+
+    <article class="view">
+      <h3>不同位置能装的数量不一样</h3>
+      <p class="ctx">剂量不是全篇统一的一个数字，而是<strong>按位置变化的</strong>。开头要省，中段要满，结尾要狠。下面这张表是初中记叙文（约六百字）的参考上限，实际要按你自己考场上的余量调节。</p>
+      <table class="tb">
+        <tr><th>位置</th><th>原子用量</th><th>为什么</th><th>超了会怎样</th></tr>
+        <tr><td>开头 2–3 句</td><td><strong>1 条，最多 2 条</strong></td><td>开头读者还在决定要不要读下去</td><td>开头就堆细节，读者会觉得炫技，然后放下</td></tr>
+        <tr><td>情绪段（每处）</td><td><strong>3–4 条</strong>，且限同一支</td><td>足够撑起画面，又不至于把三支写平</td><td>超过五条，读者会开始数你写了几样，而不是在感受</td></tr>
+        <tr><td>全篇同一类情绪</td><td><strong>1–2 处</strong></td><td>稀缺才有重量</td><td>连续三处"我很紧张"，读者彻底麻掉</td></tr>
+        <tr><td>比喻</td><td><strong>1–2 个</strong></td><td>比喻是重武器，用多了互相抵消</td><td>满篇比喻等于没有比喻，读者会疲劳</td></tr>
+        <tr><td>结尾 2 句</td><td><strong>1 条，最好是物</strong></td><td>结尾要留一个可以带走的形象</td><td>结尾用大道理，就把整篇的力气泄掉了</td></tr>
+      </table>
+      <p class="ctx">请注意最后一行的"<strong>最好是物</strong>"。结尾最容易犯的错是升华——写完一件具体的事，忽然加一句"我懂得了坚持的意义"。这句会让前面所有的细节全部作废，因为它告诉读者：你要的其实是这个道理，那前面的铺陈都是手段。<strong>把最后一句换成一件具体的东西</strong>——半瓶没喝完的水、没塞回去的柜门、还亮着的一盏灯——力量会回来。</p>
+      <p class="ctx">"同一类情绪 1–2 处"这一条同时是<a href="../00-intro/">总论页</a>三条使用禁令的第一条。它不是文风偏好，是<strong>阅读机制</strong>：读者的情绪反应会饱和。第一次读到"笔帽拔了又按"时他会紧张；第三次读到同样的结构，他只会翻页。</p>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「内容具体」「表达真情实感」· <a href="../../15-openend/">写作习作课第15章</a>「套话黑名单」与结尾升华的害处</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、衔接：把两块零件接上</h2>
+    <p class="chapter-sub">五种接法，第三种最好用</p>
+
+    <article class="view">
+      <h3>为什么原子单独用会很生硬</h3>
+      <p class="ctx">原子的特点就是<strong>没有上下文</strong>——它只管自己那一句。三块零件直接排在一起，读者会感觉在看清单而不是在读文章。衔接就是补上"因为""可是""这时候"这些<strong>逻辑关节</strong>。</p>
+      <table class="tb">
+        <tr><th>接法</th><th>怎么接</th><th>例（教学示例）</th><th>适用与风险</th></tr>
+        <tr>
+          <td><strong>一 · 时间扣</strong></td>
+          <td>用"这时候／就在这时候／等我……的时候"</td>
+          <td>等我把笔重新握紧，铃已经停了。</td>
+          <td>最安全、也最平。用在一篇里一次就够。</td>
+        </tr>
+        <tr>
+          <td><strong>二 · 因果扣</strong></td>
+          <td>用"所以／可／结果"</td>
+          <td>笔杆太滑，我换了三次握法。</td>
+          <td>因果扣是把"反应"变"证据"的关键，但连用会像说明文。</td>
+        </tr>
+        <tr>
+          <td><strong>三 · 同物件扣</strong></td>
+          <td>两句写同一个东西，换一个角度</td>
+          <td>手心的汗把笔杆捂得发滑。<br>那支笔，我拿了一整个下午。</td>
+          <td><strong>最好用。</strong>不需要任何连接词，读者自己会连上，而且省字。</td>
+        </tr>
+        <tr>
+          <td><strong>四 · 反差扣</strong></td>
+          <td>写一个与情绪相反的现象</td>
+          <td>教室里很安静，安静得能听见风扇。</td>
+          <td>反差扣最有张力，但一节只用一次，多了显得刻意。</td>
+        </tr>
+        <tr>
+          <td><strong>五 · 重复扣</strong></td>
+          <td>把一个词或动作原样重复</td>
+          <td>一遍，两遍。还是没读进去。</td>
+          <td>用"数数"的方式重复，比"反复""不断"具体得多。</td>
+        </tr>
+      </table>
+      <p class="ctx">第三种"<strong>同物件扣</strong>"值得单独说。它是本库最重要的省字技巧：两句话没有连接词，主语还是同一个东西，读者却能感觉到它们有关系——因为<strong>同一个物件在两个时刻出现，本身就是一条时间线</strong>。本库每一页的原子表格里，同一组的几条原子往往共享一个名词（手心的汗／笔杆／笔帽），这是设计上的有意安排，就是为了方便你用第三种接法直接串。</p>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——清晰来自删去多余连接与自明的解释 · <a href="../../05-slow/">写作习作课第5章</a>「慢镜头」的分步展开法</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s5">
+    <h2 class="chapter-title">五、引用的规矩</h2>
+    <p class="chapter-sub">引名家句子，怎么引才不是搬运</p>
+
+    <article class="view">
+      <h3>引用的三个安全动作</h3>
+      <p class="ctx">本库会引用少量已出版名篇的短句作为标本（会注明出处），但那只是给你看"写得好是什么样"。真正要在作文里做引用，记住三个动作：</p>
+      <table class="tb">
+        <tr><th>动作</th><th>怎么做</th><th>例</th></tr>
+        <tr><td><strong>一 · 引号 + 出处</strong></td><td>引号里不超过十四个字，后面给出处</td><td>有人说"教育是一棵树摇动另一棵树"——署名泰戈尔（<a href="../00-intro/">总论页</a>提醒：这类句子在作文里当装饰，收益低于风险）</td></tr>
+        <tr><td><strong>二 · 转成自己的经验</strong></td><td>引用后必须接一件自己的事，否则就是凑字数</td><td>引用完立刻写"我第一次听懂这句，是初二那年……"</td></tr>
+        <tr><td><strong>三 · 只引整句，不引整段</strong></td><td>任何情况下不要连续引用超过两句</td><td>宁可拆成两次出现，中间夹自己的话</td></tr>
+      </table>
+      <p class="ctx">更稳妥的做法是<a href="../00-intro/">总论页</a>反复强调的那条：<strong>不要引用，直接换名</strong>。把名家句子的<strong>句型</strong>学走（它是怎么把抽象写成具体的），然后填进你自己的生活。这比引用高级得多，也安全得多——因为署名的句子读者一眼就认得出来，而换过名的句子只属于你。</p>
+      <div class="note">
+        <strong>关于本站引用的边界：</strong>本库收录的名家短句，仅用于<strong>拆解与仿写</strong>，并一律注明出处与作者。请特别注意<a href="../../17-reading/">写作习作课第17章</a>给出的判据：<strong>句序图相同、事件是你自己的＝仿写；整句照抄或换字洗稿＝“抄袭”</strong>。后者是本站明确反对的。本库提供零件与诊断方法，成篇的判断与表达始终是你的工作——这也是<a href="../00-intro/">总论页</a>那条伦理底线的意思。
+      </div>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「不编造，不得套作」· <a href="../../17-reading/">写作习作课第17章</a>仿写与“抄袭”边界判据</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>装配四步是哪四步？为什么情绪词要放在最后而不是最前？</li>
+      <li>为什么"情绪前置"会让后面的细节变成注脚？</li>
+      <li>弱版和装配版对比时，最值得盯的三处差别是什么？</li>
+      <li>情绪段骨架的三支分别回答什么问题？</li>
+      <li>三支的开头顺序换了，效果有什么不同？写自己该用哪种？</li>
+      <li>为什么说"宁可一支写透，不要三支写平"？</li>
+      <li>怎么判断一个情绪段该上哪一支？看的是哪一件事？</li>
+      <li>开头、情绪段、全篇同一类情绪、比喻、结尾，各能装多少条原子？</li>
+      <li>为什么结尾最忌讳升华？换成什么力量会回来？</li>
+      <li>五种衔接接法里，哪一种最好用？为什么它反而最省字？</li>
+      <li>"同物件扣"为什么不需要连接词读者也能连上？</li>
+      <li>本库的原子表格里，同组原子常常共享一个名词，这是什么设计？</li>
+      <li>引用名句的三个安全动作分别是什么？</li>
+      <li>为什么"不要引用、直接换名"比引用更高级？</li>
+      <li>本站判定"仿写"与"抄袭"的分界线是什么？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>装配四步是有先后的：先事实（在哪、在做什么）、再身体（哪里不听使唤）、再动作（无效或重复的行为）、情绪最后收口且只出现一次。顺序反了，细节就会变成注脚。弱版常写成"我很紧张，心怦怦直跳"——全篇这种句子出现在"我很开心""我很难过"，是同一种错误的七种说法。情绪段骨架是三支：身体、动作、环境，三支可以任意换序放，开头次序决定是"跳进去"还是"看着别人"；但三支只能上一支，选哪支取决于你要让读者最先知道什么。剂量按位置分配：开头 1–2 条，情绪段 3–4 条且限一支，全篇同一类情绪 1–2 处，比喻 1–2 个，结尾 1 条且最好是物。升华是结尾的头号敌人，会让全部细节作废。衔接有五种，同物件扣最好用——不靠连接词，靠共享同一个名词让读者自己连线。原子的名词是成组设计的，正是为了串这一种。引用只引单句并给出处，或者更好：不引用，把句型换名填进自己的生活。分界线始终是那句——你可以想起它，但你必须自己决定它那天是否真实。
+  </div>
+
+  <nav class="pager">
+    <a href="../00-intro/"><span class="dir">← 上一页</span>什么是原子：会背、能装、不照搬</a>
+    <a href="../02-emo-joy/"><span class="dir">下一页 →</span>喜悦、兴奋、得意</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 装配术：从原子到成篇 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>

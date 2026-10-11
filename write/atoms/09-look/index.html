@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外貌：怎样让人物第一眼就立住 — 原子素材库</title>
+<style>
+  :root{--accent:#b91c1c;--accent-deep:#991b1b;--ink:#1f2328;--muted:#57606a;--line:#d0d7de;--bg-soft:#f6f8fa;--green:#1a7f37;--amber:#9a6700;--red:#b42318;}
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.8;}
+  header.masthead{background:linear-gradient(135deg,var(--accent-deep),var(--accent));color:#fff;padding:40px 20px;text-align:center;}
+  header.masthead .tag{font-size:13px;letter-spacing:3px;opacity:.85;margin-bottom:8px;}
+  header.masthead h1{margin:0 0 8px;font-size:28px;}
+  header.masthead p{margin:4px 0;font-size:14.5px;opacity:.95;}
+  header.masthead a{color:#fff;}
+  nav.chapter-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(27,31,36,.05);}
+  nav.chapter-nav .inner{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:13.5px;}
+  nav.chapter-nav a{color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  nav.chapter-nav a:hover{color:var(--accent);background:var(--bg-soft);}
+  nav.chapter-nav .home{color:var(--accent);font-weight:700;}
+  nav.chapter-nav .anchor{color:var(--muted);font-size:12.5px;}
+  main{max-width:900px;margin:0 auto;padding:30px 20px 40px;}
+  section.chapter{margin-bottom:34px;}
+  h2.chapter-title{font-size:21px;border-left:6px solid var(--accent);padding-left:12px;margin:34px 0 6px;scroll-margin-top:60px;}
+  .chapter-sub{color:var(--muted);font-size:14px;margin:0 0 16px 18px;}
+  article.view{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:16px 0;background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);scroll-margin-top:60px;}
+  article.view h3{margin:0 0 10px;font-size:17px;color:var(--accent-deep);}
+  blockquote.q{margin:10px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 8px 8px 0;font-size:15px;color:var(--ink);}
+  blockquote.q .qsrc{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);}
+  p.ctx{margin:8px 0;font-size:14.5px;color:var(--ink);}
+  .fig{margin:14px 0;text-align:center;}
+  .fig img{max-width:100%;border-radius:10px;border:1px solid var(--line);}
+  .fig .cap{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  table.tb{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;}
+  table.tb th,table.tb td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  table.tb th{background:var(--bg-soft);color:var(--accent-deep);white-space:nowrap;}
+  .meta-row{font-size:13px;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .meta-row a{color:var(--accent);text-decoration:none;}
+  .meta-row a:hover{text-decoration:underline;}
+  .c-badge{display:inline-block;font-size:11.5px;border-radius:4px;padding:0 7px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .c-v{background:#dafbe1;color:var(--green);border:1px solid #aceebb;}
+  .c-m{background:#fee2e2;color:#991b1b;border:1px solid #fecaca;}
+  .c-a{background:#fff8c5;color:var(--amber);border:1px solid #eed88a;}
+  .c-p{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);}
+  .note{background:#fff8c5;border:1px solid #eed88a;border-radius:8px;padding:12px 16px;font-size:14px;margin:16px 0;}
+  .disclaimer{background:#fff1f0;border:1px solid #ffccc7;border-radius:8px;padding:12px 16px;font-size:13.5px;margin:16px 0;}
+  .checklist{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 22px;margin:16px 0;font-size:14.5px;}
+  .checklist h4{margin:0 0 8px;font-size:15px;color:var(--accent-deep);}
+  .checklist ul{margin:0;padding-left:22px;}
+  nav.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;}
+  nav.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-decoration:none;color:var(--ink);font-size:14px;background:#fff;}
+  nav.pager a:hover{border-color:var(--accent);color:var(--accent);}
+  nav.pager .dir{display:block;font-size:12px;color:var(--muted);}
+  footer{max-width:900px;margin:0 auto;padding:18px 20px 46px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+  footer a{color:var(--accent);}
+  @media (max-width:700px){
+    header.masthead h1{font-size:22px;}
+    main{padding:20px 14px 30px;}
+    article.view{padding:16px 16px;}
+  }
+</style>
+<!-- Google Analytics (GA4)：请将 G-XXXXXXXXXX 替换为你的测量 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="tag">原子素材库 · 第三部分 · 人物之二 · 外貌</div>
+  <h1>外貌：怎样让人物第一眼就立住</h1>
+  <p>写形不写漂亮，写他做过什么活、走过什么路、挨过什么年月</p>
+</header>
+
+<nav class="chapter-nav">
+  <div class="inner">
+    <a class="home" href="../">🏠 原子素材库首页</a>
+    <a href="../08-face/">← 上一页</a>
+    <a href="../10-body/">下一页 →</a>
+    <span class="anchor">本页：</span>
+    <a class="anchor" href="#s1">身形与第一印象</a>
+    <a class="anchor" href="#s2">衣着与手</a>
+    <a class="anchor" href="#s3">气质与岁月痕迹</a>
+    <a class="anchor" href="#s4">走路的姿势与重逢</a>
+  </div>
+</nav>
+
+<main>
+  <div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本课程为语文学习参考，不构成升学承诺，不保证提分；原子素材的累积与个体观察力、生活积累关系很大，因人而异。本站<strong>不推荐</strong>任何培训机构与教辅产品。本页列出的原子与示范段，属教学示例或公共领域／已出版作品的短句引用，供<strong>拆解、仿写、替换</strong>；本站明确批判并拒绝“代写”“抄袭”“高分模板”“作文速成班”四类做法——把它们写在这句话里，正是为了把它们排除在本课程之外。整段照搬、整句默写进考场，属于本站反对的行为，请勿使用。
+  </div>
+
+  <div class="note">
+    <strong>本页目标（约25分钟）：</strong>学完你能——①区分"漂亮"和"有信息量的外貌"两类句子，并知道后者为什么赢；②从身形、衣着、肤色与手、气质、岁月痕迹、走路姿势六个方向各背 2 组原子；③写"初次见面的第一印象"时不靠形容词，靠可比的量与可推回的身世；④在重逢段落里写出"外形变了但习惯没变"那一对张力；⑤识破"他高大帅气""她亭亭玉立"这类无效描写。
+    <p style="margin:8px 0 0;"><strong>怎么用本页：</strong>外貌是最容易抄成"漂亮"的一页。读的时候，把每条原子的"<strong>这件事说明他做过什么</strong>"在心里补一句——补不出来，说明你背的是形容词而不是事实。本页用量上限和<a href="../../04-detail/">第4章</a>一致：同一类外貌原子一篇不超过两处。</p>
+  </div>
+
+  <section class="chapter" id="s1">
+    <h2 class="chapter-title">一、身形的分量：第一眼的尺寸感</h2>
+    <p class="chapter-sub">身形是身体的地形——读者从这里推回人物的年纪与生活</p>
+
+    <article class="view">
+      <h3>身形 / 第一印象：可比的尺寸与节奏</h3>
+      <p class="ctx">写身形不是为了写高矮，是为了写<strong>这个身体做过多重的活、挨过多大的事</strong>。把身形和职业量做对应——铁匠的肩膀和文员的不一样，菜贩的手和钢琴家的不一样。<strong>剂量：身形类原子一篇用 1–2 处，且必须配衣着或肤色才有意义。</strong>单独写身形，读者只能读到尺寸；配上衣着，读者才能读到职业。</p>
+      <div class="fig"><img src="../../assets/img-09-1.png" alt="示意插画：人物背影剪影与身体尺寸标注线" onerror="var f=this.closest('.fig');if(f)f.style.display='none';"><div class="cap">插画 · AI 生成</div></div>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>肩膀比门框宽出两寸；<br>手臂垂下来过了膝盖；<br>坐下去，椅子响了一下。</td>
+          <td>他长得很高大，非常壮实。</td>
+          <td>"高大壮实"是<strong>形容词</strong>。三个原子是<strong>可比的量与可听见的声音</strong>——宽出两寸、过膝盖、椅子响——身形的特征是<strong>与环境的尺寸差</strong>：门框、膝盖、椅子都是参照物。</td>
+          <td>第一次见到的陌生人、运动员、工人、父亲。把"与参照物的差"写出来，读者立刻知道身体属于哪个量级。</td>
+        </tr>
+        <tr>
+          <td>骨架撑在衣服外头；<br>脖子前倾，像一直在低头；<br>站直比坐着矮半寸。</td>
+          <td>他显得很瘦，弱不禁风的样子。</td>
+          <td>"弱不禁风"是<strong>套话</strong>。三个原子是<strong>可推回身世的形状</strong>——骨架外露（营养记录）、脖子前倾（长期伏案）、坐比站高（被压缩）——瘦不是<strong>重量</strong>，是<strong>形状</strong>，写出形状，读者能反推出他做过什么。</td>
+          <td>常年伏案的老师、住院刚出院的人、长期节食的同伴。把"坐比站高"读出来，读者立刻知道脊椎在变形。</td>
+        </tr>
+        <tr>
+          <td>占的位置比实际人还宽；<br>说话声把人先到，他不大；<br>笑起来，屋子小了一圈。</td>
+          <td>他很有存在感，让人印象深刻。</td>
+          <td>"存在感"是<strong>抽象名词</strong>。三个原子是<strong>空间与声场的占比</strong>——位置、声、笑——第一印象的强弱不在<strong>本人</strong>，在<strong>与屋子/对话者的反差</strong>。</td>
+          <td>写第一次见到的长辈、新老师、初次到场的陌生人。这是把"印象"这种抽象概念落地的办法。</td>
+        </tr>
+        <tr>
+          <td>肩往前一寸，脖子跟着缩；<br>手没地方放，最后垂下来；<br>站的位置比人少半步。</td>
+          <td>他看起来很拘谨，不好意思。</td>
+          <td>"拘谨"是<strong>性格的告知</strong>。三个原子是<strong>身体的自保动作</strong>——肩前、缩脖子、手不知放哪——第一印象里"小一号"的特征不在身材，在<strong>占据空间的勇气</strong>。</td>
+          <td>写怯场的孩子、初次见面的内向者、新转学的同学。把"少半步"读出来，读者立刻知道他在压自己。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/Show,_don%27t_tell">Show, don't tell（英文）</a>·<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>·<a href="../../05-slow/">写作习作课第5章</a>「慢镜头」分步展开法</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s2">
+    <h2 class="chapter-title">二、衣着与手：生活的物证</h2>
+    <p class="chapter-sub">衣服和手比脸更诚实——它们读过职业的痕迹</p>
+
+    <article class="view">
+      <h3>衣着 / 肤色与手：可推回职业的细节</h3>
+      <p class="ctx">写"他穿着干净的衣服"等于没写——读者不知道他做什么工作。写"<strong>这件衣服在哪个位置被磨旧了</strong>"读者立刻知道职业：金属表、橡胶表、灰浆表各不相同。<strong>剂量：衣着 1 处 + 肤色手 1 处即可，不要把四个方向全用上；超了就成体检报告了。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>袖口磨得发亮，比别处早一年；<br>领口的皱不是洗出来的；<br>肩头落着一层灰，洗不掉。</td>
+          <td>他的衣服很旧，看得出干粗活。</td>
+          <td>"干粗活"是<strong>推断的告知</strong>。三个原子是<strong>衣服的具体位置</strong>——袖口、领口、肩头——衣着的特征不在<strong>新旧</strong>，在<strong>磨损的分布</strong>：哪里先坏就说明他做什么。</td>
+          <td>写工人、农民、维修工、长期加班的人。把"肩头落灰"读出来，读者立刻知道他在粉尘环境里做事。</td>
+        </tr>
+        <tr>
+          <td>扣子错开了一颗，没人告诉他；<br>拉链拉到一半，停在胸口；<br>袖口卷了三道，卷得不齐。</td>
+          <td>他穿得不太整齐，有点邋遢。</td>
+          <td>"邋遢"是<strong>评价</strong>。三个原子是<strong>穿衣的中断</strong>——错扣、半拉拉链、不齐卷边——衣着的"不齐"不是懒，是<strong>做到一半</strong>：说明他时间紧，或者独自穿衣没人看。</td>
+          <td>独自生活的中年人、赶着上学的孩子、初到异地的打工者。把"错扣一颗"读出来，读者立刻知道没人帮他看。</td>
+        </tr>
+        <tr>
+          <td>手背的颜色比脸深一档；<br>指甲剪到根，没留白；<br>掌纹被磨平了三道。</td>
+          <td>他的手很粗糙，看得出是劳动人民。</td>
+          <td>"劳动人民"是<strong>身份的标签</strong>。三个原子是<strong>可比较的颜色与可数的纹路</strong>——手背 vs 脸、指甲长度、掌纹深浅——手的特征是<strong>与脸的对比</strong>：手晒过脸没晒过的人，多半在外面跑。</td>
+          <td>写外卖员、渔民、建筑工人。把"手背比脸深"读出来，读者立刻知道他的手比脸更老。</td>
+        </tr>
+        <tr>
+          <td>食指侧多了一道茧；<br>虎口的皮裂成小方格；<br>中指第一节比别的指粗。</td>
+          <td>他的手上都是老茧，很能干。</td>
+          <td>"能干"是<strong>评价</strong>。三个原子是<strong>茧的位置与形状</strong>——食指、虎口、中指——茧的特征不在<strong>有</strong>，在<strong>位置</strong>：写在哪里，读者就能反推他长期握的是什么。</td>
+          <td>写铁匠、厨师、钳工、裁缝、长期握笔的人。把"食指侧茧"读出来，读者立刻知道他在用哪根手指发力。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-v">🏛 官方文件</span><span class="c-badge c-m">📘 权威手册</span>来源：<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「内容具体」·<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——用具体替代抽象 · <a href="../00-intro/">原子素材库·总论页</a>三条使用禁令</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s3">
+    <h2 class="chapter-title">三、气质与岁月痕迹</h2>
+    <p class="chapter-sub">气质不是形容词——气质是身体在时间里留下的形</p>
+
+    <article class="view">
+      <h3>气质 / 岁月痕迹：刻在身体上的时间</h3>
+      <p class="ctx">气质是外貌页里最容易被写空的方向。写"他很有气质"等于没写——气质从来不是形容词，是<strong>身体被时间打磨过的样子</strong>。直背是几十年没弯腰的人，驼背是几十年伏案的人，<strong>姿势本身是一部简历</strong>。<strong>剂量：气质类原子一篇用 1–2 处，岁月痕迹用 1 处即够；气质写多了读者会想到"形容词堆砌"。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>脖子和腰是一条直线；<br>坐下的时候，肩没往前塌；<br>转身的时候，鞋跟没离地。</td>
+          <td>他站得特别直，很有气质。</td>
+          <td>"站得直"是<strong>动作的标签</strong>，"有气质"是<strong>评价</strong>。三个原子是<strong>姿势的稳定度</strong>——直、不塌、不动——气质的核心不在直，在<strong>稳</strong>：常年训练的人才有这一份稳。</td>
+          <td>写军人、教师、老医生、长期练功的人。把"鞋跟没离地"读出来，读者立刻知道他转身是用腰的。</td>
+        </tr>
+        <tr>
+          <td>站着比坐着高半头；<br>说话时身子不靠墙；<br>听完一段话，沉默比说话长。</td>
+          <td>他很沉稳，让人信服。</td>
+          <td>"沉稳"是<strong>性格的告知</strong>。三个原子是<strong>身体与话语的节奏差</strong>——身高差、不借力、沉默更长——气质的稳不在<strong>动作少</strong>，在<strong>动作的节制</strong>：他没乱动，所以安静。</td>
+          <td>写父亲、老师、上级、谈判的人。把"沉默比说话长"读出来，读者立刻知道他在听不在说。</td>
+        </tr>
+        <tr>
+          <td>鬓角的白不是一根，是一片；<br>眼角那纹分三道，不是笑出来的；<br>手背的斑比脸多两块。</td>
+          <td>他看起来很老，皱纹很多。</td>
+          <td>"皱纹很多"是<strong>计数不清</strong>。三个原子是<strong>可推回年龄的痕迹</strong>——一片白、三道斑、多两块——岁月的特征不在<strong>多</strong>，在<strong>分布</strong>：哪里先白、哪里纹深、哪里斑多，都能反推时间。</td>
+          <td>写重逢、写父亲、写完时间跨度大的场景。把"鬓角一片白"读出来，读者立刻知道不是一两根。</td>
+        </tr>
+        <tr>
+          <td>说话的尾音比年轻时短；<br>走路的步幅比记忆里窄；<br>眨眼一次，比当年慢半拍。</td>
+          <td>他老了，比以前慢多了。</td>
+          <td>"老了"是<strong>时间的告知</strong>，"慢多了"是<strong>模糊副词</strong>。三个原子是<strong>可比较的速率</strong>——尾音、步幅、眨眼——岁月的痕迹不在<strong>慢</strong>，在<strong>三个速度的比对</strong>，写出了"比"，有了持续的依据。</td>
+          <td>重逢、写探望、写时间跨度大的对比。把"步幅比记忆里窄"读出来，读者立刻知道身体的力气在收缩。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-a">📋 学术研究</span>来源：<a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk &amp; White《The Elements of Style》（英文）</a>——删去总结性判断 ·<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2016.02074/full">Tsiriotakis（2016）（英文）</a>·<a href="../../04-detail/">写作习作课第4章</a>「外貌不是形容词」</div>
+    </article>
+  </section>
+
+  <section class="chapter" id="s4">
+    <h2 class="chapter-title">四、走路与重逢的变化</h2>
+    <p class="chapter-sub">一个人走路的样子，比脸更不容易伪装</p>
+
+    <article class="view">
+      <h3>走路的姿势 / 多年后重逢：姿势的记忆与变形</h3>
+      <p class="ctx">走路是身体最诚实的一组动作：脸可以化妆，衣着可以换，<strong>走路的样子是几十年改不掉的</strong>。写人物，重逢时最有用的不是"他老了"，是"他的步幅比记忆里窄"。<strong>剂量：走路姿势 1 处即够；写两次时把重心放在"步幅""节奏""脚跟""肩摆"四个不同的指标上。</strong></p>
+      <table class="tb">
+        <tr><th>原子（可背）</th><th>弱版（不要写）</th><th>为什么有效</th><th>什么时候用</th></tr>
+        <tr>
+          <td>步子比一般人长半脚；<br>脚跟先落地，比脚尖重；<br>摆手的幅度和步幅对得上。</td>
+          <td>他走路带风，特别有气势。</td>
+          <td>"带风"是<strong>夸张</strong>，"有气势"是<strong>评价</strong>。三个原子是<strong>步行的可测量参数</strong>——步长、着力点、手臂摆幅——走路的特征不在<strong>快</strong>，在<strong>三处参数的协调</strong>：步长、手摆、着力点对齐了才稳。</td>
+          <td>写见过一次就忘不了的人、运动员、领路人。把"脚跟比脚尖重"读出来，读者立刻知道他是大步走的人。</td>
+        </tr>
+        <tr>
+          <td>肩膀一边高一边低；<br>左脚迈出后，右脚跟得紧；<br>鞋底磨偏在外侧。</td>
+          <td>他走路一瘸一拐的。</td>
+          <td>"一瘸一拐"是<strong>病状的告知</strong>。三个原子是<strong>身体长期不平衡的形状</strong>——肩差、步差、磨偏——步态的特征不在<strong>异常</strong>，在<strong>长期偏斜</strong>：写哪一侧，读者立刻知道身体哪边受过伤或长期代偿。</td>
+          <td>写长辈、写中过风的人、写长期一侧用力的人。把"鞋底磨偏在外侧"读出来，读者立刻知道是长年累月的偏斜。</td>
+        </tr>
+        <tr>
+          <td>头发白了一片，他没染；<br>腰弯了一寸，他没挺；<br>脸上多了两道纹，他没笑。</td>
+          <td>他变老了很多。</td>
+          <td>"变老很多"是<strong>时间的告知</strong>。三个原子是<strong>时间留下的形 + 没被修饰</strong>——白、弯、纹——重逢的特征不在<strong>变</strong>，在<strong>变而没盖</strong>：他没去掩饰，读者才知道是真的变了。</td>
+          <td>写多年后重逢、写探望长辈、写同学聚会。把"没染""没挺""没笑"读出来，读者立刻知道这三处是<strong>岁月本身</strong>不是他选择的。</td>
+        </tr>
+        <tr>
+          <td>说话的口音没换；<br>端杯的手势还是左手；<br>走路的节拍和他爸一样。</td>
+          <td>他一点都没变，跟从前一样。</td>
+          <td>"一点没变"是<strong>整体感受</strong>。三个原子是<strong>身体没被时间改掉的三处</strong>——口音、手势、节拍——重逢的对照不在<strong>外形变了</strong>，在<strong>有些东西死活没变</strong>：变与不变的对照，是最深的重逢。</td>
+          <td>重逢、同学聚会、写探亲、写老师归来。把"走路节拍和他爸一样"读出来，读者立刻知道<strong>这一处时间没动过</strong>。</td>
+        </tr>
+      </table>
+      <div class="meta-row"><span class="c-badge c-m">📘 权威手册</span><span class="c-badge c-v">🏛 官方文件</span>来源：<a href="https://en.wikipedia.org/wiki/On_Writing_Well">Zinsser《On Writing Well》（英文）</a>——清晰来自删去自明的解释 ·<a href="http://www.moe.gov.cn/srcsite/A26/s8001/202204/t20220420_619921.html">课标（2022年版）</a>第三学段「描写有层次」·<a href="../../09-scene/">写作习作课第9章</a>「场景让环境说话」</div>
+    </article>
+  </section>
+
+  <div class="checklist">
+    <h4>📋 理解性自测（讲给朋友听试试）</h4>
+    <ul>
+      <li>写身形为什么不能只写高矮？必须配什么参照物？</li>
+      <li>"第一印象"的强弱不在本人，在哪里？</li>
+      <li>衣着最有效的不是写新旧，是写什么？</li>
+      <li>扣子错开一颗、拉链停在胸口、袖口卷不齐——共同特征是哪一个字？</li>
+      <li>手的颜色为什么必须和脸比？单独写手行不行？</li>
+      <li>茧的特征不在"有"，在哪里？食指侧茧说明什么？</li>
+      <li>"气质"为什么不是形容词？姿势本身是一部什么？</li>
+      <li>岁月痕迹的特征不在"多"，在哪里？</li>
+      <li>写重逢最有张力的对照是什么？变还是不变？</li>
+      <li>"走路"为什么比脸更不容易伪装？步行的三处参数是哪三处？</li>
+      <li>"他一点没变"为什么是弱版？怎么改？</li>
+      <li>本页六个方向（身形/衣着/肤色手/气质/岁月痕迹/走路）一篇最多用几个？</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>📌 本页要点速览：</strong>外貌不是形容词堆砌，是<strong>带信息量的形状</strong>。身形要写与参照物的尺寸差（门框、膝盖、椅子），第一印象要写与屋子/对话者的反差；衣着要写磨损的<strong>分布</strong>（袖口、肩头、领口）而不是新旧，扣子错一颗、半拉拉链、不齐卷边是"做到一半"的证据；肤色与手要写<strong>手背 vs 脸</strong>的色差、茧的<strong>位置</strong>、掌纹被磨平的<strong>纹路数</strong>——每一处都在反推职业；气质不在形容词，在姿势的<strong>稳定度</strong>（直、不塌、不借力），在沉默与说话的<strong>节奏差</strong>；岁月痕迹不在"多"，在<strong>分布</strong>——哪里先白、哪里纹深、哪里斑多；走路不在快，在<strong>步长、着力点、手臂摆幅</strong>三处参数的对齐；重逢最有用的对照是<strong>变与不变</strong>——外形变了而口音、手势、节拍没变，是最深的重逢。本页用量上限和<a href="../00-intro/">总论页</a>三条使用禁令一致：同一方向用 1–2 处，全部加在一起不超过四处；超了读者会以为在看体检报告。
+  </div>
+
+  <nav class="pager">
+    <a href="../08-face/"><span class="dir">← 上一页</span>表情：不说话的时候他在说什么</a>
+    <a href="../10-body/"><span class="dir">下一页 →</span>身体反应与动作链</a>
+  </nav>
+</main>
+
+<footer>
+  <p>原子素材库 · 外貌：怎样让人物第一眼就立住 · 依据《义务教育语文课程标准（2022年版）》、Zinsser《On Writing Well》、Strunk &amp; White《The Elements of Style》等权威来源与同行评审研究整理 · 内容更新至 2026 年 10 月</p>
+  <p>本站仅供语文学习与家庭教育参考，不构成升学承诺与培训推荐 · 原子供拆解、仿写、替换，反对整段照搬 · <a href="../">返回原子素材库首页</a></p>
+</footer>
+<!-- 赞助/捐赠（页脚） -->
+<style>
+.sponsor-box{margin-top:18px;padding:16px;border:1px dashed #b91c1c;border-radius:12px;background:#fef2f2;text-align:center;}
+.sponsor-box .sp-title{font-size:14px;color:#991b1b;font-weight:600;margin-bottom:4px;}
+.sponsor-box .sp-sub{font-size:12.5px;color:#6b7280;margin-bottom:10px;}
+.sp-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:flex-start;}
+.sp-qr-item img{width:150px;max-width:40vw;border-radius:8px;background:#fff;padding:6px;border:1px solid #e5e7eb;display:block;}
+.sp-qr-label{font-size:13px;font-weight:600;margin-top:6px;}
+.sp-link{display:inline-block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:18px;padding:6px 16px;font-size:13px;text-decoration:none;}
+.sponsor-box .sp-qr-tip{font-size:12.5px;color:#6b7280;margin-top:10px;}
+</style>
+<div class="sponsor-box">
+  <div class="sp-title">☕ 如果这门课帮到了你</div>
+  <div class="sp-sub">本站不卖课、不带货、不接商业广告。你的随手支持，是它持续更新的唯一动力。</div>
+  <div class="sp-btns"><div class="sp-qr-item"><img src="https://zhaochenyang.github.io/write/assets/sponsor-wechat.png" alt="微信赞赏码" loading="lazy"><div class="sp-qr-label" style="color:#07c160">微信赞赏</div></div></div>
+  <div class="sp-qr-tip">扫码赞赏，金额随意，心意无价</div>
+</div>
+<!-- Giscus 评论 -->
+<script src="https://giscus.app/client.js"
+ data-repo="zhaochenyang/zhaochenyang.github.io"
+ data-repo-id="MDEwOlJlcG9zaXRvcnkxNDgyNjI5NjA="
+ data-category="General"
+ data-category-id="DIC_kwDOCNZQMM4DGzTf"
+ data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+ data-emit-metadata="0" data-input-position="top"
+ data-theme="preferred_color_scheme" data-lang="zh-CN"
+ crossorigin="anonymous" async></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 分享按钮（右上角悬浮，含 GA4 share 事件统计） -->
+<style>
+#share-fab{position:fixed;top:112px;right:12px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+#share-btn{background:#b91c1c;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#share-btn:hover{opacity:1;}
+#share-panel{display:none;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.15);min-width:160px;}
+#share-panel.open{display:block;}
+#share-panel .sp-item{display:block;width:100%;background:none;border:none;color:#b91c1c;font-size:13.5px;padding:8px 10px;cursor:pointer;border-radius:8px;text-align:left;}
+#share-panel .sp-item:hover{background:#fef2f2;}
+#share-qr{width:150px;height:150px;display:none;margin:6px auto 0;}
+#share-tip{font-size:12px;color:#6b7280;margin-top:6px;display:none;text-align:center;}
+@media (max-width:700px){#share-fab{top:100px;right:8px;}#share-btn{padding:6px 12px;font-size:12.5px;}}
+</style>
+<div id="share-fab">
+  <button id="share-btn" aria-label="分享本页">↗ 分享</button>
+  <div id="share-panel">
+    <div style="font-size:12px;color:#6b7280;padding:2px 10px 8px;border-bottom:1px solid #f0f0f0;margin-bottom:6px;">💡 谁正为孩子的教育发愁，就把对应章节转发给 ta</div>
+    <button class="sp-item" data-m="wechat">💬 微信扫码分享</button>
+    <button class="sp-item" data-m="copy">🔗 复制链接</button>
+    <button class="sp-item" data-m="weibo">🌐 分享到微博</button>
+    <img id="share-qr" alt="本页二维码">
+    <div id="share-tip"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('share-btn'),panel=document.getElementById('share-panel'),
+      qr=document.getElementById('share-qr'),tip=document.getElementById('share-tip');
+  function track(m){ if(typeof window.gtag==='function'){ gtag('event','share',{method:m,page_title:document.title,page_location:location.href}); } }
+  function showTip(s){ tip.textContent=s; tip.style.display='block'; }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); panel.classList.toggle('open'); });
+  document.addEventListener('click',function(e){ if(e.target!==btn&&!panel.contains(e.target)){ panel.classList.remove('open'); } });
+  var items=panel.querySelectorAll('.sp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-m'); track(m);
+      if(m==='wechat'){ var isMobile=/Android|iPhone|iPad|Mobi/i.test(navigator.userAgent); if(isMobile&&navigator.share){ navigator.share({title:document.title,text:document.title,url:location.href}).catch(function(){}); } else { qr.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(location.href); qr.style.display='block'; showTip('微信扫一扫，分享给好友'); } }
+      else if(m==='copy'){ if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(function(){ showTip('链接已复制，快去粘贴吧'); }); } else { showTip(location.href); } }
+      else if(m==='weibo'){ window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'_blank','width=700,height=520'); }
+    });
+  }
+})();
+</script>
+<!-- 全站搜索（右上角悬浮，含 GA4 search 事件统计） -->
+<style>
+#search-fab{position:fixed;top:64px;right:12px;z-index:999;}
+#search-btn{background:#991b1b;color:#fff;border:none;border-radius:20px;padding:8px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;}
+#search-btn:hover{opacity:1;}
+#search-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;padding:12vh 16px 16px;}
+#search-mask.open{display:block;}
+#search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;}
+#search-input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #b91c1c;padding:15px 18px;font-size:15.5px;outline:none;}
+#search-results{max-height:52vh;overflow-y:auto;padding:6px;}
+.sr-item{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:#1f2937;font-size:14px;line-height:1.45;}
+.sr-item:hover{background:#fef2f2;}
+.sr-item .sr-c{display:block;font-size:12px;color:#b91c1c;margin-bottom:1px;}
+.sr-empty{padding:18px;text-align:center;color:#9ca3af;font-size:13.5px;}
+@media (max-width:700px){#search-fab{top:56px;right:8px;}#search-btn{padding:6px 11px;font-size:12.5px;}#search-mask{padding:8vh 10px 10px;}}
+</style>
+<div id="search-fab"><button id="search-btn" aria-label="全站搜索">🔍 搜索</button></div>
+<div id="search-mask">
+  <div id="search-box">
+    <input id="search-input" placeholder="搜索主题 / 年龄 / 场景，如：阅读、青春期、屏幕时间、作业…" autocomplete="off">
+    <div id="search-results"><div class="sr-empty">输入关键词，全站 20 章即搜即达</div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var BASE=location.pathname.replace(/\/write\/.*/,'/write/');
+  var mask=document.getElementById('search-mask'),input=document.getElementById('search-input'),
+      res=document.getElementById('search-results'),IDX=null;
+  function track(q){ if(typeof window.gtag==='function'){ gtag('event','search',{search_term:q}); } }
+  function render(q){
+    if(!IDX){res.innerHTML='<div class="sr-empty">索引加载中…</div>';return;}
+    q=q.trim().toLowerCase();
+    if(!q){res.innerHTML='<div class="sr-empty">输入关键词，全站 20 章即搜即达</div>';return;}
+    var hits=[];
+    for(var i=0;i<IDX.length&&hits.length<40;i++){
+      var it=IDX[i];
+      if(it.t.toLowerCase().indexOf(q)>=0||(it.c&&it.c.toLowerCase().indexOf(q)>=0)) hits.push(it);
+    }
+    if(!hits.length){res.innerHTML='<div class="sr-empty">没有找到「'+q.replace(/</g,'&lt;')+'」，试试其他关键词</div>';return;}
+    res.innerHTML=hits.map(function(it){
+      return '<a class="sr-item" href="'+BASE+it.u+'"><span class="sr-c">'+it.c+'</span>'+it.t.replace(/</g,'&lt;')+'</a>';
+    }).join('');
+  }
+  var sc=document.createElement('script');
+  sc.src=BASE+'assets/search-index.js';
+  sc.onload=function(){ IDX=window.WRITE_INDEX||[]; };
+  document.head.appendChild(sc);
+  document.getElementById('search-btn').addEventListener('click',function(){ mask.classList.add('open'); input.focus(); });
+  mask.addEventListener('click',function(e){ if(e.target===mask){ mask.classList.remove('open'); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') mask.classList.remove('open'); });
+  var deb;
+  input.addEventListener('input',function(){ var q=this.value; clearTimeout(deb); deb=setTimeout(function(){ render(q); if(q.trim()) track(q.trim()); },200); });
+})();
+</script>
+<!-- 回到主站按钮（右上角悬浮） -->
+<style>
+#home-fab{position:fixed;top:160px;right:12px;z-index:997;}
+#home-btn{display:block;background:#fff;color:#b91c1c;border:1.5px solid #b91c1c;border-radius:20px;padding:7px 13px;font-size:13.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:.92;text-decoration:none;}
+#home-btn:hover{opacity:1;background:#fef2f2;}
+@media (max-width:700px){#home-fab{top:144px;right:8px;}#home-btn{padding:5px 11px;font-size:12.5px;}}
+</style>
+<div id="home-fab"><a id="home-btn" href="https://zhaochenyang.github.io/" aria-label="回到主站">🏠 主站</a></div>
+<div class="busuanzi-box" style="margin-top:8px;font-size:12.5px;">
+<span id="busuanzi_container_site_pv" style="display:none">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+<span id="busuanzi_container_site_uv" style="display:none"> · 本站访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<div class="visitor-map-box" style="margin-top:12px;text-align:center;">
+<div style="font-size:12.5px;margin-bottom:6px;">🌍 访客来源分布 · <a href="https://www.ip2map.com" alt="Map IP Address" style="font-size:12.5px;">访客地图（最近 20 位访客位置）</a></div>
+<a href="https://info.flagcounter.com/ObnJ"><img src="https://s01.flagcounter.com/count2/ObnJ/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_0/pageviews_0/flags_1/percent_0/" alt="Flag Counter" border="0" loading="lazy" style="max-width:100%;"></a>
+<a alt="Map IP Address" href="https://www.ip2map.com"><img border="0" alt="IP2Map 访客地图" src="https://www.ip2map.com/ip2map.gif" loading="lazy"></a>
+</div>
+</body>
+</html>
