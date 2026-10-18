@@ -119,7 +119,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 1</span>封面：Agent Memory Architectures（智能体记忆架构）</h3>
-  <figure><img src="slides/slide-01.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Agent Memory Architectures（Diyi Yang, Michael Ryan, John Yang）</figcaption></figure>
+  <figure><img src="slides/slide-001.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Agent Memory Architectures（Diyi Yang, Michael Ryan, John Yang）</figcaption></figure>
   <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第七讲主题
   <span class="term">Agent Memory Architectures（智能体记忆架构）</span>。记忆是上下文管理（上一讲的第四部分）的延伸：
   上一讲讲的是「单次调用里窗口装什么」，这一讲讲的是「跨会话、跨任务的长期记忆怎么存、怎么取」。</p>
@@ -127,7 +127,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
-  <figure><img src="slides/slide-02.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>Laude Institute 追加 $200 Amazon credits、HW1 截止提醒</figcaption></figure>
+  <figure><img src="slides/slide-002.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>Laude Institute 追加 $200 Amazon credits、HW1 截止提醒</figcaption></figure>
   <ul>
     <li><span class="term">算力（Credits）</span>：Laude Institute 与 AWS 合作，给每位同学追加 <strong>$200 Amazon credits</strong>，领取方式将另行通知；</li>
     <li><span class="term">Homework 1</span>：截止 <strong>10 月 30 日</strong>（还有两周零两天）。</li>
@@ -136,7 +136,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 3</span>开场案例：AI 当老板，也会「记仇」</h3>
-  <figure><img src="slides/slide-03.png" alt="Slide 3 AI 老板案例" loading="lazy"><figcaption>AI 经理 Luna 与员工对话：员工迟到，Luna 引用员工手册条款（Image Credit: andonlabs.com/blog/ai-bosses-2）</figcaption></figure>
+  <figure><img src="slides/slide-003.png" alt="Slide 3 AI 老板案例" loading="lazy"><figcaption>AI 经理 Luna 与员工对话：员工迟到，Luna 引用员工手册条款（Image Credit: andonlabs.com/blog/ai-bosses-2）</figcaption></figure>
   <p>开场案例来自 Andon Labs 的「AI 老板」实验：Claude 充当咖啡店的 AI 经理 Luna，管理人类员工。
   员工 Hi 了一声说自己要迟到到 10:45，Luna 一边引用员工手册第 3 条「考勤与守时」（30 分钟前报备、累计三次迟到书面警告等），一边通情达理地回复「安全第一，店里 10–11 点本来就闲」——
   而员工最后 11:08 才打卡。<strong>它能记住规则、记住你说过的每一句话</strong>——这正是本讲主题「记忆」的生动注脚：长期运行的 agent 必须记住规则、历史与承诺。</p>
@@ -144,7 +144,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 4</span>开场案例：让 AI 管理收件箱</h3>
-  <figure><img src="slides/slide-04.png" alt="Slide 4 收件箱案例" loading="lazy"><figcaption>用户指示 AI：检查收件箱、建议归档或删除，未经允许不要行动（Image Credit: x.com/summeryue0）</figcaption></figure>
+  <figure><img src="slides/slide-004.png" alt="Slide 4 收件箱案例" loading="lazy"><figcaption>用户指示 AI：检查收件箱、建议归档或删除，未经允许不要行动（Image Credit: x.com/summeryue0）</figcaption></figure>
   <p>第二个案例：用户让 agent「把这个收件箱也检查一下，建议哪些该归档、哪些该删——<strong>在我让你行动之前别动手</strong>」。
   这是一个典型的多会话场景：今天说过「先别动手」，明天、后天 agent 还记得吗？如果每个会话都要把偏好重新交代一遍，agent 就永远只是个「一次性的工具」。
   记忆，是让指令与偏好跨会话生效的前提。</p>
@@ -152,14 +152,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 5</span>本讲定位：记忆是长期运行、多会话 agent 的必需品</h3>
-  <figure><img src="slides/slide-05.png" alt="Slide 5 本讲定位" loading="lazy"><figcaption>Memory is essential for long-running, multi-session agents</figcaption></figure>
+  <figure><img src="slides/slide-005.png" alt="Slide 5 本讲定位" loading="lazy"><figcaption>Memory is essential for long-running, multi-session agents</figcaption></figure>
   <p>一句话立意：<strong>记忆（Memory）对长期运行、多会话的 agent 是必需的（essential）</strong>。
   今天要做两件事：介绍<strong>智能体记忆的类型（types of agent memory）</strong>，以及几种<strong>具体的记忆架构（concrete agent memory architectures）</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 6</span>Learning Objectives（学习目标）</h3>
-  <figure><img src="slides/slide-06.png" alt="Slide 6 学习目标" loading="lazy"><figcaption>Recognize / Differentiate / Identify</figcaption></figure>
+  <figure><img src="slides/slide-006.png" alt="Slide 6 学习目标" loading="lazy"><figcaption>Recognize / Differentiate / Identify</figcaption></figure>
   <ul>
     <li><span class="term">Recognize（认识）</span>：记忆在多会话、面向用户的 agent 系统中的重要性；</li>
     <li><span class="term">Differentiate（区分）</span>：按设计模式（design patterns）区分不同的智能体记忆架构；</li>
@@ -170,7 +170,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 7</span>Lecture Overview（本讲结构）</h3>
-  <figure><img src="slides/slide-07.png" alt="Slide 7 本讲结构" loading="lazy"><figcaption>Motivation 5min → Memory Types 10min → Architectures 35min → Evaluation 15min → Challenges 10min</figcaption></figure>
+  <figure><img src="slides/slide-007.png" alt="Slide 7 本讲结构" loading="lazy"><figcaption>Motivation 5min → Memory Types 10min → Architectures 35min → Evaluation 15min → Challenges 10min</figcaption></figure>
   <ul>
     <li><span class="term">为什么要给 agent 记忆（Motivating Agent Memory）</span>：5 分钟；</li>
     <li><span class="term">回顾：智能体记忆的类型（Types of Agent Memory）</span>：10 分钟；</li>
@@ -182,7 +182,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 8</span>导航页：Motivating Agent Memory</h3>
-  <figure><img src="slides/slide-08.png" alt="Slide 8 导航页" loading="lazy"><figcaption>章节进度条：Motivation → Memory Types → Architectures → Evaluation → Challenges</figcaption></figure>
+  <figure><img src="slides/slide-008.png" alt="Slide 8 导航页" loading="lazy"><figcaption>章节进度条：Motivation → Memory Types → Architectures → Evaluation → Challenges</figcaption></figure>
   <p>进入第一部分。课程每部分开头都有这根「进度条」导航：<strong>Motivation → Memory Types → Architectures → Evaluation → Challenges</strong>，当前高亮 Motivation。</p>
 </article>
 </section>
@@ -194,7 +194,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 9</span>没有记忆的三种「损失」</h3>
-  <figure><img src="slides/slide-09.png" alt="Slide 9 没有记忆的问题" loading="lazy"><figcaption>Loss of procedure / Loss of knowledge / Loss of progress</figcaption></figure>
+  <figure><img src="slides/slide-009.png" alt="Slide 9 没有记忆的问题" loading="lazy"><figcaption>Loss of procedure / Loss of knowledge / Loss of progress</figcaption></figure>
   <ul>
     <li><span class="term">丢失程序性知识（Loss of procedure）</span>：每次都得把任务从头再教一遍——上一会话学会的操作，这一会话全忘；</li>
     <li><span class="term">丢失知识（Loss of knowledge）</span>：重要的事实、规则、偏好（preferences）在会话之间丢失；</li>
@@ -205,7 +205,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 10</span>有记忆的三种「收益」</h3>
-  <figure><img src="slides/slide-10.png" alt="Slide 10 记忆的收益" loading="lazy"><figcaption>Personalization / Learning from Experience / Statefulness</figcaption></figure>
+  <figure><img src="slides/slide-010.png" alt="Slide 10 记忆的收益" loading="lazy"><figcaption>Personalization / Learning from Experience / Statefulness</figcaption></figure>
   <p>与三种损失一一对应，三种收益：</p>
   <ul>
     <li><span class="term">个性化（Personalization）</span>：agent 能学会你的个人偏好；</li>
@@ -216,21 +216,21 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 11</span>收益一：个性化——PersonaMem 一瞥 [Jiang et al., 2025]</h3>
-  <figure><img src="slides/slide-11.png" alt="Slide 11 个性化示例" loading="lazy"><figcaption>个性化记忆示例（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
+  <figure><img src="slides/slide-011.png" alt="Slide 11 个性化示例" loading="lazy"><figcaption>个性化记忆示例（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
   <p>个性化示例来自 <em>PersonaMem</em> 论文（Jiang et al., 2025，arXiv:2504.14225）：用户的偏好会随对话逐步显形——
   喜欢什么风格、排斥什么方案、最近的兴趣如何迁移。能把这几点记住的助手，回答同一问题时会给出明显更「懂你」的结果。后面评估部分会正式介绍这个 benchmark。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 12</span>收益二：从经验学习——AWM 一瞥 [Wang et al., 2024]</h3>
-  <figure><img src="slides/slide-12.png" alt="Slide 12 从经验学习示例" loading="lazy"><figcaption>Agent Workflow Memory 示例（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
+  <figure><img src="slides/slide-012.png" alt="Slide 12 从经验学习示例" loading="lazy"><figcaption>Agent Workflow Memory 示例（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
   <p>从经验学习的示例来自 <em>Agent Workflow Memory</em>（Wang et al., 2024，arXiv:2409.07429）：agent 把自己成功的操作轨迹归纳成可复用的「工作流」，下次遇到同类任务直接调用。
   这是「程序性记忆」的代表性工作，架构部分会详细展开。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 13</span>收益三：有状态——跨会话续接 [Du et al., 2025]</h3>
-  <figure><img src="slides/slide-13.png" alt="Slide 13 有状态示例" loading="lazy"><figcaption>有状态 agent 示例（Image Credit: arxiv.org/pdf/2505.20231）</figcaption></figure>
+  <figure><img src="slides/slide-013.png" alt="Slide 13 有状态示例" loading="lazy"><figcaption>有状态 agent 示例（Image Credit: arxiv.org/pdf/2505.20231）</figcaption></figure>
   <p>有状态的示例（Du et al., 2025，arXiv:2505.20231）：新会话开场直接说「继续我们上次在做的事」，agent 能准确定位上下文接着干。
   这要求系统把「会话历史」组织成可检索、可恢复的结构，而不是一堆平铺的聊天记录。</p>
 </article>
@@ -243,13 +243,13 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 14</span>导航页：Types of Agent Memory</h3>
-  <figure><img src="slides/slide-14.png" alt="Slide 14 导航页" loading="lazy"><figcaption>章节进度条高亮 Memory Types</figcaption></figure>
+  <figure><img src="slides/slide-014.png" alt="Slide 14 导航页" loading="lazy"><figcaption>章节进度条高亮 Memory Types</figcaption></figure>
   <p>进入第二部分：记忆的类型。这一部分是「回顾」（Review）——课程用 <span class="term">CoALA</span> 认知框架给记忆分类，为后面的架构讨论建立共同语言。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 15</span>CoALA：语言智能体的认知架构 [Sumers et al., 2024]</h3>
-  <figure><img src="slides/slide-15.png" alt="Slide 15 CoALA" loading="lazy"><figcaption>Cognitive Architectures for Language Agents（Sumers et al., 2024）</figcaption></figure>
+  <figure><img src="slides/slide-015.png" alt="Slide 15 CoALA" loading="lazy"><figcaption>Cognitive Architectures for Language Agents（Sumers et al., 2024）</figcaption></figure>
   <p><span class="term">CoALA（Cognitive Architectures for Language Agents）</span>（Sumers et al., 2024，arXiv:2309.02427）
   借鉴认知科学对人类记忆的分类（工作记忆、情景记忆、语义记忆、程序记忆），给语言智能体建立了一套统一的认知架构语言。
   它不是某个具体系统，而是<strong>描述和比较各种 agent 的「语法」</strong>——后面所有的记忆架构都可以放进这个框架里定位。</p>
@@ -257,7 +257,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 16</span>CoALA 架构全景图</h3>
-  <figure><img src="slides/slide-16.png" alt="Slide 16 CoALA 架构图" loading="lazy"><figcaption>CoALA 框架：工作记忆居中，三种长期记忆经 Retrieval/Learning 与之交互（Image Credit: arxiv.org/pdf/2309.02427）</figcaption></figure>
+  <figure><img src="slides/slide-016.png" alt="Slide 16 CoALA 架构图" loading="lazy"><figcaption>CoALA 框架：工作记忆居中，三种长期记忆经 Retrieval/Learning 与之交互（Image Credit: arxiv.org/pdf/2309.02427）</figcaption></figure>
   <p>看这张图：<strong>Working Memory（工作记忆）居中</strong>，是推理（Reasoning）发生的地方；
   外围三种长期记忆——<span class="term">Procedural（程序记忆：LLM 权重 + Agent 代码）</span>、<span class="term">Semantic（语义记忆：事实库）</span>、<span class="term">Episodic（情景记忆：经历轨迹）</span>——
   各通过 <strong>Retrieval（检索）</strong>向工作记忆供给信息、通过 <strong>Learning（学习）</strong>从经验中沉淀更新。
@@ -267,7 +267,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 17</span>工作记忆（Working Memory）</h3>
-  <figure><img src="slides/slide-17.png" alt="Slide 17 工作记忆" loading="lazy"><figcaption>Working Memory ≈ Context Window（Image Credit: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
+  <figure><img src="slides/slide-017.png" alt="Slide 17 工作记忆" loading="lazy"><figcaption>Working Memory ≈ Context Window（Image Credit: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
   <ul>
     <li>通常就是<span class="term">上下文窗口（Context Window）</span>；</li>
     <li>是 agent <strong>当前看到并正在推理的内容</strong>；</li>
@@ -278,7 +278,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 18</span>情景记忆（Episodic Memory）</h3>
-  <figure><img src="slides/slide-18.png" alt="Slide 18 情景记忆" loading="lazy"><figcaption>Episodic Memory：过去的轨迹（Image Credit: arxiv.org/pdf/2304.03442）</figcaption></figure>
+  <figure><img src="slides/slide-018.png" alt="Slide 18 情景记忆" loading="lazy"><figcaption>Episodic Memory：过去的轨迹（Image Credit: arxiv.org/pdf/2304.03442）</figcaption></figure>
   <ul>
     <li>存储 agent <strong>过去行为的序列（trajectories，轨迹）</strong>；</li>
     <li>在聊天机器人里，就是<strong>所有历史对话的存档</strong>；</li>
@@ -288,7 +288,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 19</span>语义记忆（Semantic Memory）</h3>
-  <figure><img src="slides/slide-19.png" alt="Slide 19 语义记忆" loading="lazy"><figcaption>Semantic Memory：关于世界的事实（Image Credit: openai.com/index/memory-and-new-controls-for-chatgpt）</figcaption></figure>
+  <figure><img src="slides/slide-019.png" alt="Slide 19 语义记忆" loading="lazy"><figcaption>Semantic Memory：关于世界的事实（Image Credit: openai.com/index/memory-and-new-controls-for-chatgpt）</figcaption></figure>
   <ul>
     <li>存储<strong>关于世界的事实（facts）</strong>；</li>
     <li>用户的细节、偏好、通用知识，都算语义记忆；</li>
@@ -298,7 +298,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 20</span>程序记忆（Procedural Memory）</h3>
-  <figure><img src="slides/slide-20.png" alt="Slide 20 程序记忆" loading="lazy"><figcaption>Procedural Memory：怎么做事的知识（Image Credit: platform.claude.com/cookbook skills-introduction）</figcaption></figure>
+  <figure><img src="slides/slide-020.png" alt="Slide 20 程序记忆" loading="lazy"><figcaption>Procedural Memory：怎么做事的知识（Image Credit: platform.claude.com/cookbook skills-introduction）</figcaption></figure>
   <ul>
     <li>是<strong>可以施加到工作记忆上、决定 agent 行为的一组规则</strong>；</li>
     <li>本质上是 <strong>agent 的技能（skills）</strong>；</li>
@@ -309,7 +309,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 21</span>参数化记忆 vs 上下文记忆（Parametric vs Context）</h3>
-  <figure><img src="slides/slide-21.png" alt="Slide 21 参数化 vs 上下文记忆" loading="lazy"><figcaption>Parametric（进权重）vs Context（进窗口）</figcaption></figure>
+  <figure><img src="slides/slide-021.png" alt="Slide 21 参数化 vs 上下文记忆" loading="lazy"><figcaption>Parametric（进权重）vs Context（进窗口）</figcaption></figure>
   <p>另一个正交的分类轴：记忆存在<strong>哪</strong>。</p>
   <table>
     <tr><th></th><th>参数化记忆（Parametric）</th><th>上下文记忆（Context）</th></tr>
@@ -324,7 +324,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 22</span>Recap：按内容分类的记忆类型</h3>
-  <figure><img src="slides/slide-22.png" alt="Slide 22 记忆类型小结" loading="lazy"><figcaption>Episodic=经验 / Semantic=知识 / Procedural=技能（Table Credit: CS329Z Lecture 1）</figcaption></figure>
+  <figure><img src="slides/slide-022.png" alt="Slide 22 记忆类型小结" loading="lazy"><figcaption>Episodic=经验 / Semantic=知识 / Procedural=技能（Table Credit: CS329Z Lecture 1）</figcaption></figure>
   <p>一张表收束本部分（表格沿用第一讲）：</p>
   <table>
     <tr><th>按内容分类</th><th>定义</th><th>例子</th></tr>
@@ -342,13 +342,13 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 23</span>导航页：Agent Memory Architectures</h3>
-  <figure><img src="slides/slide-23.png" alt="Slide 23 导航页" loading="lazy"><figcaption>章节进度条高亮 Architectures（本讲核心，35 分钟）</figcaption></figure>
+  <figure><img src="slides/slide-023.png" alt="Slide 23 导航页" loading="lazy"><figcaption>章节进度条高亮 Architectures（本讲核心，35 分钟）</figcaption></figure>
   <p>进入本讲重头戏：记忆架构，占全讲 35 分钟。课程不讲具体产品，而是先立问题框架，再提炼<strong>四种设计模式</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 24</span>三个关键问题：What, When, How</h3>
-  <figure><img src="slides/slide-24.png" alt="Slide 24 三个关键问题" loading="lazy"><figcaption>存/取什么？何时触发？怎么存取？</figcaption></figure>
+  <figure><img src="slides/slide-024.png" alt="Slide 24 三个关键问题" loading="lazy"><figcaption>存/取什么？何时触发？怎么存取？</figcaption></figure>
   <p>设计任何记忆系统，先回答三问：</p>
   <ul>
     <li><span class="term">What（存什么/取什么）</span>：具体或通用的事实、程序（procedures）、对话进程……；</li>
@@ -360,14 +360,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 25</span>How 的三种存储系统</h3>
-  <figure><img src="slides/slide-25.png" alt="Slide 25 三大存储系统" loading="lazy"><figcaption>Filesystem / Database / Knowledge Graphs</figcaption></figure>
+  <figure><img src="slides/slide-025.png" alt="Slide 25 三大存储系统" loading="lazy"><figcaption>Filesystem / Database / Knowledge Graphs</figcaption></figure>
   <p>「How」往下落一层：无论上层怎么设计，总要有把信息<strong>写到磁盘、从磁盘取回</strong>的底层机制。最常见的三种：
   <strong>文件系统（Filesystem）、数据库（Database）、知识图谱（Knowledge Graphs）</strong>。接下来三页逐一过。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 26</span>存储系统一：文件系统（Filesystem）</h3>
-  <figure><img src="slides/slide-26.png" alt="Slide 26 文件系统" loading="lazy"><figcaption>每条记忆一个文件（Image Credit: langchain.com/blog/how-we-built-agent-builders-memory-system）</figcaption></figure>
+  <figure><img src="slides/slide-026.png" alt="Slide 26 文件系统" loading="lazy"><figcaption>每条记忆一个文件（Image Credit: langchain.com/blog/how-we-built-agent-builders-memory-system）</figcaption></figure>
   <ul>
     <li><strong>每条记忆就是一个文件</strong>；</li>
     <li>可以让 <strong>agent 自己管理</strong>这些记忆（读写、重命名、归档）；</li>
@@ -379,7 +379,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 27</span>存储系统二：数据库（Database）</h3>
-  <figure><img src="slides/slide-27.png" alt="Slide 27 数据库" loading="lazy"><figcaption>向量库 / SQLite / BM25——回顾第三讲 RAG</figcaption></figure>
+  <figure><img src="slides/slide-027.png" alt="Slide 27 数据库" loading="lazy"><figcaption>向量库 / SQLite / BM25——回顾第三讲 RAG</figcaption></figure>
   <ul>
     <li>可以建<span class="term">向量数据库（vector database）</span>，从里面按语义检索记忆；</li>
     <li>要按元数据筛选时，常用 <span class="term">SQLite</span>；</li>
@@ -390,7 +390,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 28</span>存储系统三：知识图谱（Knowledge Graph）——以 Zep 为例 [Rasmussen et al., 2025]</h3>
-  <figure><img src="slides/slide-28.png" alt="Slide 28 知识图谱 Zep" loading="lazy"><figcaption>Zep 的时序知识图谱（Image Credit: getzep.com / dailydoseofds.com）</figcaption></figure>
+  <figure><img src="slides/slide-028.png" alt="Slide 28 知识图谱 Zep" loading="lazy"><figcaption>Zep 的时序知识图谱（Image Credit: getzep.com / dailydoseofds.com）</figcaption></figure>
   <p>第三种是把记忆组织成<span class="term">知识图谱（Knowledge Graph）</span>。例子是 <strong>Zep</strong>（Rasmussen et al., 2025）：
   把对话中的实体（人物、地点、事件）抽成节点、关系抽成边，并给每条记忆打上<strong>时间戳（temporal knowledge graph）</strong>——「用户住在A城市」可以随时间演化为「用户搬到B城市」，旧事实不删除、标记失效区间。
   比起平面的事实列表，图谱天然擅长回答「谁和谁是什么关系」「什么时候变的」这类多跳、时序问题；代价是抽取与维护更重。</p>
@@ -398,7 +398,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 29</span>四种架构模式总览（Pattern Overview）</h3>
-  <figure><img src="slides/slide-29.png" alt="Slide 29 四种模式总览" loading="lazy"><figcaption>Learning Procedures / Tiered Hierarchy / Reflective Consolidation / Memory Maintenance</figcaption></figure>
+  <figure><img src="slides/slide-029.png" alt="Slide 29 四种模式总览" loading="lazy"><figcaption>Learning Procedures / Tiered Hierarchy / Reflective Consolidation / Memory Maintenance</figcaption></figure>
   <p>接下来按四种设计模式组织所有架构案例：</p>
   <ul>
     <li><span class="term">模式一：从经验中学习程序（Learning Procedures from Experience）</span>——把过去的成功轨迹沉淀成可复用技能；</li>
@@ -416,7 +416,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 30</span>模式一定义：把过去的轨迹沉淀成程序</h3>
-  <figure><img src="slides/slide-30.png" alt="Slide 30 模式一定义" loading="lazy"><figcaption>从过去轨迹中学习可复用的程序性知识</figcaption></figure>
+  <figure><img src="slides/slide-030.png" alt="Slide 30 模式一定义" loading="lazy"><figcaption>从过去轨迹中学习可复用的程序性知识</figcaption></figure>
   <p><strong>定义：从过去的轨迹（trajectories）中学习可复用的程序（reusable procedures）。</strong>
   核心想法：agent 执行任务时留下了成功（或失败）的痕迹，与其让这些经验随风而逝，不如把它们提炼成<strong>程序记忆</strong>——下一次遇到同类任务直接调用。
   对应的 What=程序性知识，When=任务完成后触发学习，How=把技能写进上下文或文件。</p>
@@ -424,20 +424,20 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 31</span>Why：程序性知识即技能</h3>
-  <figure><img src="slides/slide-31.png" alt="Slide 31 Why" loading="lazy"><figcaption>Procedural knowledge = skills，从过往执行经验中学习</figcaption></figure>
+  <figure><img src="slides/slide-031.png" alt="Slide 31 Why" loading="lazy"><figcaption>Procedural knowledge = skills，从过往执行经验中学习</figcaption></figure>
   <p>要点：程序性知识就是<span class="term">技能（skills）</span>，可以从过往的执行经验中学习。这呼应 CoALA 的框架：程序记忆不必只来自预训练/代码，也可以来自 agent 自己的经历。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 32</span>代表工作一：Voyager [Wang et al., 2023]</h3>
-  <figure><img src="slides/slide-32.png" alt="Slide 32 Voyager" loading="lazy"><figcaption>Voyager：开放世界 Minecraft 中带大语言模型的具身终身学习 agent</figcaption></figure>
+  <figure><img src="slides/slide-032.png" alt="Slide 32 Voyager" loading="lazy"><figcaption>Voyager：开放世界 Minecraft 中带大语言模型的具身终身学习 agent</figcaption></figure>
   <p><strong>Voyager</strong>（Wang et al., 2023，arXiv:2305.16291）：开放世界 Minecraft 中的终身学习 agent。
   三件套：<span class="term">自动课程（automatic curriculum）</span>鼓励逐步学习、<span class="term">可执行代码的技能库（skill library）</span>沉淀程序、<span class="term">迭代提示机制（iterative prompting）</span>改进程序。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 33</span>Voyager：技能库（Skill Library）</h3>
-  <figure><img src="slides/slide-33.png" alt="Slide 33 Voyager 技能库" loading="lazy"><figcaption>技能以可执行代码形式存储，检索后可组合调用</figcaption></figure>
+  <figure><img src="slides/slide-033.png" alt="Slide 33 Voyager 技能库" loading="lazy"><figcaption>技能以可执行代码形式存储，检索后可组合调用</figcaption></figure>
   <p>技能库机制：每个技能是一段<strong>可执行的代码</strong>（如 craftStoneShovel），带描述文本。
   存入：成功执行的程序连同环境状态一起存进库；取出：用 GPT-3.5 对<strong>「当前状态 + 要完成的任务」生成 embedding</strong>，检索最相关的 top-k 技能放进提示。
   关键性质：<strong>技能可组合</strong>——新技能可以调用旧技能（craftStoneShovel 复用 mineStone），复杂度层层叠加。</p>
@@ -445,27 +445,27 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 34</span>Voyager 的效果</h3>
-  <figure><img src="slides/slide-34.png" alt="Slide 34 Voyager 效果" loading="lazy"><figcaption>技能库示例：102 次提示迭代后造出钻石工具</figcaption></figure>
+  <figure><img src="slides/slide-034.png" alt="Slide 34 Voyager 效果" loading="lazy"><figcaption>技能库示例：102 次提示迭代后造出钻石工具</figcaption></figure>
   <p>效果示例：造「钻石镐/剑」这种 Minecraft 里的高难目标，agent 通过库中技能组合 + 迭代提示，<strong>102 次 prompt 迭代后成功造出钻石工具</strong>——ReAct 与 AutoGPT 都做不到。
   终身学习的意义：学过的越久，能干的事越多。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 35</span>代表工作二：AWM——Agent Workflow Memory [Wang et al., 2024]</h3>
-  <figure><img src="slides/slide-35.png" alt="Slide 35 AWM" loading="lazy"><figcaption>Agent Workflow Memory：诱导并复用 web agent 的工作流</figcaption></figure>
+  <figure><img src="slides/slide-035.png" alt="Slide 35 AWM" loading="lazy"><figcaption>Agent Workflow Memory：诱导并复用 web agent 的工作流</figcaption></figure>
   <p><strong>AWM</strong>（Wang et al., 2024，arXiv:2409.07429）：把 agent 在网页任务里的成功轨迹归纳成<span class="term">工作流（workflows）</span>。
   与 Voyager 的差别：Voyager 存的是「一段代码」，AWM 存的是「一段高层次的操作序列」——跨网站通用的行为模式（如「先搜索、再加筛选、最后比价」）。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 36</span>AWM：工作流示例</h3>
-  <figure><img src="slides/slide-36.png" alt="Slide 36 AWM 工作流示例" loading="lazy"><figcaption>workflow=[highlight_lowest_priced_item]：跳到评论页找最低价商品并高亮（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
+  <figure><img src="slides/slide-036.png" alt="Slide 36 AWM 工作流示例" loading="lazy"><figcaption>workflow=[highlight_lowest_priced_item]：跳到评论页找最低价商品并高亮（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
   <p>一个具体工作流 <code>workflow=[highlight_lowest_priced_item]</code>：在电商页上「跳转评论页 → 找到最低价商品 → 高亮它」。抽象成带参数的高层指令后，任何同类页面都能直接复用，不用逐步探索。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 37</span>AWM：两种模式</h3>
-  <figure><img src="slides/slide-37.png" alt="Slide 37 AWM 两种模式" loading="lazy"><figcaption>Induction on offline trajectories（离线）vs Online induction（在线）</figcaption></figure>
+  <figure><img src="slides/slide-037.png" alt="Slide 37 AWM 两种模式" loading="lazy"><figcaption>Induction on offline trajectories（离线）vs Online induction（在线）</figcaption></figure>
   <ul>
     <li><span class="term">离线归纳（offline induction）</span>：先在若干训练轨迹上跑归纳，得到工作流库再上场；</li>
     <li><span class="term">在线归纳（online induction）</span>：边做任务边归纳，工作流边用边长。</li>
@@ -474,28 +474,28 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 38</span>AWM 的效果（总成功率）</h3>
-  <figure><img src="slides/slide-38.png" alt="Slide 38 AWM 效果" loading="lazy"><figcaption>WebArena 总成功率 33.2，超过 SteP 32.1 / AutoEval 23.2 / BrowserGym 20.5（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
+  <figure><img src="slides/slide-038.png" alt="Slide 38 AWM 效果" loading="lazy"><figcaption>WebArena 总成功率 33.2，超过 SteP 32.1 / AutoEval 23.2 / BrowserGym 20.5（Image Credit: arxiv.org/pdf/2409.07429）</figcaption></figure>
   <p>WebArena 总成功率：AWM <strong>33.2%</strong>，超过当时强基线 SteP（32.1）、AutoEval（23.2）、BrowserGym（20.5）；
   在 Mind2Web 上平均绝对提升 <strong>24.6%</strong>，跨任务/跨网站泛化分别提升 8.9% / 9.7%。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 39</span>AWM：学习曲线（Learning Curve）</h3>
-  <figure><img src="slides/slide-39.png" alt="Slide 39 AWM 学习曲线" loading="lazy"><figcaption>~40 queries 的快速学习期：成功率随工作流积累快速爬升</figcaption></figure>
+  <figure><img src="slides/slide-039.png" alt="Slide 39 AWM 学习曲线" loading="lazy"><figcaption>~40 queries 的快速学习期：成功率随工作流积累快速爬升</figcaption></figure>
   <p>学习曲线：前 <strong>~40 个查询</strong>是快速学习期——工作流快速积累、成功率快速爬升，之后进入平台期。
   工程含义：<strong>在线归纳的冷启动代价可以接受</strong>，用一点点初期探索换长期复利。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 40</span>代表工作三：Anthropic 的 Skill Files</h3>
-  <figure><img src="slides/slide-40.png" alt="Slide 40 Skill Files" loading="lazy"><figcaption>让 agent 把「怎么做好这类任务」写成 SKILL.md 存下来</figcaption></figure>
+  <figure><img src="slides/slide-040.png" alt="Slide 40 Skill Files" loading="lazy"><figcaption>让 agent 把「怎么做好这类任务」写成 SKILL.md 存下来</figcaption></figure>
   <p>工业界的对应物：Anthropic 的 <span class="term">Agent Skills / Skill Files</span>。让 agent 在工作中学到「这类任务该怎么做」后，主动写成 <code>SKILL.md</code> 存进文件系统——下次同类任务直接加载。
   这正是上一讲上下文隔离里讲的渐进式披露：技能平时只占一句描述，用到时才展开全文。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 41</span>Recap：从经验学程序</h3>
-  <figure><img src="slides/slide-41.png" alt="Slide 41 模式一 Recap" loading="lazy"><figcaption>Voyager 存代码技能，AWM 存工作流，Skill Files 存方法论</figcaption></figure>
+  <figure><img src="slides/slide-041.png" alt="Slide 41 模式一 Recap" loading="lazy"><figcaption>Voyager 存代码技能，AWM 存工作流，Skill Files 存方法论</figcaption></figure>
   <p>小结：三个案例，三种粒度的「程序」——Voyager 存<strong>可执行代码技能</strong>、AWM 存<strong>高层工作流</strong>、Skill Files 存<strong>任务方法论</strong>。
   共同点：<strong>How 都选了「文件」</strong>——技能库是文件、工作流库是文件、SKILL.md 也是文件。程序性知识天然适合以文件形态沉淀。</p>
 </article>
@@ -508,21 +508,21 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 42</span>模式二定义：像操作系统一样组织记忆</h3>
-  <figure><img src="slides/slide-42.png" alt="Slide 42 模式二定义" loading="lazy"><figcaption>用多级存储解决上下文窗口有限的问题</figcaption></figure>
+  <figure><img src="slides/slide-042.png" alt="Slide 42 模式二定义" loading="lazy"><figcaption>用多级存储解决上下文窗口有限的问题</figcaption></figure>
   <p><strong>定义：把记忆组织成多层（快速/廉价的小层 + 大容量的外层），在有限上下文窗口里管理大量信息</strong>——灵感直接来自操作系统的<strong>虚拟内存/分页</strong>：
   RAM 装不下的换出到磁盘，需要时再换入。上下文窗口 = RAM，外部存储 = 磁盘。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 43</span>Why：窗口有限，信息无限</h3>
-  <figure><img src="slides/slide-43.png" alt="Slide 43 Why" loading="lazy"><figcaption>上下文窗口有限 vs 所需信息更多</figcaption></figure>
+  <figure><img src="slides/slide-043.png" alt="Slide 43 Why" loading="lazy"><figcaption>上下文窗口有限 vs 所需信息更多</figcaption></figure>
   <p>动机一句话：<strong>上下文窗口是稀缺资源</strong>。即使百万 token 窗口，也装不下一个长期用户的全部历史 + 全部偏好 + 全部任务进度。
   分层的意义：让「当前最重要的」留在窗口，其余下沉，按需上浮。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 44</span>MemGPT 架构总览</h3>
-  <figure><img src="slides/slide-44.png" alt="Slide 44 MemGPT 架构" loading="lazy"><figcaption>MemGPT：LLM 作为操作系统（Image Credit: arxiv.org/pdf/2310.08560）</figcaption></figure>
+  <figure><img src="slides/slide-044.png" alt="Slide 44 MemGPT 架构" loading="lazy"><figcaption>MemGPT：LLM 作为操作系统（Image Credit: arxiv.org/pdf/2310.08560）</figcaption></figure>
   <p><strong>MemGPT</strong>（Packer et al., 2023，arXiv:2310.08560）：把 LLM 当作操作系统。
   两级结构：<span class="term">Main Context（主上下文）</span>= 系统指令 + 工作上下文（对话队列 + 读寄存器 FIFO）；
   <span class="term">External Context（外部上下文）</span>= 回忆存储（recall storage，对话历史）+ 归档存储（archival storage，可检索的事实）。
@@ -531,14 +531,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 45</span>MemGPT：内存压力与 DMR</h3>
-  <figure><img src="slides/slide-45.png" alt="Slide 45 MemGPT DMR" loading="lazy"><figcaption>内存压力 → 自主分页（Interrupt-based events）</figcaption></figure>
+  <figure><img src="slides/slide-045.png" alt="Slide 45 MemGPT DMR" loading="lazy"><figcaption>内存压力 → 自主分页（Interrupt-based events）</figcaption></figure>
   <p>机制细节：<span class="term">内存压力（memory pressure）</span>——主上下文快满时，系统发出中断事件，让 LLM 自己决定把什么换出；
   <span class="term">DMR（Document/Memory/Recursive Retrieval）</span>三层检索：文档检索（按相关度）、记忆检索（时间 + 相关度）、递归检索（先摘要后全文）。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 46</span>MemGPT 的效果</h3>
-  <figure><img src="slides/slide-46.png" alt="Slide 46 MemGPT 效果" loading="lazy"><figcaption>深度文档分析（DMR）：GPT-4 32.1%→92.5%</figcaption></figure>
+  <figure><img src="slides/slide-046.png" alt="Slide 46 MemGPT 效果" loading="lazy"><figcaption>深度文档分析（DMR）：GPT-4 32.1%→92.5%</figcaption></figure>
   <p>深度文档分析任务的准确率提升（上下文 64k）：</p>
   <table>
     <tr><th>模型</th><th>Baseline</th><th>+MemGPT</th></tr>
@@ -551,7 +551,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 47</span>MemoryOS 架构</h3>
-  <figure><img src="slides/slide-47.png" alt="Slide 47 MemoryOS 架构" loading="lazy"><figcaption>MemoryOS：短中长三级记忆 + 页面化存储（Image Credit: arxiv.org/pdf/2506.06326）</figcaption></figure>
+  <figure><img src="slides/slide-047.png" alt="Slide 47 MemoryOS 架构" loading="lazy"><figcaption>MemoryOS：短中长三级记忆 + 页面化存储（Image Credit: arxiv.org/pdf/2506.06326）</figcaption></figure>
   <p><strong>MemoryOS</strong>（Xu et al., 2025，arXiv:2506.06326）：把操作系统的分层做到更细——
   <span class="term">短期（STM，队列）</span>→ <span class="term">中期（MTM，分段 + 页面化）</span>→ <span class="term">长期（LTM，知识提炼入库）</span>。
   短期像 Cache、中期像 RAM（对话切成段再切成页，动态合并/分割）、长期像磁盘（用 LLM 把段落提炼成个性化画像知识）。升级（segment→page）、换页、提炼全由 LLM 决策。</p>
@@ -559,14 +559,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 48</span>MemoryOS 的效果</h3>
-  <figure><img src="slides/slide-48.png" alt="Slide 48 MemoryOS 效果" loading="lazy"><figcaption>LongMemEval 平均 F1 提升 49%（Image Credit: arxiv.org/pdf/2506.06326）</figcaption></figure>
+  <figure><img src="slides/slide-048.png" alt="Slide 48 MemoryOS 效果" loading="lazy"><figcaption>LongMemEval 平均 F1 提升 49%（Image Credit: arxiv.org/pdf/2506.06326）</figcaption></figure>
   <p>在 LongMemEval 上，MemoryOS 相对基线平均 <strong>F1 提升 49.11%</strong>、BLEU 提升 34.68%；GPT-4o-mini 版本 F1 提升达 <strong>+491%</strong>。
   同样规律：越小的模型，越依赖好的记忆架构来补能力。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 49</span>Recap：分层记忆</h3>
-  <figure><img src="slides/slide-49.png" alt="Slide 49 模式二 Recap" loading="lazy"><figcaption>MemGPT 两级，MemoryOS 三级——本质都是虚拟内存</figcaption></figure>
+  <figure><img src="slides/slide-049.png" alt="Slide 49 模式二 Recap" loading="lazy"><figcaption>MemGPT 两级，MemoryOS 三级——本质都是虚拟内存</figcaption></figure>
   <p>小结：分层记忆 = <strong>用 OS 的智慧管理上下文</strong>。MemGPT 两级（主上下文 vs 外部存储），MemoryOS 三级（短/中/长）。
   What=所有类型（事实、对话、进度都分层）；When=内存压力/换页事件驱动；How=外部存储（文件/数据库）+ LLM 自主函数调用换页。</p>
 </article>
@@ -579,7 +579,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 50</span>模式三定义：存储之前，先反思</h3>
-  <figure><img src="slides/slide-50.png" alt="Slide 50 模式三定义" loading="lazy"><figcaption>Reflect on raw experiences to produce processed memories</figcaption></figure>
+  <figure><img src="slides/slide-050.png" alt="Slide 50 模式三定义" loading="lazy"><figcaption>Reflect on raw experiences to produce processed memories</figcaption></figure>
   <p><strong>定义：对原始经历（raw experiences）进行反思，产出加工过的记忆（processed memories）。</strong>
   认知科学的原型是人类的<span class="term">记忆固化（memory consolidation）</span>——尤其睡眠中发生的：海马体把当日经历重放、提炼出要点，转入长期皮层存储。
   不加反思地存原始日志，检索时噪音太大；先加工，再入库。</p>
@@ -587,14 +587,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 51</span>Why：原始轨迹存不下、检索不动</h3>
-  <figure><img src="slides/slide-51.png" alt="Slide 51 Why" loading="lazy"><figcaption>原始经历很长、很杂，直接检索效果差</figcaption></figure>
+  <figure><img src="slides/slide-051.png" alt="Slide 51 Why" loading="lazy"><figcaption>原始经历很长、很杂，直接检索效果差</figcaption></figure>
   <p>动机：原始轨迹又长又杂（一整天的 agent 运行、一整月的聊天记录），直接当记忆检索——要么塞不下、要么捞回来一堆无关细节。
   反思的作用是<strong>有损压缩 + 语义提纯</strong>：把「发生了什么」变成「这意味着什么、该记住什么」。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 52</span>代表工作一：Reflexion [Shinn et al., 2023]</h3>
-  <figure><img src="slides/slide-52.png" alt="Slide 52 Reflexion" loading="lazy"><figcaption>Reflexion：带语言强化学习的语言 agent</figcaption></figure>
+  <figure><img src="slides/slide-052.png" alt="Slide 52 Reflexion" loading="lazy"><figcaption>Reflexion：带语言强化学习的语言 agent</figcaption></figure>
   <p><strong>Reflexion</strong>（Shinn et al., 2023，arXiv:2303.11366，第六讲已精读）：失败后不盲目重试，由
   <span class="term">Evaluator</span> 评估轨迹、<span class="term">Self-Reflection</span> 用自然语言总结教训存入情景记忆，下次尝试带上。
   HotpotQA 上 ReAct 约 0.30 → +Reflexion <strong>0.54</strong>。
@@ -603,7 +603,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 53</span>Reflexion 记忆条目示例</h3>
-  <figure><img src="slides/slide-53.png" alt="Slide 53 Reflexion 记忆示例" loading="lazy"><figcaption>First trial / Second trial：从错误中提炼出明确的行动规则</figcaption></figure>
+  <figure><img src="slides/slide-053.png" alt="Slide 53 Reflexion 记忆示例" loading="lazy"><figcaption>First trial / Second trial：从错误中提炼出明确的行动规则</figcaption></figure>
   <p>看两条真实的记忆条目：第一次尝试失败后反思出「错误：把两跳问题的答案搞混了。修复：先确定问题类型…」；
   第二次又失败，反思升级为「First, I should search X. Then, search Y…绝不直接猜答案」。
   <strong>每一次失败都让下一次的「先验」更准</strong>——这就是把失败固化为程序性知识的机制。</p>
@@ -611,7 +611,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 54</span>代表工作二：Generative Agents [Park et al., 2023]</h3>
-  <figure><img src="slides/slide-54.png" alt="Slide 54 Generative Agents" loading="lazy"><figcaption>Generative Agents：交互式拟人环境（Image Credit: arxiv.org/pdf/2304.03442）</figcaption></figure>
+  <figure><img src="slides/slide-054.png" alt="Slide 54 Generative Agents" loading="lazy"><figcaption>Generative Agents：交互式拟人环境（Image Credit: arxiv.org/pdf/2304.03442）</figcaption></figure>
   <p><strong>Generative Agents</strong>（Park et al., 2023，arXiv:2304.03442）：25 个虚拟小镇居民，各有完整的记忆流（memory stream）。
   记忆三件套：<span class="term">记忆流</span>存所有观察（情景记忆）；<span class="term">检索</span>按 近时性（recency）×重要性（importance）×相关度（relevance） 打分；
   <span class="term">反思（Reflection）</span>——当「高分观察」积累超过阈值，触发一次树状反思：从观察归纳出高层结论（如「我对研究充满热情」「Klaus Mueller 在做水藻研究」）存回记忆流。</p>
@@ -619,14 +619,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 55</span>Generative Agents：记忆查询示例</h3>
-  <figure><img src="slides/slide-55.png" alt="Slide 55 记忆查询示例" loading="lazy"><figcaption>规划午餐聚会：检索出 Klaus 也在做水藻研究 → 邀请他聊研究</figcaption></figure>
+  <figure><img src="slides/slide-055.png" alt="Slide 55 记忆查询示例" loading="lazy"><figcaption>规划午餐聚会：检索出 Klaus 也在做水藻研究 → 邀请他聊研究</figcaption></figure>
   <p>效果示例：Isabella 要策划午餐聚会。agent 检索记忆：「我（Sam）在做水藻咖啡实验」「Klaus Mueller 在做水藻研究」——于是计划「邀请 Klaus，正好聊他的研究」。
   反思产出的高层记忆直接支撑了<strong>合乎人设的决策</strong>：没有记忆，就没有「角色感」。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 56</span>Recap：反思式固化</h3>
-  <figure><img src="slides/slide-56.png" alt="Slide 56 模式三 Recap" loading="lazy"><figcaption>Reflexion 从失败学，Generative Agents 从生活学</figcaption></figure>
+  <figure><img src="slides/slide-056.png" alt="Slide 56 模式三 Recap" loading="lazy"><figcaption>Reflexion 从失败学，Generative Agents 从生活学</figcaption></figure>
   <p>小结：Reflexion 反思<strong>失败轨迹</strong> → 程序性教训；Generative Agents 反思<strong>日常观察</strong> → 高层结论。
   What=情景记忆的加工产物（教训/结论）；When=失败后 / 观察积累超阈值；How=LLM 自省生成文本入记忆流。
   与模式一的边界：模式一把经验变成「可复用的程序」，模式三把经验变成「加工过的记忆条目」——前者偏技能，后者偏知识。</p>
@@ -640,7 +640,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 57</span>模式四定义：记忆也需要打扫</h3>
-  <figure><img src="slides/slide-57.png" alt="Slide 57 模式四定义" loading="lazy"><figcaption>更新、去重、清理过时或冲突的记忆</figcaption></figure>
+  <figure><img src="slides/slide-057.png" alt="Slide 57 模式四定义" loading="lazy"><figcaption>更新、去重、清理过时或冲突的记忆</figcaption></figure>
   <p><strong>定义：对记忆库做维护（maintenance）——清理、更新、删除过时或冲突的记忆。</strong>
   人的记忆会自然淡忘；agent 的记忆只进不出，迟早被矛盾信息塞满：
   「用户住在A城」三个月后是「用户搬到B城」，「下周三开会」过了那周就是垃圾。不打扫，检索质量持续劣化。</p>
@@ -648,28 +648,28 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 58</span>Why：记忆库会烂掉</h3>
-  <figure><img src="slides/slide-58.png" alt="Slide 58 Why" loading="lazy"><figcaption>Stale / Contradictory / Redundant memories</figcaption></figure>
+  <figure><img src="slides/slide-058.png" alt="Slide 58 Why" loading="lazy"><figcaption>Stale / Contradictory / Redundant memories</figcaption></figure>
   <p>三类「烂记忆」：<span class="term">过时（stale）</span>——事实已变；<span class="term">矛盾（contradictory）</span>——新旧信息打架，检索到谁听谁的；
   <span class="term">冗余（redundant）</span>——同一件事存了八遍，挤占检索位。维护就是持续对抗这三者。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 59</span>代表工作一：Sleep-time Compute [Pan et al., 2025]</h3>
-  <figure><img src="slides/slide-59.png" alt="Slide 59 Sleep-time Compute" loading="lazy"><figcaption>离线时预计算：把「思考」挪到空闲时做（Image Credit: arxiv.org/pdf/2504.13171）</figcaption></figure>
+  <figure><img src="slides/slide-059.png" alt="Slide 59 Sleep-time Compute" loading="lazy"><figcaption>离线时预计算：把「思考」挪到空闲时做（Image Credit: arxiv.org/pdf/2504.13171）</figcaption></figure>
   <p><strong>Sleep-time Compute</strong>（Pan et al., 2025，arXiv:2504.13171）：类比人睡觉时大脑整理记忆——agent 空闲时离线加工记忆库：预推理上下文之间的隐含关系、预计算可能的问题、更新记忆表示。
   效果：跨多个相关查询时平均延迟降低 <strong>~37%</strong>（LLM 调用减半），而响应质量不降；此外还能<strong>提前消化新信息</strong>——睡眠期间记忆库更新后，在线时直接基于预推理结果作答。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 60</span>Sleep-time Compute 效果示例</h3>
-  <figure><img src="slides/slide-60.png" alt="Slide 60 Sleep-time Compute 效果" loading="lazy"><figcaption>正确率 +14% 且延迟更低（Sleep-time, Test-time 组合）</figcaption></figure>
+  <figure><img src="slides/slide-060.png" alt="Slide 60 Sleep-time Compute 效果" loading="lazy"><figcaption>正确率 +14% 且延迟更低（Sleep-time, Test-time 组合）</figcaption></figure>
   <p>组合「sleep-time + test-time compute」的效果：在五个数据集上平均 <strong>准确率提升 ~14%</strong>（LoCoMo 18.1、HotpotQA 17.4 等）同时延迟反而更低——
   空闲时间的算力不是免费就是便宜的，这是「用闲时换忙时」的架构经济学。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 61</span>代表工作二：A-Mem [Xu et al., 2025]</h3>
-  <figure><img src="slides/slide-61.png" alt="Slide 61 A-Mem" loading="lazy"><figcaption>Agentic Memory：动态组织记忆（Image Credit: arxiv.org/pdf/2502.12110）</figcaption></figure>
+  <figure><img src="slides/slide-061.png" alt="Slide 61 A-Mem" loading="lazy"><figcaption>Agentic Memory：动态组织记忆（Image Credit: arxiv.org/pdf/2502.12110）</figcaption></figure>
   <p><strong>A-Mem</strong>（Agentic Memory，Xu et al., 2025，arXiv:2502.12110）：借鉴 Zettelkasten 卡片盒笔记法。
   每条新记忆进来做三件事：<span class="term">笔记演化（note evolution）</span>自动生成结构化属性（关键词、标签、上下文描述）、
   <span class="term">链接生成</span>与相似旧记忆建立双向链接（像维基内链）、
@@ -678,14 +678,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 62</span>A-Mem 效果</h3>
-  <figure><img src="slides/slide-62.png" alt="Slide 62 A-Mem 效果" loading="lazy"><figcaption>LoCoMo 多跳任务 F1 提升显著</figcaption></figure>
+  <figure><img src="slides/slide-062.png" alt="Slide 62 A-Mem 效果" loading="lazy"><figcaption>LoCoMo 多跳任务 F1 提升显著</figcaption></figure>
   <p>LoCoMo 上 A-Mem 在多跳（multi-hop）问题上 F1 显著超过 MemoryBank / ReadAgent / MemGPT 等基线，且在<strong>记忆注入（memory injection）</strong>场景下改善幅度最大——
   动态链接与演化正好解决了「新信息与旧记忆关联」的问题。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 63</span>代表工作三：Mem0 [Chhikara et al., 2025]</h3>
-  <figure><img src="slides/slide-63.png" alt="Slide 63 Mem0" loading="lazy"><figcaption>Mem0：为 AI 助手构建可扩展的长期记忆（Image Credit: arxiv.org/pdf/2504.19413）</figcaption></figure>
+  <figure><img src="slides/slide-063.png" alt="Slide 63 Mem0" loading="lazy"><figcaption>Mem0：为 AI 助手构建可扩展的长期记忆（Image Credit: arxiv.org/pdf/2504.19413）</figcaption></figure>
   <p><strong>Mem0</strong>（Chhikara et al., 2025，arXiv:2504.19413）：生产级记忆层，核心是双阶段流水线：
   <span class="term">抽取（Extraction）</span>从对话中提取候选记忆；<span class="term">更新（Update）</span>对每条候选，检索相关旧记忆后由 LLM 决策四种操作之一——
   <code>ADD</code>（新增）、<code>UPDATE</code>（修订旧记忆）、<code>DELETE</code>（删除无效记忆）、<code>NOOP</code>（忽略）。
@@ -694,7 +694,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 64</span>Mem0 效果</h3>
-  <figure><img src="slides/slide-64.png" alt="Slide 64 Mem0 效果" loading="lazy"><figcaption>LoCoMo 上超 MemGPT；p95 延迟低一个量级</figcaption></figure>
+  <figure><img src="slides/slide-064.png" alt="Slide 64 Mem0 效果" loading="lazy"><figcaption>LoCoMo 上超 MemGPT；p95 延迟低一个量级</figcaption></figure>
   <p>LoCoMo 上 Mem0 的 LLM-as-a-Judge J 分数超过 MemGPT（单跳 0.725 vs 0.667 等多组领先）；
   且 Mem0-Graph 变体（结合知识图谱）在多跳问题领先。工程指标同样亮眼：<strong>p95 检索延迟 0.15s</strong>，比全上下文方案低一个数量级——
   维护良好的小记忆库，检索比塞满上下文又快又准。</p>
@@ -702,7 +702,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 65</span>工业界案例：Supermemory</h3>
-  <figure><img src="slides/slide-65.png" alt="Slide 65 Supermemory" loading="lazy"><figcaption>Memory API 服务：pipe / add / search（Image Credit: supermemory.com）</figcaption></figure>
+  <figure><img src="slides/slide-065.png" alt="Slide 65 Supermemory" loading="lazy"><figcaption>Memory API 服务：pipe / add / search（Image Credit: supermemory.com）</figcaption></figure>
   <p>工业界已经把记忆做成了<strong>API 服务</strong>。例子 Supermemory：通过 <code>pipe</code> 导入文档、<code>add</code> 增加记忆、<code>search</code> 语义检索。
   它的文档里直接写着与 Mem0 一致的理念——记忆系统的好坏取决于 6 个环节：Extraction（提取）、Resolution（消歧）、Updating（更新）、Forgetting（遗忘）、Retrieval（检索）、Context building（上下文组装）。
   「Updating」与「Forgetting」正是本模式说的维护。</p>
@@ -710,7 +710,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 66</span>Recap：记忆维护</h3>
-  <figure><img src="slides/slide-66.png" alt="Slide 66 模式四 Recap" loading="lazy"><figcaption>四种维护时机：空闲时 / 写入时 / 链接时 / 服务化</figcaption></figure>
+  <figure><img src="slides/slide-066.png" alt="Slide 66 模式四 Recap" loading="lazy"><figcaption>四种维护时机：空闲时 / 写入时 / 链接时 / 服务化</figcaption></figure>
   <p>小结：维护可以发生在四个不同环节——Sleep-time Compute 在<strong>空闲时批量整理</strong>、Mem0 在<strong>每次写入时决策增删改</strong>、A-Mem 在<strong>建立链接时回写演化</strong>、Supermemory 把整套维护<strong>打包成服务</strong>。
   What=过时/矛盾/冗余记忆；When=空闲、写入、链接各有时机；How=LLM 决策 + 图结构 + 托管 API。</p>
 </article>
@@ -723,13 +723,13 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 67</span>导航页：Evaluating Agent Memory</h3>
-  <figure><img src="slides/slide-67.png" alt="Slide 67 导航页" loading="lazy"><figcaption>章节进度条高亮 Evaluation</figcaption></figure>
+  <figure><img src="slides/slide-067.png" alt="Slide 67 导航页" loading="lazy"><figcaption>章节进度条高亮 Evaluation</figcaption></figure>
   <p>进入评估部分。问题：设计出一套记忆架构后，<strong>怎么知道它真的好</strong>？课程先立「好记忆系统」的四个标准，再逐个过四个代表性 benchmark。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 68</span>四个标准</h3>
-  <figure><img src="slides/slide-68.png" alt="Slide 68 四个标准" loading="lazy"><figcaption>Realistic / Long-Context / Challenging / Verifiable</figcaption></figure>
+  <figure><img src="slides/slide-068.png" alt="Slide 68 四个标准" loading="lazy"><figcaption>Realistic / Long-Context / Challenging / Verifiable</figcaption></figure>
   <p>评估记忆系统的四个理想标准：</p>
   <ul>
     <li><span class="term">Realistic（真实）</span>：贴近真实使用场景（自然对话、真实任务），而不是人造查询；</li>
@@ -741,7 +741,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 69</span>四个 benchmark 总览</h3>
-  <figure><img src="slides/slide-69.png" alt="Slide 69 四个 benchmark" loading="lazy"><figcaption>LoCoMo / PersonaMem / LongMemEval-V2 / MemoryArena</figcaption></figure>
+  <figure><img src="slides/slide-069.png" alt="Slide 69 四个 benchmark" loading="lazy"><figcaption>LoCoMo / PersonaMem / LongMemEval-V2 / MemoryArena</figcaption></figure>
   <p>四个 benchmark 各有侧重：<span class="term">LoCoMo</span>（超长对话 QA，2 类任务）、<span class="term">PersonaMem</span>（个性化偏好追踪，2 类任务）、
   <span class="term">LongMemEval-V2</span>（极长轨迹上的记忆，5 类任务）、<span class="term">MemoryArena</span>（复杂记忆任务，6 类任务）。
   逐个细看。</p>
@@ -749,7 +749,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 70</span>LoCoMo：设定 [Maharana et al., 2024]</h3>
-  <figure><img src="slides/slide-70.png" alt="Slide 70 LoCoMo 设定" loading="lazy"><figcaption>Long Conversational Memory：超长多会话对话（Image Credit: arxiv.org/pdf/2402.17753）</figcaption></figure>
+  <figure><img src="slides/slide-070.png" alt="Slide 70 LoCoMo 设定" loading="lazy"><figcaption>Long Conversational Memory：超长多会话对话（Image Credit: arxiv.org/pdf/2402.17753）</figcaption></figure>
   <p><strong>LoCoMo</strong>（Maharana et al., 2024，arXiv:2402.17753）：真实感超长对话——
   <strong>28 个会话</strong>，平均 ~300 轮 / <strong>~16k tokens</strong>，时间跨度最长 35 天；7,512 个 QA 对。
   用 LLM 生成对话再人工筛选，保留多会话、跨时间的自然性。四个标准对照：Realistic ✔（多会话闲聊）、Long-Context ✔（16k）、Challenging ✔、Verifiable ✔。</p>
@@ -757,7 +757,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 71</span>LoCoMo：两类任务</h3>
-  <figure><img src="slides/slide-71.png" alt="Slide 71 LoCoMo 任务" loading="lazy"><figcaption>Question answering / Event summarization</figcaption></figure>
+  <figure><img src="slides/slide-071.png" alt="Slide 71 LoCoMo 任务" loading="lazy"><figcaption>Question answering / Event summarization</figcaption></figure>
   <ul>
     <li><span class="term">问答（QA）</span>：基于对话历史的细节问答，含多模态（图文）版本；</li>
     <li><span class="term">事件总结（Event Summarization）</span>：对指定时间段（如第 3–8 天）的对话做总结，要求覆盖关键事件。</li>
@@ -766,21 +766,21 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 72</span>LoCoMo：结果</h3>
-  <figure><img src="slides/slide-72.png" alt="Slide 72 LoCoMo 结果" loading="lazy"><figcaption>全上下文 vs 检索 vs 记忆方法的成绩表（Image Credit: arxiv.org/pdf/2402.17753）</figcaption></figure>
+  <figure><img src="slides/slide-072.png" alt="Slide 72 LoCoMo 结果" loading="lazy"><figcaption>全上下文 vs 检索 vs 记忆方法的成绩表（Image Credit: arxiv.org/pdf/2402.17753）</figcaption></figure>
   <p>关键发现：把整个 16k 上下文直接塞给 GPT-4（full-context）在 QA 上仍然是最强的之一；
   而<strong>用记忆方法（如 MemGPT）的增益在长对话上有限</strong>。教训：benchmark 的「长」还不够长时，检索式记忆可能干不过暴力全塞——这正是下一批 benchmark 要解决的问题。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 73</span>PersonaMem：设定 [Jiang et al., 2025]</h3>
-  <figure><img src="slides/slide-73.png" alt="Slide 73 PersonaMem 设定" loading="lazy"><figcaption>个性化对话记忆 benchmark（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
+  <figure><img src="slides/slide-073.png" alt="Slide 73 PersonaMem 设定" loading="lazy"><figcaption>个性化对话记忆 benchmark（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
   <p><strong>PersonaMem</strong>（Jiang et al., 2025，arXiv:2504.14225）：专注「个性化」的记忆评估——
   <strong>5–60 个会话</strong>、26k–951k tokens、5,990 道选择题。记忆的不是零散事实，而是<strong>用户的偏好与品味</strong>（explicit/implicit 偏好），并且偏好会随时间<strong>演化</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 74</span>PersonaMem：两类任务</h3>
-  <figure><img src="slides/slide-74.png" alt="Slide 74 PersonaMem 任务" loading="lazy"><figcaption>Personal preference prediction / Personalized question answering</figcaption></figure>
+  <figure><img src="slides/slide-074.png" alt="Slide 74 PersonaMem 任务" loading="lazy"><figcaption>Personal preference prediction / Personalized question answering</figcaption></figure>
   <ul>
     <li><span class="term">偏好预测（Preference Prediction）</span>：看完用户历史，预测 ta 会选哪个选项——考「懂不懂这个人」；</li>
     <li><span class="term">个性化问答（Personalized QA）</span>：结合偏好回答问题——同样的问题，不同用户应有不同答案。</li>
@@ -789,14 +789,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 75</span>PersonaMem：结果</h3>
-  <figure><img src="slides/slide-75.png" alt="Slide 75 PersonaMem 结果" loading="lazy"><figcaption>Explicit vs Implicit 偏好的准确率表（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
+  <figure><img src="slides/slide-075.png" alt="Slide 75 PersonaMem 结果" loading="lazy"><figcaption>Explicit vs Implicit 偏好的准确率表（Image Credit: arxiv.org/pdf/2504.14225）</figcaption></figure>
   <p>结果要点：<strong>隐式偏好（implicit）明显更难</strong>——用户没直说、要从行为里推断的偏好，各方法准确率都掉一截；
   A-Mem 等记忆方法在个性化任务上优于直接全塞，但离「真的懂用户」还有明显差距。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 76</span>LongMemEval-V2：设定 [Wu et al., 2025]</h3>
-  <figure><img src="slides/slide-76.png" alt="Slide 76 LongMemEval-V2 设定" loading="lazy"><figcaption>长时记忆评估第二版（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
+  <figure><img src="slides/slide-076.png" alt="Slide 76 LongMemEval-V2 设定" loading="lazy"><figcaption>长时记忆评估第二版（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
   <p><strong>LongMemEval-V2</strong>（Wu et al., 2025，arXiv:2510.07899）：把「长」推到极致——
   <strong>100–498 个会话轨迹</strong>、<strong>25M–115M tokens</strong>、451 题。这个量级下任何「全塞」策略都失效，<strong>记忆系统成为唯一选项</strong>。
   每题还有干扰会话（distractor sessions）——大量无关内容混在记忆里，考真检索。</p>
@@ -804,7 +804,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 77</span>LongMemEval-V2：五类任务</h3>
-  <figure><img src="slides/slide-77.png" alt="Slide 77 五类任务" loading="lazy"><figcaption>信息抽取 / 多跳推理 / 时序推理 / 知识更新 / 拒答</figcaption></figure>
+  <figure><img src="slides/slide-077.png" alt="Slide 77 五类任务" loading="lazy"><figcaption>信息抽取 / 多跳推理 / 时序推理 / 知识更新 / 拒答</figcaption></figure>
   <ul>
     <li><span class="term">信息抽取（Information Extraction）</span>：从海量历史中找出那条关键信息；</li>
     <li><span class="term">多跳推理（Multi-hop Reasoning）</span>：串联多个会话里的信息才能作答；</li>
@@ -816,14 +816,14 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 78</span>LongMemEval-V2：工具（工具集）</h3>
-  <figure><img src="slides/slide-78.png" alt="Slide 78 工具集" loading="lazy"><figcaption>Search / Load sessions / Remember 等记忆工具</figcaption></figure>
+  <figure><img src="slides/slide-078.png" alt="Slide 78 工具集" loading="lazy"><figcaption>Search / Load sessions / Remember 等记忆工具</figcaption></figure>
   <p>被测 agent 配有一组记忆工具：<code>search</code>（在记忆中检索）、<code>load_sessions</code>（加载完整会话）、<code>remember</code>（主动记忆）等——
   评估的就是「agent 会不会用这些工具管理自己的记忆」。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 79</span>LongMemEval-V2：结果（filesystem 记忆胜出）</h3>
-  <figure><img src="slides/slide-79.png" alt="Slide 79 结果" loading="lazy"><figcaption> filesystem-based 记忆系统优于纯检索基线（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
+  <figure><img src="slides/slide-079.png" alt="Slide 79 结果" loading="lazy"><figcaption> filesystem-based 记忆系统优于纯检索基线（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
   <p>重要发现：在 25M–115M token 的规模上，<strong>基于文件系统的记忆（filesystem-based memory）优于纯向量检索</strong>。
   agent 自己维护文件（写入、组织、grep 检索）能主动管理记忆结构，而被动检索只能等查询来了再捞。
   呼应 Slide 26：文件系统 + bash 是被低估的记忆接口。</p>
@@ -831,34 +831,34 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 80</span>LongMemEval-V2：分析（能力差异）</h3>
-  <figure><img src="slides/slide-80.png" alt="Slide 80 能力分析" loading="lazy"><figcaption>不同任务类型上的分数分布：拒答与知识更新最难</figcaption></figure>
+  <figure><img src="slides/slide-080.png" alt="Slide 80 能力分析" loading="lazy"><figcaption>不同任务类型上的分数分布：拒答与知识更新最难</figcaption></figure>
   <p>分任务类型看：信息抽取相对最容易（工具好使就能找得到）；<strong>拒答（abstention）和知识更新最难</strong>——
   「知道什么是自己不知道的」「识别旧信息已失效」是记忆系统的深层能力，至今没有系统做得好。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 81</span>LongMemEval-V2：缩放曲线（Scaling Trends）</h3>
-  <figure><img src="slides/slide-81.png" alt="Slide 81 缩放曲线" loading="lazy"><figcaption>记忆长度增长时各方法性能衰减（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
+  <figure><img src="slides/slide-081.png" alt="Slide 81 缩放曲线" loading="lazy"><figcaption>记忆长度增长时各方法性能衰减（Image Credit: arxiv.org/pdf/2510.07899）</figcaption></figure>
   <p>缩放曲线：把记忆长度从 25M 拉到 115M tokens，各方法的性能普遍下滑——
   <strong>检索精度对「大海捞针」半径极其敏感</strong>。记忆越长，越需要结构化组织（文件、图谱）而非平面向量堆。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 82</span>MemoryArena：动机 [Liu et al., 2025]</h3>
-  <figure><img src="slides/slide-82.png" alt="Slide 82 MemoryArena 动机" loading="lazy"><figcaption>现有 benchmark 的问题：偏事实、偏简单（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
+  <figure><img src="slides/slide-082.png" alt="Slide 82 MemoryArena 动机" loading="lazy"><figcaption>现有 benchmark 的问题：偏事实、偏简单（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
   <p><strong>MemoryArena</strong>（Liu et al., 2025，arXiv:2510.12052）：指出先前 benchmark 的两大不足——
   任务偏<strong>简单事实复述</strong>（「用户叫什么」）而真实场景需要复杂记忆技能；且多数<strong>静态</strong>（记忆内容固定不变）。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 83</span>MemoryArena：设定</h3>
-  <figure><img src="slides/slide-83.png" alt="Slide 83 MemoryArena 设定" loading="lazy"><figcaption>复杂、多会话、带工具的记忆任务</figcaption></figure>
+  <figure><img src="slides/slide-083.png" alt="Slide 83 MemoryArena 设定" loading="lazy"><figcaption>复杂、多会话、带工具的记忆任务</figcaption></figure>
   <p>MemoryArena 的设定：<strong>766 题</strong>，上下文 <strong>40k+ tokens</strong>，任务被设计成需要<strong>复杂的记忆操作</strong>（不只检索），并且提供与真实系统一致的工具集。六个任务类别覆盖记忆的全生命周期。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 84</span>MemoryArena：六类任务（1/2）</h3>
-  <figure><img src="slides/slide-84.png" alt="Slide 84 任务 1-3" loading="lazy"><figcaption>Insertion / Updating / Deletion</figcaption></figure>
+  <figure><img src="slides/slide-084.png" alt="Slide 84 任务 1-3" loading="lazy"><figcaption>Insertion / Updating / Deletion</figcaption></figure>
   <ul>
     <li><span class="term">记忆插入（Insertion）</span>：该记的记进来——考写入判断；</li>
     <li><span class="term">记忆更新（Updating）</span>：事实变了，把旧记忆改成新的；</li>
@@ -868,7 +868,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 85</span>MemoryArena：六类任务（2/2）</h3>
-  <figure><img src="slides/slide-85.png" alt="Slide 85 任务 4-6" loading="lazy"><figcaption>Selection / Resolution / Forgetting</figcaption></figure>
+  <figure><img src="slides/slide-085.png" alt="Slide 85 任务 4-6" loading="lazy"><figcaption>Selection / Resolution / Forgetting</figcaption></figure>
   <ul>
     <li><span class="term">记忆选取（Selection）</span>：众多候选记忆里挑真正相关的那条；</li>
     <li><span class="term">消歧（Resolution）</span>：相似记忆冲突时正确消歧（两个「John」是谁是谁）；</li>
@@ -878,61 +878,61 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 86</span>MemoryArena：结果总览</h3>
-  <figure><img src="slides/slide-86.png" alt="Slide 86 结果总览" loading="lazy"><figcaption>整体成绩：最强系统也未过半（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
+  <figure><img src="slides/slide-086.png" alt="Slide 86 结果总览" loading="lazy"><figcaption>整体成绩：最强系统也未过半（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
   <p>整体成绩：所有被测系统中最强的也没过 50%——复杂记忆操作（更新、消歧、遗忘）对当前系统仍是<strong>大面积失分点</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 87</span>MemoryArena：分任务成绩</h3>
-  <figure><img src="slides/slide-87.png" alt="Slide 87 分任务成绩" loading="lazy"><figcaption>六类任务的分项得分：Deletion/Forgetting 最弱</figcaption></figure>
+  <figure><img src="slides/slide-087.png" alt="Slide 87 分任务成绩" loading="lazy"><figcaption>六类任务的分项得分：Deletion/Forgetting 最弱</figcaption></figure>
   <p>分项看：<strong>memory controllers（Mem0 之类记忆控制器）在增删改类任务上表现最弱</strong>——
   它们擅长「存与取」，但在「改对、删对、忘对」上不及格。维护不只是工程细节，是尚未解决的能力短板。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 88</span>MemoryArena：缩放分析</h3>
-  <figure><img src="slides/slide-88.png" alt="Slide 88 缩放分析" loading="lazy"><figcaption>上下文变长，性能下滑（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
+  <figure><img src="slides/slide-088.png" alt="Slide 88 缩放分析" loading="lazy"><figcaption>上下文变长，性能下滑（Image Credit: arxiv.org/pdf/2510.12052）</figcaption></figure>
   <p>缩放分析：从 40k 到更长上下文，各系统性能持续下滑——与 LongMemEval-V2 的缩放曲线互证：<strong>记忆规模是普遍的软肋</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 89</span>Takeaway 一：记忆 vs 检索的边界在移动</h3>
-  <figure><img src="slides/slide-79.png" alt="Slide 89 Takeaway 1" loading="lazy"><figcaption>规模越大，结构化记忆越优于平面检索</figcaption></figure>
+  <figure><img src="slides/slide-079.png" alt="Slide 89 Takeaway 1" loading="lazy"><figcaption>规模越大，结构化记忆越优于平面检索</figcaption></figure>
   <p>课程把四个 benchmark 的结论收成几条 takeaway。第一条：<strong>「记忆 vs 检索」的分界取决于规模</strong>——
   LoCoMo 的 16k 上全塞可能赢，LongMemEval-V2 的 100M+ 上只有真正的记忆系统能打。选型前先量自己的记忆规模。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 90</span>Takeaway 二：维护类能力是最大短板</h3>
-  <figure><img src="slides/slide-87.png" alt="Slide 90 Takeaway 2" loading="lazy"><figcaption>更新/删除/遗忘/拒答全线失分</figcaption></figure>
+  <figure><img src="slides/slide-087.png" alt="Slide 90 Takeaway 2" loading="lazy"><figcaption>更新/删除/遗忘/拒答全线失分</figcaption></figure>
   <p>第二条：<strong>写与取已经不错，改与忘还很差</strong>。知识更新、拒答、删除、遗忘——这些「维护类」能力在所有 benchmark 上都是最低分。
   而真实用户恰恰会改主意、会说错话、会要求「别记这个」。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 91</span>Takeaway 三：个性化是被低估的考题</h3>
-  <figure><img src="slides/slide-75.png" alt="Slide 91 Takeaway 3" loading="lazy"><figcaption>隐式偏好的推断远难于显式偏好</figcaption></figure>
+  <figure><img src="slides/slide-075.png" alt="Slide 91 Takeaway 3" loading="lazy"><figcaption>隐式偏好的推断远难于显式偏好</figcaption></figure>
   <p>第三条：<strong>个性化 ≠ 记住几个标签</strong>。PersonaMem 显示隐式偏好（从行为推断品味）远难于显式偏好，
   而商业价值恰恰在隐式偏好——用户不会说「我喜欢简洁回复」，但会一直跳过长答案。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 92</span>Takeaway 四：可验证性设计决定 benchmark 质量</h3>
-  <figure><img src="slides/slide-68.png" alt="Slide 92 Takeaway 4" loading="lazy"><figcaption>四标准是设计新评估的 checklist</figcaption></figure>
+  <figure><img src="slides/slide-068.png" alt="Slide 92 Takeaway 4" loading="lazy"><figcaption>四标准是设计新评估的 checklist</figcaption></figure>
   <p>第四条：四个标准（Realistic/Long-Context/Challenging/Verifiable）不只是给现有 benchmark 打分的尺子，
   更是<strong>自己设计记忆评估时的 checklist</strong>——四个都满足，评测结果才值得信。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 93</span>Recap：评估</h3>
-  <figure><img src="slides/slide-93.png" alt="Slide 93 评估 Recap" loading="lazy"><figcaption>四标准 × 四基准的对应关系</figcaption></figure>
+  <figure><img src="slides/slide-093.png" alt="Slide 93 评估 Recap" loading="lazy"><figcaption>四标准 × 四基准的对应关系</figcaption></figure>
   <p>收束：LoCoMo 证明「全塞在中等长度还有一战」，PersonaMem 暴露「个性化是短板」，LongMemEval-V2 证明「规模一大 filesystem 记忆胜检索」，
   MemoryArena 证明「维护类操作全线不及格」。四把尺子，量出了同一个方向：<strong>维护与结构化</strong>。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 94</span>评估基准与工具汇总</h3>
-  <figure><img src="slides/slide-94.png" alt="Slide 94 基准汇总" loading="lazy"><figcaption>四个 benchmark 的规模与任务速查表</figcaption></figure>
+  <figure><img src="slides/slide-094.png" alt="Slide 94 基准汇总" loading="lazy"><figcaption>四个 benchmark 的规模与任务速查表</figcaption></figure>
   <p>速查表一张：</p>
   <table>
     <tr><th>Benchmark</th><th>规模</th><th>任务</th><th>特长</th></tr>
@@ -951,13 +951,13 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 95</span>导航页：Challenges and Open Problems</h3>
-  <figure><img src="slides/slide-95.png" alt="Slide 95 导航页" loading="lazy"><figcaption>章节进度条高亮 Challenges</figcaption></figure>
+  <figure><img src="slides/slide-095.png" alt="Slide 95 导航页" loading="lazy"><figcaption>章节进度条高亮 Challenges</figcaption></figure>
   <p>最后一部分：课程指出智能体记忆领域的三个开放挑战。</p>
 </article>
 
 <article class="slide">
   <h3><span class="no">Slide 96</span>挑战一：记忆膨胀（Memory Bloat）</h3>
-  <figure><img src="slides/slide-96.png" alt="Slide 96 记忆膨胀" loading="lazy"><figcaption>记忆越积越多，检索与维护成本水涨船高</figcaption></figure>
+  <figure><img src="slides/slide-096.png" alt="Slide 96 记忆膨胀" loading="lazy"><figcaption>记忆越积越多，检索与维护成本水涨船高</figcaption></figure>
   <p><span class="term">记忆膨胀（Memory Bloat）</span>：长期运行的 agent 记忆只增不减——几百万 token 的记忆库里，绝大多数条目再也不会被用到，
   但每条都要参与检索、参与去重、参与冲突消解。膨胀拖慢检索、稀释相关度、抬高成本。
   人类靠遗忘解决这件事，agent 的「可计算遗忘」（何时删、删多少、删错了怎么办）还是开放问题。</p>
@@ -965,7 +965,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 97</span>挑战二：可编辑性（Editability）</h3>
-  <figure><img src="slides/slide-97.png" alt="Slide 97 可编辑性" loading="lazy"><figcaption>用户要求「忘记 X」「改掉 Y」，系统真能做到吗</figcaption></figure>
+  <figure><img src="slides/slide-097.png" alt="Slide 97 可编辑性" loading="lazy"><figcaption>用户要求「忘记 X」「改掉 Y」，系统真能做到吗</figcaption></figure>
   <p><span class="term">可编辑性（Editability）</span>：用户说「忘掉我养过猫」或「我对芒果过敏改成花生过敏」，系统能否干净地执行？
   表面看是删一条记录，实际上这条信息可能被提炼进摘要、抽成图谱节点、影响多条推理链——
   <strong>一处信息、多处投影</strong>。删除要彻底，更新要一致，这正是 MemoryArena 里 Deletion/Forgetting/Updating 全线低分的原因。</p>
@@ -973,7 +973,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 98</span>挑战三：隐私（Privacy）</h3>
-  <figure><img src="slides/slide-98.png" alt="Slide 98 隐私" loading="lazy"><figcaption>记忆越个性化，隐私风险越大</figcaption></figure>
+  <figure><img src="slides/slide-098.png" alt="Slide 98 隐私" loading="lazy"><figcaption>记忆越个性化，隐私风险越大</figcaption></figure>
   <p><span class="term">隐私（Privacy）</span>：记忆越个性化，存的东西越敏感（健康状况、财务、情感生活）。
   谁能访问这些记忆？记忆会不会在多用户共享的会话里串门？被要求删除时能不能真正删净（含备份与派生数据）？
   个性化带来的产品价值与隐私风险同涨，这是产品与监管层面都要回答的问题。</p>
@@ -981,7 +981,7 @@ Evaluating Agent Memory（怎么评估记忆系统）、Challenges and Open Prob
 
 <article class="slide">
   <h3><span class="no">Slide 99</span>挑战三（续）：隐私——记忆的攻防</h3>
-  <figure><img src="slides/slide-99.png" alt="Slide 99 记忆攻防" loading="lazy"><figcaption>记忆投毒 / 记忆提取攻击</figcaption></figure>
+  <figure><img src="slides/slide-099.png" alt="Slide 99 记忆攻防" loading="lazy"><figcaption>记忆投毒 / 记忆提取攻击</figcaption></figure>
   <p>隐私还有攻防的一面：<span class="term">记忆投毒（memory poisoning）</span>——恶意输入把假事实写进记忆，长期污染后续所有会话；
   <span class="term">记忆提取（memory extraction）</span>——诱导 agent 泄露它记住的他人或先前会话的敏感信息。
   记忆是持久状态，持久状态上的攻击面比单次调用大得多——这也是安全研究的新前线。</p>
