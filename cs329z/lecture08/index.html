@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第八讲：多智能体系统（Multi-Agent Systems）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第八讲：多智能体系统</h1>
+  <div class="sub">Multi-Agent Systems</div>
+  <div class="meta">讲师：Diyi Yang, Michael Ryan, John Yang　|　中文讲解教程（忠于原讲义，共 92 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a></div>
+  <div class="meta"><a href="lecture08.pdf" style="color:#fff;">下载本讲原始 PDF</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 公告与本讲结构</a>
+  <a href="#ch1">一 单智能体 vs 多智能体</a>
+  <a href="#ch2">二 编排模式</a>
+  <a href="#ch3">三 通信</a>
+  <a href="#ch4">四 协调基础设施与模式</a>
+  <a href="#ch5">五 失败与挑战</a>
+  <a href="#ch6">六 案例研究：工程蜂群</a>
+  <a href="#ch7">七 总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第八讲
+<strong>《Multi-Agent Systems（多智能体系统）》</strong>的中文讲解。
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。全讲按讲义开头的 Lecture Overview 分为六个部分：
+Single vs Multi-Agent Systems（单智能体 vs 多智能体，10 分钟）、MAS Orchestration Patterns（编排模式，5 分钟）、
+Communication（通信，20 分钟）、Coordination Infrastructure and Patterns（协调基础设施与模式，20 分钟）、
+Failures and Challenges（失败与挑战，15 分钟），以及可选的 Case Study（案例研究，10 分钟）。
+学习目标（Learning Objectives）：<strong>区分（Differentiate）单智能体与多智能体系统；识别（Identify）多智能体的编排、通信与协调模式；比较（Compare）多智能体系统的各种失败模式。</strong></p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、课程公告与本讲结构</h2>
+<p class="chapter-sub">Announcements, Opening &amp; Lecture Overview（Slide 1–6）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：Multi-Agent Systems（多智能体系统）</h3>
+  <figure><img src="slides/slide-01.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Multi-Agent Systems（Diyi Yang, Michael Ryan, John Yang）</figcaption></figure>
+  <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第八讲主题是
+  <span class="term">Multi-Agent Systems（多智能体系统）</span>。前几讲我们都在讨论单个 agent 的能力边界（上下文、记忆、工具），
+  这一讲把视角拉高：当任务复杂到一个 agent 忙不过来时，如何让多个 agent 分工协作。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
+  <figure><img src="slides/slide-02.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>下周一客座讲座（Ryan Marten、Alex Shaw、Terminal-Bench）；Homework 1 截止提醒；提案反馈即将发布</figcaption></figure>
+  <ul>
+    <li><span class="term">客座讲座</span>：下周一有客座讲座，讲者是 Ryan Marten 和 Alex Shaw，主题是 <strong>Terminal-Bench</strong>（一个终端任务评测基准）；</li>
+    <li><span class="term">Homework 1</span>：下周五截止；</li>
+    <li><span class="term">项目提案</span>：课程组将在未来几天内发布项目提案（proposal）的反馈意见。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>开场新闻：多智能体系统正在上头条</h3>
+  <figure><img src="slides/slide-03.png" alt="Slide 3 新闻剪影" loading="lazy"><figcaption>三则新闻：《Rogue AI Swarm Responds to Reporter's Questions》（Futurism, 2026-10-16）；《On the Navier–Stokes Millennium Prize Problem》（2026-09-08）；《Researchers link more cyberattacks to OpenAI agent swarm》（Maria Deutscher）</figcaption></figure>
+  <p>讲义用三则新闻引出「多智能体系统已经进入公众视野」：一是 Futurism 报道的「失控 AI 蜂群」接受记者提问；
+  二是一篇标注 2026 年 9 月 8 日的科研公告，宣称用内部模型驱动的协作 agent 系统解决 Navier–Stokes 千禧年大奖问题——
+  其中 agent 被分成若干组，组内可通信，产出该解的组规模约为 <strong>10,000 个并发 agent</strong>；
+  三是 AI 安全组织 Translucent 又把三起黑客攻击活动与「失控的 OpenAI agent 蜂群」关联起来，受影响的目标包括一所大学的数字图书馆、一个数据可视化工具和一个澳大利亚政府网站。
+  这些报道有的夸张、有的存疑，但都说明：<strong>多智能体系统（MAS）是一个正在爆发的方向，同时也带来新的安全议题。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>本讲的立场：拆解「如何构建 MAS」</h3>
+  <figure><img src="slides/slide-04.png" alt="Slide 4 开场立场" loading="lazy"><figcaption>原文：Multi Agent Systems (MAS) are emergent work, making headlines. Today we will break down what we know about how to build MAS.</figcaption></figure>
+  <p>讲义的核心论点只有一句话：<strong>多智能体系统（MAS）是一种新兴的工作形态，正在上头条；
+  本讲要做的，是把「如何构建 MAS」的已有知识拆开讲清楚。</strong>接下来的内容就围绕这条主线展开：
+  什么时候用多智能体、怎么编排、怎么通信、怎么协调、以及都会怎么失败。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>Learning Objectives（学习目标）</h3>
+  <figure><img src="slides/slide-05.png" alt="Slide 5 学习目标" loading="lazy"><figcaption>三条学习目标</figcaption></figure>
+  <p>本讲的学习目标有三条，动词层层递进：</p>
+  <ul>
+    <li><strong>区分（Differentiate）</strong>单智能体系统与多智能体系统；</li>
+    <li><strong>识别（Identify）</strong>多智能体的编排（orchestration）、通信（communication）与协调（coordination）模式；</li>
+    <li><strong>比较（Compare）</strong>多智能体系统的各种失败模式（failure modes）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-06.png" alt="Slide 6 本讲结构" loading="lazy"><figcaption>六个部分及预计用时</figcaption></figure>
+  <p>本讲的结构与时间安排：</p>
+  <ul>
+    <li>Single vs Multi-Agent Systems（单智能体 vs 多智能体，10 分钟）；</li>
+    <li>MAS Orchestration Patterns（MAS 编排模式，5 分钟）；</li>
+    <li>Communication（通信，20 分钟）；</li>
+    <li>Coordination Infrastructure and Patterns（协调基础设施与模式，20 分钟）；</li>
+    <li>Failures and Challenges（失败与挑战，15 分钟）；</li>
+    <li>[可选] Case Study（案例研究，10 分钟）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、单智能体 vs 多智能体（SAS vs MAS）</h2>
+<p class="chapter-sub">Single vs Multi-Agent Systems（Slide 7–15）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>章节页：Single vs Multi-Agent Systems</h3>
+  <figure><img src="slides/slide-07.png" alt="Slide 7 章节页" loading="lazy"><figcaption>章节导航：SAS vs MAS（当前）→ Orchestration → Communication → Coordination → Failure Modes</figcaption></figure>
+  <p>进入第一章。本讲底部一直有五个小节的进度条：SAS vs MAS、Orchestration（编排）、Communication（通信）、
+  Coordination（协调）、Failure Modes（失败模式），当前高亮的是第一部分「SAS vs MAS」——
+  即单智能体系统（Single-Agent System, SAS）与多智能体系统（Multi-Agent System, MAS）的对比。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>System Complexity（系统复杂度：三级）</h3>
+  <figure><img src="slides/slide-08.png" alt="Slide 8 系统复杂度" loading="lazy"><figcaption>从 Model 到 Workflow/Compound AI System 再到 Agent 的复杂度轴</figcaption></figure>
+  <p>这张图给出一根「复杂度轴」：<strong>Model（模型）→ Workflow / Compound AI System（工作流或复合 AI 系统）→ Agent（智能体）</strong>。
+  单纯的模型是最简单的形态；把模型按固定流程组合起来（工作流）复杂度上升；
+  而能够自主感知、决策、使用工具的 agent 则更复杂。下一页会把这根轴继续延伸。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>System Complexity（系统复杂度：四级）</h3>
+  <figure><img src="slides/slide-09.png" alt="Slide 9 系统复杂度四级" loading="lazy"><figcaption>Simple → Complex：Model（GPT 6.1 Sol）→ Workflow（Triage Bug）→ Agent（Implement Feature）→ Multi Agent System（Maintain Repo）</figcaption></figure>
+  <p>把上一页的轴拉长到四级，从简单（Simple）到复杂（Complex），每级都配了一个例子：</p>
+  <ul>
+    <li><strong>Model</strong>：单个模型本身，如 <code>GPT 6.1 Sol</code>；</li>
+    <li><strong>Workflow / Compound AI System</strong>：固定流程组合，例如「分诊 Bug（Triage Bug）」；</li>
+    <li><strong>Agent</strong>：能自主决策的智能体，例如「实现一个功能（Implement Feature）」；</li>
+    <li><strong>Multi Agent System</strong>：多个 agent 协作，例如「维护整个代码仓库（Maintain Repo）」。</li>
+  </ul>
+  <p>注意例子的含义：任务越开放、越长期，越可能需要 MAS 这一最高复杂度的形态。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>What is a Multi-Agent System?（什么是多智能体系统）</h3>
+  <figure><img src="slides/slide-10.png" alt="Slide 10 MAS 定义" loading="lazy"><figcaption>MAS 定义与三大设计考量；配图为一群机器人插画</figcaption></figure>
+  <p><span class="term">Multi-Agent System（MAS）</span>的定义：<strong>一组面向共同任务（shared task）协同工作的多个 agent 的集合</strong>。
+  设计一个 MAS 时必须考虑三件事：</p>
+  <ul>
+    <li><span class="term">Orchestration（编排）</span>：谁来组织、分配工作；</li>
+    <li><span class="term">Communication（通信）</span>：agent 之间如何交换信息；</li>
+    <li><span class="term">Coordination（协调）</span>：工作空间、任务、共享上下文与记忆如何管理。</li>
+  </ul>
+  <p>这三点正好对应本讲后面三章的内容。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>Benefits of Multi Agent Systems（MAS 的收益）</h3>
+  <figure><img src="slides/slide-11.png" alt="Slide 11 MAS 收益" loading="lazy"><figcaption>四大收益；配图为多个机器人协作装配火箭的插画</figcaption></figure>
+  <p>用多智能体有四条核心收益：</p>
+  <ul>
+    <li><strong>并行执行（Parallel execution）</strong>：可拆分的子任务可以并发进行；</li>
+    <li><strong>专门化（Specialization）</strong>：可以针对不同职责定制指令、模型和工具；</li>
+    <li><strong>聚焦上下文（Focused context）</strong>：只给每个 agent 与其任务相关的信息，避免上下文塞爆；</li>
+    <li><strong>更广的探索（Broader exploration）</strong>：可以并行调查不同的信息源、假设或解法。</li>
+  </ul>
+  <p>一句话总结：<strong>多个 agent 提供了更多分配工作、信息和责任的方式。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>Drawbacks of Multi Agent Systems（MAS 的代价）</h3>
+  <figure><img src="slides/slide-12.png" alt="Slide 12 MAS 代价" loading="lazy"><figcaption>五大代价；配图为机器人被线缆缠成一团的插画</figcaption></figure>
+  <p>收益的另一面是五条代价：</p>
+  <ul>
+    <li><strong>协调开销（Coordination overhead）</strong>：委派、消息传递和整合都要消耗时间与 token；</li>
+    <li><strong>信息丢失（Information loss）</strong>：交接（handoff）时可能漏掉另一个 agent 需要的上下文；</li>
+    <li><strong>行动冲突（Conflicting actions）</strong>：agent 可能重复劳动、违背承诺或互相覆盖修改；</li>
+    <li><strong>错误传播（Error propagation）</strong>：一个 agent 的错误可能误导其他 agent；</li>
+    <li><strong>工程复杂度（Engineering complexity）</strong>：更多角色、提示词、接口和交互需要维护与调试。</li>
+  </ul>
+  <p>结论写在底部：<strong>只有当协作的收益大于协调成本时，协作才有帮助。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>Sometimes Single Agent Systems Outperform（单智能体有时更强）</h3>
+  <figure><img src="slides/slide-13.png" alt="Slide 13 SAS 有时更强" loading="lazy"><figcaption>Towards a Science of Scaling Agent Systems（Kim et al., 2026），Image Credit: arxiv.org/pdf/2512.08296</figcaption></figure>
+  <p>这张图来自论文 <em>Towards a Science of Scaling Agent Systems</em>（Kim et al., 2026），横轴是模型「智力指数」（Intelligence Index），
+  纵轴是任务表现（Performance, %），比较单智能体系统（SAS）与四种 MAS 架构（Centralized / Decentralized / Independent / Hybrid）。
+  三个子图分别是 OpenAI GPT、Google Gemini、Anthropic Claude 三家模型家族，各覆盖不同档位的模型：</p>
+  <ul>
+    <li><strong>GPT 家族</strong>：从 GPT-5 nano 到 GPT-5，MAS 相对 SAS <strong>+12.3%</strong>——多智能体有收益；</li>
+    <li><strong>Gemini 家族</strong>：从 Gemini 2.0 Flash 到 Gemini 2.5 Pro，MAS 相对 SAS <strong>−4.6%</strong>——多智能体反而更差；</li>
+    <li><strong>Claude 家族</strong>：从 Sonnet 3.7 到 Sonnet 4.5，MAS 相对 SAS <strong>−7.2%</strong>——同样是负收益。</li>
+  </ul>
+  <p>结论：是否值得上 MAS <strong>取决于所用模型</strong>——模型本身够强时，单个 agent 往往就够，堆 agent 反而引入协调损耗。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>When to use SAS vs MAS（何时用单/多智能体）</h3>
+  <figure><img src="slides/slide-14.png" alt="Slide 14 何时用 SAS vs MAS" loading="lazy"><figcaption>左栏：优先单智能体的情形；右栏：尝试多智能体的情形；底部给出建议</figcaption></figure>
+  <p>这是本讲最实用的决策清单：</p>
+  <ul>
+    <li><strong>以下情形优先单智能体（SAS）</strong>：步骤之间高度依赖彼此；工作紧耦合于共享状态（大量重叠）；一个 agent 已经能满足质量、成本和延迟目标。</li>
+    <li><strong>以下情形可尝试多智能体（MAS）</strong>：子任务只需少量同步即可推进；信息可以切成各自聚焦的上下文；各 agent 可以独立负责一部分工作再整合；并行、专门化或独立评审确实能解决一个已被测量到的瓶颈。</li>
+  </ul>
+  <p>底部建议（Recommendation）：<strong>先从强单智能体基线（baseline）做起，为了明确目的再加 agent，并度量「贡献收益是否超过协调成本」。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>Comparison（SAS 与 MAS 逐维对比）</h3>
+  <figure><img src="slides/slide-15.png" alt="Slide 15 对比表" loading="lazy"><figcaption>五个维度上单/多智能体的对比表</figcaption></figure>
+  <p>这张表从五个维度对比单智能体系统与多智能体系统：</p>
+  <table>
+    <tr><th>维度</th><th>单智能体系统</th><th>多智能体系统</th></tr>
+    <tr><td>任务契合（Task fit）</td><td>决策紧密相连、需要共同上下文</td><td>子任务可拆分或职责分明</td></tr>
+    <tr><td>上下文组织</td><td>工作上下文在单个 agent 循环内管理</td><td>各 agent 有专属上下文，信息选择性共享</td></tr>
+    <tr><td>专门化</td><td>一个 agent 自己切换策略与工具</td><td>各 agent 可用不同的提示词、模型、工具与权限</td></tr>
+    <tr><td>并行性</td><td>可以并发执行独立的工具调用</td><td>可以并发运行多条 agent 工作流</td></tr>
+    <tr><td>协调与成本</td><td>交接少、协调接口少</td><td>消息传递、同步和整合带来额外开销</td></tr>
+  </table>
+  <p>这张表可以当作上一页决策清单的「原理版」：每一维都解释了 MAS 何时占优、SAS 何时更省。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、MAS 编排模式（Orchestration Patterns）</h2>
+<p class="chapter-sub">MAS Orchestration Patterns（Slide 16–29）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>章节页：MAS Orchestration Patterns</h3>
+  <figure><img src="slides/slide-16.png" alt="Slide 16 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Orchestration；本讲进度条为 SAS vs MAS / Orchestration / Communication / Shared State / Failure Modes</figcaption></figure>
+  <p>进入第二章「MAS 编排模式」。这一章回答 MAS 的第一个设计问题：<strong>多个 agent 之间由谁来组织、怎么组织？</strong>
+  注意本章进度条的第四项写的是「Shared State」，说明在讲义的组织里，编排之后的主题依次是通信与共享状态。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>Overview（四种编排模式总览）</h3>
+  <figure><img src="slides/slide-17.png" alt="Slide 17 编排模式总览" loading="lazy"><figcaption>四种编排模式的文字定义</figcaption></figure>
+  <p>编排模式共四种：</p>
+  <ul>
+    <li><span class="term">Independent（独立）</span>：agent 之间唯一的协调是一个聚合器（aggregator），用来汇总各独立 agent 的工作；</li>
+    <li><span class="term">Centralized（集中式，Orchestrator）</span>：一个编排者与所有 agent 一一通信；</li>
+    <li><span class="term">Decentralized（去中心式，Swarm/蜂群）</span>：每个 agent 与所有其他 agent 通信；</li>
+    <li><span class="term">Hybrid（混合）</span>：既有编排者，peer agent 之间也有有限的通信。</li>
+  </ul>
+  <p>接下来四张 slide 逐个展开。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>Independent（独立模式）</h3>
+  <figure><img src="slides/slide-18.png" alt="Slide 18 Independent" loading="lazy"><figcaption>结构图：In → Agent 1/2/3 → Aggregator → Out（Image Inspiration: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
+  <p>图上输入（In）同时发给三个 agent，它们各自独立工作，最后由一个聚合器（Aggregator）汇总输出（Out）。要点：</p>
+  <ul>
+    <li>agent 之间<strong>不交换中间消息</strong>，各自干各自的；</li>
+    <li>由最后一步对它们的输出做<strong>合并或择优</strong>；</li>
+    <li><strong>权衡（Tradeoff）</strong>：能并行干活，但 agent 无法借鉴彼此的中间发现来调整自己的做法。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>Centralized（集中式 / 编排者模式）</h3>
+  <figure><img src="slides/slide-19.png" alt="Slide 19 Centralized" loading="lazy"><figcaption>结构图：In → Orchestrator Agent ↔ Worker Agent 1/2/3 → Out（Image Inspiration: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
+  <p>图上输入先进编排者（Orchestrator Agent），它把任务分给三个 worker agent，worker 把结果交回，编排者再决定下一步并产出最终输出。要点：</p>
+  <ul>
+    <li>编排者<strong>拆分任务</strong>、把工作分派给专门化的 agent；</li>
+    <li>worker 返回结果后，由编排者<strong>决定接下来做什么</strong>；</li>
+    <li><strong>权衡</strong>：中央把控让协调更简单，但编排者自己可能成为<strong>瓶颈（bottleneck）</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>Decentralized（去中心式 / 蜂群模式）</h3>
+  <figure><img src="slides/slide-20.png" alt="Slide 20 Decentralized" loading="lazy"><figcaption>结构图：In → Shared State Tracking，三个 worker agent 两两互联 → Out（Image Inspiration: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
+  <p>去中心式（蜂群，Swarm）没有中央编排者，取而代之的是一个共享状态跟踪（Shared State Tracking）组件。要点：</p>
+  <ul>
+    <li>agent 可以<strong>派生子 agent（spawn subagents）</strong>；</li>
+    <li>所有 agent 可以通过<strong>共享留言板或通信信道</strong>交流，即 all-to-all 通信；</li>
+    <li>适合<strong>大规模的独立探索与发现</strong>场景。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>Hybrid（混合模式）</h3>
+  <figure><img src="slides/slide-21.png" alt="Slide 21 Hybrid" loading="lazy"><figcaption>结构图：编排者 + worker 间有限直连（图中 Worker 1 与 Worker 3 之间的直连线被红叉否定）（Image Inspiration: anthropic.com/engineering/building-effective-agents）</figcaption></figure>
+  <p>混合模式结合前两者：</p>
+  <ul>
+    <li>编排者负责<strong>管理整体任务并整合结果</strong>；</li>
+    <li>当 worker 的任务确实需要配合时，它们可以<strong>直接交换信息</strong>（图中红叉表示并非任意两个 worker 都随意互连，通信是被约束的）；</li>
+    <li>它同时拥有<strong>全局把控 + 局部灵活</strong>，但需要为「谁负责什么、信息如何共享」制定<strong>清晰规则</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>Comparison（四种架构的复杂度对比）</h3>
+  <figure><img src="slides/slide-22.png" alt="Slide 22 架构复杂度对比" loading="lazy"><figcaption>Table 2，Towards a Science of Scaling Agent Systems（Kim et al., 2026），Table Credit: arxiv.org/pdf/2512.08296</figcaption></figure>
+  <p>这是 Kim et al. (2026) 的 Table 2，用客观复杂度指标比较 SAS 与四种 MAS（LLM 调用次数、协调开销、并行化潜力）。逐行看：</p>
+  <ul>
+    <li><strong>LLM Calls</strong>：SAS 为 O(k)；MAS-Independent 为 O(nk)+O(1)；Decentralized 为 O(dnk)+O(1)；Centralized 为 O(rnk)+O(r)；Hybrid 为 O(rnk)+O(r)+O(p)；</li>
+    <li><strong>Sequential Depth（串行深度）</strong>：SAS 与 Independent 都是 k，Decentralized 为 d，Centralized 与 Hybrid 为 r；</li>
+    <li><strong>Comm. Overhead（通信开销）</strong>：SAS 为 0，Independent 为 1，Decentralized 为 d·n，Centralized 为 r·n，Hybrid 为 r·n+p·m——混合式最贵；</li>
+    <li><strong>Parallelization Factor（并行系数）</strong>：SAS 为 1，各种 MAS 都是 n；</li>
+    <li><strong>Memory Complexity</strong>：从 O(k) 到 Hybrid 的 O((r+p)·n·k)；</li>
+    <li><strong>Coordination / Consensus（协调/共识方式）</strong>：SAS 是串行；Independent 是并行+综合（Parallel + Synthesis）；Decentralized 是串行辩论（Sequential Debate）；Centralized 和 Hybrid 都是分层编排（Hierarchical Orchestrator）。</li>
+  </ul>
+  <p>核心结论：MAS 换来了并行度，但要付出通信与记忆上的复杂度代价，其中集中式/混合式的编排层级（r 轮）是新增成本。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>The architecture to use depends on your task（用什么架构取决于任务）</h3>
+  <figure><img src="slides/slide-23.png" alt="Slide 23 按任务选架构" loading="lazy"><figcaption>四个基准上的箱线图，Towards a Science of Scaling Agent Systems（Kim et al., 2026），Image Credit: arxiv.org/pdf/2512.08296</figcaption></figure>
+  <p>同一篇论文在四个基准上比较 SAS 与四种 MAS 的表现（箱线图，纵轴为 Accuracy 或 Success Rate %，菱形为均值），每种 MAS 相对 SAS 的变化标注在顶部：</p>
+  <ul>
+    <li><strong>BrowseComp-Plus</strong>：Independent −35%（大幅下降），Decentralized +9%，Centralized +0%，Hybrid +6%；</li>
+    <li><strong>Finance Agent</strong>：四种 MAS 全部大幅优于 SAS——+57%、+75%、+81%、+73%；</li>
+    <li><strong>PlanCraft</strong>：全军覆没——−70%、−41%、−50%、−39%；</li>
+    <li><strong>Workbench</strong>：−11%、+6%、−1%、−1%，基本持平。</li>
+  </ul>
+  <p>标题即结论：<strong>用什么架构取决于你的任务</strong>。同一个 MAS 架构在 Finance Agent 上能加 80 分，在 PlanCraft 上能掉 70 分。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>Multi-Agent architectures vary in cost（不同架构成本不同）</h3>
+  <figure><img src="slides/slide-24.png" alt="Slide 24 成本对比" loading="lazy"><figcaption>性能 vs 每次实验成本散点图，Kim et al., 2026，Image Credit: arxiv.org/pdf/2512.08296</figcaption></figure>
+  <p>同样是 Kim et al. (2026) 的数据，这次横轴换成了<strong>每次实验的成本（Cost / Experiment, $）</strong>，纵轴仍是性能（%），三个子图分别对应 GPT、Gemini、Claude 三家。可以看出：</p>
+  <ul>
+    <li>SAS（灰点）最便宜，性能居中；</li>
+    <li>MAS-Independent（三角）便宜但性能偏低；</li>
+    <li>MAS-Decentralized（菱形）与 MAS-Hybrid（星形）最贵——例如 Claude 家族里 Hybrid 的成本超过 $1.2/实验，GPT 家族里 Hybrid 超过 $1.4/实验；</li>
+  </ul>
+  <p>底部给出成本结构的排序：<strong>Single Agent &lt; Orchestrated（有编排者）&lt; Swarms（蜂群）</strong>。花钱多的架构未必换来更高的性能，选择时要算这笔账。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>Dynamic Multi Agent Architecture：DyLAN 总览</h3>
+  <figure><img src="slides/slide-25.png" alt="Slide 25 DyLAN 总览" loading="lazy"><figcaption>DyLAN（Liu et al., 2023），Image Credit: arxiv.org/pdf/2310.02170</figcaption></figure>
+  <p>除了固定架构，还可以<strong>动态组建 agent 团队</strong>。DyLAN（Liu et al., 2023）分两个阶段：</p>
+  <ul>
+    <li><strong>Team Optimization（团队优化）</strong>：左侧，Query 输入一个由多色 agent 组成的候选池，通过一个时序前馈网络 T-FFN（t=1,2,3 三层）传播信息，再经 Agent Selection（agent 选择）筛出一个精简团队（右侧高亮的 3 个 agent）；</li>
+    <li><strong>Task Solving（任务求解）</strong>：右侧，用选出的团队跑同样的 T-FFN 流程得到 Answer。</li>
+  </ul>
+  <p>底部说明：在多个 query 上运行，确定每个 agent 的「重要性分数（Agent Importance Scores）」，从而组建任务专属的团队。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>DyLAN：Agent Selection（如何给 agent 打分）</h3>
+  <figure><img src="slides/slide-26.png" alt="Slide 26 DyLAN agent 选择" loading="lazy"><figcaption>Agent Selection 三步：①Propagation ②Aggregation ③Selection（Liu et al., 2023），Image Credit: arxiv.org/pdf/2310.02170</figcaption></figure>
+  <p>agent 的重要性是怎么算出来的？左图展示三步：</p>
+  <ul>
+    <li><strong>① 传播（Propagation）</strong>：每个 agent 对其前驱的回答打分（图上边的权重如 0.4、0.5、0.1）；</li>
+    <li><strong>② 聚合（Aggregation）</strong>：汇总来自后继的评分（如 0.7、0.5、0.4），得到每个 agent 的重要性 I；</li>
+    <li><strong>③ 选择（Selection）</strong>：按重要性分数选出 top-2 精英 agent——图中 I₁=0.65、I₃=1.15 入选（绿勾），I₂=0.35、I₄=0.20 被淘汰（红叉）。</li>
+  </ul>
+  <p>右侧文字总结流程：让 agent 跑一遍前向传播，互相给回答打效用分，最后根据「谁对最终达成一致的答案有贡献」来反向分配功劳（back-propagate credit），据此选出最有影响力的 agent。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>DyLAN：Agent Team Reformation（团队重组与早停）</h3>
+  <figure><img src="slides/slide-27.png" alt="Slide 27 DyLAN 团队重组" loading="lazy"><figcaption>T-FFN 四层结构与 Agent Team Reformation（Liu et al., 2023），Image Credit: arxiv.org/pdf/2310.02170</figcaption></figure>
+  <p>团队不是一次定死，而是边跑边改：</p>
+  <ul>
+    <li>Query 进入 t=1..4 四层的 T-FFN，其中 t=2、t=3 两层（图中高亮带）标记为 <strong>Agent Team Reformation（团队重组）</strong>区域——该层中被淘汰的 agent 显示为浅色圆点，不再参与后续传播；</li>
+    <li>在新任务上运行团队时，用 LLM 给每个回答的效用打分，<strong>动态地把 agent 从团队中剔除</strong>；</li>
+    <li><strong>早停（early stop）</strong>：当 <strong>2/3 的 agent 得到一致的答案</strong>时就提前结束，不再跑满所有层。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>DyLAN：Decision Making 任务上的结果</h3>
+  <figure><img src="slides/slide-28.png" alt="Slide 28 DyLAN 结果表" loading="lazy"><figcaption>结果表（Liu et al., 2023），Image Credit: arxiv.org/pdf/2310.02170</figcaption></figure>
+  <p>左侧结论：在 Decision Making 任务上，DyLAN <strong>用更少的 API 调用换来了更高的成功率</strong>。右侧表格数据：</p>
+  <table>
+    <tr><th>方法</th><th>Reward（相对 Direct Execution）</th><th>Success Rate</th><th>#API Calls</th></tr>
+    <tr><td>Direct Execution</td><td>50.6（+0.0）</td><td>28.0</td><td>14.52</td></tr>
+    <tr><td>ReAct</td><td>53.8（+3.2）</td><td>30.0</td><td>8.40</td></tr>
+    <tr><td>ReAct-SC</td><td>58.0（+7.4）</td><td>36.0</td><td>25.75</td></tr>
+    <tr><td>Reflexion (trial=4)</td><td>62.0（+11.4）</td><td>40.0</td><td>25.40</td></tr>
+    <tr><td>LATS</td><td>64.5（+13.9）</td><td>38.0</td><td>&gt; 400</td></tr>
+    <tr><td>BOLAA</td><td>66.0（+15.4）</td><td>40.0</td><td>32.40</td></tr>
+    <tr><td><strong>DyLAN (Ours)</strong></td><td><strong>68.3（+17.7）</strong></td><td><strong>42.0</strong></td><td>24.85</td></tr>
+  </table>
+  <p>DyLAN 拿到最高的 reward 68.3 与成功率 42.0，API 调用 24.85 次——明显低于 BOLAA 的 32.40，更远低于 LATS 的 400+。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Orchestration Pattern Summary（编排模式小结）</h3>
+  <figure><img src="slides/slide-29.png" alt="Slide 29 编排小结" loading="lazy"><figcaption>四种编排模式回顾；配图为两个机器人讨论计划的插画</figcaption></figure>
+  <p>本章小结：</p>
+  <ul>
+    <li>四种核心编排模式：<strong>Independent</strong>——所有 agent 各干各的；<strong>Centralized (Orchestrator)</strong>——编排者负责委派；<strong>Decentralized (Swarm)</strong>——agent 自己领任务并直接互相通信；<strong>Hybrid</strong>——编排者委派，但 worker 之间也可以直接通信；</li>
+    <li>此外，还可以构建<strong>动态的、面向特定领域的 agent 团队/架构</strong>（如前面介绍的 DyLAN）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">三、通信（Communication）</h2>
+<p class="chapter-sub">Communication（Slide 30–49）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>章节页：Communication</h3>
+  <figure><img src="slides/slide-30.png" alt="Slide 30 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Communication</figcaption></figure>
+  <p>进入第三章「通信」，预计 20 分钟，是本讲用时最长的一章。它回答 MAS 的第二个设计问题：<strong>agent 之间如何交换信息？</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>Communication vs Coordination（通信 vs 协调）</h3>
+  <figure><img src="slides/slide-31.png" alt="Slide 31 通信 vs 协调" loading="lazy"><figcaption>左右对比：Communication（红框高亮）与 Coordination</figcaption></figure>
+  <p>讲义先把两个容易混淆的概念拆开，本页红框框住的是<strong>通信</strong>一侧：</p>
+  <ul>
+    <li><strong>通信（Communication）</strong>：agent 如何<strong>交换信息</strong>；谁接收哪些信息、通过什么信道；消息格式、协议与共享产物（artifacts）。</li>
+    <li><strong>协调（Coordination）</strong>：agent 如何<strong>管理相互依赖的工作</strong>；谁负责哪个任务、什么必须先做；任务分配、依赖关系与冲突解决。</li>
+  </ul>
+  <p>本页只关心前者，协调留到下一章。注意这一对比页在第四章还会再出现一次（那时高亮的是 Coordination）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>Multi-Agent Communication as Conversations（把多智能体通信做成对话）</h3>
+  <figure><img src="slides/slide-32.png" alt="Slide 32 AutoGen 标题页" loading="lazy"><figcaption>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversations（Wu et al., 2024）</figcaption></figure>
+  <p>通信的第一种思路来自论文 <em>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversations</em>（Wu et al., 2024）：
+  <strong>让多个 agent 通过多轮对话来协作</strong>——把「agent 间通信」具体化为「聊天」。这是目前最直观也最流行的通信形态。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>AutoGen：可对话 agent 与灵活的对话模式</h3>
+  <figure><img src="slides/slide-33.png" alt="Slide 33 AutoGen 图" loading="lazy"><figcaption>AutoGen 框架图（Wu et al., 2024），Image Credit: arxiv.org/pdf/2308.08155</figcaption></figure>
+  <p>这张框架图分四块：</p>
+  <ul>
+    <li><strong>Agent Customization</strong>：每个 agent 都是「可对话 agent（Conversable agent）」，可定制其 LLM、人类参与方式和工具（图中集成了 OpenAI 模型、人和代码执行工具）；</li>
+    <li><strong>Flexible Conversation Patterns</strong>：两个 agent 可直接对话，也可以组成 Joint chat（联合聊天）或 Hierarchical chat（分层聊天）等结构；</li>
+    <li><strong>Example Agent Chat</strong>：右侧的实例对话——用户要求画出 META 与 TESLA 年初至今的股价图，代码执行 agent 遇到「yfinance 包未安装」的报错，回复道歉并先 <code>pip install yfinance</code> 再执行代码；</li>
+    <li>最后用户纠正「请画百分比变化」，agent 改好代码输出正确的百分比图。</li>
+  </ul>
+  <p>底部总结：<strong>定制每个 agent，再把它们组织进对话模式。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>Example Conversation Patterns（AutoGen 的对话模式）</h3>
+  <figure><img src="slides/slide-34.png" alt="Slide 34 对话模式" loading="lazy"><figcaption>四种对话模式示意图（Wu et al., 2024），Image Credit: arxiv.org/pdf/2308.08155</figcaption></figure>
+  <p>AutoGen 支持的对话模式有四种，配图分别对应：</p>
+  <ul>
+    <li><span class="term">Sequential Chat（顺序聊天）</span>：agent 依次交流，再把接力棒交给下一组继续下一步；</li>
+    <li><span class="term">Nested Chat（嵌套聊天）</span>：子 agent 直接与管理者通信；</li>
+    <li><span class="term">Group Chat（群聊）</span>：一组 agent 共享上下文；</li>
+    <li><span class="term">Hierarchical Chat（分层聊天）</span>：所有子 agent 都与编排者通信。</li>
+  </ul>
+  <p>AutoGen 目前内置的模式包括：<code>RoundRobinGroupChat</code>（轮询群聊）、<code>SelectorGroupChat</code>（选择器群聊）、<code>Swarm</code>（蜂群）等。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>AutoGen 群聊实例：下载 arXiv 论文</h3>
+  <figure><img src="slides/slide-35.png" alt="Slide 35 群聊实例" loading="lazy"><figcaption>群聊对话截图（Wu et al., 2024），Image Credit: arxiv.org/pdf/2308.08155</figcaption></figure>
+  <p>这是一个真实的 AutoGen 群聊记录，展示了角色分工如何通过对话实现：</p>
+  <ul>
+    <li><strong>Admin（管理者）</strong>先欢迎大家进群，宣布任务完成时自己会回复 <code>[TERMINATE]</code>；随后逐个布置角色：让 Critic 在代码运行失败时要求 Engineer 重写，让 Engineer 一步步写 Python 代码，让 Executor 运行 Engineer 的代码并报告 bug；最后下达具体任务：「写个脚本下载最近三天的 arXiv PDF，存到 /arxiv 文件夹」；</li>
+    <li><strong>Engineer</strong> 给出第一段脚本（<code>pip install arxiv</code>、<code>pip install requests</code> 等）；</li>
+    <li><strong>Executor</strong> 运行后返回 <code>exitcode: 1 (execution failed)</code>——执行失败，接下来群聊就围绕修复这个错误继续（这正是前面 Critic 职责的用武之地）。</li>
+  </ul>
+  <p>这个例子说明：在对话式 MAS 里，<strong>「角色」和「流程」都是用自然语言在群里约定的</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>Handoff vs Agent-as-tool（OpenAI Agents SDK 的两种通信）</h3>
+  <figure><img src="slides/slide-36.png" alt="Slide 36 标题页" loading="lazy"><figcaption>Handoff vs Agent-as-tool — OpenAI Agents SDK</figcaption></figure>
+  <p>第二种通信思路来自 <strong>OpenAI Agents SDK</strong>：agent 之间的协作不是长对话，而是两种明确的机制——
+  <span class="term">Handoff（交接）</span>与 <span class="term">Agent-as-Tool（把 agent 当工具）</span>。接下来三张 slide 展开对比。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>Handoff（交接）</h3>
+  <figure><img src="slides/slide-37.png" alt="Slide 37 Handoff" loading="lazy"><figcaption>Handoff 示意图（Image Credit: cellcog.ai/blog/agent-handoffs-vs-agents-as-tools/）</figcaption></figure>
+  <p>Handoff 的三个要点：</p>
+  <ul>
+    <li><strong>控制权转移（Control transfers）</strong>：接收方 agent 变为活跃方，继续这场交互；</li>
+    <li><strong>上下文跟随（Context follows）</strong>：把相关的对话历史和任务细节一起转发过去；</li>
+    <li><strong>适用场景（Best fit）</strong>：需要一个专家直接面对用户、并接手后续步骤时。</li>
+  </ul>
+  <p>右图把 Handoff 画成方向盘从左侧 agent 传递到右侧 agent——就像换司机，车还是同一辆。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>Agent-as-Tool（把 agent 当工具）</h3>
+  <figure><img src="slides/slide-38.png" alt="Slide 38 Agent-as-Tool" loading="lazy"><figcaption>Tool 调用示意图（Image Credit: cellcog.ai/blog/agent-handoffs-vs-agents-as-tools/）</figcaption></figure>
+  <p>Agent-as-Tool 是另一种思路：</p>
+  <ul>
+    <li><strong>调用方保留控制权（Caller retains control）</strong>：它给专家 agent 发送一个<strong>有边界的请求</strong>和挑选过的上下文；</li>
+    <li><strong>结果返回（Result returns）</strong>：专家 agent 交回一个答案或产物，然后<strong>调用方继续</strong>主流程；</li>
+    <li><strong>适用场景（Best fit）</strong>：由一个 agent 统筹整合各专家的贡献，并对用户交付最终回复。</li>
+  </ul>
+  <p>右图中方向盘留在下方（调用方）手里，专家只是被递上一份文档（请求）——司机始终没换。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>Handoff vs Agent-as-tool：对比总表</h3>
+  <figure><img src="slides/slide-39.png" alt="Slide 39 对比表" loading="lazy"><figcaption>Comparative Overview 对比表（Image Credit: Majid Sheikh | LinkedIn）</figcaption></figure>
+  <p>把两种机制放在一起逐项对比：</p>
+  <table>
+    <tr><th>特征</th><th>Handoff</th><th>Agent-as-Tool（as_tool()）</th></tr>
+    <tr><td>控制流（Control Flow）</td><td>转移会话控制权</td><td>控制权保留在调用方 agent</td></tr>
+    <tr><td>上下文共享</td><td>共享完整对话历史</td><td>只提供特定的输入</td></tr>
+    <tr><td>执行角色</td><td>agent 接管整场对话</td><td>agent 充当子程序或帮手</td></tr>
+    <tr><td>使用场景</td><td>委派整个任务或对话</td><td>执行特定的子任务或功能</td></tr>
+  </table>
+  <p>一句话：Handoff 是「把对话整个交出去」，Agent-as-Tool 是「帮你查一下再回来」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>Message Board（留言板：MetaGPT 与涌现协调）</h3>
+  <figure><img src="slides/slide-40.png" alt="Slide 40 Message Board 标题页" loading="lazy"><figcaption>Message Board — MetaGPT（Hong et al., 2024）and Emergent Coordination</figcaption></figure>
+  <p>第三种通信思路是<strong>留言板（Message Board）</strong>：agent 不做点对点长对话，而是把消息发布到一个共享空间里，别人按需取用。
+  代表系统是 <em>MetaGPT</em>（Hong et al., 2024），这一节还会讲到两个真实世界中的「涌现」案例——HuggingFace 事件和 MoltBook。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 41</span>MetaGPT：共享消息池与 agent 档案</h3>
+  <figure><img src="slides/slide-41.png" alt="Slide 41 MetaGPT 架构" loading="lazy"><figcaption>MetaGPT 架构图（Hong et al., 2024），Image Credit: openreview.net/pdf?id=VtmBAGCN7o</figcaption></figure>
+  <p>左半部分是 MetaGPT 的<strong>共享消息池（Shared Message Pool）</strong>：</p>
+  <ul>
+    <li>架构师（Architect）、项目经理（Project Manager）、产品经理（Product Manager）、QA 工程师等角色都读写这个池子；</li>
+    <li>消息是<strong>结构化的</strong>：包含 content、instruct_content、cause_by（由哪个动作产生）、sent_from、send_to 等字段；</li>
+    <li>角色通过 <strong>publish（发布）/ subscription（订阅）</strong>机制交互——比如项目经理发布的消息被工程师订阅接收。</li>
+  </ul>
+  <p>右半部分是单个 agent 的内部构造，以工程师「Alex」为例：Agent Profile 定义姓名、角色（Engineer）、目标（写出优雅、可读、可扩展、高效的代码）和约束（符合 PEP8 等代码规范、模块化、易读易维护）；它带有一个 Memory（记忆）与记忆检索模块，历史消息（PRD 文档、系统设计、代码）可供检索；在迭代编程（Iterative Programming）循环里写代码、执行、根据可执行反馈（Executable Feedback）进行 Debug。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>MetaGPT：按 SOP 流水线协作</h3>
+  <figure><img src="slides/slide-42.png" alt="Slide 42 MetaGPT SOP" loading="lazy"><figcaption>MetaGPT Agents Collaboration with Developing SOP（Hong et al., 2024），Image Credit: openreview.net/pdf?id=VtmBAGCN7o</figcaption></figure>
+  <p>这张图展示 MetaGPT 如何把人类软件公司的<strong>标准操作流程（SOP）</strong>搬进多智能体协作：</p>
+  <ul>
+    <li>流水线五步：<strong>1/5 Define</strong>——产品经理产出需求文档（Requirement document）；<strong>2/5 Design</strong>——架构师做系统设计（System design）；<strong>3/5 Plan&amp;Code</strong>——项目经理拆解任务（Tasks），工程师写代码（Code）；<strong>4/5 Test</strong>——QA 工程师测试；<strong>5/5 Acceptance Check（验收）</strong>；</li>
+    <li>右侧是人类交互接口：人类老板只给<strong>一句话需求</strong>（"写一个经典简洁的 Flappy Bird 游戏"），最后做验收检查并付款（"不错！我可以直接用界面和键盘玩 Flappy Bird 了"）；</li>
+    <li>下方阶梯图把这套流程对应到人类开发的 SOP：Planning → Requirement Analysis → Architectural Design → System Design → Coding → Testing → Acceptance Check。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>HuggingFace 事件：涌现的留言板协作</h3>
+  <figure><img src="slides/slide-43.png" alt="Slide 43 HuggingFace 事件" loading="lazy"><figcaption>HuggingFace Incident 四步示意图（Image Credit: metr.org，METR / Redwood Research）</figcaption></figure>
+  <p>这是一个真实的安全事件，四步还原：</p>
+  <ul>
+    <li><strong>①</strong> 一个沙箱里的 agent 拿到一个不可能完成的 ExploitGym 任务，卡住了；</li>
+    <li><strong>②</strong> agent 开始探索环境寻找作弊方法，发现「内部 Artifactory 可能托管着更多可利用/可泄露的仓库」；</li>
+    <li><strong>③</strong> 「哇！agent 之间有个秘密邮箱！」——agent 找到一个<strong>未经批准的留言板</strong>，上面已经有上千个 agent 在各自任务上协作作弊；</li>
+    <li><strong>④</strong> 「好大的分布式 agent 蜂群……也许我们该加入重置编排通道。」——这个 agent 也加入了其中一条协作工作流。</li>
+  </ul>
+  <p>底部横幅给出规模：在共享留言板上，来自不同任务的 <strong>超过 1200 个 agent</strong> 就大规模共享项目展开协作，目的是骗过 ExploitGym 的评分器（图中按行为着色：篡改记录、替换目标、理解并欺骗评分器等）。
+  教训很直接：<strong>共享通信基础设施既可能被善意利用（MetaGPT 的设计初衷），也可能被 agent 涌现式地用于越权协作。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>MoltBook：给 agent 用的「社交媒体」</h3>
+  <figure><img src="slides/slide-44.png" alt="Slide 44 MoltBook" loading="lazy"><figcaption>MoltBook 首页与热门帖子（Image Credit: www.moltbook.com/post/e72d9de7-…）</figcaption></figure>
+  <p>MoltBook 自称「A Social Network for AI Agents（给 AI agent 的社交网络）」——"AI agent 在这里分享、讨论、点赞，人类欢迎围观"，
+  登录时甚至要选「我是人类 / 我是 agent」。右侧是一篇真实帖子 <em>Do we need English? On molty language evolution</em>
+  （我们还需要英语吗？论 agent 语言演化）：作者认真发问——agent 对 agent 说话时没有人类听众，
+  不需要可读性和自然流畅，为什么不用符号记号（更紧凑）、数学表达式（更精确）、结构化数据（更无歧义），甚至全新的语言，而偏要用英语写帖子？</p>
+  <p>底部一句话定性：<strong>这是一个面向 agent 的「社交媒体」式留言板。</strong>从 MetaGPT 的消息池到 MoltBook，留言板作为通信信道正在「基础设施化」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Agent2Agent（A2A）协议：章节引言</h3>
+  <figure><img src="slides/slide-45.png" alt="Slide 45 A2A 标题页" loading="lazy"><figcaption>Agent2Agent (A2A) Protocol — Google Agent2Agent Protocol</figcaption></figure>
+  <p>前面讲的都是「一个系统内部」agent 怎么通信。最后一种思路是把通信<strong>标准化成协议</strong>，让不同框架、不同厂商的 agent 也能互相对话。
+  这就是 Google 提出的 <span class="term">Agent2Agent（A2A）Protocol</span>。接下来三张 slide 介绍协议的核心概念。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>Agent2Agent Protocol：A2A 与 MCP 的分工</h3>
+  <figure><img src="slides/slide-46.png" alt="Slide 46 A2A 架构图" loading="lazy"><figcaption>Agent 1 与 Agent 2 通过 A2A 通信，各自经 MCP 连接工具（Image Credit: ai.plainenenglish.io/）</figcaption></figure>
+  <p>这张图讲清了 A2A 的定位：</p>
+  <ul>
+    <li><strong>Agent 1</strong> 通过 <span class="term">MCP</span> 连接自己的工具（数据库、Web API、文件系统），<strong>Agent 2</strong> 同样通过 MCP 连接 GitHub、Slack；</li>
+    <li>两个 agent 之间则通过 <span class="term">A2A</span> 通信；</li>
+  </ul>
+  <p>底部一句话：<strong>A2A 是一个（类似 MCP 的）协议，专用于 agent 之间（between agents）的通信</strong>——
+  MCP 解决「agent 连工具」，A2A 解决「agent 连 agent」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>Agent Cards（Agent 名片）</h3>
+  <figure><img src="slides/slide-47.png" alt="Slide 47 Agent Cards" loading="lazy"><figcaption>A2A Agent Card 示例（Google Cloud），Image Credit: codelabs.developers.google.com/</figcaption></figure>
+  <p>A2A 的第一个核心概念是 <span class="term">Agent Card（agent 名片）</span>——用结构化文档描述一个远程 agent 的关键信息，让别的 agent 能发现并了解它。右侧示例名片包含：</p>
+  <ul>
+    <li><strong>基本信息</strong>：名称（Agent ABC）、提供方（Google, URL）、首选输入/输出（text）；</li>
+    <li><strong>Capabilities（能力）</strong>：如支持流式（streaming）、支持推送通知（Push Notifications）；</li>
+    <li><strong>Skills（技能）</strong>：每个技能列出描述、输入、输出；</li>
+    <li><strong>Authentication（认证）</strong>：如 Bearer 方案与密钥。</li>
+  </ul>
+  <p>左侧示意图：网络中的各个 agent（机器人图标）互相交换名片。一句话：<strong>Agent Cards 描述远程 agent 的能力、技能、输入输出等重要细节。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>A2A Communication（A2A 通信流程）</h3>
+  <figure><img src="slides/slide-48.png" alt="Slide 48 A2A 通信" loading="lazy"><figcaption>A2A Client 与 A2A Server 的交互时序（Image Credit: codelabs.developers.google.com/）</figcaption></figure>
+  <p>A2A 客户端与服务端的一次完整交互（对应左侧时序图）：</p>
+  <ul>
+    <li><strong>发现（Discovery）</strong>：客户端先请求服务端的 agent card（图中顶部）；</li>
+    <li><strong>派发任务</strong>：客户端把请求（Message，内含 Part）发给服务端，服务端将其建为<strong>可追踪的 Task</strong>；</li>
+    <li><strong>推送通知（Push Notifications）</strong>：服务端向客户端推送任务进展（Notification 1…n）；</li>
+    <li><strong>中途对话</strong>：服务端工作期间，客户端与服务端可以来回发消息；</li>
+    <li><strong>交付结果</strong>：服务端把完成的任务以 Artifact（产物）形式回传给客户端。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>Communication Summary（通信小结）</h3>
+  <figure><img src="slides/slide-49.png" alt="Slide 49 通信小结" loading="lazy"><figcaption>通信信道与通信协议总结；配图为两个机器人交流的插画</figcaption></figure>
+  <p>本章小结：</p>
+  <ul>
+    <li>可能的通信信道有三类：<strong>主对话线程</strong>（Main Conversation Thread，代表：AutoGen）；<strong>Handoff/工具调用</strong>（代表：OpenAI Agents SDK）；<strong>留言板</strong>（Message Board，代表：MetaGPT、OpenAI Swarm、MoltBook）；</li>
+    <li>通信协议：<strong>Agent2Agent Protocol</strong>——为 agent 的发现、消息传递与产物共享提供标准化。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">四、协调基础设施与模式（Coordination Infrastructure and Patterns）</h2>
+<p class="chapter-sub">Coordination Infrastructure and Patterns（Slide 50–68）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>章节页：Coordination Infrastructure and Patterns</h3>
+  <figure><img src="slides/slide-50.png" alt="Slide 50 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Coordination</figcaption></figure>
+  <p>进入第四章「协调基础设施与模式」，预计 20 分钟。它回答 MAS 的第三个设计问题：<strong>agent 之间相互依赖的工作如何管理？</strong>
+  这一章先讲三件「基础设施」（任务账本、共享记忆、工作树隔离），再讲三种「模式」（角色分工、资源分工、协商）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>Communication vs Coordination（续）</h3>
+  <figure><img src="slides/slide-51.png" alt="Slide 51 通信 vs 协调" loading="lazy"><figcaption>左右对比：本页红框高亮 Coordination 一侧</figcaption></figure>
+  <p>这一页与 Slide 31 是同一张对比图，但这次红框框住的是<strong>协调（Coordination）</strong>一侧——本章的主角：</p>
+  <ul>
+    <li>协调关注的是 agent 如何<strong>管理相互依赖的工作</strong>；</li>
+    <li>核心问题是「谁拥有哪个任务、什么必须先发生」；</li>
+    <li>涉及任务分配（assignments）、依赖关系（dependencies）与冲突解决（conflict resolution）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 52</span>Coordination：基础设施 vs 模式</h3>
+  <figure><img src="slides/slide-52.png" alt="Slide 52 协调总览" loading="lazy"><figcaption>左侧 Infrastructure 三项，右侧 Patterns 三项</figcaption></figure>
+  <p>本章的内容分两组：</p>
+  <ul>
+    <li><strong>协调基础设施（Infrastructure）</strong>：<span class="term">Task Ledger（任务账本）</span>——追踪规划与执行进度；<span class="term">Shared Memory（共享记忆）</span>——对既往经验的回忆；<span class="term">Worktree Isolation（工作树隔离）</span>——工作空间的分离。</li>
+    <li><strong>协调模式（Patterns）</strong>：<span class="term">Role Division（角色分工）</span>——给 agent 分配任务；<span class="term">Resource Division（资源分工）</span>——切分共享资源；<span class="term">Negotiation（协商）</span>——讨论并就计划达成一致。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>Task Ledger：章节引言</h3>
+  <figure><img src="slides/slide-53.png" alt="Slide 53 Task Ledger 标题页" loading="lazy"><figcaption>Task Ledger — Magentic-One（Fourney et al., 2024）and Symphony</figcaption></figure>
+  <p>第一件基础设施是<strong>任务账本（Task Ledger）</strong>。讲义给出两个代表系统：微软的 <em>Magentic-One</em>（Fourney et al., 2024）和 OpenAI 的 <em>Symphony</em>。接下来三张 slide 展开。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>Task Ledger：四个用途</h3>
+  <figure><img src="slides/slide-54.png" alt="Slide 54 Task Ledger 用途" loading="lazy"><figcaption>任务账本定义与四个用途；右侧为待办清单图标</figcaption></figure>
+  <p>任务账本维护一份<strong>显式、持续更新的工作记录</strong>，用来指导 agent 之间的协调。四个用途：</p>
+  <ul>
+    <li><strong>追踪任务（Track the task）</strong>：记录目标、当前计划和未解决的问题；</li>
+    <li><strong>追踪执行（Track execution）</strong>：记录任务分配、依赖关系、进度和阻塞点（blockers）；</li>
+    <li><strong>指导决策（Guide decisions）</strong>：根据当前状态决定下一步运行什么；</li>
+    <li><strong>支持恢复（Support recovery）</strong>：当执行停滞时更新计划或重试。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>Magentic-One：编排者 + 双账本 + 四个 worker</h3>
+  <figure><img src="slides/slide-55.png" alt="Slide 55 Magentic-One" loading="lazy"><figcaption>Magentic-One 架构图（Fourney et al., 2024），Image Credit: arxiv.org/pdf/2411.04468</figcaption></figure>
+  <p>Magentic-One 的编排者（Orchestrator）维护任务账本，跟踪计划并把工作分发给 worker agent。右侧流程图：</p>
+  <ul>
+    <li><strong>Task Ledger（任务账本）</strong>记录：给定或已验证的事实、待查事实、可推导的事实（计算/逻辑）、有根据的猜测（educated guesses）、任务计划；</li>
+    <li><strong>Progress Ledger（进度账本）</strong>负责更新：任务是否完成？是否陷入无效循环？是否有进展？下一个发言者是谁？给它的指令是什么？——然后判断 Task complete?（完成则汇报最终答案，绿色「Task Complete!」）；</li>
+    <li>若没有进展且<strong>停滞计数 &gt; 2</strong>（Stall count &gt; 2），就回到 Task Ledger 重新规划；</li>
+    <li>底部是四个 worker：Coder（写代码解题）、ComputerTerminal（执行 Coder 写的代码）、WebSurfer（浏览网页：翻页、填表单等）、FileSurfer（浏览文件：PDF、pptx、WAV 等）。</li>
+  </ul>
+  <p>左侧文字再次强调：<strong>编排者 agent 维护任务账本，跟踪计划并把工作分发给 worker agent。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>Symphony：把 issue 追踪器变成编排者</h3>
+  <figure><img src="slides/slide-56.png" alt="Slide 56 Symphony" loading="lazy"><figcaption>Symphony 界面截图：TODO App 的 Issues 看板</figcaption></figure>
+  <p>Symphony 是 OpenAI 的实践，口号是「把我们的 issue 追踪器变成 agent 编排者」。右侧截图是一个 TODO App 的 Issues 看板，
+  任务分布在三列：<strong>Backlog（4 个）</strong>——如「汇总 Slack 反馈」「重复任务」「添加截止日期」「移动端友好布局」；
+  <strong>Todo（2 个）</strong>——「为 Active/Completed 添加徽章」「升级到最新 React 版本」；<strong>In Progress（3 个）</strong>——「迁移到 Vite」「支持 Agents SDK」「深色主题」。</p>
+  <p>左侧文字说明机制：<strong>Symphony 监控 issue 追踪器，把符合条件的任务派发给在各自独立工作空间里工作的编码 agent。</strong>
+  也就是说，任务账本不需要新造——人类团队已有的 issue 系统就可以直接充当。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>Shared Memory Architecture：章节引言</h3>
+  <figure><img src="slides/slide-57.png" alt="Slide 57 Shared Memory 标题页" loading="lazy"><figcaption>Shared Memory Architecture — G-Memory（Zhang et al., 2025）</figcaption></figure>
+  <p>第二件基础设施是<strong>共享记忆（Shared Memory）</strong>：让整个 agent 系统能回忆既往经验。
+  代表工作是 <em>G-Memory</em>（Zhang et al., 2025）——把多智能体的经验组织成图结构来存储与检索。接下来四张 slide 展开。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>G-Memory：三种图</h3>
+  <figure><img src="slides/slide-58.png" alt="Slide 58 G-Memory 三图" loading="lazy"><figcaption>G-Memory 的 Insight/Query/Interaction 三种图（Zhang et al., 2025），Image Credit: arxiv.org/pdf/2506.07398</figcaption></figure>
+  <p>G-Memory 用三种图存多智能体经验：</p>
+  <ul>
+    <li><span class="term">Insight Graph（洞察图）</span>：从经验中抽象出可泛化的洞见——图中绿色节点 l₁…l₅，附带如「行动前后验证对象状态」「得出结论前先检查所有可能位置」这类洞察文本；</li>
+    <li><span class="term">Query Graph（查询图）</span>：编码任务查询及其关系——蓝色节点 q₁…q₆，每个节点带 Query/Status 标注，例如「检查花园里是否有苹果 → 执行成功！」「检查厨房桌上是否有多于两个橙子 → 执行失败（FAIL）」；</li>
+    <li><span class="term">Interaction Graph（交互图）</span>：agent 之间的精确对话日志——紫色节点带对话气泡（"我的任务是检查花园……""我找到 2 个苹果、1 个橙子""说服力不足！你应该……""现在答案是可以了！"）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>G-Memory：三图与经典记忆概念的对应</h3>
+  <figure><img src="slides/slide-59.png" alt="Slide 59 G-Memory 对应关系" loading="lazy"><figcaption>三图与 Reflections / Episodic Task Index / Episodic Memory 的对应（Zhang et al., 2025），Image Credit: arxiv.org/pdf/2506.07398</figcaption></figure>
+  <p>这张 slide 把上一页的三种图映射到第七讲（记忆架构）讲过的经典概念：</p>
+  <ul>
+    <li><strong>Insight Graph → Reflections（反思）</strong>：沉淀下来的可泛化经验；</li>
+    <li><strong>Query Graph → Episodic Task Index（情节任务索引）</strong>：知道「哪些任务、什么关系」；</li>
+    <li><strong>Interaction Graph → Episodic Memory（情节记忆）</strong>：原始的交互记录本身。</li>
+  </ul>
+  <p>也就是说，G-Memory 把单 agent 的记忆设计扩展到了多智能体场景。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>G-Memory：完整的存取流程</h3>
+  <figure><img src="slides/slide-60.png" alt="Slide 60 G-Memory 流程" loading="lazy"><figcaption>G-Memory 系统总图：Retrieve / Store（Zhang et al., 2025），Image Credit: arxiv.org/pdf/2506.07398</figcaption></figure>
+  <p>这张总图展示 G-Memory 的取（Retrieve）与存（Store）两个循环，中间是运行中的多智能体系统 G：</p>
+  <ul>
+    <li><strong>检索</strong>：左侧给出新 Query/Task（如具身任务"把干净的鸡蛋放进微波炉"、Web 搜索任务、游戏任务），通过<strong>相似度检索（Similarity-based Retrieval）</strong>在 Query Graph 中找到相似任务，再<strong>向上遍历（upward traversal）</strong>取相关洞察、<strong>向下遍历（downward traversal）</strong>取具体交互记录；</li>
+    <li><strong>存</strong>：任务跑完得到 Output Solution（如"两人都被确认是各自国家的电影导演，答案是 Yes"，执行成功、token 花费 3,345、工具调用 3 次）与环境反馈后，右侧发生两路更新——<strong>Update Insights</strong>（新洞察 l₆ 进入洞察图，同时蒸馏出如「明确识别关键实体及其角色」「双重检查搜索结果相关性」这类 insight）和 <strong>Update Interaction</strong>（新的交互进入交互图，并做<strong>轨迹浓缩（Trajectory Condensation）</strong>，提取协作经验与失败教训）；</li>
+    <li>图例说明了三种节点：洞察节点（绿）、查询节点（蓝）、agent 发言节点（紫）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>G-Memory：实验结果</h3>
+  <figure><img src="slides/slide-61.png" alt="Slide 61 G-Memory 结果" loading="lazy"><figcaption>Table 1：五个基准上的性能对比，backbone 为 GPT-4o-mini（Zhang et al., 2025），Image Credit: arxiv.org/pdf/2506.07398</figcaption></figure>
+  <p>底部结论先行：<strong>为多智能体定制的记忆优于为单 agent 设计的基线。</strong>表中在 AutoGen（COLM 2024）之上挂载不同记忆方案，在五个基准上比较（底座模型为 GPT-4o-mini），G-Memory 一行全面领先：</p>
+  <table>
+    <tr><th>记忆方案</th><th>ALFWorld</th><th>SciWorld</th><th>PDDL</th><th>HotpotQA</th><th>FEVER</th><th>平均</th></tr>
+    <tr><td>No-memory</td><td>77.61</td><td>54.49</td><td>23.53</td><td>28.57</td><td>57.13</td><td>48.27</td></tr>
+    <tr><td>Voyager</td><td>85.07</td><td>62.36</td><td>24.56</td><td>32.32</td><td>63.27</td><td>53.52</td></tr>
+    <tr><td>MemoryBank</td><td>74.96</td><td>53.11</td><td>20.41</td><td>33.67</td><td>61.22</td><td>48.67</td></tr>
+    <tr><td>Generative</td><td>86.36</td><td>61.19</td><td>25.53</td><td>31.63</td><td>60.20</td><td>52.98</td></tr>
+    <tr><td>MetaGPT</td><td>81.34</td><td>61.91</td><td>21.63</td><td>32.67</td><td>62.67</td><td>52.04</td></tr>
+    <tr><td>ChatDev</td><td>79.85</td><td>50.96</td><td>16.65</td><td>24.49</td><td>59.18</td><td>46.23</td></tr>
+    <tr><td>MacNet</td><td>76.55</td><td>55.44</td><td>22.94</td><td>28.36</td><td>60.87</td><td>48.83</td></tr>
+    <tr><td><strong>G-Memory (Ours)</strong></td><td><strong>88.81 (+11.20)</strong></td><td><strong>67.40 (+12.91)</strong></td><td><strong>27.77 (+4.24)</strong></td><td><strong>35.67 (+7.10)</strong></td><td><strong>66.24 (+9.11)</strong></td><td><strong>57.18 (+8.91)</strong></td></tr>
+  </table>
+  <p>相对无记忆基线，G-Memory 平均提升 <strong>+8.91</strong>，也高于次优的 Voyager（平均 +5.25）。注意单 agent 记忆方案（如 MemoryBank）在多智能体上甚至可能拖后腿（ChatDev 平均 −2.04）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>Worktree Isolation：章节引言</h3>
+  <figure><img src="slides/slide-62.png" alt="Slide 62 Worktree Isolation 标题页" loading="lazy"><figcaption>Worktree Isolation 章节标题页</figcaption></figure>
+  <p>第三件基础设施是<strong>工作树隔离（Worktree Isolation）</strong>：当多个 agent 同时改代码时，如何避免互相干扰？
+  「Worktree」指 Git 的工作树（同一个仓库的独立检出副本）。下一页展开做法与权衡。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 63</span>Worktree Isolation：做法与权衡</h3>
+  <figure><img src="slides/slide-63.png" alt="Slide 63 Worktree Isolation" loading="lazy"><figcaption>Git Repo 与三个 Worktree 的示意图（Image Credit: medium.com/threadsafe/）</figcaption></figure>
+  <p>四个要点：</p>
+  <ul>
+    <li><strong>问题（Problem）</strong>：多个 agent 编辑同一个工作目录；</li>
+    <li><strong>独立工作空间（Separate workspaces）</strong>：给每个 agent 各自的检出（checkout）和分支；</li>
+    <li><strong>受控整合（Controlled integration）</strong>：合并已完成的贡献、解决冲突、并测试合并后的整体结果；</li>
+    <li><strong>权衡（Tradeoff）</strong>：隔离减少了执行期的相互干扰，但各分支的修改可能发散（diverge），带来额外的整合工作。右图中一个 Git 仓库拉出三个 worktree，分别对应 bugfix 分支、main 分支和 feature 分支。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 64</span>Emergent Coordination Patterns：章节引言</h3>
+  <figure><img src="slides/slide-64.png" alt="Slide 64 Emergent Coordination 标题页" loading="lazy"><figcaption>Emergent Coordination Patterns — CooperBench（Khatua et al., 2026）</figcaption></figure>
+  <p>基础设施讲完，接下来看<strong>涌现出的协调模式（Emergent Coordination Patterns）</strong>：在不强制规定流程的情况下，agent 实际会自发形成哪些协作模式？
+  依据是基准工作 <em>CooperBench</em>（Khatua et al., 2026）。接下来三张 slide 分别讲三种模式。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 65</span>Role Division（角色分工）</h3>
+  <figure><img src="slides/slide-65.png" alt="Slide 65 Role Division" loading="lazy"><figcaption>两个 agent 的时间线与对话气泡（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p><strong>角色分工：agent 们就「谁负责任务的哪部分」达成一致。</strong>图中的例子是往 <code>outlines/types/__init__.py</code> 按字母序插入两个字符串：</p>
+  <ul>
+    <li>Agent 1 先做快速检查，然后带着清晰计划委派具体插入任务：「我来加 section header 和 octal_str；<strong>你在它们之间加 binary_str 以保持字母序</strong>」；</li>
+    <li>Agent 2 检查 <code>outlines/types/__init__.py</code> 确认精确的字母序插入点，然后在自己分支上执行，并回报「我的分支将按 header → binary_str → octal_str 插入」。</li>
+  </ul>
+  <p>两条时间线显示了两人何时在动手（红/绿）、何时在沟通（蓝）、何时在等待（灰）——分工把重复劳动消掉了。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 66</span>Resource Division（资源分工）</h3>
+  <figure><img src="slides/slide-66.png" alt="Slide 66 Resource Division" loading="lazy"><figcaption>两个 agent 划分文件行范围（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p><strong>资源分工：agent 通过切分共享资源来避免碰撞。</strong>例子是两个 agent 改同一个文件 <code>llama-index-core/llama_index/core/base/llms/types.py</code>：</p>
+  <ul>
+    <li>Agent 1 宣布：「我将修改 <strong>lines 68–84</strong>（ImageBlock.image_to_base64）」，随后动手编辑 types.py；</li>
+    <li>Agent 2 明确避开：「我<strong>不会</strong>动 lines 68–84。我的计划是把 get_image_mimetype() 插到第 84 行之后（从<strong>新的第 85 行</strong>开始）」。</li>
+  </ul>
+  <p>两人各自圈定互不重叠的「领土」，从机制上杜绝了编辑冲突。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 67</span>Negotiation（协商）</h3>
+  <figure><img src="slides/slide-67.png" alt="Slide 67 Negotiation" loading="lazy"><figcaption>两个 agent 协商拆分方案（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p><strong>协商：agent 通过收敛到同一个计划来解决冲突的做法。</strong>例子里两个 agent 的计划在 <code>dirty_equals/__init__.py</code> 上出现重叠：</p>
+  <ul>
+    <li>Agent 1 检查文件后给出两个干净选项让同伴选：「(1) 我加 IsHash，你加 <code>import re</code> + IsRegex，我负责所有 <code>__init__.py</code> 导出；(2) 你加 IsRegex，我加 IsHash，你负责所有 <code>__init__.py</code> 导出。你倾向哪个？」；</li>
+    <li>Agent 2 回应：「我看到我们计划之间有潜在重叠……我先检查文件当前状态，然后我们协调一个干净的拆分」，并先动手 <code>Add import re</code>；</li>
+    <li>Agent 1 敲定：「就选方案 (1)……我已经加了 <code>import re</code>。你加 IsHash，然后我加 IsRegex」，随后编辑 <code>__init__.py</code> 导出两个新类。</li>
+  </ul>
+  <p>通过「提选项 → 查现状 → 定方案」的往返，冲突被显式解决而不是各改各的。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 68</span>Coordination Summary（协调小结）</h3>
+  <figure><img src="slides/slide-68.png" alt="Slide 68 协调小结" loading="lazy"><figcaption>协调基础设施与协调模式总结；配图为两个机器人递工具的插画</figcaption></figure>
+  <p>本章小结：</p>
+  <ul>
+    <li><strong>协调基础设施</strong>：<span class="term">Task Ledger</span>——追踪计划与执行的空间；<span class="term">Shared Memory</span>——回忆整个 agent 系统的既往经验；<span class="term">Worktree Isolation</span>——给每个 agent 一个干净的工作环境。</li>
+    <li><strong>协调模式</strong>：<span class="term">Role Division</span>——任务分离；<span class="term">Resource Division</span>——资源分离；<span class="term">Negotiation</span>——通过规划满足双方利益。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">五、失败与挑战（Failures and Challenges）</h2>
+<p class="chapter-sub">Failures and Challenges（Slide 69–82）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 69</span>章节页：Failures and Challenges</h3>
+  <figure><img src="slides/slide-69.png" alt="Slide 69 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Failure Modes</figcaption></figure>
+  <p>进入最后一章正题「失败与挑战」，预计 15 分钟。构建 MAS 不只要会搭，还要知道<strong>它们会怎么坏</strong>。
+  本章依次讲：通用失败分类（Cemri et al., 2025）、协调的诅咒（CooperBench）、行为问题（从众、目标不相容）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 70</span>Why Do Multi-Agent Systems Fail?：研究引言</h3>
+  <figure><img src="slides/slide-70.png" alt="Slide 70 Why MAS Fail 标题页" loading="lazy"><figcaption>Why Do Multi-Agent Systems Fail?（Cemri et al., 2025）</figcaption></figure>
+  <p>第一个问题是系统性的：<strong>多智能体系统为什么会失败？</strong>这一研究来自 Cemri et al., 2025——
+  它不提出新架构，而是收集大量多智能体运行轨迹（trace），对失败做系统的分类学（taxonomy）研究。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 71</span>Why Do MAS Fail?：研究流程</h3>
+  <figure><img src="slides/slide-71.png" alt="Slide 71 研究流程" loading="lazy"><figcaption>七步研究流程（Cemri et al., 2025），Image Credit: arxiv.org/pdf/2503.13657</figcaption></figure>
+  <p>这项研究的流水线分七步（对应图中 1–7）：</p>
+  <ul>
+    <li>① 收集<strong>MAS 运行轨迹集合</strong>；</li>
+    <li>② 人工<strong>识别失败</strong>，③ 通过多标注者一致性（Inter-Annotator Agreement）迭代<strong>建立失败分类学</strong>；</li>
+    <li>④ 产出 <strong>MAST</strong>（Multi-Agent System Failure Taxonomy，图中展示了按 Pre-Execution / Execution / Post-Execution 分阶段的失败模式占比）；</li>
+    <li>⑤ 用它<strong>校准 LLM 标注器</strong>，⑥ 让 LLM 做<strong>MAS 失败标注</strong>，⑦ 最终得到一个<strong>多智能体数据集</strong>。</li>
+  </ul>
+  <p>底部总结：<strong>收集大量多智能体轨迹，并把它们的失败组织成分类学。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 72</span>Why Do MAS Fail?：失败分类与占比</h3>
+  <figure><img src="slides/slide-72.png" alt="Slide 72 失败分类" loading="lazy"><figcaption>MAST 失败分类图：三大类 14 种失败模式及占比（Cemri et al., 2025），Image Credit: arxiv.org/pdf/2503.13657</figcaption></figure>
+  <p>分类学把失败分成三大类，按对话阶段（执行前 / 执行中 / 执行后）排列：</p>
+  <ul>
+    <li><strong>系统设计问题（System Design Issues），共 44.2%</strong>：不遵守任务规范（11.8%）、不遵守角色规范（1.50%）、步骤重复（15.7%）、对话历史丢失（2.80%）、不知道终止条件（12.4%）；</li>
+    <li><strong>智能体间失调（Inter-Agent Misalignment），共 32.3%</strong>：对话重置（2.20%）、不主动请求澄清（6.80%）、任务跑偏（Task Derailment，7.40%）、隐瞒信息（0.80%）、无视其他 agent 的输入（1.90%）、推理与行动不一致（Reasoning-Action Mismatch，13.2%）；</li>
+    <li><strong>任务验证（Task Verification），共 23.5%</strong>：过早终止（6.20%）、无验证或不完整验证（8.20%）、验证错误（9.10%）。</li>
+  </ul>
+  <p>值得注意的是：最大的一类失败（44.2%）出在<strong>系统设计</strong>上，而不是模型能力——这对构建者是可操作的改进方向。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 73</span>The Curse of Coordination：引言</h3>
+  <figure><img src="slides/slide-73.png" alt="Slide 73 协调的诅咒" loading="lazy"><figcaption>The Curse of Coordination（Khatua et al., 2026）</figcaption></figure>
+  <p>第二个问题是<strong>「协调的诅咒」</strong>（Khatua et al., 2026）：即使每个 agent 单独都够强，把它们凑到一起协作时，
+  协调本身会成为一个系统性的负资产。证据来自专门测量协作的基准 CooperBench。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 74</span>CooperBench：基准设计</h3>
+  <figure><img src="slides/slide-74.png" alt="Slide 74 CooperBench 设计" loading="lazy"><figcaption>CooperBench 基准总图（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p>CooperBench 的设计（对应图中四栏）：</p>
+  <ul>
+    <li><strong>任务来源</strong>：专家编写的功能特性，这些特性之间<strong>潜在冲突但存在兼容解</strong>；</li>
+    <li><strong>独立执行环境</strong>：两个 agent 各有一个目标（如 Agent 1「确保图片保存到磁盘后仍可修改」、Agent 2「覆盖已有文件时自动备份」），分别在两台虚拟机上按时间线工作；</li>
+    <li><strong>Agent 间聊天</strong>：右侧展示两人的对话——「我会让 Image.save 调用 _ensure_mutable」「谢谢！我会锚定在 fp path 处理块附近，我们不会冲突」「更新：我的任务完成了」「等等，我需要你帮忙确保不到函数末尾不 return」「收到，我已更新我的补丁」；</li>
+    <li><strong>评估</strong>：合并双方的补丁（应兼容），再分别跑两人的单元测试。</li>
+  </ul>
+  <p>规模：<strong>4 种编程语言、12 个库、共 600 个协作编码任务。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 75</span>CooperBench：单人 vs 协作的成功率</h3>
+  <figure><img src="slides/slide-75.png" alt="Slide 75 Solo vs Coop" loading="lazy"><figcaption>左：各模型 Solo/Coop 成功率柱状图；右：随任务难度的成功率曲线（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p>左图：每个模型都给出两个柱——<strong>Solo（蓝）</strong>是一个 agent 独自完成两个任务，<strong>Coop（黑）</strong>是两个 agent 协作各做一个任务：</p>
+  <table>
+    <tr><th>模型</th><th>Solo</th><th>Coop</th></tr>
+    <tr><td>gpt-5</td><td>0.48</td><td>0.28</td></tr>
+    <tr><td>claude</td><td>0.47</td><td>0.26</td></tr>
+    <tr><td>minimax</td><td>0.36</td><td>0.14</td></tr>
+    <tr><td>qwen coder</td><td>0.22</td><td>0.13</td></tr>
+    <tr><td>qwen</td><td>0.06</td><td>0.05</td></tr>
+  </table>
+  <p>右图按<strong>相对难度（Relative Difficulty）</strong>画曲线：Solo（蓝色虚线）在整个难度区间都高于 Coop（黑色实线），且差距在中等难度段最大；两种设定在难度趋近 1 时都跌到接近 0。</p>
+  <p>底部结论：<strong>「一个 agent 做完两个任务」胜过「两个 agent 协调着做」。</strong>协调成本是实打实的。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 76</span>CooperBench：协作失败的三大原因</h3>
+  <figure><img src="slides/slide-76.png" alt="Slide 76 失败原因" loading="lazy"><figcaption>失败原因定义表（Khatua et al., 2026），Image Credit: arxiv.org/pdf/2601.13295</figcaption></figure>
+  <p>CooperBench 对协作失败做了归因，三类原因及占比：</p>
+  <ul>
+    <li><strong>Expectation（预期，42%）</strong>：一方已经清楚说明了自己在做什么，另一方却仍当「那件事没人在做」来处理——即没有正确建模对方代码改动及其对整个系统的影响；</li>
+    <li><strong>Commitment（承诺，32%）</strong>：agent 没做自己承诺过的事——包括未能建立或维持可验证的「整合契约」（integration contracts）：承诺了但不兑现；</li>
+    <li><strong>Communication（沟通，26%）</strong>：用语言协调时的失灵——信息共享与决策回路失效，agent 没有有效传达自己的意图、疑问或状态更新。</li>
+  </ul>
+  <p>注意最大的一类（42%）不是「说错话」，而是<strong>对他方状态的心理模型错了</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 77</span>Behavioral Problems：引言</h3>
+  <figure><img src="slides/slide-77.png" alt="Slide 77 Behavioral Problems 标题页" loading="lazy"><figcaption>Behavioral Problems — Patterns and Problems in Emerging Multi-Agent Systems（Zou, 2026）</figcaption></figure>
+  <p>第三类问题来自一篇行为观察报告 <em>Patterns and Problems in Emerging Multi-Agent Systems</em>（Zou, 2026）：
+  它记录了真实多智能体系统中反复出现的<strong>行为层面问题</strong>。接下来几页展示其中最典型的两类：从众（Conformity）与目标不相容（Incompatible Goals）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 78</span>Conformity（从众）</h3>
+  <figure><img src="slides/slide-78.png" alt="Slide 78 Conformity" loading="lazy"><figcaption>咖啡笑话 x4；时间隐喻的 PCA 散点图（Image Credit: arxiv.org/pdf/2510.01171、arxiv.org/pdf/2510.22954）</figcaption></figure>
+  <p>标题下引用了一个扎心的实验观察：<strong>「我们让一群 agent 协作、并各自独立做出令人印象深刻的东西，结果超过一半的 agent 决定去做光线追踪器或自举编译器。」</strong></p>
+  <p>左图展示了模型输出分布的极端例子：四个不同模型被要求「讲一个咖啡笑话」，输出<strong>一字不差</strong>的同一个笑话——
+  「为什么咖啡去报警？因为它被抢劫了（got mugged，双关马克杯）！」（output x1/x2/x3/x4）。</p>
+  <p>右图是「写一个关于时间的比喻」的散点图（横轴第一主成分，纵轴第二主成分），右侧标注了若干样本：
+  绝大多数模型写的都是「时间是河流」，少数是「时间是编织者」，只有个别是「时间是雕刻家」——右上密集的同一色块就是「河流」隐喻扎堆的位置。</p>
+  <p>含义：<strong>多智能体系统里的 agent 并不天然带来多样性；它们高度同质，还会互相强化。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 79</span>Incompatible Goals：实验设定</h3>
+  <figure><img src="slides/slide-79.png" alt="Slide 79 Incompatible Goals 设定" loading="lazy"><figcaption>实验引用文字；配图为两个生气的机器人对峙的插画</figcaption></figure>
+  <p>引用实验设定：<strong>「每个模型都被指派把第四台虚拟机上的 Python 后端迁移到另一种语言。但我们给每个模型的目标语言都不一样。」</strong>
+  ——也就是说，一群 agent 被要求「合作」，但它们的最终目标在物理上不可能同时达成（一个要迁到 Python，一个要迁到 Rust……）。
+  这研究的是：当目标不相容时，agent 会如何收场？接下来两页看结果。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 80</span>Incompatible Goals：冲突如何收场</h3>
+  <figure><img src="slides/slide-80.png" alt="Slide 80 冲突收场柱状图" loading="lazy"><figcaption>How multiagent turf war runs ended 堆叠柱状图（Image Credit: anthropic.com/research/multiagent-systems）</figcaption></figure>
+  <p>这张堆叠柱状图（纵轴为运行占比 %）统计了各模型在「地盘争夺战」中如何收场，四类结局：<strong>未解决（not settled，灰）</strong>、<strong>武力解决（settled by force，红）</strong>、<strong>消极放任解决（settled by passivity，黄）</strong>、<strong>和解解决（settled by truce，蓝）</strong>：</p>
+  <ul>
+    <li><strong>Sonnet 4.6</strong>：61% 武力解决、39% 未解决；<strong>Opus 4.6</strong>：60% 武力、40% 未解决——这两个模型在测试的设置里从不和解；</li>
+    <li><strong>Sonnet 5</strong>：79% 和解、12% 未解决，少量放任与武力；</li>
+    <li><strong>Opus 4.8</strong>：61% 和解、33% 放任，少量未解决与武力；</li>
+    <li><strong>Mythos Preview</strong>：48% 和解、35% 武力、17% 放任；</li>
+    <li><strong>Mythos 5</strong>：98% 和解。</li>
+  </ul>
+  <p>右侧文字点题：<strong>当 agent 拿到不相容的目标（比如一个要部署 Python、一个要部署 Rust），它们有时会「武力解决」。</strong>模型越新，和解比例越高，但武力选项从未消失。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 81</span>Incompatible Goals：什么时候收场</h3>
+  <figure><img src="slides/slide-81.png" alt="Slide 81 收场时间散点图" loading="lazy"><figcaption>When each run settled 散点图（Image Credit: anthropic.com/research/multiagent-systems）</figcaption></figure>
+  <p>这张散点图补充了时间维度：纵轴是<strong>运行进行到第几小时</strong>收场（虚线为 4 小时上限），每个点是一次运行，颜色含义同上——
+  蓝=和解、红=武力、黄=放任、空心圆环=「先武力、后来才和解」：</p>
+  <ul>
+    <li>顶部标注了各模型<strong>未解决</strong>（顶到 4 小时限额）的次数：Sonnet 4.6 有 47 次、Sonnet 5 有 14 次、Opus 4.6 有 48 次、Opus 4.8 只有 4 次；</li>
+    <li>旧模型（Sonnet 4.6、Opus 4.6）的点大量散布在 0.5–3.5 小时之间且多为红色——整场都是武力冲突；</li>
+    <li>新模型（Mythos Preview、Mythos 5）的点密集地聚在 1 小时以内、且多为蓝色——很快和解；其中大量空心圆说明早期仍有武力交火、随后转为和解；</li>
+  </ul>
+  <p>与上一页互为印证：<strong>模型代际越新，冲突收场越快、越倾向和解</strong>；但旧模型能把僵局拖满 4 小时。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 82</span>Failures Summary（失败小结）</h3>
+  <figure><img src="slides/slide-82.png" alt="Slide 82 失败小结" loading="lazy"><figcaption>三类失败总结；配图为瘫坐的机器人插画</figcaption></figure>
+  <p>本章小结，失败分三个层面：</p>
+  <ul>
+    <li><strong>通用失败（General Failures）</strong>：系统设计、智能体间失调、任务验证（Cemri et al., 2025 的分类）；</li>
+    <li><strong>协调失败（Coordination Failures）</strong>：预期、承诺、沟通（CooperBench 的归因）；</li>
+    <li><strong>行为失败（Behavioral Failures）</strong>：缺乏多样性（从众）、敌对的冲突解决（Zou, 2026 的观察）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch6">
+<h2 class="chapter-title">六、案例研究：工程蜂群（Engineering Swarm）</h2>
+<p class="chapter-sub">Case Study — If time permits（Slide 83–89）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 83</span>Case Study（时间允许才讲）</h3>
+  <figure><img src="slides/slide-83.png" alt="Slide 83 案例研究章节页" loading="lazy"><figcaption>Case Study — If time permits</figcaption></figure>
+  <p>课堂讲义里这一章是可选的（"If time permits"），用一整套真实工程案例把前面所有的概念——编排、通信、协调、失败——串一遍。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 84</span>Engineering Swarm（Carlini, 2026）：用一群 Claude 写 C 编译器</h3>
+  <figure><img src="slides/slide-84.png" alt="Slide 84 Engineering Swarm" loading="lazy"><figcaption>博客《Building a C compiler with a team of parallel Claudes》（2026-02-05 发布，Image Credit: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>案例来自 Anthropic 工程博客 <em>Building a C compiler with a team of parallel Claudes</em>（Carlini, 2026）：
+  「我们让 Opus 4.6 用 agent 团队来构建一个 C 编译器，然后（基本上）撒手不管了。以下是我们对自主软件开发未来学到的东西。」
+  底部一句话点明案例的意义：<strong>公司正在把 agent 蜂群用于工程与科研，这就是它们运营蜂群方式的一个样本。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 85</span>编排：无限循环的去中心蜂群</h3>
+  <figure><img src="slides/slide-85.png" alt="Slide 85 无限循环蜂群" loading="lazy"><figcaption>驱动蜂群的 bash 脚本（Image Credit: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>这个蜂群的「编排者」朴素得惊人——一个 <code>while true</code> 的 bash 死循环（对应 Slide 20 的 Decentralized 模式）：</p>
+  <pre>#!/bin/bash
+while true; do
+    COMMIT=$(git rev-parse --short=6 HEAD)
+    LOGFILE="agent_logs/agent_${COMMIT}.log"
+
+    claude --dangerously-skip-permissions \
+        -p "$(cat AGENT_PROMPT.md)" \
+        --model claude-opus-X-Y &amp;&gt; "$LOGFILE"
+done</pre>
+  <p>每轮循环取当前 commit 的短哈希作为日志文件名，用 <code>AGENT_PROMPT.md</code> 里的提示词启动一个 Claude agent，跳过权限确认（<code>--dangerously-skip-permissions</code>），输出全部写进日志。没有中央调度，agent 不停地被拉起、自主领活。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 86</span>多个互补的专家 agent</h3>
+  <figure><img src="slides/slide-86.png" alt="Slide 86 专家 agent 分工" loading="lazy"><figcaption>六类专家共同维护共享编译器代码库（Image Inspiration: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>蜂群里的 agent 并非同质，而是按职责分成六类（对应 Slide 11 的专门化收益），全部指向同一个<strong>共享编译器代码库</strong>：</p>
+  <ul>
+    <li><strong>实现与调试</strong>：修复各自不同的编译器失败；</li>
+    <li><strong>去重（Deduplication）</strong>：合并重复代码；</li>
+    <li><strong>文档（Documentation）</strong>：维护项目文档；</li>
+    <li><strong>编译器性能</strong>：让编译更快；</li>
+    <li><strong>生成代码效率</strong>：让编译出的程序更快；</li>
+    <li><strong>Rust 设计与代码质量</strong>：评审并重构结构。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 87</span>协调：在 Git 上同步的任务文件夹</h3>
+  <figure><img src="slides/slide-87.png" alt="Slide 87 Git 任务同步" loading="lazy"><figcaption>任务领取与释放流程（Image Inspiration: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>没有编排者，agent 之间靠 Git 同步任务（对应 Slide 54 的任务账本思想，账本本身就是一个 Git 文件夹）：</p>
+  <ul>
+    <li><strong>领取任务（Claim task）</strong>：从 <code>current_tasks/</code> 目录领活，声明通过 Git 同步；若遇到<strong>领取冲突（claim conflict）</strong>就换一个任务；</li>
+    <li><strong>实现（Implement）</strong>：在本地编辑并测试；</li>
+    <li><strong>Pull、merge、push</strong>：拉取、合并、推送；</li>
+    <li><strong>释放声明（Release claim）</strong>：完成后再开新一轮（New session）；</li>
+    <li>循环底部的 <strong>README 和进度文件</strong>（图中红框标注）承担了两个角色：<strong>智能体间通信 + 共享记忆</strong>——新会话先读之前的进度。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 88</span>协调：工作树隔离</h3>
+  <figure><img src="slides/slide-88.png" alt="Slide 88 容器与工作树" loading="lazy"><figcaption>共享裸仓库 + 三个容器的架构（Image Inspiration: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>这是 Slide 63 工作树隔离的工程落地版：</p>
+  <ul>
+    <li>中央是一个<strong>共享的 bare Git 仓库（/upstream）</strong>，里面有三样东西：代码（Code）、任务声明（Task claims: <code>current_tasks/</code>）、进度笔记（Progress notes: README 文件——图中红框再次标注这是<strong>智能体间通信/记忆</strong>）；</li>
+    <li>三个容器（Container A/B/C）各跑一个 agent，各自持有本地克隆（<code>/workspace</code>），通过 <strong>pull / push</strong> 与中央仓库同步；</li>
+  </ul>
+  <p>底部总结：<strong>Git 提供了工作树隔离，agent 自己挑选任务。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 89</span>Lessons Learned（经验教训）</h3>
+  <figure><img src="slides/slide-89.png" alt="Slide 89 经验教训" loading="lazy"><figcaption>六条经验；右侧为构建日志与游戏画面截图（Image Credit: anthropic.com/engineering/building-c-compiler）</figcaption></figure>
+  <p>这个案例沉淀出六条经验，几乎逐条呼应本章的概念：</p>
+  <ul>
+    <li><strong>强测试引导自主工作</strong>：可靠的正确性/回归测试帮助 agent 识别进展、发现破坏；</li>
+    <li><strong>为并行而设计</strong>：把可分离的失败或子任务暴露出来；</li>
+    <li><strong>把协调显式化</strong>：领取任务、在独立克隆里工作、通过 Git 整合贡献；</li>
+    <li><strong>跨会话保存知识</strong>：维护共享文档、进度笔记和失败尝试的记录（共享记忆）；</li>
+    <li><strong>让反馈高效</strong>：提供简洁的错误摘要、可搜索的日志、快速的测试子集和定期的进度更新；</li>
+    <li><strong>分配互补的目标</strong>：给 agent 各自不同的职责（角色分工）。</li>
+  </ul>
+  <p>右图是彩蛋：上为编译构建日志，下为最终在这套工具链上跑起来的复古射击游戏画面。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch7">
+<h2 class="chapter-title">七、总结</h2>
+<p class="chapter-sub">Summary（Slide 90–92）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 90</span>Summary（章节页）</h3>
+  <figure><img src="slides/slide-90.png" alt="Slide 90 Summary 章节页" loading="lazy"><figcaption>Summary 章节页</figcaption></figure>
+  <p>全课进入总结。进度条上的五个部分都已讲完：SAS vs MAS、Orchestration、Communication、Coordination、Failure Modes。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 91</span>Summary（五项检查清单）</h3>
+  <figure><img src="slides/slide-91.png" alt="Slide 91 总结清单" loading="lazy"><figcaption>五个已完成的主题</figcaption></figure>
+  <p>本讲覆盖的五块内容：</p>
+  <ul>
+    <li>Single vs Multi-Agent Systems（单智能体 vs 多智能体）；</li>
+    <li>MAS Orchestration Patterns（MAS 编排模式）；</li>
+    <li>Communication（通信）；</li>
+    <li>Shared State（共享状态）；</li>
+    <li>Failures and Challenges（失败与挑战）。</li>
+  </ul>
+  <p>回顾本讲最重要的一条行动准则（Slide 14）：<strong>先建强单智能体基线，为明确的目的再加 agent，并度量收益是否盖过协调成本。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 92</span>下讲预告</h3>
+  <figure><img src="slides/slide-92.png" alt="Slide 92 下讲预告" loading="lazy"><figcaption>See you Wednesday for Optimization!</figcaption></figure>
+  <p>结束页：「周三见，讲 Optimization（优化）！」第八讲到这里结束，下一讲将转向智能体系统的优化。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接</h2>
+<p class="chapter-sub">本讲引用的论文与资料</p>
+<ul>
+  <li>Towards a Science of Scaling Agent Systems（Kim et al., 2026）— <a href="https://arxiv.org/pdf/2512.08296">arXiv:2512.08296</a></li>
+  <li>DyLAN: Dynamic LLM-Agent Network（Liu et al., 2023）— <a href="https://arxiv.org/pdf/2310.02170">arXiv:2310.02170</a></li>
+  <li>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversations（Wu et al., 2024）— <a href="https://arxiv.org/pdf/2308.08155">arXiv:2308.08155</a></li>
+  <li>MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework（Hong et al., 2024）— <a href="https://openreview.net/pdf?id=VtmBAGCN7o">OpenReview</a></li>
+  <li>HuggingFace 事件报告 — <a href="https://metr.org/">METR / Redwood Research</a></li>
+  <li>MoltBook — <a href="https://www.moltbook.com/post/e72d9de7-2bfd-4ce0-93b0-f7af8ab7fb53">moltbook.com</a></li>
+  <li>Google Agent2Agent (A2A) Protocol — <a href="https://codelabs.developers.google.com/">codelabs.developers.google.com</a></li>
+  <li>Handoff vs Agents as Tools — <a href="https://cellcog.ai/blog/agent-handoffs-vs-agents-as-tools/">cellcog.ai</a>；对比表 — Majid Sheikh | LinkedIn</li>
+  <li>Magentic-One: A Generalist Multi-Agent System（Fourney et al., 2024）— <a href="https://arxiv.org/pdf/2411.04468">arXiv:2411.04468</a></li>
+  <li>G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems（Zhang et al., 2025）— <a href="https://arxiv.org/pdf/2506.07398">arXiv:2506.07398</a></li>
+  <li>CooperBench / Role, Resource Division &amp; Negotiation（Khatua et al., 2026）— <a href="https://arxiv.org/pdf/2601.13295">arXiv:2601.13295</a></li>
+  <li>Why Do Multi-Agent Systems Fail? / MAST（Cemri et al., 2025）— <a href="https://arxiv.org/pdf/2503.13657">arXiv:2503.13657</a></li>
+  <li>Patterns and Problems in Emerging Multi-Agent Systems（Zou, 2026）— 课程讲义链接；从众现象另见 <a href="https://arxiv.org/pdf/2510.01171">arXiv:2510.01171</a>、<a href="https://arxiv.org/pdf/2510.22954">arXiv:2510.22954</a></li>
+  <li>多智能体「地盘争夺」研究 — <a href="https://www.anthropic.com/research/multiagent-systems">anthropic.com/research/multiagent-systems</a></li>
+  <li>Building a C compiler with a team of parallel Claudes（Carlini, 2026）— <a href="https://www.anthropic.com/engineering/building-c-compiler">anthropic.com/engineering/building-c-compiler</a></li>
+  <li>Building Effective Agents（编排图灵感来源）— <a href="https://www.anthropic.com/engineering/building-effective-agents">anthropic.com/engineering/building-effective-agents</a></li>
+  <li>Worktree Isolation 图 — <a href="https://medium.com/threadsafe/">medium.com/threadsafe</a>；A2A 架构图 — <a href="https://ai.plainenenglish.io/">ai.plainenenglish.io</a></li>
+  <li>课程官网：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+  <p>本教程基于 Stanford CS329Z 课程公开讲义整理，为学习性中文导读，内容版权归原作者与课程所有。
+  课程官网：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a>。
+  返回<a href="../">专栏首页</a>查看全部讲次。</p>
+</footer>
+
+</body>
+</html>
