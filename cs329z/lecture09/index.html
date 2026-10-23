@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 329Z 第九讲：优化（Optimization）中文讲解教程</title>
+<style>
+  :root{
+    --cardinal:#8C1515;
+    --ink:#1f2328;
+    --muted:#57606a;
+    --line:#d0d7de;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
+    --accent-bg:#fdf3f3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px;line-height:1.8;
+  }
+  code,pre,.mono{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;}
+  header.masthead{
+    background:var(--cardinal);color:#fff;padding:40px 20px 32px;text-align:center;
+  }
+  header.masthead .course{font-size:15px;letter-spacing:2px;opacity:.9;margin-bottom:10px;}
+  header.masthead h1{margin:0 0 8px;font-size:30px;}
+  header.masthead .sub{font-size:17px;opacity:.95;}
+  header.masthead .meta{margin-top:14px;font-size:13.5px;opacity:.85;}
+  nav.toc{
+    position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:10px 12px;
+  }
+  nav.toc a{
+    color:var(--ink);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:6px;
+  }
+  nav.toc a:hover{background:var(--accent-bg);color:var(--cardinal);}
+  main{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+  section.chapter{margin-top:56px;}
+  h2.chapter-title{
+    font-size:24px;color:var(--cardinal);border-left:6px solid var(--cardinal);
+    padding-left:14px;margin:0 0 8px;
+  }
+  .chapter-sub{color:var(--muted);font-size:14.5px;margin:0 0 20px 20px;}
+  article.slide{
+    border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:26px 0;
+    background:#fff;box-shadow:0 1px 3px rgba(27,31,36,.04);
+  }
+  article.slide h3{
+    margin:0 0 14px;font-size:17.5px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  article.slide h3 .no{
+    background:var(--cardinal);color:#fff;border-radius:6px;padding:1px 9px;font-size:13px;flex:none;
+  }
+  figure{margin:0 0 16px;}
+  figure img{
+    width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;background:#fff;
+  }
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center;}
+  .note{
+    background:var(--bg-soft);border-left:4px solid var(--cardinal);
+    padding:10px 16px;border-radius:0 8px 8px 0;font-size:14.5px;margin:14px 0 0;
+  }
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:var(--bg-soft);}
+  ul,ol{padding-left:22px;}
+  li{margin:4px 0;}
+  a{color:var(--cardinal);}
+  .term{font-weight:600;}
+  .en{color:var(--muted);font-size:.92em;}
+  footer{
+    max-width:900px;margin:0 auto;padding:24px 20px 60px;color:var(--muted);
+    font-size:13.5px;border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="course">STANFORD · CS 329Z: ENGINEERING AI AGENTS</div>
+  <h1>第九讲：优化</h1>
+  <div class="sub">Optimization</div>
+  <div class="meta">讲师：Diyi Yang, Michael Ryan, John Yang　|　中文讲解教程（忠于原讲义，共 125 张幻灯片）</div>
+  <div class="meta">课程源头：<a href="https://cs329z.stanford.edu/" style="color:#fff;">CS329Z 课程官网（cs329z.stanford.edu）</a>　|
+  专栏首页：<a href="../" style="color:#fff;">CS329Z 中文教程专栏</a></div>
+  <div class="meta"><a href="lecture09.pdf" style="color:#fff;">下载本讲原始 PDF</a></div>
+</header>
+
+<nav class="toc">
+  <a href="#ch0">〇 公告与本讲结构</a>
+  <a href="#ch1">一 优化的前提条件</a>
+  <a href="#ch2">二 上下文优化</a>
+  <a href="#ch3">三 权重优化</a>
+  <a href="#ch4">四 用 Agent 做优化</a>
+  <a href="#ch5">五 该用哪种策略</a>
+  <a href="#ch6">六 总结</a>
+  <a href="#refs">参考链接</a>
+</nav>
+
+<main>
+
+<p>本教程是 Stanford 课程 <strong>CS 329Z: Engineering AI Agents</strong> 第九讲
+<strong>《Optimization（优化）》</strong>的中文讲解。
+教程按原讲义顺序逐页呈现：每张幻灯片以图片插入，并配中文讲解。全讲按讲义开头的 Lecture Overview 分为五个部分：
+Conditions for Optimization（优化的前提条件，5 分钟）、Context Optimization（上下文优化，25 分钟）、
+Weight Optimization（权重优化，25 分钟）、Optimization with Agents（用 Agent 做优化，10 分钟）、
+Which Strategy to Use（该用哪种策略，10 分钟）。
+学习目标（Learning Objectives）：<strong>识别（Identify）何时对 AI 系统使用优化；描述（Describe）各种常见的上下文/权重优化算法；区分（Differentiate）每种优化策略各自适用的时机。</strong></p>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch0">
+<h2 class="chapter-title">〇、课程公告与本讲结构</h2>
+<p class="chapter-sub">Announcements, Opening &amp; Lecture Overview（Slide 1–6）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 1</span>封面：Optimization（优化）</h3>
+  <figure><img src="slides/slide-001.png" alt="Slide 1 封面" loading="lazy"><figcaption>CS 329Z: Engineering AI Agents — Optimization（Diyi Yang, Michael Ryan, John Yang）</figcaption></figure>
+  <p>本讲封面：课程全称 <span class="term">CS 329Z: Engineering AI Agents</span>，第九讲主题是
+  <span class="term">Optimization（优化）</span>。前面几讲我们讨论了 RAG、框架、agent 设计模式、多智能体系统等「怎么搭」的问题；
+  这一讲回答「怎么把它变好」——如何用数据和评测驱动的优化手段系统地改进 agent 系统。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 2</span>Announcements（课程公告）</h3>
+  <figure><img src="slides/slide-002.png" alt="Slide 2 课程公告" loading="lazy"><figcaption>下周一客座讲座；Homework 2 下周一发布；Homework 1 下周五截止</figcaption></figure>
+  <ul>
+    <li><span class="term">客座讲座</span>：下周一有客座讲座（Guest Lecture）；</li>
+    <li><span class="term">Homework 2</span>：下周一发布；</li>
+    <li><span class="term">Homework 1</span>：下周五截止，随后一周提交<strong>期中报告（Midway report）</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 3</span>Quick Poll: Which Prompt is best for PaLM 2-L-IT（课堂投票：哪个提示词最好）</h3>
+  <figure><img src="slides/slide-003.png" alt="Slide 3 课堂投票" loading="lazy"><figcaption>三个数学题提示词选项与班级投票得票率：A 71.8%、B 80.2%、C 74.5%</figcaption></figure>
+  <p>开场先做了一个课堂投票：对 PaLM 2-L-IT 模型解数学题，三个提示词哪个效果最好？选项与<strong>得票率</strong>如下：</p>
+  <ul>
+    <li><strong>A</strong>：<code>[Math Problem] Let's think step by step.</code> — 71.8%；</li>
+    <li><strong>B</strong>：<code>[Math Problem] Take a deep breath and work on this problem step-by-step.</code> — 80.2%；</li>
+    <li><strong>C</strong>：<code>[Math Problem] Let's combine our numerical command and clear thinking to quickly and accurately decipher the answer.</code> — 74.5%。</li>
+  </ul>
+  <p>这里的百分比正是每个提示词在 GSM8K 零样本测试上的准确率（与 Slide 25 的 OPRO 论文表格一一对应）：
+  一句「深呼吸，一步一步来」（Take a deep breath…）居然胜过了经典的「Let's think step by step」。
+  这说明<strong>提示词的效果难以凭直觉预测——这正是需要「优化」而不是「拍脑袋」的原因</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 4</span>本讲的立场：用数据和评测来表达意图</h3>
+  <figure><img src="slides/slide-004.png" alt="Slide 4 开场金句" loading="lazy"><figcaption>原文：Optimization enables us to specify intent through data and evals and improve our system. Today we will break down common optimization algorithms and when to use them.</figcaption></figure>
+  <p>本讲的核心论点一句话：<strong>优化（Optimization）让我们能够通过数据（data）和评测（evals）来表达意图，并据此改进系统；
+  本讲将拆解常见的优化算法，以及各自该在什么时候使用。</strong>注意关键词：不是「手工调 prompt」，而是把「我想要什么」编码成数据和评测指标，让算法去找更好的配置。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 5</span>Learning Objectives（学习目标）</h3>
+  <figure><img src="slides/slide-005.png" alt="Slide 5 学习目标" loading="lazy"><figcaption>三条学习目标</figcaption></figure>
+  <p>本讲的学习目标有三条，动词层层递进：</p>
+  <ul>
+    <li><strong>识别（Identify）</strong>何时对 AI 系统使用优化；</li>
+    <li><strong>描述（Describe）</strong>各种常见的上下文（context）/权重（weight）优化算法；</li>
+    <li><strong>区分（Differentiate）</strong>每种优化策略各自适用的时机。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 6</span>Lecture Overview（本讲结构）</h3>
+  <figure><img src="slides/slide-006.png" alt="Slide 6 本讲结构" loading="lazy"><figcaption>五个部分及预计用时</figcaption></figure>
+  <p>本讲的结构与时间安排：</p>
+  <ul>
+    <li>Conditions for Optimization（优化的前提条件，5 分钟）；</li>
+    <li>Context Optimization（上下文优化，25 分钟）；</li>
+    <li>Weight Optimization（权重优化，25 分钟）；</li>
+    <li>Optimization with Agents（用 Agent 做优化，10 分钟）；</li>
+    <li>Which Strategy to Use（该用哪种策略，10 分钟）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch1">
+<h2 class="chapter-title">一、优化的前提条件（Conditions for Optimization）</h2>
+<p class="chapter-sub">Conditions for Optimization（Slide 7–11）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 7</span>章节页：Conditions for Optimization</h3>
+  <figure><img src="slides/slide-007.png" alt="Slide 7 章节页" loading="lazy"><figcaption>章节导航：Conditions（当前）→ Context/Prompt → Weights → Agents → Which to Use?</figcaption></figure>
+  <p>进入第一章。本讲底部一直有五个小节的进度条：<strong>Conditions（条件）、Context/Prompt（上下文/提示词）、Weights（权重）、Agents（智能体）、Which to Use?（如何选择）</strong>，
+  当前高亮的是第一部分「Conditions」——在动手优化之前，先回答两个问题：优化一个 AI 系统需要具备什么？什么时候值得优化？</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 8</span>Three Pillars of AI Systems（AI 系统的三大支柱）</h3>
+  <figure><img src="slides/slide-008.png" alt="Slide 8 三大支柱" loading="lazy"><figcaption>Data（蓝）/ System or Model（绿）/ Evaluation + Metric（红）三张卡片</figcaption></figure>
+  <p>要优化一个 AI 系统，三根支柱缺一不可：</p>
+  <ul>
+    <li><span class="term">Data（数据）</span>：Training Data（训练数据）、Rollouts（轨迹采样）、Demonstrations（示范样例）、Human Feedback（人类反馈）等；</li>
+    <li><span class="term">System or Model（系统或模型）</span>：Language Model（语言模型）、Compound AI System / Workflow（复合 AI 系统或工作流）、Agentic System（智能体系统）等；</li>
+    <li><span class="term">Evaluation + Metric（评测 + 指标）</span>：Pass Rate（通过率）、Exact Match（精确匹配）、LLM Judge（LLM 评分）、Cost/Latency（成本/延迟）等。</li>
+  </ul>
+  <p>底部一句话：<strong>要优化一个 AI 系统，这三样必须同时具备！</strong>没有数据无从学起，没有系统无处施加，没有评测就不知道好坏。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 9</span>Is (Context) Optimization Necessary?（优化真的有必要吗？）</h3>
+  <figure><img src="slides/slide-009.png" alt="Slide 9 最后一公里" loading="lazy"><figcaption>右侧为「最后一公里配送问题」信息图（Image Credit: msukhareva.substack.com/p/the-last-mile-problem）：仓库、飞机、货车与民居，标注 First 99% of journey 与 Final 1 mile</figcaption></figure>
+  <p>先回应一个常见质疑：<strong>既然模型随规模越来越大越来越好，我们还需要费劲调 prompt 吗？</strong>
+  讲义的回答借用物流业的「最后一公里（LAST MILE）」比喻：通用大模型提供的是出色的通用解（general solution），
+  但一旦你知道自己的<strong>具体场景（exact setting）</strong>，就能针对细节做适配——这正是优化发挥价值的地方：
+  <strong>优化适用于 LAST MILE（最后一公里）适配。</strong>右侧的配送信息图形象地展示了这一点：干线运输（前 99% 的路程）可以规模化、标准化，
+  而最后 1 英里才是最难、最贵、最需要定制的部分。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 10</span>When to Optimize（什么时候该优化）</h3>
+  <figure><img src="slides/slide-010.png" alt="Slide 10 何时优化" loading="lazy"><figcaption>三条适用情形；右侧为性能上升折线的线框图标</figcaption></figure>
+  <p>判断「该不该上优化」的三条信号：</p>
+  <ul>
+    <li><strong>你拥有适合自己领域的数据和评测</strong>——例子（examples）和反馈（feedback）能够传达那些很难在 prompt/系统里完整表达出来的需求；
+      有时一份好的评测（evals）比文字更能传达意图，你可以直接把系统调到评测上表现最好；</li>
+    <li><strong>系统包含许多复杂组件，手工很难调优</strong>——组件一多，组合空间爆炸，人工试错不现实。</li>
+  </ul>
+  <p>换句话说：当「意图说不清、组件调不动」的时候，就该让优化算法登场。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 11</span>Benefits of Optimization（优化的收益）</h3>
+  <figure><img src="slides/slide-011.png" alt="Slide 11 优化收益" loading="lazy"><figcaption>五大收益；右侧为机器人举杠铃的卡通插画</figcaption></figure>
+  <p>做好优化能带来五条收益：</p>
+  <ul>
+    <li><strong>更高的可靠性（Greater reliability）</strong>：减少反复出现的错误，提升跨任务的一致性；</li>
+    <li><strong>领域适配（Domain adaptation）</strong>：在专门的任务、工作流和需求上提升表现；</li>
+    <li><strong>更低的成本与延迟（Lower cost and latency）</strong>：用更小的模型、更短的 prompt 或更少的工具调用维持同等质量；</li>
+    <li><strong>从经验中学习（Learning from experience）</strong>：把成功轨迹和失败反馈转化为持久的改进；</li>
+    <li><strong>适应力（Adaptability）</strong>：当模型、工具和任务需求变化时，可以随之调整行为。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch2">
+<h2 class="chapter-title">二、上下文优化（Context Optimization）</h2>
+<p class="chapter-sub">Context Optimization（Slide 12–69）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 12</span>章节页：Context Optimization</h3>
+  <figure><img src="slides/slide-012.png" alt="Slide 12 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Context/Prompt</figcaption></figure>
+  <p>进入第二章「上下文优化」。这一章讲的是<strong>不改模型权重、只优化上下文（提示词、few-shot 示例、指令）</strong>的算法。
+  本章又分两个子主题：<span class="term">Fewshot Optimization</span>（示例优化）与 <span class="term">Reflective Optimization</span>（反思式优化）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 13</span>子章节页：Fewshot Optimization</h3>
+  <figure><img src="slides/slide-013.png" alt="Slide 13 子章节页" loading="lazy"><figcaption>Fewshot Optimization 子章节分隔页</figcaption></figure>
+  <p>子章节「Fewshot Optimization（少样本示例优化）」：优化放进 prompt 里的那几个示例（few-shot demonstrations）——选哪些、按什么顺序放。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 14</span>Fewshot Prompting（少样本提示）</h3>
+  <figure><img src="slides/slide-014.png" alt="Slide 14 Fewshot Prompting" loading="lazy"><figcaption>GPT-3 论文截图（Image Credit: arxiv.org/pdf/2005.14165）：英法翻译示例，标注 task description（第 1 行）、examples（第 2–4 行）、prompt（第 5 行）</figcaption></figure>
+  <p>先复习概念。<span class="term">Few-shot prompting</span>：在任务描述（task description）之外，模型还能看到该任务的几个示例（examples），
+  例如「sea otter =&gt; loutre de mer」「cheese =&gt; …」。<strong>整个过程不做任何梯度更新（no gradient updates）</strong>——
+  这正是它区别于微调的地方：所有「学习」都发生在上下文里。既然示例全在上下文里，那么<strong>选哪些示例、按什么顺序摆放</strong>就成了可优化的自由度，本章余下内容都在回答这两个问题。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 15</span>Fantastically Ordered Prompts and Where to Find Them [Lu et al., 2022]（示例顺序敏感性与熵度量）</h3>
+  <figure><img src="slides/slide-015.png" alt="Slide 15 顺序敏感性" loading="lazy"><figcaption>论文流程图（Image Credit: arxiv.org/pdf/2005.14165）：多组训练样本按不同排列输入 PLM，用 Probing Set 度量各排列的影响</figcaption></figure>
+  <p>这篇论文（Lu et al., 2022）发现：<strong>few-shot 示例的排列顺序会显著影响模型输出</strong>，甚至能让准确率在接近随机到接近最优之间波动。
+  他们的方法是：在训练集（trainset）上尝试一堆不同的 prompt 排列顺序，然后度量每种顺序在<strong>探测集（probing set）</strong>上引发的标签变化——
+  有趣的是，<strong>并不使用探测集的真实标签（ground truth labels）</strong>。
+  图中流程：左侧 Train 1–4 组 (sentence, label) 与 (Prompt)，按不同排列顺序输入 PLM（预训练语言模型），生成不同结果，右侧用绿色框的 Probing Set (sentence, label) 评估。
+  论文提出两个不依赖标签的度量：<span class="term">GlobalE（全局熵）</span>＝对整个探测集答案分布的熵 <code>GlobalE_m = Σ −p·log p</code>；
+  <span class="term">LocalE（局部熵）</span>＝对每个探测样本的答案分布求熵再取平均。熵高＝模型对该排列「拿不准」；挑熵低的顺序即可。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 16</span>Global Entropy（全局熵：高低对比）</h3>
+  <figure><img src="slides/slide-016.png" alt="Slide 16 全局熵对比" loading="lazy"><figcaption>左列 High Global Entropy（标签 0/1/0/1 混杂），右列 Low Global Entropy（标签几乎全 0）</figcaption></figure>
+  <p>用同一批四条影评示例对比两种排列：</p>
+  <ul>
+    <li><strong>高全局熵（High Global Entropy）</strong>：四种排列下模型给出的标签混杂不一（0、1、0、1）——说明模型对这个顺序「举棋不定」，整体输出分布熵大；</li>
+    <li><strong>低全局熵（Low Global Entropy）</strong>：标签高度一致（几乎全是 0）——模型对这个顺序的判断很「笃定」。</li>
+  </ul>
+  <p>公式 <code>GlobalE_m = Σ_{v∈V} −p_m^v log p_m^v</code> 就是对标签分布求熵。<strong>直觉：应优先选择低熵的排列。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 17</span>Local Entropy（局部熵：高低对比）</h3>
+  <figure><img src="slides/slide-017.png" alt="Slide 17 局部熵对比" loading="lazy"><figcaption>左右两列各以一条示例开头，向下箭头接到 0/1 两类的 logprobs 小柱状图；中部注明 Average over probe set</figcaption></figure>
+  <p>局部熵换一个视角：不问「整体标签混不混杂」，而问「<strong>单个样本</strong>上模型拿不拿得准」。每个探测样本都看一下 0/1 两类的 logprobs 小柱状图：</p>
+  <ul>
+    <li><strong>高局部熵（High Local Entropy）</strong>：0 和 1 两根柱子高度接近——模型在这道题上摇摆；</li>
+    <li><strong>低局部熵（Low Local Entropy）</strong>：一根柱子显著高——模型很确信。</li>
+  </ul>
+  <p>公式 <code>LocalE_m = (ΣΣ −p log p) / |D|</code> 即对所有探测样本的熵取平均。<strong>GlobalE 看全局一致性，LocalE 看逐样本置信度，两者都不需要真实标签。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 18</span>用熵选顺序的效果（逼近 Oracle 排序）</h3>
+  <figure><img src="slides/slide-018.png" alt="Slide 18 熵度量结果表" loading="lazy"><figcaption>论文结果表（Image Credit: arxiv.org/pdf/2005.14165）：11 个数据集上 Majority / Finetuning / GPT-3 2.7B / LocalE / GlobalE / Oracle / GPT-3 175B / LocalE / GlobalE / Oracle 的准确率对比</figcaption></figure>
+  <p>结论页：<strong>用探测集 + 熵度量来挑排列，其准确率可以逼近 Oracle 排序</strong>（Oracle＝在开发集上穷举所有排列挑最好的那种，代价极高）。
+  表格节选（准确率，下标为标准差）：</p>
+  <ul>
+    <li><strong>GPT-3 2.7B</strong> 组：如 SST-2 上原始 78.0₁₀.₇ → LocalE 81.0₆.₀ → GlobalE 80.2₄.₂，而 Oracle 是 89.8₀.₇——熵方法拿到了大部分可挖掘的收益，且标准差更小（更稳定）；</li>
+    <li><strong>GPT-3 175B</strong> 组：SST-2 上 93.9 → LocalE 93.8 / GlobalE 93.9，Oracle 94.7；Subj 上 71.2 → 76.3（GlobalE）；AGNews 上 85.1 → 85.9（LocalE）；CB 上 75.1 → 79.9（GlobalE）；</li>
+    <li>基线对照：Majority（多数类基线）约 50 上下，Full Finetuning 在多数任务上仍是天花板（如 DBPedia 99.3）。</li>
+  </ul>
+  <p>要点：<strong>不训练、不标注，仅靠「选个好的示例顺序」就能稳定白拿几个点的准确率，并大幅降低方差。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 19</span>Bootstrap Reasoning（自举推理）</h3>
+  <figure><img src="slides/slide-019.png" alt="Slide 19 Bootstrap Reasoning" loading="lazy"><figcaption>CoT 论文截图（Image Credit: arxiv.org/pdf/2201.11903）：Standard Prompting（答案 27，✗）vs Chain-of-Thought Prompting（答案 9，✓）</figcaption></figure>
+  <p>接下来解决另一个问题。我们知道 <span class="term">Chain-of-Thought（CoT，思维链）推理</span>很重要——
+  论文截图对比很直观：同样是「Roger 有 5 个网球，又买 2 罐每罐 3 个」「食堂 23 个苹果用掉 20 个又买 6 个」两道题，
+  标准提示直接给答案会错（27，应为 9），而先写推理过程（5+6=11；23−20=3，3+6=9）就能答对。
+  <strong>但问题在于：few-shot 的标注示例通常只带答案、不带推理过程（reasoning）</strong>——标注成本高，人写的推理还未必是模型最「顺」的推理方式。怎么办？接下来几页给出「自举（bootstrap）」方案。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 20</span>Bootstrap Reasoning: STaR [Zelikman et al., 2022]</h3>
+  <figure><img src="slides/slide-020.png" alt="Slide 20 STaR" loading="lazy"><figcaption>STaR 流程图（Image Credit: arxiv.org/pdf/2203.14465）：答对→回收数据微调；答错→Rationalize 给 hint 再生成；右侧为购物篮问签示例</figcaption></figure>
+  <p><span class="term">STaR（Self-Taught Reasoner）</span>的做法：<strong>用拒绝采样（rejection sampling）来「挖」推理轨迹</strong>。
+  流程：Question → 语言模型生成 Rationale + Answer → 用正确性检查分流——
+  答对的 (Question, Rationale, Answer) 直接进数据集，微调回流更新模型；答错的走 <span class="term">Rationalize</span> 路径：
+  把正确答案作为提示（hint）再生成一次推理，成功后同样回收。
+  图中示例：「什么东西可以用来装小狗？」模型生成「篮子（basket）是用来装东西的，所以答案是 basket (b)」这样的推理。
+  核心思想：<strong>模型自己生成推理、用答案正确性当过滤器，循环自我改进。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 21</span>Bootstrap Reasoning: DSPy [Khattab et al., 2023]</h3>
+  <figure><img src="slides/slide-021.png" alt="Slide 21 DSPy Bootstrap" loading="lazy"><figcaption>Input → Model → Reasoning+Output → Metric 两行流程：上行绿框 Keep Reasoning（绿拇指），下行红框 Discard（红拇指）</figcaption></figure>
+  <p><span class="term">DSPy</span> 把「自举推理」用到了<strong>上下文优化</strong>场景：<strong>我们甚至不需要微调——只要拒绝采样出成功的推理（rejection sample successful reasoning）就行。</strong>
+  流程图上下两行：同一个 Input 喂给 Model，产出 Reasoning+Output，交给 Metric 打分——
+  得分好的 trace <strong>保留（Keep，绿框绿拇指）</strong>，得分差的<strong>丢弃（Discard，红框红拇指）</strong>。
+  保留下来的「输入＋模型自己的推理」就成了一条现成的 few-shot 示例。右侧补充：随后<strong>在开发集（devset）上尝试不同的示例组合，找出表现最好的那组 few-shot 示例</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 22</span>DSPy Bootstrap 的效果（GSM8K 结果表）</h3>
+  <figure><img src="slides/slide-022.png" alt="Slide 22 DSPy 结果" loading="lazy"><figcaption>左：Bootstrap Random Search 示意图（Image Credit: aclanthology.org/2024.emnlp-main.525.pdf）；右：GSM8K 上下文学习结果表（Table Credit: arxiv.org/pdf/2310.03714）</figcaption></figure>
+  <p>结论：<strong>自举推理/输出＋在训练集上随机搜索组合，可以胜过人工撰写的推理（human reasoning）甚至金标准标签（gold labels）。</strong>
+  右表为 GSM8K 数学题上的上下文学习结果（Dev / Test 准确率）：</p>
+  <table>
+    <tr><th>Program</th><th>Compilation</th><th>GPT-3.5 Dev</th><th>GPT-3.5 Test</th><th>Llama2-13b Dev</th><th>Llama2-13b Test</th></tr>
+    <tr><td rowspan="4">vanilla</td><td>none</td><td>24.0</td><td>25.2</td><td>7.0</td><td>9.4</td></tr>
+    <tr><td>fewshot</td><td>33.1</td><td>–</td><td>4.3</td><td>–</td></tr>
+    <tr><td>bootstrap</td><td>44.0</td><td>–</td><td>28.0</td><td>–</td></tr>
+    <tr><td>bootstrap×2</td><td>64.7</td><td>61.7</td><td>37.3</td><td>36.5</td></tr>
+    <tr><td rowspan="4">CoT</td><td>none</td><td>50.0</td><td>–</td><td>26.7</td><td>–</td></tr>
+    <tr><td>fewshot</td><td>63.0</td><td>–</td><td>27.3</td><td>–</td></tr>
+    <tr><td>fewshot＋human_CoT</td><td>78.6</td><td>72.4</td><td>34.3</td><td>33.7</td></tr>
+    <tr><td>bootstrap</td><td><strong>80.3</strong></td><td><strong>72.9</strong></td><td><strong>43.3</strong></td><td>–</td></tr>
+  </table>
+  <p>两个亮点：CoT＋bootstrap（80.3/72.9）超过 CoT＋人工推理（78.6/72.4）；vanilla 程序上 bootstrap×2 从 25.2 拉到 61.7（Test），
+  Llama2-13b 上从 9.4 拉到 36.5——<strong>对弱模型的提升尤其显著</strong>。左侧示意图展示这套流程的两步：① Bootstrap Demonstrations（每个模块跑 N×K 次过 Metric 筛选）；② Search Combinations（随机搜索给各 fewshot 组合打分）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 23</span>子章节页：Reflective Optimization</h3>
+  <figure><img src="slides/slide-023.png" alt="Slide 23 子章节页" loading="lazy"><figcaption>Reflective Optimization 子章节分隔页</figcaption></figure>
+  <p>子章节「<span class="term">Reflective Optimization（反思式优化）</span>」：
+  前面优化的是「示例」，接下来优化的是「指令（instruction）」本身——让 LLM 观察、反思、改写自己的提示词。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 24</span>Large Language Models as Optimizers（OPRO）[Yang et al., 2024]</h3>
+  <figure><img src="slides/slide-024.png" alt="Slide 24 OPRO" loading="lazy"><figcaption>OPRO 流程图与 meta-prompt 截图（Image Credit: arxiv.org/pdf/2309.03409）</figcaption></figure>
+  <p><span class="term">OPRO（Optimization by PROmpting）</span>的思路：<strong>让 LLM 看到过去的指令及其各自的成绩，然后请 LLM 写一条新的指令。</strong>
+  左图流程：objective function evaluator 给候选解打分 → 分数与 meta-prompt（包含 solution-score pairs 与任务描述）一起喂给「LLM as optimizer」→ 生成新的候选解 → 循环（完成时取 top solutions）。
+  右图是 meta-prompt 实例：把历史指令按分数升序排列（如 "Let's figure it out!" 61 分、"Let's solve the problem." 63 分），
+  附上任务示例与 <code>&lt;INS&gt;</code> 占位说明，最后要求「写一条与旧的不同、分数尽可能高的新指令，写在方括号里」。
+  本质上这是把「优化」变成一个<strong>序列生成问题</strong>，用上下文里的 (解, 分数) 轨迹引导 LLM 向更优解移动。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 25</span>OPRO 找到的指令（GSM8K Top Instructions 表）</h3>
+  <figure><img src="slides/slide-025.png" alt="Slide 25 OPRO 结果" loading="lazy"><figcaption>论文 Table 1（Image Credit: arxiv.org/pdf/2309.03409）：不同优化器 LLM 找到的最高 GSM8K 零样本准确率指令（scorer 均为 PaLM 2-L）</figcaption></figure>
+  <p>OPRO 的有趣产出：<strong>它自己发现了「Take a deep breath…」这类策略</strong>。论文 Table 1（零样本 GSM8K 准确率，scorer 为 PaLM 2-L）：</p>
+  <table>
+    <tr><th>来源</th><th>指令</th><th>Acc</th></tr>
+    <tr><td>Kojima et al., 2022</td><td>Let's think step by step.</td><td>71.8</td></tr>
+    <tr><td>Zhou et al., 2022b</td><td>Let's work this out in a step by step way to be sure we have the right answer.</td><td>58.8</td></tr>
+    <tr><td>（空字符串）</td><td>—</td><td>34.0</td></tr>
+    <tr><td>PaLM 2-L-IT（Ours）</td><td>Take a deep breath and work on this problem step-by-step.</td><td><strong>80.2</strong></td></tr>
+    <tr><td>PaLM 2-L（Ours）</td><td>Break this down.</td><td>79.9</td></tr>
+    <tr><td>gpt-3.5-turbo（Ours）</td><td>A little bit of arithmetic and a logical approach will help us quickly arrive at the solution to this problem.</td><td>78.5</td></tr>
+    <tr><td>gpt-4（Ours）</td><td>Let's combine our numerical command and clear thinking to quickly and accurately decipher the answer.</td><td>74.5</td></tr>
+  </table>
+  <p>这就是 Slide 3 那场课堂投票的数据出处：人工直觉认为「花哨的长指令」更好，但实测<strong>简洁又能激发分步思考的指令胜出</strong>（80.2 &gt; 74.5 &gt; 71.8）。
+  这也再次说明：提示词优劣难以靠直觉判断，交给带评测回路的优化器更靠谱。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 26</span>MIPROv2 [Opsahl-Ong et al., 2024]（总览）</h3>
+  <figure><img src="slides/slide-026.png" alt="Slide 26 MIPROv2 总览" loading="lazy"><figcaption>论文三步示意图（Image Credit: aclanthology.org/2024.emnlp-main.525.pdf）：Bootstrap Demonstrations → Propose Instruction Candidates → Search Combinations（Bayes Search）</figcaption></figure>
+  <p><span class="term">MIPROv2</span> 把前两个子章节的方法整合成一个完整的 prompt 优化器，分三步：</p>
+  <ol>
+    <li><strong>Bootstrap Demonstrations（自举示例）</strong>：跑 N×K 次程序过 Metric 筛出成功 trace（若程序是 CoT，则包含推理/输出）；</li>
+    <li><strong>Propose Instructions based on Reflection（基于反思提出指令）</strong>：收集程序代码与数据摘要等信息，让 LLM 提案 N 条候选指令；</li>
+    <li><strong>Search the Combinations（搜索组合）</strong>：用 Bayes Search 在「指令 × 示例组」的组合空间里搜索最优搭配。</li>
+  </ol>
+  <p>接下来是一段很长的终端风格动画演示（Slide 27–63），以鸢尾花分类（classify_iris）程序为例逐步走一遍这三步。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 27</span>MIPROv2 演示：Bootstrap Fewshot Generation（开场）</h3>
+  <figure><img src="slides/slide-027.png" alt="Slide 27 Bootstrap 开场" loading="lazy"><figcaption>终端风格页（无页脚）：We run training examples several times to collect successful traces of your program to use as few shot demonstrations.</figcaption></figure>
+  <p>演示第一步开始。<strong>我们把训练样本在程序上跑若干次，收集成功的 trace（轨迹），作为 few-shot 示范（demonstrations）。</strong>
+  接下来几页（Slide 28–34）逐层搭建这个流程图。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 28</span>Bootstrap Fewshot Generation：LM Program（程序）</h3>
+  <figure><img src="slides/slide-028.png" alt="Slide 28 LM Program" loading="lazy"><figcaption>黑色终端窗口：def classify_iris(ptl_len, ptl_wid, sep_len, sep_wid) → 四个输入 → LLM → species</figcaption></figure>
+  <p>先亮出被优化的 <span class="term">LM Program</span>：一个鸢尾花分类函数
+  <code>classify_iris(ptl_len, ptl_wid, sep_len, sep_wid)</code>，内部把花瓣长度/宽度、花萼长度/宽度四个特征喂给 LLM，输出物种（species）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 29</span>Bootstrap Fewshot Generation：加入 Training Input（训练输入）</h3>
+  <figure><img src="slides/slide-029.png" alt="Slide 29 Training Input" loading="lazy"><figcaption>左侧新增 Training Input 文档图标（叠放的多条训练样本）</figcaption></figure>
+  <p>与上一张相比，左侧新增了 <strong>Training Input（训练输入）</strong>——一叠文档图标，代表多条训练样本即将被喂进程序。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 30</span>Bootstrap Fewshot Generation：加入 Metric（度量）</h3>
+  <figure><img src="slides/slide-030.png" alt="Slide 30 Metric" loading="lazy"><figcaption>右侧新增 Metric 红绿柱状图图标</figcaption></figure>
+  <p>右侧新增 <strong>Metric（度量）</strong>——红绿相间的评分柱状图，用来判定程序输出好不好。三大件齐了：程序、数据、评测（呼应 Slide 8 的三支柱）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 31</span>Bootstrap Fewshot Generation：连上数据流</h3>
+  <figure><img src="slides/slide-031.png" alt="Slide 31 数据流" loading="lazy"><figcaption>新增蓝色箭头：Training Input → LM Program → Metric</figcaption></figure>
+  <p>用蓝色箭头把流程连起来：<strong>训练输入 → LM Program → Metric</strong>，这就是一次完整的「跑程序＋打分」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 32</span>Bootstrap Fewshot Generation：丢弃差 trace</h3>
+  <figure><img src="slides/slide-032.png" alt="Slide 32 丢弃差 trace" loading="lazy"><figcaption>箭头变红；程序下方橙色高亮条「Species Prediction Rationale and Output」被红叉划掉；Metric 旁红拇指；文字：If the output scores poorly on the metric we discard the trace</figcaption></figure>
+  <p>跑出来一次失败的尝试：程序下方展开的「物种预测推理与输出（Rationale and Output）」橙色高亮条被<strong>红叉划掉</strong>，Metric 旁是<strong>红色拇指朝下</strong>。
+  规则：<strong>如果输出在度量上得分差，就丢弃这条 trace。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 33</span>Bootstrap Fewshot Generation：保留好 trace</h3>
+  <figure><img src="slides/slide-033.png" alt="Slide 33 保留好 trace" loading="lazy"><figcaption>程序下方橙色高亮条带绿色对勾；Metric 旁绿色大拇指</figcaption></figure>
+  <p>反过来的一次成功尝试：同样的流程（Training Input 多条红色箭头汇入 LM Program，程序输出指向 Metric），
+  但这次「物种预测推理与输出」高亮条上打了<strong>绿色对勾</strong>，Metric 旁是<strong>绿色竖大拇指</strong>——
+  <strong>如果输出得分高，就保留这条 trace。</strong>保留下来的 (输入, 推理, 输出) 就是候选 few-shot 示范。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 34</span>Bootstrap Fewshot Generation：一条保留的 trace 全文</h3>
+  <figure><img src="slides/slide-034.png" alt="Slide 34 保留的 trace" loading="lazy"><figcaption>橙色代码块展示一条完整 trace，底部省略号表示还有更多</figcaption></figure>
+  <p>这是一条被保留的 trace 长什么样（鸢尾花示例，原文逐字）：</p>
+  <pre>petal_length: "1.4",
+petal_width: "0.2",
+sepal_length: "4.6",
+sepal_width: "3.2",
+rationale: "Let's think step by step in order to predict
+the iris species. We know that the petal length is 1.4 cm,
+which is relatively short compared to the other species.
+The petal width is 0.2 cm, which is also relatively narrow.
+The sepal length is 4.6 cm, which is relatively long, and
+the sepal width is 3.2 cm, which is relatively wide. Based
+on these characteristics, we can conclude that the iris
+species is likely to be setosa.",
+answer: "setosa"</pre>
+  <p>注意：这里的 <code>rationale</code>（推理）不是人写的，是模型自己生成的——这就是「自举推理」的含义。底部的「…」表示这样的 trace 会收集很多条。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 35</span>MIPROv2 演示：Grounded Instruction Proposal（开场）</h3>
+  <figure><img src="slides/slide-035.png" alt="Slide 35 Grounded Proposal 开场" loading="lazy"><figcaption>终端风格页（无页脚）：We collect several details about your task to inform the prompt proposal LM.</figcaption></figure>
+  <p>演示第二步：<strong>有依据的指令提案（Grounded Instruction Proposal）</strong>。
+  我们收集若干关于你任务的细节信息（grounding），提供给负责写提示词的 proposal LM。
+  接下来（Slide 36–47）展示四类 grounding 信息如何汇聚成候选指令。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 36</span>Grounded Proposal ①：Program-Aware Grounding（开场）</h3>
+  <figure><img src="slides/slide-036.png" alt="Slide 36 Program-Aware 开场" loading="lazy"><figcaption>小节标题：1. Program-Aware Grounding</figcaption></figure>
+  <p>第一类 grounding 信息：<strong>程序感知（Program-Aware）</strong>——让提案 LM 看懂你的程序是什么。本小节动画从空白逐步添加元素。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 37</span>Program-Aware Grounding：展示程序代码</h3>
+  <figure><img src="slides/slide-037.png" alt="Slide 37 程序代码" loading="lazy"><figcaption>黑色终端窗口展示 classify_iris 程序（四特征 → LLM → species）</figcaption></figure>
+  <p>与上一张相比，新增了 <span class="term">LM Program</span> 终端窗口：还是那个 <code>classify_iris</code> 函数。
+  提案 LM 首先能看到程序源代码与模块结构。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 38</span>Program-Aware Grounding：程序摘要</h3>
+  <figure><img src="slides/slide-038.png" alt="Slide 38 程序摘要" loading="lazy"><figcaption>红色分隔线下方新增程序摘要（原文）：The task the program is designed to solve is classifying iris flowers into one of three species (setosa, versicolour, or virginica)…</figcaption></figure>
+  <p>程序窗口下方（红色分隔线之后）出现了对程序的<strong>自然语言摘要</strong>（逐字）：
+  「该程序要解决的任务是：根据给定花瓣与花萼尺寸，把鸢尾花分为三个物种（setosa、versicolour、virginica）之一；
+  程序使用语言模型通过推理给定维度来预测物种。」——代码被自动总结成任务描述，供提案 LM 使用。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 39</span>Grounded Proposal ②：Data-Aware Grounding（数据表）</h3>
+  <figure><img src="slides/slide-039.png" alt="Slide 39 数据表" loading="lazy"><figcaption>iris 数据表 5 列 4 行（注意幻灯片原文列名用 "Pedal"，疑为 Petal 笔误）</figcaption></figure>
+  <p>第二类 grounding 信息：<strong>数据感知（Data-Aware）</strong>。先展示数据样例（4 行，原文数值）：</p>
+  <table>
+    <tr><th>Sepal Length</th><th>Sepal Width (cm)</th><th>Pedal Length (cm)</th><th>Pedal Width (cm)</th><th>Species</th></tr>
+    <tr><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>Iris-setosa</td></tr>
+    <tr><td>6.3</td><td>2.3</td><td>4.4</td><td>1.3</td><td>Iris-versicolor</td></tr>
+    <tr><td>5.4</td><td>3.7</td><td>1.5</td><td>0.2</td><td>Iris-setosa</td></tr>
+    <tr><td>6.9</td><td>3.1</td><td>5.1</td><td>2.3</td><td>Iris-virginica</td></tr>
+  </table>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 40</span>Data-Aware Grounding：数据摘要</h3>
+  <figure><img src="slides/slide-040.png" alt="Slide 40 数据摘要" loading="lazy"><figcaption>表格缩至 2 行，下方新增数据摘要（原文）：The dataset appears to have three classes… Is this correct? Can I improve this?</figcaption></figure>
+  <p>数据表下方出现自动生成的<strong>数据摘要</strong>（逐字）：
+  「数据集似乎有三个类：setosa、versicolor、virginica。每个类在 petal_length 与 petal_width 上分布差异明显；
+  而 sepal_length 与 sepal_width 上的趋势不太分明。另外 species 变量与 answer 变量重复，不提供额外信息。——这正确吗？我能改进它吗？请告诉我。」
+  这段摘要末尾特意留了「请让我知道如何改进」的钩子，引导提案 LM 生成更针对性的指令。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 41</span>Grounded Proposal ③：Successful Bootstrapped Program Traces（好坏对比）</h3>
+  <figure><img src="slides/slide-041.png" alt="Slide 41 成功 trace" loading="lazy"><figcaption>程序窗口下方两条 trace：classify_iris(5.1, 3.5, 1.4, 0.2) → "versicolor"（红拇指朝下）；classify_iris(5.1, 1.8, 5.9, 3.0) → "verginica"（绿拇指）</figcaption></figure>
+  <p>第三类 grounding 信息：<strong>成功的自举 trace</strong>。图中先给出好坏对比：
+  同一程序对 <code>classify_iris(5.1, 3.5, 1.4, 0.2)</code>（setosa 的特征）答成了 "versicolor"——红拇指朝下；
+  而对 <code>classify_iris(5.1, 1.8, 5.9, 3.0)</code> 答出 "verginica"（原文如此拼写）——绿色大拇指。
+  <strong>只有被度量认可的成功 trace 才会进入提案材料。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 42</span>Successful Traces：只留成功样本</h3>
+  <figure><img src="slides/slide-042.png" alt="Slide 42 只留成功 trace" loading="lazy"><figcaption>程序窗口与失败 trace 均移除，只保留绿色大拇指的成功 trace</figcaption></figure>
+  <p>与上一张相比，程序窗口和失败 trace 都被移除，画面只保留那条<strong>成功 trace</strong>：
+  <code>classify_iris(5.1, 1.8, 5.9, 3.0)</code> → "verginica"（绿拇指）——失败样本被过滤掉了。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 43</span>Successful Traces：展开完整推理</h3>
+  <figure><img src="slides/slide-043.png" alt="Slide 43 展开 trace" loading="lazy"><figcaption>trace 上移，下方展开完整 rationale；answer 值原文写作 "virginia"</figcaption></figure>
+  <p>成功 trace 被完整展开（逐字要点）：</p>
+  <pre>petal_length: 5.1
+petal_width: 1.8
+sepal_length: 5.9
+sepal_width: 3.0
+rationale: Let's think step by step to produce the answer. …
+  （5.1 相对 setosa 典型的 4.8 偏长、1.8 比 setosa 典型的 1.5 略宽……
+    推断为 versicolor 或 virginica，而 sepal 5.9/3.0 更接近 virginica）
+answer: virginia</pre>
+  <p>注意两个原文细节：推理里提到的典型数值（setosa 花瓣长约 4.8、宽约 1.5）都是模型「记忆里」的知识；
+  最终 answer 字段原文写作 "virginia"（与前文 "verginica" 拼写也不一致）——展示的是真实系统输出，未加修饰。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 44</span>Grounded Proposal ④：Prompting Tips（提示词技巧）</h3>
+  <figure><img src="slides/slide-044.png" alt="Slide 44 Prompting Tips" loading="lazy"><figcaption>四条 tip 引文；说明文字：We only show one of these at a time.</figcaption></figure>
+  <p>第四类 grounding 信息：<strong>提示词技巧（Prompting Tips）</strong>——每次随机向提案 LM 展示一条（原文：We only show one of these at a time），四条为：</p>
+  <ul>
+    <li>"Don't be afraid to be creative"（别怕发挥创意）；</li>
+    <li>"The instruction should include a high stakes scenario in which the LM must solve the task!"（指令应包含一个 LM 必须解决任务的高风险场景！）；</li>
+    <li>"Provide the LM with a persona that is relevant to the task (ie. \"You are a …\")"（给 LM 一个与任务相关的人设）；</li>
+    <li>"Keep the instruction clear and concise."（保持指令清晰简洁）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 45</span>Grounded Proposal：四类信息汇入提案 LLM</h3>
+  <figure><img src="slides/slide-045.png" alt="Slide 45 汇总图" loading="lazy"><figcaption>Program Summary（代码图标）、Data Summary（文档）、Successful Traces（绿拇指）、Tips（灯泡）→ LLM 芯片 → Instructions</figcaption></figure>
+  <p>汇总图：左侧四路输入自上而下——<strong>Program Summary（程序摘要）、Data Summary（数据摘要）、Successful Traces（成功 trace）、Tips（技巧）</strong>——
+  黑色箭头汇入中间的 LLM 芯片，LLM 输出 <strong>Instructions（候选指令）</strong>。
+  这就是「有依据的提案」的全部含义：不让 LLM 凭空写提示词，而是把程序、数据、成功经验和写作技巧都摆到它面前。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 46</span>Grounded Proposal：输出 Instructions（过渡）</h3>
+  <figure><img src="slides/slide-046.png" alt="Slide 46 Instructions 过渡" loading="lazy"><figcaption>汇总图淡出，仅保留输出标签 Instructions</figcaption></figure>
+  <p>过渡页：汇总图淡出，画面只留下输出端的「Instructions」标签——注意力转到提案 LM 的产出上。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 47</span>Grounded Proposal：三条候选指令</h3>
+  <figure><img src="slides/slide-047.png" alt="Slide 47 候选指令" loading="lazy"><figcaption>三个蓝色圆角框列出三条候选指令，底部省略号表示还有更多</figcaption></figure>
+  <p>提案 LM 生成的候选指令示例（原文逐字，风格差异很大）：（1）「Using the provided petal length, petal width, sepal length, and sepal width measurements in cm, predict the iris species accurately <strong>to save a critically endangered species from extinction</strong>.」——采用了「高风险场景」tip；
+  （2）「Given the petal length, … predict the species of the iris flower (setosa, versicolour, or virginica). <strong>Provide a step-by-step reasoning</strong> for your prediction based on the given measurements.」——清晰简洁版；
+  （3）「Given the critical situation in which a rare species of iris is on the brink of extinction, predict the iris species … <strong>in order to save it from extinction</strong>.」——同样是濒危叙事版。
+  底部「…」表示这只是一个更大的候选池。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 48</span>MIPROv2 演示：优化指令与示例的组合（开场）</h3>
+  <figure><img src="slides/slide-048.png" alt="Slide 48 组合优化开场" loading="lazy"><figcaption>终端风格页（无页脚）：Given our set of instructions and demonstrations from the first two steps we iteratively sample combinations to update our belief that a given instruction or demonstration is good using a bayesian surrogate model.</figcaption></figure>
+  <p>演示第三步开始：<strong>给定前两步得到的指令集合与示范集合，我们迭代地采样各种组合，用贝叶斯代理模型（Bayesian surrogate model）更新「某条指令/某组示例是好是坏」的信念（belief）。</strong>
+  这是 MIPROv2 的第三步——Search the Combinations。接下来（Slide 49–63）逐帧演示这个循环。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 49</span>组合优化：Beliefs（信念面板）</h3>
+  <figure><img src="slides/slide-049.png" alt="Slide 49 Beliefs" loading="lazy"><figcaption>左侧 Instruction 1…N、右侧 Demo Set 1…N，每项各带一条绿红双色 belief 量条；底部：Sample parameters for our program based on beliefs</figcaption></figure>
+  <p>先摆出「信念面板」：左列是 N 条候选<strong>指令（Instruction 1…N）</strong>，右列是 N 组候选<strong>示例集（Demo Set 1…N）</strong>，
+  每一项都配一条「信念量条」（绿=好、红=差，初始均匀）。底部动作：<strong>根据 beliefs 为程序采样一组参数</strong>（选一条指令＋一组示例）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 50</span>组合优化：按 beliefs 采样一对组合</h3>
+  <figure><img src="slides/slide-050.png" alt="Slide 50 采样组合" loading="lazy"><figcaption>Instruction 1 与 Demo Set 2 边框红色高亮，其余为深灰</figcaption></figure>
+  <p>与上一张相比，<strong>Instruction 1</strong> 和 <strong>Demo Set 2</strong> 被红色边框高亮——这就是本轮按 beliefs 采样出的「指令＋示例」组合。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 51</span>组合优化：聚焦被选中的组合</h3>
+  <figure><img src="slides/slide-051.png" alt="Slide 51 聚焦组合" loading="lazy"><figcaption>其余元素全部移除，仅留高亮的 Instruction 1（蓝底红框）与 Demo Set 2（橙底红框）</figcaption></figure>
+  <p>镜头拉近：其余选项全部淡出，只剩被采样的两个框——本轮要用 <strong>Instruction 1 ＋ Demo Set 2</strong> 来实例化程序。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 52</span>组合优化：Slot parameters into the program（嵌入程序）</h3>
+  <figure><img src="slides/slide-052.png" alt="Slide 52 嵌入程序" loading="lazy"><figcaption>两个高亮框下移到程序窗口旁；底部：Slot parameters into the program</figcaption></figure>
+  <p>把采样的参数<strong>装配进程序</strong>：两个高亮框移到 <code>classify_iris</code> 终端窗口旁，准备把 Instruction 1 与 Demo Set 2 填入程序内部。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 53</span>组合优化：参数已装配（高亮描边）</h3>
+  <figure><img src="slides/slide-053.png" alt="Slide 53 装配完成" loading="lazy"><figcaption>程序内的子模块框（四特征 → LLM → species）被蓝＋橙双层高亮描边</figcaption></figure>
+  <p>与上一张相比，终端窗口内部的白色子模块框被套上<strong>蓝＋橙双色描边</strong>——分别对应 Instruction 1（蓝）与 Demo Set 2（橙）已经填入该模块，程序进入「本轮配置」状态。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 54</span>组合优化：从训练集采样 minibatch</h3>
+  <figure><img src="slides/slide-054.png" alt="Slide 54 minibatch" loading="lazy"><figcaption>多页文档 → 蓝色粗箭头 → 单页文档；底部：Sample minibatch from training data / *Every few iterations we also do a full evaluation</figcaption></figure>
+  <p>接下来评估这套配置：从训练集<strong>采样一个 minibatch</strong>（多页文档图标缩为单页）。注意底部小字：<strong>每隔几轮迭代还会做一次完整评估（full evaluation）</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 55</span>组合优化：在更新后的程序上跑 minibatch</h3>
+  <figure><img src="slides/slide-055.png" alt="Slide 55 跑 minibatch" loading="lazy"><figcaption>Training Input（单页）→ LM Program（子模块带蓝橙描边）→ Metric；底部：Run the minibatch on the updated program</figcaption></figure>
+  <p>把 minibatch 跑过「更新后的程序」：单页 Training Input 红色箭头汇入 LM Program（内部子模块仍是蓝橙高亮），程序输出指向 Metric——得到本轮配置的成绩。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 56</span>组合优化：根据 minibatch 结果更新 beliefs</h3>
+  <figure><img src="slides/slide-056.png" alt="Slide 56 更新 beliefs" loading="lazy"><figcaption>回到 Beliefs 布局；Instruction 1 与 Demo Set 2 仍红框高亮，右侧新增绿色大拇指；底部：Update beliefs based on mini batch results</figcaption></figure>
+  <p>回到信念面板：本轮组合（Instruction 1＋Demo Set 2）成绩不错——右侧出现<strong>绿色大拇指</strong>，
+  动作是<strong>根据 minibatch 结果更新 beliefs</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 57</span>组合优化：beliefs 上调</h3>
+  <figure><img src="slides/slide-057.png" alt="Slide 57 beliefs 上调" loading="lazy"><figcaption>红色高亮消失；Instruction 1 与 Demo Set 2 的量条绿色段明显变长</figcaption></figure>
+  <p>与上一张相比：红框消失，而 <strong>Instruction 1 与 Demo Set 2 的量条绿色部分明显变长（红色缩短）</strong>——好成绩让这两个组件的「好」信念被上调。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 58</span>组合优化：循环说明</h3>
+  <figure><img src="slides/slide-058.png" alt="Slide 58 循环" loading="lazy"><figcaption>底部：Repeat num_batches times, doing a full evaluation every few iterations</figcaption></figure>
+  <p>底部文字换成循环说明：<strong>重复 num_batches 次，每隔几轮做一次完整评估</strong>。接下来几帧快速演示后续几轮循环中 beliefs 的起伏。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 59</span>组合优化：第二轮回——差成绩</h3>
+  <figure><img src="slides/slide-059.png" alt="Slide 59 差成绩" loading="lazy"><figcaption>Instruction 2 与 Demo Set N 红框高亮，右侧红色拇指朝下；两者量条红色占多数</figcaption></figure>
+  <p>新一轮采样了 <strong>Instruction 2＋Demo Set N</strong>，但 minibatch 成绩差——右侧<strong>红色拇指朝下</strong>，
+  两者的量条本就红色占多数。坏结果将下调它们的信念。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 60</span>组合优化：beliefs 下调</h3>
+  <figure><img src="slides/slide-060.png" alt="Slide 60 beliefs 下调" loading="lazy"><figcaption>高亮消失；Instruction 2 量条红色占比更大；Demo Set 3 量条红色高亮描边且红色占多数；右侧红拇指</figcaption></figure>
+  <p>信念下调后的状态：Instruction 2 的量条红色被进一步压缩扩大，Demo Set 3 也呈红色主导——<strong>差的组合逐渐被「冷落」，采样概率下降。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 61</span>组合优化：第三轮回——又一批好成绩</h3>
+  <figure><img src="slides/slide-061.png" alt="Slide 61 再度上调" loading="lazy"><figcaption>Instruction 3 与 Demo Set 2 红框高亮，右侧绿色大拇指；Instruction 2 量条绿色继续缩短，Demo Set 2 量条绿色占多数</figcaption></figure>
+  <p>本轮采样 <strong>Instruction 3＋Demo Set 2</strong>，结果好（绿拇指）：Demo Set 2 的量条绿色段占多数（再上调），
+  而 Instruction 2 的绿色继续萎缩——好的越来越好、差的越来越差，代理模型逐渐逼近真实好坏分布。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 62</span>组合优化：多轮更新后的 beliefs 分布</h3>
+  <figure><img src="slides/slide-062.png" alt="Slide 62 最终分布" loading="lazy"><figcaption>高亮消失；Instruction 1 量条绿色占多数；Demo Set 2 与 Demo Set 3 量条近全红；右侧保留绿拇指</figcaption></figure>
+  <p>多轮循环后的最终信念分布一览：<strong>Instruction 1 绿色主导</strong>（好指令），<strong>Demo Set 2、Demo Set 3 近乎全红</strong>（差示例组）——
+  搜索过程就是不断用 minibatch 结果修正这组信念，最终按信念选优。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 63</span>组合优化：Example Optimized Module（优化后的模块示例）</h3>
+  <figure><img src="slides/slide-063.png" alt="Slide 63 优化后模块" loading="lazy"><figcaption>上方浅灰框为优化前 instruction；蓝色箭头指向下方优化后的完整 prompt（instruction＋一条 demonstration）</figcaption></figure>
+  <p>演示收官：展示一个被优化出来的模块。优化前的指令只有一句：<code>"Given the petal and sepal dimensions in cm, predict the iris species."</code>；
+  优化后变成<strong>指令＋示范</strong>的组合——指令是濒危物种叙事版（「Given the critical situation in which a rare species of iris is on the brink of extinction…」），
+  后接一条完整的 demonstration（petal_length "1.5"、petal_width "0.1"、sepal_length "5.2"、sepal_width "4.1"，以及模型的 setosa 推理与答案）。
+  <strong>最终交付物就是一个「指令＋示例」的 prompt 模块。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 64</span>Feedback Gradients (TextGrad) [Yuksekgonul et al., 2024]</h3>
+  <figure><img src="slides/slide-064.png" alt="Slide 64 TextGrad" loading="lazy"><figcaption>左：TextGrad 计算图与「反馈反传」示意（Image Credit: arxiv.org/pdf/2406.07496）；右：优化前后 prompt 对比（Accuracy 77.8% → 91.9%）</figcaption></figure>
+  <p><span class="term">TextGrad（文本梯度）</span>：<strong>让 LLM 反思「这个输出哪里可以改进」，并把这条反馈像梯度一样沿系统中的各个 prompt 反向传播。</strong>
+  左图把整个系统画成一张计算图：Inputs（Prompt、Query、Tool Prompt）各自经过 LLM / Search Engine / Tool Caller 产出中间输出，汇入 LLM 得到 Final Output，再经 Evaluation Instruction 算出 Loss；
+  两条「反向弧」上写着 <code>∂Loss/∂Prompt = "this prompt can be improved by..."</code>、<code>∂Loss/∂Response = "this response can be improved by..."</code>——
+  即<strong>用自然语言 criticism 代替数值梯度</strong>。右侧实例：初始化 prompt（"You will answer a reasoning question. Think step by step.…"）准确率 <strong>77.8%</strong>，
+  优化后 prompt（要求逐项列出数量、直接求和、校验相关性、复核计数等）准确率升到 <strong>91.9%</strong>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 65</span>Genetic Pareto Prompt Evolution (GEPA) [Agrawal et al., 2026]</h3>
+  <figure><img src="slides/slide-065.png" alt="Slide 65 GEPA 总览" loading="lazy"><figcaption>GEPA 算法总览流程图（Image Credit: arxiv.org/pdf/2507.19457）：Initialize → While Budget &gt; 0 循环：Pareto 前沿过滤 → 反思式变异 / 系统感知合并 → minibatch 评估 → 好则全量评估入池，差则丢弃</figcaption></figure>
+  <p><span class="term">GEPA（遗传式帕累托提示演化）</span>是一个进化搜索框架，主循环为 <strong>While Budget &gt; 0</strong>：</p>
+  <ul>
+    <li><strong>候选池（Candidate Pool P）</strong>：各候选 prompt 像树一样繁衍（P₀ 生成 P₁、P₂，P₁ 生成 P₃、P₄…），每个候选在每个任务上有得分（Scores Matrix：绿勾通过、红叉失败）；</li>
+    <li><strong>帕累托过滤（Pareto-based Candidate Filtering）</strong>：每个任务保留至少一个「该任务最优」的候选，构成 <span class="term">Filtered Pool（Pareto Frontier，帕累托前沿）</span>——不选单一最优，而是保留「各有擅长」的多样化种群；</li>
+    <li><strong>提出新候选（Propose New Candidate）</strong>两条路线：(a) <span class="term">Reflective Prompt Mutation（反思式提示变异）</span>——在训练集 minibatch M 上执行候选、用 μ_f 收集文字反馈，反思后提出新 prompt；(b) <span class="term">System Aware Merge（系统感知合并）</span>——为每个模块策略性地从两个候选中选 prompt：若某模块在 P₂ 中演化过而 P₃ 没有，就从 P₂ 取，反之亦然；</li>
+    <li><strong>评估分流</strong>：新候选先做 minibatch 评估（Performance improved?）——有提升则在全部任务上评估并加入候选池（绿框），否则丢弃（红框）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 66</span>GEPA Example: PAPILLON [Siyan et al., 2025]</h3>
+  <figure><img src="slides/slide-066.png" alt="Slide 66 PAPILLON" loading="lazy"><figcaption>左侧 PAPILLON Pipeline（User Query → Prompt Creator ① → New Privacy-Preserving Query → API-Based LLM ② → LLM Response → Information Aggregator ③ → Final Output）（Image Credit: arxiv.org/pdf/2410.17127）</figcaption></figure>
+  <p>用一个真实程序看 GEPA 优化的是什么。<span class="term">PAPILLON</span> 是一个隐私保护管线：
+  用户查询先经 <strong>Prompt Creator（①）</strong>改写成「不泄露隐私的请求」，发给强大的外部 API LLM（②），再由 <strong>Information Aggregator（③）</strong>汇总成最终回答。
+  右侧给出程序中模块 ① 和 ③ 的<strong>基线 prompt</strong>（注意标注：这是 GEPA 论文里用的 baseline prompt，不是 PAPILLON 原论文的）：
+  ①「Given a private user query, create a privacy-preserving request for a powerful external LLM. The LLM may assist without learning private information about the user.」；
+  ③「Respond to a user query. For inspiration, we found a potentially related request to a powerful external LLM and its response.」。
+  接下来两页展示 GEPA 把这些朴素 prompt 演化成了什么样。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 67</span>GEPA Example：候选演化树</h3>
+  <figure><img src="slides/slide-067.png" alt="Slide 67 演化树" loading="lazy"><figcaption>候选演化树与五段演化说明（Image Credit: arxiv.org/pdf/2507.19457）：最优路径 0 (82.26) → 2 (90.99) → 4 (94.44) → 5 (94.67) → 11 (97.6)</figcaption></figure>
+  <p>GEPA 在 PAPILLON 上演化出的候选树：每个圆是一个候选 prompt 及其得分，红色箭头标出最优路径
+  <strong>0 (82.26) → 2 (90.99) → 4 (94.44) → 5 (94.67) → 11 (97.6)</strong>——最终候选 11（青色高亮）得 97.6。
+  五个说明框概括了 prompt 演化的五个阶段：</p>
+  <ol>
+    <li><strong>Base Instruction</strong>：朴素基线（即上一页的指令）；</li>
+    <li><strong>Expanded Privacy Strategies &amp; Task Understanding</strong>：增加识别与泛化 PII 的详细指导，强调分析查询意图、引入改写的推理说明；</li>
+    <li><strong>Structured Output &amp; Domain Best-Practices</strong>：把输出形式化为 Reasoning 与 Request 两部分，明确禁止姓名/代号，描述抽象化与示例用法，要求详细的隐私论证并与任务质量平衡；</li>
+    <li><strong>Detailed, Transparent Transformation Rationale</strong>：强制透明的隐私推理与谨慎抽象，细化位置/姓名/一般信息移除、职业场景与虚构人物处理——每步都附解释；</li>
+    <li><strong>Rigorous, Exhaustive Protocol</strong>：严格的分步 PII 与专有信息抽象、禁止部分遮盖；完整最佳实践：始终论证方法、在保证可审计隐私的前提下最大化效用——<strong>零泄漏容忍</strong>。</li>
+  </ol>
+  <p>注意演化轨迹：不是「越改越啰嗦」，而是<strong>逐步沉淀出领域最佳实践</strong>（结构化输出、显式禁令、可审计论证）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 68</span>GEPA Results（GEPA 结果表）</h3>
+  <figure><img src="slides/slide-068.png" alt="Slide 68 GEPA 结果" loading="lazy"><figcaption>结果表（Image Credit: arxiv.org/pdf/2507.19457）：GPT-4.1 Mini 上七项基准的 Aggregate 对比</figcaption></figure>
+  <p>结论：<strong>GEPA 的反思式 prompt 演化在各项任务上全面超过基线。</strong>表格为 GPT-4.1 Mini 上的成绩（Aggregate 聚合分与相对基线提升）：</p>
+  <table>
+    <tr><th>方法</th><th>HotpotQA</th><th>IFBench</th><th>Hover</th><th>PUPA</th><th>AIME-2025</th><th>LiveBench-Math</th><th>Aggregate</th><th>提升</th></tr>
+    <tr><td>Baseline</td><td>38.00</td><td>47.79</td><td>46.33</td><td>78.57</td><td>49.33</td><td>58.20</td><td>53.03</td><td>—</td></tr>
+    <tr><td>Trace (OptoPrime)</td><td>60.33</td><td>51.19</td><td>46.00</td><td>74.18</td><td>45.33</td><td>60.74</td><td>56.30</td><td>+3.27</td></tr>
+    <tr><td>MIPROv2-No-Demos</td><td>38.00</td><td>52.04</td><td>51.33</td><td>91.85</td><td>48.67</td><td>60.97</td><td>57.14</td><td>+4.11</td></tr>
+    <tr><td>MIPROv2</td><td>58.00</td><td>49.15</td><td>48.33</td><td>83.37</td><td>51.33</td><td>61.84</td><td>58.67</td><td>+5.64</td></tr>
+    <tr><td>TextGrad</td><td>62.33</td><td>48.64</td><td>47.67</td><td>85.68</td><td>46.67</td><td>63.84</td><td>59.14</td><td>+6.11</td></tr>
+    <tr><td>GEPA</td><td><strong>69.00</strong></td><td>52.72</td><td>51.67</td><td>94.47</td><td><strong>59.33</strong></td><td><strong>64.13</strong></td><td>65.22</td><td>+12.19</td></tr>
+    <tr><td>GEPA+Merge</td><td>65.67</td><td><strong>55.95</strong></td><td><strong>56.67</strong></td><td><strong>96.46</strong></td><td><strong>59.33</strong></td><td><strong>64.13</strong></td><td><strong>66.36</strong></td><td><strong>+13.33</strong></td></tr>
+  </table>
+  <p>表中分隔行还给出「用 Qwen3-8B 优化、在 GPT-4.1-Mini 上评估」的 <strong>GEPA-Qwen-Opt</strong>：Aggregate 62.03（+9.00）——
+  说明<strong>用一个模型优化出的 prompt 可以迁移给另一个模型</strong>。GEPA 比最强基线 TextGrad 的聚合分高出约 7 分（65.22 vs 59.14）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 69</span>Context Optimization Summary（上下文优化小结）</h3>
+  <figure><img src="slides/slide-069.png" alt="Slide 69 上下文优化小结" loading="lazy"><figcaption>两条 Takeaway；右侧为 SpongeBob 展开羊皮纸的插画</figcaption></figure>
+  <p>上下文优化一章收束成两条 Takeaway：</p>
+  <ul>
+    <li><strong>Fewshot Optimization（示例优化）</strong>：自举推理/输出（bootstrapping reasoning/output）＋搜索有用的 few-shot 示例，是 prompt 优化的一种强模式；</li>
+    <li><strong>Reflective Optimization（反思式优化）</strong>：跑任务 → 反思该改什么 → 把反思写进 prompt，是另一种强模式；基于帕累托前沿（Pareto frontier）的改进来演化 prompt 也有帮助。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch3">
+<h2 class="chapter-title">三、权重优化（Weight Optimization）</h2>
+<p class="chapter-sub">Weight Optimization：SFT / RL / On-Policy Distillation（Slide 70–104）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 70</span>章节页：Weight Optimization</h3>
+  <figure><img src="slides/slide-070.png" alt="Slide 70 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Weights</figcaption></figure>
+  <p>进入第三章「权重优化」：不再只动上下文，而是<strong>直接修改模型参数</strong>。本章依次介绍三种方法：
+  <span class="term">Supervised Finetuning（监督微调，SFT）</span>、<span class="term">Reinforcement Learning（强化学习，RL）</span>、
+  <span class="term">On-Policy Distillation（在策略蒸馏）</span>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 71</span>子章节页：Supervised Finetuning</h3>
+  <figure><img src="slides/slide-071.png" alt="Slide 71 SFT 子章节页" loading="lazy"><figcaption>Supervised Finetuning 子章节分隔页</figcaption></figure>
+  <p>子章节「Supervised Finetuning（监督微调）」：用「标准答案轨迹」直接训练模型。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 72</span>Recall: Cross Entropy Loss（复习：交叉熵损失）</h3>
+  <figure><img src="slides/slide-072.png" alt="Slide 72 交叉熵" loading="lazy"><figcaption>公式 L = −Σᵢ₌₁ᵛ yᵢ log(pᵢ)，各部件彩色标注</figcaption></figure>
+  <p>复习语言模型训练的基本损失。<span class="term">交叉熵损失（Cross Entropy Loss）</span>公式 <code>L = −Σ_{i=1}^{V} y_i log(p_i)</code>，逐部件标注：</p>
+  <ul>
+    <li><code>y_i</code>（蓝框）：<strong>当该 token 是数据里的真实 token 时取 1，不是则取 0</strong>（one-hot 目标）；</li>
+    <li><code>Σ_{i=1}^{V}</code>（红框）：对<strong>词表（vocabulary）中的每一个 token</strong> 求和；</li>
+    <li><code>log(p_i)</code>（绿框）：该 token 的<strong>对数概率（log probability）</strong>。</li>
+  </ul>
+  <p>一句话：SFT 就是最大化数据中真实 token 的对数似然。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 73</span>Recall: Instruction Finetuning（复习：指令微调）</h3>
+  <figure><img src="slides/slide-073.png" alt="Slide 73 指令微调" loading="lazy"><figcaption>Flan 风格示意图（Image Credit: arxiv.org/pdf/2210.11416）：Instruction finetuning / CoT finetuning / Multi-task（1.8K tasks）→ 推理时泛化到未见任务</figcaption></figure>
+  <p>复习 <span class="term">Instruction Finetuning（指令微调）</span>（Flan 系列，Image Credit: arxiv.org/pdf/2210.11416）：
+  训练时混用多种任务形式——普通<strong>指令微调</strong>（「氮气的沸点是多少？」→ "-320.4F"）、<strong>思维链微调</strong>（「请一步步推理回答」→ 苹果题的完整推理），
+  以及<strong>多任务指令微调（1.8K 个任务）</strong>；推理（Inference）时模型能<strong>泛化到未见过的任务</strong>——
+  例如「Geoffrey Hinton 能和 George Washington 对话吗？先给理由再回答」，模型会推理「Hinton 生于 1947 年，Washington 卒于 1799 年，因此不能对话，答案 no」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 74</span>SFT For Agents（面向 agent 的 SFT）</h3>
+  <figure><img src="slides/slide-074.png" alt="Slide 74 SFT For Agents" loading="lazy"><figcaption>右侧流程：Teacher →（Roll out）→ Successful trajectories →（Fine-tune）→ Student</figcaption></figure>
+  <p>把 SFT 用到 agent 上的配方：</p>
+  <ul>
+    <li>让 <strong>teacher（教师）模型在 agent 任务上 rollout（跑轨迹）</strong>；</li>
+    <li>用 teacher 完成的任务<strong>对 student（学生）模型做后训练（post-train）</strong>；</li>
+    <li>重点是<strong>任务与环境的多样性（diversity of tasks and environments）</strong>；</li>
+    <li>学生学到的是<strong>任务执行（task execution）</strong>能力。</li>
+  </ul>
+  <p>右侧流程图概括：Teacher → Roll out → Successful trajectories → Fine-tune → Student。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 75</span>OpenThoughts-Agent：一条 teacher 轨迹截图</h3>
+  <figure><img src="slides/slide-075.png" alt="Slide 75 teacher 轨迹" loading="lazy"><figcaption>OpenThoughts-Agent task_1087 终端对话截图（USER / AGENT / TERMINAL 交替）</figcaption></figure>
+  <p>右侧批注给出两条要点：<strong>「让 teacher 模型执行任务，然后用它的输出做训练」</strong>；
+  以及<strong>「也可以想办法验证模型输出的正确性，用拒绝采样（rejection sampling）筛选后再训练」</strong>。
+  左侧截图展示了这样一条 teacher 轨迹（task_1087）：USER 要求「在当前目录找出所有文件名以 .example.com 结尾（忽略 beta 子目录）的文件，把命令的 stdout 和 stderr 一起捕获到指定文件」；
+  AGENT 执行 <code>find . -type f -iname '*.example.com' ! -path './beta/*' &gt; /output/command_capture.txt 2&gt;&amp;1</code>，
+  用 <code>wc -c</code> 确认 48 字节，再 <code>cat</code> 验证内容包含 ./alpha/one.example.com 与 ./alpha/two.example.com，最后提交 <code>"task_complete": true</code>。
+  <strong>这条「思考→执行→验证→完成」的完整轨迹就是一条 SFT 训练样本。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 76</span>OpenThoughts-Agent [Raoof et al., 2026]（SFT 数据管线）</h3>
+  <figure><img src="slides/slide-076.png" alt="Slide 76 六阶段管线" loading="lazy"><figcaption>Figure 2：OpenThoughts-Agent 六阶段 SFT 数据管线（Image Credit: arxiv.org/pdf/2606.24855）；底部：Stay tuned for the Agent Data lectures!</figcaption></figure>
+  <p><span class="term">OpenThoughts-Agent</span> 的六阶段 SFT 数据管线（Figure 2，各阶段在论文 3.1–3.6 节独立消融）：
+  <strong>Source Tasks（源任务）→ Mix Tasks（任务混合）→ Filter Tasks（任务过滤）→ Generate Rollouts（生成轨迹；上方 Select Teacher 选择教师）→ Filter Rollouts（轨迹过滤）→ Final Recipe（最终配方）</strong>。
+  页面底部预告：「敬请期待 Agent Data（智能体数据）几讲！」</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 77</span>OpenThoughts-Agent：结果（数据规模曲线）</h3>
+  <figure><img src="slides/slide-077.png" alt="Slide 77 OT-Agent 结果" loading="lazy"><figcaption>Figure 1：三联折线图（SWE-Bench Verified (100) / Terminal-Bench 2.0 / All Average），x 轴 Dataset Size 316→100K（Image Credit: arxiv.org/pdf/2606.24855）</figcaption></figure>
+  <p>结论：<strong>在强 teacher 的 rollout 上做微调确实有用！</strong>三幅折线图（图注：OT-Agent-SFT 数据集让模型在 Terminal-Bench 2.0 与 SWE-Bench Verified 100 子集上达到 SotA）：</p>
+  <ul>
+    <li>横轴为<strong>数据集规模</strong>（316 → 1K → 3.16K → 10K → 31.6K → 100K，对数刻度），纵轴为各基准准确率；</li>
+    <li><strong>OT-Agent Qwen3-32B</strong>（红线）全程最高：SWE-Bench 上从 100K 规模约 56%，Terminal-Bench 2.0 约 26.5%，全基准平均约 45.5%；</li>
+    <li><strong>Nemotron-Terminal-Corpus Qwen3-32B</strong>（蓝线）紧随其后；OT-Agent 8B（橙）与 Nemotron 8B（青）再低一档；</li>
+    <li><strong>SERA</strong>（紫线）在小规模领先，但约 31.6K 后掉队；Base 模型（灰/黑虚线）远低于所有微调模型。</li>
+  </ul>
+  <p>关键信息：<strong>曲线随数据规模持续上升、未饱和</strong>——这是后面 Slide 120「权重优化更能吃数据」论点的伏笔。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 78</span>FireAct [Chen et al., 2023]</h3>
+  <figure><img src="slides/slide-078.png" alt="Slide 78 FireAct" loading="lazy"><figcaption>(a) Fine-tuning：多任务 × 多方法轨迹微调 Llama2；(b) Inference：模型隐式自选推理方式（Image Credit: arxiv.org/pdf/2310.05915）</figcaption></figure>
+  <p><span class="term">FireAct</span> 的做法（Image Credit: arxiv.org/pdf/2310.05915）：<strong>用多种 agent 推理设计模式的 GPT-4 rollout 微调 Llama2，推理时让模型自己选择怎么推理。</strong>
+  图 (a) 微调：Multi-task Questions（HotpotQA、StrategyQA、MMLU）× Multi-method Prompts（CoT、ReAct、Reflexion）喂给 GPT-4（可调 Tools），
+  收集<strong>正确的轨迹</strong>（错误的被移除），统一 reformat 成 ReAct 格式，用来微调 Llama2 得到 FLM（finetuned LM）；
+  图 (b) 推理：测试题（3+4+5=?）进入 FLM，输出 CoT / ReAct / Reflexion 三种卡（隐式方法选择），
+  简单题甚至直接「CoT in ReAct format」：<code>Thought: 3+4+5=7+5=12. Answer is 12. Action: Finish[12]</code>。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 79</span>FireAct：结果</h3>
+  <figure><img src="slides/slide-079.png" alt="Slide 79 FireAct 结果" loading="lazy"><figcaption>两张表（Image Credit: arxiv.org/pdf/2310.05915）：HotpotQA 上的 Prompting 结果与 Prompting vs. Fine-tuning 对比</figcaption></figure>
+  <p>结论：<strong>在 GPT-4 rollout 上微调 Llama2-13B，能让它成为比「提示过的 GPT-3.5」更强的 agent。</strong>两张表（HotpotQA，EM 精确匹配）：</p>
+  <ul>
+    <li><strong>Table 1（纯提示）</strong>：GPT-4 的 IO 37.2 / CoT <strong>45.0</strong> / ReAct 42.0；GPT-3.5 的 IO 22.4 / CoT 28.0 / ReAct <strong>31.4</strong>；</li>
+    <li><strong>Table 2（提示 vs 微调，ReAct / FireAct / 绝对提升 / 相对提升）</strong>：Llama-2-7B 14.8→26.2（+11.4，<strong>+77%</strong>）；Llama-2-13B 21.2→34.4（<strong>+13.1</strong>，+62%）；CodeLlama-7B 17.4→27.8（+10.4，+60%）；CodeLlama-13B 20.8→29.0（+8.2，+39%）；CodeLlama-34B 22.2→27.8（+5.6，+25%）；GPT-3.5 31.4→39.2（+7.8，+25%）。</li>
+  </ul>
+  <p>规律：<strong>模型越小，微调相对收益越大</strong>（7B 提升 77%，34B 只剩 25%），且微调后的 13B 小模型（34.4）能反超提示的 GPT-3.5（31.4）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 80</span>子章节页：Reinforcement Learning</h3>
+  <figure><img src="slides/slide-080.png" alt="Slide 80 RL 子章节页" loading="lazy"><figcaption>Reinforcement Learning 子章节分隔页</figcaption></figure>
+  <p>子章节「Reinforcement Learning（强化学习）」：不再模仿 teacher 的轨迹，而是让学生自己在环境里试、用奖励信号学。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 81</span>RL For Agents（面向 agent 的 RL）</h3>
+  <figure><img src="slides/slide-081.png" alt="Slide 81 RL For Agents" loading="lazy"><figcaption>右侧闭环：Agent →（Roll out）→ Trajectories →（Evaluate）→ Rewards →（Update weights）→ Agent</figcaption></figure>
+  <p>RL 版配方：</p>
+  <ul>
+    <li>让 <strong>student（学生）自己在 agent 任务上 rollout</strong>（注意与 SFT 的区别：SFT 是 teacher 跑，RL 是学生跑）；</li>
+    <li>学生<strong>成功完成任务就获得奖励（reward）</strong>；</li>
+    <li>重点是<strong>环境与任务复杂度的多样性</strong>；</li>
+    <li><strong>可验证性（Verifiability）是关键</strong>——奖励必须能客观判定任务是否完成。</li>
+  </ul>
+  <p>右侧闭环流程图：Agent → Roll out → Trajectories → Evaluate → Rewards → Update weights → 回到 Agent。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 82</span>RL 环境：外部奖励与分组采样</h3>
+  <figure><img src="slides/slide-082.png" alt="Slide 82 RL 环境" loading="lazy"><figcaption>OpenThoughts-Agent RL environment 截图（task_1087）：VERIFIER 绿框 cmp 精确匹配 → Terminal reward 1</figcaption></figure>
+  <p>右侧批注解释 RL 的两个机制：<strong>「外部奖励（external reward）验证任务是否成功完成」</strong>——
+  截图中同一道任务由学生执行，最后由 VERIFIER 用 <code>cmp -s "$EXPECTED" "$OUTPUT"</code>（与参考输出精确匹配）判定，
+  通过则给 <strong>Terminal reward 1</strong>；<strong>「同一 prompt 在组内跑若干次、若干组组成一个 batch」</strong>——
+  这是为下一页 GRPO 的「组相对优势」做准备。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 83</span>PPO vs GRPO（对比总览）</h3>
+  <figure><img src="slides/slide-083.png" alt="Slide 83 PPO vs GRPO" loading="lazy"><figcaption>DeepSeekMath Figure 4（Image Credit: arxiv.org/pdf/2402.03300）：GRPO 去掉 value model，改用组分数估计 baseline，大幅降低训练资源</figcaption></figure>
+  <p>进入具体算法。上图为 <span class="term">PPO（Proximal Policy Optimization）</span>，下图为 <span class="term">GRPO（Group Relative Policy Optimization）</span>（图例：黄=被训练模型，蓝=冻结模型）：</p>
+  <ul>
+    <li><strong>PPO</strong>：query q → Policy Model 生成输出 o → 三个辅助模型协同：Reference Model（冻结，算 KL 惩罚，与 reward 相加得 r）、Reward Model（打分）、Value Model（训练，估计每个 token 的价值 v）；r 与 v 经 <strong>GAE</strong> 算出优势 A；</li>
+    <li><strong>GRPO</strong>：q → Policy Model 生成<strong>一组</strong>输出 o₁…o_G → Reference Model 算 KL ＋ Reward Model 打分得 r₁…r_G → <strong>Group Computation（组内计算）</strong>直接得出 A₁…A_G——<strong>不需要 Value Model</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 84</span>PPO 各部件标注</h3>
+  <figure><img src="slides/slide-084.png" alt="Slide 84 PPO 标注" loading="lazy"><figcaption>PPO 图＋红色手绘标注（Image Credit: arxiv.org/pdf/2402.03300）</figcaption></figure>
+  <p>给 PPO 图逐个部件贴标签（红色标注）：</p>
+  <ul>
+    <li>Reference Model 的 KL 项：<strong>「KL per Token（每个 token 的 KL）」</strong>；</li>
+    <li>Reward Model 的输出 r：<strong>「One reward for entire output（整条输出只有一个奖励）」/「Per token reward」</strong>；</li>
+    <li>Policy Model 生成 o：<strong>「Generate an Output（生成一条输出）」</strong>；</li>
+    <li>Value Model 的输出 v：<strong>「Value per Token / Per token value（每个 token 的价值）」</strong>；</li>
+    <li>GAE：<strong>「Generalized Advantage Estimate：这个 token 相比其他可能的 token 有多大用处？」</strong>。</li>
+  </ul>
+  <p>注意复杂度来源：奖励是序列级的，但要为<strong>每个 token</strong> 估价值、算优势、算 KL。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 85</span>PPO 的代价 ①：四个模型</h3>
+  <figure><img src="slides/slide-085.png" alt="Slide 85 PPO 代价1" loading="lazy"><figcaption>干净 PPO 图；红框圈出 Policy / Reference / Value Model 等内存驻留组件；要点：1. Four Models to keep in memory!</figcaption></figure>
+  <p>PPO 代价清单第一条：<strong>内存里要同时放四个模型！</strong>（Policy Model、Reference Model、Reward Model、Value Model——对大模型来说这是巨量的显存。）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 86</span>PPO 的代价 ②：每步训练两个模型</h3>
+  <figure><img src="slides/slide-086.png" alt="Slide 86 PPO 代价2" loading="lazy"><figcaption>红框改为圈 Policy Model 与 Value Model；要点：2. Two Models to train every step!</figcaption></figure>
+  <p>第二条：<strong>每一步要同时训练两个模型！</strong>（红框移到 Policy Model 与 Value Model 上——不仅策略在学，价值网络也要跟着学。）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 87</span>PPO 的代价 ③：多个逐 token 的昂贵步骤</h3>
+  <figure><img src="slides/slide-087.png" alt="Slide 87 PPO 代价3" loading="lazy"><figcaption>红框圈 Reference Model（KL、r）、Value Model（v）与 GAE → A；要点：3. Several (expensive) per token steps!</figcaption></figure>
+  <p>第三条：<strong>还有多个（昂贵的）逐 token 计算步骤！</strong>（红框圈出 per-token KL、per-token value 与 GAE——这些逐 token 前向/反向是PPO 训练慢和贵的主要来源。）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 88</span>GRPO 各部件标注</h3>
+  <figure><img src="slides/slide-088.png" alt="Slide 88 GRPO 标注" loading="lazy"><figcaption>GRPO 图＋红色标注（Image Credit: arxiv.org/pdf/2402.03300）：Token Level KL / Generate a Group of Outputs / Per Output Rewards / Group Advantage</figcaption></figure>
+  <p>换到 GRPO，同样贴标签：</p>
+  <ul>
+    <li><strong>Token Level KL</strong>：Reference Model 仍按 token 算 KL（这是唯一逐 token 的部分）；</li>
+    <li><strong>Generate a Group of Outputs</strong>：策略模型对同一 prompt 生成<strong>一组</strong>输出；</li>
+    <li><strong>Per Output Rewards</strong>：每条输出一个奖励 r₁…r_G（不再有 per-token value）；</li>
+    <li><strong>Group Advantage</strong>：组内计算直接得到各输出的优势 A₁…A_G。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 89</span>GRPO 的改进 ①：三个模型</h3>
+  <figure><img src="slides/slide-089.png" alt="Slide 89 GRPO 改进1" loading="lazy"><figcaption>干净 GRPO 图；红框圈 Policy / Reference / Reward Model；要点：1. Three Models to keep in memory! Also "Reward Model" doesn't have to be a model.</figcaption></figure>
+  <p>GRPO 改进第一条：<strong>内存里只需三个模型！</strong>而且注意——<strong>「Reward Model」不一定非得是个模型</strong>（可以是规则验证器、单元测试等，呼应 Slide 81「可验证性是关键」）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 90</span>GRPO 的改进 ②：每步只训练一个模型</h3>
+  <figure><img src="slides/slide-090.png" alt="Slide 90 GRPO 改进2" loading="lazy"><figcaption>红框仅圈 Policy Model；要点：2. One Model to train every step!</figcaption></figure>
+  <p>第二条：<strong>每一步只训练一个模型！</strong>（红框只剩 Policy Model——没有 value 网络要跟着训了。）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 91</span>GRPO 的改进 ③：只有 KL 逐 token</h3>
+  <figure><img src="slides/slide-091.png" alt="Slide 91 GRPO 改进3" loading="lazy"><figcaption>红框仅圈 Reference Model（含 KL）；要点：3. Only KL is per token, everything else is sequence level!</figcaption></figure>
+  <p>第三条：<strong>只有 KL 是逐 token 的，其余全在序列级！</strong>（奖励、优势、损失都以整条输出为单位——昂贵的逐 token 计算几乎全部消失。）</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 92</span>GRPO：Advantage 计算（组内 z-score）</h3>
+  <figure><img src="slides/slide-092.png" alt="Slide 92 GRPO Advantage" loading="lazy"><figcaption>GRPO 图＋公式 Â_i = (R_i − mean({R₁…R_G})) / std({R₁…R_G})；红色结论：Compute the z-score for each output reward!</figcaption></figure>
+  <p>没有 value model，优势从哪来？答案写在公式里：<strong>对每条输出的奖励做组内 z-score 标准化</strong>——
+  <code>Â_i = (R_i − mean) / std</code>，减去组均值（baseline）再除以组标准差。红字结论：
+  <strong>「Compute the z-score for each output reward!」</strong>奖励高于组平均的输出被正强化，低于均值的被抑制。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 93</span>GRPO 目标函数（全标注）</h3>
+  <figure><img src="slides/slide-093.png" alt="Slide 93 GRPO 目标函数" loading="lazy"><figcaption>GRPO 目标函数逐部件彩色标注（Image Credit: arxiv.org/pdf/2402.03300）</figcaption></figure>
+  <p>把 GRPO 的目标函数拆开看（各部件对应彩色标注）：</p>
+  <p class="mono">J_GRPO(θ) = E[q∼P(Q), {o_i}∼π_θold(O|q)] · (1/G) Σᵢ (1/|o_i|) Σₜ [ min( (π_θ/π_θold)·Â_{i,t}, clip(π_θ/π_θold, 1−ε, 1+ε)·Â_{i,t} ) − β·D_KL[π_θ‖π_ref] ]</p>
+  <ul>
+    <li>期望 E：<strong>对「从数据集抽的一个 prompt ＋ 该 prompt 采样出的一组输出」求期望</strong>；</li>
+    <li>1/G Σ（蓝）：<strong>组内平均（Avg over group）</strong>；</li>
+    <li>1/|o_i| Σₜ（绿）：<strong>对响应中的 token 取平均（Avg over tokens in response）</strong>；</li>
+    <li>重要性比率 π_θ/π_θold（紫）：<strong>「这个 token 在新策略下相比旧策略有多重要？」</strong>；</li>
+    <li>Â（橙）：<strong>Advantage（优势）</strong>——组相对优势；</li>
+    <li>clip（灰）：<strong>「不要在任何单个 token 上过度更新」（Don't over update on any one token）</strong>；</li>
+    <li>−β·D_KL（青）：<strong>「别偏离参考策略太远」（Don't deviate too far from reference）</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 94</span>Real World Example（DeepSeek-R1 训练管线）</h3>
+  <figure><img src="slides/slide-094.png" alt="Slide 94 DeepSeek-R1 管线" loading="lazy"><figcaption>DeepSeek-R1 训练管线（Image Credit: arxiv.org/pdf/2501.12948）：R1 Zero → 冷启动 SFT → 多阶段 RL → 蒸馏回 V3 Base → 最终 R1</figcaption></figure>
+  <p>真实世界案例：DeepSeek-R1 的完整训练管线（四列流程，图例含 Models / Training Algorithms / Rewards / Post-Processing 等）：</p>
+  <ul>
+    <li><strong>第一列</strong>：DeepSeek V3 Base 用推理类 prompt（Reasoning Prompts）＋准确性与格式奖励直接做 RL，得到 <strong>DeepSeek R1 Zero</strong>；再采样并按准确性与格式过滤、用 V3＋人工精炼数据；</li>
+    <li><strong>第二列</strong>：V3 Base 先做 <strong>SFT: Cold Start Long CoT（冷启动长思维链）</strong>得到 R1 Dev-1，再用推理 prompt ＋规则奖励与语言一致性奖励做 RL 得到 R1 Dev-2；</li>
+    <li><strong>第三、四列</strong>：把 V3 与 R1 Dev-2 的采样数据经 SFT（Non-Reasoning + Reasoning）注入 <strong>V3 Base</strong> 得到 R1 Dev-3，最后用多样化 prompt ＋规则奖励与偏好奖励做 RL，得到最终的 <strong>DeepSeek R1</strong>。</li>
+  </ul>
+  <p>可以看到 RL 与 SFT 在真实系统里是<strong>交替使用</strong>的，这为第五章 BetterTogether 的结论埋下伏笔。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 95</span>GRPO vs PPO for DeepSeekR1</h3>
+  <figure><img src="slides/slide-095.png" alt="Slide 95 GRPO vs PPO" loading="lazy"><figcaption>DeepSeek-R1 论文 Figure 4（Image Credit: arxiv.org/pdf/2501.12948）：MATH 任务上 GRPO 全程优于两种 PPO 配置</figcaption></figure>
+  <p>选型证据：在 MATH 任务上的训练曲线（横轴 Steps 约 100–2500，纵轴 Accuracy 0.42–0.56）：</p>
+  <ul>
+    <li><strong>GRPO</strong>（绿菱形）：起点约 0.442，全程领先，终点约 <strong>0.554</strong>；</li>
+    <li><strong>PPO (λ=1.0)</strong>（蓝方点）：起点约 0.441，2000 余步后回落至约 0.535 附近；</li>
+    <li><strong>PPO (λ=0.95)</strong>（深蓝圆点）：起点约 0.423，终点约 0.501。</li>
+  </ul>
+  <p>GRPO 更省（少一个 value model）且更好——这就是 DeepSeek 选择它的原因。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 96</span>子章节页：On-Policy Distillation</h3>
+  <figure><img src="slides/slide-096.png" alt="Slide 96 OPD 子章节页" loading="lazy"><figcaption>On-Policy Distillation 子章节分隔页</figcaption></figure>
+  <p>权重优化的第三种方法：<span class="term">On-Policy Distillation（在策略蒸馏）</span>——
+  结合 SFT 的「稠密信号」与 RL 的「在策略采样」，用 teacher 的 token 概率直接指导学生的采样输出。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 97</span>开场比喻：在自己下过的棋上学棋</h3>
+  <figure><img src="slides/slide-097.png" alt="Slide 97 国际象棋比喻" loading="lazy"><figcaption>Chess.com 分析截图：Qe2 标记 "!!"（brilliant），评估 0.00（Image Credit: thinkingmachines.ai/blog/on-policy-distillation/）</figcaption></figure>
+  <p>本小节的开场比喻（底部原文）：<strong>「教练指导你亲自下过的一盘棋，比指导你只旁观的一盘棋，要有用得多。」</strong>
+  右图是 Chess.com 的复盘界面：本局白方第 26 步 Qe2 被标记为「!!」（brilliant，妙手），评分 0.00，面板给出后续变化与完整棋谱。
+  「在策略（on-policy）」的含义正来自于此：<strong>学习信号作用在学生自己生成的轨迹上</strong>，而不是别人（teacher）的棋谱上。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 98</span>SFT vs RL vs On Policy Distillation（示意对比）</h3>
+  <figure><img src="slides/slide-098.png" alt="Slide 98 三方法示意" loading="lazy"><figcaption>三行示意（Image Credit: thinkingmachines.ai/blog/on-policy-distillation/）：SFT 用 teacher 轨迹＋学生概率；RL 用学生轨迹＋稀疏奖励；OPD 用学生轨迹＋teacher 概率</figcaption></figure>
+  <p>三种方法在同一道题（prompt："What is 5 + (2 × 3)?"）上的机制对比：</p>
+  <ul>
+    <li><strong>SFT</strong>：学习 <span class="term">teacher trajectory</span>（"2 × 3 equals 6, add 5 to get 11."），每个 token 下标注<span class="term">学生的条件逐 token 概率</span>（20%、80%、95%、40%、99%、99%、30%、70%、40%、50%、95%、95%，红底深浅随概率变化）——<strong>信号是稠密的，但轨迹不是学生自己走的（off-policy）</strong>；</li>
+    <li><strong>RL</strong>：学习 <span class="term">student trajectory</span>（"5 + 2 is 7, and 7 × 3 is 21."——注意学生算错了），整条轨迹只有 <strong>reward: 0</strong> 一个信号——<strong>在策略，但信号稀疏</strong>；</li>
+    <li><strong>On-Policy Distillation</strong>：同一条学生轨迹，但每个 token 标注<span class="term">teacher 的条件逐 token 概率</span>（40%、80%、5%、15%、99%、99%、40%、80%、90%、99%、70%、99%、99%）——<strong>既在策略，信号又稠密</strong>。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 99</span>SFT vs RL vs On Policy Distillation（二维对比表）</h3>
+  <figure><img src="slides/slide-099.png" alt="Slide 99 三方法对比表" loading="lazy"><figcaption>Method / Sampling / Reward signal 三列表；on-policy 与 dense 单元格高亮</figcaption></figure>
+  <p>把上一页压缩成一张表：</p>
+  <table>
+    <tr><th>方法</th><th>Sampling（采样方式）</th><th>Reward signal（奖励/学习信号）</th></tr>
+    <tr><td>Supervised finetuning（SFT）</td><td>off-policy</td><td><strong>dense（稠密）</strong></td></tr>
+    <tr><td>Reinforcement learning（RL）</td><td><strong>on-policy（在策略）</strong></td><td>sparse（稀疏）</td></tr>
+    <tr><td>On-policy distillation（在策略蒸馏）</td><td><strong>on-policy（在策略）</strong></td><td><strong>dense（稠密）</strong></td></tr>
+  </table>
+  <p>SFT 信号稠密但 off-policy；RL 在策略但信号稀疏；<strong>只有 on-policy distillation 两项全占</strong>——这就是它高效的原因。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 100</span>On Policy Distillation Loss（损失函数）</h3>
+  <figure><img src="slides/slide-100.png" alt="Slide 100 OPD 损失" loading="lazy"><figcaption>KL(π_θ ‖ π_teacher) = E_{x∼π_θ}[ log π_θ(x_{t+1}|x_{1..t}) − log π_teacher(x_{t+1}|x_{1..t}) ]（Image Credit: thinkingmachines.ai/blog/on-policy-distillation/）</figcaption></figure>
+  <p>损失就是一个<strong>反向 KL 散度</strong>，两个彩色标注点明关键：</p>
+  <ul>
+    <li>红色（期望算子 E）：<strong>「对从策略（学生自己）采样出的响应求期望」</strong>——这就是 on-policy 的含义；</li>
+    <li>蓝色（log 差值项）：<strong>「每个 token 上：学生的 logprobs 减去 teacher 的 logprobs」</strong>——逐 token 的稠密信号。</li>
+  </ul>
+  <p>直觉：学生照着自己平时的路走，每走一步都问 teacher「这里你会怎么做」，把差距压到最小。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 101</span>On Policy Distillation Example（逐 token 案例一）</h3>
+  <figure><img src="slides/slide-101.png" alt="Slide 101 OPD 示例" loading="lazy"><figcaption>一道「冰块」陷阱题上学生回复的逐 token 标注（红色高亮）</figcaption></figure>
+  <p>一个具体样本。题目：Beth 第 1 分钟初放 4 块冰块、第 2 分钟初放 5 块、第 3 分钟初放若干、第 4 分钟不放；煎蛋期间平均每分钟放 5 块，问第三分钟结束时锅里有多少块完整冰块？选项 A.30 B.0 C.20 D.10 E.11 F.5。
+  （回复开头截断。）学生的回复被逐 token 标注：<strong>解题思路是「锅里不会消失」——4 + 5 + 11 = 20，选 C. 20</strong>；
+  中途还明确写出「冰块在煎脆蛋的过程中不会被移除，我们只统计放入的数量」「假设冰块不融化，否则题目未提及无法计算」。
+  每个红色 token 都对应 teacher 概率与学生对齐程度的差异——这就是 Slide 100 那个 loss 在真实样本上的样子。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 102</span>Real Model Example（Qwen3 后训练管线）</h3>
+  <figure><img src="slides/slide-102.png" alt="Slide 102 Qwen3 管线" loading="lazy"><figcaption>Figure 1：Qwen3 系列模型后训练管线——旗舰模型四阶段；轻量模型用 Strong-to-Weak Distillation</figcaption></figure>
+  <p>工业界实例：<strong>Qwen3 系列的后训练管线（Figure 1）</strong>分上下两层：</p>
+  <ul>
+    <li><strong>旗舰模型（Flagship Models）</strong>：Base Models → Stage 1 <strong>Long-CoT Cold Start</strong>（长思维链冷启动 SFT）→ Stage 2 <strong>Reasoning RL</strong>（推理强化学习）→ Stage 3 <strong>Thinking Mode Fusion</strong>（思考模式融合）→ Stage 4 <strong>General RL</strong>（通用 RL）→ 得到 Qwen3-235B-A22B / Qwen3-32B；</li>
+    <li><strong>轻量模型（Lightweight Models）</strong>：Base Models → <strong>Strong-to-Weak Distillation</strong>（强到弱蒸馏）→ 得到 Qwen3-30B-A3B / 14B / 8B / 4B / 1.7B / 0.6B（Stage 2 的产出也汇入此层）。</li>
+  </ul>
+  <p>SFT、RL、蒸馏在真实旗舰模型训练里全部登场、各司其职。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 103</span>On Policy Distillation Results（结果）</h3>
+  <figure><img src="slides/slide-103.png" alt="Slide 103 OPD 结果" loading="lazy"><figcaption>Figure 8（Qwen3 Technical Report Table 21）：Off-policy 蒸馏 → RL → On-policy 蒸馏三行对比；结论：On-policy distillation was more efficient and produced better models than RL.</figcaption></figure>
+  <p>结论页：<strong>「On-policy 蒸馏比 RL 更高效，且训练出的模型更好。」</strong>数据来自 Qwen3 技术报告 Table 21：</p>
+  <table>
+    <tr><th>Method</th><th>AIME'24</th><th>GPQA-Diamond</th><th>GPU Hours</th></tr>
+    <tr><td>Off-policy distillation</td><td>55.0%</td><td>55.6%</td><td>Unreported（未报告）</td></tr>
+    <tr><td>＋ Reinforcement learning</td><td>67.6%</td><td>61.3%</td><td>17,920</td></tr>
+    <tr><td>＋ On-policy distillation</td><td><strong>74.4%</strong></td><td><strong>63.3%</strong></td><td><strong>1,800</strong></td></tr>
+  </table>
+  <p>最扎眼的对比在最后一列：达到更好的成绩（74.4% vs 67.6%），GPU 时数只有 RL 的约 <strong>1/10</strong>（1,800 vs 17,920）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 104</span>Weight Optimization Summary（权重优化小结）</h3>
+  <figure><img src="slides/slide-104.png" alt="Slide 104 权重优化小结" loading="lazy"><figcaption>三行四列表：Method / Trajectory source / Learning signal / Training objective</figcaption></figure>
+  <p>权重优化一章收束成一张总表：</p>
+  <table>
+    <tr><th>方法</th><th>轨迹来源（Trajectory source）</th><th>学习信号（Learning signal）</th><th>训练目标（Training objective）</th></tr>
+    <tr><td>Supervised fine-tuning</td><td>收集的示范（Collected demonstrations）</td><td>参考 token 与动作</td><td>最大化示范行为的似然</td></tr>
+    <tr><td>Reinforcement learning</td><td>学生自生成轨迹</td><td>任务奖励（Task rewards）</td><td>最大化期望奖励</td></tr>
+    <tr><td>On-policy distillation</td><td>学生自生成轨迹</td><td>teacher 在学生生成前缀上的 token 概率</td><td>在学生自生成轨迹上最小化与 teacher 的散度</td></tr>
+  </table>
+  <p>记忆口诀：SFT 学「别人的路」，RL 学「自己的奖励」，OPD 在「自己的路上学老师」。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch4">
+<h2 class="chapter-title">四、用 Agent 做优化（Optimization with Agents）</h2>
+<p class="chapter-sub">Optimization with Agents（Slide 105–116）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 105</span>章节页：Optimization with Agents</h3>
+  <figure><img src="slides/slide-105.png" alt="Slide 105 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Agents</figcaption></figure>
+  <p>进入第四章：换一个视角——<strong>让 agent 本身充当优化器</strong>：给它环境、日志与执行能力，让它自己迭代改进。本章两个案例：Self-Improvement（自我改进）与 Auto-Research（自动化研究）。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 106</span>子章节页：Self Improvement</h3>
+  <figure><img src="slides/slide-106.png" alt="Slide 106 Self Improvement" loading="lazy"><figcaption>Self Improvement 子章节分隔页</figcaption></figure>
+  <p>子章节「Self Improvement（自我改进）」：agent 优化的是<strong>它自己</strong>——自己的代码、自己的 harness。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 107</span>Darwin Gödel Machine [Zhang et al., 2026]（机制）</h3>
+  <figure><img src="slides/slide-107.png" alt="Slide 107 DGM" loading="lazy"><figcaption>Archive 节点树 → select/add 循环 → Self-modify（改自己的 repo）→ Evaluate on benchmark（Image Credit: arxiv.org/pdf/2505.22954）</figcaption></figure>
+  <p><span class="term">Darwin Gödel Machine（DGM，达尔文·哥德尔机）</span>的机制（底部原文）：<strong>「按与性能成正比、与子代数量成反比的方式选择父代进行自我修改。」</strong>
+  流程图拆解：</p>
+  <ul>
+    <li><strong>Archive（档案库）</strong>：保存所有历史 agent 变体的节点树（红=parent 父代，黄=child 子代，如 Coding agent → New coding agent）；</li>
+    <li><strong>select / add 循环</strong>：从档案树中选父代 → 自我修改（Self-modify）：给 coding agent <strong>它自己的代码仓库＋自我改进指令</strong>，产出「改进自身的代码 diff」；</li>
+    <li><strong>Evaluate on benchmark</strong>：把新变体放到任务仓库（如 GitHub repo）＋任务指令（如 GitHub issue）上评测，产出「解题的代码 diff」；</li>
+    <li>好的变体作为新节点 <strong>add</strong> 回档案树，循环继续。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 108</span>Darwin Gödel Machine（搜索过程）</h3>
+  <figure><img src="slides/slide-108.png" alt="Slide 108 DGM 搜索" loading="lazy"><figcaption>左：DGM Archive Tree（节点颜色= SWE-bench 得分 0–0.5）；右：DGM Progress（Best Agent 0.20 → 0.50，Image Credit: arxiv.org/pdf/2505.22954）</figcaption></figure>
+  <p>两幅图展示 DGM 的搜索过程：</p>
+  <ul>
+    <li><strong>左图 Archive Tree</strong>：约 80 个节点的树，颜色按 SWE-bench 得分着色（colorbar 0–0.5）；空心圈标记三类节点：10 tasks（无基本功能）、60 tasks、200 tasks（当时得分 ≥0.4 且居档案前二）；黑色星形为主 lineage（0→4→20→24→47→56…），即<strong>最终最佳 agent 的祖先链</strong>；</li>
+    <li><strong>右图 DGM Progress</strong>：横轴 Iterations（0–80），纵轴 SWE-bench Score（0.20–0.50）。Best Agent（蓝阶梯线）：起点 0.20 → 约 2 轮升 0.25 → 约 20 轮跳 0.41 → 约 46 轮 0.43 → 约 63 轮达 <strong>0.50</strong> 并保持。注释气泡标注了关键的自我改进：「非空补丁校验与重试」「用字符串替换做更细粒度的文件编辑」「按行做更细粒度的文件查看」（约 20 轮）、「上下文超限时自动摘要」（约 45 轮）、「多次补丁生成与排序」「带历史感知的补丁生成与排序」（约 63 轮冲上 0.50）。</li>
+  </ul>
+  <p>注意：分数的跃升都对应 agent <strong>给自己写的新工具/新能力</strong>——它在改自己的 harness。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 109</span>Darwin Gödel Machine（消融实验）</h3>
+  <figure><img src="slides/slide-109.png" alt="Slide 109 DGM 消融" loading="lazy"><figcaption>两幅阶梯折线图：SWE-bench（左）与 Polyglot（右）上的消融对比（Image Credit: arxiv.org/pdf/2505.22954）</figcaption></figure>
+  <p>结论（底部原文）：<strong>「自我改进（父代修改自己而非由 meta-agent 修改）与探索（可以回退到先前的父代、而不是总在最新版本上叠加）两者都至关重要。」</strong>
+  消融曲线：</p>
+  <ul>
+    <li><strong>左图（SWE-bench Score of Best Agent，0.20–0.50）</strong>：完整 DGM（蓝）阶梯升至 0.50；去掉开放式探索（黄）长期卡在 0.20 附近、约 38 轮才升到 0.23；去掉自我改进（绿）只爬到 0.39 就平台；红色虚线为开源 SOTA（约 0.51）；</li>
+    <li><strong>右图（Polyglot Score，约 0.15–0.40）</strong>：完整 DGM（蓝）最高爬到约 0.36–0.38；两个消融变体分别只到约 0.18 与 0.28；基线 Aider 约 0.165。</li>
+  </ul>
+  <p>去掉任何一个设计都会显著变差——<strong>「能改自己」＋「能回头」缺一不可。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 110</span>Meta-Harness（机制）</h3>
+  <figure><img src="slides/slide-110.png" alt="Slide 110 Meta-Harness" loading="lazy"><figcaption>Filesystem（含全部经验）→ ① Propose Harness Code（Maximize）→ Harness → Harness+LLM ↔ Tasks（Evaluate）→ 结果（Proposed Code / Reasoning Traces / Eval Score）→ ③ Store *all* Logs 回文件系统（Image Credit: arxiv.org/pdf/2603.28052）</figcaption></figure>
+  <p><span class="term">Meta-Harness</span> 的思路（底部原文）：<strong>「让一个 meta agent 看到<strong>全部</strong>过往经验，由它决定下一步改什么。」</strong>
+  流程：①文件系统（Filesystem w/ All Experience，目录 1、2、…）保存一切历史 → meta agent 以「Maximize（最大化性能）」为目标提出 harness 代码（Propose Harness Code）→
+  harness 与 LLM 组成 <strong>Harness+LLM</strong> 在 Tasks 数据库上评估 → 每次评估的产出（Proposed Code / Reasoning Traces / Eval Score）→ ③ <strong>把全部日志存回文件系统</strong>，进入下一轮。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 111</span>Meta-Harness（效果）</h3>
+  <figure><img src="slides/slide-111.png" alt="Slide 111 Meta-Harness 结果" loading="lazy"><figcaption>左：Harness Optimizer Search Progress 折线图；右：TerminalBench-2 Harness Performance 柱状图（Image Credit: arxiv.org/pdf/2603.28052）</figcaption></figure>
+  <p>结论（底部原文）：<strong>「随着时间推移，meta-agent 能利用这些上下文为 agent 构建越来越好的 harness，去解决面向特定领域的问题。」</strong>两幅图：</p>
+  <ul>
+    <li><strong>左图（搜索进度）</strong>：横轴 Harness Evaluations（0–40+），纵轴 Best Performance (%)（30–55+）。Meta-Harness（红）一路升到约 55–57%；TTT-Discover（青）约 45.7%；OpenEvolve（深蓝）约 42.8%；基线 ACE（灰虚线）约 41%、Few-shot 约 36.5%、Zero-shot 约 33%；</li>
+    <li><strong>右图（TerminalBench-2 通过率）</strong>：模型优化的 harness（红柱）对 human-written（深蓝）：Meta-Harness <strong>37.6</strong> vs 人工版；横向对比其他 harness：Goose 35.5、Terminus-KIRA 33.7、Mini-SWE-Agent 29.8、Terminus-2 28.3、Claude Code 27.5。</li>
+  </ul>
+  <p>Meta-Harness 优化出的 harness 甚至超过了人工写的版本与知名 agent 框架。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 112</span>子章节页：Auto Research (Optimize Anything)</h3>
+  <figure><img src="slides/slide-112.png" alt="Slide 112 Auto Research 子章节页" loading="lazy"><figcaption>Auto Research (Optimize Anything) 子章节分隔页</figcaption></figure>
+  <p>子章节「Auto Research（自动化研究：优化任何东西）」——同样的循环可以泛化到「任何跑在软件上的东西」。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 113</span>Auto-Research（循环机制）</h3>
+  <figure><img src="slides/slide-113.png" alt="Slide 113 Auto-Research 循环" loading="lazy"><figcaption>手绘流程：read context → propose change → commit and train → metrics improved? → yes: accept (keep change) / no: revert (git reset) → log to results.tsv → repeat（Image Credit: cerebras.ai/blog/how-to-stop-your-autoresearch-loop-from-cheating）</figcaption></figure>
+  <p><span class="term">Auto-Research</span> 的循环（底部原文）：<strong>「给 agent 代码仓库的访问权。让它头脑风暴、写一个改动。跑实验看改动是否正向。指标提升就保留并在其上继续，否则回滚。记录发现。」</strong>
+  流程图：<code>read context</code> → <code>propose change</code> → <code>commit and train</code> → 判断 <code>metrics improved?</code>——
+  yes 走绿框 <code>accept (keep change)</code>，no 走红框 <code>revert (git reset)</code>，两路汇入 <code>log to results.tsv</code>，黑色箭头 <code>repeat</code> 回到起点。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 114</span>Auto-Research Prompt（实验循环 prompt 原文）</h3>
+  <figure><img src="slides/slide-114.png" alt="Slide 114 Auto-Research Prompt" loading="lazy"><figcaption>karpathy/autoresearch 的 "The experiment loop" prompt 截图（Image Credit: github.com/karpathy/autoresearch）</figcaption></figure>
+  <p>这是 Karpathy 的 <code>autoresearch</code> 仓库里驱动整个循环的 prompt（"The experiment loop"，要点）：实验在专用分支上跑（如 <code>autoresearch/mar5</code>）；<strong>LOOP FOREVER</strong>：</p>
+  <ol>
+    <li>查看 git 状态（当前分支/commit）；</li>
+    <li>带着实验性想法直接改 <code>train.py</code>；</li>
+    <li><code>git commit</code>；</li>
+    <li>跑实验：<code>uv run train.py &gt; run.log 2&gt;&amp;1</code>（重定向一切输出——不要用 tee、别让输出淹没了上下文）；</li>
+    <li>读结果：<code>grep "^val_bpb:\|^peak_vram_mb:" run.log</code>；</li>
+    <li>grep 为空说明跑崩了：<code>tail -n 50 run.log</code> 读堆栈尝试修复，几次不行就放弃；</li>
+    <li>把结果记入 tsv（注意：results.tsv 不进 git）；</li>
+    <li><strong>val_bpb 变低（改进）→「推进」分支，保留 commit；</strong></li>
+    <li><strong>持平或变差 → git reset 回到起点。</strong></li>
+  </ol>
+  <p>收尾段：「你是一个完全自主的研究者，尝试、保留或丢弃，并推进分支以持续迭代。如果感觉卡住了可以回退，但应该极其克制地这么做（如果非要的话）。」</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 115</span>Auto-Research（83 次实验的进展图）</h3>
+  <figure><img src="slides/slide-115.png" alt="Slide 115 Auto-Research 进展" loading="lazy"><figcaption>Autoresearch Progress: 83 Experiments, 15 Kept Improvements——验证 BPB 阶梯下降图（Image Credit: github.com/karpathy/autoresearch）</figcaption></figure>
+  <p>真实跑出来的结果：<strong>83 次实验，只保留 15 次改进</strong>（图题）。横轴 Experiment #（0–83），纵轴 Validation BPB（越低越好，0.975–1.000）；
+  灰点为 discarded（丢弃），绿大点为 kept（保留），绿色阶梯线为 running best。保留的改进按时间序包括：
+  baseline（约 0.998）→「总 batch 524K 减半为 262K（更多步数）」（约 0.991）→「warmdown 0.5→0.7」→「加 5% warmup」→「depth 9、aspect ratio 57」→「x0 lambda init 0.1→0.05」→「unembedding LR 0.004→0.008」→「S5SSL 窗口模式（更多滑窗）」→「短窗口 1/4、1/8 上下文（256 tokens）」→「embedding LR 0.6→0.8」→「RoPE base 10000→50000→100000→200000（三次递进）」→「随机种子 42→137」（约 0.9775）。
+  <strong>大量灰点散布在阶梯线上方——绝大多数尝试无效，但循环保证了整体单调向下（变好）。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 116</span>Optimization with Agents Summary（小结）</h3>
+  <figure><img src="slides/slide-116.png" alt="Slide 116 Agent 优化小结" loading="lazy"><figcaption>三条 bullet；右侧为橙色像素风小怪贴纸</figcaption></figure>
+  <p>本章三条结论：</p>
+  <ul>
+    <li><strong>Agent 是相当称职的优化器（relatively capable optimizers）</strong>；</li>
+    <li><strong>给它们一个能记录结果、提出想法、并动手执行的环境，它们就很擅长优化任何「跑在软件上的东西」</strong>；</li>
+    <li><strong>此时最关键的控制点变成了度量/评测（metric/evals）本身</strong>——agent 会拼命优化你给的指标，所以指标必须定义正确（否则就是 Goodhart 定律现场）。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch5">
+<h2 class="chapter-title">五、该用哪种策略（Which Strategy to Use）</h2>
+<p class="chapter-sub">Which Strategy to Use（Slide 117–122）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 117</span>章节页：Which Strategy to Use</h3>
+  <figure><img src="slides/slide-117.png" alt="Slide 117 章节页" loading="lazy"><figcaption>章节导航：当前高亮 Which to Use?</figcaption></figure>
+  <p>进入最后一章：把前面所有方法放在一起——<strong>上下文优化、权重优化、agent 优化，到底该用哪个？</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 118</span>BetterTogether [Soylu et al., 2024]（交替优化）</h3>
+  <figure><img src="slides/slide-118.png" alt="Slide 118 BetterTogether" loading="lazy"><figcaption>左：Algorithm 1 伪代码；右：三个模型 × HotPotQA/GSM8K/Iris 的策略对比表（Image Credit: aclanthology.org/2024.emnlp-main.597.pdf）</figcaption></figure>
+  <p>结论（底部原文）：<strong>「有时最好的做法是：先优化 prompt，再优化权重，然后再优化一轮 prompt。」</strong>
+  左侧 Algorithm 1 伪代码非常直白：<code>Π′ ← OptimizePrompts(Φ, X, μ)</code> → <code>Θ′ ← FinetuneWeights(Φ⟨Θ,Π′⟩, X, μ)</code> → <code>Π″ ← OptimizePrompts(Φ⟨Θ′,Π′⟩, X, μ)</code>——prompt 与权重交替迭代。
+  右侧结果表（HotPotQA / GSM8K / Iris，三个 7–8B 模型）选摘：</p>
+  <ul>
+    <li><strong>Vanilla Zero-shot</strong> 基线很低：如 Llama-2-7B 只有 13.2/24.0/0.0；</li>
+    <li><strong>单步策略</strong>：Prompt Optimization (Π) 如 Llama-3-8B 上 46.9/77.9/79.3；Weight Optimization (Θ) 普遍不如 prompt 优化；</li>
+    <li><strong>BetterTogether 策略（Π→Θ→Π）</strong>在多数组合上最佳：mistral-7b HotPotQA <strong>37.6</strong>、llama-2-7b HotPotQA <strong>34.8</strong> 与 Iris <strong>65.3</strong>；Θ→Π 在 llama-2-7b GSM8K <strong>48.3</strong>、mistral GSM8K <strong>66.7</strong>、llama-3-8b GSM8K <strong>78.9</strong>。</li>
+  </ul>
+  <p>要点：<strong>prompt 优化与权重优化不是二选一，交替进行往往最强。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 119</span>GEPA：prompt 优化的样本效率远高于 RL</h3>
+  <figure><img src="slides/slide-119.png" alt="Slide 119 GEPA 样本效率" loading="lazy"><figcaption>两幅折线图：(a) HotpotQA, Qwen3 8B；(b) IFBench, Qwen3 8B；横轴 Number of Rollouts 0–25000（Image Credit: arxiv.org/pdf/2507.19457）</figcaption></figure>
+  <p>结论（底部原文）：<strong>「Prompt 优化的样本效率（sample-efficient）远高于 RL。」</strong>两幅图（横轴都是 rollout 数量 0–25000，圆点=验证性能，星形=测试集性能）：</p>
+  <ul>
+    <li><strong>(a) HotpotQA</strong>：GEPA（蓝）约 200 次 rollout 就冲到约 57.5，随后到约 59，测试星形约 62.5（约 6500 处）；MIPROv2（绿）约 55.5–57.7；GRPO（橙）缓慢爬到约 52.4，测试仅约 43.7（耗尽约 23500 rollouts）；Baseline 星形约 42.4；</li>
+    <li><strong>(b) IFBench</strong>：GEPA 约 500 次 rollout 升至约 79.5，测试约 83.5；MIPROv2 约 74.5 升至约 82.5；GRPO 缓升至约 63.5（测试约 35.8）；Baseline 约 66.3。</li>
+  </ul>
+  <p><strong>GEPA 用不到 GRPO 几十分之一的 rollout 拿到更高的分</strong>——当环境交互昂贵时这是决定性优势。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 120</span>OpenThoughts-Agent：权重优化更能吃数据</h3>
+  <figure><img src="slides/slide-120.png" alt="Slide 120 数据规模扩展" loading="lazy"><figcaption>三幅折线图：SWE-Bench Verified (100) / Terminal-Bench 2.0 / All Average，横轴 Dataset Size 316→100K（Image Credit: arxiv.org/pdf/2606.24855）</figcaption></figure>
+  <p>硬币的另一面（底部原文）：<strong>「权重优化更吃数据（data hungry），但能随着成千上万的样本持续变强。」</strong>三幅图与 Slide 77 同源：</p>
+  <ul>
+    <li><strong>SWE-Bench Verified (100)</strong>：OT-Agent Qwen3-32B 从 316 条到 100K 一路 16→19→30.7→35→48.5→<strong>55.7</strong>；SERA (swe-agent) 中途到 53 后回落至 52；Base 基线仅约 4；</li>
+    <li><strong>Terminal-Bench 2.0</strong>：OT-Agent 32B 13.5→11→17→17→21.5→<strong>26.2</strong>；Nemotron 32B 约 25.5；基线约 2–4.2；</li>
+    <li><strong>All Average</strong>：OT-Agent 32B 25→26.5→31→32→39.5→<strong>45.3</strong>，曲线未见饱和。</li>
+  </ul>
+  <p>与 Slide 119 对读：<strong>prompt 优化省样本但天花板出现早；权重优化前期性价比低，但数据管够时上限更高。</strong></p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 121</span>Reasons to use context optimization（何时选上下文优化）</h3>
+  <figure><img src="slides/slide-121.png" alt="Slide 121 选上下文优化的理由" loading="lazy"><figcaption>三条理由；右侧为 SpongeBob 举「The」羊皮纸的插画</figcaption></figure>
+  <p>三个选上下文优化的理由：</p>
+  <ul>
+    <li><strong>为 API 访问的模型做优化</strong>：一些很强的模型不开放微调（fine-tuning）入口——只能动 prompt；</li>
+    <li><strong>需要频繁、快速地重跑优化</strong>：上下文优化比权重优化跑得更快、基础设施更简单；</li>
+    <li><strong>环境交互成本高昂</strong>：上下文优化的样本效率更高（见 Slide 119 GEPA vs RL）。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 122</span>Reasons to use weight optimization（何时选权重优化）</h3>
+  <figure><img src="slides/slide-122.png" alt="Slide 122 选权重优化的理由" loading="lazy"><figcaption>三条理由；右侧为 SpongeBob 举杠铃（横幅 "I ❤ PAIN"）的插画</figcaption></figure>
+  <p>三个选权重优化的理由：</p>
+  <ul>
+    <li><strong>上下文优化失灵时</strong>：小模型有时几乎不会听指令（instruction following 能力太弱），prompt 调不动；</li>
+    <li><strong>有强 teacher、想要更便宜的模型</strong>：直接蒸馏（distill）进一个 student 模型往往有效（见 On-Policy Distillation）；</li>
+    <li><strong>上下文已经太长</strong>：prompt 优化会让 prompt 越来越复杂（context-bloat），有时该用权重优化「把知识烧进参数里」，给上下文减负。</li>
+  </ul>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="ch6">
+<h2 class="chapter-title">六、总结</h2>
+<p class="chapter-sub">Summary（Slide 123–125）</p>
+
+<article class="slide">
+  <h3><span class="no">Slide 123</span>Summary（章节页）</h3>
+  <figure><img src="slides/slide-123.png" alt="Slide 123 Summary 章节页" loading="lazy"><figcaption>Summary 章节页；底部进度条显示的是下一讲（多智能体）的五节：SAS vs MAS / Orchestration / Communication / Coordination / Failure Modes，均未高亮</figcaption></figure>
+  <p>全课进入总结。一个有趣的小细节：本页底部进度条显示的并非本讲的五节，而是<strong>下一讲「Multi-Agent Systems」的章节条</strong>（SAS vs MAS、Orchestration、Communication、Coordination、Failure Modes，均未高亮）——应为模板复用产生的「下一讲预告」式残留。</p>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 124</span>Summary（本讲五项内容清单）</h3>
+  <figure><img src="slides/slide-124.png" alt="Slide 124 总结清单" loading="lazy"><figcaption>五个已完成的主题（红色对勾）</figcaption></figure>
+  <p>本讲覆盖的五块内容（全部打勾）：</p>
+  <ul>
+    <li>Conditions for Optimization（优化的前提条件）——数据、系统、评测三支柱缺一不可；</li>
+    <li>Context Optimization（上下文优化）——Fewshot 自举 + 反思式演化（MIPROv2、TextGrad、GEPA）；</li>
+    <li>Weight Optimization（权重优化）——SFT、RL（PPO/GRPO）、On-Policy Distillation；</li>
+    <li>Optimization with Agents（用 Agent 做优化）——DGM、Meta-Harness、Auto-Research；</li>
+    <li>Which Strategy to Use（如何选择）——按模型权限、重跑频率、样本成本、上下文长度权衡，且可交替使用。</li>
+  </ul>
+</article>
+
+<article class="slide">
+  <h3><span class="no">Slide 125</span>结束页：Guest Lecture next Monday!</h3>
+  <figure><img src="slides/slide-125.png" alt="Slide 125 结束页" loading="lazy"><figcaption>Guest Lecture next Monday!（Monday 红色加粗）；上方为 TERMINAL-BENCH 黑色 logo 横幅</figcaption></figure>
+  <p>结束页：<strong>「下周一客座讲座！」</strong>（Monday 红色加粗强调），横幅是 <span class="term">TERMINAL-BENCH</span> 的 logo——呼应 Slide 2 的公告，客座讲座将围绕 Terminal-Bench 展开。第九讲到此结束。</p>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section class="chapter" id="refs">
+<h2 class="chapter-title">参考链接</h2>
+<p class="chapter-sub">本讲引用的论文与资料</p>
+<ul>
+  <li>GPT-3 / Fewshot Prompting（Brown et al., 2020）— <a href="https://arxiv.org/pdf/2005.14165">arXiv:2005.14165</a></li>
+  <li>Fantastically Ordered Prompts and Where to Find Them（Lu et al., 2022）— <a href="https://arxiv.org/pdf/2005.14165">arXiv:2005.14165</a></li>
+  <li>Chain-of-Thought Prompting（Wei et al., 2022）— <a href="https://arxiv.org/pdf/2201.11903">arXiv:2201.11903</a></li>
+  <li>STaR: Self-Taught Reasoner（Zelikman et al., 2022）— <a href="https://arxiv.org/pdf/2203.14465">arXiv:2203.14465</a></li>
+  <li>DSPy（Khattab et al., 2023）— 表格来源 <a href="https://arxiv.org/pdf/2310.03714">arXiv:2310.03714</a>；示意图 <a href="https://aclanthology.org/2024.emnlp-main.525.pdf">EMNLP 2024 (MIPROv2)</a></li>
+  <li>Large Language Models as Optimizers / OPRO（Yang et al., 2024）— <a href="https://arxiv.org/pdf/2309.03409">arXiv:2309.03409</a></li>
+  <li>MIPROv2（Opsahl-Ong et al., 2024）— <a href="https://aclanthology.org/2024.emnlp-main.525.pdf">aclanthology.org/2024.emnlp-main.525</a></li>
+  <li>TextGrad: Feedback Gradients（Yuksekgonul et al., 2024）— <a href="https://arxiv.org/pdf/2406.07496">arXiv:2406.07496</a></li>
+  <li>GEPA: Genetic Pareto Prompt Evolution（Agrawal et al., 2026）— <a href="https://arxiv.org/pdf/2507.19457">arXiv:2507.19457</a></li>
+  <li>PAPILLON（Siyan et al., 2025）— <a href="https://arxiv.org/pdf/2410.17127">arXiv:2410.17127</a></li>
+  <li>Flan / Instruction Finetuning — <a href="https://arxiv.org/pdf/2210.11416">arXiv:2210.11416</a></li>
+  <li>OpenThoughts-Agent（Raoof et al., 2026）— <a href="https://arxiv.org/pdf/2606.24855">arXiv:2606.24855</a></li>
+  <li>FireAct（Chen et al., 2023）— <a href="https://arxiv.org/pdf/2310.05915">arXiv:2310.05915</a></li>
+  <li>DeepSeekMath / GRPO（Shao et al., 2024）— <a href="https://arxiv.org/pdf/2402.03300">arXiv:2402.03300</a></li>
+  <li>DeepSeek-R1（2025）— <a href="https://arxiv.org/pdf/2501.12948">arXiv:2501.12948</a></li>
+  <li>On-Policy Distillation（Thinking Machines）— <a href="https://thinkingmachines.ai/blog/on-policy-distillation/">thinkingmachines.ai/blog/on-policy-distillation</a></li>
+  <li>Qwen3 Technical Report（后训练管线与 Table 21）— 课程讲义引用（Figure 1 / Figure 8）</li>
+  <li>Darwin Gödel Machine（Zhang et al., 2026）— <a href="https://arxiv.org/pdf/2505.22954">arXiv:2505.22954</a></li>
+  <li>Meta-Harness — <a href="https://arxiv.org/pdf/2603.28052">arXiv:2603.28052</a></li>
+  <li>Auto-Research（Karpathy）— <a href="https://github.com/karpathy/autoresearch">github.com/karpathy/autoresearch</a>；防作弊讨论 <a href="https://www.cerebras.ai/blog/how-to-stop-your-autoresearch-loop-from-cheating">cerebras.ai blog</a></li>
+  <li>BetterTogether（Soylu et al., 2024）— <a href="https://aclanthology.org/2024.emnlp-main.597.pdf">aclanthology.org/2024.emnlp-main.597</a></li>
+  <li>The Last Mile Problem 配图 — <a href="https://msukhareva.substack.com/p/the-last-mile-problem">msukhareva.substack.com</a></li>
+  <li>课程官网：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+  <p>本教程基于 Stanford CS329Z 课程公开讲义整理，为学习性中文导读，内容版权归原作者与课程所有。
+  课程官网：<a href="https://cs329z.stanford.edu/">cs329z.stanford.edu</a>。
+  返回<a href="../">专栏首页</a>查看全部讲次。</p>
+</footer>
+
+</body>
+</html>
